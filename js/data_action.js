@@ -154,7 +154,7 @@ data_action = [
     {
         title: "Rechercher",
         icon: "magnifying-glass",
-        subtitle: "Déceler quelque chose qui n'est pas évident.",
+        subtitle: "Déceler quelque chose.",
         description: "Déceler quelque chose qui n'est pas évident.",
         reference: "PHB, pg. 373.",
         bullets: [
@@ -166,7 +166,7 @@ data_action = [
     {
         title: "Étudier",
         icon: "magnifying-glass",
-        subtitle: "Étudier votre mémoire, un livre ou un indice.",
+        subtitle: "Étudier votre mémoire ou un objet.",
         description: "Étudier votre mémoire, un livre ou un indice.",
         reference: "PHB, pg. 375.",
         bullets: [
@@ -212,7 +212,7 @@ data_action = [
     {
         title: "Improviser",
         icon: "juggler",
-        subtitle: "Toute action\nqui n'est pas sur cette liste",
+        subtitle: "Toute action qui n'est pas sur cette liste",
         description: "Effectuer toute action que vous pouvez imaginer",
         reference: "PHB, pg. 15.",
         bullets: [

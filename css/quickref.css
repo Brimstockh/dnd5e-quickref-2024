@@ -17,7 +17,7 @@
 
 .section-content {
     padding:8px;
-    padding-bottom: 0;
+    padding-bottom: 8px;
     border-radius: 8px;
     margin-top: 0;
     background-color: white;
@@ -46,6 +46,7 @@
     margin-bottom: 8px;
     font-size: inherit;
     font-style: italic;
+    line-height: 1.0;
 }
 
 #modal-reference {
@@ -71,7 +72,7 @@
 /* ------------------------------------------------------------------------- */
 
 .item {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     float: left;
     display: flex;
     font-size: inherit;
