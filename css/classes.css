@@ -1,0 +1,141 @@
+﻿:root {
+    --bg: #f4f1e8;
+    --paper: #fffef9;
+    --ink: #222;
+    --accent: #7a120f;
+    --muted: #5e5e5e;
+    --line: #d8d2c5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+}
+
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--paper);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.card h1,
+.card h2 {
+    margin: 0;
+    padding: 10px 14px;
+    font-family: "Lora", Georgia, serif;
+    font-variant: small-caps;
+    color: #fff;
+    background: var(--accent);
+}
+
+.card .content {
+    padding: 12px 14px;
+    line-height: 1.35;
+}
+
+.meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.pill {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px;
+    background: #fff;
+}
+
+.pill strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+li + li {
+    margin-top: 4px;
+}
+
+.topnav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+a.btn {
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent);
+    background: #fff;
+    padding: 7px 10px;
+    font-weight: 700;
+}
+
+a.btn:hover {
+    background: #f7eceb;
+}
+
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+}
+
+.class-grid a {
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--ink);
+    background: #fff;
+}
+
+.class-grid a strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 3px;
+}
+
+small.note {
+    color: var(--muted);
+}
+
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .page {
+        max-width: none;
+        padding: 0;
+    }
+
+    .topnav {
+        display: none;
+    }
+
+    .card {
+        break-inside: avoid;
+    }
+}
