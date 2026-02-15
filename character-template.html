@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modèle de création de personnage D&D 2024</title>
+    <link rel="stylesheet" href="css/quickref.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        body { margin: 0; font-family: 'Noto Sans', sans-serif; color: #222; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 16px 20px 28px; }
+        .topnav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+        .topnav a { display: inline-block; padding: 6px 10px; border: 1px solid #7a120f; border-radius: 8px; text-decoration: none; color: #7a120f; background: #fff; font-weight: 700; }
+        .card { background: #fff; border: 1px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 18px; box-shadow: 0 3px 10px rgba(0,0,0,0.06); margin-bottom: 14px; }
+        h1, h2 { font-family: 'Lora', serif; margin: 0 0 12px; color: #7a120f; }
+        .sub { margin: 0 0 14px; }
+        .grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+        label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 4px; }
+        input, textarea, select { width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; padding: 8px; font: inherit; background: #fff; }
+        textarea { min-height: 84px; resize: vertical; }
+        .skills { columns: 2; gap: 18px; }
+        .skills label { font-weight: 400; margin: 2px 0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { border: 1px solid #ddd; padding: 7px; text-align: left; vertical-align: top; }
+        .table th { background: #f8f3f2; }
+        .note { font-size: 0.92rem; color: #555; margin-top: 8px; }
+        @media (max-width: 900px) {
+            .grid, .grid-2 { grid-template-columns: 1fr; }
+            .skills { columns: 1; }
+        }
+    </style>
+</head>
+<body class="page-background">
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Retour quickref</a>
+            <a href="classes/index.html">Guides de classes</a>
+            <a href="rules-2024.html">Règles</a>
+            <a href="character-template-v2.html">Template v2 (feuille)</a>
+        </nav>
+
+        <section class="card">
+            <h1>Modèle de création de personnage</h1>
+            <p class="sub">Template inspiré de ton fichier `character.txt` (identité, caractéristiques, compétences, combat, sorts, équipement, historique).</p>
+            <div class="grid">
+                <div><label>Nom du personnage</label><input type="text" placeholder="Ex: Kael" /></div>
+                <div><label>Classe</label><input type="text" placeholder="Ex: Rôdeur" /></div>
+                <div><label>Niveau</label><input type="text" placeholder="1" /></div>
+                <div><label>Expérience</label><input type="text" placeholder="0" /></div>
+                <div><label>Espèce</label><input type="text" /></div>
+                <div><label>Historique</label><input type="text" /></div>
+                <div><label>Sous-classe</label><input type="text" /></div>
+                <div><label>Alignement</label><input type="text" /></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Caractéristiques</h2>
+            <table class="table">
+                <thead>
+                    <tr><th>Caractéristique</th><th>Score</th><th>Mod</th><th>JS</th><th>Maîtrise JS</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Force</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Dextérité</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Constitution</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Intelligence</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Sagesse</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Charisme</td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+            <div class="grid" style="margin-top:10px;">
+                <div><label>Bonus de maîtrise</label><input type="text" /></div>
+                <div><label>Initiative</label><input type="text" /></div>
+                <div><label>Vitesse</label><input type="text" /></div>
+                <div><label>Perception passive</label><input type="text" /></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Compétences</h2>
+            <div class="skills">
+                <label><input type="checkbox" /> Acrobaties</label>
+                <label><input type="checkbox" /> Arcanes</label>
+                <label><input type="checkbox" /> Athlétisme</label>
+                <label><input type="checkbox" /> Discrétion</label>
+                <label><input type="checkbox" /> Dressage</label>
+                <label><input type="checkbox" /> Escamotage</label>
+                <label><input type="checkbox" /> Histoire</label>
+                <label><input type="checkbox" /> Intimidation</label>
+                <label><input type="checkbox" /> Intuition</label>
+                <label><input type="checkbox" /> Investigation</label>
+                <label><input type="checkbox" /> Médecine</label>
+                <label><input type="checkbox" /> Nature</label>
+                <label><input type="checkbox" /> Perception</label>
+                <label><input type="checkbox" /> Persuasion</label>
+                <label><input type="checkbox" /> Religion</label>
+                <label><input type="checkbox" /> Représentation</label>
+                <label><input type="checkbox" /> Survie</label>
+                <label><input type="checkbox" /> Tromperie</label>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Combat</h2>
+            <div class="grid">
+                <div><label>Classe d'armure (CA)</label><input type="text" /></div>
+                <div><label>Points de vie max</label><input type="text" /></div>
+                <div><label>Points de vie actuels</label><input type="text" /></div>
+                <div><label>Dés de vie</label><input type="text" /></div>
+            </div>
+            <table class="table" style="margin-top:10px;">
+                <thead>
+                    <tr><th>Arme</th><th>Bonus Attaque</th><th>Dégâts</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Sorts et capacités</h2>
+            <div class="grid-2">
+                <div><label>Caractéristique d'incantation</label><input type="text" /></div>
+                <div><label>DD de sauvegarde des sorts</label><input type="text" /></div>
+                <div><label>Bonus d'attaque des sorts</label><input type="text" /></div>
+                <div><label>Emplacements (par niveau)</label><input type="text" placeholder="Ex: 4/3/2" /></div>
+            </div>
+            <textarea placeholder="Liste des sorts connus/préparés et effets clés..."></textarea>
+            <textarea placeholder="Traits de classe, dons, capacités spéciales..."></textarea>
+        </section>
+
+        <section class="card">
+            <h2>Équipement et histoire</h2>
+            <div class="grid-2">
+                <textarea placeholder="Équipement, objets magiques, outils..."></textarea>
+                <textarea placeholder="Historique, apparence, personnalité, objectifs..."></textarea>
+            </div>
+            <div class="grid" style="margin-top:10px;">
+                <div><label>PC</label><input type="text" /></div>
+                <div><label>PA</label><input type="text" /></div>
+                <div><label>PE</label><input type="text" /></div>
+                <div><label>PO / PP</label><input type="text" /></div>
+            </div>
+            <p class="note">Tu peux dupliquer cette page pour créer plusieurs personnages, ou l'imprimer en PDF depuis le navigateur.</p>
+        </section>
+    </div>
+</body>
+</html>
+
+

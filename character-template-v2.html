@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Template Personnage D&D 2024 - V2</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --red: #7a120f;
+            --paper: #fff;
+            --bg: #ece8e2;
+            --line: #cfc7bb;
+            --text: #1e1e1e;
+            --soft: #f7f3ee;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 20% 0%, #f7f2ea 0, #ece8e2 40%, #e6e2dc 100%);
+        }
+        .wrap {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 10px 14px 20px;
+        }
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .topnav a,
+        .controls button {
+            border: 1px solid var(--red);
+            color: var(--red);
+            background: #fff;
+            border-radius: 7px;
+            padding: 5px 9px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .title {
+            margin: 0 0 8px;
+            color: var(--red);
+            font-family: 'Lora', serif;
+            font-size: 1.35rem;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .controls button.active {
+            background: var(--red);
+            color: #fff;
+        }
+        .controls button[disabled] {
+            opacity: 0.45;
+            cursor: default;
+        }
+
+        .sheet {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+            padding: 10px;
+        }
+        .page {
+            display: none;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 8px;
+            background: #fff;
+            min-height: 760px;
+        }
+        .page.active { display: block; }
+
+        .section {
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            padding: 7px;
+            background: #fff;
+        }
+        .section h2 {
+            margin: 0 0 6px;
+            color: var(--red);
+            font-size: 0.93rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .grid { display: grid; gap: 7px; }
+        .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #4c4c4c;
+        }
+        input, textarea {
+            width: 100%;
+            border: 1px solid #c8c1b7;
+            border-radius: 5px;
+            padding: 5px 6px;
+            font: inherit;
+            font-size: 0.86rem;
+            background: #fff;
+        }
+        textarea { min-height: 74px; resize: vertical; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        th, td {
+            border: 1px solid var(--line);
+            padding: 4px 5px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: var(--soft);
+            font-weight: 700;
+        }
+
+        .skills {
+            columns: 2;
+            gap: 12px;
+            font-size: 0.84rem;
+            line-height: 1.35;
+        }
+        .skills label {
+            margin-bottom: 1px;
+            text-transform: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        .legend {
+            font-size: 0.78rem;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 1000px) {
+            .g4, .g3, .g2 { grid-template-columns: 1fr; }
+            .skills { columns: 1; }
+            .page { min-height: auto; }
+        }
+
+        @media print {
+            body { background: #fff; }
+            .topnav, .controls { display: none !important; }
+            .wrap { max-width: none; margin: 0; padding: 0; }
+            .sheet {
+                border: 0;
+                box-shadow: none;
+                padding: 0;
+                border-radius: 0;
+            }
+            .page {
+                display: block !important;
+                border: 0;
+                border-radius: 0;
+                min-height: 287mm;
+                padding: 10mm;
+                page-break-after: always;
+            }
+            .page:last-child { page-break-after: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Retour quickref</a>
+            <a href="character-template.html">Template v1 (simple)</a>
+            <a href="classes/index.html">Guides de classes</a>
+        </nav>
+
+        <section class="sheet">
+            <h1 class="title">Template Personnage D&D 2024 - Version feuille (V2)</h1>
+            <div class="controls">
+                <button id="prevBtn" type="button">PREV</button>
+                <button id="nextBtn" type="button">NEXT</button>
+                <button id="p1Btn" type="button" class="active">P1</button>
+                <button id="p2Btn" type="button">P2</button>
+                <button id="p3Btn" type="button">P3</button>
+            </div>
+
+            <div id="page1" class="page active">
+                <div class="grid g4">
+                    <div class="section"><label>Nom du personnage</label><input type="text" /></div>
+                    <div class="section"><label>Classe / Niveau</label><input type="text" /></div>
+                    <div class="section"><label>Espèce / Historique</label><input type="text" /></div>
+                    <div class="section"><label>Alignement / XP</label><input type="text" /></div>
+                </div>
+
+                <div class="grid g3" style="margin-top:7px;">
+                    <div class="section">
+                        <h2>Caractéristiques et JS</h2>
+                        <table>
+                            <thead><tr><th>Carac</th><th>Score</th><th>Mod</th><th>JS</th><th>Prof.</th></tr></thead>
+                            <tbody>
+                                <tr><td>FOR</td><td></td><td></td><td></td><td></td></tr>
+                                <tr><td>DEX</td><td></td><td></td><td></td><td></td></tr>
+                                <tr><td>CON</td><td></td><td></td><td></td><td></td></tr>
+                                <tr><td>INT</td><td></td><td></td><td></td><td></td></tr>
+                                <tr><td>SAG</td><td></td><td></td><td></td><td></td></tr>
+                                <tr><td>CHA</td><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                        <div class="grid g2" style="margin-top:6px;">
+                            <div><label>Bonus de maîtrise</label><input type="text" /></div>
+                            <div><label>Initiative</label><input type="text" /></div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Compétences</h2>
+                        <div class="skills">
+                            <label><input type="checkbox" /> Acrobaties</label>
+                            <label><input type="checkbox" /> Arcanes</label>
+                            <label><input type="checkbox" /> Athlétisme</label>
+                            <label><input type="checkbox" /> Discrétion</label>
+                            <label><input type="checkbox" /> Dressage</label>
+                            <label><input type="checkbox" /> Escamotage</label>
+                            <label><input type="checkbox" /> Histoire</label>
+                            <label><input type="checkbox" /> Intimidation</label>
+                            <label><input type="checkbox" /> Intuition</label>
+                            <label><input type="checkbox" /> Investigation</label>
+                            <label><input type="checkbox" /> Médecine</label>
+                            <label><input type="checkbox" /> Nature</label>
+                            <label><input type="checkbox" /> Perception</label>
+                            <label><input type="checkbox" /> Persuasion</label>
+                            <label><input type="checkbox" /> Religion</label>
+                            <label><input type="checkbox" /> Représentation</label>
+                            <label><input type="checkbox" /> Survie</label>
+                            <label><input type="checkbox" /> Tromperie</label>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Combat</h2>
+                        <div class="grid g2">
+                            <div><label>CA</label><input type="text" /></div>
+                            <div><label>Vitesse</label><input type="text" /></div>
+                            <div><label>PV max</label><input type="text" /></div>
+                            <div><label>PV actuels</label><input type="text" /></div>
+                            <div><label>Dés de vie</label><input type="text" /></div>
+                            <div><label>Perception passive</label><input type="text" /></div>
+                        </div>
+                        <label style="margin-top:6px;">Armes / Attaques</label>
+                        <table>
+                            <thead><tr><th>Nom</th><th>Att.</th><th>Dégâts</th><th>Notes</th></tr></thead>
+                            <tbody>
+                                <tr><td></td><td></td><td></td><td></td></tr>
+                                <tr><td></td><td></td><td></td><td></td></tr>
+                                <tr><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page2" class="page">
+                <div class="grid g2">
+                    <div class="section">
+                        <h2>Lancement de sorts</h2>
+                        <div class="grid g2">
+                            <div><label>Carac d'incantation</label><input type="text" /></div>
+                            <div><label>Bonus attaque sorts</label><input type="text" /></div>
+                            <div><label>DD sauvegarde</label><input type="text" /></div>
+                            <div><label>Focaliseur</label><input type="text" /></div>
+                        </div>
+                        <label style="margin-top:6px;">Emplacements (N1 -> N9)</label>
+                        <input type="text" placeholder="4 / 3 / 2 / - / - / - / - / - / -" />
+
+                        <label style="margin-top:6px;">Sorts préparés / connus</label>
+                        <textarea placeholder="Résumé rapide des sorts"></textarea>
+                    </div>
+
+                    <div class="section">
+                        <h2>Traits magiques</h2>
+                        <textarea style="min-height:250px;" placeholder="Traits, règles de classe, invocations, métamagie..."></textarea>
+                    </div>
+                </div>
+
+                <div class="section" style="margin-top:7px;">
+                    <h2>Liste détaillée des sorts</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Niv</th><th>Nom</th><th>Incantation</th><th>Portée</th><th>Concentration</th><th>Rituel</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                    <p class="legend">Ajoute des lignes supplémentaires selon les besoins de ton personnage.</p>
+                </div>
+            </div>
+
+            <div id="page3" class="page">
+                <div class="grid g2">
+                    <div class="section">
+                        <h2>Traits / Dons / Maîtrises</h2>
+                        <textarea placeholder="Traits de classe, dons, capacités de sous-classe..."></textarea>
+                        <textarea placeholder="Maîtrises: armures, armes, outils, langues..."></textarea>
+                    </div>
+                    <div class="section">
+                        <h2>Inventaire et richesses</h2>
+                        <textarea placeholder="Équipement, objets magiques, consommables..."></textarea>
+                        <div class="grid g4" style="margin-top:6px;">
+                            <div><label>PC</label><input type="text" /></div>
+                            <div><label>PA</label><input type="text" /></div>
+                            <div><label>PE</label><input type="text" /></div>
+                            <div><label>PO / PP</label><input type="text" /></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" style="margin-top:7px;">
+                    <h2>Personnalité et histoire</h2>
+                    <div class="grid g2">
+                        <textarea placeholder="Personnalité, idéaux, liens, défauts..."></textarea>
+                        <textarea placeholder="Historique, objectifs, notes de campagne..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            const pages = [
+                document.getElementById('page1'),
+                document.getElementById('page2'),
+                document.getElementById('page3')
+            ];
+            const pBtns = [
+                document.getElementById('p1Btn'),
+                document.getElementById('p2Btn'),
+                document.getElementById('p3Btn')
+            ];
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let current = 0;
+
+            function draw() {
+                pages.forEach((p, i) => p.classList.toggle('active', i === current));
+                pBtns.forEach((b, i) => b.classList.toggle('active', i === current));
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === pages.length - 1;
+            }
+
+            pBtns.forEach((b, i) => {
+                b.addEventListener('click', function () { current = i; draw(); });
+            });
+            prevBtn.addEventListener('click', function () { if (current > 0) { current -= 1; draw(); } });
+            nextBtn.addEventListener('click', function () { if (current < pages.length - 1) { current += 1; draw(); } });
+            draw();
+        })();
+    </script>
+</body>
+</html>

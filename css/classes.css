@@ -106,9 +106,24 @@ a.btn:hover {
     text-decoration: none;
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     color: var(--ink);
     background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.class-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    object-fit: contain;
+}
+
+.class-copy {
+    display: block;
+    min-width: 0;
 }
 
 .class-grid a strong {
@@ -139,3 +154,4 @@ small.note {
         break-inside: avoid;
     }
 }
+

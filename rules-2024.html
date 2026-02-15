@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Règles D&D 2024</title>
+    <link rel="stylesheet" type="text/css" href="css/quickref.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
+    <style>
+        body { margin: 0; font-family: 'Noto Sans', sans-serif; color: #222; }
+        .rules-wrap { max-width: 1080px; margin: 0 auto; padding: 16px 20px 32px; }
+        .topnav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+        .topnav a { display: inline-block; padding: 6px 10px; border: 1px solid #7a120f; border-radius: 8px; text-decoration: none; color: #7a120f; background: #fff; font-weight: 700; }
+        .rules-content { background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 20px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); }
+        .rules-content h1, .rules-content h2, .rules-content h3, .rules-content h4 { font-family: 'Lora', serif; margin-top: 1.2em; }
+        .rules-content h1 { color: #7a120f; }
+        .rules-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.96rem; }
+        .rules-content th, .rules-content td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+        .rules-content th { background: #f8f3f2; }
+        .rules-content .text-center { text-align: center; }
+        .rules-content .encadre { padding: 12px; border-left: 4px solid #7a120f; background: #f7f7f7; border-radius: 4px; }
+        .rules-content a { color: #7a120f; }
+    </style>
+</head>
+<body class="page-background">
+    <div class="rules-wrap">
+        <nav class="topnav">
+            <a href="index.html">Retour quickref</a>
+            <a href="classes/index.html">Guides de classes</a>
+            <a href="rules-2024.html">Règles D&D 2024</a>
+            <a href="mastery-2024.html">Maîtrise &amp; Actions</a>
+            <a href="combat-2024.html">Combat &amp; Dêgats</a>
+        </nav>
+        <article class="rules-content">
+            
+		<h1>Les six caractéristiques</h1>
+		<div class="content v24"><p>Toutes les créatures, personnages comme monstres, sont dotées de six caractéristiques représentant leurs attributs physiques et mentaux, comme indiqué sur la table ci-dessous.</p>
+<table>
+<tbody>
+<tr>
+<th>Caractéristique</th>
+<th>Valeur représentant…</th>
+</tr>
+<tr>
+<td>Force</td>
+<td>La puissance physique</td>
+</tr>
+<tr>
+<td>Dextérité</td>
+<td>L'agilité, les réflexes et l'équilibre</td>
+</tr>
+<tr>
+<td>Constitution</td>
+<td>La santé et l'endurance</td>
+</tr>
+<tr>
+<td>Intelligence</td>
+<td>Les capacités de raisonnement et la mémoire</td>
+</tr>
+<tr>
+<td>Sagesse</td>
+<td>Le discernement et la fermeté mentale</td>
+</tr>
+<tr>
+<td>Charisme</td>
+<td>La confiance en soi, l'aplomb et le charme naturel</td>
+</tr>
+</tbody>
+</table>
+<h3>Valeurs de caractéristique</h3>
+<p>Chaque caractéristique est représentée par une valeur allant de 1 à 20 (ce maximum peut monter jusqu'à 30 dans le cas de certains monstres). Cette valeur est un ordre de grandeur relatif. La table ci-dessous résume la signification de ces valeurs.</p>
+<table>
+<tbody>
+<tr>
+<th class="text-center">Valeur</th>
+<th>Signification</th>
+</tr>
+<tr>
+<td class="text-center">1</td>
+<td>Il s'agit de la valeur minimale en conditions normales. Quand un effet réduit une valeur à 0, la description de l'effet explique ce qui se passe.</td>
+</tr>
+<tr>
+<td class="text-center">2-9</td>
+<td>Capacités faibles.</td>
+</tr>
+<tr>
+<td class="text-center">10-11</td>
+<td>Moyenne humaine.</td>
+</tr>
+<tr>
+<td class="text-center">12-19</td>
+<td>Capacités remarquables.</td>
+</tr>
+<tr>
+<td class="text-center">20</td>
+<td>Valeur maximale pour un aventurier, sauf mention contraire d'une capacité.</td>
+</tr>
+<tr>
+<td class="text-center">21-29</td>
+<td>Capacités extraordinaires.</td>
+</tr>
+<tr>
+<td class="text-center">30</td>
+<td>Valeur théorique maximale.</td>
+</tr>
+</tbody>
+</table>
+<h3>Modificateurs de caractéristique</h3>
+<p class="encadre"><strong>ARRONDIS À L'INFÈRIEUR</strong><br><br>Chaque fois que vous divisez ou multipliez un nombre dans le jeu et que vous obtenez une fraction, arrondissez à l'entier inférieur même si cette fraction est d'un demi ou plus. Certaines règles constituent une<br>exception en vous indiquant d'arrondir à l'entier supérieur.</p>
+<p>Chaque caractéristique s'accompagne d'un modificateur qui s'applique chaque fois que vous effectuez un jet de d20 associé à cette caractéristique. Le modificateur d'une caractéristique dérive de sa valeur, comme le montre la table ci-dessous.</p>
+<table>
+<tbody>
+<tr>
+<th class="text-center">Valeur</th>
+<th class="text-center">Modificateur</th>
+<th class="text-center">Valeur</th>
+<th class="text-center">Modificateur</th>
+</tr>
+<tr>
+<td class="text-center">1</td>
+<td class="text-center">-5</td>
+<td class="text-center">16-17</td>
+<td class="text-center">+3</td>
+</tr>
+<tr>
+<td class="text-center">2-3</td>
+<td class="text-center">-4</td>
+<td class="text-center">18-19</td>
+<td class="text-center">+4</td>
+</tr>
+<tr>
+<td class="text-center">4-5</td>
+<td class="text-center">-3</td>
+<td class="text-center">20-21</td>
+<td class="text-center">+5</td>
+</tr>
+<tr>
+<td class="text-center">6-7</td>
+<td class="text-center">-2</td>
+<td class="text-center">22-23</td>
+<td class="text-center">+6</td>
+</tr>
+<tr>
+<td class="text-center">8-9</td>
+<td class="text-center">-1</td>
+<td class="text-center">24-25</td>
+<td class="text-center">+7</td>
+</tr>
+<tr>
+<td class="text-center">10-11</td>
+<td class="text-center">0</td>
+<td class="text-center">26-27</td>
+<td class="text-center">+8</td>
+</tr>
+<tr>
+<td class="text-center">12-13</td>
+<td class="text-center">+1</td>
+<td class="text-center">28-29</td>
+<td class="text-center">+9</td>
+</tr>
+<tr>
+<td class="text-center">14-15</td>
+<td class="text-center">+2</td>
+<td class="text-center">30</td>
+<td class="text-center">+10</td>
+</tr>
+</tbody>
+</table>
+<h1><a id="d20" class="ancre" href="#d20">Jets de d20</a></h1>
+<p>Quand le résultat d'une action est incertain, le jeu s'appuie sur le jet d'un d20 pour déterminer si la tâche est couronnée de succès ou si elle échoue. Ces jets appelés « Jets de d20 » se présentent sous trois formes : jets de caractéristique, jets d'attaque et jets de sauvegarde. Ils passent par les étapes suivantes :</p>
+<ol start="1">
+<li><strong>Lancez 1d20</strong>. Plus le résultat est élevé, plus il est favorable. Si le jet s'effectue avec un <a href="#avantage">Avantage</a> ou un <a href="#avantage">Désavantage</a>, vous lancez deux d20, mais ne gardez qu'un résultat ; le plus élevé si vous avez un Avantage, le plus faible si vous avez un Désavantage.</li>
+</ol>
+<p></p>
+<ol start="2">
+<li><strong>Ajoutez les modificateurs</strong>. Ajoutez les modificateurs suivants au nombre obtenu sur le d20 :</li>
+</ol>
+<ul>
+<li><strong>Le modificateur de caractéristique concerné</strong>. Le « <a href="#">Glossaire de règles</a> » précisent quels modificateurs de caractéristique s'appliquent aux divers jets de d20.</li>
+<li><strong>Votre bonus de maîtrise si la situation le justifie</strong>. Chaque créature est dotée d'un bonus de maîtrise, nombre qu'elle ajoute à tout jet de d20 faisant intervenir quelque chose, comme une compétence, dont elle a la maîtrise. Voir «<a href="#">Maîtrise</a> ».</li>
+<li><strong>Appliquez les bonus et malus liés aux circonstances</strong>. Certaines capacités de classe, sorts ou autres éléments de jeu peuvent conférer un bonus ou imposer un malus au jet.</li>
+</ul>
+<p></p>
+<ol start="3">
+<li><strong>Comparez le total au nombre cible</strong>. Si la somme du résultat du d20 et des modificateurs appliqués égale ou dépasse le nombre cible, le jet de d20 est réussi. Dans le cas contraire, il est raté. Le maître de jeu fixe le nombre cible et annonce aux joueurs si leurs jets sont réussis ou non. Dans le cas des jets de caractéristique et des jets de sauvegarde, le nombre cible est appelé degré de difficulté (DD). Dans le cas des jets d'attaque, on parle pour le nombre cible de classe d'armure (CA), celle-ci apparaissant sur la fiche de personnage ou le profil de jeu (voir le «&nbsp;<a href="https://www.aidedd.org#?stage=Stage">Glossaire de règles</a>&nbsp;»).</li>
+</ol>
+<h3><a id="carac" class="ancre" href="#carac">Jets de caractéristique</a></h3>
+<p>Un jet de caractéristique intervient quand une créature puise dans son talent ou sa formation pour surmonter une épreuve, comme forcer une porte bloquée, crocheter une serrure, divertir une foule ou décrypter un code. Le MD et les règles font généralement appel à ces jets lorsque ce que tente une créature a une probabilité d'échouer et qu'il ne s'agit pas d'une attaque. Lorsque l'issue de la tâche est incertaine et intéressante sur le plan narratif, les dés la déterminent.</p>
+<h4>Modificateur de caractéristique</h4>
+<p>Un jet de caractéristique tire son nom de la caractéristique à laquelle il est associé : un jet de Force, un jet d'Intelligence, etc. La caractéristique associée se décide selon la situation. La table ci-dessous fournit de tels exemples.</p>
+<table>
+<tbody>
+<tr>
+<th>Caractéristique</th>
+<th>Effectuez un jet pour…</th>
+</tr>
+<tr>
+<td>Force</td>
+<td>Soulever, pousser, tirer ou briser quelque chose</td>
+</tr>
+<tr>
+<td>Dextérité</td>
+<td>Vous déplacer avec agilité, vivacité ou furtivité</td>
+</tr>
+<tr>
+<td>Constitution</td>
+<td>Repousser les limites ordinaires de votre organisme</td>
+</tr>
+<tr>
+<td>Intelligence</td>
+<td>Mettre votre raison ou votre mémoire à l'épreuve</td>
+</tr>
+<tr>
+<td>Sagesse</td>
+<td>Observer l'environnement ou les comportements</td>
+</tr>
+<tr>
+<td>Charisme</td>
+<td>Influencer, divertir ou tromper autrui</td>
+</tr>
+</tbody>
+</table>
+<h4>Bonus de maîtrise</h4>
+<p>Votre bonus de maîtrise s'ajoute à un jet de caractéristique lorsque le MD statue qu'une maîtrise de compétence ou d'outil s'y applique et que vous disposez de cette maîtrise. Ainsi, quand une règle indique un jet de Force (Acrobaties ou Athlétisme), vous pouvez ajouter votre bonus de maîtrise au jet si vous disposez de la maîtrise de la compétence Acrobaties ou Athlétisme. Pour plus de détails sur les maîtrises de compétence et d'outil, reportez-vous à « <a href="#">Maîtrise</a> ».</p>
+<h4>Degré de difficulté</h4>
+<p>Le degré de difficulté d'un jet de caractéristique représente la difficulté de la tâche. Plus une tâche est ardue, plus le DD est élevé. Les règles fournissent les DD de certains jets, mais c'est toujours le MD qui tranche. La table ci-dessous propose une estimation des DD de jets de caractéristique.</p>
+<table>
+<tbody>
+<tr>
+<th>La tâche est…</th>
+<th>DD</th>
+</tr>
+<tr>
+<td>Très facile</td>
+<td class="text-center">5</td>
+</tr>
+<tr>
+<td>Facile</td>
+<td class="text-center">10</td>
+</tr>
+<tr>
+<td>Modérée</td>
+<td class="text-center">15</td>
+</tr>
+<tr>
+<td>Difficile</td>
+<td class="text-center">20</td>
+</tr>
+<tr>
+<td>Très difficile</td>
+<td class="text-center">25</td>
+</tr>
+<tr>
+<td>Presque impossible</td>
+<td class="text-center">30</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="jds" class="ancre" href="#jds">Jets de sauvegarde</a></h3>
+<p>Un jet de sauvegarde, souvent abrégé en JS, représente une tentative d'échapper ou de résister à un danger, tel qu'une déflagration, une bouffée de vapeurs toxiques ou un sort qui menace d'envahir votre esprit. On ne choisit généralement pas d'effectuer un JS ; vous devez vous y soumettre lorsque votre personnage ou un monstre (dans le cas du MD) est en danger. Le résultat du jet de sauvegarde est détaillé par l'effet qui l'a provoqué.</p>
+<p>Si vous ne comptez pas résister à l'effet, vous pouvez rater volontairement votre JS sans lancer le dé.</p>
+<h4>Modificateur de caractéristique</h4>
+<p>Un jet de sauvegarde tire son nom de la caractéristique à laquelle il est associé : un JS Constitution, un JS Sagesse, etc. La caractéristique associée dépend du type d'effet auquel on tente de résister, comme le montre la table ci-dessous.</p>
+<table>
+<tbody>
+<tr>
+<th>Caractéristique</th>
+<th>Effectuez un JS pour…</th>
+</tr>
+<tr>
+<td>Force</td>
+<td>Vous opposer à une force physique</td>
+</tr>
+<tr>
+<td>Dextérité</td>
+<td>Esquiver un danger physique</td>
+</tr>
+<tr>
+<td>Constitution</td>
+<td>Supporter un danger toxique</td>
+</tr>
+<tr>
+<td>Intelligence</td>
+<td>Percer une illusion</td>
+</tr>
+<tr>
+<td>Sagesse</td>
+<td>Résister à un assaut mental</td>
+</tr>
+<tr>
+<td>Charisme</td>
+<td>Affirmer votre identité</td>
+</tr>
+</tbody>
+</table>
+<h4>Bonus de maîtrise</h4>
+<p>Vous ajoutez votre bonus de maîtrise à un JS si vous disposez de la maîtrise de ce type de jet de sauvegarde. Voir « <a href="#">Maîtrise</a> ».</p>
+<h4>Degré de difficulté</h4>
+<p>Le degré de difficulté d'un jet de sauvegarde est déterminé par l'effet qui le provoque ou par le MD. Exemple : quand un sort vous impose un JS, le DD est fixé par la caractéristique d'incantation du lanceur et son bonus de maîtrise. Les capacités de monstre qui engendrent des JS en spécifient le DD.</p>
+<h3><a id="attaque" class="ancre" href="#attaque">Jets d'attaque</a></h3>
+<p>Un jet d'attaque permet de déterminer si une attaque touche sa cible. Le jet d'attaque touche si son résultat est supérieur ou égal à la classe d'armure de la cible. Les jets d'attaque interviennent généralement lors d'affrontements, selon les règles de la section « <a href="#">Combat</a> », mais le MD peut également y faire appel en d'autres circonstances, comme lors d'un concours de tir à l'arc.</p>
+<h4>Modificateur de caractéristique</h4>
+<p>La table ci-dessous indique quel modificateur de caractéristique s'applique selon le type de jet d'attaque.</p>
+<table>
+<tbody>
+<tr>
+<th>Caractéristique</th>
+<th>Type d'attaque</th>
+</tr>
+<tr>
+<td>Force</td>
+<td>Attaque de corps à corps avec une arme ou attaque à mains nues (voir le « <a href="#">Glossaire de règles</a> »)</td>
+</tr>
+<tr>
+<td>Dextérité</td>
+<td>Attaque à distance avec une arme</td>
+</tr>
+<tr>
+<td>Variable</td>
+<td>Attaque de sort (la caractéristique est déterminée par la capacité Sorts de l'incantateur, comme expliqué dans « <a href="#">Sorts</a> »)</td>
+</tr>
+</tbody>
+</table>
+<p>Certaines capacités vous permettent de recourir à d'autres modificateurs de caractéristique que ceux indiqués. Ainsi, la propriété <a href="#">Finesse</a> permet de choisir entre Force et Dextérité lorsqu'on utilise une arme qui est dotée de cette propriété.</p>
+<h4>Bonus de maîtrise</h4>
+<p>Vous ajoutez votre bonus de maîtrise au jet d'attaque lorsque vous attaquez avec une arme dont vous avez la maîtrise, ainsi que lorsque vous attaquez avec un sort. Pour plus de détails sur les maîtrises d'arme, reportez-vous à « <a href="#">Maîtrise</a> ».</p>
+<h4>Classe d'armure</h4>
+<p>La classe d'armure (ou CA) d'une créature représente sa capacité à éviter les blessures au combat. La CA d'un personnage se détermine à sa création, tandis que celle d'un monstre apparaît dans son profil de jeu.</p>
+<p><strong>Calcul de la CA</strong>. Toutes les créatures débutent avec le même calcul pour la CA de base :</p>
+<p class="text-center"><strong>CA de base = 10 + modificateur de Dextérité de la créature</strong></p>
+<p>La CA d'une créature peut ensuite être modifiée par l'armure, des objets magiques, des sorts et autres éléments.</p>
+<p><strong>Une seule CA de base</strong>. Certains sorts et capacités de classe fournissent aux personnages une autre méthode de calcul pour la CA. Un personnage doté de plusieurs capacités qui lui offrent diverses méthodes de calcul de la CA doit en choisir une ; une même créature ne peut pas être affectée par plus d'une méthode de calcul.</p>
+<h4>Résultat de 20 ou 1 sur le dé</h4>
+<p>Si vous obtenez un 20 sur le d20 (on dit aussi « 20 naturel ») d'un jet d'attaque, l'attaque touche quels que soient les modificateurs engagés et la CA de la cible. C'est ce que l'on appelle un <a href="##critiques">Coup critique.</a></p>
+<p>Si vous obtenez un 1 sur le d20 (on dit aussi « 1 naturel ») d'un jet d'attaque, l'attaque rate, quels que soient les modificateurs engagés et la CA de la cible.</p>
+<h3><a id="avantage" class="ancre" href="#avantage">Avantage et Désavantage</a></h3>
+<p class="encadre"><strong>INSPIRATION HÉROÏQUE</strong><br><br>Il arrive que le MD ou une règle vous octroie l'Inspiration héroïque. Si vous disposez de l'Inspiration héroïque, vous pouvez la dépenser pour rejouer aussitôt tout dé que vous venez de lancer, à condition de conserver ce nouveau jet.<br><strong>Une seule à la fois</strong>. Vous ne pouvez en aucun cas disposer de plus d'une Inspiration héroïque à la fois. Si, pour une raison quelconque, vous recevez l'Inspiration héroïque alors que vous en disposez déjà, vous pouvez la confier à un personnage-joueur de votre groupe qui n'en est pas pourvu.<br><strong>Recevoir l'Inspiration héroïque</strong>. Votre MD peut vous octroyer l'Inspiration héroïque pour diverses raisons. En général, il l'accorde lorsque vous accomplissez un geste héroïque, incarnez remarquablement votre personnage ou que votre prestation s'avère particulièrement divertissante. C'est une sorte de récompense pour celles et ceux qui contribuent activement au plaisir de jeu de toute la table.<br>D'autres règles permettent à votre aventurier d'acquérir l'Inspiration héroïque, indépendamment de la décision du MD. Les personnages humains commencent ainsi chaque journée avec l'Inspiration héroïque.</p>
+<p>Il arrive qu'un jet de d20 soit modifié par un Avantage ou un Désavantage. Un Avantage reflète des circonstances favorables autour d'un jet de d20, tandis qu'un Désavantage représente des conditions défavorables.</p>
+<p>C'est généralement par l'intermédiaire de capacités ou d'actions spéciales que l'on reçoit un Avantage ou un Désavantage. Le MD peut aussi statuer que les circonstances octroient un Avantage ou imposent un Désavantage.</p>
+<h4>Lancez deux d20</h4>
+<p>Lorsque vous effectuez un jet avec un Avantage ou un Désavantage, vous lancez un second d20 avec le premier. Vous ne retenez que le plus élevé des deux dés si vous avez un Avantage, que le plus faible si vous avez un Désavantage. Si vous avez un Désavantage et obtenez par exemple 18 et 3 sur les dés, vous gardez le 3. Si vous avez au contraire un Avantage, c'est le 18 que vous retenez avec ces mêmes jets.</p>
+<h4>Non cumulables</h4>
+<p>Quand plusieurs circonstances s'appliquent à un jet de dés et que chacune octroie un Avantage, vous ne lancez pas plus de deux d20. De même, quand plusieurs circonstances imposent un Désavantage, vous ne lancez que deux d20.</p>
+<p>Si les circonstances vous octroient un Avantage tout en vous imposant un Désavantage, le jet n'a en définitive ni l'un ni l'autre, et vous lancez donc un seul d20. Cela reste vrai même si plusieurs conditions vous imposent un Désavantage et qu'une seule vous octroie un Avantage, ou inversement. Dans une telle situation, vous ne recevez ni Avantage ni Désavantage.</p>
+<h4>Cas des jets qu'on rejoue</h4>
+<p>Lorsque vous avez un Avantage ou un Désavantage et qu'un élément du jeu vous permet de relancer le d20 ou de le remplacer, vous ne pouvez relancer ou remplacer qu'un seul dé. Vous choisissez lequel.</p>
+<p>Exemple : si vous avez l'Inspiration héroïque (cf. encadré ci-après) et obtenez 3 et 18 sur les d20 d'un jet de caractéristique effectué avec Avantage ou Désavantage, vous pouvez dépenser votre Inspiration héroïque pour relancer l'un de ces dés, mais pas les deux.</p>
+
+</p></div>
+	
+        </article>
+    </div>
+</body>
+</html>
