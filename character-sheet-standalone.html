@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feuille de Personnage D&D 2024 - Standalone</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --bg: #ebe7df;
+            --panel: #fffdf9;
+            --ink: #222;
+            --muted: #636363;
+            --line: #d4cec3;
+            --accent: #7a120f;
+            --accent-soft: #f7eceb;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 0% 0%, #f3efe7, transparent 46%),
+                radial-gradient(circle at 100% 100%, #e8e2d7, transparent 48%),
+                var(--bg);
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 14px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .topnav a,
+        .toolbar button,
+        .toolbar label {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            background: #fff;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 12px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card h1,
+        .card h2,
+        .card h3 {
+            margin: 0;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            align-self: start;
+            padding: 12px;
+        }
+
+        .sidebar h1 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 10px 0;
+        }
+
+        .toolbar button.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .status {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        .stack {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            border: 1px solid #cac2b6;
+            border-radius: 7px;
+            padding: 7px 8px;
+            font: inherit;
+            background: #fff;
+        }
+
+        .field textarea { min-height: 92px; resize: vertical; }
+
+        .main {
+            padding: 10px;
+        }
+
+        .hero {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .hero h2 {
+            font-size: 1.15rem;
+        }
+
+        .hero p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+        details.section {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+            margin-bottom: 8px;
+        }
+
+        details.section[open] {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        details.section summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 10px 12px;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-bottom: 1px solid var(--line);
+        }
+
+        details.section summary::-webkit-details-marker { display: none; }
+        details.section .content { padding: 10px; }
+
+        .ability {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .ability strong {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .ability input {
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.98rem;
+        }
+
+        .skill-list {
+            columns: 2;
+            gap: 12px;
+        }
+
+        .skill-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 8px;
+            margin: 2px 0;
+            break-inside: avoid;
+        }
+
+        .skill-item input[type="text"] {
+            width: 52px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--line);
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f7f3ed;
+            color: #3e3e3e;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        @media (max-width: 1080px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .g6, .g4, .g3, .g2 { grid-template-columns: 1fr; }
+            .skill-list { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="rules-2024.html">Règles</a>
+            <a href="combat-2024.html">Combats</a>
+            <a href="mastery-2024.html">Maîtrise</a>
+            <a href="spells.html">Sorts</a>
+            <a href="character-sheet-standalone.html">Template</a>
+            <a href="quickref.html">Référence rapide</a>
+        </nav>
+
+        <div class="layout">
+            <aside class="card sidebar">
+                <h1>Feuille Personnage Standalone</h1>
+                <p class="muted">Version locale inspirée d'une UI moderne, sans dépendance D&D Beyond.</p>
+
+                <div class="toolbar">
+                    <button type="button" class="primary" id="saveBtn">Sauvegarder</button>
+                    <button type="button" id="exportBtn">Exporter JSON</button>
+                    <label for="importFile">Importer JSON</label>
+                    <input id="importFile" type="file" accept="application/json" style="display:none;" />
+                    <button type="button" id="resetBtn">Réinitialiser</button>
+                </div>
+                <p id="status" class="status">Aucune modification.</p>
+
+                <div class="stack">
+                    <div class="field">
+                        <label>Nom du personnage</label>
+                        <input type="text" data-field="name" />
+                    </div>
+                    <div class="field">
+                        <label>Classe / Niveau</label>
+                        <input type="text" data-field="class_level" placeholder="Ex: Rôdeur 5" />
+                    </div>
+                    <div class="grid g2">
+                        <div class="field">
+                            <label>CA</label>
+                            <input type="text" data-field="ac" />
+                        </div>
+                        <div class="field">
+                            <label>Initiative</label>
+                            <input type="text" data-field="initiative" />
+                        </div>
+                    </div>
+                    <div class="grid g2">
+                        <div class="field">
+                            <label>PV max</label>
+                            <input type="text" data-field="hp_max" />
+                        </div>
+                        <div class="field">
+                            <label>PV actuels</label>
+                            <input type="text" data-field="hp_current" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Ressources rapides</label>
+                        <textarea data-field="resources" placeholder="Rage, Ki, emplacements, points de sorcellerie..."></textarea>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="card main">
+                <section class="hero">
+                    <h2>Character Sheet - Standalone</h2>
+                    <p>Tout est éditable et sauvegardé automatiquement dans le navigateur.</p>
+                </section>
+
+                <details class="section" open>
+                    <summary>Identité</summary>
+                    <div class="content grid g4">
+                        <div class="field"><label>Espèce</label><input type="text" data-field="species" /></div>
+                        <div class="field"><label>Historique</label><input type="text" data-field="background" /></div>
+                        <div class="field"><label>Alignement</label><input type="text" data-field="alignment" /></div>
+                        <div class="field"><label>XP</label><input type="text" data-field="xp" /></div>
+                    </div>
+                </details>
+
+                <details class="section" open>
+                    <summary>Caractéristiques et jets de sauvegarde</summary>
+                    <div class="content grid g6">
+                        <div class="ability"><strong>FOR</strong><input type="text" data-field="str" placeholder="10" /><input type="text" data-field="str_mod" placeholder="+0" /><input type="text" data-field="str_save" placeholder="+0" /></div>
+                        <div class="ability"><strong>DEX</strong><input type="text" data-field="dex" placeholder="10" /><input type="text" data-field="dex_mod" placeholder="+0" /><input type="text" data-field="dex_save" placeholder="+0" /></div>
+                        <div class="ability"><strong>CON</strong><input type="text" data-field="con" placeholder="10" /><input type="text" data-field="con_mod" placeholder="+0" /><input type="text" data-field="con_save" placeholder="+0" /></div>
+                        <div class="ability"><strong>INT</strong><input type="text" data-field="int" placeholder="10" /><input type="text" data-field="int_mod" placeholder="+0" /><input type="text" data-field="int_save" placeholder="+0" /></div>
+                        <div class="ability"><strong>SAG</strong><input type="text" data-field="wis" placeholder="10" /><input type="text" data-field="wis_mod" placeholder="+0" /><input type="text" data-field="wis_save" placeholder="+0" /></div>
+                        <div class="ability"><strong>CHA</strong><input type="text" data-field="cha" placeholder="10" /><input type="text" data-field="cha_mod" placeholder="+0" /><input type="text" data-field="cha_save" placeholder="+0" /></div>
+                    </div>
+                    <div class="content grid g4">
+                        <div class="field"><label>Bonus de maîtrise</label><input type="text" data-field="proficiency_bonus" /></div>
+                        <div class="field"><label>Vitesse</label><input type="text" data-field="speed" /></div>
+                        <div class="field"><label>Perception passive</label><input type="text" data-field="passive_perception" /></div>
+                        <div class="field"><label>Inspiration</label><input type="text" data-field="inspiration" /></div>
+                    </div>
+                </details>
+
+                <details class="section" open>
+                    <summary>Compétences</summary>
+                    <div class="content skill-list">
+                        <div class="skill-item"><input type="checkbox" data-field="skill_acrobaties_prof" /><label>Acrobaties</label><input type="text" data-field="skill_acrobaties" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_arcanes_prof" /><label>Arcanes</label><input type="text" data-field="skill_arcanes" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_athletisme_prof" /><label>Athlétisme</label><input type="text" data-field="skill_athletisme" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_discretion_prof" /><label>Discrétion</label><input type="text" data-field="skill_discretion" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_dressage_prof" /><label>Dressage</label><input type="text" data-field="skill_dressage" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_escamotage_prof" /><label>Escamotage</label><input type="text" data-field="skill_escamotage" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_histoire_prof" /><label>Histoire</label><input type="text" data-field="skill_histoire" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_intimidation_prof" /><label>Intimidation</label><input type="text" data-field="skill_intimidation" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_intuition_prof" /><label>Intuition</label><input type="text" data-field="skill_intuition" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_investigation_prof" /><label>Investigation</label><input type="text" data-field="skill_investigation" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_medecine_prof" /><label>Médecine</label><input type="text" data-field="skill_medecine" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_nature_prof" /><label>Nature</label><input type="text" data-field="skill_nature" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_perception_prof" /><label>Perception</label><input type="text" data-field="skill_perception" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_persuasion_prof" /><label>Persuasion</label><input type="text" data-field="skill_persuasion" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_religion_prof" /><label>Religion</label><input type="text" data-field="skill_religion" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_representation_prof" /><label>Représentation</label><input type="text" data-field="skill_representation" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_survie_prof" /><label>Survie</label><input type="text" data-field="skill_survie" placeholder="+0" /></div>
+                        <div class="skill-item"><input type="checkbox" data-field="skill_tromperie_prof" /><label>Tromperie</label><input type="text" data-field="skill_tromperie" placeholder="+0" /></div>
+                    </div>
+                </details>
+
+                <details class="section" open>
+                    <summary>Combat</summary>
+                    <div class="content">
+                        <table>
+                            <thead><tr><th>Arme / Attaque</th><th>Bonus</th><th>Dégâts</th><th>Propriétés / Notes</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" data-field="atk_1_name" /></td>
+                                    <td><input type="text" data-field="atk_1_bonus" /></td>
+                                    <td><input type="text" data-field="atk_1_dmg" /></td>
+                                    <td><input type="text" data-field="atk_1_notes" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" data-field="atk_2_name" /></td>
+                                    <td><input type="text" data-field="atk_2_bonus" /></td>
+                                    <td><input type="text" data-field="atk_2_dmg" /></td>
+                                    <td><input type="text" data-field="atk_2_notes" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" data-field="atk_3_name" /></td>
+                                    <td><input type="text" data-field="atk_3_bonus" /></td>
+                                    <td><input type="text" data-field="atk_3_dmg" /></td>
+                                    <td><input type="text" data-field="atk_3_notes" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="section" open>
+                    <summary>Magie</summary>
+                    <div class="content grid g3">
+                        <div class="field"><label>Carac d'incantation</label><input type="text" data-field="spell_stat" /></div>
+                        <div class="field"><label>Bonus attaque des sorts</label><input type="text" data-field="spell_attack_bonus" /></div>
+                        <div class="field"><label>DD de sauvegarde</label><input type="text" data-field="spell_dc" /></div>
+                    </div>
+                    <div class="content">
+                        <div class="field"><label>Emplacements par niveau</label><input type="text" data-field="spell_slots" placeholder="Ex: 4 / 3 / 2 / 1" /></div>
+                        <div class="field"><label>Sorts préparés / connus</label><textarea data-field="spells_known"></textarea></div>
+                    </div>
+                </details>
+
+                <details class="section" open>
+                    <summary>Équipement, traits et histoire</summary>
+                    <div class="content grid g2">
+                        <div class="field"><label>Équipement et objets magiques</label><textarea data-field="gear"></textarea></div>
+                        <div class="field"><label>Traits / dons / capacités</label><textarea data-field="features"></textarea></div>
+                    </div>
+                    <div class="content grid g2">
+                        <div class="field"><label>Personnalité, idéaux, liens, défauts</label><textarea data-field="personality"></textarea></div>
+                        <div class="field"><label>Historique et notes de campagne</label><textarea data-field="story"></textarea></div>
+                    </div>
+                </details>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var STORAGE_KEY = "dnd_character_sheet_standalone_v1";
+            var statusEl = document.getElementById("status");
+            var saveBtn = document.getElementById("saveBtn");
+            var resetBtn = document.getElementById("resetBtn");
+            var exportBtn = document.getElementById("exportBtn");
+            var importFile = document.getElementById("importFile");
+            var fields = Array.prototype.slice.call(document.querySelectorAll("[data-field]"));
+            var saveTimer = null;
+
+            function setStatus(msg) {
+                statusEl.textContent = msg;
+            }
+
+            function nowText() {
+                var d = new Date();
+                return d.toLocaleTimeString();
+            }
+
+            function collect() {
+                var data = {};
+                fields.forEach(function (el) {
+                    var key = el.getAttribute("data-field");
+                    data[key] = el.type === "checkbox" ? el.checked : el.value;
+                });
+                return data;
+            }
+
+            function apply(data) {
+                fields.forEach(function (el) {
+                    var key = el.getAttribute("data-field");
+                    if (!(key in data)) return;
+                    if (el.type === "checkbox") {
+                        el.checked = Boolean(data[key]);
+                    } else {
+                        el.value = data[key];
+                    }
+                });
+            }
+
+            function save() {
+                var payload = {
+                    updated_at: new Date().toISOString(),
+                    data: collect()
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+                setStatus("Sauvegardé à " + nowText());
+            }
+
+            function load() {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) {
+                    setStatus("Aucune sauvegarde trouvée.");
+                    return;
+                }
+                try {
+                    var parsed = JSON.parse(raw);
+                    if (parsed && parsed.data) {
+                        apply(parsed.data);
+                        setStatus("Dernière sauvegarde chargée.");
+                    }
+                } catch (err) {
+                    setStatus("Sauvegarde invalide.");
+                }
+            }
+
+            function scheduleAutoSave() {
+                clearTimeout(saveTimer);
+                setStatus("Modifications en attente...");
+                saveTimer = setTimeout(save, 400);
+            }
+
+            function resetAll() {
+                if (!confirm("Réinitialiser tous les champs de cette feuille ?")) return;
+                fields.forEach(function (el) {
+                    if (el.type === "checkbox") {
+                        el.checked = false;
+                    } else {
+                        el.value = "";
+                    }
+                });
+                localStorage.removeItem(STORAGE_KEY);
+                setStatus("Feuille réinitialisée.");
+            }
+
+            function exportJson() {
+                var payload = {
+                    exported_at: new Date().toISOString(),
+                    version: "standalone_v1",
+                    data: collect()
+                };
+                var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = "dnd-character-standalone.json";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+                setStatus("Export JSON généré.");
+            }
+
+            function importJson(file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    try {
+                        var parsed = JSON.parse(String(reader.result || "{}"));
+                        if (!parsed || !parsed.data || typeof parsed.data !== "object") {
+                            alert("Format JSON invalide.");
+                            return;
+                        }
+                        apply(parsed.data);
+                        save();
+                        setStatus("Import terminé.");
+                    } catch (err) {
+                        alert("Le fichier n'est pas un JSON valide.");
+                    }
+                };
+                reader.readAsText(file);
+            }
+
+            fields.forEach(function (el) {
+                el.addEventListener("input", scheduleAutoSave);
+                el.addEventListener("change", scheduleAutoSave);
+            });
+
+            saveBtn.addEventListener("click", save);
+            resetBtn.addEventListener("click", resetAll);
+            exportBtn.addEventListener("click", exportJson);
+            importFile.addEventListener("change", function () {
+                if (importFile.files && importFile.files[0]) {
+                    importJson(importFile.files[0]);
+                    importFile.value = "";
+                }
+            });
+
+            load();
+        })();
+    </script>
+</body>
+</html>

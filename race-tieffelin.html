@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Tieffelin</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 0;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid var(--line);
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.95rem;
+            line-height: 1.35;
+        }
+
+        th {
+            color: var(--accent);
+            background: #faf6eb;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .race-illu {
+            float: right;
+            width: 420px;
+            max-width: 48%;
+            height: 300px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="spells.html">Sorts</a>
+        </nav>
+
+        <section class="card">
+            <h1>Tieffelin</h1>
+            <img class="race-illu" src="img/race/tiefling.png" alt="Illustration" />
+            <p>Les tieffelins naissent dans les Plans inférieurs ou descendent d'ancêtres fiélons originaires de ces royaumes. Un tieffelin est lié par le sang à un diable, un démon ou un autre fiélon. Ce lien constitue son héritage fiélon: il promet une forme de pouvoir, sans pour autant déterminer l'alignement moral de la personne.</p>
+            <p>Chaque tieffelin choisit d'embrasser ou de rejeter cet héritage. On distingue trois grandes lignées: abyssale, chthonienne et infernale.</p>
+            <p><strong>Héritage abyssal:</strong> l'entropie de l'Abysse, le chaos de Pandémonium et le désespoir de Carcéri marquent ces tieffelins. Cornes, pelage, défenses et odeurs singulières sont fréquents chez eux, et beaucoup portent un sang démoniaque.</p>
+            <p><strong>Héritage chthonien:</strong> ces tieffelins ressentent l'appel de Carcéri, mais aussi l'avidité de la Géhenne et la noirceur de Hadès. Certains ont un aspect cadavérique; d'autres affichent une beauté surnaturelle proche de celle des succubes, ou des traits rappelant les annis, les yugoloths et d'autres fiélons neutres mauvais.</p>
+            <p><strong>Héritage infernal:</strong> cette lignée relie les tieffelins à la Géhenne, aux Neuf Enfers et aux champs de bataille d'Achéron. Cornes, épines, queue, yeux dorés et légère odeur de soufre ou de fumée sont des marqueurs communs, souvent hérités d'ancêtres diaboliques.</p>
+        </section>
+
+        <section class="card">
+            <h2>Culture et personnalité</h2>
+            <ul>
+                <li><strong>Lignée infernale:</strong> héritage ancestral lié aux Neuf Enfers.</li>
+                <li><strong>Autonomes et prudents:</strong> adaptation fréquente aux environnements hostiles.</li>
+                <li><strong>Défiance réciproque:</strong> les préjugés sociaux influencent fortement leur parcours.</li>
+                <li><strong>Noms variés:</strong> noms culturels, infernaux, ou noms de vertu choisis.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux du tieffelin</h2>
+            <div class="grid">
+                <div class="trait"><strong>Type de créature:</strong> Humanoïde.</div>
+                <div class="trait"><strong>Taille:</strong> Moyenne (environ 1,20 m à 2,10 m) ou Petite (environ 0,90 m à 1,20 m), au choix lors de la création du personnage.</div>
+                <div class="trait"><strong>Vitesse:</strong> 9 m (30 feet).</div>
+                <div class="trait"><strong>Vision dans le noir:</strong> vous avez la Vision dans le noir sur 18 m (60 feet).</div>
+                <div class="trait">
+                    <strong>Héritage fiélon:</strong> vous recevez un héritage qui vous confère des capacités surnaturelles. Choisissez une lignée dans le tableau ci-dessous; vous obtenez le bénéfice du niveau 1 correspondant.
+                    <p>Quand vous atteignez les niveaux 3 et 5, vous apprenez le sort indiqué. Ce sort est toujours préparé. Vous pouvez le lancer une fois sans emplacement de sort, puis récupérez cette utilisation après un repos long. Vous pouvez aussi le lancer avec vos emplacements de sort appropriés.</p>
+                    <p>Intelligence, Sagesse ou Charisme est votre caractéristique d'incantation pour ces sorts (choisie au moment de sélectionner la lignée).</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Héritage</th>
+                                <th>Niveau 1</th>
+                                <th>Niveau 3</th>
+                                <th>Niveau 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Abyssal</td>
+                                <td>Résistance aux dégâts de poison; vous connaissez le tour de magie <em>Poison Spray</em>.</td>
+                                <td><em>Ray of Sickness</em></td>
+                                <td><em>Hold Person</em></td>
+                            </tr>
+                            <tr>
+                                <td>Chthonien</td>
+                                <td>Résistance aux dégâts nécrotiques; vous connaissez le tour de magie <em>Chill Touch</em>.</td>
+                                <td><em>False Life</em></td>
+                                <td><em>Ray of Enfeeblement</em></td>
+                            </tr>
+                            <tr>
+                                <td>Infernal</td>
+                                <td>Résistance aux dégâts de feu; vous connaissez le tour de magie <em>Fire Bolt</em>.</td>
+                                <td><em>Hellish Rebuke</em></td>
+                                <td><em>Darkness</em></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="trait"><strong>Présence d'outre-monde:</strong> vous connaissez le tour de magie <em>Thaumaturgy</em>. Quand vous le lancez via ce trait, il utilise la même caractéristique d'incantation que votre trait Héritage fiélon.</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

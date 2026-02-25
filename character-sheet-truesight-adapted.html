@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feuille de Personnage - Adaptation TrueSight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --TrueSight_Primary: hsla(213, 22%, 10%, 0.95);
+            --TrueSight_Secondary: hsl(213 22% 19% / 1);
+            --TrueSight_Tertiary: hsl(210, 48%, 27%);
+            --TrueSight_Text: hsl(210, 25%, 92%);
+            --TrueSight_Muted: hsl(210, 10%, 73%);
+            --TrueSight_Line: hsl(210, 14%, 32%);
+            --TrueSight_Accent: hsl(201, 81%, 54%);
+            --TrueSight_AccentSoft: hsl(210, 36%, 20%);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Google Sans Flex", "Segoe UI", sans-serif;
+            color: var(--TrueSight_Text);
+            background:
+                radial-gradient(circle at 10% 0%, #273241 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, #17202b 0%, transparent 45%),
+                #0e141b;
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 14px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .topnav a,
+        .topnav button {
+            border: 1px solid var(--TrueSight_Line);
+            color: var(--TrueSight_Text);
+            background: var(--TrueSight_Secondary);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .topnav a:hover,
+        .topnav button:hover {
+            border-color: var(--TrueSight_Accent);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 10px;
+        }
+
+        .panel {
+            background: var(--TrueSight_Primary);
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.32);
+        }
+
+        .side {
+            padding: 12px;
+            position: sticky;
+            top: 10px;
+            align-self: start;
+        }
+
+        .title {
+            margin: 0 0 6px;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .subtitle {
+            margin: 0 0 10px;
+            color: var(--TrueSight_Muted);
+            font-size: 0.88rem;
+        }
+
+        .grid { display: grid; gap: 8px; }
+        .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+        .field label {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--TrueSight_Muted);
+            font-weight: 700;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 8px;
+            background: var(--TrueSight_Secondary);
+            color: var(--TrueSight_Text);
+            padding: 7px 8px;
+            font: inherit;
+        }
+
+        .field textarea { min-height: 90px; resize: vertical; }
+
+        .status {
+            margin: 8px 0 0;
+            color: var(--TrueSight_Muted);
+            font-size: 0.82rem;
+        }
+
+        .main {
+            padding: 10px;
+        }
+
+        .banner {
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 9px;
+            background: linear-gradient(180deg, #1a2430, #121923);
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+
+        .banner h2 {
+            margin: 0 0 5px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .banner p {
+            margin: 0;
+            color: var(--TrueSight_Muted);
+            font-size: 0.88rem;
+        }
+
+        details.box {
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 9px;
+            background: var(--TrueSight_Primary);
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        details.box summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 9px 11px;
+            background: var(--TrueSight_AccentSoft);
+            color: #fff;
+            font-weight: 700;
+            border-bottom: 1px solid var(--TrueSight_Line);
+        }
+
+        details.box summary::-webkit-details-marker { display: none; }
+        .box .content { padding: 9px; }
+
+        .skill-list {
+            columns: 2;
+            gap: 10px;
+        }
+
+        .skill {
+            break-inside: avoid;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 7px;
+            align-items: center;
+            margin: 3px 0;
+        }
+
+        .skill input[type="text"] {
+            width: 50px;
+            text-align: center;
+        }
+
+        .ability {
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 9px;
+            padding: 8px;
+            text-align: center;
+            background: #121a25;
+        }
+
+        .ability .name {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--TrueSight_Muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .ability input { text-align: center; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        th, td {
+            border: 1px solid var(--TrueSight_Line);
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #151e29;
+            color: var(--TrueSight_Muted);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* Direct style adaptation inspired by TrueSight Quick Links styles */
+        .ct-subsection {
+            background: var(--TrueSight_Primary);
+            border-radius: 8px;
+            border: 1px solid var(--TrueSight_Line);
+        }
+
+        .ct-subsection--custom-links {
+            margin-top: 8px;
+            padding: 9px;
+        }
+
+        .ddb-link-scroll-container {
+            max-height: 170px;
+            overflow: auto;
+            padding-right: 2px;
+        }
+
+        .ddb-custom-link-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .ddb-custom-link-pill {
+            text-decoration: none;
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 999px;
+            background: var(--TrueSight_Secondary);
+            color: var(--TrueSight_Text);
+            padding: 5px 9px;
+            font-size: 0.82rem;
+        }
+
+        .ddb-custom-link-pill:hover {
+            border-color: var(--TrueSight_Accent);
+            color: #fff;
+        }
+
+        .ddb-link-edit-btn {
+            margin-top: 8px;
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--TrueSight_Secondary);
+            color: var(--TrueSight_Text);
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .ddb-link-edit-btn:hover { border-color: var(--TrueSight_Accent); }
+
+        .ddb-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+            display: grid;
+            place-items: center;
+            z-index: 9999;
+            padding: 12px;
+        }
+
+        .ddb-modal-content {
+            width: min(740px, 100%);
+            background: #121b26;
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .ddb-modal-header {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .ddb-modal-desc {
+            color: var(--TrueSight_Muted);
+            margin-bottom: 6px;
+            font-size: 0.86rem;
+        }
+
+        .ddb-modal-textarea {
+            width: 100%;
+            min-height: 210px;
+            border: 1px solid var(--TrueSight_Line);
+            border-radius: 8px;
+            background: var(--TrueSight_Secondary);
+            color: var(--TrueSight_Text);
+            padding: 8px;
+            font: inherit;
+            resize: vertical;
+        }
+
+        .ddb-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .ddb-modal-btn {
+            border: 1px solid var(--TrueSight_Line);
+            background: var(--TrueSight_Secondary);
+            color: var(--TrueSight_Text);
+            border-radius: 7px;
+            padding: 5px 9px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .ddb-modal-btn.save {
+            background: #1c2f44;
+            border-color: #2a4f76;
+        }
+
+        @media (max-width: 1060px) {
+            .layout { grid-template-columns: 1fr; }
+            .side { position: static; }
+        }
+
+        @media (max-width: 840px) {
+            .g4, .g3, .g2 { grid-template-columns: 1fr; }
+            .skill-list { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="character-sheet-standalone.html">Version Standalone (v1)</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <button type="button" id="saveBtn">Sauvegarder</button>
+            <button type="button" id="resetBtn">Reset</button>
+        </nav>
+
+        <div class="layout">
+            <aside class="panel side">
+                <h1 class="title">Adaptation TrueSight</h1>
+                <p class="subtitle">Approche visuelle et structure compacte directement inspirées de TrueSight.</p>
+                <p id="status" class="status">Prêt.</p>
+                <div class="grid g2" style="margin-top:8px;">
+                    <div class="field"><label>Nom</label><input type="text" data-field="name" /></div>
+                    <div class="field"><label>Niveau</label><input type="text" data-field="level" /></div>
+                    <div class="field"><label>Classe</label><input type="text" data-field="class" /></div>
+                    <div class="field"><label>Espèce</label><input type="text" data-field="species" /></div>
+                    <div class="field"><label>CA</label><input type="text" data-field="ac" /></div>
+                    <div class="field"><label>Init</label><input type="text" data-field="init" /></div>
+                    <div class="field"><label>PV Max</label><input type="text" data-field="hp_max" /></div>
+                    <div class="field"><label>PV Actuels</label><input type="text" data-field="hp_now" /></div>
+                </div>
+
+                <div class="ct-subsection ct-subsection--custom-links" id="ddb-custom-links"></div>
+            </aside>
+
+            <main class="panel main">
+                <section class="banner">
+                    <h2>Character Sheet - Direct Adaptation</h2>
+                    <p>Version de comparaison avec esthétique sombre et patterns de modules proches de TrueSight.</p>
+                </section>
+
+                <details class="box" open>
+                    <summary>Caractéristiques / JS</summary>
+                    <div class="content grid g3">
+                        <div class="ability"><span class="name">FOR</span><input type="text" data-field="str" placeholder="10" /><input type="text" data-field="str_mod" placeholder="+0" /><input type="text" data-field="str_save" placeholder="+0" /></div>
+                        <div class="ability"><span class="name">DEX</span><input type="text" data-field="dex" placeholder="10" /><input type="text" data-field="dex_mod" placeholder="+0" /><input type="text" data-field="dex_save" placeholder="+0" /></div>
+                        <div class="ability"><span class="name">CON</span><input type="text" data-field="con" placeholder="10" /><input type="text" data-field="con_mod" placeholder="+0" /><input type="text" data-field="con_save" placeholder="+0" /></div>
+                        <div class="ability"><span class="name">INT</span><input type="text" data-field="int" placeholder="10" /><input type="text" data-field="int_mod" placeholder="+0" /><input type="text" data-field="int_save" placeholder="+0" /></div>
+                        <div class="ability"><span class="name">SAG</span><input type="text" data-field="wis" placeholder="10" /><input type="text" data-field="wis_mod" placeholder="+0" /><input type="text" data-field="wis_save" placeholder="+0" /></div>
+                        <div class="ability"><span class="name">CHA</span><input type="text" data-field="cha" placeholder="10" /><input type="text" data-field="cha_mod" placeholder="+0" /><input type="text" data-field="cha_save" placeholder="+0" /></div>
+                    </div>
+                </details>
+
+                <details class="box" open>
+                    <summary>Compétences</summary>
+                    <div class="content skill-list">
+                        <div class="skill"><input type="checkbox" data-field="acro_prof" /><span>Acrobaties</span><input type="text" data-field="acro" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="arca_prof" /><span>Arcanes</span><input type="text" data-field="arca" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="athl_prof" /><span>Athlétisme</span><input type="text" data-field="athl" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="disc_prof" /><span>Discrétion</span><input type="text" data-field="disc" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="histoire_prof" /><span>Histoire</span><input type="text" data-field="histoire" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="inti_prof" /><span>Intimidation</span><input type="text" data-field="inti" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="intu_prof" /><span>Intuition</span><input type="text" data-field="intu" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="inve_prof" /><span>Investigation</span><input type="text" data-field="inve" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="med_prof" /><span>Médecine</span><input type="text" data-field="med" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="nat_prof" /><span>Nature</span><input type="text" data-field="nat" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="perc_prof" /><span>Perception</span><input type="text" data-field="perc" placeholder="+0" /></div>
+                        <div class="skill"><input type="checkbox" data-field="pers_prof" /><span>Persuasion</span><input type="text" data-field="pers" placeholder="+0" /></div>
+                    </div>
+                </details>
+
+                <details class="box" open>
+                    <summary>Attaques</summary>
+                    <div class="content">
+                        <table>
+                            <thead><tr><th>Nom</th><th>Bonus</th><th>Dégâts</th><th>Notes</th></tr></thead>
+                            <tbody>
+                                <tr><td><input type="text" data-field="atk1_name" /></td><td><input type="text" data-field="atk1_bonus" /></td><td><input type="text" data-field="atk1_dmg" /></td><td><input type="text" data-field="atk1_notes" /></td></tr>
+                                <tr><td><input type="text" data-field="atk2_name" /></td><td><input type="text" data-field="atk2_bonus" /></td><td><input type="text" data-field="atk2_dmg" /></td><td><input type="text" data-field="atk2_notes" /></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="box" open>
+                    <summary>Sorts / Traits / Notes</summary>
+                    <div class="content grid g2">
+                        <div class="field"><label>Sorts connus</label><textarea data-field="spells"></textarea></div>
+                        <div class="field"><label>Traits et capacités</label><textarea data-field="features"></textarea></div>
+                    </div>
+                    <div class="content field"><label>Notes de campagne</label><textarea data-field="notes"></textarea></div>
+                </details>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            "use strict";
+
+            var STORAGE_KEY = "dnd_character_sheet_truesight_adapt_v1";
+            var fields = Array.prototype.slice.call(document.querySelectorAll("[data-field]"));
+            var status = document.getElementById("status");
+            var saveBtn = document.getElementById("saveBtn");
+            var resetBtn = document.getElementById("resetBtn");
+
+            function setStatus(text) { status.textContent = text; }
+
+            function collect() {
+                var out = {};
+                fields.forEach(function (f) {
+                    out[f.getAttribute("data-field")] = f.type === "checkbox" ? f.checked : f.value;
+                });
+                return out;
+            }
+
+            function apply(data) {
+                fields.forEach(function (f) {
+                    var key = f.getAttribute("data-field");
+                    if (!(key in data)) return;
+                    if (f.type === "checkbox") f.checked = Boolean(data[key]);
+                    else f.value = data[key];
+                });
+            }
+
+            function save() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({ data: collect(), updated: new Date().toISOString() }));
+                setStatus("Sauvegardé.");
+            }
+
+            function load() {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) {
+                    setStatus("Aucune sauvegarde.");
+                    return;
+                }
+                try {
+                    var parsed = JSON.parse(raw);
+                    if (parsed && parsed.data) apply(parsed.data);
+                    setStatus("Dernière sauvegarde chargée.");
+                } catch (e) {
+                    setStatus("Sauvegarde invalide.");
+                }
+            }
+
+            fields.forEach(function (f) {
+                f.addEventListener("input", save);
+                f.addEventListener("change", save);
+            });
+            saveBtn.addEventListener("click", save);
+            resetBtn.addEventListener("click", function () {
+                if (!confirm("Réinitialiser la feuille ?")) return;
+                fields.forEach(function (f) {
+                    if (f.type === "checkbox") f.checked = false;
+                    else f.value = "";
+                });
+                localStorage.removeItem(STORAGE_KEY);
+                setStatus("Réinitialisé.");
+            });
+
+            load();
+        })();
+    </script>
+
+    <script>
+        /* Adapted from TrueSightUI-QuickLinks.js structure for standalone usage */
+        (function () {
+            "use strict";
+
+            var BOX_ID = "ddb-custom-links";
+            var MODAL_ID = "ddb-links-editor-modal";
+            var STORAGE_KEY = "ddb_links_standalone_truesight";
+            var DEFAULT_LINKS = [
+                { label: "Conditions", url: "rules-2024.html" },
+                { label: "Spellcasting", url: "character-template-v2.html" },
+                { label: "Combat", url: "combat-2024.html" },
+                { label: "Quickref", url: "quickref.html" }
+            ];
+
+            function getLinks() {
+                try {
+                    var stored = localStorage.getItem(STORAGE_KEY);
+                    return stored ? JSON.parse(stored) : DEFAULT_LINKS;
+                } catch (e) {
+                    return DEFAULT_LINKS;
+                }
+            }
+
+            function saveLinks(links) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+                renderBox();
+            }
+
+            function linksToText(links) {
+                return links.map(function (l) { return l.label + " | " + l.url; }).join("\n");
+            }
+
+            function textToLinks(text) {
+                return text.split("\n")
+                    .map(function (line) { return line.trim(); })
+                    .filter(function (line) { return line.length > 0 && line.indexOf("|") !== -1; })
+                    .map(function (line) {
+                        var parts = line.split("|");
+                        var label = parts.shift().trim();
+                        var url = parts.join("|").trim();
+                        return { label: label, url: url };
+                    });
+            }
+
+            function openEditor() {
+                if (document.getElementById(MODAL_ID)) return;
+
+                var currentLinks = getLinks();
+                var textContent = linksToText(currentLinks);
+
+                var modal = document.createElement("div");
+                modal.id = MODAL_ID;
+                modal.className = "ddb-modal-overlay";
+                modal.innerHTML =
+                    "<div class=\"ddb-modal-content\">" +
+                    "<div class=\"ddb-modal-header\">Edit Links</div>" +
+                    "<div class=\"ddb-modal-desc\">Links are saved only in this browser.</div>" +
+                    "<div class=\"ddb-modal-desc\">Format: <code>Label | URL</code></div>" +
+                    "<textarea class=\"ddb-modal-textarea\"></textarea>" +
+                    "<div class=\"ddb-modal-actions\">" +
+                    "<button class=\"ddb-modal-btn cancel\">Cancel</button>" +
+                    "<button class=\"ddb-modal-btn save\">Save Changes</button>" +
+                    "</div></div>";
+
+                document.body.appendChild(modal);
+                modal.querySelector(".ddb-modal-textarea").value = textContent;
+
+                modal.querySelector(".cancel").onclick = function () { modal.remove(); };
+                modal.querySelector(".save").onclick = function () {
+                    var val = modal.querySelector(".ddb-modal-textarea").value;
+                    var links = textToLinks(val).filter(function (l) { return l.label && l.url; });
+                    if (!links.length) {
+                        alert("Please add at least one valid link.");
+                        return;
+                    }
+                    saveLinks(links);
+                    modal.remove();
+                };
+            }
+
+            function renderBox() {
+                var box = document.getElementById(BOX_ID);
+                if (!box) return;
+                var links = getLinks();
+
+                var html = "<div class=\"ddb-link-scroll-container\"><div class=\"ddb-custom-link-grid\">";
+                links.forEach(function (l) {
+                    html += "<a href=\"" + l.url + "\" target=\"_blank\" class=\"ddb-custom-link-pill\">" + l.label + "</a>";
+                });
+                html += "</div></div>";
+                html += "<div class=\"ddb-link-edit-btn\" title=\"Edit Links\">Edit Links</div>";
+                box.innerHTML = html;
+                box.querySelector(".ddb-link-edit-btn").addEventListener("click", openEditor);
+            }
+
+            renderBox();
+        })();
+    </script>
+</body>
+</html>

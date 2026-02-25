@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Sorts</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --bg: #f1ece3;
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5f5f5f;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 14px;
+        }
+
+        .topnav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .hero {
+            background: var(--paper);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            margin: 0 0 5px;
+            color: var(--accent);
+            font-family: "Lora", serif;
+            font-size: 1.5rem;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .filters {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 10px;
+            display: grid;
+            gap: 8px;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            margin-bottom: 10px;
+        }
+
+        .filters label {
+            display: block;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .filters input,
+        .filters select {
+            width: 100%;
+            border: 1px solid #cabfae;
+            border-radius: 8px;
+            padding: 8px;
+            font: inherit;
+            background: #fff;
+        }
+
+        .class-list {
+            max-height: 128px;
+            overflow: auto;
+            border: 1px solid #cabfae;
+            border-radius: 8px;
+            background: #fff;
+            padding: 6px;
+        }
+
+        .class-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 2px 0;
+            font-size: 0.9rem;
+        }
+
+        .summary {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .list-tools {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .list-tools button {
+            border: 1px solid var(--accent);
+            background: #fff;
+            color: var(--accent);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 8px;
+        }
+
+        .spell {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .spell-head {
+            padding: 9px 10px;
+            background: #f8f3f2;
+            border-bottom: 1px solid var(--line);
+        }
+
+        details.spell > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        details.spell > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.spell > summary .spell-head {
+            position: relative;
+            padding-right: 34px;
+        }
+
+        details.spell > summary .spell-head::after {
+            content: "+";
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1;
+        }
+
+        details.spell[open] > summary .spell-head::after {
+            content: "−";
+        }
+
+        .spell-title {
+            margin: 0;
+            color: var(--accent);
+            font-family: "Lora", serif;
+            font-size: 1rem;
+        }
+
+        .spell-meta {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 3px;
+        }
+
+        .spell-body {
+            padding: 9px 10px;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+        .spell-body p {
+            margin: 0 0 8px;
+        }
+        .spell-body p:last-child {
+            margin-bottom: 0;
+        }
+        .spell-body ul {
+            margin: 0 0 8px 18px;
+            padding: 0;
+        }
+        .spell-body li {
+            margin: 0 0 4px;
+        }
+
+        .spell-lines {
+            margin: 0 0 7px;
+            color: #3d3d3d;
+            font-size: 0.84rem;
+        }
+
+        .empty {
+            background: var(--paper);
+            border: 1px dashed var(--line);
+            border-radius: 10px;
+            padding: 14px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 1000px) {
+            .filters {
+                grid-template-columns: 1fr;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="rules-2024.html">Règles</a>
+            <a href="combat-2024.html">Combats</a>
+            <a href="mastery-2024.html">Maîtrise</a>
+            <a href="spells.html">Sorts</a>
+            <a href="character-sheet-standalone.html">Template</a>
+            <a href="quickref.html">Référence rapide</a>
+        </nav>
+
+        <section class="hero">
+            <h1>Sorts D&D 2024</h1>
+            <p id="sourceNote">Chargement des sorts...</p>
+        </section>
+
+        <section class="filters">
+            <div>
+                <label for="searchInput">Recherche (titre, école, description)</label>
+                <input id="searchInput" type="text" placeholder="Ex: feu, soin, concentration..." />
+            </div>
+            <div>
+                <label for="levelSelect">Niveau</label>
+                <select id="levelSelect">
+                    <option value="">Tous</option>
+                    <option value="0">Niveau 0</option>
+                    <option value="1">Niveau 1</option>
+                    <option value="2">Niveau 2</option>
+                    <option value="3">Niveau 3</option>
+                    <option value="4">Niveau 4</option>
+                    <option value="5">Niveau 5</option>
+                    <option value="6">Niveau 6</option>
+                    <option value="7">Niveau 7</option>
+                    <option value="8">Niveau 8</option>
+                    <option value="9">Niveau 9</option>
+                </select>
+            </div>
+            <div>
+                <label for="sortSelect">Tri</label>
+                <select id="sortSelect">
+                    <option value="level_asc">Niveau croissant</option>
+                    <option value="level_desc">Niveau décroissant</option>
+                    <option value="name_asc">Nom A-Z</option>
+                    <option value="name_desc">Nom Z-A</option>
+                </select>
+            </div>
+            <div>
+                <label>Classes (au moins une)</label>
+                <div id="classList" class="class-list"></div>
+            </div>
+        </section>
+
+        <div class="list-tools">
+            <button id="expandAllBtn" type="button">Tout ouvrir</button>
+            <button id="collapseAllBtn" type="button">Tout fermer</button>
+        </div>
+        <div id="summary" class="summary"></div>
+        <div id="spellsGrid" class="grid"></div>
+    </div>
+
+    <script src="data/spells_2024.js"></script>
+    <script>
+        (function () {
+            const searchInput = document.getElementById("searchInput");
+            const levelSelect = document.getElementById("levelSelect");
+            const sortSelect = document.getElementById("sortSelect");
+            const classList = document.getElementById("classList");
+            const expandAllBtn = document.getElementById("expandAllBtn");
+            const collapseAllBtn = document.getElementById("collapseAllBtn");
+            const summary = document.getElementById("summary");
+            const spellsGrid = document.getElementById("spellsGrid");
+            const sourceNote = document.getElementById("sourceNote");
+
+            let spells = [];
+            let selectedClasses = new Set();
+
+            function escapeHtml(value) {
+                return String(value)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/\"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function norm(s) {
+                return String(s || "").toLowerCase();
+            }
+
+            function renderClassFilters(allClasses) {
+                classList.innerHTML = allClasses.map(cls => {
+                    return `<label class="class-item"><input type="checkbox" value="${escapeHtml(cls)}" />${escapeHtml(cls)}</label>`;
+                }).join("");
+
+                classList.querySelectorAll("input[type='checkbox']").forEach(cb => {
+                    cb.addEventListener("change", function () {
+                        if (cb.checked) selectedClasses.add(cb.value);
+                        else selectedClasses.delete(cb.value);
+                        render();
+                    });
+                });
+            }
+
+            function applyFilters() {
+                const q = norm(searchInput.value.trim());
+                const level = levelSelect.value === "" ? null : Number(levelSelect.value);
+                let out = spells.filter(spell => {
+                    if (level !== null && spell.level !== level) return false;
+                    if (selectedClasses.size > 0) {
+                        const any = spell.classes.some(c => selectedClasses.has(c));
+                        if (!any) return false;
+                    }
+                    if (!q) return true;
+                    const hay = norm(
+                        spell.name + " " +
+                        spell.school + " " +
+                        spell.classes.join(" ") + " " +
+                        spell.description
+                    );
+                    return hay.includes(q);
+                });
+
+                const mode = sortSelect.value;
+                out.sort((a, b) => {
+                    if (mode === "level_asc") return a.level - b.level || a.name.localeCompare(b.name, "fr");
+                    if (mode === "level_desc") return b.level - a.level || a.name.localeCompare(b.name, "fr");
+                    if (mode === "name_desc") return b.name.localeCompare(a.name, "fr");
+                    return a.name.localeCompare(b.name, "fr");
+                });
+                return out;
+            }
+
+            function card(spell) {
+                const details = [
+                    `Temps: ${spell.casting_time || "-"}`,
+                    `Portée: ${spell.range || "-"}`,
+                    `Composantes: ${spell.components || "-"}`,
+                    `Durée: ${spell.duration || "-"}`
+                ];
+                const desc = spell.description_html && spell.description_html.trim()
+                    ? spell.description_html
+                    : escapeHtml(spell.description || "Description non disponible.");
+                return `
+                    <details class="spell">
+                        <summary>
+                            <header class="spell-head">
+                                <h2 class="spell-title">${escapeHtml(spell.name)}</h2>
+                                <div class="spell-meta">
+                                    Niveau ${spell.level} • ${escapeHtml(spell.school)} • ${escapeHtml((spell.classes || []).join(", "))}
+                                </div>
+                            </header>
+                        </summary>
+                        <div class="spell-body">
+                            <p class="spell-lines">${escapeHtml(details.join(" | "))}</p>
+                            <div>${desc}</div>
+                        </div>
+                    </details>
+                `;
+            }
+
+            function render() {
+                const filtered = applyFilters();
+                summary.textContent = `${filtered.length} sort(s) affiché(s) sur ${spells.length}.`;
+                if (!filtered.length) {
+                    spellsGrid.innerHTML = `<div class="empty">Aucun sort ne correspond aux filtres actuels.</div>`;
+                    return;
+                }
+                spellsGrid.innerHTML = filtered.map(card).join("");
+            }
+
+            function setAllCards(open) {
+                spellsGrid.querySelectorAll("details.spell").forEach(el => {
+                    el.open = open;
+                });
+            }
+
+            function init(data) {
+                spells = data.spells || [];
+                sourceNote.textContent = data.note
+                    ? `${data.count || spells.length} sorts chargés. ${data.note}`
+                    : `${data.count || spells.length} sorts chargés.`;
+
+                const allClasses = Array.from(
+                    new Set(
+                        spells.flatMap(s => s.classes || [])
+                    )
+                ).sort((a, b) => a.localeCompare(b, "fr"));
+
+                renderClassFilters(allClasses);
+                searchInput.addEventListener("input", render);
+                levelSelect.addEventListener("change", render);
+                sortSelect.addEventListener("change", render);
+                expandAllBtn.addEventListener("click", function () { setAllCards(true); });
+                collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+                render();
+            }
+
+            function failMessage() {
+                sourceNote.textContent = "Impossible de charger les données de sorts.";
+                spellsGrid.innerHTML = `<div class="empty">Le fichier data/spells_2024.json est introuvable ou invalide.</div>`;
+            }
+
+            if (window.SPELLS_DATA && window.SPELLS_DATA.spells) {
+                init(window.SPELLS_DATA);
+            } else {
+                fetch("data/spells_2024.json")
+                    .then(r => r.json())
+                    .then(init)
+                    .catch(failMessage);
+            }
+        })();
+    </script>
+</body>
+</html>

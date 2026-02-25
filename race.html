@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Races</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --bg: #f4f1e8;
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .race-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 10px;
+        }
+
+        .race-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 12px;
+        }
+
+        .race-link strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="rules-2024.html">Règles</a>
+            <a href="combat-2024.html">Combats</a>
+            <a href="mastery-2024.html">Maîtrise</a>
+            <a href="spells.html">Sorts</a>
+            <a href="character-sheet-standalone.html">Template</a>
+            <a href="quickref.html">Référence rapide</a>
+        </nav>
+
+        <section class="card">
+            <h1>Races de D&D</h1>
+            <p>Dans les mondes de D&D, les cités rassemblent des peuples très variés : humains, nains, elfes, halfelins, mais aussi des races plus rares comme les drakéides, tieffelins, gnomes, demi-elfes et Orcs.</p>
+            <p>Le choix de la race est une décision de base pour votre personnage. Il influence votre style de jeu, vos caractéristiques, votre histoire et la façon dont le monde réagit à votre présence.</p>
+        </section>
+
+        <section class="card">
+            <h2>Choisir une race</h2>
+            <p>Les races communes (humains, nains, elfes, halfelins) sont les plus fréquentes dans une campagne standard. D'autres races peuvent être plus rares selon le monde de jeu et la région explorée.</p>
+            <p>Votre race ne détermine pas uniquement des bonus techniques: elle donne aussi des repères de personnalité, de culture, d'apparence et d'origines, utiles pour jouer votre rôle et définir votre historique.</p>
+            <div class="encadre">
+                <p><strong>Races non communes</strong></p>
+                <p>Dans les grandes métropoles cosmopolites, les races exotiques sont souvent tolérées. Dans les petites communautés, elles peuvent susciter méfiance, curiosité ou crainte.</p>
+                <p><strong>Demi-elfe:</strong> souvent observé avec curiosité plus qu'hostilité.</p>
+                <p><strong>Orc:</strong> parfois perçu comme dangereux ou belliqueux.</p>
+                <p><strong>Drakéide:</strong> peut inspirer prudence, surtout avec des traits draconiques marqués.</p>
+                <p><strong>Gnome:</strong> généralement vu comme peu menaçant et souvent apprécié.</p>
+                <p><strong>Tieffelin:</strong> peut provoquer une peur superstitieuse liée à son apparence.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux</h2>
+            <p>Chaque race possède des traits communs. Voici les éléments principaux à vérifier quand vous créez un personnage.</p>
+            <div class="grid">
+                <div class="trait">
+                    <strong>Augmentation de caractéristiques</strong>
+                    Ajuste une ou plusieurs caractéristiques du personnage.
+                </div>
+                <div class="trait">
+                    <strong>Âge</strong>
+                    Donne la maturité et l'espérance de vie typiques de la race.
+                </div>
+                <div class="trait">
+                    <strong>Taille</strong>
+                    Détermine la catégorie (souvent Moyenne ou Petite) et certaines règles associées.
+                </div>
+                <div class="trait">
+                    <strong>Vitesse</strong>
+                    Définit la distance de déplacement en exploration et en combat.
+                </div>
+                <div class="trait">
+                    <strong>Langues</strong>
+                    Précise les langues lues, parlées et écrites de base.
+                </div>
+                <div class="trait">
+                    <strong>Sous-races</strong>
+                    Certaines races ont des variantes avec des traits supplémentaires.
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Races détaillées</h2>
+            <div class="race-grid">
+                <a class="race-link" href="race-aasimar.html">
+                    <strong>Aasimar</strong>
+                    <span>Héritage des plans supérieurs et bénédiction céleste.</span>
+                </a>
+                <a class="race-link" href="race-drakeide.html">
+                    <strong>Drakéide</strong>
+                    <span>Ascendance draconique, souffle, résistance et forte identité de clan.</span>
+                </a>
+                <a class="race-link" href="race-elfe.html">
+                    <strong>Elfe</strong>
+                    <span>Histoire, culture, traits raciaux et sous-races (haut-elfe, elfe des bois, drow).</span>
+                </a>
+                <a class="race-link" href="race-gnome.html">
+                    <strong>Gnome</strong>
+                    <span>Ingéniosité, ruse magique, sous-races forêt et roches.</span>
+                </a>
+                <a class="race-link" href="race-goliath.html">
+                    <strong>Goliath</strong>
+                    <span>Montagnard puissant, esprit de compétition et endurance de la pierre.</span>
+                </a>
+                <a class="race-link" href="race-halfelin.html">
+                    <strong>Halfelin</strong>
+                    <span>Mode de vie, traits raciaux et sous-races (pied-léger et robuste).</span>
+                </a>
+                <a class="race-link" href="race-human.html">
+                    <strong>Humain</strong>
+                    <span>Ambition, diversité, traits raciaux et variante humaine optionnelle.</span>
+                </a>
+                <a class="race-link" href="race-dwarf.html">
+                    <strong>Nain</strong>
+                    <span>Clans, traditions, traits raciaux et sous-races (collines et montagnes).</span>
+                </a>
+                <a class="race-link" href="race-orc.html">
+                    <strong>Orc</strong>
+                    <span>Puissance brute, endurance, intimidation et survie entre deux mondes.</span>
+                </a>
+                <a class="race-link" href="race-tieffelin.html">
+                    <strong>Tieffelin</strong>
+                    <span>Héritage infernal, résistance au feu et magie innée.</span>
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Aasimar</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .race-illu {
+            float: right;
+            width: 690px;
+            max-width: 48%;
+            height: 425px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="spells.html">Sorts</a>
+        </nav>
+
+        <section class="card">
+            <h1>Aasimar</h1>
+            <img class="race-illu" src="img/race/aasimar.png" alt="Illustration" />
+            <p>Les aasimars sont des mortels dont l'âme contient une étincelle des Plans Supérieurs. Qu'ils descendent d'un être angélique ou soient investis d'un pouvoir céleste, ils peuvent attiser cette étincelle pour apporter la lumière, la guérison ou la fureur des cieux.</p>
+            <p>Toute population de mortels peut engendrer des aasimars. Ils ressemblent à leur parents, mais ils vivent jusqu'à 160 ans et manifestent des traits qui rappellent leur ascendance céleste : taches de rousseur métalliques, yeux lumineux, auréole ou couleur de peau d'un ange. Ces aspects, de prime abord subtils, deviennent plus manifestes lorsque l'aasimar apprend à révéler sa pleine nature céleste</p>
+        </section>
+
+        <section class="card">
+            <h2>Culture et personnalité</h2>
+            <ul>
+                <li><strong>Héritage céleste, choix personnel:</strong> leur ascendance peut inspirer un idéal élevé, mais chaque aasimar définit lui-même sa voie morale.</li>
+                <li><strong>Présence marquante:</strong> beaucoup dégagent une aura surnaturelle discrète, qui suscite autant l'admiration que la méfiance.</li>
+                <li><strong>Intégration variable:</strong> les aasimar naissent dans toutes les sociétés mortelles et adoptent souvent les coutumes de leur peuple d'origine.</li>
+                <li><strong>Sens du devoir:</strong> nombre d'entre eux se sentent appelés à protéger, guider ou guérir, tandis que d'autres refusent ce rôle imposé.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux de l'aasimar</h2>
+            <div class="grid">
+                <div class="trait"><strong>Type de créature:</strong> Humanoïde.</div>
+                <div class="trait"><strong>Taille:</strong> Moyenne (environ 1,20 m à 2,10 m) ou Petite (environ 0,60 m à 1,20 m), au choix lors de la création du personnage.</div>
+                <div class="trait"><strong>Vitesse:</strong> 9 m (30 feet).</div>
+                <div class="trait"><strong>Résistance céleste:</strong> vous avez la résistance aux dégâts nécrotiques et radiants.</div>
+                <div class="trait"><strong>Vision dans le noir:</strong> vous avez la Vision dans le noir sur 18 m (60 feet).</div>
+                <div class="trait"><strong>Mains guérisseuses:</strong> par une action Magie, vous touchez une créature et lancez un nombre de d4 égal à votre bonus de maîtrise. La créature récupère un nombre de points de vie égal au total obtenu. Une fois ce trait utilisé, vous devez terminer un repos long avant de pouvoir le réutiliser.</div>
+                <div class="trait"><strong>Porteur de lumière:</strong> vous connaissez le tour de magie <em>Lumière</em>. Le Charisme est votre caractéristique d'incantation pour ce sort.</div>
+                <div class="trait">
+                    <strong>Révélation céleste:</strong> à partir du niveau 3, vous pouvez vous transformer en action bonus en choisissant une des options ci-dessous (vous choisissez à chaque transformation). La transformation dure 1 minute ou jusqu'à ce que vous y mettiez fin (sans action). Une fois transformé, vous ne pouvez plus le faire avant un repos long.
+                    <p>Une fois par tour, avant la fin de la transformation, quand vous infligez des dégâts à une cible avec une attaque ou un sort, vous pouvez lui infliger des dégâts supplémentaires égaux à votre bonus de maîtrise. Le type de dégâts est nécrotique pour <em>Linceul nécrotique</em> et radiant pour <em>Ailes célestes</em> et <em>Radiance intérieure</em>.</p>
+                    <ul>
+                        <li><strong>Ailes célestes:</strong> deux ailes spectrales apparaissent temporairement dans votre dos. Jusqu'à la fin de la transformation, vous avez une vitesse de vol égale à votre vitesse.</li>
+                        <li><strong>Radiance intérieure:</strong> une lumière intense émane temporairement de vos yeux et de votre bouche. Pendant la durée, vous émettez une lumière vive dans un rayon de 3 m (10 feet) et une lumière faible sur 3 m supplémentaires. À la fin de chacun de vos tours, chaque créature à 3 m (10 feet) de vous subit des dégâts radiants égaux à votre bonus de maîtrise.</li>
+                        <li><strong>Linceul nécrotique:</strong> vos yeux deviennent brièvement des puits de ténèbres, et des ailes sans plumes apparaissent temporairement dans votre dos. Les créatures autres que vos alliés à 3 m (10 feet) de vous doivent réussir un jet de sauvegarde de Charisme (DD 8 + modificateur de Charisme + bonus de maîtrise) ou être Effrayées jusqu'à la fin de votre prochain tour.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

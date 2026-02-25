@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Orc</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .race-illu {
+            float: right;
+            width: 420px;
+            max-width: 48%;
+            height: 499px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="spells.html">Sorts</a>
+        </nav>
+
+        <section class="card">
+            <h1>Orc</h1>
+            <img class="race-illu" src="img/race/orc.png" alt="Illustration" />
+            <p>Les orcs rattachent leur création à Gruumsh, un dieu puissant qui parcourait les grands espaces du Plan Matériel. Il a doté ses enfants de dons pour traverser plaines immenses, cavernes sans fin et mers agitées, et pour affronter les monstres qui s'y cachent.</p>
+            <p>Même lorsqu'ils vénèrent d'autres dieux, les orcs conservent ces dons de Gruumsh: endurance, détermination et vision dans l'obscurité. Ils sont en moyenne grands et massifs, avec une peau grise, des oreilles pointues et des canines inférieures marquées rappelant de petites défenses. Sur certains mondes, les jeunes orcs grandissent avec les récits des voyages et des épreuves de leurs ancêtres; certains veulent égaler ces exploits, d'autres préfèrent tracer leur propre voie.</p>
+        </section>
+
+        <section class="card">
+            <h2>Culture et personnalité</h2>
+            <ul>
+                <li><strong>Balafrés et solides:</strong> carrure imposante et culture de la résistance.</li>
+                <li><strong>Marque de Gruumsh:</strong> tension fréquente entre impulsion violente et maîtrise de soi.</li>
+                <li><strong>Tribus ou cités:</strong> certains vivent en tribus orcs, d'autres dans des communautés humaines.</li>
+                <li><strong>Acceptation difficile:</strong> beaucoup cherchent à prouver leur valeur dans des environnements hostiles.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux de l'Orc</h2>
+            <div class="grid">
+                <div class="trait"><strong>Type de créature:</strong> Humanoïde.</div>
+                <div class="trait"><strong>Taille:</strong> Moyenne (environ 1,80 m à 2,10 m).</div>
+                <div class="trait"><strong>Vitesse:</strong> 9 m (30 feet).</div>
+                <div class="trait"><strong>Vision dans le noir:</strong> portée de 36 m (120 feet).</div>
+                <div class="trait"><strong>Adrenaline Rush:</strong> vous pouvez faire l'action Dash en action bonus; quand vous le faites, vous gagnez des points de vie temporaires égaux à votre bonus de maîtrise.</div>
+                <div class="trait"><strong>Adrenaline Rush (utilisations):</strong> un nombre d'utilisations égal à votre bonus de maîtrise, toutes récupérées après un repos court ou long.</div>
+                <div class="trait"><strong>Relentless Endurance:</strong> lorsque vous tombez à 0 PV sans être tué sur le coup, vous passez à 1 PV à la place.</div>
+                <div class="trait"><strong>Relentless Endurance (recharge):</strong> une fois utilisée, cette capacité revient après un repos long.</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

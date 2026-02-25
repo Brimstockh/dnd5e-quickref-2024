@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Gnome</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .race-illu {
+            float: right;
+            width: 420px;
+            max-width: 48%;
+            height: 300px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="spells.html">Sorts</a>
+        </nav>
+
+        <section class="card">
+            <h1>Gnome</h1>
+            <img class="race-illu" src="img/race/gnome.png" alt="Illustration" />
+            <p>Les gnomes sont un peuple magique créé par des dieux de l'invention, des illusions et de la vie souterraine. Les premiers gnomes étaient rarement aperçus par les autres peuples, en raison de leur nature discrète et de leur préférence pour les forêts et les terriers.</p>
+            <p>Ce qui leur manque en taille, ils le compensent par leur ingéniosité: pièges, tunnels labyrinthiques et ruses défensives ont longtemps protégé leurs communautés. Ils ont aussi reçu des enseignements magiques de divinités comme Garl Glittergold, Baervan Wildwanderer et Baravar Cloakshadow, à l'origine des lignées de gnomes des forêts et de gnomes des roches. Les gnomes sont de petite taille, avec de grands yeux et des oreilles pointues, et vivent en moyenne environ 425 ans.</p>
+        </section>
+
+        <section class="card">
+            <h2>Culture et personnalité</h2>
+            <ul>
+                <li><strong>Expression vibrante:</strong> enthousiasme, humour et esprit créatif omniprésents.</li>
+                <li><strong>Inventeurs nés:</strong> nombreux gnomes sont ingénieurs, alchimistes ou bricoleurs.</li>
+                <li><strong>Terriers cachés:</strong> communautés discrètes, souvent protégées par ruse et illusions.</li>
+                <li><strong>Curiosité constante:</strong> ils voyagent volontiers pour apprendre et expérimenter.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux du gnome</h2>
+            <div class="grid">
+                <div class="trait"><strong>Type de créature:</strong> Humanoïde.</div>
+                <div class="trait"><strong>Taille:</strong> Petite (environ 90 cm à 1,20 m).</div>
+                <div class="trait"><strong>Vitesse:</strong> 9 m (30 feet).</div>
+                <div class="trait"><strong>Vision dans le noir:</strong> portée de 18 m (60 feet).</div>
+                <div class="trait"><strong>Gnomish Cunning:</strong> avantage aux jets de sauvegarde d'Intelligence, de Sagesse et de Charisme.</div>
+            </div>
+
+            <div class="encadre">
+                <p><strong>Gnomish Lineage</strong></p>
+                <p>Vous appartenez à une lignée qui vous accorde des capacités surnaturelles. Choisissez l'une des options ci-dessous. L'Intelligence, la Sagesse ou le Charisme est votre caractéristique d'incantation pour les sorts obtenus (au choix lors de la sélection de la lignée).</p>
+                <p><strong>Forest Gnome:</strong> vous connaissez le tour de magie <em>Minor Illusion</em>. Vous avez aussi toujours le sort <em>Speak with Animals</em> préparé. Vous pouvez le lancer sans emplacement de sort un nombre de fois égal à votre bonus de maîtrise, et vous récupérez toutes les utilisations dépensées après un repos long. Vous pouvez aussi lancer ce sort avec vos emplacements de sort.</p>
+                <p><strong>Rock Gnome:</strong> vous connaissez les tours de magie <em>Mending</em> et <em>Prestidigitation</em>. De plus, vous pouvez passer 10 minutes à lancer <em>Prestidigitation</em> pour créer un petit dispositif mécanique (TP, CA 5, 1 PV), par exemple un jouet, un allume-feu ou une boîte à musique.</p>
+                <p>Quand vous créez le dispositif, vous choisissez un effet de <em>Prestidigitation</em>; ce dispositif reproduit cet effet chaque fois que vous (ou une autre créature) l'activez au toucher avec une action bonus. Si l'effet choisi contient des options, vous devez en fixer une lors de la création. Vous pouvez avoir jusqu'à trois dispositifs de ce type en même temps. Chacun se désagrège 8 heures après sa création, ou quand vous le démontez au toucher via l'action Utiliser.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

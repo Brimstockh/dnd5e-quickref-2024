@@ -6,6 +6,7 @@
     <title>Template Personnage D&D 2024 - V2</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/quicklinks.css" />
     <style>
         :root {
             --red: #7a120f;
@@ -193,6 +194,7 @@
             <a href="index.html">Retour quickref</a>
             <a href="character-template.html">Template v1 (simple)</a>
             <a href="classes/index.html">Guides de classes</a>
+            <a href="race.html">Races</a>
         </nav>
 
         <section class="sheet">
@@ -351,8 +353,18 @@
                 </div>
             </div>
         </section>
+
+        <section class="quicklinks" data-quicklinks data-quicklinks-key="character-template-v2">
+            <div class="quicklinks-head">
+                <h2 class="quicklinks-title">Liens rapides du personnage</h2>
+                <button type="button" class="quicklinks-edit" data-quicklinks-edit>Modifier</button>
+            </div>
+            <p class="quicklinks-help">Ajoute ici les raccourcis utiles pendant la session. Ces liens restent locaux à ton navigateur.</p>
+            <div class="quicklinks-list" data-quicklinks-list></div>
+        </section>
     </div>
 
+    <script src="js/quicklinks.js"></script>
     <script>
         (function () {
             const pages = [

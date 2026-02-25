@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&D 2024 - Elfe</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --paper: #fffef9;
+            --ink: #222;
+            --accent: #7a120f;
+            --line: #d8d2c5;
+            --muted: #5c5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 20px 28px;
+        }
+
+        .topnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            background: #fff;
+            padding: 7px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 12px;
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        h1, h2, h3 {
+            margin: 0 0 10px;
+            font-family: "Lora", serif;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .trait {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .trait strong {
+            color: var(--accent);
+        }
+
+        .encadre {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 0 10px;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid var(--line);
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .race-illu {
+            float: right;
+            width: 420px;
+            max-width: 48%;
+            height: 499px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav class="topnav">
+            <a href="index.html">Accueil</a>
+            <a href="quickref.html">Référence rapide</a>
+            <a href="race.html">Races</a>
+            <a href="classes/index.html">Classes</a>
+            <a href="spells.html">Sorts</a>
+        </nav>
+
+        <section class="card">
+            <h1>Elfe</h1>
+            <img class="race-illu" src="img/race/elf.png" alt="Illustration" />
+            <p>Créés par le dieu Corellon, les premiers elfes pouvaient changer de forme à volonté. Ils perdirent ce don lorsque Corellon les maudit après leur complot avec la déesse Lolth, qui tenta sans succès d'usurper son autorité. Quand Lolth fut rejetée dans l'Abysse, la majorité des elfes la renia et obtint le pardon de Corellon, mais le pouvoir perdu ne revint jamais.</p>
+            <p>Privés de métamorphose, les elfes se retirèrent dans la Feywild, puis beaucoup explorèrent d'autres plans, dont le Plan Matériel. Ils ont des oreilles pointues, n'ont ni barbe ni pilosité corporelle marquée, vivent autour de 750 ans et ne dorment pas: ils entrent en transe, conscients de leur environnement, plongés dans leurs souvenirs et méditations.</p>
+        </section>
+
+        <section class="card">
+            <h2>Culture et personnalité</h2>
+            <ul>
+                <li><strong>Longévité et mémoire:</strong> leur durée de vie exceptionnelle nourrit une vision du temps très différente de celle des peuples plus éphémères.</li>
+                <li><strong>Transe consciente:</strong> au repos, l'elfe médite au lieu de dormir et demeure attentif à ce qui l'entoure.</li>
+                <li><strong>Influence du milieu:</strong> sur de longues périodes, l'environnement qu'ils habitent transforme subtilement leur magie et leur identité.</li>
+                <li><strong>Curiosité planaire:</strong> de nombreux elfes voyagent entre les mondes pour comprendre les plans et leur propre héritage.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Traits raciaux de l'elfe</h2>
+            <div class="grid">
+                <div class="trait"><strong>Type de créature:</strong> Humanoïde.</div>
+                <div class="trait"><strong>Taille:</strong> Moyenne (environ 1,50 m a 1,80 m).</div>
+                <div class="trait"><strong>Vitesse:</strong> 9 m (30 feet).</div>
+                <div class="trait"><strong>Vision dans le noir:</strong> portee de 18 m (60 feet).</div>
+                <div class="trait"><strong>Ascendance feerique:</strong> avantage aux jets de sauvegarde pour eviter ou mettre fin a l'etat Charme.</div>
+                <div class="trait"><strong>Sens aiguises:</strong> maitrise de la competence Intuition, Perception ou Survie (au choix).</div>
+                <div class="trait"><strong>Transe:</strong> vous ne dormez pas, la magie ne peut pas vous endormir; un repos long peut etre termine en 4 heures de meditation en restant conscient de votre environnement.</div>
+            </div>
+
+            <div class="encadre">
+                <p><strong>Lignee elfique</strong></p>
+                <p>Vous appartenez a une lignee qui vous accorde des capacites surnaturelles. Choisissez une lignee dans la table ci-dessous; vous gagnez son benefice de niveau 1.</p>
+                <p>Aux niveaux 3 et 5, vous apprenez le sort indique. Vous l'avez toujours prepare, vous pouvez le lancer une fois sans emplacement de sort, et vous recuperez cet usage apres un repos long. Vous pouvez aussi le lancer avec vos emplacements de sort appropries.</p>
+                <p>L'Intelligence, la Sagesse ou le Charisme est votre caracteristique d'incantation pour ces sorts (au choix lors de la selection de la lignee).</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lignee elfique</th>
+                            <th>Niveau 1</th>
+                            <th>Niveau 3</th>
+                            <th>Niveau 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Drow</td>
+                            <td>Votre vision dans le noir passe a 36 m. Vous connaissez aussi le tour de magie <em>Dancing Lights</em>.</td>
+                            <td><em>Faerie Fire</em></td>
+                            <td><em>Darkness</em></td>
+                        </tr>
+                        <tr>
+                            <td>Haut-elfe</td>
+                            <td>Vous connaissez le tour de magie <em>Prestidigitation</em>. A chaque repos long, vous pouvez le remplacer par un autre tour de magie de la liste de Magicien.</td>
+                            <td><em>Detect Magic</em></td>
+                            <td><em>Misty Step</em></td>
+                        </tr>
+                        <tr>
+                            <td>Elfe des bois</td>
+                            <td>Votre vitesse passe a 10,50 m. Vous connaissez aussi le tour de magie <em>Druidcraft</em>.</td>
+                            <td><em>Longstrider</em></td>
+                            <td><em>Pass without Trace</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Sous-races elfiques</h2>
+            <div class="grid">
+                <div class="trait">
+                    <h3>Haut-elfe</h3>
+                    Les haut-elfes sont imprégnés de la magie née des passages entre la Feywild et le Plan Matériel. Selon les univers, ils portent d'autres noms: elfes du soleil ou de la lune (Royaumes Oubliés), Silvanesti et Qualinesti (Dragonlance), ou Aereni (Eberron).
+                </div>
+                <div class="trait">
+                    <h3>Elfe des bois</h3>
+                    Les elfes des bois portent en eux la magie des forêts primordiales. On les connaît aussi sous de nombreux noms, comme elfes sauvages, elfes verts ou elfes des forêts. Les Grugach (Greyhawk), les Kagonesti (Dragonlance) et les Tairnadal (Eberron) en sont des exemples.
+                </div>
+                <div class="trait">
+                    <h3>Elfe noir (drow)</h3>
+                    Les drows vivent généralement dans l'Outreterre et en portent la marque magique. Certains individus et sociétés drows évitent toutefois cet environnement tout en conservant cet héritage; dans Eberron, par exemple, des drows habitent des forêts tropicales et des ruines cyclopéennes sur le continent de Xen'drik.
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
