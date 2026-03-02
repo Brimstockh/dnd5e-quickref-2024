@@ -6,12 +6,12 @@
     "background":  "—",
     "alignment":  "—",
     "hp":  {
-               "current":  11,
-               "max":  11,
+               "current":  9,
+               "max":  9,
                "temp":  0
            },
-    "ac":  18,
-    "speed":  25,
+    "ac":  13,
+    "speed":  8,
     "initiative":  -1,
     "proficiencyBonus":  2,
     "inspiration":  false,
@@ -210,9 +210,7 @@
                    }
                ],
     "defenses":  [
-                     "Résistance : poison",
-                     "Avantage : jets de sauvegarde contre le poison"
-                 ],
+                     "Résistance : poison"                 ],
     "conditions":  [
 
                    ],
@@ -232,30 +230,64 @@
                                         ]
                       },
     "actions":  [
-                    {
-                        "name":  "Marteau de guerre",
-                        "range":  "1.5 m",
-                        "toHit":  4,
-                        "damage":  "1d8+2 contondants",
-                        "notes":  "Attaque d’arme de mêlée, Martiale, Polyvalente"
-                    },
-                    {
-                        "name":  "Trait guidé",
-                        "range":  "120 m",
-                        "toHit":  5,
-                        "damage":  "4d6 radiants",
-                        "notes":  "Attaque de sort, Level 1"
-                    },
-                    {
-                        "name":  "Frappe à mains nues",
-                        "range":  "1.5 m",
-                        "toHit":  4,
-                        "damage":  "3 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
-                    }
+                {
+                    "name":  "Masse d'armes",
+                    "range":  "1.5 m",
+                    "toHit":  4,
+                    "damage":  "1d6+2 contondants",
+                    "notes":  "Courante, Légère"
+                },
+                {
+                    "name":  "Frappe à mains nues",
+                    "range":  "1.5 m",
+                    "toHit":  2,
+                    "damage":  "1d4+2 contondants",
+                    "notes":  "Arts martiaux"
+                }
                 ],
     "spells":  [
-
+                {
+                    "name":  "Assistance",
+                    "level":  0,
+                    "school":  "Divination",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Mot de radiance",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Lumiere",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Bénédiction",
+                    "level":  1,
+                    "school":  "Enchantement",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Bouclier de la foi",
+                    "level":  1,
+                    "school":  "Abjuration ",
+                    "notes":  "Action bonus"
+                },
+                {
+                    "name":  "Mot de guerison",
+                    "level":  1,
+                    "school":  "Abjuration ",
+                    "notes":  "Action bonus"
+                },
+                {
+                    "name":  "Protection contre le mal et le bien",
+                    "level":  1,
+                    "school":  "Abjuration ",
+                    "notes":  "Action"
+                }
                ],
     "notes":  ""
 }

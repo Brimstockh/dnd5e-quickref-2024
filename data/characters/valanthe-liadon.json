@@ -10,7 +10,7 @@
                "max":  8,
                "temp":  0
            },
-    "ac":  12,
+    "ac":  11,
     "speed":  9,
     "initiative":  2,
     "proficiencyBonus":  2,
@@ -231,29 +231,70 @@
                                         ]
                       },
     "actions":  [
-                    {
-                        "name":  "Épée courte",
-                        "range":  "1.5 m",
-                        "toHit":  4,
-                        "damage":  "1d6+2 perforants",
-                        "notes":  "Attaque d’arme de mêlée, Martiale, Finesse, Légère, Vex"
-                    },
-                    {
-                        "name":  "Rayon de givre",
-                        "range":  "60 m",
-                        "toHit":  5,
-                        "damage":  "1d8 froid",
-                        "notes":  "Attaque de sort"
-                    },
-                    {
-                        "name":  "Frappe à mains nues",
-                        "range":  "1.5 m",
-                        "toHit":  2,
-                        "damage":  "1 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
-                    }
+                {
+                    "name":  "Bâton de combat",
+                    "range":  "1.5 m",
+                    "toHit":  1,
+                    "damage":  "1d6 contondants à une main ou 1d8 contondants à deux mains",
+                    "notes":  "Courante, Polyvalente, Renversement"
+                },
+                {
+                    "name":  "Frappe à mains nues",
+                    "range":  "1.5 m",
+                    "toHit":  0,
+                    "damage":  "1d4 contondants",
+                    "notes":  "Arts martiaux"
+                }
                 ],
     "spells":  [
+                {
+                    "name":  "Prestidigitation",
+                    "level":  0,
+                    "school":  "Transmutation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Trait de feu",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Rayon de givre",
+                    "level":  0,
+                    "school":  "Évocation ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Poigne electrique",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Orbe chromatique",
+                    "level":  1,
+                    "school":  "Évocation ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Vague tonnante",
+                    "level":  1,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Armure de mage",
+                    "level":  1,
+                    "school":  "Abjuration ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Projectile magique",
+                    "level":  1,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                }
 
                ],
     "notes":  ""

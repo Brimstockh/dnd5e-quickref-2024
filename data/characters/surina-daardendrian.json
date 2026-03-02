@@ -1,22 +1,22 @@
 ﻿{
     "name":  "Surina Daardendrian",
-    "species":  "Drakéide",
+    "species":  "Drakéide Bronze",
     "class":  "Paladin",
     "level":  1,
     "background":  "—",
     "alignment":  "—",
     "hp":  {
-               "current":  11,
-               "max":  11,
+               "current":  12,
+               "max":  12,
                "temp":  0
            },
     "ac":  16,
     "speed":  9,
-    "initiative":  -1,
+    "initiative":  0,
     "proficiencyBonus":  2,
     "inspiration":  false,
     "senses":  {
-                   "darkvision":  0
+                   "darkvision":  18
                },
     "passives":  {
                      "perception":  11,
@@ -210,63 +210,68 @@
                    }
                ],
     "defenses":  [
-                     "Résistance : feu"
+                     "Résistance : foudre"
                  ],
     "conditions":  [
 
                    ],
     "proficiencies":  {
                           "armor":  [
-                                        "Armure lourde",
-                                        "Armure intermédiaire",
-                                        "Armure légère",
-                                        "Boucliers"
+                                        "Armures légères, intermédiaires et lourdes, boucliers"
                                     ],
                           "weapons":  [
-                                          "Armes de guerre",
-                                          "Armes courantes"
+                                        "Armes courantes et de guerre"
                                       ],
                           "tools":  [
                                         "Jeu de dragonchess"
                                     ],
                           "languages":  [
                                             "Commun",
-                                            "Draconique",
-                                            "Nain"
-                                        ]
+                                            "Draconique"                                        ]
                       },
     "actions":  [
                     {
-                        "name":  "Glaive",
-                        "range":  "10 m",
+                        "name":  "Epée longue",
+                        "range":  "1.5 m",
                         "toHit":  5,
-                        "damage":  "1d10+3 tranchants",
-                        "notes":  "Attaque d’arme de mêlée, Martiale, Lourde, Allonge, À deux mains"
+                        "damage":  "1d8+3 tranchants à une main ou 1d10+3 tranchants à deux mains ",
+                        "notes":  "Martiale, Polyvalente, Sape"
                     },
                     {
                         "name":  "Frappe à mains nues",
                         "range":  "1.5 m",
-                        "toHit":  5,
-                        "damage":  "4 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
+                        "toHit":  3,
+                        "damage":  "1d4+3 contondants",
+                        "notes":  "Arts martiaux"
                     },
                     {
-                        "name":  "Souffle draconique (or)",
-                        "range":  "cône de 15 m",
+                        "name":  "Imposition des mains",
+                        "range":  "1 m",
                         "toHit":  0,
-                        "damage":  "2d6 feu (moitié en cas de réussite)",
-                        "notes":  "Action"
+                        "damage":  "5",
+                        "notes":  "Soin, Action bonus"
                     },
                     {
-                        "name":  "Sens divin",
-                        "range":  "",
+                        "name":  "Souffle draconique",
+                        "range":  "9 m en ligne ou 4.50 m en cône",
                         "toHit":  0,
-                        "damage":  "",
-                        "notes":  "Action"
+                        "damage":  "1d10 foudre",
+                        "notes":  "Soufle lié à l'ascendance draconique"
                     }
                 ],
     "spells":  [
-
+                {
+                    "name":  "Soins",
+                    "level":  1,
+                    "school":  "Abjuration",
+                    "notes":  "Soin, Action"
+                },
+                {
+                    "name":  "Chatiment divin",
+                    "level":  1,
+                    "school":  "Évocation ",
+                    "notes":  "Sur soi, Action bonus"
+                }
                ],
     "notes":  ""
 }

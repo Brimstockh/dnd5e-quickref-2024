@@ -11,7 +11,7 @@
                "temp":  0
            },
     "ac":  14,
-    "speed":  25,
+    "speed":  8,
     "initiative":  3,
     "proficiencyBonus":  2,
     "inspiration":  false,
@@ -210,7 +210,7 @@
                    }
                ],
     "defenses":  [
-                     "Advantage against being frightened"
+                     "Attaque sournoise"
                  ],
     "conditions":  [
 
@@ -232,17 +232,24 @@
                       },
     "actions":  [
                     {
-                        "name":  "Arc court",
-                        "range":  "80 (320) ft.",
+                        "name":  "Dague",
+                        "range":  "1.5m ou 6/18 m",
                         "toHit":  5,
-                        "damage":  "1d6+3",
-                        "notes":  "Simple, Munitions, Portée, À deux mains, Vex"
+                        "damage":  "1d4+3",
+                        "notes":  "Courante, Finesse, Légère, Lancer"
+                    },
+                    {
+                        "name":  "Arc court",
+                        "range":  "24/96 m",
+                        "toHit":  5,
+                        "damage":  "1d6+3 perforants",
+                        "notes":  "Courante, Deux mains, Munitions"
                     },
                     {
                         "name":  "Frappe à mains nues",
-                        "range":  "5 m (reach)",
+                        "range":  "1.5 m",
                         "toHit":  1,
-                        "damage":  "0",
+                        "damage":  "1d4+1",
                         "notes":  ""
                     }
                 ],

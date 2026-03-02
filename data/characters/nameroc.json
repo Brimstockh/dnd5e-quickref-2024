@@ -6,8 +6,8 @@
     "background":  "—",
     "alignment":  "—",
     "hp":  {
-               "current":  11,
-               "max":  11,
+               "current":  10,
+               "max":  10,
                "temp":  0
            },
     "ac":  12,
@@ -235,24 +235,54 @@
                         "name":  "Bâton",
                         "range":  "1.5 m",
                         "toHit":  2,
-                        "damage":  "1d6",
-                        "notes":  "Simple, Polyvalente, Renversement"
+                        "damage":  "1d6 contondants",
+                        "notes":  "Courante, Polyvalente, Renversement"
                     },
                     {
                         "name":  "Frappe à mains nues",
                         "range":  "1.5 m",
-                        "toHit":  2,
-                        "damage":  "1",
-                        "notes":  "Contondant"
+                        "toHit":  0,
+                        "damage":  "1d4 contondants",
+                        "notes":  "Arts martiaux"
                     }
                 ],
     "spells":  [
-                   {
-                       "name":  "Shillelagh",
-                       "level":  0,
-                       "school":  "Transmutation",
-                       "notes":  "Bonus action; D: 1m; V/S/M"
-                   }
+                {
+                    "name":  "Crosse des druides",
+                    "level":  0,
+                    "school":  "Transmutation",
+                    "notes":  "Action bonus"
+                },
+                {
+                    "name":  "Fouet epineux",
+                    "level":  0,
+                    "school":  "Transmutation",
+                    "notes":  "Action bonus"
+                },
+                {
+                    "name":  "Baies nourricieres",
+                    "level":  1,
+                    "school":  "Invocation ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Amitie avec les animaux",
+                    "level":  1,
+                    "school":  "Enchantement ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Communication avec les animaux",
+                    "level":  1,
+                    "school":  "Divination ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Creation ou destruction d'eau",
+                    "level":  1,
+                    "school":  "Transmutation",
+                    "notes":  "Action"
+                }
                ],
     "notes":  "Notes libres…"
 }

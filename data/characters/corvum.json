@@ -266,12 +266,18 @@
                     "school":  "Évocation",
                     "notes":  "Action"
                 },
-                   {
-                       "name":  "Tentacules de hadar",
-                       "level":  1,
-                       "school":  "Invocation",
-                       "notes":  "Action"
-                   }
+                {
+                    "name":  "Tentacules de hadar",
+                    "level":  1,
+                    "school":  "Invocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Malefice",
+                    "level":  1,
+                    "school":  "Enchantement ",
+                    "notes":  "Action bonus"
+                }
                ],
     "notes":  "Warlock pacte myst�rieux, magie ax�e sur les d�g�ts � distance."
 }

@@ -1,6 +1,6 @@
 ﻿{
     "name":  "Tarin the Spearbreaker",
-    "species":  "Goliath",
+    "species":  "Goliath géant des collines",
     "class":  "Barbare",
     "level":  1,
     "background":  "—",
@@ -10,7 +10,7 @@
                "max":  14,
                "temp":  0
            },
-    "ac":  14,
+    "ac":  13,
     "speed":  9,
     "initiative":  2,
     "proficiencyBonus":  2,
@@ -210,7 +210,7 @@
                    }
                ],
     "defenses":  [
-
+                    "Chute des collines"
                  ],
     "conditions":  [
 
@@ -231,20 +231,20 @@
                                         ]
                       },
     "actions":  [
-                    {
-                        "name":  "Hache d’armes",
-                        "range":  "1.5 m",
-                        "toHit":  5,
-                        "damage":  "1d12+3 tranchants",
-                        "notes":  "Attaque d’arme de mêlée, Martiale, Lourde, À deux mains"
-                    },
-                    {
-                        "name":  "Frappe à mains nues",
-                        "range":  "1.5 m",
-                        "toHit":  5,
-                        "damage":  "4 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
-                    }
+                {
+                    "name":  "Hache à deux mains",
+                    "range":  "1.5 m",
+                    "toHit":  5,
+                    "damage":  "1d12+3 tranchants",
+                    "notes":  "Martiale, Deux mains, Lourde"
+                },
+                {
+                    "name":  "Frappe à mains nues",
+                    "range":  "1.5 m",
+                    "toHit":  3,
+                    "damage":  "1d4+3 contondants",
+                    "notes":  "Arts martiaux"
+                }
                 ],
     "spells":  [
 

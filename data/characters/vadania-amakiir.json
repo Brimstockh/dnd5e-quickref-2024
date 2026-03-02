@@ -10,8 +10,8 @@
                "max":  11,
                "temp":  0
            },
-    "ac":  14,
-    "speed":  35,
+    "ac":  15,
+    "speed":  10,
     "initiative":  3,
     "proficiencyBonus":  2,
     "inspiration":  false,
@@ -210,7 +210,8 @@
                    }
                ],
     "defenses":  [
-                     "Avantage : jets de sauvegarde contre l’état charmé"
+                     "Avantage : jets de sauvegarde contre l’état charmé",
+                     "Ennemi juré : Marque du chasseur"
                  ],
     "conditions":  [
 
@@ -231,23 +232,48 @@
                                         ]
                       },
     "actions":  [
-                    {
-                        "name":  "Arc long",
-                        "range":  "45/180 m",
-                        "toHit":  5,
-                        "damage":  "1d8+3 perforants",
-                        "notes":  "Attaque d’arme à distance, Martiale, Munitions, Lourde, Portée, À deux mains"
-                    },
-                    {
-                        "name":  "Frappe à mains nues",
-                        "range":  "1.5 m",
-                        "toHit":  3,
-                        "damage":  "2 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
-                    }
+                {
+                    "name":  "Arc long",
+                    "range":  "45/180 m",
+                    "toHit":  5,
+                    "damage":  "1d8+3 perforants",
+                    "notes":  "Martiale, Deux mains, Lourde, Munitions"
+                },
+                {
+                    "name":  "Cimeterre",
+                    "range":  "1.5m",
+                    "toHit":  5,
+                    "damage":  "1d6+3 tranchants",
+                    "notes":  "Martiale, Finesse, Légère"
+                },
+                {
+                    "name":  "Epée courte",
+                    "range":  "1.5m",
+                    "toHit":  5,
+                    "damage":  "1d6+3 perforants",
+                    "notes":  "Martiale, Finesse, Légère"
+                },
+                {
+                    "name":  "Frappe à mains nues",
+                    "range":  "1.5 m",
+                    "toHit":  1,
+                    "damage":  "1d4+1 contondants",
+                    "notes":  "Arts martiaux"
+                }
                 ],
     "spells":  [
-
+                {
+                    "name":  "Grêle d'epines",
+                    "level":  1,
+                    "school":  "Invocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Enchevetrement",
+                    "level":  1,
+                    "school":  "Invocation",
+                    "notes":  "Action"
+                }
                ],
     "notes":  "Combat à deux armes : quand vous effectuez l’action Attaquer et attaquez avec une arme de mêlée légère dans une main, vous pouvez utiliser une action bonus pour attaquer avec une autre arme de mêlée légère dans l’autre main."
 }

@@ -12,7 +12,7 @@
            },
     "ac":  14,
     "speed":  9,
-    "initiative":  3,
+    "initiative":  1,
     "proficiencyBonus":  2,
     "inspiration":  false,
     "senses":  {
@@ -210,7 +210,7 @@
                    }
                ],
     "defenses":  [
-
+                    "Second Souffle"
                  ],
     "conditions":  [
 
@@ -223,28 +223,41 @@
                                           "Armures légères, intermédiaires et lourdes, boucliers"
                                       ],
                           "tools":  [
-                                        "Outils de charpentier",
-                                        "Véhicules (terrestres)"
+                                        "Outils de charpentier"
                                     ],
                           "languages":  [
                                             "Commun"
                                         ]
                       },
     "actions":  [
-                    {
-                        "name":  "Arc long",
-                        "range":  "45/180 m",
-                        "toHit":  7,
-                        "damage":  "1d8+3 perforants",
-                        "notes":  "Attaque d’arme à distance, Martiale, Munitions, Lourde, Portée, À deux mains"
-                    },
-                    {
-                        "name":  "Frappe à mains nues",
-                        "range":  "1.5 m",
-                        "toHit":  4,
-                        "damage":  "3 contondants",
-                        "notes":  "Attaque d’arme de mêlée"
-                    }
+                {
+                    "name":  "Arc long",
+                    "range":  "45/180 m",
+                    "toHit":  3,
+                    "damage":  "1d8+1 perforants",
+                    "notes":  "Martiale, Deux mains, Lourde, Munitions"
+                },
+                {
+                    "name":  "Cimeterre",
+                    "range":  "1.5m",
+                    "toHit":  5,
+                    "damage":  "1d6+3 tranchants",
+                    "notes":  "Martiale, Finesse, Légère"
+                },
+                {
+                    "name":  "Epée courte",
+                    "range":  "1.5m",
+                    "toHit":  5,
+                    "damage":  "1d6+3 perforants",
+                    "notes":  "Martiale, Finesse, Légère"
+                },
+                {
+                    "name":  "Frappe à mains nues",
+                    "range":  "1.5 m",
+                    "toHit":  3,
+                    "damage":  "1d4+3 contondants",
+                    "notes":  "Arts martiaux"
+                }
                 ],
     "spells":  [
 

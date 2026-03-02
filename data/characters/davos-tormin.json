@@ -243,6 +243,13 @@
                         "toHit":  2,
                         "damage":  "1d4+2 contondants",
                         "notes":  "Arts martiaux"
+                    },
+                    {
+                        "name":  "Souffle draconique",
+                        "range":  "9 m en ligne ou 4.50 m en cône",
+                        "toHit":  0,
+                        "damage":  "1d10 froids",
+                        "notes":  "Soufle lié à l'ascendance draconique"
                     }
                 ],
     "spells":  [
@@ -268,6 +275,24 @@
                     "name":  "Bénédiction",
                     "level":  1,
                     "school":  "Enchantement",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Bouclier de la foi",
+                    "level":  1,
+                    "school":  "Abjuration ",
+                    "notes":  "Action bonus"
+                },
+                {
+                    "name":  "Imprecation",
+                    "level":  1,
+                    "school":  "Enchantement  ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Rayon tracant",
+                    "level":  1,
+                    "school":  "Évocation ",
                     "notes":  "Action"
                 }
                ],
