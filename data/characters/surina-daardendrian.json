@@ -1,0 +1,272 @@
+﻿{
+    "name":  "Surina Daardendrian",
+    "species":  "Drakéide",
+    "class":  "Paladin",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  11,
+               "max":  11,
+               "temp":  0
+           },
+    "ac":  16,
+    "speed":  9,
+    "initiative":  -1,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  0
+               },
+    "passives":  {
+                     "perception":  11,
+                     "investigation":  9,
+                     "insight":  13
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "dex":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "con":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "int":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "wis":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "cha":  {
+                                  "score":  14,
+                                  "mod":  2
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  3,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  3,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  4,
+                            "proficient":  true
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Résistance : feu"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armure lourde",
+                                        "Armure intermédiaire",
+                                        "Armure légère",
+                                        "Boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes de guerre",
+                                          "Armes courantes"
+                                      ],
+                          "tools":  [
+                                        "Jeu de dragonchess"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Draconique",
+                                            "Nain"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Glaive",
+                        "range":  "10 m",
+                        "toHit":  5,
+                        "damage":  "1d10+3 tranchants",
+                        "notes":  "Attaque d’arme de mêlée, Martiale, Lourde, Allonge, À deux mains"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  5,
+                        "damage":  "4 contondants",
+                        "notes":  "Attaque d’arme de mêlée"
+                    },
+                    {
+                        "name":  "Souffle draconique (or)",
+                        "range":  "cône de 15 m",
+                        "toHit":  0,
+                        "damage":  "2d6 feu (moitié en cas de réussite)",
+                        "notes":  "Action"
+                    },
+                    {
+                        "name":  "Sens divin",
+                        "range":  "",
+                        "toHit":  0,
+                        "damage":  "",
+                        "notes":  "Action"
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  ""
+}

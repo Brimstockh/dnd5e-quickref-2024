@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Corvum n’a jamais été étranger à l’ombre. Tieffelin habitué aux regards méfiants, il a grandi en apprenant que le pouvoir inspire plus de respect que la supplication. Mais lorsqu’il a cherché ce pouvoir, il a trouvé bien plus qu’il ne l’imaginait.\n Dans un moment de désespoir — ou d’ambition — il a scellé un pacte avec une entité venue d’un ailleurs que les mortels ne devraient pas contempler. Depuis ce jour, sa magie n’est plus seulement un outil : elle est une présence. Une influence. Un écho constant derrière ses pensées.\n Son regard a changé. Sa voix parfois résonne d’une intonation qui n’est pas tout à fait la sienne. Les flammes qu’il invoque semblent vibrer d’une volonté propre.\n Aujourd’hui, Corvum voyage non pour fuir, mais pour comprendre. Est-il le maître de son pouvoir… ou simplement son vecteur ? Chaque sort lancé est une question. Chaque silence de son patron, une inquiétude.\n Et au fond de lui, une pensée persiste : le pacte l’a-t-il transformé… ou a-t-il révélé ce qu’il était déjà ?",
+    "background":  {
+                       "name":  "Marchand (+2 cha, +1 int)",
+                       "feature":  {
+                                       "name":  "Chanceux",
+                                       "text":  "Vous avez fait votre apprentissage chez un marchand, un caravanier ou un boutiquier, apprenant les rudiments du commerce. Vous avez beaucoup voyagé et gagné votre vie en achetant et en vendant les matières premières nécessaires aux artisans ou leurs produits finis. Vous avez peut-être transporté des marchandises d'un endroit à un autre (par bateau, chariot ou caravane) ou les avez achetées à des marchands ambulants pour les revendre dans votre propre boutique."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Neutre",
+                            "gender":  "Male",
+                            "eyes":  "Lueur rouge orangée",
+                            "size":  "Moyenne",
+                            "height":  "1m80",
+                            "faith":  "Entité occulte inconnue",
+                            "hair":  "Noir",
+                            "skin":  "Rouge sombre",
+                            "age":  "25",
+                            "weight":  "75 kg"
+                        },
+                        "personalityTraits": [
+                            "Je suis souvent perdu dans mes pensées, comme si j’écoutais quelque chose que les autres ne peuvent pas entendre.",
+                            "Je pèse soigneusement mes mots, car je sais que certaines vérités attirent l’attention de choses que l’on préférerait laisser endormies."
+                          ],
+                          "ideals": [
+                            "Connaissance. Comprendre la nature de mon pacte est la seule manière de reprendre le contrôle de mon propre destin."
+                          ],
+                          "bonds": [
+                            "L’entité avec laquelle j’ai conclu mon pacte murmure encore à mon esprit ; je crains autant son silence que sa présence."
+                          ],
+                          "flaws": [
+                            "Ma curiosité pour les secrets interdits me pousse à prendre des risques que je ne devrais pas."
+                          ],
+    "appearance":  " "
+}

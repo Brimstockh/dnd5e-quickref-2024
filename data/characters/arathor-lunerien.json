@@ -1,0 +1,278 @@
+﻿{
+    "name":  "Arathor Lunerien",
+    "species":  "Tieffelin Infernal",
+    "class":  "Paladin",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  11,
+               "max":  11,
+               "temp":  0
+           },
+    "ac":  16,
+    "speed":  9,
+    "initiative":  0,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  10,
+                     "investigation":  11,
+                     "insight":  10
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "dex":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "wis":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "cha":  {
+                                  "score":  14,
+                                  "mod":  2
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  3,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  3,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  4,
+                            "proficient":  true
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Résistance : feu"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères, intermédiaires et lourdes, boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes et de guerre"
+                                      ],
+                          "tools":  [
+                                        "Jeu de dragonchess"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Tieffelin"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Epée longue",
+                        "range":  "1.5 m",
+                        "toHit":  5,
+                        "damage":  "1d8+3 tranchants à une main ou 1d10+3 tranchants à deux mains ",
+                        "notes":  "Martiale, Polyvalente, Sape"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  3,
+                        "damage":  "1d4+3 contondants",
+                        "notes":  "Arts martiaux"
+                    },
+                    {
+                        "name":  "Imposition des mains",
+                        "range":  "1 m",
+                        "toHit":  0,
+                        "damage":  "5",
+                        "notes":  "Soin, Action bonus"
+                    }
+                ],
+    "spells":  [
+                {
+                    "name":  "Trait de feu",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Soins",
+                    "level":  1,
+                    "school":  "Abjuration",
+                    "notes":  "Soin, Action"
+                },
+                {
+                    "name":  "Chatiment divin",
+                    "level":  1,
+                    "school":  "Évocation ",
+                    "notes":  "Sur soi, Action bonus"
+                }
+
+               ],
+    "notes":  ""
+}

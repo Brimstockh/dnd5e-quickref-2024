@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Présentation du personnage</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --paper: #fffef9;
+      --ink: #222;
+      --accent: #7a120f;
+      --line: #d8d2c5;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Noto Sans","Segoe UI",sans-serif;
+      color:var(--ink);
+      background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+    }
+    .page{ max-width: 980px; margin: 0 auto; padding: 20px; }
+    .hero{
+      background: var(--paper);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center;
+    }
+    h1{
+      margin:0 0 6px;
+      font-family:"Lora", Georgia, serif;
+      color: var(--accent);
+      font-size: 2rem;
+    }
+    .sub{ margin:0; color:#4c4c4c; }
+    .actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .btn{
+      text-decoration:none; color:inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display:inline-flex; gap:8px; align-items:center;
+      transition: transform .08s ease, box-shadow .08s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+    .pill{
+      font-size:.82rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding: 4px 10px;
+      color:#5e5e5e;
+      background: rgba(255,255,255,.6);
+    }
+
+    /* Header: titre à gauche, actions en haut à droite */
+    .hero-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .hero-title{ min-width: 240px; }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+
+    /* Intro: image à gauche, résumé à droite */
+    .intro{
+      margin-top: 14px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px){
+      .intro{
+        flex-direction: column;
+      }
+    }
+
+    .intro-summary{
+      flex: 1;
+    }
+
+    /* Image plus grande mais propre */
+    .profile-image{
+      width: 40%;
+      max-width: 40%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    /* Petit “card” léger pour le résumé, sans dupliquer trop de bordures */
+    .card-soft{
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .card{
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    h2{
+      margin:0 0 8px;
+      font-family:"Lora", Georgia, serif;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    h3{
+      margin: 12px 0 6px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+    .prose{ white-space: pre-wrap; line-height: 1.45; }
+    .muted{ color:#5e5e5e; }
+    .kv{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px){
+      .kv{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .kv-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:4px solid var(--accent);
+      border-radius:8px;
+      padding:10px;
+    }
+
+    .kv-item .k{
+      font-size:0.85rem;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:4px;
+      text-transform:capitalize;
+    }
+
+    .kv-item .v{
+      font-weight:700;
+    }
+    .k{ color:#5e5e5e; font-size:.92rem; }
+    ul{ margin: 6px 0 0 18px; }
+    li{ margin: 6px 0; }
+    .profile-image {
+      display: block;
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      margin: 16px 0 0;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-head">
+        <div class="hero-title">
+          <h1 id="name">Présentation</h1>
+          <p class="sub" id="line">—</p>
+        </div>
+    
+        <div class="actions">
+          <a class="btn" href="characters.html">← Personnages</a>
+          <a class="btn" id="sheetLink" href="#">Ouvrir la fiche (DnD)</a>
+          <span id="status" class="pill">Chargement…</span>
+        </div>
+      </div>
+    
+      <div class="intro">
+        <img id="profileImage" class="profile-image" alt="Illustration du personnage" />
+    
+        <div class="intro-summary card-soft">
+          <h2 style="margin-top:0;">Résumé</h2>
+          <div id="description" class="prose muted">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Origines</h2>
+      <div id="background"></div>
+    
+      <h3>Don</h3>
+      <div id="feature" class="prose muted">—</div>
+    </section>
+    
+    <section class="card">
+      <h2>Caractéristiques</h2>
+      <div class="kv" id="chars"></div>
+    </section>
+    
+    <section class="card">
+      <h2>Traits de personnalité</h2>
+      <div id="traits" class="muted">—</div>
+    </section>
+    
+    <section class="card">
+      <h2>Idéaux</h2>
+      <div id="ideals" class="muted">—</div>
+    </section>
+    
+    <section class="card">
+      <h2>Liens</h2>
+      <div id="bonds" class="muted">—</div>
+    </section>
+    
+    <section class="card">
+      <h2>Défauts</h2>
+      <div id="flaws" class="muted">—</div>
+    </section>
+    
+    <section class="card">
+      <h2>Apparence</h2>
+      <div id="appearance" class="prose muted">—</div>
+    </section>
+  </main>
+
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+
+    function getParam(name, fallback=null){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name) ?? fallback;
+    }
+
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function renderList(arr){
+      if(!arr || arr.length === 0) return `<div class="muted">—</div>`;
+      return `<ul>${arr.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+    }
+
+    async function loadJson(path, optional=false){
+      const res = await fetch(path, { cache: "no-store" });
+      if(!res.ok){
+        if(optional) return null;
+        throw new Error(`Impossible de charger ${path} (HTTP ${res.status})`);
+      }
+      return await res.json();
+    }
+
+    (async function main(){
+      const key = getParam("c", "cleira");
+      const img = document.getElementById("profileImage");
+      if (img) {
+        const path = `../img/characters/${key}-full.png`;
+        img.src = path;
+
+        img.onerror = () => {
+          img.style.display = "none";
+        };
+      }
+      $("sheetLink").href = `character.html?c=${encodeURIComponent(key)}`;
+
+      try{
+        const charPath = `../data/characters/${key}.json`;
+        const storyPath = `../data/characters/${key}.story.json`;
+
+        const c = await loadJson(charPath);
+        const s = await loadJson(storyPath, true);
+
+        $("name").textContent = c.name ?? "Présentation";
+        $("line").textContent = `${c.species ?? "—"} • ${c.class ?? "—"} niv. ${c.level ?? "—"}`;
+
+        if(!s){
+          $("status").textContent = "OK (sans histoire)";
+          $("description").textContent = "Aucune histoire renseignée pour ce personnage.";
+          $("background").innerHTML = `<div class="muted">—</div>`;
+          $("feature").textContent = "—";
+          $("appearance").textContent = "—";
+          $("chars").innerHTML = `<div class="k">Info</div><div class="v">Ajoute ${key}.story.json</div>`;
+          return;
+        }
+
+        $("status").textContent = "OK";
+
+        $("description").textContent = s.description ?? "—";
+
+        const bg = s.background ?? {};
+        const feat = bg.feature ?? {};
+        $("background").innerHTML = `
+          <div><strong>${esc(bg.name ?? "—")}</strong></div>
+          ${feat.name ? `<div class="muted" style="margin-top:6px;"><strong>${esc(feat.name)}</strong></div>` : ""}
+        `;
+        $("feature").textContent = feat.text ?? "—";
+
+        $("traits").innerHTML = renderList(s.personalityTraits);
+        $("ideals").innerHTML = renderList(s.ideals);
+        $("bonds").innerHTML = renderList(s.bonds);
+        $("flaws").innerHTML = renderList(s.flaws);
+
+        $("appearance").textContent = s.appearance ?? "—";
+
+        const ch = s.characteristics ?? {};
+        const entries = Object.entries(ch);
+        $("chars").innerHTML = entries.length
+          ? entries.map(([k,v]) => `
+              <div class="kv-item">
+                <div class="k">${esc(k.charAt(0).toUpperCase() + k.slice(1))}</div>
+                <div class="v">${esc(v ?? "—")}</div>
+              </div>
+            `).join("")
+          : `<div class="muted">—</div>`;
+
+        document.title = `Présentation - ${c.name ?? key}`;
+      }catch(e){
+        console.error(e);
+        $("status").textContent = "Erreur";
+        $("description").textContent = String(e.message ?? e);
+      }
+    })();
+  </script>
+</body>
+</html>

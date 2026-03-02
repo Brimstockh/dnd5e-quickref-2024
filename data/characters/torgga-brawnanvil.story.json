@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Torgga Brawnanvil est née au cœur des montagnes, là où la pierre est éternelle et les traditions profondément enracinées. Beaucoup de nains trouvent leur place dans la forge, la mine ou la garde des halls ancestraux.\n Torgga, elle, a entendu un autre appel. Sa foi ne lui semblait pas faite pour rester confinée entre des murs de granit. Elle voyait la souffrance au-delà des crêtes, les conflits lointains, les communautés isolées privées de soutien spirituel. Alors elle a fait ce que peu osent : elle a quitté la sécurité des siens.\n  Armée de son symbole sacré et d’une détermination aussi solide que l’acier nain, elle voyage de ville en village, soutenant les fidèles, soignant les blessés et rappelant que la foi est une force vivante.\n Certains parmi son peuple murmurent qu’elle s’éloigne trop des traditions. Torgga répond que la pierre la plus solide est celle que l’on transporte pour bâtir ailleurs. Et tant qu’il y aura des âmes à guider, elle continuera de marcher.",
+    "background":  {
+                       "name":  "Voyageur (+2 sag, +1 cha)",
+                       "feature":  {
+                                       "name":  "Chanceux",
+                                       "text":  "Vous avez grandi dans la rue, entouré de marginaux au destin tout aussi malheureux, certains amis, d'autres rivaux. Vous dormiez où vous pouviez et faisiez des petits boulots pour vous nourrir. Parfois, quand la faim devenait insupportable, vous voliez. Pourtant, vous n'avez jamais perdu votre fierté ni votre espoir. Le destin n'a pas encore dit son dernier mot."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle franchement et avec chaleur, comme si chaque inconnu était un cousin éloigné.",
+                            "Je considère chaque halte comme une occasion d’aider, bénir ou réparer quelque chose — ou quelqu’un."
+                          ],
+                          "ideals": [
+                            "Service. La foi ne doit pas rester enfermée dans la pierre d’un temple ; elle doit marcher, agir et soutenir les vivants."
+                          ],
+                          "bonds": [
+                            "Les disciples de ma divinité, où qu’ils soient, sont ma famille étendue et je répondrai toujours à leur appel."
+                          ],
+                          "flaws": [
+                            "Je prends trop de responsabilités sur mes épaules, refusant souvent de reconnaître mes propres limites."
+                          ],
+    "appearance":  "Les nains sont robustes et endurants, comme les montagnes qu’ils aiment, et traversent les siècles avec un stoïcisme inébranlable. Les nains qui honorent votre dieu, Marthammor Duin, portent son symbole sacré — une botte surmontée d’une masse dressée — sur un collier souvent en argent et en fer."
+}

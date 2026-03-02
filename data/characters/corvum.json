@@ -1,0 +1,277 @@
+﻿{
+    "name":  "Corvum",
+    "species":  "Tieffelin Chthonien",
+    "class":  "Occultiste",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  9,
+               "max":  9,
+               "temp":  0
+           },
+    "ac":  13,
+    "speed":  9,
+    "initiative":  2,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  10,
+                     "investigation":  11,
+                     "insight":  10
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "dex":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "wis":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "cha":  {
+                                  "score":  17,
+                                  "mod":  3
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  2,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  5,
+                            "proficient":  true
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  2,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Résistance : nécrotiques",
+                     "Manifestations occulte : Pacte de la chaîne"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armure légère"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes"
+                                      ],
+                          "tools":  [
+
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Infernal"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Dague",
+                        "range":  "1.5m ou 6/18 m",
+                        "toHit":  4,
+                        "damage":  "1d4+2",
+                        "notes":  "Courante, Finesse, Légère, Lancer"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  2,
+                        "damage":  "1d4 contondants",
+                        "notes":  "Arts martiaux"
+                    }
+                ],
+    "spells":  [
+                   {
+                       "name":  "Decharge occulte",
+                       "level":  0,
+                       "school":  "Évocation",
+                       "notes":  "Action"
+                   },
+                   {
+                       "name":  "Contact glacial",
+                       "level":  0,
+                       "school":  "Necromancie",
+                       "notes":  "Action"
+                   },
+                   {
+                    "name":  "Coup de tonnerre",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                   {
+                       "name":  "Tentacules de hadar",
+                       "level":  1,
+                       "school":  "Invocation",
+                       "notes":  "Action"
+                   }
+               ],
+    "notes":  "Warlock pacte myst�rieux, magie ax�e sur les d�g�ts � distance."
+}

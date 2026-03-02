@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Gormach est né au sein d’une tribu orc où la faiblesse n’avait pas sa place et où la loyauté se gagnait par le sang. Mais il a rapidement compris que la brutalité aveugle n’était pas la seule voie vers la force.\n Après un conflit — peut-être un défi mal accepté, peut-être une décision qu’il a refusé d’exécuter — il a quitté sa tribu. Certains diraient qu’il a fui. Lui affirme qu’il a choisi sa propre voie.\n Les arènes itinérantes lui ont offert ce que la tribu ne lui donnait pas : une liberté encadrée par des règles claires. Là, la violence était attendue. Applaudie. Récompensée. Gormach y a forgé sa réputation, devenant un nom que les foules scandaient lorsque le sable se teintait de rouge. \n Mais sous les cicatrices et les muscles tendus se cache un guerrier qui cherche encore sa place. Gladiateur par nécessité, barbare par nature, Gormach se bat désormais non pour la tribu — mais pour définir ce que signifie être fort.\n Et peut-être, un jour, revenir… non comme fugitif, mais comme légende.",
+    "background":  {
+                       "name":  "Artiste (+2 for, +1 dex)",
+                       "feature":  {
+                                       "name":  "Musicien",
+                                       "text":  "Vous avez passé une grande partie de votre jeunesse à suivre les fêtes foraines et les carnavals itinérants, enchaînant les petits boulots pour des musiciens et des acrobates en échange de leçons. Vous avez peut-être appris à marcher sur un fil, à jouer du luth dans un style bien particulier, ou à réciter de la poésie avec une diction impeccable. Aujourd'hui encore, vous vous épanouissez sous les applaudissements et rêvez de monter sur scène."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle peu, mais lorsque je ris ou que je m’emporte, cela résonne comme un tonnerre.",
+                            "Je respecte la force sous toutes ses formes, qu’elle soit physique, mentale ou morale."
+                          ],
+                          "ideals": [
+                            "Liberté. Plus jamais je ne laisserai une tribu, une chaîne ou un maître décider de ma vie."
+                          ],
+                          "bonds": [
+                            "Les cicatrices que je porte sont celles de l’arène ; elles me rappellent que j’ai survécu là où d’autres sont tombés."
+                          ],
+                          "flaws": [
+                            "Je règle trop facilement les conflits par la violence, même lorsque la retenue serait plus sage."
+                          ],
+    "appearance":  ""
+}

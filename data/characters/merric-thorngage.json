@@ -1,0 +1,253 @@
+﻿{
+    "name":  "Merric Thorngage",
+    "species":  "Halfelin pied-léger",
+    "class":  "Roublard",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  9,
+               "max":  9,
+               "temp":  0
+           },
+    "ac":  14,
+    "speed":  25,
+    "initiative":  3,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+
+               },
+    "passives":  {
+                     "perception":  12,
+                     "investigation":  14,
+                     "insight":  10
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "dex":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  15,
+                                  "mod":  2
+                              },
+                      "wis":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "cha":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              }
+                  },
+    "savingThrows":  [
+                         {
+                             "ability":  "str",
+                             "bonus":  1,
+                             "proficient":  false
+                         },
+                         {
+                             "ability":  "dex",
+                             "bonus":  5,
+                             "proficient":  true
+                         },
+                         {
+                             "ability":  "con",
+                             "bonus":  1,
+                             "proficient":  false
+                         },
+                         {
+                             "ability":  "int",
+                             "bonus":  4,
+                             "proficient":  true
+                         },
+                         {
+                             "ability":  "wis",
+                             "bonus":  0,
+                             "proficient":  false
+                         },
+                         {
+                             "ability":  "cha",
+                             "bonus":  -1,
+                             "proficient":  false
+                         }
+                     ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  2,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Advantage against being frightened"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes et armes de guerre qui ont la propriété Finesse ou Légère"
+                                      ],
+                          "tools":  [
+                                        "Outils de voleur"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Halfling"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Arc court",
+                        "range":  "80 (320) ft.",
+                        "toHit":  5,
+                        "damage":  "1d6+3",
+                        "notes":  "Simple, Munitions, Portée, À deux mains, Vex"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "5 m (reach)",
+                        "toHit":  1,
+                        "damage":  "0",
+                        "notes":  ""
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  "Bonus action: Two-Weapon Fighting."
+}

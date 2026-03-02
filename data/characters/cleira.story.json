@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Cleira Oestwilde n’a jamais cru aux contes de fées — seulement aux opportunités.\n Dotée d’un charme éclatant et d’un talent naturel pour la musique et les mots, elle a très tôt compris que l’influence vaut mieux que la force brute. Derrière son sourire enjôleur et ses mélodies entraînantes se cache un esprit affûté, toujours en train de calculer, d’évaluer, de peser le profit potentiel de chaque situation.\n Autrefois mêlée à un réseau de contrebandiers, Cleira a appris que la loyauté est une monnaie fragile et que la confiance se revend plus cher qu’elle ne s’achète. Elle en est ressortie plus prudente — mais certainement pas plus vertueuse.\n Elle voyage désormais librement, changeant de visage social aussi facilement que de chanson. Alliée charmante aujourd’hui, disparue demain si l’intérêt l’exige. Pour Cleira, le monde est une scène… et elle refuse d’y jouer un rôle qui ne la place pas au centre des projecteurs.\n Après tout, pourquoi se sacrifier pour les autres, quand on peut écrire sa propre légende ?",
+    "background":  {
+                       "name":  "Charlatan (+2 cha, +1 dex)",
+                       "feature":  {
+                                       "name":  "Doué",
+                                       "text":  "Dès que vous aviez l'âge légal pour commander une bière, vous vous étiez vite trouvé un tabouret de prédilection dans chaque taverne à moins de seize kilomètres de votre lieu de naissance. En parcourant les auberges, vous appreniez à exploiter les malheureux en quête d'un mensonge réconfortant ou de deux – peut-être une potion magique ou de faux documents généalogiques."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Neutre",
+                            "gender":  "—",
+                            "eyes":  "—",
+                            "size":  "Moyenne",
+                            "height":  "—",
+                            "faith":  "—",
+                            "hair":  "—",
+                            "skin":  "—",
+                            "age":  "—",
+                            "weight":  "—"
+                        },
+                        "personalityTraits": [
+                            "Je dis toujours exactement ce que les gens veulent entendre — surtout quand j’ai quelque chose à y gagner.",
+                            "Je ne m’attache jamais vraiment ; les relations sont des outils, pas des engagements."
+                          ],
+                          "ideals": [
+                            "Liberté. Personne ne me possédera, ne me contrôlera, ni ne décidera de ma valeur à ma place."
+                          ],
+                          "bonds": [
+                            "Je dois encore une faveur — ou une dette — à une figure influente du réseau de contrebandiers avec lequel j’ai travaillé."
+                          ],
+                          "flaws": [
+                            "Je privilégie toujours mon intérêt personnel, même si cela signifie trahir un allié au pire moment."
+                          ],
+    "appearance":  ""
+}

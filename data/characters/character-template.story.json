@@ -1,0 +1,37 @@
+﻿{
+    "illustration":  "character-key-full.png",
+    "description":  "Résumé court du personnage (2–5 lignes).",
+    "background":  {
+                       "name":  "Historique",
+                       "feature":  {
+                                       "name":  "Nom du trait",
+                                       "text":  "Texte de la feature (ce que ça apporte en RP / en jeu)."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "—",
+                            "gender":  "—",
+                            "eyes":  "—",
+                            "size":  "Moyenne",
+                            "height":  "—",
+                            "faith":  "—",
+                            "hair":  "—",
+                            "skin":  "—",
+                            "age":  "—",
+                            "weight":  "—"
+                        },
+    "personalityTraits":  [
+                              "Trait 1…",
+                              "Trait 2…"
+                          ],
+    "ideals":  [
+                   "Idéal 1…"
+               ],
+    "bonds":  [
+                  "Lien 1…"
+              ],
+    "flaws":  [
+                  "Défaut 1…"
+              ],
+    "appearance":  "Description physique / allure générale (quelques phrases)."
+}

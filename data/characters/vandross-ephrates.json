@@ -1,0 +1,253 @@
+﻿{
+    "name":  "Vandross Ephrates",
+    "species":  "Humain",
+    "class":  "Guerrier",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  12,
+               "max":  12,
+               "temp":  0
+           },
+    "ac":  14,
+    "speed":  9,
+    "initiative":  3,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  0
+               },
+    "passives":  {
+                     "perception":  13,
+                     "investigation":  9,
+                     "insight":  11
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "dex":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "con":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "int":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "wis":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "cha":  {
+                                  "score":  10,
+                                  "mod":  0
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  4,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  0,
+                            "proficient":  false
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   }
+               ],
+    "defenses":  [
+
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armes courantes et de guerre"
+                                    ],
+                          "weapons":  [
+                                          "Armures légères, intermédiaires et lourdes, boucliers"
+                                      ],
+                          "tools":  [
+                                        "Outils de charpentier",
+                                        "Véhicules (terrestres)"
+                                    ],
+                          "languages":  [
+                                            "Commun"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Arc long",
+                        "range":  "45/180 m",
+                        "toHit":  7,
+                        "damage":  "1d8+3 perforants",
+                        "notes":  "Attaque d’arme à distance, Martiale, Munitions, Lourde, Portée, À deux mains"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  4,
+                        "damage":  "3 contondants",
+                        "notes":  "Attaque d’arme de mêlée"
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  "Second Souffle : récupérez 1d10 + 1 PV. Utilisations : 1. Récupération : repos court. Combat à deux armes : quand vous effectuez l’action Attaquer et attaquez avec une arme de mêlée légère dans une main, vous pouvez utiliser une action bonus pour attaquer avec une autre arme de mêlée légère dans l’autre main."
+}

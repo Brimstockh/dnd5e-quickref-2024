@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D 2024 - Personnages</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --paper: #fffef9;
+      --ink: #222;
+      --accent: #7a120f;
+      --line: #d8d2c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
+    }
+    .page { max-width: 1040px; margin: 0 auto; padding: 20px; }
+    .hero {
+      background: var(--paper);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Lora", Georgia, serif;
+      color: var(--accent);
+      font-size: 1.9rem;
+    }
+    .sub { margin: 0; color: #4c4c4c; }
+    .actions { display:flex; gap:10px; align-items:center; }
+    .btn {
+      text-decoration:none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px;
+      display: block;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .card:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+    .card strong { display:block; color: var(--accent); margin-bottom: 4px; }
+    .meta { color:#4c4c4c; font-size: .95rem; }
+    .row { display:flex; gap:10px; flex-wrap: wrap; align-items:center; }
+    .search {
+      flex: 1 1 240px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      outline: none;
+    }
+    /* Carte personnage avec vignette à droite */
+    .char-card{
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .char-card__left{
+      flex: 1;
+      min-width: 0;
+    }
+
+    .char-card__img{
+      width: 74px;
+      height: 74px;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      background: #fff;
+      object-fit: cover;
+      flex: 0 0 auto;
+    }
+    .note { margin-top: 12px; font-size: 0.9rem; color: #5e5e5e; }
+    .pill {
+      font-size:.8rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding: 4px 8px;
+      color:#5e5e5e;
+      background: rgba(255,255,255,.6);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>Personnages</h1>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="../index.html">← Accueil</a>
+        <span id="status" class="pill">Chargement…</span>
+      </div>
+    </section>
+
+    <div class="row" style="margin-bottom:12px;">
+      <input id="q" class="search" type="search" placeholder="Rechercher (nom, classe, race)…" />
+    </div>
+
+    <section class="grid" id="list"></section>
+
+  </main>
+
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+
+    async function loadIndex() {
+      const res = await fetch("../data/characters/index.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`Index introuvable (HTTP ${res.status})`);
+      return await res.json();
+    }
+
+    function render(list) {
+      const root = $("list");
+      root.innerHTML = "";
+
+      for (const c of list) {
+        const wrap = document.createElement("div");
+        wrap.className = "card char-card";
+        wrap.dataset.search = `${c.name} ${c.class} ${c.species} ${c.level}`.toLowerCase();
+
+        const imgPath = `../img/characters/${encodeURIComponent(c.key)}.png`;
+
+        wrap.innerHTML = `
+          <div class="char-card__left">
+            <strong>${c.name}</strong>
+            <div class="meta">${c.species ?? "—"} • ${c.class ?? "—"} niv. ${c.level ?? "—"}</div>
+
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="character-profile.html?c=${encodeURIComponent(c.key)}">Présentation</a>
+              <a class="btn" href="character.html?c=${encodeURIComponent(c.key)}">Fiche (DnD)</a>
+            </div>
+          </div>
+
+          <img class="char-card__img" src="${imgPath}" alt="Portrait de ${c.name}" />
+        `;
+
+        // Fallback: si l'image n'existe pas, on la cache
+        const img = wrap.querySelector("img");
+        img.addEventListener("error", () => {
+          img.style.display = "none";
+        });
+
+        root.appendChild(wrap);
+      }
+    }
+
+    function setupSearch() {
+      const input = $("q");
+      input.addEventListener("input", () => {
+        const q = input.value.trim().toLowerCase();
+        for (const el of $("list").children) {
+          const hay = el.dataset.search ?? "";
+          el.style.display = hay.includes(q) ? "" : "none";
+        }
+      });
+    }
+
+    (async function main() {
+      try {
+        const data = await loadIndex();
+        const chars = data.characters ?? [];
+
+        render(chars);
+        setupSearch();
+
+        $("status").textContent = `${chars.length} perso(s)`;
+      } catch (e) {
+        console.error(e);
+        $("status").textContent = "Erreur";
+        $("list").innerHTML = `
+          <div class="card">
+            <strong>Impossible de charger la liste</strong>
+            <div class="meta">${String(e.message ?? e)}</div>
+          </div>
+        `;
+      }
+    })();
+  </script>
+</body>
+</html>

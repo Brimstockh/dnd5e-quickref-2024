@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Valanthe Liadon est née dans la lumière des lustres en cristal et le murmure feutré des grandes bibliothèques elfiques. Fille d’une famille influente, elle n’a jamais manqué de rien — ni d’or, ni d’éducation, ni d’attentes.\n Très tôt, son talent pour la magie a été célébré comme une évidence. Un don naturel. Une preuve supplémentaire de la supériorité de son lignage.  Elle n’a jamais corrigé cette impression.\n Car si Valanthe brille, ce n’est pas par grâce innée — mais par discipline impitoyable. Des nuits entières passées à étudier en secret. Des répétitions obsessionnelles jusqu’à la perfection. Là où d’autres se reposent sur le talent, elle travaille deux fois plus pour que personne ne soupçonne l’effort. Son sourire est assuré. Ses gestes sont précis. Ses incantations, impeccables. \n Mais derrière chaque sort parfaitement exécuté se cache une peur silencieuse : celle de l’échec. Celle de l’erreur visible. Celle du moment où l’on comprendra qu’elle n’est pas prodige… seulement déterminée à ne jamais être ordinaire.",
+    "background":  {
+                       "name":  "Noble (+2 int, +1 cha)",
+                       "feature":  {
+                                       "name":  "Doué",
+                                       "text":  "Vous avez grandi dans un château, entouré de richesse, de pouvoir et de privilèges. Votre famille, issue de la petite noblesse, a veillé à ce que vous receviez une éducation de premier ordre, dont certains aspects vous ont plu et d'autres vous ont déplu. Votre séjour au château, et notamment les nombreuses heures passées à observer votre famille à la cour, vous a également beaucoup appris sur l'autorité."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle avec assurance et élégance, comme si la réussite était une évidence naturelle.",
+                            "Je corrige subtilement les erreurs des autres, incapable de laisser passer une approximation."
+                          ],
+                          "ideals": [
+                            "Excellence. La supériorité ne doit jamais être remise en question — elle doit être démontrée."
+                          ],
+                          "bonds": [
+                            "La réputation de ma famille repose en partie sur mon image ; je refuse de les laisser voir la moindre faille."
+                          ],
+                          "flaws": [
+                            "Je suis terrifiée à l’idée que quelqu’un découvre que mon talent n’est pas un don, mais le fruit d’un travail acharné."
+                          ],
+    "appearance":  "Dans les Royaumes Oubliés, votre peuple est appelé elfes du soleil. Aussi nommés elfes dorés ou elfes de l’aube, ils ont la peau bronzée, des cheveux cuivrés, noirs ou blond doré, et des yeux dorés, argentés ou noirs."
+}

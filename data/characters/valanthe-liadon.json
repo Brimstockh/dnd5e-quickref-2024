@@ -1,0 +1,260 @@
+﻿{
+    "name":  "Valanthe Liadon",
+    "species":  "Haut Elfe",
+    "class":  "Magicien",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  8,
+               "max":  8,
+               "temp":  0
+           },
+    "ac":  12,
+    "speed":  9,
+    "initiative":  2,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  11,
+                     "investigation":  15,
+                     "insight":  11
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "dex":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "wis":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "cha":  {
+                                  "score":  15,
+                                  "mod":  2
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  2,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  2,
+                            "proficient":  false
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Avantage : jets de sauvegarde contre l’état charmé"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [ "Aucune"
+
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes"
+                                      ],
+                          "tools":  [ "Jeu de cartes"
+
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Elfique"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Épée courte",
+                        "range":  "1.5 m",
+                        "toHit":  4,
+                        "damage":  "1d6+2 perforants",
+                        "notes":  "Attaque d’arme de mêlée, Martiale, Finesse, Légère, Vex"
+                    },
+                    {
+                        "name":  "Rayon de givre",
+                        "range":  "60 m",
+                        "toHit":  5,
+                        "damage":  "1d8 froid",
+                        "notes":  "Attaque de sort"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  2,
+                        "damage":  "1 contondants",
+                        "notes":  "Attaque d’arme de mêlée"
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  ""
+}

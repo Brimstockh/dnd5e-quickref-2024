@@ -1,0 +1,287 @@
+﻿{
+    "name":  "Cleira Oestwilde",
+    "species":  "Demi-elfe",
+    "class":  "Barde",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current": 9,
+               "max":  9,
+               "temp":  0
+           },
+    "ac":  13,
+    "speed":  9,
+    "initiative":  2,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  10,
+                     "investigation":  9,
+                     "insight":  10
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "dex":  {
+                                  "score":  15,
+                                  "mod":  2
+                              },
+                      "con":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "wis":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "cha":  {
+                                  "score":  17,
+                                  "mod":  3
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  4,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  5,
+                            "proficient":  true
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  0,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Sommeil magique",
+                     "Ascendance féérique"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armure légère"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes"
+                                      ],
+                          "tools":  [
+                                        "Flûte",
+                                        "Luth",
+                                        "Violon"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Elfique",
+                                            "Céleste"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Epée courte",
+                        "range":  "1.5 m",
+                        "toHit":  4,
+                        "damage":  "1d6+2 tranchants",
+                        "notes":  "Courante, Finesse"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  1,
+                        "damage":  "1d4 contondants",
+                        "notes":  "Arts martiaux"
+                    },
+                    {
+                        "name":  "Inspiration bardique",
+                        "range":  "18 m",
+                        "toHit":  0,
+                        "damage":  "1d6",
+                        "notes":  "Action bonus"
+                    }
+                ],
+    "spells":  [
+                    {
+                        "name":  "Moquerie cruelle",
+                        "level":  0,
+                        "school":  "Enchantement",
+                        "notes":  "Action"
+                    },
+                    {
+                        "name":  "Prestidigitation",
+                        "level":  0,
+                        "school":  "Transmutation",
+                        "notes":  "Action"
+                    },
+                   {
+                       "name":  "Mot de guerison",
+                       "level":  1,
+                       "school":  "Abjuration",
+                       "notes":  "Soin, Action bonus"
+                   },
+                   {
+                       "name":  "Sommeil",
+                       "level":  1,
+                       "school":  "Enchantement",
+                       "notes":  "Action"
+                   }
+               ],
+    "notes":  "Notes libres…"
+}

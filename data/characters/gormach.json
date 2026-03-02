@@ -1,0 +1,255 @@
+﻿{
+    "name":  "Gormach",
+    "species":  "Orc",
+    "class":  "Barbare",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  14,
+               "max":  14,
+               "temp":  0
+           },
+    "ac":  14,
+    "speed":  9,
+    "initiative":  2,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  0
+               },
+    "passives":  {
+                     "perception":  11,
+                     "investigation":  10,
+                     "insight":  11
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "dex":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "con":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "int":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "wis":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "cha":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  4,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  -1,
+                            "proficient":  false
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                    "Rage",
+                    "Adrenaline Rush",
+                    "Relentless Endurance"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères et intermédiaires, boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes et de guerre"
+                                      ],
+                          "tools":  [
+                                        "Un instrument de musique"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Orc"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Hache à deux mains",
+                        "range":  "1.5 m",
+                        "toHit":  5,
+                        "damage":  "1d12+3 tranchants",
+                        "notes":  "Martiale, Deux mains, Lourde"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  3,
+                        "damage":  "1d4+3 contondants",
+                        "notes":  "Arts martiaux"
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  "Rage : entrez en rage pendant 1 minute maximum (10 rounds). Avantage aux tests et jets de sauvegarde de FOR, +2 dégâts de mélée avec des armes de FOR, résistance aux dégâts contondants, perforants et tranchants. Utilisations : 2. Récupération : repos long."
+}

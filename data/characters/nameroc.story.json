@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Nameroc a longtemps marché entre deux mondes. Né humain parmi les humains, il ressentait pourtant l’appel de la terre avec une intensité que peu comprenaient. Là où d’autres voyaient un simple parc zoologique, lui voyait des regards captifs, des souffles contraints, des instincts étouffés derrière des barreaux polis.\n La nuit où il a ouvert les enclos n’était ni un acte impulsif ni un crime gratuit. C’était, à ses yeux, une correction. Une restauration de l’ordre naturel. Le chaos qui a suivi l’a rendu indésirable en ville. On l’a traité d’extrémiste, de saboteur, d’ennemi du progrès. Peut-être l’est-il devenu.\n Depuis, Nameroc vit loin des murs et des pavés, trouvant dans les forêts et les plaines une harmonie qu’il ne retrouve pas dans la pierre et le métal. Sa magie coule comme la sève, sauvage et patiente.\n Il ne hait pas l’humanité. Mais il refuse un monde où la nature est une curiosité sous clé. Et s’il devait recommencer, il ouvrirait encore les cages.",
+    "background":  {
+                       "name":  "Guide (+2 sag, +1 con)",
+                       "feature":  {
+                                       "name":  "Initié à la magie (druide)",
+                                       "text":  "Vous avez grandi en pleine nature, loin des terres habitées. Votre foyer était partout où vous choisissiez d'étendre votre sac de couchage. La nature sauvage recèle des merveilles : d'étranges monstres, des forêts et des ruisseaux vierges, des ruines envahies par la végétation de grandes salles jadis foulées par des géants. Vous avez appris à vous débrouiller seul en les explorant. De temps à autre, vous guidiez des prêtres de la nature bienveillants qui vous enseigniez les rudiments de la canalisation de la magie sauvage."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre Bon",
+                            "gender":  "—",
+                            "eyes":  "—",
+                            "size":  "Moyenne",
+                            "height":  "—",
+                            "faith":  "—",
+                            "hair":  "—",
+                            "skin":  "—",
+                            "age":  "—",
+                            "weight":  "—"
+                        },
+                        "personalityTraits": [
+                            "Je suis plus à l’aise en compagnie des animaux qu’au milieu des foules humaines.",
+                            "Je parle de la nature comme d’une entité vivante et sensible, presque comme d’une amie."
+                          ],
+                          "ideals": [
+                            "Libération. Aucune créature née libre ne devrait vivre enfermée pour le divertissement ou le profit."
+                          ],
+                          "bonds": [
+                            "Les bêtes que j’ai aidées à s’échapper portent une part de mon cœur ; je me demande souvent ce qu’elles sont devenues."
+                          ],
+                          "flaws": [
+                            "Je rejette instinctivement les villes, les machines et les constructions massives, même lorsque cette méfiance me met en danger."
+                          ],
+                        "appearance":  "La culture matérielle et les caractéristiques physiques des humains peuvent varier fortement d’une région à l’autre."
+}

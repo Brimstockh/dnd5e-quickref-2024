@@ -1,0 +1,278 @@
+{
+    "name":  "Godfrick Trahin",
+    "species":  "Nain",
+    "class":  "Rôdeur",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  12,
+               "max":  12,
+               "temp":  0
+           },
+    "ac":  15,
+    "speed":  9,
+    "initiative":  3,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  13,
+                     "investigation":  10,
+                     "insight":  13
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "dex":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "con":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "int":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "wis":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "cha":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  3,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  -1,
+                            "proficient":  false
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  true
+                   }
+               ],
+    "defenses":  [
+                     "Ennemi juré : Marque du chasseur"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères et intermédiaires, boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes et de guerre"
+                                      ],
+                          "tools":  [
+                                        "Outils de voleur"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Nain"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Arc long",
+                        "range":  "45/180 m",
+                        "toHit":  5,
+                        "damage":  "1d8+3 perforants",
+                        "notes":  "Martiale, Deux mains, Lourde, Munitions"
+                    },
+                    {
+                        "name":  "Cimeterre",
+                        "range":  "1.5m",
+                        "toHit":  5,
+                        "damage":  "1d6+3 tranchants",
+                        "notes":  "Martiale, Finesse, Légère"
+                    },
+                    {
+                        "name":  "Epée courte",
+                        "range":  "1.5m",
+                        "toHit":  5,
+                        "damage":  "1d6+3 perforants",
+                        "notes":  "Martiale, Finesse, Légère"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  1,
+                        "damage":  "1d4+1 contondants",
+                        "notes":  "Arts martiaux"
+                    }
+                ],
+    "spells":  [
+                {
+                    "name":  "Amitié avec les animaux",
+                    "level":  1,
+                    "school":  "Enchantement ",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Enchevetrement",
+                    "level":  1,
+                    "school":  "Invocation",
+                    "notes":  "Action"
+                }
+               ],
+    "notes":  "Combat à deux armes : quand vous effectuez l’action Attaquer et attaquez avec une arme de mêlée légère dans une main, vous pouvez utiliser une action bonus pour attaquer avec une autre arme de mêlée légère dans l’autre main."
+}

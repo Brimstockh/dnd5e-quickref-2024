@@ -1,0 +1,36 @@
+{
+    "description":  "Godfrick Trahin n’a jamais eu la patience des salles de conseil ni le goût des discours interminables. Né dans la rudesse naine, il a vite compris que le monde se divise en choses simples : les amis, les ennemis, et ceux qui tiennent la prochaine tournée.\n Rôdeur aguerri, il parcourt forêts et collines avec une étonnante aisance pour quelqu’un qui préfère régler les problèmes à coups de hache. Sa méthode est directe : traquer, approcher… puis charger.\n À ses côtés trotte Pumba, un sanglier massif au tempérament aussi explosif que celui de son maître. Ensemble, ils forment une tempête de poils, d’acier et de grognements qui a mis fin à plus d’une embuscade.\n Godfrick n’a que faire des intrigues des puissants. Les titres ne remplissent pas une chope, et les promesses politiques ne paient pas l’équipement. Ce qui compte, c’est la bière bien fraîche. La baston franche et honnête. Et l’or qui tinte lourdement dans la bourse. Le reste ? Des histoires pour ceux qui n’ont pas de sanglier pour charger à leurs côtés.",
+    "background":  {
+                       "name":  "Voyageur (+2 dex, +1 sag)",
+                       "feature":  {
+                                       "name":  "Chanceux",
+                                       "text":  "Vous avez grandi dans la rue, entouré de marginaux au destin tout aussi malheureux, certains amis, d'autres rivaux. Vous dormiez où vous pouviez et faisiez des petits boulots pour vous nourrir. Parfois, quand la faim devenait insupportable, vous voliez. Pourtant, vous n'avez jamais perdu votre fierté ni votre espoir. Le destin n'a pas encore dit son dernier mot."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Petite",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle fort, je ris fort et je combats encore plus fort.",
+                            "Je fais davantage confiance aux bêtes loyales qu’aux nobles bien habillés."
+                          ],
+                          "ideals": [
+                            "Indépendance. Les rois et les politiciens compliquent tout ; la vie est plus simple quand on sait qui est l’ennemi."
+                          ],
+                          "bonds": [
+                            "Pumba, mon sanglier, est mon compagnon le plus fidèle ; je me battrai jusqu’à mon dernier souffle pour lui."
+                          ],
+                          "flaws": [
+                            "Je me jette trop vite dans la mêlée, surtout si quelqu’un me promet une bonne récompense… ou me provoque."
+                          ],
+    "appearance":  ""
+}

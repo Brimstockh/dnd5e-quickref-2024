@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fiche de personnage</title>
+
+  <link rel="stylesheet" href="../css/character.css" />
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <main class="page" id="sheet" aria-busy="true">
+    <nav class="topnav">
+      <a href="../index.html">Accueil</a>
+      <a href="../quickref.html">Référence rapide</a>
+      <a href="../race.html">Races</a>
+      <a href="../classes/index.html">Classes</a>
+      <a href="../spells.html">Sorts</a>
+      <a id="profileLink" href="#">Présentation</a>
+      <a class="btn" href="characters.html">← Personnages</a>
+    </nav>
+
+    <section class="card header">
+      <div class="header__left">
+        <img id="charImage" class="avatar" alt="Portrait du personnage" />
+        <div>
+          <h1 class="h1" id="c-name">—</h1>
+          <div class="sub" id="c-line">—</div>
+        </div>
+      </div>
+
+      <div class="header__right">
+        <div class="statline">
+          <div class="statbox">
+            <div class="statbox__label">CA</div>
+            <div class="statbox__value" id="c-ac">—</div>
+          </div>
+          <div class="statbox">
+            <div class="statbox__label">Init</div>
+            <div class="statbox__value" id="c-init">—</div>
+          </div>
+          <div class="statbox">
+            <div class="statbox__label">Vit.</div>
+            <div class="statbox__value" id="c-speed">—</div>
+          </div>
+          <div class="statbox">
+            <div class="statbox__label">PB</div>
+            <div class="statbox__value" id="c-pb">—</div>
+          </div>
+        </div>
+
+        <div class="hp">
+          <div class="hp__label">PV</div>
+          <div class="hp__values">
+            <span id="c-hp-cur">—</span>
+            <span class="muted">/</span>
+            <span id="c-hp-max">—</span>
+            <span class="hp__temp muted">Temp: <span id="c-hp-temp">—</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 columns -->
+    <div class="grid">
+      <!-- Left column -->
+      <section class="col">
+        <section class="card">
+          <h2 class="h2">Caractéristiques</h2>
+          <div class="abilities" id="abilities"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="h2">Jets de sauvegarde</h2>
+          <div class="list" id="saves"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="h2">Passifs</h2>
+          <div class="list" id="passives"></div>
+          <div class="small muted" id="senses"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="h2">Maîtrises</h2>
+          <div class="kv" id="profs"></div>
+        </section>
+      </section>
+
+      <!-- Middle column -->
+      <section class="col">
+        <section class="card">
+          <div class="row between">
+            <h2 class="h2">Compétences</h2>
+            <input id="skillFilter" class="input" type="search" placeholder="Filtrer…" />
+          </div>
+          <div class="skills" id="skills"></div>
+        </section>
+      </section>
+
+      <!-- Right column -->
+      <section class="col col--wide">
+        <section class="card">
+          <div class="tabs" role="tablist" aria-label="Panneau">
+            <button class="tab is-active" data-tab="actions" role="tab" aria-selected="true">Actions</button>
+            <button class="tab" data-tab="spells" role="tab" aria-selected="false">Sorts</button>
+            <button class="tab" data-tab="inventory" role="tab" aria-selected="false">Inventaire</button>
+            <button class="tab" data-tab="story" role="tab" aria-selected="false">Histoire</button>
+            <button class="tab" data-tab="notes" role="tab" aria-selected="false">Notes</button>
+          </div>
+
+          <div class="tabpanel is-active" id="tab-actions" role="tabpanel">
+            <div class="table" id="actions"></div>
+          </div>
+
+          <div class="tabpanel" id="tab-spells" role="tabpanel">
+            <div class="table" id="spells"></div>
+          </div>
+
+          <div class="tabpanel" id="tab-inventory" role="tabpanel">
+            <div class="muted small">À implémenter.</div>
+          </div>
+
+          <div class="tabpanel" id="tab-story" role="tabpanel">
+            <div id="story" class="story"></div>
+          </div>
+
+          <div class="tabpanel" id="tab-notes" role="tabpanel">
+            <div id="notes" class="prose"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="h2">Défenses & Conditions</h2>
+          <div class="chips" id="defenses"></div>
+          <div class="chips" id="conditions"></div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="../js/character.js"></script>
+</body>
+</html>

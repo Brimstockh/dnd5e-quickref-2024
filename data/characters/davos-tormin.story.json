@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Davos Tormin est né sous le regard sévère des anciens de son clan drakéide, élevé dans le respect des traditions, de l’honneur et de la force. Dès son plus jeune âge, on lui a appris que le clan passe avant tout — avant l’individu, avant les ambitions personnelles. Mais un autre appel s’est fait entendre.\n La voix du divin a touché son esprit comme une braise dans l’obscurité, éveillant en lui une vocation qui dépassait les frontières de sa tribu. Devenu clerc, Davos canalise une puissance sacrée qui ne vient ni de l’acier ni du sang, mais d’une foi profonde et exigeante.\n Aujourd’hui, il marche entre deux mondes : celui des traditions ancestrales et celui d’un dessein plus vaste. Chaque prière est une tentative de concilier ces deux loyautés. Chaque décision, un équilibre fragile.\n Car Davos ne cherche pas seulement à servir son dieu — il cherche à prouver que la foi peut renforcer un clan… sans l’effacer.",
+    "background":  {
+                       "name":  "Acolyte (+2 sag, +1 cha)",
+                       "feature":  {
+                                       "name":  "Initié à la magie (clerc)",
+                                       "text":  "Vous étiez au service d'un temple, en ville ou retiré dans un bosquet sacré. Vous y avez accompli des rites en l'honneur d'un dieu ou d'un panthéon. Vous avez servi un prêtre et étudié la religion. Grâce à l'instruction de ce prêtre et à votre propre dévotion, vous avez également appris à canaliser un peu de puissance divine au service de votre lieu de culte et de ceux qui y priaient."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle avec gravité et mesure, pesant chaque décision comme si elle engageait l’honneur de tout mon clan.",
+                            "Je ressens profondément la souffrance des autres et cherche toujours à apaiser les tensions avant qu’elles ne deviennent des conflits."
+                          ],
+                          "ideals": [
+                            "Devoir. Mon clan et ma divinité exigent loyauté et droiture ; je dois trouver un chemin qui honore les deux."
+                          ],
+                          "bonds": [
+                            "Mon clan compte sur moi pour représenter sa force et sa sagesse auprès du monde extérieur."
+                          ],
+                          "flaws": [
+                            "Je doute souvent de mes choix, craignant de trahir soit mon clan, soit la volonté divine."
+                          ],
+    "appearance":  ""
+}

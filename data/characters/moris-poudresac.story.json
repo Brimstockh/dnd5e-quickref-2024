@@ -1,0 +1,36 @@
+{
+    "description":  "Moris Poudresac est convaincu d’une chose : le futur lui appartient. Là où d’autres magiciens se contentent de réciter des incantations millénaires, Moris expérimente. Pourquoi lancer une simple boule de feu quand on peut la propulser depuis un dispositif rotatif à triple catalyseur arcanique ? Pourquoi invoquer une lumière quand une lanterne auto-alimentée par résonance magique pourrait faire l’affaire ?\n Certes, ses tentatives ont jusqu’ici produit davantage de fumée que de percées scientifiques. Des ateliers carbonisés, des sourcils roussis, des mécanismes qui vibrent un peu trop fort avant d’exploser. Mais selon Moris, ce ne sont que des “ajustements nécessaires”.\n Il voit un monde où la magie n’est plus réservée aux érudits, mais intégrée à des machines accessibles à tous. Un monde d’artefacts portables, de dispositifs autonomes et de merveilles imprévisibles.\n Pour l’instant, ses créations grincent, sifflent… puis explosent. Mais Moris sourit toujours à travers la fumée. Parce que le progrès, selon lui, sent légèrement le brûlé.",
+    "background":  {
+                       "name":  "Artisan (+2 int, +1 dex)",
+                       "feature":  {
+                                       "name":  "Façonneur",
+                                       "text":  "Dès que vous avez été assez fort pour porter un seau, vous avez commencé à laver les sols et à frotter les comptoirs dans un atelier d'artisan pour quelques sous par jour. Quand vous avez eu l'âge de faire ton apprentissage, vous avez appris à créer vos propres objets artisanaux, ainsi qu'à charmer les clients parfois exigeants. Ce métier vous a aussi donné un sens aigu du détail."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Petite",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je prends frénétiquement des notes dès qu’une idée me traverse l’esprit, même en plein combat.",
+                            "Je suis persuadé que chaque échec n’est qu’un succès mal calibré."
+                          ],
+                          "ideals": [
+                            "Innovation. La magie seule est limitée ; combinée à l’ingéniosité, elle peut révolutionner le monde."
+                          ],
+                          "bonds": [
+                            "Je protège jalousement mes plans et prototypes, convaincu qu’ils changeront un jour l’histoire."
+                          ],
+                          "flaws": [
+                            "Je teste parfois mes inventions au pire moment possible, certain que “cette fois, ça va marcher”."
+                          ],
+    "appearance":  ""
+}

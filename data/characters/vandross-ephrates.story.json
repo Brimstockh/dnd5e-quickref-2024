@@ -1,0 +1,37 @@
+﻿{
+    "description":  "Vandross Ephrates ne se souvient pas du moment exact où il a perdu sa fratrie. Seulement du silence après. Du vide. Encore enfant, il a erré de village en village, survivant grâce à de petits travaux, à la générosité occasionnelle… et à une volonté farouche de ne pas disparaître.\n Sa vie a changé lorsqu’une caravane ambulante l’a recueilli. Marchands, artistes, gardes et soigneurs — un groupe hétéroclite, mais uni. Ils lui ont offert plus qu’un toit : ils lui ont donné une place. Pour rembourser cette dette morale, Vandross a appris le maniement des armes. Non par ambition, mais par nécessité. Il est devenu le bouclier de ceux qui l’avaient protégé, défendant la caravane contre brigands et créatures des routes sauvages.\n Aujourd’hui encore, il voyage. Officiellement pour escorter, protéger, travailler. Officieusement pour chercher. Chaque nouveau village est une possibilité. Chaque visage familier dans une foule est une étincelle d’espoir. Vandross n’est pas un héros en quête de gloire. Il est un frère en quête de retrouvailles. Et tant qu’il lui restera une piste à suivre, il continuera d’avancer.",
+    "background":  {
+                       "name":  "Garde (+2 for, +1 sag)",
+                       "feature":  {
+                                       "name":  "Vigilant",
+                                       "text":  "Vos pieds vous font mal au souvenir des innombrables heures passées à votre poste dans la tour. Vous étiez entraîné à garder un œil sur l'extérieur des murs, guettant les maraudeurs rôdant depuis la forêt voisine, et l'autre œil sur l'intérieur des murs, à la recherche de voleurs à la tire et de fauteurs de troubles. "
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Loyal Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je reste toujours en alerte, habitué à surveiller les dangers avant qu’ils ne frappent.",
+                            "Je me montre protecteur envers les plus vulnérables, surtout les enfants et les voyageurs isolés."
+                          ],
+                          "ideals": [
+                            "Protection. Personne ne devrait grandir seul et sans défense comme je l’ai fait."
+                          ],
+                          "bonds": [
+                            "La caravane qui m’a recueilli est ma première vraie famille, et je porte leurs couleurs avec fierté.",
+                            "Je cherche encore mes frères et sœurs, convaincu qu’ils sont quelque part dans ce vaste monde."
+                          ],
+                          "flaws": [
+                            "Je m’attache trop vite aux groupes que je rejoins, craignant inconsciemment d’être abandonné à nouveau."
+                          ],
+    "appearance":  "Les caractéristiques physiques humaines varient selon les anciennes migrations des premiers humains ; les habitants humains de Neverwinter présentent donc toutes les variations possibles de teint et de traits."
+}

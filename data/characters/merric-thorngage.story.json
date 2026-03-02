@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Merric Thorngage a toujours su se faufiler là où les autres restent coincés — physiquement comme socialement. Halfelin pied-léger au sourire facile, il a longtemps vécu de petites combines, de serrures ouvertes sans effraction et de bourses allégées sans témoin. Mais cette fois, il a visé trop haut.\n Pour effacer les dettes de jeu de sa tante — la seule famille qui ne l’ait jamais jugé — Merric a tenté un cambriolage audacieux chez un baron de la pègre locale. L’opération devait être rapide, élégante, invisible. Elle a été tout l’inverse.\n Depuis, son nom circule dans les ruelles, murmuré avec irritation par ceux qui n’aiment pas qu’on touche à leur coffre. Merric n’est plus seulement un petit voleur agile : il est devenu un problème à régler.\n Désormais, il doit se faire oublier. Disparaître dans la foule, changer de ville, peut-être même de nom. Mais une chose ne change pas : il referait tout. Parce qu’au fond, Merric n’est pas un grand criminel. Juste un neveu qui a tenté de faire ce qu’il fallait… au pire endroit possible.",
+    "background":  {
+                       "name":  "Criminel (+2 dex, +1 int)",
+                       "feature":  {
+                                       "name":  "Vigilant",
+                                       "text":  "Vous gagniez péniblement votre vie dans de sombres ruelles, coupant des bourses ou cambriolant des boutiques. Peut-être faisiez-vous partie d'une petite bande de malfrats partageant les mêmes idées et se protégeant les uns les autres. Ou peut-être étiez-vous un loup solitaire, luttant seul contre une guilde des voleurs locale ou d'autres criminels encore plus redoutables."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Petite",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je plaisante même dans les situations les plus dangereuses ; un sourire détourne souvent plus l’attention qu’une dague.",
+                            "Je remarque toujours les issues de secours avant même de m’asseoir."
+                          ],
+                          "ideals": [
+                            "Famille. On peut survivre sans or, sans réputation… mais pas sans ceux qui comptent sur vous."
+                          ],
+                          "bonds": [
+                            "Ma tante a accumulé des dettes auprès d’un baron de la pègre, et j’ai juré de la protéger des conséquences de ses erreurs."
+                          ],
+                          "flaws": [
+                            "Quand la pression monte, je peux prendre des décisions précipitées qui aggravent encore ma situation."
+                          ],
+    "appearance":  "Les petits halfelins survivent dans un monde rempli de créatures plus grandes en évitant de se faire remarquer ou, à défaut, en évitant d’offenser. Mesurant environ 90 cm, ils paraissent relativement inoffensifs."
+}

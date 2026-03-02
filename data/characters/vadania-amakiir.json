@@ -1,0 +1,253 @@
+﻿{
+    "name":  "Vadania Amakiir",
+    "species":  "Elfe des bois",
+    "class":  "Rôdeur",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  11,
+               "max":  11,
+               "temp":  0
+           },
+    "ac":  14,
+    "speed":  35,
+    "initiative":  3,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  14,
+                     "investigation":  10,
+                     "insight":  14
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  12,
+                                  "mod":  1
+                              },
+                      "dex":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "wis":  {
+                                  "score":  15,
+                                  "mod":  2
+                              },
+                      "cha":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  3,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  -1,
+                            "proficient":  false
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  4,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  4,
+                       "proficient":  true
+                   }
+               ],
+    "defenses":  [
+                     "Avantage : jets de sauvegarde contre l’état charmé"
+                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères et intermédiaires, boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes et de guerre"
+                                      ],
+                          "tools":  [
+                                        "Outils de voleur"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Elfique"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Arc long",
+                        "range":  "45/180 m",
+                        "toHit":  5,
+                        "damage":  "1d8+3 perforants",
+                        "notes":  "Attaque d’arme à distance, Martiale, Munitions, Lourde, Portée, À deux mains"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  3,
+                        "damage":  "2 contondants",
+                        "notes":  "Attaque d’arme de mêlée"
+                    }
+                ],
+    "spells":  [
+
+               ],
+    "notes":  "Combat à deux armes : quand vous effectuez l’action Attaquer et attaquez avec une arme de mêlée légère dans une main, vous pouvez utiliser une action bonus pour attaquer avec une autre arme de mêlée légère dans l’autre main."
+}

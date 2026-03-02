@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Tarin n’a jamais cherché la gloire. Elle cultivait la terre, élevait du bétail, et trouvait dans la rudesse du travail quotidien une satisfaction simple et honnête. Mais lorsqu’un tyran a étendu son emprise sur les siens, brûlant les récoltes et brisant les volontés, Tarin a saisi une lance.\n  Elle n’était pas la plus ambitieuse. Ni la plus enragée. Mais elle était la plus déterminée. Au cœur de la bataille, elle a brisé l’arme du tyran d’un coup si puissant que le surnom de Spearbreaker est resté. La rébellion a survécu grâce à des actes comme le sien.\n Pourtant, elle ne considère pas cela comme un exploit. Pour Tarin, combattre n’est pas un destin. C’est une corvée nécessaire. Chaque affrontement est un pas de plus vers la fin — la fin de la menace, la fin de la guerre, la fin de l’aventure.\n Elle ne rêve ni de légende ni de chant épique. Seulement d’un champ tranquille, d’un horizon dégagé… et d’un jour où elle pourra poser sa hache pour de bon.",
+    "background":  {
+                       "name":  "Fermier (+2 for, +1 con)",
+                       "feature":  {
+                                       "name":  "Robuste",
+                                       "text":  "Vous avez grandi au contact de la nature. Des années passées à prendre soin des animaux et à cultiver la terre vous ont procuré patience et une excellente santé. Vous appréciez profondément les bienfaits de la nature, tout en respectant sa colère."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je préfère le silence aux discours héroïques, et le travail honnête aux promesses grandioses.",
+                            "Je combats avec une efficacité brutale, sans colère apparente — comme si je faisais simplement ce qui doit être fait."
+                          ],
+                          "ideals": [
+                            "Paix. La vraie victoire n’est pas de triompher, mais de pouvoir poser son arme et ne plus jamais la reprendre."
+                          ],
+                          "bonds": [
+                            "Ma ferme et les quelques terres que j’ai aidé à protéger sont tout ce qui me rattache à ce monde."
+                          ],
+                          "flaws": [
+                            "Je me détache émotionnellement des combats et des pertes, au point de paraître froide ou insensible."
+                          ],
+    "appearance":  ""
+}

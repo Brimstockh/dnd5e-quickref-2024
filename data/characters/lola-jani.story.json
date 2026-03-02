@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Née dans le confort des salons feutrés et des alliances politiques soigneusement négociées, Lola Jani était destinée à une vie de privilèges et d’influence discrète. On lui avait déjà tracé un avenir fait de mariages stratégiques et de responsabilités administratives. Mais Lola n’a jamais voulu d’un destin dicté par d’autres.\n Là où ses pairs apprenaient l’art de la diplomatie et du paraître, elle s’entraînait à l’épée. Là où l’on attendait d’elle qu’elle protège l’honneur familial par les mots, elle a choisi de le faire par les actes.\n Quitter le confort de sa maison n’a pas été un caprice — c’était une déclaration. Elle refuse d’être un symbole décoratif d’un nom prestigieux. Elle veut être une force à part entière.\n Sur le champ de bataille, Lola combat avec discipline et détermination, chaque coup porté étant aussi un défi lancé aux attentes qui pesaient sur elle. Elle ne cherche pas à renier sa noblesse — elle cherche à la redéfinir.",
+    "background":  {
+                       "name":  "Noble (+2  for, +1 cha)",
+                       "feature":  {
+                                       "name":  "Doué",
+                                       "text":  "Vous avez grandi dans un château, entouré de richesse, de pouvoir et de privilèges. Votre famille, issue de la petite noblesse, a veillé à ce que vous receviez une éducation de premier ordre, dont certains aspects vous ont plu et d'autres vous ont déplu. Votre séjour au château, et notamment les nombreuses heures passées à observer votre famille à la cour, vous a également beaucoup appris sur l'autorité."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Loyal Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je garde une posture noble et une diction soignée, même couverte de boue après un combat.",
+                            "Je déteste que l’on sous-estime mes capacités à cause de mon nom ou de mon origine."
+                          ],
+                          "ideals": [
+                            "Mérite. La valeur d’une personne ne se mesure ni à son titre ni à sa fortune, mais à ses actes."
+                          ],
+                          "bonds": [
+                            "Ma famille considère mon choix comme une disgrâce, et je suis déterminée à leur prouver qu’ils ont tort."
+                          ],
+                          "flaws": [
+                            "Mon orgueil me pousse à refuser de reculer, même lorsque la prudence serait plus sage."
+                          ],
+    "appearance":  "Les caractéristiques physiques humaines varient selon les anciennes migrations des premiers humains ; les habitants humains de Neverwinter présentent donc toutes les variations possibles de teint et de traits."
+}

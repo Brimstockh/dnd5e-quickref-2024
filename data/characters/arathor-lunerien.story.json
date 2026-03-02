@@ -1,0 +1,36 @@
+﻿{
+    "description": "Né sous le signe du soupçon et élevé dans l’ombre du mépris, Arathor Lunérien a grandi en apprenant que son sang faisait de lui un coupable avant même qu’il n’ouvre la bouche. Il a vu les siens exclus, exploités, parfois même chassés pour des crimes qu’ils n’avaient pas commis.\n Mais là où d’autres auraient laissé la colère les consumer, Arathor a choisi de la transformer en serment.\n Adoubé paladin après avoir juré de ne plus jamais rester spectateur de l’injustice, il brandit sa foi comme un rempart pour les opprimés. Sa présence impose le respect. Il ne se bat pas pour la gloire ni pour la rédemption — il se bat pour que plus aucun enfant ne grandisse en se sentant maudit pour ce qu’il est.\n  Pour Arathor, la justice n’est pas un idéal abstrait. C’est une promesse. Et il est prêt à en payer le prix.",
+    "background":  {
+                       "name":  "Garde (+2 for, +1 sag)",
+                       "feature":  {
+                                       "name":  "Vigilant",
+                                       "text":  "Vos pieds vous font mal au souvenir des innombrables heures passées à votre poste dans la tour. Vous étiez entraîné à garder un œil sur l'extérieur des murs, guettant les maraudeurs rôdant depuis la forêt voisine, et l'autre œil sur l'intérieur des murs, à la recherche de voleurs à la tire et de fauteurs de troubles."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Loyal Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je me dresse instinctivement entre le danger et ceux qui ne peuvent pas se défendre.",
+                            "Je garde une posture droite et une voix ferme, même lorsque l’on me provoque ou m’insulte."
+                          ],
+                          "ideals": [
+                            "Justice. Nul ne devrait être condamné pour sa naissance ; seuls les actes définissent la valeur d’une âme."
+                          ],
+                          "bonds": [
+                            "Je protège farouchement la communauté tieffeline qui m’a vu grandir, et je répondrai toujours à leur appel."
+                          ],
+                          "flaws": [
+                            "Ma colère face à l’injustice peut m’aveugler et me pousser à agir sans réfléchir aux conséquences."
+                          ],
+    "appearance":  ""
+}

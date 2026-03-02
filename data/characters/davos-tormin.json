@@ -1,0 +1,275 @@
+﻿{
+    "name":  "Davos Tormin",
+    "species":  "Drakéide Argent",
+    "class":  "Clerc",
+    "level":  1,
+    "background":  "—",
+    "alignment":  "—",
+    "hp":  {
+               "current":  9,
+               "max":  9,
+               "temp":  0
+           },
+    "ac":  13,
+    "speed":  9,
+    "initiative":  -1,
+    "proficiencyBonus":  2,
+    "inspiration":  false,
+    "senses":  {
+                   "darkvision":  18
+               },
+    "passives":  {
+                     "perception":  13,
+                     "investigation":  10,
+                     "insight":  13
+                 },
+    "abilities":  {
+                      "str":  {
+                                  "score":  14,
+                                  "mod":  2
+                              },
+                      "dex":  {
+                                  "score":  8,
+                                  "mod":  -1
+                              },
+                      "con":  {
+                                  "score":  13,
+                                  "mod":  1
+                              },
+                      "int":  {
+                                  "score":  10,
+                                  "mod":  0
+                              },
+                      "wis":  {
+                                  "score":  17,
+                                  "mod":  3
+                              },
+                      "cha":  {
+                                  "score":  13,
+                                  "mod":  1
+                              }
+                  },
+    "savingThrows":  [
+                        {
+                            "ability":  "str",
+                            "bonus":  2,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "dex",
+                            "bonus":  -1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "con",
+                            "bonus":  1,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "int",
+                            "bonus":  0,
+                            "proficient":  false
+                        },
+                        {
+                            "ability":  "wis",
+                            "bonus":  5,
+                            "proficient":  true
+                        },
+                        {
+                            "ability":  "cha",
+                            "bonus":  3,
+                            "proficient":  true
+                        }
+                    ],
+    "skills":  [
+                   {
+                       "key":  "acrobatics",
+                       "name":  "Acrobatie",
+                       "ability":  "dex",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "animal_handling",
+                       "name":  "Dressage",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "arcana",
+                       "name":  "Arcanes",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "athletics",
+                       "name":  "Athlétisme",
+                       "ability":  "str",
+                       "bonus":  2,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "deception",
+                       "name":  "Tromperie",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "history",
+                       "name":  "Histoire",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "insight",
+                       "name":  "Intuition",
+                       "ability":  "wis",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "intimidation",
+                       "name":  "Intimidation",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "investigation",
+                       "name":  "Investigation",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "medicine",
+                       "name":  "Médecine",
+                       "ability":  "wis",
+                       "bonus":  5,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "nature",
+                       "name":  "Nature",
+                       "ability":  "int",
+                       "bonus":  0,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "perception",
+                       "name":  "Perception",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "performance",
+                       "name":  "Représentation",
+                       "ability":  "cha",
+                       "bonus":  1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "persuasion",
+                       "name":  "Persuasion",
+                       "ability":  "cha",
+                       "bonus":  3,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "religion",
+                       "name":  "Religion",
+                       "ability":  "int",
+                       "bonus":  2,
+                       "proficient":  true
+                   },
+                   {
+                       "key":  "sleight_of_hand",
+                       "name":  "Escamotage",
+                       "ability":  "dex",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "stealth",
+                       "name":  "Discrétion",
+                       "ability":  "dex",
+                       "bonus":  -1,
+                       "proficient":  false
+                   },
+                   {
+                       "key":  "survival",
+                       "name":  "Survie",
+                       "ability":  "wis",
+                       "bonus":  3,
+                       "proficient":  false
+                   }
+               ],
+    "defenses":  [
+                     "Résistance : froid"                 ],
+    "conditions":  [
+
+                   ],
+    "proficiencies":  {
+                          "armor":  [
+                                        "Armures légères et intermédiaires, boucliers"
+                                    ],
+                          "weapons":  [
+                                          "Armes courantes"
+                                      ],
+                          "tools":  [
+                                        "Matériel de calligraphe"
+                                    ],
+                          "languages":  [
+                                            "Commun",
+                                            "Drakéide"
+                                        ]
+                      },
+    "actions":  [
+                    {
+                        "name":  "Masse d'armes",
+                        "range":  "1.5 m",
+                        "toHit":  4,
+                        "damage":  "1d6+2 contondants",
+                        "notes":  "Courante, Légère"
+                    },
+                    {
+                        "name":  "Frappe à mains nues",
+                        "range":  "1.5 m",
+                        "toHit":  2,
+                        "damage":  "1d4+2 contondants",
+                        "notes":  "Arts martiaux"
+                    }
+                ],
+    "spells":  [
+                {
+                    "name":  "Assistance",
+                    "level":  0,
+                    "school":  "Divination",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Mot de radiance",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Lumiere",
+                    "level":  0,
+                    "school":  "Évocation",
+                    "notes":  "Action"
+                },
+                {
+                    "name":  "Bénédiction",
+                    "level":  1,
+                    "school":  "Enchantement",
+                    "notes":  "Action"
+                }
+               ],
+    "notes":  ""
+}

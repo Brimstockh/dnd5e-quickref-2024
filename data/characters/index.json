@@ -1,0 +1,130 @@
+﻿{
+    "characters":  [
+                       {
+                           "key":  "alistar-berethor",
+                           "name":  "Alistar Berethor",
+                           "species":  "Drakéide Blanc",
+                           "class":  "Moine",
+                           "level":  1
+                       },
+                       {
+                           "key":  "arathor-lunerien",
+                           "name":  "Arathor Lunerien",
+                           "species":  "Tieffelin Infernal",
+                           "class":  "Paladin",
+                           "level":  1
+                       },
+                       {
+                           "key":  "cleira",
+                           "name":  "Cleira Oestwilde",
+                           "species":  "Demi-elfe",
+                           "class":  "Barde",
+                           "level":  1
+                       },
+                       {
+                           "key":  "corvum",
+                           "name":  "Corvum",
+                           "species":  "Tieffelin Chthonien",
+                           "class":  "Occultiste",
+                           "level":  1
+                       },
+                       {
+                           "key":  "davos-tormin",
+                           "name":  "Davos Tormin",
+                           "species":  "Drakéide Argent",
+                           "class":  "Clerc",
+                           "level":  1
+                       },
+                       {
+                            "key":  "godfrick-trahin",
+                            "name":  "Godfrick Trahin",
+                            "species":  "Nain",
+                            "class":  "Rôdeur",
+                            "level":  1
+                        },
+                       {
+                           "key":  "gormach",
+                           "name":  "Gormach",
+                           "species":  "Orc",
+                           "class":  "Barbare",
+                           "level":  1
+                       },
+                       {
+                           "key":  "lola-jani",
+                           "name":  "Lola Jani",
+                           "species":  "Humain",
+                           "class":  "Guerrier",
+                           "level":  1
+                       },
+                       {
+                           "key":  "luiren",
+                           "name":  "Luiren",
+                           "species":  "Tieffelin Abyssal",
+                           "class":  "Ensorceleur",
+                           "level":  1
+                       },
+                       {
+                           "key":  "merric-thorngage",
+                           "name":  "Merric Thorngage",
+                           "species":  "Halfelin pied-léger",
+                           "class":  "Roublard",
+                           "level":  1
+                       },
+                       {
+                        "key":  "moris-poudresac",
+                        "name":  "Moris Poudresac",
+                        "species":  "Gnome",
+                        "class":  "Magicien",
+                        "level":  1
+                    },
+                       {
+                           "key":  "nameroc",
+                           "name":  "Nameroc",
+                           "species":  "Humain",
+                           "class":  "Druide",
+                           "level":  1
+                       },
+                       {
+                           "key":  "surina-daardendrian",
+                           "name":  "Surina Daardendrian",
+                           "species":  "Drakéide",
+                           "class":  "Paladin",
+                           "level":  1
+                       },
+                       {
+                           "key":  "tarin-the-spearbreaker",
+                           "name":  "Tarin The Spearbreaker",
+                           "species":  "Goliath",
+                           "class":  "Barbare",
+                           "level":  1
+                       },
+                       {
+                           "key":  "torgga-brawnanvil",
+                           "name":  "Torgga Brawnanvil",
+                           "species":  "Nain",
+                           "class":  "Clerc",
+                           "level":  1
+                       },
+                       {
+                           "key":  "vadania-amakiir",
+                           "name":  "Vadania Amakiir",
+                           "species":  "Elfe des bois",
+                           "class":  "Rôdeur",
+                           "level":  1
+                       },
+                       {
+                           "key":  "valanthe-liadon",
+                           "name":  "Valanthe Liadon",
+                           "species":  "Haut Elfe",
+                           "class":  "Magicien",
+                           "level":  1
+                       },
+                       {
+                           "key":  "vandross-ephrates",
+                           "name":  "Vandross Ephrates",
+                           "species":  "Humain",
+                           "class":  "Guerrier",
+                           "level":  1
+                       }
+                   ]
+}

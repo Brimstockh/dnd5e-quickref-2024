@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Vadania Amakiir ne chasse pas pour l’or. Elle ne chasse pas pour la justice. Elle chasse pour la certitude.\n Elfe des bois élevée dans l’art de la survie et de la traque, elle a rapidement compris que le monde n’était qu’un vaste territoire où chacun lutte pour sa place. Certains cultivent. Certains prient. D’autres commandent. Elle, elle traque.\n Qu’il s’agisse d’une bête sauvage, d’un hors-la-loi ou d’une cible désignée par un riche commanditaire, la nature de la proie lui importe peu. Ce qui compte, c’est la traque : l’observation, l’attente, le moment précis où la tension se rompt et où l’issue devient inévitable. Chaque victoire confirme ce qu’elle croit savoir depuis longtemps — qu’elle se tient au sommet.\n Mais dans un monde où les prédateurs sont nombreux, Vadania pourrait un jour découvrir qu’il existe toujours quelque chose de plus patient… et de plus dangereux.",
+    "background":  {
+                       "name":  "Voyageur (+2 dex, +1 sag)",
+                       "feature":  {
+                                       "name":  "Chanceux",
+                                       "text":  "Vous avez grandi dans la rue, entouré de marginaux au destin tout aussi malheureux, certains amis, d'autres rivaux. Vous dormiez où vous pouviez et faisiez des petits boulots pour vous nourrir. Parfois, quand la faim devenait insupportable, vous voliez. Pourtant, vous n'avez jamais perdu votre fierté ni votre espoir. Le destin n'a pas encore dit son dernier mot."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je me déplace avec patience et silence, observant mes cibles longtemps avant d’agir.",
+                            "Je considère chaque traque comme un défi personnel, presque un jeu."
+                          ],
+                          "ideals": [
+                            "Prédation. Le monde appartient à ceux qui dominent la chaîne alimentaire."
+                          ],
+                          "bonds": [
+                            "Chaque proie que j’ai vaincue est un rappel gravé dans ma mémoire de ma place au sommet."
+                          ],
+                          "flaws": [
+                            "Je sous-estime parfois les autres, convaincue que je suis toujours la chasseuse… jamais la proie."
+                          ],
+    "appearance":  "La peau des elfes des bois tend vers des teintes cuivrées, parfois avec des reflets verts. Leurs cheveux sont généralement bruns ou noirs, mais peuvent aussi être blonds ou cuivrés. Leurs yeux sont verts, bruns ou noisette."
+}

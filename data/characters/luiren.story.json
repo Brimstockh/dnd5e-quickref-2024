@@ -1,0 +1,36 @@
+﻿{
+    "description":  "La magie de Luiren ne s’est pas éveillée dans un sanctuaire ni sous la bénédiction d’un maître. Elle a éclaté — sauvage, incontrôlée — au cœur de son village, déformant la réalité autour d’elle comme un éclat de rire cruel du destin. Les regards se sont changés en peur. La peur en accusation.\n Pour échapper aux représailles, Luiren a disparu dans les profondeurs des bois, recueillie par une sorcière recluse dont la réputation suffisait à tenir les poursuivants à distance. Là, loin du monde, elle a appris à comprendre — un peu — le chaos qui coule dans ses veines.\n Mais la hag n’offre jamais protection sans contrepartie. Entre leçons murmurées à la lueur des chandelles et conseils aux intentions ambiguës, Luiren a grandi dans un mélange de survie, de méfiance et de pouvoir brut.\n Aujourd’hui, elle quitte l’ombre de la forêt. Non plus comme enfant effrayée, mais comme ensorceleuse consciente que sa magie n’est ni une malédiction ni un don sacré. C’est une tempête. Et elle apprend encore à en être l’œil plutôt que la victime.",
+    "background":  {
+                       "name":  "Ermite (+2 cha, +1 con)",
+                       "feature":  {
+                                       "name":  "Guérisseur",
+                                       "text":  "Vous avez passé votre enfance reclus dans une hutte ou un monastère situé bien au-delà des limites du village le plus proche. À cette époque, vos seuls compagnons étaient les créatures de la forêt et ceux qui venaient occasionnellement vous apporter des nouvelles du monde extérieur et des provisions. Cette solitude vous permettait de passer de longues heures à méditer sur les mystères de la création."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Chaotique Neutre",
+                            "gender":  "—",
+                            "eyes":  "—",
+                            "size":  "Moyenne",
+                            "height":  "—",
+                            "faith":  "—",
+                            "hair":  "—",
+                            "skin":  "—",
+                            "age":  "—",
+                            "weight":  "—"
+                        },
+                        "personalityTraits": [
+                            "Mes émotions influencent ma magie ; je passe du rire aux larmes avec une intensité déroutante.",
+                            "Je me méfie des villages et des foules, habituée aux regards accusateurs et aux murmures."
+                          ],
+                          "ideals": [
+                            "Acceptation. Ma magie fait partie de moi, et je refuse désormais d’en avoir honte."
+                          ],
+                          "bonds": [
+                            "La sorcière qui m’a cachée m’a appris à survivre ; je lui dois ma vie, même si je crains l’influence qu’elle a eue sur moi."
+                          ],
+                          "flaws": [
+                            "Lorsque je perds le contrôle, ma magie devient imprévisible… et je prends parfois des décisions sous le coup de la peur."
+                          ],
+    "appearance":  "Dans les Royaumes Oubli�s, votre peuple est appel� elfes de la lune. Aussi nomm�s elfes argent�s ou gris, ils sont plus p�les, avec une peau d�alb�tre parfois teint�e de bleu. Leurs cheveux sont souvent blanc argent�, noirs ou bleus, mais des nuances de blond, brun et roux ne sont pas rares. Leurs yeux sont bleus ou verts, mouchet�s d�or."
+}

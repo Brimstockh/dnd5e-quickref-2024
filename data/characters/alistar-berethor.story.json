@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Alistar Berethor a quitté son monastère il y a plusieurs années, non pas par rejet, mais par nécessité. Formé à la discipline du corps et à la maîtrise de l’esprit, il a appris très tôt que la véritable sagesse ne se trouve pas uniquement entre les murs d’un temple, mais dans le tumulte du monde.\n Silencieux et observateur, Alistar parcourt routes et cités avec la même sérénité, étudiant les peuples, les conflits et les déséquilibres qui agitent les terres qu’il traverse. Chaque adversaire est une leçon. Chaque erreur, une pierre sur le chemin de l’éveil.\n Il voyage avec un objectif qu’il ne confie à personne : accomplir la mission laissée inachevée par son ancien maître. Tant qu’il ne l’aura pas menée à bien, il sait qu’il ne pourra prétendre à l’harmonie qu’il recherche.\n Calme comme l’eau immobile, rapide comme le vent lorsqu’il frappe, Alistar ne cherche ni gloire ni richesse — seulement l’équilibre.",
+    "background":  {
+                       "name":  "Marin (+2 dex, +1 sag)",
+                       "feature":  {
+                                       "name":  "Bagarreur des Tavernes",
+                                       "text":  "Vous avez vécu comme un marin, le vent dans le dos et le pont qui tanguait sous vos pieds. Vous avez siégé sur des tabourets de bar dans d\u0027innombrables ports, affronté de terribles tempêtes et échangé des histoires avec ceux qui vivent sous les vagues."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Neutre",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je parle peu, mais j’observe tout avec une attention presque dérangeante.",
+                            "Je considère chaque rencontre comme une occasion d’apprendre quelque chose, même de mes ennemis."
+                          ],
+                          "ideals": [
+                            "Équilibre. Le monde est un chaos perpétuel, et je cherche à y apporter harmonie et maîtrise de soi."
+                          ],
+                          "bonds": [
+                            "Mon ancien maître m’a confié une mission que je n’ai pas encore accomplie, et je ne peux retourner au monastère avant cela."
+                          ],
+                          "flaws": [
+                            "Je refuse souvent l’aide des autres, persuadé que l’épreuve forge l’esprit."
+                          ],
+    "appearance":  ""
+}

@@ -1,0 +1,36 @@
+﻿{
+    "description":  "Surina Daardendrian se souvient encore de l’odeur des cendres. Son clan drakéide était fier, ancien, enraciné dans des traditions forgées par le feu et l’honneur. Tout cela fut réduit au silence lorsqu’une Liche leva une armée de cadavres et transforma les guerriers tombés en parodies grotesques de ce qu’ils avaient été.\n Surina survécut. Ce jour-là, elle prêta un serment — non pas de simple vengeance, mais d’opposition absolue à tout ce qui pervertit le cycle naturel de la vie et de la mort. Là où d’autres voient des abominations à fuir, elle voit une obligation sacrée.\n Sa foi est une lame. Son souffle draconique, un rappel que la vie brûle encore. Elle traque les morts-vivants sans relâche, convaincue que chaque abomination détruite rapproche le monde d’un équilibre plus juste. \n Mais au fond de son regard brûle une question qu’elle n’ose formuler : sa croisade est-elle guidée par la lumière… ou alimentée par une colère qui ne s’éteindra jamais ?",
+    "background":  {
+                       "name":  "Soldat (+2 for, +1 con)",
+                       "feature":  {
+                                       "name":  "Sauvagerie martiale",
+                                       "text":  "Vous vous êtes entraîné à la guerre dès l’âge adulte et n'avez que peu de précieux souvenirs de votre vie avant de prendre les armes. Le combat est dans votre sang. Parfois, vous vous surprenez à exécuter par réflexe vos premiers exercices de combat. Au final, vous avez mis cet entraînement en pratique sur le champ de bataille, en faisant la guerre pour protéger le royaume."
+                                   }
+                   },
+    "characteristics":  {
+                            "alignment":  "Loyal Bon",
+                            "gender":  "",
+                            "eyes":  "",
+                            "size":  "Moyenne",
+                            "height":  "",
+                            "faith":  "",
+                            "hair":  "",
+                            "skin":  "",
+                            "age":  "",
+                            "weight":  ""
+                        },
+                        "personalityTraits": [
+                            "Je ne détourne jamais le regard face à l’horreur ; la peur n’a plus de prise sur moi.",
+                            "Ma voix se durcit immédiatement lorsque l’on évoque la nécromancie ou les morts-vivants."
+                          ],
+                          "ideals": [
+                            "Expiation. Les forces impies qui défient le cycle naturel de la vie doivent être éradiquées, sans compromis."
+                          ],
+                          "bonds": [
+                            "Les cendres de mon clan me hantent encore ; je porte leur mémoire comme une flamme qui ne doit jamais s’éteindre."
+                          ],
+                          "flaws": [
+                            "Ma haine des morts-vivants peut me rendre inflexible, au point d’ignorer les conséquences ou les nuances."
+                          ],
+    "appearance":  ""
+}
