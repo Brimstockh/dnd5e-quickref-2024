@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="../css/classes.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .classe-illu {
+            float: right;
+            width: 400px;
+            max-width: 48%;
+            height: 561px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
 </head>
 <body>
     <main class="page">
@@ -25,6 +49,7 @@
         <section class="card">
             <h1>Ensorceleur</h1>
             <div class="content">
+                <p><img alt="Barde DnD 2024" src="..\img\classes\sorcerer.jpg" loading="lazy" class="classe-illu">
 <p>Les ensorceleurs exercent une magie innée, gravée dans leur être. Certains ne peuvent nommer l'origine de leur pouvoir, tandis que d'autres l'imputent à d'étranges événements de leur histoire personnelle ou familiale. La bénédiction d'un dragon ou d'une dryade à la naissance d'un bébé, ou la foudre tombée d'un ciel clair, peuvent déclencher le don d'un ensorceleur. De même, le don d'une divinité, l'exposition à l'étrange magie d'un autre plan d'existence, ou un aperçu des rouages ??de la réalité, peuvent déclencher le don d'un ensorceleur. Quelle qu'en soit l'origine, le résultat laisse une marque indélébile sur l'ensorceleur, une magie bouillonnante qui peut se transmettre de génération en génération.</p>
 <p>Les ensorceleurs n'apprennent pas la magie ; leur pouvoir brut et bouillonnant est inné. L'art essentiel d'un ensorceleur consiste à maîtriser et à canaliser cette magie innée, lui permettant ainsi de découvrir de nouvelles et étonnantes façons de libérer son pouvoir. À mesure que les ensorceleurs maîtrisent leur magie innée, ils se lient davantage à leur origine, développant des pouvoirs distincts qui reflètent sa source.</p>
 <p>Les ensorceleurs sont rares. Certaines lignées familiales n'en produisent qu'un seul à chaque génération, mais la plupart du temps, les talents de sorcellerie apparaissent spontanément. Ceux qui possèdent ce pouvoir magique découvrent vite qu'il n'aime pas rester silencieux. La magie d'un ensorceleur ne demande qu'à être exercée.</p>
@@ -74,7 +99,6 @@
 <li>Obtenez le Dé de vie de la table Traits de base de l'ensorceleur.</li>
 <li>Obtenez les capacités de niveau 1 de l'ensorceleur, présentées dans la table Capacités de l'ensorceleur. Consultez les règles du multiclassage pour déterminer vos emplacements de sort disponibles.</li>
 </ul>
-<div class="boutonLien"><a>CRÉER UN ENSORCELEUR 2024</a></div>
 <h3>Capacités de classe de l'ensorceleur</h3>
 <table>
 <tbody>
@@ -566,7 +590,53 @@
 <h2 id="sous-classes">Sous-classes d'ensorceleur</h2>
 <p>Une sous-classe d'ensorceleur une spécialisation qui confère des capacités à certains niveaux d'ensorceleur, comme spécifié dans la sous-classe. Cette section présente les sous-classes Sorcellerie draconique et Sorcellerie sauvage.</p>
 <h3><a id="aberrante" class="ancre">Sorcellerie aberrante</a></h3>
-<p>Voir le <em>Manuel des Joueurs</em>.</p>
+<p>Une influence étrangère a enroulé ses vrilles autour de votre esprit, vous conférant un pouvoir psionique. Vous pouvez désormais toucher d'autres esprits grâce à cette puissance et altérer le monde autour de vous. Cette force fera-t-elle de vous un phare d'espoir pour les autres, ou bien deviendrez-vous une terreur pour ceux qui ressentent la morsure de votre esprit ?</p>
+<p>Peut-être qu'un vent psychique venu du Plan Astral vous a apporté cette énergie psionique, ou que vous avez été exposé à l'influence déformante du Royaume Lointain. Il se peut aussi qu'un têtard de flagelleur mental vous ait été implanté, sans que votre transformation n'aboutisse jamais ; désormais, le pouvoir psionique du parasite est le vôtre. Quelle qu'en soit l'origine, votre esprit en est embrasé.</p>
+<h4>Niveau 3 : Sorts psioniques</h4>
+<p>Lorsque vous atteignez un niveau d'ensorceleur spécifié dans la table Sorts psioniques, vous avez ensuite toujours les sorts indiqués préparés.</p>
+<h5>Sorts psioniques</h5>
+<table>
+<tbody>
+<tr>
+<th>Niveau d'ensorceleur</th>
+<th>Sorts</th>
+</tr>
+<tr>
+<td class="text-center">3</td>
+<td><em><a>bras d'Hadar</a>, <a>apaisement des émotions</a>, <a>détection des pensées</a>, <a>murmures dissonants</a>, <a>esprit fissuré</a></em></td>
+</tr>
+<tr>
+<td class="text-center">5</td>
+<td><em><a>faim d'Hadar</a>, <a>envoi de message</a></em></td>
+</tr>
+<tr>
+<td class="text-center">7</td>
+<td><em><a>tentacules noirs d'Evard</a>, <a>convocation d'aberration</a></em></td>
+</tr>
+<tr>
+<td class="text-center">9</td>
+<td><em><a>lien télépathique de Rary</a>, <a>télékinésie</a></em></td>
+</tr>
+</tbody>
+</table>
+<h4>Niveau 3 : Parole télépathique</h4>
+<p>Vous pouvez former une connexion télépathique entre votre esprit et celui d'une autre créature. Par une action Bonus, choisissez une créature que vous pouvez voir dans un rayon de 9 mètres autour de vous. Vous et la créature choisie pouvez communiquer télépathiquement tant que vous vous trouvez à une distance en kilomètres inférieure ou égale à votre modificateur de Charisme, avec un minimum de 1 kilomètre.</p>
+<p>Pour vous comprendre, vous devez chacun utiliser mentalement une langue que l'autre connaît. Cette connexion télépathique dure un nombre de minutes égal à votre niveau d'ensorceleur. Elle prend fin prématurément si vous utilisez cette capacité pour former une connexion avec une autre créature.</p>
+<h4>Niveau 6 : Sorcellerie psionique</h4>
+<p>Lorsque vous lancez un sort de niveau 1 ou plus issu de votre capacité Sorts psioniques, vous pouvez le lancer en dépensant un emplacement de sort normalement, ou en dépensant un nombre de points de Sorcellerie égal au niveau du sort.</p>
+<p>Si vous lancez le sort en utilisant des points de Sorcellerie, il ne nécessite aucune composante verbale ou somatique, et il ne requiert aucune composante matérielle, sauf si celle-ci est consommée par le sort ou si un coût y est spécifié.</p>
+<h4>Niveau 6 : Défenses psychiques</h4>
+<p>Vous obtenez la Résistance aux dégâts psychiques, et vous bénéficiez d'un Avantage aux jets de sauvegarde visant à éviter ou à mettre fin aux états Charmé ou Effrayé.</p>
+<h4>Niveau 14 : Révélation charnelle</h4>
+<p>Vous pouvez libérer la vérité aberrante cachée en vous. Par une action Bonus, vous pouvez dépenser 1 point de Sorcellerie ou plus pour altérer magiquement votre corps pendant 10 minutes. Pour chaque point de Sorcellerie dépensé, vous obtenez l'un des avantages suivants, au choix, dont les effets durent jusqu'à la fin de l'altération.</p>
+<p><strong>Adaptation aquatique</strong>. Vous obtenez une Vitesse de nage égale au double de votre Vitesse, et vous pouvez respirer sous l'eau. Des branchies poussent sur votre cou ou s'ouvrent derrière vos oreilles, et vos doigts deviennent palmés ou se couvrent de cils frémissants.</p>
+<p><strong>Vol scintillant</strong>. Vous obtenez une Vitesse de vol égale à votre Vitesse et pouvez faire du surplace. Lorsque vous volez, votre peau luit d'un mucus ou d'une lumière surnaturelle.</p>
+<p><strong>Voir l'invisible</strong>. Vous pouvez voir toute créature Invisible dans un rayon de 18 mètres autour de vous si elle n'est pas derrière un Couvert total. Vos yeux deviennent également noirs ou se changent en vrilles sensorielles frémissantes.</p>
+<p><strong>Mouvement vermiforme</strong>. Votre corps, ainsi que l'équipement que vous portez ou transportez, devient visqueux et malléable. Vous pouvez vous déplacer dans tout espace large d'à peine 2,5 centimètres, et vous pouvez dépenser 1,50 mètre de déplacement pour échapper à des entraves non magiques ou à l'état Agrippé.</p>
+<h4>Niveau 18 : Implosion distordue</h4>
+<p>Vous pouvez libérer une anomalie qui déforme l'espace. Par une action Magie, vous vous téléportez vers un espace libre que vous pouvez voir dans un rayon de 36 mètres autour de vous. Immédiatement après votre disparition, chaque créature dans un rayon de 9 mètres autour de l'espace que vous avez quitté doit effectuer un jet de sauvegarde de Force contre le DD de sauvegarde de vos sorts.</p>
+<p>En cas d'échec, une créature subit 3d10 dégâts de force et est tirée en ligne droite vers l'espace que vous avez quitté, finissant dans un espace libre aussi proche que possible de votre ancienne position. En cas de réussite, la créature ne subit que la moitié de ces dégâts.</p>
+<p>Une fois cette capacité utilisée, vous ne pouvez plus le refaire avant d'avoir terminé un Repos long, à moins de dépenser 5 points de Sorcellerie, sans action requise, pour en récupérer l'usage.</p>
 <h3><a id="draconique" class="ancre">Sorcellerie draconique</a></h3>
 <p>Votre magie innée vous vient du don d'un dragon. Un dragon ancien, confronté à la mort, vous a peut-être légué une partie de son pouvoir magique, à vous ou à votre ancêtre. Ou vous avez absorbé la magie d'un lieu imprégné de la puissance des dragons. Ou vous avez touché le trésor d'un dragon qui était imprégné de puissance draconique. Ou bien encore vous avez un dragon pour ancêtre.</p>
 <h4>Niveau 3 : Résistance draconique</h4>
@@ -609,7 +679,85 @@
 <p>Vous pouvez lancer <em><a>convocation de dragon</a></em> sans composante matérielle. Vous pouvez également lancer ce sort une fois sans dépenser d'emplacement de sort, et vous récupérez cette possibilité lorsque vous terminez un Repos long.</p>
 <p>Chaque fois que vous commencez à lancer ce sort, vous pouvez le modifier pour qu'il ne nécessite pas de Concentration. Si vous le faites, la durée du sort devient 1 minute pour cette incantation.</p>
 <h3><a id="mécanique" class="ancre">Sorcellerie mécanique</a></h3>
-<p>Voir le <em>Manuel des Joueurs</em>.</p>
+<p>La force cosmique de l'ordre vous a imprégné de magie. Ce pouvoir provient de Mechanus ou d'un royaume semblable, un plan d'existence entièrement façonné par l'efficacité de rouages parfaits. Vous, ou quelqu'un de votre lignée, avez peut-être été pris dans les machinations des modrons, les êtres ordonnés qui peuplent Mechanus. Peut-être votre ancêtre a-t-il même pris part à la Grande Marche des modrons. Quelle qu'en soit l'origine, le pouvoir de l'ordre peut sembler étrange aux autres, mais pour vous, il fait partie d'un système vaste et glorieux.</p>
+<h4>Niveau 3 : Sorts mécaniques</h4>
+<p>Lorsque vous atteignez un niveau d'ensorceleur spécifié dans la table Sorts mécaniques, vous avez ensuite toujours les sorts indiqués préparés.</p>
+<h5>Sorts mécaniques</h5>
+<table>
+<tbody>
+<tr>
+<th>Niveau d'ensorceleur</th>
+<th>Sorts</th>
+</tr>
+<tr>
+<td class="text-center">3</td>
+<td><em><a>aide</a>, <a>alarme</a>, <a>restauration partielle</a>, <a>protection contre le mal et le bien</a></em></td>
+</tr>
+<tr>
+<td class="text-center">5</td>
+<td><em><a>dissipation de la magie</a>, <a>protection contre l'énergie</a></em></td>
+</tr>
+<tr>
+<td class="text-center">7</td>
+<td><em><a>liberté de mouvement</a>, <a>convocation de construction</a></em></td>
+</tr>
+<tr>
+<td class="text-center">9</td>
+<td><em><a>restauration suprême</a>, <a>mur de force</a></em></td>
+</tr>
+</tbody>
+</table>
+<p>De plus, consultez la table Manifestations de l'ordre et choisissez ou déterminez aléatoirement de quelle manière votre lien avec l'ordre se manifeste lorsque vous lancez l'un de vos sorts d'ensorceleur.</p>
+<h5>Manifestations de l'ordre</h5>
+<table>
+<tbody>
+<tr>
+<th>1d6</th>
+<th>Manifestation</th>
+</tr>
+<tr>
+<td class="text-center">1</td>
+<td>Des roues dentées spectrales flottent derrière vous.</td>
+</tr>
+<tr>
+<td class="text-center">2</td>
+<td>Les aiguilles d'une horloge tournent dans vos yeux.</td>
+</tr>
+<tr>
+<td class="text-center">3</td>
+<td>Votre peau se pare d'un éclat cuivré.</td>
+</tr>
+<tr>
+<td class="text-center">4</td>
+<td>Des équations flottantes et des formes géométriques se superposent à votre corps.</td>
+</tr>
+<tr>
+<td class="text-center">5</td>
+<td>Votre focaliseur d'incantation prend temporairement la forme d'un minuscule mécanisme d'horlogerie.</td>
+</tr>
+<tr>
+<td class="text-center">6</td>
+<td>Vous et les créatures affectées par votre magie entendez le tic-tac d'engrenages ou la sonnerie d'une horloge.</td>
+</tr>
+</tbody>
+</table>
+<h4>Niveau 3 : Rétablir l'équilibre</h4>
+<p>Votre lien avec le plan de l'ordre absolu vous permet d'égaliser les moments chaotiques. Lorsqu'une créature que vous pouvez voir dans un rayon de 18 mètres autour de vous est sur le point de lancer un d20 avec un Avantage ou un Désavantage, vous pouvez prendre une Réaction pour empêcher ce jet d'être affecté par l'Avantage et le Désavantage.</p>
+<p>Vous pouvez utiliser cette capacité un nombre de fois égal à votre modificateur de Charisme, avec un minimum d'une fois, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un Repos long.</p>
+<h4>Niveau 6 : Bastion de la loi</h4>
+<p>Vous pouvez puiser dans la grande équation de l'existence pour imprégner une créature d'un bouclier scintillant d'ordre. Par une action Magie, vous pouvez dépenser de 1 à 5 points de Sorcellerie pour créer une protection magique autour de vous-même ou d'une autre créature que vous pouvez voir dans un rayon de 9 mètres autour de vous.</p>
+<p>Cette protection est représentée par un nombre de d8 égal au nombre de points de Sorcellerie dépensés pour la créer. Lorsque la créature protégée subit des dégâts, elle peut dépenser un certain nombre de ces dés, les lancer et réduire les dégâts subis du total obtenu. La protection dure jusqu'à ce que vous terminiez un Repos long ou jusqu'à ce que vous utilisiez à nouveau cette capacité.</p>
+<h4>Niveau 14 : Transe de l'ordre</h4>
+<p>Vous gagnez la capacité d'aligner votre conscience sur les calculs sans fin de Mechanus. Par une action Bonus, vous pouvez entrer dans cet état pendant 1 minute.</p>
+<p>Pendant sa durée, les jets d'attaque contre vous ne peuvent pas bénéficier d'un Avantage, et chaque fois que vous effectuez un Test de d20, vous pouvez considérer tout résultat de 9 ou moins sur le d20 comme un 10.</p>
+<p>Une fois cette capacité utilisée, vous ne pouvez plus l'utiliser avant d'avoir terminé un Repos long, à moins de dépenser 5 points de Sorcellerie, sans action requise, pour en récupérer l'usage.</p>
+<h4>Niveau 18 : Cavalcade d'horlogerie</h4>
+<p>Vous invoquez brièvement des esprits de l'ordre pour purger le désordre autour de vous. Par une action Magie, vous invoquez ces esprits dans un Cube de 9 mètres de côté ayant pour origine votre espace. Ces esprits ont l'apparence de modrons ou d'autres Constructions de votre choix.</p>
+<p>Les esprits sont intangibles et invulnérables, et ils produisent les effets suivants dans le Cube avant de disparaître.</p>
+<p><strong>Soin</strong>. Les esprits restaurent jusqu'à 100 points de vie, que vous répartissez comme vous le souhaitez entre n'importe quel nombre de créatures de votre choix dans le Cube.</p>
+<p><strong>Réparation</strong>. Tout objet endommagé entièrement contenu dans le Cube est réparé instantanément.</p>
+<p><strong>Dissipation</strong>. Tout sort de niveau 6 ou inférieur prend fin sur les créatures et les objets de votre choix dans le Cube.</p>
+<p>Une fois cette action utilisée, vous ne pouvez plus le refaire avant d'avoir terminé un Repos long, à moins de dépenser 7 points de Sorcellerie, sans action requise, pour en récupérer l'usage.</p>
 <h3><a id="sauvage" class="ancre">Sorcellerie sauvage</a></h3>
 <p>Votre magie innée provient des forces du chaos qui sous-tendent l'ordre de la création. Vous, ou l'un de vos ancêtres, avez peut-être été exposé à la magie brute, peut-être par le biais d'un portail planaire menant aux Limbes ou aux plans Élémentaires. Ou peut-être avez-vous été béni par une fée ou marqué par un démon. Ou bien encore, votre magie est le fruit du hasard, sans cause apparente. Quelle que soit son origine, cette magie bouillonne en vous, attendant le moindre exutoire.</p>
 <h4>Niveau 3 : Bouffée de Sorcellerie sauvage</h4>

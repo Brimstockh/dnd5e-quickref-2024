@@ -1,0 +1,756 @@
+﻿window.FEATS_DATA = {
+    "count":  75,
+    "note":  "Données générées depuis dons.txt.",
+    "feats":  [
+                  {
+                      "name":  "Adepte élémentaire",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, capacité Sorts ou Magie de pacte",
+                      "repeatable":  true,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nMaîtrise des énergies. Choisissez l\u0027un des types de dégâts suivants : Acide, Froid, Feu, Foudre ou Tonnerre. Les sorts que vous lancez ignorent la Résistance aux dégâts du type choisi. De plus, lorsque vous lancez des dégâts pour un sort que vous lancez et qui inflige des dégâts de ce type, vous pouvez considérer n\u0027importe quel 1 sur un dé de dégâts comme un 2.\nRépétable. Vous pouvez utiliser ce don plusieurs fois, mais vous devez choisir un type de dégâts différent à chaque fois pour Maîtrise de l\u0027énergie."
+                  },
+                  {
+                      "name":  "Affinité féerique",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Votre exposition à la magie de la Féerie vous confère les avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nMagie des fées. Choisissez un sort de niveau 1 de l\u0027école de magie de Divination ou d\u0027Enchantement. Vous avez toujours ce sort et le sort foulée brumeuse préparés. Vous pouvez lancer chacun de ces sorts sans dépenser d\u0027emplacement de sort. Une fois l\u0027un des sorts lancé de cette manière, vous ne pouvez plus le lancer de cette manière avant d\u0027avoir terminé un Repos long. Vous pouvez également lancer ces sorts en utilisant des emplacements de sorts que vous possédez du niveau approprié. La caractéristique d\u0027incantation de ces sorts est celle augmentée par ce don."
+                  },
+                  {
+                      "name":  "Affinité ombreuse",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Votre exposition à la magie de la Gisombre vous confère les avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nMagie de l\u0027Ombre. Choisissez un sort de niveau 1 de l\u0027école de magie d\u0027Illusion ou de Nécromancie. Vous avez toujours ce sort et le sort invisibilité préparés. Vous pouvez lancer chacun de ces sorts sans dépenser d\u0027emplacement de sort. Une fois l\u0027un des sorts lancé de cette manière, vous ne pouvez plus le lancer de cette manière avant d\u0027avoir terminé un Repos long. Vous pouvez également lancer ces sorts en utilisant des emplacements de sorts que vous possédez du niveau approprié. La caractéristique d\u0027incantation de ces sorts est celle augmentée par ce don."
+                  },
+                  {
+                      "name":  "Amélioration de caractéristique",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  true,
+                      "description":  "Augmentez une valeur de caractéristique de votre choix de 2, ou augmentez deux valeurs de caractéristique de votre choix de 1.\nCe don ne peut pas augmenter une valeur de caractéristique au-delà de 20.\nRépétable. Vous pouvez prendre ce don plusieurs fois."
+                  },
+                  {
+                      "name":  "Archerie",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Vous obtenez un bonus de +2 aux jets d\u0027attaque effectués avec des armes à distance."
+                  },
+                  {
+                      "name":  "Arme à deux mains",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous lancez les dégâts pour une attaque effectuée avec une arme de corps à corps tenue à deux mains, vous pouvez considérer n\u0027importe quel 1 ou 2 sur un dé de dégâts comme un 3. L\u0027arme doit posséder la propriété Deux mains ou Polyvalente pour obtenir cet avantage."
+                  },
+                  {
+                      "name":  "Arme de lancer",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous touchez lors d\u0027un jet d\u0027attaque à distance avec une arme dotée de la propriété Lancer, vous obtenez un bonus de +2 aux dégâts."
+                  },
+                  {
+                      "name":  "Athlète",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nVitesse d\u0027escalade. Vous gagnez une Vitesse d\u0027escalade égale à votre Vitesse.\nRétablissement. Lorsque vous êtes en À terre, vous pouvez vous redresser avec seulement 1,50 mètre de mouvement.\nSaut. Vous pouvez effectuer un saut en longueur ou en hauteur après avoir parcouru seulement 1,50 mètre."
+                  },
+                  {
+                      "name":  "Bagarreur de tavernes",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nFrappe à mains nues améliorée. Lorsque vous touchez avec votre Frappe à mains nues et infligez des dégâts, vous pouvez infliger des dégâts contondants égaux à 1d4 plus votre modificateur de Force au lieu des dégâts normaux d\u0027une Frappe à mains nues.\nRelancer des dégâts. Chaque fois que vous lancez un dé de dégâts pour votre Frappe à mains nues, vous pouvez relancer le dé si vous avez obtenu un 1, et devez utiliser le nouveau résultat.\nArmement improvisé. Vous maîtrisez les armes improvisées.\nBourrade. Lorsque vous touchez une créature avec une Frappe à mains nues lors d\u0027une action Attaque à votre tour, vous pouvez infliger des dégâts à la cible et la repousser à 1,50 m de vous. Vous ne pouvez utiliser cet avantage qu\u0027une seule fois par tour."
+                  },
+                  {
+                      "name":  "Broyeur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Constitution de 1, jusqu\u0027à un maximum de 20.\nBourrade. Une fois par tour, lorsque vous touchez une créature avec une attaque infligeant des dégâts contondants, vous pouvez la déplacer de 1,50 mètre vers une case libre si la cible ne fait pas plus d\u0027une taille de plus que vous.\nCritique renforcé. Lorsque vous réussissez un Coup critique infligeant des dégâts contondants à une créature, les jets d\u0027attaque contre cette créature bénéficient d\u0027un Avantage jusqu\u0027au début de votre prochain tour."
+                  },
+                  {
+                      "name":  "Chanceux",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nPoints de chance. Vous disposez d\u0027un nombre de points de Chance égal à votre bonus de maîtrise et pouvez les dépenser pour les avantages ci-dessous. Vous récupérez vos points de Chance dépensés à la fin d\u0027un Repos long.\nAvantage. Lorsque vous lancez un d20 pour un test de D20, vous pouvez dépenser 1 point de Chance pour vous donner un Avantage.\nDésavantage. Lorsqu\u0027une créature lance un d20 pour un jet d\u0027attaque contre vous, vous pouvez dépenser 1 point de Chance pour lui imposer un Désavantage."
+                  },
+                  {
+                      "name":  "Chef cuisinier",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Constitution ou Sagesse de 1, jusqu\u0027à un maximum de 20.\nUstensiles de cuisinier. Vous maîtrisez les ustensiles de cuisinier si vous ne les maîtrisez pas déjà.\nRepas reconstituant. Lors d\u0027un Repos court, vous pouvez cuisiner des plats spéciaux si vous avez des ingrédients et des ustensiles de cuisinier sous la main. Vous pouvez préparer suffisamment de nourriture pour un nombre de créatures égal à 4 plus votre bonus de maîtrise. À la fin du Repos court, toute créature qui mange ces plats et dépense un ou plusieurs DV pour regagner des points de vie regagne 1d8 points de vie supplémentaires.\nFriandises galvanisantes. Après 1 heure de travail ou lorsque vous terminez un Repos long, vous pouvez cuisiner un nombre de friandises égal à votre bonus de maîtrise si vous avez des ingrédients et des ustensiles de cuisinier sous la main. Ces friandises spéciales se gardent 8 heures après leur préparation. Une créature peut utiliser une action Bonus pour en manger une et gagner un nombre de points de vie temporaires égal à votre bonus de maîtrise."
+                  },
+                  {
+                      "name":  "Combat à deux armes",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous effectuez une attaque supplémentaire grâce à une arme dotée de la propriété Légère, vous pouvez ajouter votre modificateur de caractéristique aux dégâts de cette attaque si vous ne l\u0027ajoutez pas déjà."
+                  },
+                  {
+                      "name":  "Combat à mains nues",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous touchez avec votre Frappe à mains nues et infligez des dégâts, vous pouvez infliger des dégâts contondants égaux à 1d6 plus votre modificateur de Force au lieu des dégâts normaux d\u0027une Frappe à mains nues. Si vous ne tenez ni arme ni bouclier lors du jet d\u0027attaque, le d6 devient un d8.\nAu début de chacun de vos tours, vous pouvez infliger 1d4 dégâts contondants à une créature que vous agrippez."
+                  },
+                  {
+                      "name":  "Combat en aveugle",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Vous possédez Vision aveugle avec une portée de 3 mètres."
+                  },
+                  {
+                      "name":  "Combattant à deux armes",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nCombat à deux armes amélioré. Lorsque vous prenez l\u0027action Attaque pendant votre tour et attaquez avec une arme qui possède la propriété Légère, vous pouvez effectuer une attaque supplémentaire en tant qu\u0027action Bonus plus tard au cours du même tour avec une arme différente, qui doit être une arme de corps à corps sans la propriété Deux mains. Vous n\u0027ajoutez pas votre modificateur de caractéristique aux dégâts de l\u0027attaque supplémentaire, sauf si ce modificateur est négatif.\nDégainage rapide. Vous pouvez dégainer ou ranger deux armes sans la propriété Deux mains alors que vous ne pourriez normalement n\u0027en dégainer ou ranger qu\u0027une seule."
+                  },
+                  {
+                      "name":  "Combattant monté",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristiques. Augmentez votre Force, Dextérité ou Sagesse de 1, jusqu\u0027à un maximum de 20.\nFrappe montée. Lorsque vous êtes sur une monture, vous bénéficiez d\u0027un Avantage aux jets d\u0027attaque contre toute créature non montée dans un rayon de 1,50 m autour de votre monture et dont la taille est inférieure d\u0027au moins une taille à celle de votre monture.\nPas de côté. Si votre monture est soumise à un effet qui lui permet d\u0027effectuer un jet de sauvegarde de Dextérité pour ne subir que la moitié des dégâts, elle ne subit aucun dégât en cas de réussite au jet de sauvegarde et seulement la moitié en cas d\u0027échec. Pour que votre monture bénéficie de cet avantage, vous devez la monter et aucun de vous deux ne doit être Incapable d\u0027agir.\nDéviation. Lorsque vous êtes sur une monture, vous pouvez forcer une attaque qui touche votre monture à vous toucher à la place si vous n\u0027êtes pas Incapable d\u0027agir."
+                  },
+                  {
+                      "name":  "Comédien",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Charisme 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Charisme de 1, jusqu\u0027à un maximum de 20.\nImposture. Lorsque vous êtes déguisé en une personne, qu\u0027elle soit réelle ou fictive, vous avez un Avantage aux jets de Charisme (Tromperie ou Représentation) pour convaincre les autres que vous êtes bien cette personne.\nImitation. Vous pouvez imiter les bruits d\u0027autres créatures, y compris la parole. Une créature qui entend ce mimétisme doit réussir un jet de Sagesse (Intuition) pour se rendre compte qu\u0027il s\u0027agit d\u0027une imitation (DD 8 plus votre modificateur de Charisme et votre bonus de maîtrise)."
+                  },
+                  {
+                      "name":  "Défense",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous portez une armure légère, intermédiaire ou lourde, vous obtenez un bonus de +1 à la Classe d\u0027Armure."
+                  },
+                  {
+                      "name":  "Discret",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité de 1, jusqu\u0027à un maximum de 20.\nVision aveugle. Vous obtenez de Vision aveugle avec une portée de 3 mètres.\nBrouillard de guerre. Vous exploitez les distractions du combat et obtenez un Avantage à chaque jet de Dextérité (Discrétion) effectué lors de l\u0027action Furtivité pendant le combat.\nTireur discret. Si vous effectuez un jet d\u0027attaque caché et que celui-ci échoue, votre position n\u0027est pas révélée."
+                  },
+                  {
+                      "name":  "Doué",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  true,
+                      "description":  "Vous maîtrisez n\u0027importe quelle combinaison de trois compétences ou outils de votre choix.\nRépétable. Vous pouvez prendre ce don plusieurs fois."
+                  },
+                  {
+                      "name":  "Duel",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsque vous tenez une arme de corps à corps dans une main et aucune autre arme, vous obtenez un bonus de +2 aux dégâts infligés avec cette arme."
+                  },
+                  {
+                      "name":  "Duelliste défensif",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité de 1, jusqu\u0027à un maximum de 20.\nParade. Si vous tenez une arme de Finesse et qu\u0027une autre créature vous touche au corps à corps, vous pouvez prendre une Réaction pour ajouter votre bonus de maîtrise à votre Classe d\u0027Armure, ce qui peut faire en sorte que l\u0027attaque vous rate. Vous bénéficiez de ce bonus à votre CA contre les attaques au corps à corps jusqu\u0027au début de votre prochain tour."
+                  },
+                  {
+                      "name":  "Empaleur",
+                      "aliases":  [
+                                      "Perforateur"
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nPerforation. Une fois par tour, lorsque vous touchez une créature avec une attaque infligeant des dégâts perforants, vous pouvez relancer l\u0027un des dés de dégâts de l\u0027attaque et vous devez utiliser le nouveau jet.\nCritique renforcé. Lorsque vous réussissez un Coup critique infligeant des dégâts perforants à une créature, vous pouvez lancer un dé de dégâts supplémentaire pour déterminer les dégâts perforants supplémentaires subis par la cible."
+                  },
+                  {
+                      "name":  "Empoigneur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nFrappe et empoignade. Lorsque vous touchez une créature avec une Frappe à mains nues lors de votre action Attaque pendant votre tour, vous pouvez utiliser à la fois les options Dégâts et Lutte. Vous ne pouvez utiliser cet avantage qu\u0027une fois par tour.\nAttaque avec Avantage. Vous bénéficiez d\u0027un Avantage aux jets d\u0027attaque contre une créature que vous agrippez.\nLutteur rapide. Vous n\u0027avez pas besoin de dépenser un mouvement supplémentaire pour déplacer une créature que vous agrippez si celle-ci est de votre taille ou plus petite."
+                  },
+                  {
+                      "name":  "Empoisonneur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité ou Intelligence de 1, jusqu\u0027à un maximum de 20.\nPoison virulent. Lorsque vous effectuez un jet de dégâts infligeant des dégâts de poison, ignorez la Résistance aux dégâts de poison.\nPréparation de poison. Vous maîtrisez le kit d\u0027empoisonneur. En 1 heure de travail avec ce kit et en dépensant 50 po de matériaux, vous pouvez créer un nombre de doses de poison égal à votre bonus de maîtrise. Par une action Bonus, vous pouvez appliquer une dose de poison sur une arme ou une munition. Une fois appliqué, le poison conserve son efficacité pendant 1 minute ou jusqu\u0027à ce que vous infligiez des dégâts avec l\u0027objet empoisonné, selon la durée la plus courte. Lorsqu\u0027une créature subit des dégâts de l\u0027objet empoisonné, elle doit réussir un jet de sauvegarde de Constitution (DD 8 plus le modificateur de la caractéristique augmentée par ce don et votre bonus de maîtrise) ou subir 2d8 dégâts de poison et avoir l\u0027état Empoisonné jusqu\u0027à la fin de votre prochain tour."
+                  },
+                  {
+                      "name":  "Esprit affûté",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Intelligence 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence de 1, jusqu\u0027à un maximum de 20.\nÉrudition. Choisissez l\u0027une des compétences suivantes : Arcanes, Histoire, Investigation, Nature ou Religion. Si vous ne maîtrisez pas la compétence choisie, vous la maîtrisez ; si vous la maîtrisez déjà, vous gagnez Expertise pour celle-ci.\nÉtude rapide. Vous pouvez prendre l\u0027action Étude en tant qu\u0027action Bonus."
+                  },
+                  {
+                      "name":  "Expert",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur caractéristique de votre choix de 1, jusqu\u0027à un maximum de 20.\nMaîtrise de compétence. Vous maîtrisez une compétence de votre choix.\nExpertise. Choisissez une compétence que vous maîtrisez, mais pour laquelle vous n\u0027avez pas Expertise. Vous gagnez Expertise dans cette compétence."
+                  },
+                  {
+                      "name":  "Expert de la charge",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nPointe améliorée. Lorsque vous prenez l\u0027action Pointe, votre vitesse augmente de 3 mètres pour cette action.\nAttaque de charge. Si vous vous déplacez d\u0027au moins 3 mètres en ligne droite vers une cible juste avant de la toucher avec un jet d\u0027attaque au corps à corps dans le cadre de l\u0027action Attaque, choisissez l\u0027un des effets suivants : vous obtenez un bonus de 1d8 aux dégâts de l\u0027attaque, ou vous repoussez la cible jusqu\u0027à 3 mètres si elle ne fait pas plus d\u0027une taille de plus que vous. Vous ne pouvez utiliser cet avantage qu\u0027une seule fois par tour."
+                  },
+                  {
+                      "name":  "Façonneur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nMaîtrise d\u0027outils. Vous maîtrisez trois outils d\u0027artisan différents de votre choix de la table Fabrication rapide.\nRistourne. Chaque fois que vous achetez un objet non magique, vous bénéficiez d\u0027une réduction de 20 %.\nFaçonnage rapide. À la fin d\u0027un Repos long, vous pouvez fabriquer une pièce d\u0027équipement de la table Fabrication rapide, à condition de posséder les outils d\u0027artisan associés et de maîtriser ces outils. L\u0027objet dure jusqu\u0027à ce que vous finissiez un autre Repos long, après quoi il se désagrège.\nOutils d\u0027artisan\tÉquipement fabriqué\nOutils de bricoleur\tBoîte à amadou, cloche, pelle\nOutils de charpentier\tÉchelle, torche\nOutils de forgeron\tBilles, chausse-trappes, grappin, pot en fer, seau\nOutils de maçon\tPalan\nOutils de menuisier\tGourdin, masse, bâton de combat\nOutils de potier\tCruche, lampe\nOutils de tanneur\tÉtui, sacoche\nOutils de tisserand\tCorde, filet, panier, tente"
+                  },
+                  {
+                      "name":  "Faveur d\u0027attaque irrésistible",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou votre Dextérité de 1, jusqu\u0027à un maximum de 30.\nSurmonter les défenses. Les dégâts contondants, perforants et tranchants que vous infligez ignorent toujours la Résistance.\nFrappe irrésistible. Quand vous obtenez un 20 sur le d20 pour un jet d\u0027attaque, vous pouvez infliger à la cible des dégâts supplémentaires égaux à la valeur de caractéristique augmentée par ce don. Le type de ces dégâts supplémentaires est le même que celui de l\u0027attaque."
+                  },
+                  {
+                      "name":  "Faveur de compétence",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nAptitude universelle. Vous gagnez la maîtrise de toutes les compétences.\nExpertise. Choisissez une compétence pour laquelle vous n\u0027avez pas d\u0027Expertise. Vous gagnez l\u0027Expertise dans cette compétence."
+                  },
+                  {
+                      "name":  "Faveur de déplacement dimensionnel",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nPas fulgurants. Immédiatement après avoir effectué l\u0027action Attaque ou l\u0027action Magie, vous pouvez vous téléporter jusqu\u0027à 9 mètres vers un espace inoccupé que vous pouvez voir."
+                  },
+                  {
+                      "name":  "Faveur de l\u0027esprit nocturne",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nFusion avec les ombres. Tant que vous vous trouvez dans une lumière faible ou dans les ténèbres, vous pouvez vous conférer l\u0027état Invisible par une action Bonus. Cet état prend fin immédiatement après que vous avez effectué une action, une action Bonus ou une Réaction.\nForme d\u0027ombre. Tant que vous vous trouvez dans une lumière faible ou dans les ténèbres, vous avez la Résistance à tous les dégâts sauf psychiques et radiants."
+                  },
+                  {
+                      "name":  "Faveur de mémoire magique",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur, capacité Sorts",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, votre Sagesse ou votre Charisme de 1, jusqu\u0027à un maximum de 30.\nIncantation gratuite. Chaque fois que vous lancez un sort en utilisant un emplacement de sort de niveau 1 à 4, lancez 1d4. Si le résultat obtenu est égal au niveau de l\u0027emplacement, cet emplacement n\u0027est pas dépensé."
+                  },
+                  {
+                      "name":  "Faveur de prouesse martiale",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nVisée parfaite. Lorsque vous manquez avec un jet d\u0027attaque, vous pouvez toucher à la place. Une fois cet avantage utilisé, vous ne pouvez plus l\u0027utiliser avant le début de votre prochain tour."
+                  },
+                  {
+                      "name":  "Faveur de récupération",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nDernier rempart. Lorsque vous devriez être réduit à 0 point de vie, vous tombez à 1 point de vie à la place et récupérez un nombre de points de vie égal à la moitié de votre maximum de points de vie. Une fois cet avantage utilisé, vous ne pouvez plus l\u0027utiliser avant d\u0027avoir terminé un Repos long.\nRécupération vitale. Vous disposez d\u0027une réserve de dix d10. Par une action Bonus, vous pouvez dépenser des dés de cette réserve, les lancer et récupérer un nombre de points de vie égal au total obtenu. Vous récupérez tous les dés dépensés lorsque vous terminez un Repos long."
+                  },
+                  {
+                      "name":  "Faveur de résistance aux énergies",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nRésistances énergétiques. Vous gagnez la Résistance à deux des types de dégâts suivants de votre choix : acide, froid, feu, foudre, nécrotique, poison, psychique, radiant ou tonnerre. Chaque fois que vous terminez un Repos long, vous pouvez changer ces choix.\nRedirection d\u0027énergie. Lorsque vous subissez des dégâts d\u0027un des types choisis pour l\u0027avantage Résistances énergétiques, vous pouvez prendre une Réaction pour diriger des dégâts du même type vers une autre créature que vous pouvez voir dans un rayon de 18 mètres et qui n\u0027est pas derrière un Couvert total. Cette créature doit réussir un jet de sauvegarde de Dextérité (DD 8 + votre modificateur de Constitution + votre bonus de maîtrise) ou subir des dégâts égaux à 2d12 + votre modificateur de Constitution."
+                  },
+                  {
+                      "name":  "Faveur de vigueur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nSanté renforcée. Votre maximum de points de vie augmente de 40. De plus, chaque fois que vous récupérez des points de vie, vous pouvez récupérer un nombre de points de vie supplémentaires égal à votre modificateur de Constitution. Une fois ces points de vie supplémentaires récupérés, vous ne pouvez plus utiliser cet avantage avant le début de votre prochain tour."
+                  },
+                  {
+                      "name":  "Faveur de vision véritable",
+                      "aliases":  [
+                                      "vision lucide"
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nVision véritable. Vous possédez la Vision véritable sur une portée de 18 mètres."
+                  },
+                  {
+                      "name":  "Faveur de vitesse",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nArt de l\u0027évasion. Par une action Bonus, vous pouvez effectuer l\u0027action Désengagement, ce qui met également fin à l\u0027état Agrippé sur vous.\nRapidité. Votre Vitesse augmente de 9 mètres."
+                  },
+                  {
+                      "name":  "Faveur du destin",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de faveur épique",
+                      "prerequis":  "niveau 19 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez une valeur de caractéristique de votre choix de 1, jusqu\u0027à un maximum de 30.\nInfléchir le destin. Lorsque vous ou une autre créature dans un rayon de 18 mètres réussit ou échoue à un test de d20, vous pouvez lancer 2d4 et appliquer le total obtenu comme bonus ou comme pénalité au jet de d20. Une fois cet avantage utilisé, vous ne pouvez plus l\u0027utiliser avant de lancer l\u0027Initiative ou d\u0027avoir terminé un Repos court ou long."
+                  },
+                  {
+                      "name":  "Figure de proue",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Sagesse ou Charisme 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nReprésentation galvanisante. Lorsque vous terminez un Repos court ou long, vous pouvez donner une représentation inspirante : un discours, un chant ou une danse. Dans ce cas, choisissez jusqu\u0027à six alliés (vous pouvez vous choisir) dans un rayon de 9 mètres qui assistent à la représentation. Les créatures choisies gagnent chacune des points de vie temporaires égaux à votre niveau de personnage plus le modificateur de la caractéristique augmentée par ce don."
+                  },
+                  {
+                      "name":  "Formation aux armes de guerre",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nMaîtrise des armes. Vous maîtrisez les armes de guerre."
+                  },
+                  {
+                      "name":  "Gaillard",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Constitution de 1, jusqu\u0027à un maximum de 20.\nTrompe-la-mort. Vous bénéficiez d\u0027un Avantage aux jets de sauvegarde contre la mort.\nRécupération rapide. Par une action Bonus, vous pouvez dépenser un de vos Dés de vie, lancer le dé et regagner un nombre de points de vie égal au résultat."
+                  },
+                  {
+                      "name":  "Guérisseur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nSoigneur de bataille. Si vous possédez une trousse de soins, vous pouvez dépenser une utilisation et soigner une créature à 1,50 m ou moins de vous par une action Utilisation. Cette créature peut dépenser un de ses Dés de vie, puis vous lancez ce dé. La créature récupère un nombre de points de vie égal au résultat du jet plus votre bonus de maîtrise.\nRetirage des soins. Chaque fois que vous lancez un dé pour déterminer le nombre de points de vie que vous restaurez avec un sort ou avec l\u0027avantage Médecin de combat de ce don, vous pouvez relancer le dé si vous avez obtenu un 1, et devez utiliser le nouveau résultat."
+                  },
+                  {
+                      "name":  "Incantateur d\u0027élite",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, capacité Sorts ou Magie de pacte",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nContournement d\u0027abri. Vos attaques à distance avec des sorts ignorent les Abris partiels (1/2) et les Abris importants (3/4).\nIncantation au corps à corps. Être à 1,50 mètre ou moins d\u0027un ennemi n\u0027inflige pas de Désavantage à vos jets d\u0027attaque avec des sorts.\nPortée améliorée. Lorsque vous lancez un sort d\u0027une portée d\u0027au moins 3 mètres et qui nécessite un jet d\u0027attaque, vous pouvez augmenter sa portée de 18 mètres."
+                  },
+                  {
+                      "name":  "Initié à la magie",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  true,
+                      "description":  "Vous bénéficiez des avantages suivants.\nDeux sorts mineurs. Vous apprenez deux sorts mineurs de votre choix parmi la liste de sorts de Clerc, Druide ou Magicien. L\u0027Intelligence, la Sagesse ou le Charisme est votre caractéristique d\u0027incantation pour les sorts de ce don (à choisir lors de la sélection de ce don).\nSort de niveau 1. Choisissez un sort de niveau 1 dans la liste que vous avez sélectionnée pour les sorts mineurs de ce don. Ce sort est toujours prêt. Vous pouvez le lancer une fois sans emplacement de sort, et vous récupérez la possibilité de le lancer de cette manière à la fin d\u0027un Repos long. Vous pouvez également lancer le sort en utilisant un emplacement de sort que vous possédez.\nChangement de sort. Chaque fois que vous gagnez un niveau, vous pouvez remplacer l\u0027un des sorts choisis pour ce don par un autre sort de même niveau, choisi dans la liste de sorts choisis.\nRépétable. Vous pouvez prendre ce don plusieurs fois, mais vous devez choisir une liste de sorts différente à chaque fois."
+                  },
+                  {
+                      "name":  "Interception",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsqu\u0027une créature que vous pouvez voir touche une autre créature à 1,50 m ou moins de vous lors d\u0027un jet d\u0027attaque, vous pouvez prendre une Réaction pour réduire les dégâts infligés à la cible de 1d10 plus votre bonus de maîtrise. Vous devez tenir un bouclier ou une arme courante ou de guerre pour utiliser cette Réaction."
+                  },
+                  {
+                      "name":  "Mage de guerre",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, capacité Sorts ou Magie de pacte",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nConcentration. Vous bénéficiez d\u0027un Avantage aux jets de sauvegarde de Constitution que vous effectuez pour maintenir votre concentration.\nSort réactif. Lorsqu\u0027une créature provoque une Attaque d\u0027opportunité de votre part en quittant votre allonge, vous pouvez prendre une Réaction pour lancer un sort sur elle, au lieu d\u0027effectuer une Attaque d\u0027opportunité. Le sort doit avoir un temps d\u0027incantation d\u0027une action et ne doit cibler que cette créature.\nComposantes somatiques. Vous pouvez exécuter les composantes somatiques des sorts même lorsque vous avez des armes ou un bouclier dans une ou deux mains."
+                  },
+                  {
+                      "name":  "Magie rituelle",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Intelligence, Sagesse ou Charisme 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nSorts rituels. Choisissez un nombre de sorts de niveau 1 qui possède l\u0027étiquette Rituel égal à votre bonus de maîtrise. Vous avez toujours ces sorts préparés et vous pouvez les lancer avec n\u0027importe quel emplacement de sort dont vous disposez. La caractéristique d\u0027incantation de ces sorts est celle augmentée par ce don. Chaque fois que votre bonus de maîtrise augmente par la suite, vous pouvez ajouter un sort supplémentaire de niveau 1 avec l\u0027étiquette Rituel aux sorts toujours préparés avec cette capacité.\nRituel rapide. Grâce à cet avantage, vous pouvez lancer un sort Rituel que vous avez préparé en utilisant son temps d\u0027incantation normal plutôt que le temps prolongé d\u0027un rituel. Cela ne nécessite pas d\u0027emplacement de sort. Une fois que vous avez lancé le sort de cette manière, vous ne pouvez plus utiliser cet avantage avant d\u0027avoir terminé un Repos long."
+                  },
+                  {
+                      "name":  "Maître-arbalétrier",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité de 1, jusqu\u0027à un maximum de 20.\nChargement rapide. Vous ignorez la propriété Chargement de l\u0027arbalète de poing, de l\u0027arbalète lourde et de l\u0027arbalète légère (toutes appelées arbalètes par la suite dans ce don). Si vous tenez l\u0027une d\u0027elles, vous pouvez charger une munition même sans main libre.\nTir au corps à corps. Être à 1,50 mètre ou moins d\u0027un ennemi n\u0027inflige pas de Désavantage à vos jets d\u0027attaque avec des arbalètes.\nArbalète secondaire. Lorsque vous effectuez l\u0027attaque supplémentaire de la propriété Légère, vous pouvez ajouter votre modificateur de caractéristique aux dégâts de l\u0027attaque supplémentaire si cette attaque est effectuée avec une arbalète qui possède la propriété Légère et que vous n\u0027ajoutez pas déjà ce modificateur aux dégâts."
+                  },
+                  {
+                      "name":  "Maître d\u0027armes",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nPropriété botte. Votre formation aux armes vous permet d\u0027utiliser la botte d\u0027un type d\u0027arme courante ou de guerre de votre choix, à condition de maîtriser ce type d\u0027arme. À la fin d\u0027un Repos long, vous pouvez changer de type d\u0027arme pour un autre type d\u0027arme éligible."
+                  },
+                  {
+                      "name":  "Maître d\u0027hast",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité ou Force de 1, jusqu\u0027à un maximum de 20.\nFrappe double. Immédiatement après avoir pris l\u0027action Attaque et attaqué avec un Bâton, une Lance ou une arme possédant les propriétés Lourde et Allonge, vous pouvez utiliser une action Bonus pour effectuer une attaque au corps à corps avec l\u0027extrémité opposée de l\u0027arme. L\u0027arme inflige des dégâts contondants, et le dé de dégâts de l\u0027arme pour cette attaque est un d4.\nFrappe réactive. Lorsque vous tenez un Bâton, une Lance ou une arme possédant les propriétés Lourde et Allonge, vous pouvez prendre une Réaction pour effectuer une attaque au corps à corps contre une créature qui entre dans l\u0027allonge de cette arme."
+                  },
+                  {
+                      "name":  "Maître des armes lourdes",
+                      "aliases":  [
+                                      "Cogneur lourd"
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force de 1, jusqu\u0027à un maximum de 20.\nExpert en armes lourdes. Lorsque vous touchez une créature avec une arme possédant la propriété Lourde lors de l\u0027action Attaque à votre tour, vous pouvez infliger des dégâts supplémentaires à la cible. Ces dégâts supplémentaires sont égaux à votre bonus de maîtrise.\nAbattage. Immédiatement après avoir réussi un Coup critique avec une arme de corps à corps ou réduit une créature à 0 point de vie avec une telle arme, vous pouvez effectuer une attaque avec la même arme en tant qu\u0027action Bonus."
+                  },
+                  {
+                      "name":  "Maître des armures intermédiaires",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, formation aux armures intermédiaires",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nPorteur agile. Lorsque vous portez une armure intermédiaire, vous pouvez ajouter 3 au lieu de 2 à votre CA si votre Dextérité est de 16 ou plus."
+                  },
+                  {
+                      "name":  "Maître des armures lourdes",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, formation aux armures lourdes",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Constitution ou Force de 1, jusqu\u0027à un maximum de 20.\nRéduction des dégâts. Lorsque vous êtes touché par une attaque alors que vous portez une armure lourde, les dégâts contondants, perforants et tranchants infligés par cette attaque sont réduits d\u0027un montant égal à votre bonus de maîtrise."
+                  },
+                  {
+                      "name":  "Maître des boucliers",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, formation aux boucliers",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force de 1, jusqu\u0027à un maximum de 20.\nCoup de bouclier. Si vous attaquez une créature à 1,50 m ou moins de vous lors de l\u0027action Attaque et que vous la touchez avec une arme de corps à corps, vous pouvez immédiatement frapper la cible avec votre bouclier si vous en êtes équipé, la forçant à effectuer un jet de sauvegarde de Force (DD 8 plus votre modificateur de Force et votre bonus de maîtrise). En cas d\u0027échec, vous pouvez repousser la cible de 1,50 m ou la faire tomber À terre (au choix). Vous ne pouvez utiliser cet avantage qu\u0027une seule fois par tour.\nInterposition de bouclier. Si vous êtes soumis à un effet vous permettant d\u0027effectuer un jet de sauvegarde de Dextérité pour ne subir que la moitié des dégâts, vous pouvez prendre une Réaction pour ne subir aucun dégât si vous réussissez le jet de sauvegarde et que vous portez un bouclier."
+                  },
+                  {
+                      "name":  "Mobile",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Dextérité ou Constitution 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité ou Constitution de 1, jusqu\u0027à un maximum de 20.\nVitesse améliorée. Votre vitesse augmente de 3 mètres.\nPointe sur Terrain difficile. Lorsque vous prenez l\u0027action Pointe pendant votre tour, un terrain difficile ne vous coûte pas un mouvement supplémentaire pour le reste de ce tour.\nDéplacement agile. Les attaques d\u0027opportunité ont un Désavantage contre vous."
+                  },
+                  {
+                      "name":  "Musicien",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nFormation aux instruments. Vous maîtrisez trois instruments de musique de votre choix.\nChant d\u0027encouragement. À la fin d\u0027un Repos court ou long, vous pouvez jouer une chanson avec un instrument de musique que vous maîtrisez et donner une Inspiration héroïque aux alliés qui l\u0027entendent. Le nombre d\u0027alliés que vous pouvez affecter de cette manière est égal à votre bonus de maîtrise."
+                  },
+                  {
+                      "name":  "Observateur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Intelligence ou Sagesse 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence ou Sagesse de 1, jusqu\u0027à un maximum de 20.\nObservateur attentif. Choisissez l\u0027une des compétences suivantes : Intuition, Investigation ou Perception. Si vous ne maîtrisez pas la compétence choisie, vous la maîtrisez ; si vous la maîtrisez déjà, vous gagnez Expertise pour celle-ci.\nObservation rapide. Vous pouvez prendre l\u0027action Observation en tant qu\u0027action Bonus."
+                  },
+                  {
+                      "name":  "Protection",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don de Style de combat",
+                      "prerequis":  "capacité Style de combat",
+                      "repeatable":  false,
+                      "description":  "Lorsqu\u0027une créature que vous pouvez voir attaque une cible autre que vous située à 1,50 mètre ou moins de vous, vous pouvez prendre une Réaction pour interposer votre bouclier si vous en tenez un. Vous infligez un Désavantage au jet d\u0027attaque déclencheur et à tous les autres jets d\u0027attaque contre la cible jusqu\u0027au début de votre prochain tour si vous restez à 1,50 mètre ou moins de la cible."
+                  },
+                  {
+                      "name":  "Protection intermédiaire",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, formation aux armures légères",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nFormation aux armures. Vous recevez la formation aux armures intermédiaires."
+                  },
+                  {
+                      "name":  "Protection légère",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants :\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nFormation aux armures. Vous recevez la formation aux armures légères et aux boucliers."
+                  },
+                  {
+                      "name":  "Protection lourde",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, formation aux armures intermédiaires",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Constitution ou Force de 1, jusqu\u0027à un maximum de 20.\nFormation aux armures. Vous recevez la formation aux armures lourdes."
+                  },
+                  {
+                      "name":  "Résilient",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Choisissez une caractéristique pour laquelle vous ne maîtrisez pas les jets de sauvegarde. Augmentez la caractéristique choisie de 1, jusqu\u0027à un maximum de 20.\nMaîtrise des jets de sauvegarde. Vous gagnez la maîtrise des jets de sauvegarde avec la caractéristique choisie."
+                  },
+                  {
+                      "name":  "Robuste",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vos points de vie maximum augmentent d\u0027un montant égal à deux fois votre niveau de personnage lorsque vous obtenez ce don. Chaque fois que vous gagnez un niveau de personnage par la suite, vos points de vie maximum augmentent de 2 points de vie supplémentaires."
+                  },
+                  {
+                      "name":  "Sauvagerie martiale",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous avez été formé à infliger des coups particulièrement dévastateurs. Une fois par tour, lorsque vous touchez une cible avec une arme, vous pouvez lancer deux fois les dés de dégâts de l\u0027arme et utiliser le résultat que vous souhaitez contre la cible."
+                  },
+                  {
+                      "name":  "Sentinelle",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nGardien. Immédiatement après qu\u0027une créature à 1,50 mètre ou moins de vous prend l\u0027action Désengagement ou touche une cible autre que vous avec une attaque, vous pouvez effectuer une attaque d\u0027opportunité contre cette créature.\nImmobilisation. Lorsque vous touchez une créature avec une attaque d\u0027opportunité, sa vitesse devient 0 pour le reste du tour en cours."
+                  },
+                  {
+                      "name":  "Télékinésiste",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nTélékinésie mineure. Vous apprenez le sort main de mage. Vous pouvez le lancer sans composantes verbale ou somatique, vous pouvez rendre la main spectrale invisible, et sa portée ainsi que la distance à laquelle elle peut se trouver augmentent de 9 mètres lorsque vous le lancez. La caractéristique d\u0027incantation du sort est celle augmentée par ce don.\nBourrade télékinétique. Par une action Bonus, vous pouvez pousser télékinétiquement une créature que vous pouvez voir dans un rayon de 9 mètres. Dans ce cas, la cible doit réussir un jet de sauvegarde de Force (DD 8 plus le modificateur de la caractéristique augmentée par ce don et votre bonus de maîtrise) ou être déplacée de 1,50 mètre vers vous ou loin de vous."
+                  },
+                  {
+                      "name":  "Télépathe",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Intelligence, Sagesse ou Charisme de 1, jusqu\u0027à un maximum de 20.\nParole télépathique. Vous pouvez parler par télépathie à toute créature que vous pouvez voir dans un rayon de 18 mètres. Vos paroles télépathiques sont dans une langue que vous connaissez, et la créature ne vous comprend que si elle connaît cette langue. Votre communication ne lui confère pas la capacité de vous répondre par télépathie.\nDétection des pensées. Vous avez toujours le sort détection des pensées préparé. Vous pouvez le lancer sans emplacement de sort ni composantes de sort, et vous devez terminer un Repos long avant de pouvoir le lancer à nouveau de cette manière. Vous pouvez également le lancer en utilisant vos emplacements de sorts du niveau approprié. Votre caractéristique d\u0027incantation pour le sort est la caractéristique augmentée par ce don."
+                  },
+                  {
+                      "name":  "Tireur d\u0027élite",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur, Dextérité 13 ou plus",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Dextérité de 1, jusqu\u0027à un maximum de 20.\nContournement d\u0027abri. Vos attaques à distance avec des armes ignorent les Abris partiels (1/2) et les Abris importants (3/4).\nTir au corps à corps. Être à 1,50 mètre ou moins d\u0027un ennemi n\u0027inflige pas de Désavantage à vos jets d\u0027attaque avec des armes à distance.\nLongue portée. Attaquer à longue portée n\u0027inflige pas de Désavantage à vos jets d\u0027attaque avec des armes à distance."
+                  },
+                  {
+                      "name":  "Trancheur",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nCoupe-jarret. Une fois par tour, lorsque vous touchez une créature avec une attaque infligeant des dégâts tranchants, vous pouvez réduire la vitesse de cette créature de 3 mètres jusqu\u0027au début de votre prochain tour.\nCritique amélioré. Lorsque vous réussissez un Coup critique infligeant des dégâts tranchants à une créature, celle-ci subit un Désavantage aux jets d\u0027attaque jusqu\u0027au début de votre prochain tour."
+                  },
+                  {
+                      "name":  "Tueur de mages",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don général",
+                      "prerequis":  "niveau 4 ou supérieur",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nAugmentation de caractéristique. Augmentez votre Force ou Dextérité de 1, jusqu\u0027à un maximum de 20.\nBriseur de concentration. Lorsque vous infligez des dégâts à une créature en concentration, celle-ci a un Désavantage au jet de sauvegarde qu\u0027elle effectue pour maintenir sa Concentration.\nEsprit préservé. Si vous ratez un jet de sauvegarde d\u0027Intelligence, de Sagesse ou de Charisme, vous pouvez le transformer en succès. Une fois cet avantage utilisé, vous ne pouvez plus l\u0027utiliser avant d\u0027avoir terminé un Repos court ou long."
+                  },
+                  {
+                      "name":  "Vigilant",
+                      "aliases":  [
+
+                                  ],
+                      "category":  "Don d’origines",
+                      "prerequis":  "",
+                      "repeatable":  false,
+                      "description":  "Vous bénéficiez des avantages suivants.\nMaîtrise de l\u0027Initiative. Lorsque vous lancez l\u0027Initiative, vous pouvez ajouter votre bonus de maîtrise à votre jet.\nÉchange d\u0027Initiative. Immédiatement après avoir lancé une Initiative, vous pouvez échanger votre Initiative avec celle d\u0027un allié consentant au cours du même combat. Cet échange est impossible si vous ou l\u0027allié êtes Incapable d\u0027agir."
+                  }
+              ]
+};

@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="../css/classes.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .classe-illu {
+            float: right;
+            width: 400px;
+            max-width: 48%;
+            height: 561px;
+            margin: 0 0 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+            padding: 4px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .race-illu {
+                float: none;
+                display: block;
+                margin: 0 auto 10px;
+                max-width: 220px;
+                width: 55%;
+            }
+        }
+    </style>
 </head>
 <body>
     <main class="page">
@@ -25,6 +49,7 @@
         <section class="card">
             <h1>Guerrier</h1>
             <div class="content">
+            <p><img alt="Barde DnD 2024" src="..\img\classes\fighter.jpg" loading="lazy" class="classe-illu">
 <p>Les guerriers dominent sur de nombreux champs de bataille. Chevaliers menant une quête, champions royaux, soldats d'élite ou mercenaires aguerris, en tant que guerriers ils partagent tous une maîtrise inégalée des armes et des armures. Ils connaissent bien la mort, pour l'avoir donnée et l'avoir défiée.</p>
 <p>Les guerriers maîtrisent diverses armes et techniques, et un guerrier bien équipé possède toujours l'outil adéquat à portée de main pour chaque situation de combat. De même, un guerrier maîtrise toutes les armures. Au-delà de ces capacités de base, chaque guerrier se spécialise dans certains styles de combat.</p>
 
@@ -77,7 +102,6 @@
 
 </li>
 </ul>
-<div class="boutonLien"><a>CRÉER UN GUERRIER 2024</a></div>
 <h3>Capacités de classe du guerrier</h3>
 <table>
 <tbody>
