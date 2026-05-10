@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Création de personnage</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .step-list {
+            display: grid;
+            gap: 8px;
+            margin: 0 0 12px;
+        }
+
+        .step-list p,
+        .content > p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content a {
+            color: var(--accent);
+        }
+
+        @media (max-width: 680px) {
+            .card .content table {
+                min-width: 620px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="historique.html">Historiques</a>
+            <a class="btn" href="race.html">Races</a>
+            <a class="btn" href="classes/index.html">Classes</a>
+            <a class="btn" href="dons.html">Dons</a>
+            <a class="btn" href="rules-2024.html">Règles</a>
+            <a class="btn" href="combat-2024.html">Combats</a>
+            <a class="btn" href="mastery-2024.html">Maîtrise</a>
+            <a class="btn" href="spells.html">Sorts</a>
+            <a class="btn" href="character-sheet-standalone.html">Template</a>
+            <a class="btn" href="quickref.html">Référence rapide</a>
+        </nav>
+
+        <section class="card">
+            <h1>Création de personnage D&amp;D 2024</h1>
+            <div class="content">
+                <h3>Avant de commencer</h3>
+                <div class="meta">
+                    <div class="pill">
+                        <strong>Parlez avec le MJ</strong>
+                        Demandez quel type de campagne est prévu : ambiance mythologique, exploration maritime, horreur, intrigue politique, aventure héroïque, etc.
+                    </div>
+                    <div class="pill">
+                        <strong>Choisissez une fiche</strong>
+                        Papier, D&amp;D Beyond, document numérique ou fiche maison : l'important est de pouvoir noter vos choix.
+                    </div>
+                    <div class="pill">
+                        <strong>Session zéro</strong>
+                        Profitez-en pour définir les attentes, les limites, les liens entre personnages et le ton de la campagne.
+                    </div>
+                </div>
+
+                <h3>Les 5 étapes de création</h3>
+                <div class="step-list">
+                    <p><strong>1. Choisir une classe</strong> : votre rôle principal, vos talents et votre style de jeu.</p>
+                    <p><strong>2. Déterminer l'origine</strong> : historique, espèce et langues.</p>
+                    <p><strong>3. Déterminer les caractéristiques</strong> : Force, Dextérité, Constitution, Intelligence, Sagesse et Charisme.</p>
+                    <p><strong>4. Choisir un alignement</strong> : une indication morale et comportementale.</p>
+                    <p><strong>5. Remplir les détails</strong> : équipement, PV, CA, attaques, sorts, nom et personnalité.</p>
+                </div>
+
+                <h3>Étape 1 - Choisir une classe</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Classe</th>
+                                <th>Aime...</th>
+                                <th>Caractéristique principale</th>
+                                <th>Complexité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Barbare</td><td>Le combat brutal</td><td>Force</td><td>Moyenne</td></tr>
+                            <tr><td>Barde</td><td>La performance</td><td>Charisme</td><td>Élevée</td></tr>
+                            <tr><td>Clerc</td><td>Les dieux</td><td>Sagesse</td><td>Moyenne</td></tr>
+                            <tr><td>Druide</td><td>La nature</td><td>Sagesse</td><td>Élevée</td></tr>
+                            <tr><td>Guerrier</td><td>Les armes</td><td>Force ou Dextérité</td><td>Faible</td></tr>
+                            <tr><td>Moine</td><td>Le combat sans arme</td><td>Dextérité et Sagesse</td><td>Élevée</td></tr>
+                            <tr><td>Paladin</td><td>La défense</td><td>Force et Charisme</td><td>Moyenne</td></tr>
+                            <tr><td>Rôdeur</td><td>La survie</td><td>Dextérité et Sagesse</td><td>Moyenne</td></tr>
+                            <tr><td>Roublard</td><td>La discrétion</td><td>Dextérité</td><td>Faible</td></tr>
+                            <tr><td>Ensorceleur</td><td>La puissance magique</td><td>Charisme</td><td>Élevée</td></tr>
+                            <tr><td>Occultiste</td><td>Le savoir occulte</td><td>Charisme</td><td>Élevée</td></tr>
+                            <tr><td>Magicien</td><td>Les grimoires</td><td>Intelligence</td><td>Moyenne</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="encadre"><strong>Niveau de départ.</strong> La plupart des personnages commencent au niveau 1 avec 0 PX. Si la campagne commence au niveau 3 ou plus, choisissez aussi une sous-classe.</p>
+
+                <h3>Étape 2 - Déterminer l'origine</h3>
+                <div class="meta">
+                    <div class="pill">
+                        <strong>Historique</strong>
+                        Il représente votre vie avant l'aventure. Il donne notamment un don d'origine, des maîtrises et de l'équipement.
+                    </div>
+                    <div class="pill">
+                        <strong>Espèce</strong>
+                        Choisissez entre Aasimar, Drakéide, Nain, Elfe, Gnome, Goliath, Halfelin, Humain, Orc ou Tieffelin.
+                    </div>
+                    <div class="pill">
+                        <strong>Langues</strong>
+                        Vous connaissez au minimum le commun et deux autres langues standards, sauf indication contraire.
+                    </div>
+                </div>
+
+                <h4>Questions utiles pour le passé du personnage</h4>
+                <ul>
+                    <li>Qui vous a élevé ?</li>
+                    <li>Qui était votre meilleur ami d'enfance ?</li>
+                    <li>Avez-vous appartenu à une guilde, une religion ou une organisation ?</li>
+                    <li>Quel événement vous pousse aujourd'hui vers l'aventure ?</li>
+                </ul>
+
+                <h3>Étape 3 - Déterminer les caractéristiques</h3>
+                <h4>Méthodes possibles</h4>
+                <ul>
+                    <li><strong>Série standard :</strong> 15, 14, 13, 12, 10, 8.</li>
+                    <li><strong>Aléatoire :</strong> lancez 4d6, gardez les 3 meilleurs, répétez 6 fois.</li>
+                    <li><strong>Achat par points :</strong> 27 points à répartir.</li>
+                </ul>
+
+                <h4>Coût par valeur</h4>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Score</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Coût</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>7</td><td>9</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Série standard par classe</h4>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Classe</th>
+                                <th>For.</th>
+                                <th>Dex.</th>
+                                <th>Con.</th>
+                                <th>Int.</th>
+                                <th>Sag.</th>
+                                <th>Cha.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Barbare</td><td>15</td><td>13</td><td>14</td><td>10</td><td>12</td><td>8</td></tr>
+                            <tr><td>Barde</td><td>8</td><td>14</td><td>12</td><td>13</td><td>10</td><td>15</td></tr>
+                            <tr><td>Clerc</td><td>14</td><td>8</td><td>13</td><td>10</td><td>15</td><td>12</td></tr>
+                            <tr><td>Druide</td><td>8</td><td>12</td><td>14</td><td>13</td><td>15</td><td>10</td></tr>
+                            <tr><td>Guerrier</td><td>15</td><td>14</td><td>13</td><td>8</td><td>10</td><td>12</td></tr>
+                            <tr><td>Moine</td><td>12</td><td>15</td><td>13</td><td>10</td><td>14</td><td>8</td></tr>
+                            <tr><td>Paladin</td><td>15</td><td>10</td><td>13</td><td>8</td><td>12</td><td>14</td></tr>
+                            <tr><td>Rôdeur</td><td>12</td><td>15</td><td>13</td><td>8</td><td>14</td><td>10</td></tr>
+                            <tr><td>Roublard</td><td>12</td><td>15</td><td>13</td><td>14</td><td>10</td><td>8</td></tr>
+                            <tr><td>Ensorceleur</td><td>10</td><td>13</td><td>14</td><td>8</td><td>12</td><td>15</td></tr>
+                            <tr><td>Occultiste</td><td>8</td><td>14</td><td>13</td><td>12</td><td>10</td><td>15</td></tr>
+                            <tr><td>Magicien</td><td>8</td><td>12</td><td>13</td><td>15</td><td>14</td><td>10</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Modificateurs</h4>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Score</th><th>Mod.</th><th>Score</th><th>Mod.</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>3</td><td>-4</td><td>12-13</td><td>+1</td></tr>
+                            <tr><td>4-5</td><td>-3</td><td>14-15</td><td>+2</td></tr>
+                            <tr><td>6-7</td><td>-2</td><td>16-17</td><td>+3</td></tr>
+                            <tr><td>8-9</td><td>-1</td><td>18-19</td><td>+4</td></tr>
+                            <tr><td>10-11</td><td>+0</td><td>20</td><td>+5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="encadre"><strong>Ajustement d'historique.</strong> Augmentez une des trois caractéristiques proposées par votre historique de +2 et une autre de +1, ou augmentez les trois de +1.</p>
+
+                <h3>Étape 4 - Choisir un alignement</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Alignement</th><th>Résumé</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Loyal Bon</td><td>Fait le bien selon les règles et protège les innocents.</td></tr>
+                            <tr><td>Neutre Bon</td><td>Aide les autres sans se sentir prisonnier des règles.</td></tr>
+                            <tr><td>Chaotique Bon</td><td>Suit sa conscience, même contre les attentes sociales.</td></tr>
+                            <tr><td>Loyal Neutre</td><td>Suit un code, une loi ou une tradition.</td></tr>
+                            <tr><td>Neutre</td><td>Agit selon ce qui semble le plus approprié sur le moment.</td></tr>
+                            <tr><td>Chaotique Neutre</td><td>Privilégie la liberté personnelle.</td></tr>
+                            <tr><td>Loyal Mauvais</td><td>Exploite les autres dans le cadre d'un système ou d'un code.</td></tr>
+                            <tr><td>Neutre Mauvais</td><td>Poursuit ses désirs sans remords.</td></tr>
+                            <tr><td>Chaotique Mauvais</td><td>Agit par haine, violence ou destruction.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="encadre"><strong>Conseil.</strong> Validez toujours avec le MJ avant de jouer un personnage mauvais.</p>
+
+                <h3>Étape 5 - Remplir les détails</h3>
+                <ul>
+                    <li>Notez vos aptitudes de classe de niveau 1.</li>
+                    <li>Calculez vos jets de sauvegarde et compétences maîtrisées.</li>
+                    <li>Calculez votre Perception passive : <strong>10 + modificateur de Perception</strong>.</li>
+                    <li>Calculez vos points de vie selon votre classe et votre modificateur de Constitution.</li>
+                    <li>Notez votre initiative : modificateur de Dextérité.</li>
+                    <li>Calculez votre classe d'armure selon votre armure, bouclier ou aptitude spéciale.</li>
+                    <li>Notez vos attaques, vos dégâts, vos sorts et vos emplacements de sorts.</li>
+                    <li>Choisissez un nom, une apparence, une personnalité, une peur et une motivation.</li>
+                </ul>
+
+                <h4>Points de vie au niveau 1</h4>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Classe</th><th>PV maximum</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Barbare</td><td>12 + mod. Constitution</td></tr>
+                            <tr><td>Guerrier, Paladin, Rôdeur</td><td>10 + mod. Constitution</td></tr>
+                            <tr><td>Barde, Clerc, Druide, Moine, Roublard, Occultiste</td><td>8 + mod. Constitution</td></tr>
+                            <tr><td>Ensorceleur, Magicien</td><td>6 + mod. Constitution</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
