@@ -341,9 +341,7 @@
         }
 
         .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 8px;
+            display: block;
         }
 
         .feature-grid textarea,
@@ -436,7 +434,7 @@
         <nav class="topnav">
             <a href="index.html">Accueil</a>
             <a href="historique.html">Historiques</a>
-            <a href="race.html">Races</a>
+            <a href="races/index.html">Races</a>
             <a href="classes/index.html">Classes</a>
             <a href="dons.html">Dons</a>
             <a href="rules-2024.html">Règles</a>
@@ -469,17 +467,38 @@
                 <section class="sheet-page active" id="page1" data-page>
                     <div class="sheet-title">
                         <div class="field"><label>Nom du personnage</label><input type="text" data-field="name" placeholder="Nom du personnage" /></div>
-                        <div class="field"><label>Classe et niveau</label><input type="text" data-field="class_level" placeholder="Ex: Guerrier 5" /></div>
+                        <div class="field">
+                            <label>Classe</label>
+                            <select data-field="character_class" data-class-select>
+                                <option value="">Choisir une classe</option>
+                            </select>
+                            <input type="hidden" data-field="class_level" data-class-level />
+                        </div>
                         <div class="big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
                         <div class="big-field field"><label>PV</label><input type="text" data-field="hp_current" /></div>
                         <div class="big-field field"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
                     </div>
 
                     <div class="identity-grid">
-                        <div class="field"><label>Historique</label><input type="text" data-field="background" /></div>
-                        <div class="field"><label>Espèce</label><input type="text" data-field="species" /></div>
-                        <div class="field"><label>Sous-classe</label><input type="text" data-field="subclass" /></div>
-                        <div class="field"><label>XP</label><input type="text" data-field="xp" /></div>
+                        <div class="field">
+                            <label>Historique</label>
+                            <select data-field="background" data-background-select>
+                                <option value="">Choisir un historique</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Espèce</label>
+                            <select data-field="species" data-species-select>
+                                <option value="">Choisir une espèce</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Sous-classe</label>
+                            <select data-field="subclass" data-subclass-select>
+                                <option value="">Choisir une sous-classe</option>
+                            </select>
+                        </div>
+                        <div class="field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
                     </div>
 
                     <div class="sheet-grid">
@@ -605,6 +624,8 @@
                                     <div class="prof-line"><input type="checkbox" data-field="armor_medium_prof" /><span></span><span>Armures intermédiaires</span></div>
                                     <div class="prof-line"><input type="checkbox" data-field="armor_heavy_prof" /><span></span><span>Armures lourdes</span></div>
                                     <div class="prof-line"><input type="checkbox" data-field="shield_prof" /><span></span><span>Boucliers</span></div>
+                                    <div class="prof-line"><input type="checkbox" data-field="weapon_simple_prof" /><span></span><span>Armes courantes</span></div>
+                                    <div class="prof-line"><input type="checkbox" data-field="weapon_martial_prof" /><span></span><span>Armes de guerre</span></div>
                                     <div class="field" style="margin-top: 6px;"><label>Armes</label><textarea data-field="weapon_proficiencies"></textarea></div>
                                     <div class="field"><label>Outils</label><textarea data-field="tool_proficiencies"></textarea></div>
                                     <div class="field"><label>Langues</label><textarea data-field="languages"></textarea></div>
@@ -716,7 +737,156 @@
             var importFile = document.getElementById("importFile");
             var spellRowsA = document.getElementById("spellRowsA");
             var spellRowsB = document.getElementById("spellRowsB");
+            var classSelect = document.querySelector("[data-class-select]");
+            var speciesSelect = document.querySelector("[data-species-select]");
+            var backgroundSelect = document.querySelector("[data-background-select]");
+            var subclassSelect = document.querySelector("[data-subclass-select]");
+            var classLevelField = document.querySelector("[data-class-level]");
+            var levelInput = document.querySelector("[data-level-input]");
             var saveTimer = null;
+            var currentClassDetails = null;
+            var classOptions = [];
+            var subclassCache = {};
+            var classSaveCache = {};
+            var classMasteryCache = {};
+            var classDetailCache = {};
+            var backgroundDetailCache = {};
+            var speciesDetailCache = {};
+            var modifierTable = {};
+            var fallbackClasses = [
+                { name: "Barbare", href: "classes/class-barbarian.html" },
+                { name: "Barde", href: "classes/class-bard.html" },
+                { name: "Clerc", href: "classes/class-cleric.html" },
+                { name: "Druide", href: "classes/class-druid.html" },
+                { name: "Ensorceleur", href: "classes/class-sorcerer.html" },
+                { name: "Guerrier", href: "classes/class-fighter.html" },
+                { name: "Magicien", href: "classes/class-wizard.html" },
+                { name: "Moine", href: "classes/class-monk.html" },
+                { name: "Occultiste", href: "classes/class-warlock.html" },
+                { name: "Paladin", href: "classes/class-paladin.html" },
+                { name: "Rôdeur", href: "classes/class-rodeur.html" },
+                { name: "Roublard", href: "classes/class-rogue.html" }
+            ];
+            var fallbackSpecies = [
+                { name: "Aasimar", href: "races/race-aasimar.html" },
+                { name: "Drakéide", href: "races/race-drakeide.html" },
+                { name: "Elfe", href: "races/race-elfe.html" },
+                { name: "Gnome", href: "races/race-gnome.html" },
+                { name: "Goliath", href: "races/race-goliath.html" },
+                { name: "Halfelin", href: "races/race-halfelin.html" },
+                { name: "Humain", href: "races/race-human.html" },
+                { name: "Nain", href: "races/race-dwarf.html" },
+                { name: "Orc", href: "races/race-orc.html" },
+                { name: "Tieffelin", href: "races/race-tieffelin.html" }
+            ];
+            var fallbackBackgrounds = [
+                { name: "Acolyte", href: "historique.html#acolyte" },
+                { name: "Artisan", href: "historique.html#artisan" },
+                { name: "Artiste", href: "historique.html#artiste" },
+                { name: "Charlatan", href: "historique.html#charlatan" },
+                { name: "Criminel", href: "historique.html#criminel" },
+                { name: "Ermite", href: "historique.html#ermite" },
+                { name: "Fermier", href: "historique.html#fermier" },
+                { name: "Garde", href: "historique.html#garde" },
+                { name: "Guide", href: "historique.html#guide" },
+                { name: "Marchand", href: "historique.html#marchand" },
+                { name: "Marin", href: "historique.html#marin" },
+                { name: "Noble", href: "historique.html#noble" },
+                { name: "Sage", href: "historique.html#sage" },
+                { name: "Scribe", href: "historique.html#scribe" },
+                { name: "Soldat", href: "historique.html#soldat" },
+                { name: "Voyageur", href: "historique.html#voyageur" }
+            ];
+            var fallbackSubclasses = {
+                "Barbare": ["Voie de l'Arbre-Monde", "Voie du Berserker", "Voie du Cœur sauvage", "Voie du Zélateur"],
+                "Barde": ["Collège de la Danse", "Collège du Savoir", "Collège de la Séduction", "Collège de la Vaillance"],
+                "Clerc": ["Domaine de la Guerre", "Domaine de la Lumière", "Domaine de la Ruse", "Domaine de la Vie"],
+                "Druide": ["Cercle des Astres", "Cercle de la Terre", "Cercle des Mers", "Cercle de la Lune"],
+                "Guerrier": ["Champion", "Chevalier occulte", "Maître de guerre", "Soldat psi"],
+                "Moine": ["Credo des Éléments", "Credo de la Miséricorde", "Credo de l'Ombre", "Credo de la Paume"],
+                "Paladin": ["Serment des Anciens", "Serment de Dévotion", "Serment de Gloire", "Serment de Vengeance"],
+                "Rôdeur": ["Belluaire", "Chasseur", "Traqueur des ténèbres", "Vagabond féerique"],
+                "Roublard": ["Âme acérée", "Arnaqueur arcanique", "Assassin", "Voleur"],
+                "Ensorceleur": ["Sorcellerie aberrante", "Sorcellerie draconique", "Sorcellerie mécanique", "Sorcellerie sauvage"],
+                "Occultiste": ["Protecteur Archifée", "Protecteur Céleste", "Protecteur Fiélon", "Protecteur Grand Ancien"],
+                "Magicien": ["Abjurateur", "Devin", "Évocateur", "Illusionniste"]
+            };
+            var fallbackClassSaves = {
+                "Barbare": ["str", "con"],
+                "Barde": ["dex", "cha"],
+                "Clerc": ["wis", "cha"],
+                "Druide": ["int", "wis"],
+                "Guerrier": ["str", "con"],
+                "Moine": ["str", "dex"],
+                "Paladin": ["wis", "cha"],
+                "Rôdeur": ["str", "dex"],
+                "Roublard": ["dex", "int"],
+                "Ensorceleur": ["con", "cha"],
+                "Occultiste": ["wis", "cha"],
+                "Magicien": ["int", "wis"]
+            };
+            var fallbackClassMasteries = {
+                "Barbare": { weapons: "Armes courantes et de guerre", armor: "Armures légères et intermédiaires, boucliers" },
+                "Barde": { weapons: "Armes courantes", armor: "Armures légères" },
+                "Clerc": { weapons: "Armes courantes", armor: "Armures légères et intermédiaires, boucliers" },
+                "Druide": { weapons: "Armes courantes", armor: "Armures légères, boucliers" },
+                "Guerrier": { weapons: "Armes courantes et de guerre", armor: "Armures légères, intermédiaires et lourdes, boucliers" },
+                "Moine": { weapons: "Armes courantes et armes de guerre qui ont la propriété Légère", armor: "Aucune" },
+                "Paladin": { weapons: "Armes courantes et de guerre", armor: "Armures légères, intermédiaires et lourdes, boucliers" },
+                "Rôdeur": { weapons: "Armes courantes et de guerre", armor: "Armures légères et intermédiaires, boucliers" },
+                "Roublard": { weapons: "Armes courantes et armes de guerre qui ont la propriété Finesse ou Légère", armor: "Armures légères" },
+                "Ensorceleur": { weapons: "Armes courantes", armor: "Aucune" },
+                "Occultiste": { weapons: "Armes courantes", armor: "Armures légères" },
+                "Magicien": { weapons: "Armes courantes", armor: "Aucune" }
+            };
+            var skillAbilities = {
+                skill_athletisme: "str",
+                skill_acrobaties: "dex",
+                skill_discretion: "dex",
+                skill_escamotage: "dex",
+                skill_arcanes: "int",
+                skill_histoire: "int",
+                skill_investigation: "int",
+                skill_nature: "int",
+                skill_religion: "int",
+                skill_dressage: "wis",
+                skill_intuition: "wis",
+                skill_medecine: "wis",
+                skill_perception: "wis",
+                skill_survie: "wis",
+                skill_intimidation: "cha",
+                skill_persuasion: "cha",
+                skill_representation: "cha",
+                skill_tromperie: "cha"
+            };
+            var skillNames = {
+                Acrobaties: "skill_acrobaties",
+                Arcanes: "skill_arcanes",
+                Athlétisme: "skill_athletisme",
+                Discrétion: "skill_discretion",
+                Dressage: "skill_dressage",
+                Escamotage: "skill_escamotage",
+                Histoire: "skill_histoire",
+                Intimidation: "skill_intimidation",
+                Intuition: "skill_intuition",
+                Investigation: "skill_investigation",
+                Médecine: "skill_medecine",
+                Nature: "skill_nature",
+                Perception: "skill_perception",
+                Persuasion: "skill_persuasion",
+                Religion: "skill_religion",
+                Représentation: "skill_representation",
+                Survie: "skill_survie",
+                Tromperie: "skill_tromperie"
+            };
+            var abilityNames = {
+                Force: "str",
+                Dextérité: "dex",
+                Constitution: "con",
+                Intelligence: "int",
+                Sagesse: "wis",
+                Charisme: "cha"
+            };
 
             function spellRow(index) {
                 return [
@@ -744,6 +914,860 @@
 
             buildSpellRows();
 
+            function escapeHtml(value) {
+                return String(value).replace(/[&<>"']/g, function (char) {
+                    return {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        "\"": "&quot;",
+                        "'": "&#39;"
+                    }[char];
+                });
+            }
+
+            function ensureOption(select, value) {
+                if (!select || !value || select.value === value) return;
+                if (Array.prototype.some.call(select.options, function (option) { return option.value === value; })) {
+                    select.value = value;
+                    return;
+                }
+                if (select.value !== value) {
+                    var custom = document.createElement("option");
+                    custom.value = value;
+                    custom.textContent = value;
+                    select.appendChild(custom);
+                    select.value = value;
+                }
+            }
+
+            function populateSelect(select, items, placeholder) {
+                if (!select) return;
+                var current = select.value;
+                var options = ["<option value=\"\">" + escapeHtml(placeholder) + "</option>"];
+                items.forEach(function (item) {
+                    var href = item.href ? " data-href=\"" + escapeHtml(item.href) + "\"" : "";
+                    options.push("<option value=\"" + escapeHtml(item.name) + "\"" + href + ">" + escapeHtml(item.name) + "</option>");
+                });
+                select.innerHTML = options.join("");
+                select.value = current;
+                ensureOption(select, current);
+            }
+
+            function populateClassOptions(classes) {
+                classOptions = classes.slice();
+                populateSelect(classSelect, classOptions, "Choisir une classe");
+            }
+
+            function extractClassesFromIndex(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                return Array.prototype.slice.call(doc.querySelectorAll(".class-grid a")).map(function (link) {
+                    var label = link.querySelector("strong");
+                    var href = link.getAttribute("href") || "";
+                    return {
+                        name: label ? label.textContent.trim() : link.textContent.trim(),
+                        href: href.indexOf("classes/") === 0 ? href : "classes/" + href
+                    };
+                }).filter(function (item) {
+                    return item.name && item.href;
+                });
+            }
+
+            function extractSpeciesFromIndex(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                return Array.prototype.slice.call(doc.querySelectorAll(".race-link")).map(function (link) {
+                    var label = link.querySelector("strong");
+                    var href = link.getAttribute("href") || "";
+                    return {
+                        name: label ? label.textContent.trim() : link.textContent.trim(),
+                        href: href.indexOf("races/") === 0 ? href : "races/" + href
+                    };
+                }).filter(function (item) {
+                    return item.name && item.href;
+                });
+            }
+
+            function extractBackgroundsFromPage(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                return Array.prototype.slice.call(doc.querySelectorAll(".content h3[id]")).map(function (heading) {
+                    return {
+                        name: heading.textContent.trim(),
+                        href: "historique.html#" + heading.id
+                    };
+                }).filter(function (item) {
+                    return item.name;
+                });
+            }
+
+            function extractSubclassesFromClassPage(html, classHref) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var section = doc.querySelector("#sous-classes");
+                var subclasses = [];
+                var node = section ? section.nextElementSibling : null;
+                while (node) {
+                    if (node.tagName === "H2") break;
+                    if (node.tagName === "H3") {
+                        var anchor = node.querySelector("a[id]");
+                        subclasses.push({
+                            name: node.textContent.trim(),
+                            href: classHref + (anchor ? "#" + anchor.id : "")
+                        });
+                    }
+                    node = node.nextElementSibling;
+                }
+                return subclasses;
+            }
+
+            function getField(key) {
+                return document.querySelector("[data-field=\"" + key + "\"]");
+            }
+
+            function parseNumber(value) {
+                var parsed = parseInt(String(value || "").replace(/[^\d-]/g, ""), 10);
+                return Number.isNaN(parsed) ? null : parsed;
+            }
+
+            function formatSigned(value) {
+                return (value >= 0 ? "+" : "") + value;
+            }
+
+            function proficiencyFromLevel(level) {
+                if (!level) return null;
+                return Math.max(2, Math.min(6, Math.floor((level - 1) / 4) + 2));
+            }
+
+            function modifierFromScore(score) {
+                if (!score) return null;
+                if (modifierTable[score] !== undefined) return modifierTable[score];
+                return Math.floor((score - 10) / 2);
+            }
+
+            function setFieldValue(key, value) {
+                var field = getField(key);
+                if (field) field.value = value;
+            }
+
+            function fieldChecked(key) {
+                var field = getField(key);
+                return Boolean(field && field.checked);
+            }
+
+            function setFieldChecked(key, checked) {
+                var field = getField(key);
+                if (field) field.checked = checked;
+            }
+
+            function appendLine(lines, label, value) {
+                var clean = normalizeListText(value);
+                if (clean) lines.push(label + ": " + clean);
+            }
+
+            function autoBlock(label, content) {
+                var clean = String(content || "").trim();
+                return clean ? "[Auto - " + label + "]\n" + clean + "\n[/Auto - " + label + "]" : "";
+            }
+
+            function setAutoBlock(fieldKey, label, content) {
+                var field = getField(fieldKey);
+                if (!field) return;
+                var start = "[Auto - " + label + "]";
+                var end = "[/Auto - " + label + "]";
+                var block = autoBlock(label, content);
+                var value = field.value || "";
+                var startIndex = value.indexOf(start);
+                var endIndex = value.indexOf(end);
+                if (startIndex !== -1 && endIndex !== -1 && endIndex >= startIndex) {
+                    var before = value.slice(0, startIndex).trim();
+                    var after = value.slice(endIndex + end.length).trim();
+                    field.value = [before, block, after].filter(Boolean).join("\n\n");
+                    return;
+                }
+                if (!block) return;
+                field.value = [value.trim(), block].filter(Boolean).join("\n\n");
+            }
+
+            function getSelectedItem(select, options) {
+                if (!select || !select.value) return null;
+                var option = select.options[select.selectedIndex];
+                var href = option ? option.getAttribute("data-href") : "";
+                return options.filter(function (item) {
+                    return item.name === select.value;
+                })[0] || { name: select.value, href: href || "" };
+            }
+
+            function expandScoreRange(text) {
+                var clean = String(text || "").replace(/\s/g, "");
+                var range = clean.match(/^(\d+)-(\d+)$/);
+                if (range) {
+                    var scores = [];
+                    var start = parseInt(range[1], 10);
+                    var end = parseInt(range[2], 10);
+                    for (var score = start; score <= end; score += 1) scores.push(score);
+                    return scores;
+                }
+                var single = parseInt(clean, 10);
+                return Number.isNaN(single) ? [] : [single];
+            }
+
+            function extractModifierTable(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var heading = Array.prototype.slice.call(doc.querySelectorAll("h3")).filter(function (item) {
+                    return item.textContent.indexOf("Modificateurs de caractéristique") !== -1;
+                })[0];
+                var table = heading ? heading.nextElementSibling : null;
+                while (table && table.tagName !== "TABLE") table = table.nextElementSibling;
+                if (!table) return {};
+
+                var modifiers = {};
+                Array.prototype.slice.call(table.querySelectorAll("tr")).forEach(function (row) {
+                    var cells = Array.prototype.slice.call(row.querySelectorAll("td")).map(function (cell) {
+                        return cell.textContent.trim();
+                    });
+                    for (var i = 0; i + 1 < cells.length; i += 2) {
+                        var modifier = parseInt(cells[i + 1].replace("+", ""), 10);
+                        if (Number.isNaN(modifier)) continue;
+                        expandScoreRange(cells[i]).forEach(function (score) {
+                            modifiers[score] = modifier;
+                        });
+                    }
+                });
+                return modifiers;
+            }
+
+            function loadModifierTable() {
+                if (!window.fetch) {
+                    updateDerivedStats();
+                    return;
+                }
+                fetch("rules-2024.html")
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("rules unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var parsed = extractModifierTable(html);
+                        if (Object.keys(parsed).length) modifierTable = parsed;
+                        updateDerivedStats();
+                    })
+                    .catch(updateDerivedStats);
+            }
+
+            function extractSaveProficienciesFromClassPage(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var cells = Array.prototype.slice.call(doc.querySelectorAll("td"));
+                var label = cells.filter(function (cell) {
+                    return cell.textContent.indexOf("Maîtrise des jets de sauvegarde") !== -1;
+                })[0];
+                var value = label && label.nextElementSibling ? label.nextElementSibling.textContent : "";
+                return Object.keys(abilityNames).filter(function (name) {
+                    return value.indexOf(name) !== -1;
+                }).map(function (name) {
+                    return abilityNames[name];
+                });
+            }
+
+            function extractClassTrait(html, labels) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var cells = Array.prototype.slice.call(doc.querySelectorAll("td"));
+                var label = cells.filter(function (cell) {
+                    var text = cell.textContent.trim();
+                    return labels.indexOf(text) !== -1;
+                })[0];
+                return label && label.nextElementSibling ? label.nextElementSibling.textContent.trim() : "";
+            }
+
+            function cellText(cell) {
+                return cell ? normalizeListText(cell.textContent) : "";
+            }
+
+            function formatSpellSlotMap(slots) {
+                var entries = Object.keys(slots).filter(function (level) {
+                    var value = slots[level];
+                    return value && value !== "-" && value !== "0";
+                }).map(function (level) {
+                    return level + ": " + slots[level];
+                });
+                return entries.join(" / ");
+            }
+
+            function extractSpellSlotsByLevel(doc) {
+                var slotsByLevel = {};
+                Array.prototype.slice.call(doc.querySelectorAll("table")).some(function (table) {
+                    var rows = Array.prototype.slice.call(table.querySelectorAll("tr"));
+                    var headerIndex = -1;
+                    var headerCells = [];
+                    rows.some(function (row, index) {
+                        var cells = Array.prototype.slice.call(row.querySelectorAll("th,td")).map(cellText);
+                        var hasLevel = cells.some(function (text) { return text === "Niveau"; });
+                        var numericHeaders = cells.filter(function (text) { return /^\d+$/.test(text); });
+                        if (hasLevel && numericHeaders.length) {
+                            headerIndex = index;
+                            headerCells = cells;
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    if (headerIndex !== -1) {
+                        var slotIndexes = [];
+                        headerCells.forEach(function (text, index) {
+                            if (/^\d+$/.test(text)) slotIndexes.push({ index: index, level: text });
+                        });
+                        rows.slice(headerIndex + 1).forEach(function (row) {
+                            var cells = Array.prototype.slice.call(row.querySelectorAll("td")).map(cellText);
+                            if (!/^\d+$/.test(cells[0] || "")) return;
+                            var slots = {};
+                            slotIndexes.forEach(function (slot) {
+                                slots[slot.level] = cells[slot.index] || "";
+                            });
+                            slotsByLevel[cells[0]] = formatSpellSlotMap(slots);
+                        });
+                        return Object.keys(slotsByLevel).length > 0;
+                    }
+
+                    var basicHeader = Array.prototype.slice.call(table.querySelectorAll("tr")).map(function (row) {
+                        return Array.prototype.slice.call(row.querySelectorAll("th,td")).map(cellText);
+                    }).filter(function (cells) {
+                        function compactIncludes(text, expected) {
+                            return text.replace(/\s/g, "").indexOf(expected.replace(/\s/g, "")) !== -1;
+                        }
+                        return cells.indexOf("Niveau") !== -1 &&
+                            cells.some(function (text) { return compactIncludes(text, "Emplacements de sort"); }) &&
+                            cells.some(function (text) { return compactIncludes(text, "Niveau des emplacements"); });
+                    })[0];
+
+                    if (basicHeader) {
+                        function compactIncludes(text, expected) {
+                            return text.replace(/\s/g, "").indexOf(expected.replace(/\s/g, "")) !== -1;
+                        }
+                        var levelIndex = basicHeader.indexOf("Niveau");
+                        var countIndex = basicHeader.findIndex(function (text) { return compactIncludes(text, "Emplacements de sort"); });
+                        var slotLevelIndex = basicHeader.findIndex(function (text) { return compactIncludes(text, "Niveau des emplacements"); });
+                        rows.forEach(function (row) {
+                            var cells = Array.prototype.slice.call(row.querySelectorAll("td")).map(cellText);
+                            if (!/^\d+$/.test(cells[levelIndex] || "")) return;
+                            var count = cells[countIndex] || "";
+                            var slotLevel = cells[slotLevelIndex] || "";
+                            slotsByLevel[cells[levelIndex]] = slotLevel && count ? slotLevel + ": " + count : "";
+                        });
+                        return Object.keys(slotsByLevel).length > 0;
+                    }
+                    return false;
+                });
+                return slotsByLevel;
+            }
+
+            function armorFlagsFromText(text) {
+                var lower = String(text || "").toLowerCase();
+                return {
+                    light: lower.indexOf("légère") !== -1,
+                    medium: lower.indexOf("intermédiaire") !== -1,
+                    heavy: lower.indexOf("lourde") !== -1,
+                    shield: lower.indexOf("bouclier") !== -1
+                };
+            }
+
+            function weaponFlagsFromText(text) {
+                var lower = String(text || "").toLowerCase();
+                return {
+                    simple: lower.indexOf("courante") !== -1,
+                    martial: lower.indexOf("guerre") !== -1
+                };
+            }
+
+            function normalizeListText(text) {
+                return String(text || "").replace(/\s+/g, " ").replace(/\s+,/g, ",").replace(/,+$/g, "").trim();
+            }
+
+            function extractClassMasteriesFromClassPage(html) {
+                var weapons = extractClassTrait(html, ["Maîtrises d'arme", "Maîtrise d'arme"]);
+                var armor = extractClassTrait(html, ["Formation aux armures"]);
+                return {
+                    weapons: normalizeListText(weapons),
+                    armor: normalizeListText(armor)
+                };
+            }
+
+            function extractClassDetailsFromClassPage(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var subclassSection = doc.querySelector("#sous-classes");
+                var removable = subclassSection;
+                while (removable) {
+                    var next = removable.nextElementSibling;
+                    removable.remove();
+                    removable = next;
+                }
+                var spellAbility = "";
+                var spellFocus = "";
+                Array.prototype.slice.call(doc.querySelectorAll("p")).some(function (item) {
+                    var text = item.textContent.trim();
+                    if (text.indexOf("Caractéristique d'incantation") === -1) return false;
+                    Object.keys(abilityNames).some(function (name) {
+                        if (text.indexOf(name) !== -1) {
+                            spellAbility = name;
+                            return true;
+                        }
+                        return false;
+                    });
+                    return true;
+                });
+                Array.prototype.slice.call(doc.querySelectorAll("p")).some(function (item) {
+                    var strong = item.querySelector("strong");
+                    if (!strong || strong.textContent.indexOf("Focaliseur d'incantation") === -1) return false;
+                    var clone = item.cloneNode(true);
+                    var cloneStrong = clone.querySelector("strong");
+                    if (cloneStrong) cloneStrong.remove();
+                    spellFocus = normalizeListText(clone.textContent.replace(/^\s*\.\s*/, ""));
+                    return true;
+                });
+                return {
+                    primary: normalizeListText(extractClassTrait(html, ["Caractéristique principale"])),
+                    hitDie: normalizeListText(extractClassTrait(html, ["Dé de vie"])),
+                    tools: normalizeListText(extractClassTrait(html, ["Maîtrise d'outils", "Maîtrises d'outils"])),
+                    equipment: normalizeListText(extractClassTrait(html, ["Équipement de départ"])),
+                    spellAbility: spellAbility,
+                    spellFocus: spellFocus,
+                    spellSlotsByLevel: extractSpellSlotsByLevel(doc)
+                };
+            }
+
+            function getBackgroundParagraph(section, label) {
+                var paragraph = Array.prototype.slice.call(section ? section.querySelectorAll("p") : []).filter(function (item) {
+                    var strong = item.querySelector("strong");
+                    return strong && strong.textContent.trim() === label;
+                })[0];
+                if (!paragraph) return "";
+                var clone = paragraph.cloneNode(true);
+                var strong = clone.querySelector("strong");
+                if (strong) strong.remove();
+                return normalizeListText(clone.textContent.replace(/^\s*\.\s*/, ""));
+            }
+
+            function extractBackgroundDetailsFromPage(html, id) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var heading = doc.getElementById(id);
+                var wrapper = document.createElement("div");
+                var node = heading ? heading.nextElementSibling : null;
+                while (node && node.tagName !== "H3") {
+                    wrapper.appendChild(node.cloneNode(true));
+                    node = node.nextElementSibling;
+                }
+                return {
+                    abilities: getBackgroundParagraph(wrapper, "Valeurs de caractéristique"),
+                    feat: getBackgroundParagraph(wrapper, "Don"),
+                    skills: getBackgroundParagraph(wrapper, "Maîtrises de compétence"),
+                    tools: getBackgroundParagraph(wrapper, "Maîtrise d'outils"),
+                    equipment: getBackgroundParagraph(wrapper, "Équipement")
+                };
+            }
+
+            function extractSpeciesDetailsFromPage(html) {
+                var doc = new DOMParser().parseFromString(html, "text/html");
+                var traits = Array.prototype.slice.call(doc.querySelectorAll(".trait")).map(function (item) {
+                    var strong = item.querySelector("strong");
+                    var label = strong ? strong.textContent.replace(":", "").trim() : "";
+                    var clone = item.cloneNode(true);
+                    var cloneStrong = clone.querySelector("strong");
+                    if (cloneStrong) cloneStrong.remove();
+                    return {
+                        label: label,
+                        value: normalizeListText(clone.textContent.replace(/^\s*:/, ""))
+                    };
+                }).filter(function (item) {
+                    return item.label && item.value;
+                });
+                var size = traits.filter(function (item) { return item.label === "Taille"; })[0];
+                var speed = traits.filter(function (item) { return item.label === "Vitesse"; })[0];
+                var notes = traits.filter(function (item) {
+                    return ["Type de créature", "Taille", "Vitesse"].indexOf(item.label) === -1;
+                }).map(function (item) {
+                    return item.label + ": " + item.value;
+                }).join("\n");
+                return {
+                    size: size ? size.value : "",
+                    speed: speed ? speed.value : "",
+                    traits: notes
+                };
+            }
+
+            function applyClassSaveProficiencies(saves) {
+                ["str", "dex", "con", "int", "wis", "cha"].forEach(function (ability) {
+                    setFieldChecked(ability + "_save_prof", saves.indexOf(ability) !== -1);
+                });
+                updateDerivedStats();
+            }
+
+            function applyClassMasteries(masteries) {
+                var armor = armorFlagsFromText(masteries && masteries.armor);
+                setFieldChecked("armor_light_prof", armor.light);
+                setFieldChecked("armor_medium_prof", armor.medium);
+                setFieldChecked("armor_heavy_prof", armor.heavy);
+                setFieldChecked("shield_prof", armor.shield);
+                var weapons = weaponFlagsFromText(masteries && masteries.weapons);
+                setFieldChecked("weapon_simple_prof", weapons.simple);
+                setFieldChecked("weapon_martial_prof", weapons.martial);
+            }
+
+            function applyClassDetails(details) {
+                currentClassDetails = details || null;
+                if (!details) return;
+                if (details.hitDie) setFieldValue("hit_dice", details.hitDie);
+                if (details.tools) setAutoBlock("tool_proficiencies", "Classe", details.tools);
+                if (details.equipment) setAutoBlock("gear", "Équipement de classe", details.equipment);
+                var featureLines = [];
+                appendLine(featureLines, "Caractéristique principale", details.primary);
+                appendLine(featureLines, "Focaliseur d'incantation", details.spellFocus);
+                setAutoBlock("features", "Classe", featureLines.join("\n"));
+                var spellStat = getField("spell_stat");
+                if (spellStat && details.spellAbility && (!spellStat.value || spellStat.dataset.autoClassSpell === "true")) {
+                    spellStat.value = details.spellAbility;
+                    spellStat.dataset.autoClassSpell = "true";
+                } else if (spellStat && !details.spellAbility && spellStat.dataset.autoClassSpell === "true") {
+                    spellStat.value = "";
+                    delete spellStat.dataset.autoClassSpell;
+                }
+                updateDerivedStats();
+            }
+
+            function clearBackgroundSkillProficiencies() {
+                Object.keys(skillNames).forEach(function (name) {
+                    var field = getField(skillNames[name] + "_prof");
+                    if (field && field.dataset.autoBackground === "true") {
+                        field.checked = false;
+                        delete field.dataset.autoBackground;
+                    }
+                });
+            }
+
+            function applyBackgroundDetails(details) {
+                clearBackgroundSkillProficiencies();
+                if (!details) return;
+                Object.keys(skillNames).forEach(function (name) {
+                    if (details.skills.indexOf(name) === -1) return;
+                    var field = getField(skillNames[name] + "_prof");
+                    if (!field) return;
+                    if (!field.checked) field.dataset.autoBackground = "true";
+                    field.checked = true;
+                });
+                setAutoBlock("tool_proficiencies", "Historique", details.tools);
+                setAutoBlock("feats", "Don d'historique", details.feat);
+                setAutoBlock("gear", "Équipement d'historique", details.equipment);
+                var featureLines = [];
+                appendLine(featureLines, "Valeurs de caractéristique proposées", details.abilities);
+                setAutoBlock("features", "Historique", featureLines.join("\n"));
+                updateDerivedStats();
+            }
+
+            function applySpeciesDetails(details) {
+                if (!details) return;
+                if (details.size) setFieldValue("size", details.size);
+                if (details.speed) setFieldValue("speed", details.speed);
+                setAutoBlock("species_traits", "Espèce", details.traits);
+            }
+
+            function updateClassSaveProficiencies() {
+                var selectedClass = getSelectedClassOption();
+                var className = classSelect ? classSelect.value : "";
+                var fallback = fallbackClassSaves[className] || [];
+                applyClassSaveProficiencies(fallback);
+                if (!selectedClass || !window.fetch) return;
+                if (classSaveCache[selectedClass.href]) {
+                    applyClassSaveProficiencies(classSaveCache[selectedClass.href]);
+                    return;
+                }
+                fetch(selectedClass.href)
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("class page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var saves = extractSaveProficienciesFromClassPage(html);
+                        if (saves.length) {
+                            classSaveCache[selectedClass.href] = saves;
+                            applyClassSaveProficiencies(saves);
+                        }
+                    })
+                    .catch(function () {});
+            }
+
+            function updateClassMasteries() {
+                var selectedClass = getSelectedClassOption();
+                var className = classSelect ? classSelect.value : "";
+                var fallback = fallbackClassMasteries[className];
+                applyClassMasteries(fallback || { weapons: "", armor: "" });
+                if (!selectedClass || !window.fetch) return;
+                if (classMasteryCache[selectedClass.href]) {
+                    applyClassMasteries(classMasteryCache[selectedClass.href]);
+                    return;
+                }
+                fetch(selectedClass.href)
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("class page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var masteries = extractClassMasteriesFromClassPage(html);
+                        if (masteries.weapons || masteries.armor) {
+                            classMasteryCache[selectedClass.href] = masteries;
+                            applyClassMasteries(masteries);
+                        }
+                    })
+                    .catch(function () {});
+            }
+
+            function updateClassDetails() {
+                var selectedClass = getSelectedClassOption();
+                if (!selectedClass || !window.fetch) {
+                    currentClassDetails = null;
+                    updateDerivedStats();
+                    return;
+                }
+                if (classDetailCache[selectedClass.href]) {
+                    applyClassDetails(classDetailCache[selectedClass.href]);
+                    return;
+                }
+                fetch(selectedClass.href)
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("class page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var details = extractClassDetailsFromClassPage(html);
+                        classDetailCache[selectedClass.href] = details;
+                        applyClassDetails(details);
+                    })
+                    .catch(function () {});
+            }
+
+            function updateBackgroundDetails() {
+                var selected = getSelectedItem(backgroundSelect, fallbackBackgrounds);
+                clearBackgroundSkillProficiencies();
+                if (!selected || !selected.href || !window.fetch) {
+                    applyBackgroundDetails({ abilities: "", feat: "", skills: "", tools: "", equipment: "" });
+                    return;
+                }
+                var parts = selected.href.split("#");
+                var id = parts[1] || "";
+                if (!id) return;
+                if (backgroundDetailCache[id]) {
+                    applyBackgroundDetails(backgroundDetailCache[id]);
+                    return;
+                }
+                fetch(parts[0])
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("background page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var details = extractBackgroundDetailsFromPage(html, id);
+                        backgroundDetailCache[id] = details;
+                        applyBackgroundDetails(details);
+                    })
+                    .catch(function () {});
+            }
+
+            function updateSpeciesDetails() {
+                var selected = getSelectedItem(speciesSelect, fallbackSpecies);
+                if (!selected || !selected.href || !window.fetch) {
+                    applySpeciesDetails({ size: "", speed: "", traits: "" });
+                    return;
+                }
+                if (speciesDetailCache[selected.href]) {
+                    applySpeciesDetails(speciesDetailCache[selected.href]);
+                    return;
+                }
+                fetch(selected.href)
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("species page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var details = extractSpeciesDetailsFromPage(html);
+                        speciesDetailCache[selected.href] = details;
+                        applySpeciesDetails(details);
+                    })
+                    .catch(function () {});
+            }
+
+            function updateDerivedStats() {
+                var abilityMods = {};
+                ["str", "dex", "con", "int", "wis", "cha"].forEach(function (ability) {
+                    var score = parseNumber(getField(ability) ? getField(ability).value : "");
+                    var modifier = modifierFromScore(score);
+                    abilityMods[ability] = modifier;
+                    setFieldValue(ability + "_mod", modifier === null ? "" : formatSigned(modifier));
+                });
+
+                var level = parseNumber(levelInput ? levelInput.value : "");
+                var levelProficiency = proficiencyFromLevel(level);
+                var manualProficiency = parseNumber(getField("proficiency_bonus") ? getField("proficiency_bonus").value : "");
+                var proficiency = levelProficiency !== null ? levelProficiency : (manualProficiency || 0);
+                if (levelProficiency !== null) setFieldValue("proficiency_bonus", formatSigned(levelProficiency));
+
+                ["str", "dex", "con", "int", "wis", "cha"].forEach(function (ability) {
+                    var modifier = abilityMods[ability];
+                    var total = modifier === null ? "" : formatSigned(modifier + (fieldChecked(ability + "_save_prof") ? proficiency : 0));
+                    setFieldValue(ability + "_save", total);
+                });
+
+                Object.keys(skillAbilities).forEach(function (skill) {
+                    var ability = skillAbilities[skill];
+                    var modifier = abilityMods[ability];
+                    var total = modifier === null ? "" : formatSigned(modifier + (fieldChecked(skill + "_prof") ? proficiency : 0));
+                    setFieldValue(skill, total);
+                });
+
+                var initiativeField = getField("initiative");
+                if (initiativeField && abilityMods.dex !== null && abilityMods.dex !== undefined && (!initiativeField.value || initiativeField.dataset.autoInitiative === "true")) {
+                    initiativeField.value = formatSigned(abilityMods.dex);
+                    initiativeField.dataset.autoInitiative = "true";
+                }
+
+                var perception = parseNumber(getField("skill_perception") ? getField("skill_perception").value : "");
+                if (perception !== null) setFieldValue("passive_perception", String(10 + perception));
+
+                var spellStat = getField("spell_stat") ? getField("spell_stat").value.trim() : "";
+                var spellAbility = abilityNames[spellStat] || "";
+                var spellModifier = spellAbility ? abilityMods[spellAbility] : null;
+                if (spellModifier !== null && spellModifier !== undefined) {
+                    setFieldValue("spell_mod", formatSigned(spellModifier));
+                    setFieldValue("spell_dc", String(8 + proficiency + spellModifier));
+                    setFieldValue("spell_attack_bonus", formatSigned(proficiency + spellModifier));
+                }
+
+                var slotsField = getField("spell_slots");
+                var slotsByLevel = currentClassDetails && currentClassDetails.spellSlotsByLevel ? currentClassDetails.spellSlotsByLevel : {};
+                var slots = level ? slotsByLevel[String(level)] : "";
+                if (slotsField && slots && (!slotsField.value || slotsField.dataset.autoClassSlots === "true")) {
+                    slotsField.value = slots;
+                    slotsField.dataset.autoClassSlots = "true";
+                } else if (slotsField && !slots && slotsField.dataset.autoClassSlots === "true") {
+                    slotsField.value = "";
+                    delete slotsField.dataset.autoClassSlots;
+                }
+            }
+
+            function loadDynamicOptions() {
+                populateClassOptions(fallbackClasses);
+                populateSelect(speciesSelect, fallbackSpecies, "Choisir une espèce");
+                populateSelect(backgroundSelect, fallbackBackgrounds, "Choisir un historique");
+                updateSubclassOptions();
+                updateClassSaveProficiencies();
+                updateClassMasteries();
+                updateClassDetails();
+                updateBackgroundDetails();
+                updateSpeciesDetails();
+                updateDerivedStats();
+                if (!window.fetch) return;
+
+                fetch("classes/index.html")
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("classes index unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var classes = extractClassesFromIndex(html);
+                        if (classes.length) {
+                            populateClassOptions(classes);
+                            syncClassLevel();
+                            updateSubclassOptions();
+                            updateClassSaveProficiencies();
+                            updateClassMasteries();
+                            updateClassDetails();
+                        }
+                    })
+                    .catch(function () {
+                        syncClassLevel();
+                        updateClassSaveProficiencies();
+                        updateClassMasteries();
+                        updateClassDetails();
+                    });
+
+                fetch("races/index.html")
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("races index unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var species = extractSpeciesFromIndex(html);
+                        if (species.length) {
+                            populateSelect(speciesSelect, species, "Choisir une espèce");
+                            updateSpeciesDetails();
+                        }
+                    })
+                    .catch(function () {});
+
+                fetch("historique.html")
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("backgrounds unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var backgrounds = extractBackgroundsFromPage(html);
+                        if (backgrounds.length) {
+                            populateSelect(backgroundSelect, backgrounds, "Choisir un historique");
+                            updateBackgroundDetails();
+                        }
+                    })
+                    .catch(function () {});
+            }
+
+            function parseClassLevel(value) {
+                var text = String(value || "").trim();
+                var match = text.match(/^(.*?)(?:\s+(\d+))?$/);
+                return {
+                    className: match ? match[1].trim() : text,
+                    level: match && match[2] ? match[2] : ""
+                };
+            }
+
+            function syncClassLevel() {
+                if (!classLevelField || !classSelect || !levelInput) return;
+                var parts = [];
+                if (classSelect.value) parts.push(classSelect.value);
+                if (levelInput.value.trim()) parts.push(levelInput.value.trim());
+                classLevelField.value = parts.join(" ");
+            }
+
+            function getSelectedClassOption() {
+                var className = classSelect ? classSelect.value : "";
+                return classOptions.filter(function (item) {
+                    return item.name === className;
+                })[0] || null;
+            }
+
+            function updateSubclassOptions() {
+                if (!subclassSelect) return;
+                var className = classSelect ? classSelect.value : "";
+                var fallback = (fallbackSubclasses[className] || []).map(function (name) {
+                    return { name: name, href: "" };
+                });
+                populateSelect(subclassSelect, fallback, className ? "Choisir une sous-classe" : "Choisir une classe d'abord");
+
+                var selectedClass = getSelectedClassOption();
+                if (!selectedClass || !window.fetch) return;
+                if (subclassCache[selectedClass.href]) {
+                    populateSelect(subclassSelect, subclassCache[selectedClass.href], "Choisir une sous-classe");
+                    return;
+                }
+
+                fetch(selectedClass.href)
+                    .then(function (response) {
+                        if (!response.ok) throw new Error("class page unavailable");
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        var subclasses = extractSubclassesFromClassPage(html, selectedClass.href);
+                        if (subclasses.length) {
+                            subclassCache[selectedClass.href] = subclasses;
+                            populateSelect(subclassSelect, subclasses, "Choisir une sous-classe");
+                        }
+                    })
+                    .catch(function () {});
+            }
+
+            loadDynamicOptions();
+
             var fields = Array.prototype.slice.call(document.querySelectorAll("[data-field]"));
 
             function setStatus(msg) {
@@ -755,11 +1779,14 @@
             }
 
             function collect() {
+                syncClassLevel();
+                updateDerivedStats();
                 var data = {};
                 fields.forEach(function (el) {
                     var key = el.getAttribute("data-field");
                     data[key] = el.type === "checkbox" ? el.checked : el.value;
                 });
+                if (levelInput) data.character_level = levelInput.value;
                 return data;
             }
 
@@ -773,6 +1800,28 @@
                         el.value = data[key];
                     }
                 });
+                if (classSelect && data.class_level && !data.character_class) {
+                    var parsed = parseClassLevel(data.class_level);
+                    ensureOption(classSelect, parsed.className);
+                    if (levelInput && parsed.level && !levelInput.value) {
+                        levelInput.value = parsed.level;
+                    }
+                }
+                if (classSelect && data.character_class) ensureOption(classSelect, data.character_class);
+                if (speciesSelect && data.species) ensureOption(speciesSelect, data.species);
+                if (backgroundSelect && data.background) ensureOption(backgroundSelect, data.background);
+                if (subclassSelect && data.subclass) ensureOption(subclassSelect, data.subclass);
+                if (levelInput && data.character_level && !data.Niveau) {
+                    levelInput.value = data.character_level;
+                }
+                updateSubclassOptions();
+                updateClassSaveProficiencies();
+                updateClassMasteries();
+                updateClassDetails();
+                updateBackgroundDetails();
+                updateSpeciesDetails();
+                syncClassLevel();
+                updateDerivedStats();
             }
 
             function save() {
@@ -879,9 +1928,61 @@
             }
 
             fields.forEach(function (el) {
-                el.addEventListener("input", scheduleAutoSave);
-                el.addEventListener("change", scheduleAutoSave);
+                el.addEventListener("input", function () {
+                    if (el.getAttribute("data-field") === "initiative") {
+                        delete el.dataset.autoInitiative;
+                    }
+                    if (el.getAttribute("data-field") === "spell_slots") {
+                        delete el.dataset.autoClassSlots;
+                    }
+                    if (el.getAttribute("data-field") === "spell_stat") {
+                        delete el.dataset.autoClassSpell;
+                    }
+                    updateDerivedStats();
+                    scheduleAutoSave();
+                });
+                el.addEventListener("change", function () {
+                    if (el.getAttribute("data-field") && el.getAttribute("data-field").indexOf("skill_") === 0) {
+                        delete el.dataset.autoBackground;
+                    }
+                    if (el.getAttribute("data-field") === "initiative") {
+                        delete el.dataset.autoInitiative;
+                    }
+                    if (el.getAttribute("data-field") === "spell_slots") {
+                        delete el.dataset.autoClassSlots;
+                    }
+                    if (el.getAttribute("data-field") === "spell_stat") {
+                        delete el.dataset.autoClassSpell;
+                    }
+                    updateDerivedStats();
+                    scheduleAutoSave();
+                });
             });
+
+            if (classSelect) {
+                classSelect.addEventListener("change", function () {
+                    if (subclassSelect) subclassSelect.value = "";
+                    updateSubclassOptions();
+                    updateClassSaveProficiencies();
+                    updateClassMasteries();
+                    updateClassDetails();
+                    syncClassLevel();
+                    updateDerivedStats();
+                });
+            }
+
+            if (backgroundSelect) {
+                backgroundSelect.addEventListener("change", function () {
+                    updateBackgroundDetails();
+                    updateDerivedStats();
+                });
+            }
+
+            if (speciesSelect) {
+                speciesSelect.addEventListener("change", function () {
+                    updateSpeciesDetails();
+                });
+            }
 
             document.querySelectorAll("[data-page-target]").forEach(function (button) {
                 button.addEventListener("click", function () {
@@ -899,6 +2000,7 @@
                 }
             });
 
+            loadModifierTable();
             load();
         })();
     </script>

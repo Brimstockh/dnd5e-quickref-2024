@@ -21,7 +21,7 @@ Main entry points:
 - `combat-2024.html`: combat and damage reference
 - `mastery-2024.html`: weapon mastery and action reference
 - `spells.html`: spell browser with filters
-- `race.html`: species overview
+- `races/index.html`: species overview
 - `classes/index.html`: class guides
 - `html/characters.html`: character directory
 - `character-sheet-standalone.html`: editable standalone character sheet
