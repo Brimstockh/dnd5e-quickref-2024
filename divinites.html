@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Divinités des Royaumes Oubliés</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .lead {
+            color: #3e3a34;
+            font-size: 1.05rem;
+        }
+
+        .deity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .deity-note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .deity-note strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .deity-table th:nth-child(1) { min-width: 230px; }
+        .deity-table th:nth-child(2) { min-width: 110px; }
+        .deity-table th:nth-child(3) { min-width: 170px; }
+        .deity-table th:nth-child(4) { min-width: 280px; }
+
+        .alignment {
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .domain {
+            display: inline-block;
+            margin: 0 4px 4px 0;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 2px 8px;
+            background: #f7f2e9;
+            color: var(--accent);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="faerun.html">Faerûn</a>
+            <a class="btn" href="classes/index.html">Classes</a>
+            <a class="btn" href="historique.html">Historiques</a>
+            <a class="btn" href="races/index.html">Races</a>
+            <a class="btn" href="spells.html">Sorts</a>
+            <a class="btn" href="rules-2024.html">Règles</a>
+        </nav>
+
+        <section class="card">
+            <h1>Divinités des Royaumes Oubliés</h1>
+            <div class="content">
+                <p class="lead">Chaque monde du multivers de D&amp;D possède ses propres panthéons. Cette page se concentre sur celui des Royaumes Oubliés, où les dieux sont révérés, craints, invoqués et parfois défiés par les peuples de Faerûn.</p>
+                <p>Des dizaines de divinités sont connues à travers les Royaumes. Certaines sont adorées dans de grands temples, d'autres dans des cultes locaux, des traditions tribales ou des sectes liées à une foi plus vaste.</p>
+
+                <div class="deity-grid">
+                    <div class="deity-note">
+                        <strong>Divinités non humaines</strong>
+                        <span>Certaines divinités associées aux peuples non humains sont honorées sur plusieurs mondes. Les nains, par exemple, peuvent vénérer Moradin, Berronar Truesilver, Abbathor, Clangeddin Silverbeard, Dugmaren Brightmantle, Dumathoin, Gorm Gulthyn, Haela Brightaxe, Marthammor Duin, Sharindlar, Thard Harr ou Vergadain.</span>
+                    </div>
+                    <div class="deity-note">
+                        <strong>Domaines de Vie et de Mort</strong>
+                        <span>Le domaine de la Vie convient à de nombreuses divinités liées à la guérison, la protection, la naissance, la fertilité ou le soin. Le domaine de la Mort est surtout associé à des divinités sombres ou maléfiques ; un personnage joueur devrait en discuter avec le MJ.</span>
+                    </div>
+                </div>
+
+                <h3>Panthéon des Royaumes Oubliés</h3>
+                <div class="table-wrap">
+                    <table class="deity-table">
+                        <thead>
+                            <tr>
+                                <th>Divinité</th>
+                                <th>Alignement</th>
+                                <th>Domaines suggérés</th>
+                                <th>Symbole</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Auril, déesse de l'hiver</td><td class="alignment">NM</td><td><span class="domain">Nature</span><span class="domain">Tempête</span></td><td>Flocon de neige à six branches</td></tr>
+                            <tr><td>Azuth, dieu des magiciens</td><td class="alignment">LN</td><td><span class="domain">Savoir</span></td><td>Main gauche pointée vers le haut, dessinée en feu</td></tr>
+                            <tr><td>Bane, dieu de la tyrannie</td><td class="alignment">LM</td><td><span class="domain">Guerre</span></td><td>Main droite noire dressée, pouce et doigts joints</td></tr>
+                            <tr><td>Beshaba, déesse de la malchance</td><td class="alignment">CM</td><td><span class="domain">Ruse</span></td><td>Bois noirs</td></tr>
+                            <tr><td>Bhaal, dieu du meurtre</td><td class="alignment">NM</td><td><span class="domain">Mort</span></td><td>Crâne entouré d'un anneau de gouttes de sang</td></tr>
+                            <tr><td>Chauntea, déesse de l'agriculture</td><td class="alignment">NB</td><td><span class="domain">Vie</span></td><td>Gerbe de blé ou rose fleurie au-dessus de céréales</td></tr>
+                            <tr><td>Cyric, dieu des mensonges</td><td class="alignment">CM</td><td><span class="domain">Ruse</span></td><td>Crâne blanc sans mâchoire sur un éclat solaire noir ou pourpre</td></tr>
+                            <tr><td>Deneir, dieu de l'écriture</td><td class="alignment">NB</td><td><span class="domain">Savoir</span></td><td>Bougie allumée au-dessus d'un oeil ouvert</td></tr>
+                            <tr><td>Eldath, déesse de la paix</td><td class="alignment">NB</td><td><span class="domain">Vie</span><span class="domain">Nature</span></td><td>Cascade plongeant dans un bassin immobile</td></tr>
+                            <tr><td>Gond, dieu de l'artisanat</td><td class="alignment">N</td><td><span class="domain">Savoir</span></td><td>Roue dentée à quatre rayons</td></tr>
+                            <tr><td>Helm, dieu de la protection</td><td class="alignment">LN</td><td><span class="domain">Vie</span><span class="domain">Lumière</span></td><td>Oeil fixe sur un gantelet gauche dressé</td></tr>
+                            <tr><td>Ilmater, dieu de l'endurance</td><td class="alignment">LB</td><td><span class="domain">Vie</span></td><td>Mains liées aux poignets par un cordon rouge</td></tr>
+                            <tr><td>Kelemvor, dieu des morts</td><td class="alignment">LN</td><td><span class="domain">Mort</span></td><td>Bras squelettique dressé tenant une balance équilibrée</td></tr>
+                            <tr><td>Lathander, dieu de la naissance et du renouveau</td><td class="alignment">NB</td><td><span class="domain">Vie</span><span class="domain">Lumière</span></td><td>Route se dirigeant vers un lever de soleil</td></tr>
+                            <tr><td>Leira, déesse de l'illusion</td><td class="alignment">CN</td><td><span class="domain">Ruse</span></td><td>Triangle pointe en bas contenant un tourbillon de brume</td></tr>
+                            <tr><td>Lliira, déesse de la joie</td><td class="alignment">CB</td><td><span class="domain">Vie</span></td><td>Triangle de trois étoiles à six branches</td></tr>
+                            <tr><td>Loviatar, déesse de la douleur</td><td class="alignment">LM</td><td><span class="domain">Mort</span></td><td>Fouet barbelé à neuf lanières</td></tr>
+                            <tr><td>Malar, dieu de la chasse</td><td class="alignment">CM</td><td><span class="domain">Nature</span></td><td>Patte griffue</td></tr>
+                            <tr><td>Mask, dieu des voleurs</td><td class="alignment">CN</td><td><span class="domain">Ruse</span></td><td>Masque noir</td></tr>
+                            <tr><td>Mielikki, déesse des forêts</td><td class="alignment">NB</td><td><span class="domain">Nature</span></td><td>Tête de licorne</td></tr>
+                            <tr><td>Milil, dieu de la poésie et du chant</td><td class="alignment">NB</td><td><span class="domain">Lumière</span></td><td>Harpe à cinq cordes faite de feuilles</td></tr>
+                            <tr><td>Myrkul, dieu de la mort</td><td class="alignment">NM</td><td><span class="domain">Mort</span></td><td>Crâne humain blanc</td></tr>
+                            <tr><td>Mystra, déesse de la magie</td><td class="alignment">NB</td><td><span class="domain">Savoir</span></td><td>Cercle de sept étoiles, neuf étoiles autour d'une brume rouge, ou une étoile seule</td></tr>
+                            <tr><td>Oghma, dieu du savoir</td><td class="alignment">N</td><td><span class="domain">Savoir</span></td><td>Parchemin vierge</td></tr>
+                            <tr><td>Savras, dieu de la divination et du destin</td><td class="alignment">LN</td><td><span class="domain">Savoir</span></td><td>Boule de cristal contenant de nombreux yeux</td></tr>
+                            <tr><td>Selûne, déesse de la lune</td><td class="alignment">CB</td><td><span class="domain">Savoir</span><span class="domain">Vie</span></td><td>Paire d'yeux entourée de sept étoiles</td></tr>
+                            <tr><td>Shar, déesse des ténèbres et de la perte</td><td class="alignment">NM</td><td><span class="domain">Mort</span><span class="domain">Ruse</span></td><td>Disque noir cerclé d'une bordure</td></tr>
+                            <tr><td>Silvanus, dieu de la nature sauvage</td><td class="alignment">N</td><td><span class="domain">Nature</span></td><td>Feuille de chêne</td></tr>
+                            <tr><td>Sune, déesse de l'amour et de la beauté</td><td class="alignment">CB</td><td><span class="domain">Vie</span><span class="domain">Lumière</span></td><td>Visage d'une belle femme aux cheveux roux</td></tr>
+                            <tr><td>Talona, déesse de la maladie et du poison</td><td class="alignment">CM</td><td><span class="domain">Mort</span></td><td>Trois gouttes sur un triangle</td></tr>
+                            <tr><td>Talos, dieu des tempêtes</td><td class="alignment">CM</td><td><span class="domain">Tempête</span></td><td>Trois éclairs irradiant depuis un point central</td></tr>
+                            <tr><td>Tempus, dieu de la guerre</td><td class="alignment">N</td><td><span class="domain">Guerre</span></td><td>Épée flamboyante dressée</td></tr>
+                            <tr><td>Torm, dieu du courage et du sacrifice</td><td class="alignment">LB</td><td><span class="domain">Guerre</span></td><td>Gantelet droit blanc</td></tr>
+                            <tr><td>Tymora, déesse de la bonne fortune</td><td class="alignment">CB</td><td><span class="domain">Ruse</span></td><td>Pièce face visible</td></tr>
+                            <tr><td>Tyr, dieu de la justice</td><td class="alignment">LB</td><td><span class="domain">Guerre</span></td><td>Balance posée sur un marteau de guerre</td></tr>
+                            <tr><td>Umberlee, déesse de la mer</td><td class="alignment">CM</td><td><span class="domain">Tempête</span></td><td>Vague se repliant à gauche et à droite</td></tr>
+                            <tr><td>Waukeen, déesse du commerce</td><td class="alignment">N</td><td><span class="domain">Savoir</span><span class="domain">Ruse</span></td><td>Pièce dressée au profil de Waukeen tourné vers la gauche</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
