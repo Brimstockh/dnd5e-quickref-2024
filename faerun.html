@@ -6,7 +6,6 @@
     <title>D&amp;D 2024 - Les Royaumes Oubliés</title>
     <link rel="stylesheet" href="css/classes.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
     <style>
         .lead {
             font-size: 1.06rem;
@@ -17,40 +16,45 @@
             margin: 0 0 10px;
         }
 
-        .content > p:last-child {
-            margin-bottom: 0;
-        }
-
-        .lore-grid {
+        .toc {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
-            margin: 12px 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px;
+            margin: 14px 0;
         }
 
-        .lore-card {
+        .toc a {
+            display: block;
+            text-decoration: none;
+            color: var(--accent);
+            background: #fff;
             border: 1px solid var(--line);
             border-radius: 8px;
-            background: #fff;
-            padding: 10px 12px;
+            padding: 8px 10px;
+            font-weight: 700;
         }
 
-        .lore-card strong {
-            display: block;
-            color: var(--accent);
-            margin-bottom: 4px;
+        .region-grid {
+            display: grid;
+            gap: 14px;
+            margin-top: 14px;
         }
 
-        .region-block {
-            margin: 14px 0;
-            padding: 12px 14px;
+        .region-card {
             border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
             border-radius: 10px;
             background: #fffdf8;
+            padding: 14px;
         }
 
-        .region-block h3 {
-            margin: 0 0 8px;
+        .region-card h2,
+        .region-card h3 {
+            margin: -14px -14px 10px;
+            padding: 8px 12px;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 6px 6px 0 0;
         }
 
         .tag-row {
@@ -65,10 +69,19 @@
             padding: 3px 8px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: #f7f2e9;
+            background: #fff;
             color: var(--accent);
             font-size: 0.84rem;
             font-weight: 700;
+        }
+
+        .detail-list {
+            margin: 10px 0 0;
+            padding-left: 18px;
+        }
+
+        .detail-list li {
+            margin: 0 0 6px;
         }
 
         .map-toolbar {
@@ -143,13 +156,6 @@
         .map-viewer.is-missing .map-fallback {
             display: grid;
         }
-
-        @media (max-width: 680px) {
-            .map-viewer {
-                height: 62vh;
-                min-height: 300px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -177,134 +183,178 @@
         <section class="card">
             <h1>Les Royaumes Oubliés</h1>
             <div class="content">
-                <p class="lead">Les Royaumes Oubliés sont l'un des cadres les plus célèbres de Dungeons &amp; Dragons. C'est un univers de royaumes humains, de forteresses naines, de cités elfiques cachées, de cultes anciens, de magie omniprésente et de ruines assez vieilles pour avoir vu plusieurs empires naître puis tomber.</p>
-                <p>Le monde où se déroule cette aventure se nomme <strong>Toril</strong>. Le continent le plus connu des joueurs est <strong>Faerûn</strong>, mais il n'est pas seul : <strong>Kara-Tur</strong>, <strong>Maztica</strong> et <strong>Zakhara</strong> font aussi partie du même monde, chacun avec son identité propre.</p>
+                <p class="lead">Le monde des Royaumes Oubliés se nomme <strong>Toril</strong>. Faerûn en est le continent le plus célèbre, mais il partage cette planète avec <strong>Kara-Tur</strong>, <strong>Maztica</strong> et <strong>Zakhara</strong>, chacun possédant sa propre identité culturelle.</p>
+                <p>Faerûn lui-même se divise en grandes régions très différentes, allant des forteresses naines du Nord aux théocraties des Anciens empires, en passant par les royaumes marchands, les déserts nethérisses, les jungles de Chult et les puissances magiques de l'est.</p>
 
-                <h2>Comprendre les Royaumes Oubliés</h2>
-                <div class="lore-grid">
-                    <div class="lore-card">
-                        <strong>Toril</strong>
-                        La planète. Un monde vaste, peuplé de continents très différents, parcouru de routes maritimes, d'empires, de déserts, de jungles et de mers hostiles.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Faerûn</strong>
-                        Le continent emblématique des Royaumes Oubliés. C'est ici que l'on trouve la Côte des Épées, Eauprofonde, Baldur's Gate, Cormyr ou le Thay.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Un monde vivant</strong>
-                        Les royaumes changent, se disputent, concluent des alliances, renaissent après des catastrophes et laissent partout derrière eux des vestiges exploitables par des aventuriers.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Magie et divin</strong>
-                        La magie structure la politique, la guerre et la religion. Les dieux sont réels, actifs, et leurs fidèles influencent directement le destin des nations.
-                    </div>
+                <div class="toc">
+                    <a href="#nord">Le Nord</a>
+                    <a href="#cote-epees">Côte des Épées</a>
+                    <a href="#anauroch">Anauroch</a>
+                    <a href="#mitan">Terres du mitan</a>
+                    <a href="#oubliees">Terres oubliées</a>
+                    <a href="#intrigue">Terres de l'intrigue</a>
+                    <a href="#arcaniques">Empires arcaniques</a>
+                    <a href="#anciens">Anciens empires</a>
+                    <a href="#mer-inviolee">Mer inviolée</a>
+                    <a href="#chult">Chult</a>
+                    <a href="#horde">Terres de la Horde</a>
                 </div>
 
-                <h2>Les grandes régions de Faerûn</h2>
+                <div class="region-grid">
+                    <section class="region-card" id="nord">
+                        <h2>Le Nord</h2>
+                        <div class="tag-row">
+                            <span class="tag">Froid</span>
+                            <span class="tag">Forteresses naines</span>
+                            <span class="tag">Outreterre</span>
+                        </div>
+                        <p>Rien n'est durable dans le Nord. Géants de givre, dragons blancs, maraudeurs et hivers dévastateurs menacent ces terres, déjà marquées par la Guerre des Marches d'Argent et par des affrontements récents entre géants.</p>
+                        <p>Malgré cela, la région reste riche en vallées fertiles, en forêts profondes, en gisements minéraux et en vestiges d'anciens royaumes. La civilisation y survit sous la forme de forteresses isolées, de communautés frontalières, de colons et de nomades qui luttent contre le climat autant que contre les monstres.</p>
+                        <ul class="detail-list">
+                            <li><strong>Alliance des Seigneurs</strong> : coalition de cités rivales comme Padhiver, Lunargent, Castelmithral et Eauprofonde, fondée pour maintenir paix, prospérité et sécurité.</li>
+                            <li><strong>Forteresses naines</strong> : Castelmithral, Adbar, Felbarr, Gauntlgrym, Gardépine ou Maîtrefer héritent de l'ancien Delzoun.</li>
+                            <li><strong>Luskan</strong> : port dégradé dominé par les Hauts Capitaines et la Tour de l'Hôte, siège de la Confrérie des Arcanes.</li>
+                            <li><strong>Menzoberranzan</strong> : cité drow de l'Outreterre, centre du culte de Lolth, dominée par la Maison Baenre.</li>
+                            <li><strong>Valbise</strong> : étendue glacée des Dix-Cités, marquée par Aurile, la chardaline et les ruines liées aux géants du givre ou au Nétheril.</li>
+                        </ul>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Le Nord et la Côte des Épées</h3>
-                    <div class="tag-row">
-                        <span class="tag">Frontière sauvage</span>
-                        <span class="tag">Forteresses naines</span>
-                        <span class="tag">Cités marchandes</span>
-                        <span class="tag">Outreterre</span>
-                    </div>
-                    <p>Le Nord est une terre rude, froide et instable, menacée par les géants, les dragons, les orques, les drows et des hivers meurtriers. Malgré cela, on y trouve des vallées fertiles, des ressources minières, des ruines anciennes et des citadelles isolées qui refusent de tomber.</p>
-                    <p>La <strong>Côte des Épées</strong> concentre certaines des villes les plus célèbres de l'univers, comme <strong>Eauprofonde</strong>, <strong>Neverwinter</strong> et <strong>Baldur's Gate</strong>. On y trouve des intrigues urbaines, des routes commerciales, des activités maritimes et de nombreuses menaces surnaturelles.</p>
-                    <p>Dans les profondeurs, l'<strong>Outreterre</strong> relie de nombreuses zones du Nord. On y trouve notamment <strong>Menzoberranzan</strong>, capitale drow dominée par le culte de Lolth.</p>
-                </div>
+                    <section class="region-card" id="cote-epees">
+                        <h2>La Côte des Épées</h2>
+                        <div class="tag-row">
+                            <span class="tag">Cités-États</span>
+                            <span class="tag">Commerce</span>
+                            <span class="tag">Menaces communes</span>
+                        </div>
+                        <p>Les terres autour d'<strong>Eauprofonde</strong> et de la <strong>Porte de Baldur</strong> ont traversé au cours du dernier siècle l'ascension et la chute de cultes draconiques et élémentaires, des intrigues illithids, des interventions de dieux morts et même des descentes aux enfers.</p>
+                        <p>Contrairement à beaucoup d'autres régions de Faerûn, les cités-États de la Côte des Épées ne se disputent pas principalement les frontières. L'Alliance des Seigneurs pousse ces puissances urbaines à concentrer leurs efforts sur les menaces extérieures. Cette façade maritime compte parmi les zones les plus cosmopolites du continent.</p>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Les Terres du mitan</h3>
-                    <div class="tag-row">
-                        <span class="tag">Cormyr</span>
-                        <span class="tag">Sembie</span>
-                        <span class="tag">Vaux</span>
-                        <span class="tag">Mer de Lune</span>
-                    </div>
-                    <p>Cette région regroupe plusieurs royaumes influents, agricoles et densément peuplés. Le <strong>Cormyr</strong> évoque la chevalerie, l'autorité royale et la discipline militaire. La <strong>Sembie</strong> est tournée vers le commerce, les négociations et l'enrichissement rapide.</p>
-                    <p>Les <strong>Vaux</strong> forment un ensemble de petites vallées politiquement fragmentées, tandis que la <strong>Mer de Lune</strong> est réputée plus dure, plus autoritaire et plus méfiante envers le reste de Faerûn.</p>
-                </div>
+                    <section class="region-card" id="anauroch">
+                        <h2>Anauroch</h2>
+                        <div class="tag-row">
+                            <span class="tag">Désert</span>
+                            <span class="tag">Nomades</span>
+                            <span class="tag">Netheril</span>
+                        </div>
+                        <p>Le désert d'Anauroch et le glacier voisin restent traversés par des caravanes et habités par des peuples nomades adaptés à un environnement brutal. Le climat y est extrême, mais il n'empêche ni la survie ni le commerce.</p>
+                        <p>Des survivants du <strong>Netheril</strong>, revenus de la Gisombre, s'y sont réinstallés avec l'ambition de restaurer leur influence. Aventuriers et chercheurs de reliques fouillent aussi ces terres, attirés par les savoirs et la magie perdus sous le sable et la glace.</p>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Les Terres oubliées</h3>
-                    <div class="tag-row">
-                        <span class="tag">Damarie</span>
-                        <span class="tag">Narfell</span>
-                        <span class="tag">Grand Val</span>
-                        <span class="tag">Ruines anciennes</span>
-                    </div>
-                    <p>Au nord-est de Faerûn s'étend une région austère, riche en secrets, en ruines enfouies, en filons de gemmes et en cités perdues. La <strong>Damarie</strong>, le <strong>Narfell</strong> et le <strong>Grand Val</strong> ont la réputation d'être durs, hostiles et dangereux, mais aussi pleins d'opportunités pour les aventuriers.</p>
-                    <p>On y retrouve des traces d'anciens empires démoniaques et magiques, des peuples endurcis, et de grands espaces où les cartes, les routes sûres et l'autorité politique se font rares.</p>
-                </div>
+                    <section class="region-card" id="mitan">
+                        <h2>Les Terres du mitan</h2>
+                        <div class="tag-row">
+                            <span class="tag">Cormyr</span>
+                            <span class="tag">Sembie</span>
+                            <span class="tag">Vaux</span>
+                            <span class="tag">Mer de Lune</span>
+                        </div>
+                        <p>Cette région regroupe le <strong>Cormyr</strong>, la <strong>Sembie</strong>, les <strong>Vaux</strong> et la <strong>Mer de Lune</strong>. Les terres y sont fertiles, mais les dangers ne manquent pas, des monstres rôdant dans les forêts comme dans les montagnes.</p>
+                        <ul class="detail-list">
+                            <li><strong>Cormyr</strong> : royaume chevaleresque à la tradition militaire puissante, appuyé sur les Chevaliers du Dragon Pourpre et gouverné par la reine Raedra.</li>
+                            <li><strong>Sembie</strong> : jeune puissance commerciale dirigée par des conseils de marchands, de Saerloon à Selgaunt.</li>
+                            <li><strong>Les Vaux</strong> : onze vallées aux gouvernances distinctes, liées par un Conseil annuel des Vallées au solstice d'hiver.</li>
+                            <li><strong>Mer de Lune</strong> : région de cités disparates, souvent despotiques, méfiantes envers le reste de Faerûn.</li>
+                        </ul>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Les Terres de l'intrigue</h3>
-                    <div class="tag-row">
-                        <span class="tag">Amn</span>
-                        <span class="tag">Calimshan</span>
-                        <span class="tag">Téthyr</span>
-                        <span class="tag">Commerce</span>
-                    </div>
-                    <p>Dans cette partie du monde, la guerre se fait autant avec des contrats, des espions et des maisons marchandes qu'avec des armées. <strong>Amn</strong>, <strong>Calimshan</strong> et <strong>Téthyr</strong> se disputent richesses, influence et routes commerciales.</p>
-                    <p>On y trouve des intrigues politiques, du trafic, des luttes de succession, des rivalités entre grandes familles et une magie utilisée comme instrument de pouvoir ou menace interdite.</p>
-                </div>
+                    <section class="region-card" id="oubliees">
+                        <h2>Les Terres oubliées</h2>
+                        <div class="tag-row">
+                            <span class="tag">Damarie</span>
+                            <span class="tag">Narfell</span>
+                            <span class="tag">Grand Val</span>
+                            <span class="tag">Richesses enfouies</span>
+                        </div>
+                        <p>Le nord-est de Faerûn est une terre de secrets magiques perdus, d'empires enfouis et de ressources inexploitées. Sous une apparence austère, on y trouve filons d'or, cavernes gemmées et cités enterrées.</p>
+                        <p>La <strong>Vaasie</strong>, la <strong>Damarie</strong>, le <strong>Narfell</strong> et le <strong>Grand Val</strong> jouissent d'une réputation rude, tandis qu'<strong>Impiltur</strong>, le <strong>Thesk</strong> et le <strong>Vaste</strong> offrent davantage de richesse matérielle.</p>
+                        <ul class="detail-list">
+                            <li><strong>Damarie</strong> : royaume de terres rocailleuses où règne Yarin Manteaudegivre, marqué par la tyrannie et par la menace démoniaque.</li>
+                            <li><strong>Grand Val</strong> : prairie entourée par les forêts de Dun et de Léthyr, domaine de druides, de rôdeurs et de fées, difficile à parcourir sans magie.</li>
+                            <li><strong>Narfell</strong> : plaines couvertes des ruines de Narfell et Raumathar, où certains rêvent encore de relever l'ancienne magie démoniaque.</li>
+                        </ul>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Les Empires arcaniques</h3>
-                    <div class="tag-row">
-                        <span class="tag">Aglarond</span>
-                        <span class="tag">Rashéménie</span>
-                        <span class="tag">Thay</span>
-                        <span class="tag">Magiciens Rouges</span>
-                    </div>
-                    <p>Ici, la magie n'est pas un simple outil : c'est un fondement du pouvoir. En <strong>Aglarond</strong>, la tradition arcanique demeure marquée par l'héritage de la Simbul. En <strong>Rashéménie</strong>, la société est liée à des esprits, des sorcières et des traditions ésotériques locales.</p>
-                    <p>Le <strong>Thay</strong>, quant à lui, est célèbre pour ses <strong>Magiciens Rouges</strong>, son autoritarisme et l'ombre de <strong>Szass Tam</strong>. C'est l'une des grandes puissances magiques et menaçantes de Faerûn.</p>
-                </div>
+                    <section class="region-card" id="intrigue">
+                        <h2>Les Terres de l'intrigue</h2>
+                        <div class="tag-row">
+                            <span class="tag">Amn</span>
+                            <span class="tag">Calimshan</span>
+                            <span class="tag">Téthyr</span>
+                            <span class="tag">Commerce</span>
+                        </div>
+                        <p>L'<strong>Amn</strong>, le <strong>Calimshan</strong> et le <strong>Téthyr</strong> entretiennent des relations civilisées en apparence, tout en se disputant l'autorité sur le commerce de Faerûn. Ici, espionnage, accords agressifs et luttes d'influence comptent autant que les armées.</p>
+                        <ul class="detail-list">
+                            <li><strong>Amn</strong> : royaume le plus riche de Faerûn, dirigé par le Conseil des Cinq ; la magie y est interdite sauf pour les prêtres de Cyric et les Mages encapuchonnés.</li>
+                            <li><strong>Calimshan</strong> : puissance marchande traversée par les rivalités internes des factions de génies et par l'autorité de la sultane Songal.</li>
+                            <li><strong>Téthyr</strong> : royaume travaillé par les questions de lignée, de succession et de légitimité royale.</li>
+                        </ul>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Les Anciens empires</h3>
-                    <div class="tag-row">
-                        <span class="tag">Mulhorande</span>
-                        <span class="tag">Chessenta</span>
-                        <span class="tag">Unther</span>
-                        <span class="tag">Dieux incarnés</span>
-                    </div>
-                    <p>Ces royaumes portent le poids de plusieurs millénaires d'histoire. <strong>Mulhorande</strong>, <strong>Chessenta</strong> et <strong>Unther</strong> possèdent des cultures très marquées, des traditions religieuses puissantes et des mémoires politiques extrêmement anciennes.</p>
-                    <p>On y croise des théocraties, des cités guerrières, des rois-dieux, des rancunes historiques et des paysages qui rappellent les grands empires de l'Antiquité. Pour une campagne, c'est un terrain idéal pour explorer l'héritage, la foi, la conquête et la décadence.</p>
-                </div>
+                    <section class="region-card" id="arcaniques">
+                        <h2>Les Empires arcaniques</h2>
+                        <div class="tag-row">
+                            <span class="tag">Aglarond</span>
+                            <span class="tag">Rashéménie</span>
+                            <span class="tag">Thay</span>
+                            <span class="tag">Magie</span>
+                        </div>
+                        <p>À l'est de Faerûn, trois royaumes fondent leur puissance sur la magie arcanique : la <strong>Rashéménie</strong>, l'<strong>Aglarond</strong> et le <strong>Thay</strong>. Tous ont dû apprendre à composer avec la menace des Magiciens Rouges.</p>
+                        <ul class="detail-list">
+                            <li><strong>Aglarond</strong> : royaume né de l'alliance entre humains et elfes de la forêt de Yuir, marqué par l'héritage de la Simbul et par une tradition de sorcellerie.</li>
+                            <li><strong>Rashéménie</strong> : terre de hathrans, de pactes avec les esprits, de berserkers et de cultes rendus aux Trois.</li>
+                            <li><strong>Thay</strong> : domaine de Szass Tam et des zulkirs, plus complexe qu'une simple nécrocratie, mais toujours dominé par le pouvoir des Magiciens Rouges.</li>
+                        </ul>
+                    </section>
 
-                <div class="region-block">
-                    <h3>Chult, la Mer inviolée et les marges du monde</h3>
-                    <div class="tag-row">
-                        <span class="tag">Jungle</span>
-                        <span class="tag">Dinosaures</span>
-                        <span class="tag">Pirates</span>
-                        <span class="tag">Exploration</span>
-                    </div>
-                    <p><strong>Chult</strong> est une péninsule tropicale redoutable, couverte d'une jungle étouffante, de ruines anciennes et de monstres primaux. C'est un décor d'exploration pure, où les maladies, les morts-vivants et les dinosaures sont des dangers quotidiens.</p>
-                    <p>La <strong>Mer inviolée</strong> est quant à elle infestée de pirates, de sahuagins, de tempêtes et de cultes marins. Plus loin encore, des territoires comme les <strong>Terres de la Horde</strong> rappellent que Faerûn n'est qu'une partie d'un monde beaucoup plus vaste.</p>
-                </div>
+                    <section class="region-card" id="anciens">
+                        <h2>Les Anciens empires</h2>
+                        <div class="tag-row">
+                            <span class="tag">Mulhorande</span>
+                            <span class="tag">Chessenta</span>
+                            <span class="tag">Unther</span>
+                            <span class="tag">Imaskar</span>
+                        </div>
+                        <p>Les plus anciennes civilisations encore actives de Faerûn se trouvent en <strong>Mulhorande</strong>, en <strong>Chessenta</strong> et en <strong>Unther</strong>. Toutes partagent une histoire lointaine issue de la chute d'<strong>Imaskar</strong>, mais ont développé des identités très distinctes.</p>
+                        <ul class="detail-list">
+                            <li><strong>Chessenta</strong> : ensemble de cités-États guerrières, où Tchazzar, roi-dieu revenu sous forme de grand dragon rouge, cherche à rétablir son âge d'or.</li>
+                            <li><strong>Mulhorande</strong> : royaume façonné par des dieux incarnés, gouverné par une théocratie et des pharaons de lignée divine.</li>
+                            <li><strong>Unther</strong> : terre de violence et de tyrannie dominée par Gilgeam et ses fidèles, parmi les plus sombres de Faerûn.</li>
+                        </ul>
+                    </section>
 
-                <h2>Forces et factions marquantes</h2>
-                <div class="lore-grid">
-                    <div class="lore-card">
-                        <strong>Alliance des Seigneurs</strong>
-                        Une coalition pragmatique de cités et de puissances du Nord, créée pour faire face aux menaces communes sans effacer les rivalités locales.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Forteresses naines</strong>
-                        Héritières de royaumes anciens comme Delzoun, elles rappellent que le passé nain continue de structurer la politique et l'exploration du Nord.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Magiciens Rouges du Thay</strong>
-                        Leur influence, leur savoir et leur réputation en font des antagonistes naturels dans de nombreuses campagnes.
-                    </div>
-                    <div class="lore-card">
-                        <strong>Cultes et divinités</strong>
-                        Dans les Royaumes Oubliés, les dieux ne sont pas de simples idées. Leurs prêtres, champions et fanatiques transforment réellement le monde.
-                    </div>
+                    <section class="region-card" id="mer-inviolee">
+                        <h2>La Mer inviolée</h2>
+                        <div class="tag-row">
+                            <span class="tag">Pirates</span>
+                            <span class="tag">Sahuagins</span>
+                            <span class="tag">Îles</span>
+                        </div>
+                        <p>La plupart des routes maritimes longent les côtes pour éviter les eaux froides et dangereuses de la Mer inviolée. Aux tempêtes s'ajoutent les pirates des îles Nelanther, les fidèles d'Umberlie, les sahuagins, les merrows et les royaumes cachés des géants des tempêtes.</p>
+                        <p>On y trouve pourtant plusieurs royaumes insulaires prospères, comme <strong>Mintarn</strong>, les <strong>îles Moonshae</strong> ou <strong>Lantan</strong>, dont le développement reste limité par les dangers de la navigation.</p>
+                    </section>
+
+                    <section class="region-card" id="chult">
+                        <h2>Chult</h2>
+                        <div class="tag-row">
+                            <span class="tag">Jungle</span>
+                            <span class="tag">Dinosaures</span>
+                            <span class="tag">Ruines</span>
+                        </div>
+                        <p><strong>Chult</strong> est une vaste péninsule tropicale recouverte d'une jungle étouffante, de marais, de montagnes et de volcans. La canopée y plonge souvent le sol dans une pénombre permanente, et l'humidité, les maladies et la pourriture y constituent des dangers constants.</p>
+                        <p>La péninsule est célèbre pour ses dinosaures, ses morts-vivants et ses ruines, dont <strong>Mezro</strong> et <strong>Omu</strong>. La principale porte d'entrée du monde civilisé reste <strong>Port Nyanzaru</strong>, cité portuaire sophistiquée dominée par ses Princes Marchands.</p>
+                    </section>
+
+                    <section class="region-card" id="horde">
+                        <h2>Les Terres de la Horde</h2>
+                        <div class="tag-row">
+                            <span class="tag">Steppes</span>
+                            <span class="tag">Nomades</span>
+                            <span class="tag">Chevaux</span>
+                        </div>
+                        <p>Les Terres de la Horde, ou Steppes orientales, s'étendent à l'est de Faerûn. Ce sont des plaines immenses, ponctuées de collines rocheuses et de déserts, soumises à un climat de chaleurs torrides l'été et de froid brutal l'hiver.</p>
+                        <p>Leurs habitants vivent en tribus itinérantes et sont réputés pour leur maîtrise du cheval et de l'arc. Régulièrement, un chef charismatique parvient à fédérer ces clans en une Horde capable de menacer la Rashéménie ou le Thay.</p>
+                    </section>
                 </div>
 
                 <p>Voir aussi : <strong><a href="histoire-royaumes.html">Histoire des Royaumes Oubliés</a></strong>, <strong><a href="personnages-royaumes.html">Personnages importants des Royaumes Oubliés</a></strong> et <strong><a href="groupes-royaumes.html">Groupes importants des Royaumes Oubliés</a></strong>.</p>
