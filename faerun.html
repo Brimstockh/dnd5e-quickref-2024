@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>D&amp;D 2024 - Univers de Faerun</title>
+    <title>D&amp;D 2024 - Les Royaumes Oubliés</title>
     <link rel="stylesheet" href="css/classes.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
@@ -11,6 +11,14 @@
         .lead {
             font-size: 1.06rem;
             color: #3e3a34;
+        }
+
+        .content p {
+            margin: 0 0 10px;
+        }
+
+        .content > p:last-child {
+            margin-bottom: 0;
         }
 
         .lore-grid {
@@ -33,21 +41,34 @@
             margin-bottom: 4px;
         }
 
-        .quote {
-            margin: 12px 0;
+        .region-block {
+            margin: 14px 0;
             padding: 12px 14px;
-            border-left: 4px solid var(--accent);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fffdf8;
+        }
+
+        .region-block h3 {
+            margin: 0 0 8px;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
             background: #f7f2e9;
-            font-family: "Lora", Georgia, serif;
-            color: #3c2a25;
-        }
-
-        .content p {
-            margin: 0 0 10px;
-        }
-
-        .content > p:last-child {
-            margin-bottom: 0;
+            color: var(--accent);
+            font-size: 0.84rem;
+            font-weight: 700;
         }
 
         .map-toolbar {
@@ -135,6 +156,12 @@
     <main class="page">
         <nav class="topnav">
             <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="faerun.html">Royaumes Oubliés</a>
+            <a class="btn" href="histoire-royaumes.html">Histoire</a>
+            <a class="btn" href="divinites.html">Divinités</a>
+            <a class="btn" href="personnages-royaumes.html">Personnages</a>
+            <a class="btn" href="groupes-royaumes.html">Groupes</a>
+            <a class="btn" href="plans-existence.html">Plans</a>
             <a class="btn" href="historique.html">Historiques</a>
             <a class="btn" href="races/index.html">Races</a>
             <a class="btn" href="classes/index.html">Classes</a>
@@ -145,64 +172,144 @@
             <a class="btn" href="spells.html">Sorts</a>
             <a class="btn" href="character-sheet-standalone.html">Template</a>
             <a class="btn" href="quickref.html">Référence rapide</a>
-            <a class="btn" href="faerun.html">Faerun</a>
-            <a class="btn" href="divinites.html">Divinités</a>
         </nav>
 
         <section class="card">
-            <h1>L'univers de Faerun</h1>
+            <h1>Les Royaumes Oubliés</h1>
             <div class="content">
-                <p class="lead">On raconte qu'il existe de nombreux mondes, bien plus que le nôtre. Chacun possède son histoire, ses blessures, ses mythes et ses secrets. Parmi les plus grands se trouve Abeir-Toril, un monde de peuples innombrables, de créatures étranges, de magie et de mystère.</p>
-                <p>Faerun, sur les rivages de ce vaste monde, est un décor taillé pour l'aventure et l'intrigue. Au-dessus comme au-dessous de la terre, tout y semble attendre des voyageurs assez braves, assez fous ou assez désespérés pour s'y engager.</p>
+                <p class="lead">Les Royaumes Oubliés sont l'un des cadres les plus célèbres de Dungeons &amp; Dragons. C'est un univers de royaumes humains, de forteresses naines, de cités elfiques cachées, de cultes anciens, de magie omniprésente et de ruines assez vieilles pour avoir vu plusieurs empires naître puis tomber.</p>
+                <p>Le monde où se déroule cette aventure se nomme <strong>Toril</strong>. Le continent le plus connu des joueurs est <strong>Faerûn</strong>, mais il n'est pas seul : <strong>Kara-Tur</strong>, <strong>Maztica</strong> et <strong>Zakhara</strong> font aussi partie du même monde, chacun avec son identité propre.</p>
 
-                <div class="quote">Un monde ancien, dangereux, merveilleux, où chaque ruine peut dissimuler un trésor, une malédiction ou le début d'une légende.</div>
-
-                <h3>Sous les montagnes</h3>
-                <p>Dans ce monde, les montagnes n'abritent pas seulement le magma et la pierre. Elles cachent aussi des mines tortueuses et les cités des Svirfneblins, les gnomes des profondeurs. Ces artisans récoltent rubis, gemmes et pierres précieuses grâce à leur art de travailler la roche.</p>
-                <p>Dans les profondeurs de leurs mines, ils avancent sans lumière, car leurs yeux percent l'obscurité. Ils se méfient des créatures de l'Outreterre : les horreurs crochues aux bras tranchants, les gricks qui se fondent dans les parois, mais surtout les peuples intelligents et terribles de ce monde souterrain, comme les illithids, les cruels drows et les duergars.</p>
-                <p>L'Outreterre est un monde entier sous la surface. Plus dangereux que les terres d'en haut, mais pas tant que cela.</p>
-
-                <h3>Les terres de la surface</h3>
-                <p>La surface paraît plus familière. On y trouve des cités, des forêts, des lacs, des routes et des marais. Pourtant, ces lieux ont leurs propres périls. Les bosquets proches des villes servent de refuge aux bandits et aux brutes, mais aussi aux créatures des bois : gobelins, gobelours, tertres errants capables d'engloutir un cheval, harpies qui enlèvent les enfants dans la nuit et wyvernes nichées dans les forêts au pied des montagnes.</p>
-
-                <h3>Marais et sorcellerie</h3>
-                <p>Les marais sont le domaine des hommes-lézards, des bullywugs et des mongogols. Ils se ressemblent parfois plus qu'ils ne l'admettent, mais cela ne les empêche pas de se faire la guerre : les hommes-lézards combattent pour le dragon chromatique qu'ils vénèrent, tandis que les bullywugs et les mongogols luttent pour un territoire, un gibier ou un simple avantage.</p>
-                <p>Des vieilles sorcières, des guenaudes nocturnes et des guenaudes vertes y forment leurs covens. Dans leurs huttes humides, elles troquent des babioles inquiétantes : une poupée vaudou pour un amant offensé, les ongles d'un voleur, le scalp d'un roi oublié, l'oeil mariné d'un cyclope, des bocaux remplis de choses vertes et charnues. Elles y rassemblent aussi les ingrédients de magies noires qui prolongent leurs vies contre nature.</p>
-
-                <h3>La magie</h3>
-                <p>La magie est commune en Faerun, et elle prend toutes les formes. Elle peut soigner, protéger et restaurer, ou au contraire relever les morts, profaner les corps et corrompre les vivants.</p>
-                <p>Chez les novices, elle se manifeste par des tours de salon : changer la couleur d'une lumière, faire entendre un murmure, empêcher un bouquet de faner. Chez les plus puissants, elle permet de se téléporter entre les mondes, de ramener les morts, d'ouvrir un vide affamé pour nourrir une horreur ancienne, ou de formuler un souhait capable de changer l'avenir, voire le passé.</p>
-                <p>Certains sorts percent le voile qui sépare les plans : le Plan Matériel, l'Astral, les Neuf Enfers, la Féerie ou l'Abysse. La Gisombre imite la réalité comme un reflet terne du monde matériel. C'est un lieu désolé, foyer planaire de la Reine Corneille, divinité du destin, de la fatalité et donc de la mort.</p>
-
-                <h3>Dieux, héros et fanatiques</h3>
-                <p>De nombreux dieux veillent sur Toril. Des femmes et des hommes de valeur vivent comme champions, parangons ou instruments de leur divinité. Les clercs canalisent leur dévotion et accomplissent, selon leur foi, de grands actes de bonté ou de terribles actes de malice.</p>
-                <p>Les fanatiques peuvent être ceux qui donnent tout aux pauvres et aux opprimés. Ils peuvent aussi être ceux qui sacrifient des innocents pour rendre son pouvoir à un dieu trahi. Faerun est un monde de contrastes, traversé par le grand bien et le grand mal, même si la plupart des âmes demeurent quelque part entre les deux.</p>
-
-                <h3>Cités de la Côte des Épées</h3>
-                <p>Les villes de Faerun fonctionnent comme beaucoup d'autres : elles mêlent richesse et pauvreté, corruption et vertu, opportunités et pièges. Ce sont des centres de commerce, de culture et d'histoire.</p>
+                <h2>Comprendre les Royaumes Oubliés</h2>
                 <div class="lore-grid">
                     <div class="lore-card">
-                        <strong>Neverwinter</strong>
-                        Bâtie au-dessus d'une immense chaleur souterraine, la ville ne connaît jamais les vrais froids. Elle a pourtant frôlé la ruine avec la Spellplague et les machinations d'un nécromancien installé dans le Bois de Neverwinter.
+                        <strong>Toril</strong>
+                        La planète. Un monde vaste, peuplé de continents très différents, parcouru de routes maritimes, d'empires, de déserts, de jungles et de mers hostiles.
                     </div>
                     <div class="lore-card">
-                        <strong>Baldur's Gate</strong>
-                        Une cité côtière de commerce, d'ambition et d'intrigues, où la fortune sourit parfois aux audacieux avant de leur présenter l'addition.
+                        <strong>Faerûn</strong>
+                        Le continent emblématique des Royaumes Oubliés. C'est ici que l'on trouve la Côte des Épées, Eauprofonde, Baldur's Gate, Cormyr ou le Thay.
                     </div>
                     <div class="lore-card">
-                        <strong>Waterdeep</strong>
-                        Une grande ville portuaire, riche en culture, en pouvoir et en secrets, où les rues racontent autant d'histoires que les palais.
+                        <strong>Un monde vivant</strong>
+                        Les royaumes changent, se disputent, concluent des alliances, renaissent après des catastrophes et laissent partout derrière eux des vestiges exploitables par des aventuriers.
+                    </div>
+                    <div class="lore-card">
+                        <strong>Magie et divin</strong>
+                        La magie structure la politique, la guerre et la religion. Les dieux sont réels, actifs, et leurs fidèles influencent directement le destin des nations.
                     </div>
                 </div>
 
-                <h3>Le Nord Sauvage</h3>
-                <p>Icewind Dale mérite son surnom. Les tribus barbares pillent les petits villages de pêche et de commerce, tandis que les survivants doivent affronter les bêtes de l'hiver : les remorhaz semblables à d'immenses mille-pattes, les méphites de glace, les loups hivernaux, les yetis et, plus haut dans les montagnes, les géants du givre. Ces derniers sont lourds, puissants et intelligents, capables de ruse comme de magie.</p>
+                <h2>Les grandes régions de Faerûn</h2>
 
-                <h3>Ruines et reliques</h3>
-                <p>Le monde est ancien. Des civilisations se sont élevées, effondrées, reconstruites sur les ruines des précédentes ou perdues sous la nature. Des trésors antiques ou récents peuvent être découverts dans une forteresse oubliée, dans la salle au trésor d'une liche, dans l'antre d'un dragon ou dans la tour isolée d'un magicien un peu trop inventif.</p>
-                <p>Des artefacts forgés il y a des siècles et des inventions nouvelles attendent ceux qui ont le courage, l'entêtement et parfois l'inconscience de partir les chercher.</p>
+                <div class="region-block">
+                    <h3>Le Nord et la Côte des Épées</h3>
+                    <div class="tag-row">
+                        <span class="tag">Frontière sauvage</span>
+                        <span class="tag">Forteresses naines</span>
+                        <span class="tag">Cités marchandes</span>
+                        <span class="tag">Outreterre</span>
+                    </div>
+                    <p>Le Nord est une terre rude, froide et instable, menacée par les géants, les dragons, les orques, les drows et des hivers meurtriers. Malgré cela, on y trouve des vallées fertiles, des ressources minières, des ruines anciennes et des citadelles isolées qui refusent de tomber.</p>
+                    <p>La <strong>Côte des Épées</strong> concentre certaines des villes les plus célèbres de l'univers, comme <strong>Eauprofonde</strong>, <strong>Neverwinter</strong> et <strong>Baldur's Gate</strong>. On y trouve des intrigues urbaines, des routes commerciales, des activités maritimes et de nombreuses menaces surnaturelles.</p>
+                    <p>Dans les profondeurs, l'<strong>Outreterre</strong> relie de nombreuses zones du Nord. On y trouve notamment <strong>Menzoberranzan</strong>, capitale drow dominée par le culte de Lolth.</p>
+                </div>
 
-                <h3>Carte de Faerun</h3>
+                <div class="region-block">
+                    <h3>Les Terres du mitan</h3>
+                    <div class="tag-row">
+                        <span class="tag">Cormyr</span>
+                        <span class="tag">Sembie</span>
+                        <span class="tag">Vaux</span>
+                        <span class="tag">Mer de Lune</span>
+                    </div>
+                    <p>Cette région regroupe plusieurs royaumes influents, agricoles et densément peuplés. Le <strong>Cormyr</strong> évoque la chevalerie, l'autorité royale et la discipline militaire. La <strong>Sembie</strong> est tournée vers le commerce, les négociations et l'enrichissement rapide.</p>
+                    <p>Les <strong>Vaux</strong> forment un ensemble de petites vallées politiquement fragmentées, tandis que la <strong>Mer de Lune</strong> est réputée plus dure, plus autoritaire et plus méfiante envers le reste de Faerûn.</p>
+                </div>
+
+                <div class="region-block">
+                    <h3>Les Terres oubliées</h3>
+                    <div class="tag-row">
+                        <span class="tag">Damarie</span>
+                        <span class="tag">Narfell</span>
+                        <span class="tag">Grand Val</span>
+                        <span class="tag">Ruines anciennes</span>
+                    </div>
+                    <p>Au nord-est de Faerûn s'étend une région austère, riche en secrets, en ruines enfouies, en filons de gemmes et en cités perdues. La <strong>Damarie</strong>, le <strong>Narfell</strong> et le <strong>Grand Val</strong> ont la réputation d'être durs, hostiles et dangereux, mais aussi pleins d'opportunités pour les aventuriers.</p>
+                    <p>On y retrouve des traces d'anciens empires démoniaques et magiques, des peuples endurcis, et de grands espaces où les cartes, les routes sûres et l'autorité politique se font rares.</p>
+                </div>
+
+                <div class="region-block">
+                    <h3>Les Terres de l'intrigue</h3>
+                    <div class="tag-row">
+                        <span class="tag">Amn</span>
+                        <span class="tag">Calimshan</span>
+                        <span class="tag">Téthyr</span>
+                        <span class="tag">Commerce</span>
+                    </div>
+                    <p>Dans cette partie du monde, la guerre se fait autant avec des contrats, des espions et des maisons marchandes qu'avec des armées. <strong>Amn</strong>, <strong>Calimshan</strong> et <strong>Téthyr</strong> se disputent richesses, influence et routes commerciales.</p>
+                    <p>On y trouve des intrigues politiques, du trafic, des luttes de succession, des rivalités entre grandes familles et une magie utilisée comme instrument de pouvoir ou menace interdite.</p>
+                </div>
+
+                <div class="region-block">
+                    <h3>Les Empires arcaniques</h3>
+                    <div class="tag-row">
+                        <span class="tag">Aglarond</span>
+                        <span class="tag">Rashéménie</span>
+                        <span class="tag">Thay</span>
+                        <span class="tag">Magiciens Rouges</span>
+                    </div>
+                    <p>Ici, la magie n'est pas un simple outil : c'est un fondement du pouvoir. En <strong>Aglarond</strong>, la tradition arcanique demeure marquée par l'héritage de la Simbul. En <strong>Rashéménie</strong>, la société est liée à des esprits, des sorcières et des traditions ésotériques locales.</p>
+                    <p>Le <strong>Thay</strong>, quant à lui, est célèbre pour ses <strong>Magiciens Rouges</strong>, son autoritarisme et l'ombre de <strong>Szass Tam</strong>. C'est l'une des grandes puissances magiques et menaçantes de Faerûn.</p>
+                </div>
+
+                <div class="region-block">
+                    <h3>Les Anciens empires</h3>
+                    <div class="tag-row">
+                        <span class="tag">Mulhorande</span>
+                        <span class="tag">Chessenta</span>
+                        <span class="tag">Unther</span>
+                        <span class="tag">Dieux incarnés</span>
+                    </div>
+                    <p>Ces royaumes portent le poids de plusieurs millénaires d'histoire. <strong>Mulhorande</strong>, <strong>Chessenta</strong> et <strong>Unther</strong> possèdent des cultures très marquées, des traditions religieuses puissantes et des mémoires politiques extrêmement anciennes.</p>
+                    <p>On y croise des théocraties, des cités guerrières, des rois-dieux, des rancunes historiques et des paysages qui rappellent les grands empires de l'Antiquité. Pour une campagne, c'est un terrain idéal pour explorer l'héritage, la foi, la conquête et la décadence.</p>
+                </div>
+
+                <div class="region-block">
+                    <h3>Chult, la Mer inviolée et les marges du monde</h3>
+                    <div class="tag-row">
+                        <span class="tag">Jungle</span>
+                        <span class="tag">Dinosaures</span>
+                        <span class="tag">Pirates</span>
+                        <span class="tag">Exploration</span>
+                    </div>
+                    <p><strong>Chult</strong> est une péninsule tropicale redoutable, couverte d'une jungle étouffante, de ruines anciennes et de monstres primaux. C'est un décor d'exploration pure, où les maladies, les morts-vivants et les dinosaures sont des dangers quotidiens.</p>
+                    <p>La <strong>Mer inviolée</strong> est quant à elle infestée de pirates, de sahuagins, de tempêtes et de cultes marins. Plus loin encore, des territoires comme les <strong>Terres de la Horde</strong> rappellent que Faerûn n'est qu'une partie d'un monde beaucoup plus vaste.</p>
+                </div>
+
+                <h2>Forces et factions marquantes</h2>
+                <div class="lore-grid">
+                    <div class="lore-card">
+                        <strong>Alliance des Seigneurs</strong>
+                        Une coalition pragmatique de cités et de puissances du Nord, créée pour faire face aux menaces communes sans effacer les rivalités locales.
+                    </div>
+                    <div class="lore-card">
+                        <strong>Forteresses naines</strong>
+                        Héritières de royaumes anciens comme Delzoun, elles rappellent que le passé nain continue de structurer la politique et l'exploration du Nord.
+                    </div>
+                    <div class="lore-card">
+                        <strong>Magiciens Rouges du Thay</strong>
+                        Leur influence, leur savoir et leur réputation en font des antagonistes naturels dans de nombreuses campagnes.
+                    </div>
+                    <div class="lore-card">
+                        <strong>Cultes et divinités</strong>
+                        Dans les Royaumes Oubliés, les dieux ne sont pas de simples idées. Leurs prêtres, champions et fanatiques transforment réellement le monde.
+                    </div>
+                </div>
+
+                <p>Voir aussi : <strong><a href="histoire-royaumes.html">Histoire des Royaumes Oubliés</a></strong>, <strong><a href="personnages-royaumes.html">Personnages importants des Royaumes Oubliés</a></strong> et <strong><a href="groupes-royaumes.html">Groupes importants des Royaumes Oubliés</a></strong>.</p>
+
+                <h2>Carte de Faerûn</h2>
                 <div class="map-toolbar" aria-label="Contrôles de la carte">
                     <button type="button" data-map-zoom-out aria-label="Dézoomer">-</button>
                     <button type="button" data-map-zoom-in aria-label="Zoomer">+</button>
@@ -210,10 +317,9 @@
                     <span class="map-zoom-value" data-map-zoom-value>100%</span>
                 </div>
                 <div class="map-viewer" data-map-viewer>
-                    <img src="img/map/faerun-map.jpg" alt="Carte de Faerun" data-map-image />
-                    <div class="map-fallback">Carte introuvable : img/faerun-map.jpg</div>
+                    <img src="img/map/faerun-map.jpg" alt="Carte de Faerûn" data-map-image />
+                    <div class="map-fallback">Carte introuvable : img/map/faerun-map.jpg</div>
                 </div>
-
             </div>
         </section>
     </main>
@@ -243,7 +349,7 @@
             function applyTransform() {
                 state.scale = clamp(state.scale, state.minScale, state.maxScale);
                 image.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
-                zoomValue.textContent = `${Math.round(state.scale * 100)}%`;
+                if (zoomValue) zoomValue.textContent = `${Math.round(state.scale * 100)}%`;
             }
 
             function zoomAt(nextScale, clientX, clientY) {
@@ -259,77 +365,110 @@
                 applyTransform();
             }
 
-            function resetMap() {
+            function resetView() {
                 state.scale = 1;
                 state.x = 0;
                 state.y = 0;
                 applyTransform();
             }
 
-            zoomIn.addEventListener("click", () => {
-                const rect = viewer.getBoundingClientRect();
-                zoomAt(state.scale + 0.35, rect.left + rect.width / 2, rect.top + rect.height / 2);
-            });
+            function getPointerDistance() {
+                const pointers = [...state.pointers.values()];
+                if (pointers.length < 2) return 0;
+                const dx = pointers[0].clientX - pointers[1].clientX;
+                const dy = pointers[0].clientY - pointers[1].clientY;
+                return Math.hypot(dx, dy);
+            }
 
-            zoomOut.addEventListener("click", () => {
-                const rect = viewer.getBoundingClientRect();
-                zoomAt(state.scale - 0.35, rect.left + rect.width / 2, rect.top + rect.height / 2);
-            });
-
-            reset.addEventListener("click", resetMap);
-
-            viewer.addEventListener("wheel", (event) => {
-                event.preventDefault();
-                const direction = event.deltaY > 0 ? -0.18 : 0.18;
-                zoomAt(state.scale + direction, event.clientX, event.clientY);
-            }, { passive: false });
+            let dragPointerId = null;
+            let dragStartX = 0;
+            let dragStartY = 0;
+            let dragOriginX = 0;
+            let dragOriginY = 0;
 
             viewer.addEventListener("pointerdown", (event) => {
                 viewer.setPointerCapture(event.pointerId);
-                viewer.classList.add("is-dragging");
-                state.pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+                state.pointers.set(event.pointerId, { clientX: event.clientX, clientY: event.clientY });
+
+                if (state.pointers.size === 1) {
+                    dragPointerId = event.pointerId;
+                    dragStartX = event.clientX;
+                    dragStartY = event.clientY;
+                    dragOriginX = state.x;
+                    dragOriginY = state.y;
+                    viewer.classList.add("is-dragging");
+                } else if (state.pointers.size === 2) {
+                    state.lastPinchDistance = getPointerDistance();
+                    dragPointerId = null;
+                    viewer.classList.remove("is-dragging");
+                }
             });
 
             viewer.addEventListener("pointermove", (event) => {
                 if (!state.pointers.has(event.pointerId)) return;
+                state.pointers.set(event.pointerId, { clientX: event.clientX, clientY: event.clientY });
 
-                const previous = state.pointers.get(event.pointerId);
-                state.pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-
-                if (state.pointers.size === 1) {
-                    state.x += event.clientX - previous.x;
-                    state.y += event.clientY - previous.y;
-                    applyTransform();
+                if (state.pointers.size === 2) {
+                    const distance = getPointerDistance();
+                    if (state.lastPinchDistance) {
+                        const midpoint = [...state.pointers.values()].reduce(
+                            (acc, pointer) => ({ clientX: acc.clientX + pointer.clientX / 2, clientY: acc.clientY + pointer.clientY / 2 }),
+                            { clientX: 0, clientY: 0 }
+                        );
+                        zoomAt(state.scale * (distance / state.lastPinchDistance), midpoint.clientX, midpoint.clientY);
+                    }
+                    state.lastPinchDistance = distance;
                     return;
                 }
 
-                const points = Array.from(state.pointers.values());
-                const distance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
-                const centerX = (points[0].x + points[1].x) / 2;
-                const centerY = (points[0].y + points[1].y) / 2;
-
-                if (state.lastPinchDistance) {
-                    zoomAt(state.scale * (distance / state.lastPinchDistance), centerX, centerY);
+                if (event.pointerId === dragPointerId) {
+                    state.x = dragOriginX + (event.clientX - dragStartX);
+                    state.y = dragOriginY + (event.clientY - dragStartY);
+                    applyTransform();
                 }
-                state.lastPinchDistance = distance;
             });
 
-            function endPointer(event) {
+            function releasePointer(event) {
                 state.pointers.delete(event.pointerId);
-                state.lastPinchDistance = 0;
-                if (state.pointers.size === 0) {
+                if (state.pointers.size < 2) state.lastPinchDistance = 0;
+                if (event.pointerId === dragPointerId) {
+                    dragPointerId = null;
                     viewer.classList.remove("is-dragging");
                 }
             }
 
-            viewer.addEventListener("pointerup", endPointer);
-            viewer.addEventListener("pointercancel", endPointer);
-            viewer.addEventListener("pointerleave", endPointer);
+            viewer.addEventListener("pointerup", releasePointer);
+            viewer.addEventListener("pointercancel", releasePointer);
+            viewer.addEventListener("pointerleave", releasePointer);
 
-            image.addEventListener("load", resetMap);
+            viewer.addEventListener("wheel", (event) => {
+                event.preventDefault();
+                const delta = event.deltaY < 0 ? 1.1 : 0.9;
+                zoomAt(state.scale * delta, event.clientX, event.clientY);
+            }, { passive: false });
+
+            if (zoomIn) {
+                zoomIn.addEventListener("click", () => {
+                    const rect = viewer.getBoundingClientRect();
+                    zoomAt(state.scale * 1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+
+            if (zoomOut) {
+                zoomOut.addEventListener("click", () => {
+                    const rect = viewer.getBoundingClientRect();
+                    zoomAt(state.scale * 0.85, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+
+            if (reset) {
+                reset.addEventListener("click", resetView);
+            }
+
             image.addEventListener("error", () => {
                 viewer.classList.add("is-missing");
             });
+
             applyTransform();
         })();
     </script>

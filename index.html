@@ -51,6 +51,26 @@
             color: #4c4c4c;
         }
 
+        .section-block {
+            margin: 0 0 18px;
+            padding: 16px;
+            background: rgba(255, 254, 249, 0.82);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .section-block h2 {
+            margin: 0 0 6px;
+            font-family: "Lora", Georgia, serif;
+            color: var(--accent);
+            font-size: 1.35rem;
+        }
+
+        .section-block p {
+            margin: 0 0 12px;
+            color: #555;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -91,66 +111,100 @@
 <body>
     <main class="page">
         <section class="hero">
-            <h1>D&D 2024 - Accueil</h1>
+            <h1>D&D 2024 - Royaumes Oubliés</h1>
         </section>
 
-        <section class="grid">
-            <a class="card" href="quickref.html">
-                <strong>Référence rapide</strong>
-                <span>Actions, déplacements, réactions, états et environnement en combat.</span>
-            </a>
-            <a class="card" href="classes/index.html">
-                <strong>Guides de classes</strong>
-                <span>Fiches débutant pour les 12 classes, avec navigation par classe.</span>
-            </a>
-            <a class="card" href="dons.html">
-                <strong>Dons D&amp;D 2024</strong>
-                <span>Recherche, tri et consultation des dons par catégorie, prérequis et répétabilité.</span>
-            </a>
-            <a class="card" href="historique.html">
-                <strong>Historiques</strong>
-                <span>Description des 16 historiques, avec dons, compétences, équipements et résumés narratifs.</span>
-            </a>
-            <a class="card" href="races/index.html">
-                <strong>Races D&D 2024</strong>
-                <span>Introduction aux races, à leur rôle narratif et à leurs traits principaux.</span>
-            </a>
-            <a class="card" href="spells.html">
-                <strong>Sorts D&D 2024</strong>
-                <span>Catalogue des sorts avec filtres par niveau et classes.</span>
-            </a>
-            <a class="card" href="rules-2024.html">
-                <strong>Règles D&D 2024</strong>
-                <span>Résumé des règles générales et points importants de la version 2024.</span>
-            </a>
-            <a class="card" href="mastery-2024.html">
-                <strong>Maîtrise et actions</strong>
-                <span>Référence dédiée aux maîtrises d'armes et options d'action.</span>
-            </a>
-            <a class="card" href="combat-2024.html">
-                <strong>Combat et dégâts</strong>
-                <span>Résumé de l'initiative, attaques, conditions de combat et types de dégâts.</span>
-            </a>
-            <a class="card" href="character-sheet-standalone.html">
-                <strong>Character Sheet Standalone</strong>
-                <span>Nouvelle feuille autonome avec sauvegarde locale, import/export JSON et sections compactes.</span>
-            </a>
-            <a class="card" href="html/characters.html">
-                <strong>Personnages</strong>
-                <span>Accès aux fiches de personnage (lecture) depuis des JSON.</span>
-            </a>
-            <a class="card" href="creation-personnage-2024.html">
-                <strong>Création de personnage</strong>
-                <span>Conseils pour la création de personnages à partir du manuel des joueurs.</span>
-            </a>
-            <a class="card" href="faerun.html">
-                <strong>Univers de Faerun</strong>
-                <span>Introduction narrative à Abeir-Toril, la Côte des Épées, l'Outreterre, la magie et les dangers du monde.</span>
-            </a>
-            <a class="card" href="divinites.html">
-                <strong>Divinités des Royaumes Oubliés</strong>
-                <span>Panthéon de Faerûn, domaines suggérés, symboles sacrés et notes sur les dieux non humains.</span>
-            </a>
+        <section class="section-block">
+            <h2>Règles du jeu de rôle</h2>
+            <p>Retrouve ici les références utiles en session pour arbitrer une action, un combat, un sort ou une règle particulière.</p>
+            <div class="grid">
+                <a class="card" href="quickref.html">
+                    <strong>Référence rapide</strong>
+                    <span>Actions, déplacements, réactions, états et environnement en combat.</span>
+                </a>
+                <a class="card" href="rules-2024.html">
+                    <strong>Règles D&amp;D 2024</strong>
+                    <span>Résumé des règles générales et points importants de la version 2024.</span>
+                </a>
+                <a class="card" href="mastery-2024.html">
+                    <strong>Maîtrise et actions</strong>
+                    <span>Référence dédiée aux maîtrises d'armes et options d'action.</span>
+                </a>
+                <a class="card" href="combat-2024.html">
+                    <strong>Combat et dégâts</strong>
+                    <span>Résumé de l'initiative, attaques, conditions de combat et types de dégâts.</span>
+                </a>
+                <a class="card" href="spells.html">
+                    <strong>Sorts D&amp;D 2024</strong>
+                    <span>Catalogue des sorts avec filtres par niveau et classes.</span>
+                </a>
+                <a class="card" href="dons.html">
+                    <strong>Dons D&amp;D 2024</strong>
+                    <span>Recherche, tri et consultation des dons par catégorie, prérequis et répétabilité.</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2>Création de personnage</h2>
+            <p>Cette section rassemble les pages utiles pour concevoir un personnage, choisir ses options et consulter ses fiches.</p>
+            <div class="grid">
+                <a class="card" href="creation-personnage-2024.html">
+                    <strong>Création de personnage</strong>
+                    <span>Conseils pour la création de personnages à partir du manuel des joueurs.</span>
+                </a>
+                <a class="card" href="classes/index.html">
+                    <strong>Guides de classes</strong>
+                    <span>Fiches débutant pour les 12 classes, avec navigation par classe.</span>
+                </a>
+                <a class="card" href="races/index.html">
+                    <strong>Races D&amp;D 2024</strong>
+                    <span>Introduction aux races, à leur rôle narratif et à leurs traits principaux.</span>
+                </a>
+                <a class="card" href="historique.html">
+                    <strong>Historiques</strong>
+                    <span>Description des 16 historiques, avec dons, compétences, équipements et résumés narratifs.</span>
+                </a>
+                <a class="card" href="character-sheet-standalone.html">
+                    <strong>Character Sheet Standalone</strong>
+                    <span>Nouvelle feuille autonome avec sauvegarde locale, import/export JSON et sections compactes.</span>
+                </a>
+                <a class="card" href="html/characters.html">
+                    <strong>Personnages</strong>
+                    <span>Accès aux fiches de personnage (lecture) depuis des JSON.</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2>Histoire du monde</h2>
+            <p>Pour poser le décor d'une campagne dans les Royaumes Oubliés, explorer Faerûn et mieux comprendre les forces divines qui façonnent le monde.</p>
+            <div class="grid">
+                <a class="card" href="faerun.html">
+                    <strong>Les Royaumes Oubliés</strong>
+                    <span>Vue d'ensemble de Toril et de Faerûn, des grandes régions, des factions et des grands thèmes du cadre de jeu.</span>
+                </a>
+                <a class="card" href="divinites.html">
+                    <strong>Divinités des Royaumes Oubliés</strong>
+                    <span>Panthéon de Faerûn, domaines suggérés, symboles sacrés et notes sur les dieux non humains.</span>
+                </a>
+                <a class="card" href="histoire-royaumes.html">
+                    <strong>Histoire des Royaumes Oubliés</strong>
+                    <span>Chronologie des grands bouleversements : Temps des Troubles, retour du Nétheril, Magepeste et Fracture.</span>
+                </a>
+                <a class="card" href="personnages-royaumes.html">
+                    <strong>Personnages importants des Royaumes Oubliés</strong>
+                    <span>Grandes figures de Faerûn : mages légendaires, aventuriers, tyrans et maîtres de l'intrigue.</span>
+                </a>
+                <a class="card" href="groupes-royaumes.html">
+                    <strong>Groupes importants des Royaumes Oubliés</strong>
+                    <span>Grandes factions, ordres, réseaux et cultes qui influencent Faerûn au quotidien.</span>
+                </a>
+                <a class="card" href="plans-existence.html">
+                    <strong>Les plans d'existence</strong>
+                    <span>Vue d'ensemble du Plan matériel, de la Féerie, de la Gisombre, des plans extérieurs et des autres réalités de D&amp;D.</span>
+                </a>
+            </div>
         </section>
 
         <section class="quicklinks" data-quicklinks data-quicklinks-key="home">
