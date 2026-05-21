@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Outils et matériel d'aventurier</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .lead {
+            color: #3e3a34;
+            font-size: 1.05rem;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .rule-box {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .rule-box strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .equipment-table {
+            min-width: 760px;
+        }
+
+        .equipment-table .group-row td {
+            background: #f7f2e9;
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 10px;
+        }
+
+        .tool-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .tool-card h4 {
+            margin-top: 0;
+        }
+
+        .tool-card p {
+            margin: 6px 0 0;
+        }
+
+        .item-notes {
+            columns: 2 280px;
+            column-gap: 18px;
+        }
+
+        .item-notes h4 {
+            break-after: avoid;
+            margin-top: 0;
+        }
+
+        .item-notes p {
+            break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="creation-personnage-2024.html">Création</a>
+            <a class="btn" href="classes/index.html">Classes</a>
+            <a class="btn" href="races/index.html">Races</a>
+            <a class="btn" href="historique.html">Historiques</a>
+            <a class="btn" href="armes-armures.html">Armes &amp; armures</a>
+            <a class="btn" href="character-sheet-standalone.html">Template</a>
+        </nav>
+
+        <section class="card">
+            <h1>Outils et matériel d'aventurier</h1>
+            <div class="content">
+                <p class="lead">Cette page rassemble les outils, les pièces de monnaie et le matériel courant que les aventuriers achètent, fabriquent, transportent ou utilisent pendant l'exploration.</p>
+
+                <div class="rules-grid">
+                    <div class="rule-box">
+                        <strong>Maîtrise d'outils</strong>
+                        Si vous avez la maîtrise d'un outil, ajoutez votre bonus de maîtrise aux jets de caractéristique correspondants. Si une compétence maîtrisée s'applique aussi, vous avez l'avantage.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Utilisation</strong>
+                        Les entrées d'outil indiquent des usages possibles avec l'action Utilisation, avec un DD quand il est précisé.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Artisanat</strong>
+                        Certains outils permettent de fabriquer des objets, potions, parchemins ou pièces d'équipement.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Pièces</strong>
+                        100 pc = 10 pa = 2 pe = 1 po. Une pièce pèse environ 10 g, donc 100 pièces pèsent 1 kg.
+                    </div>
+                </div>
+
+                <h3>Pièces de monnaie</h3>
+                <div class="table-scroll">
+                    <table>
+                        <thead><tr><th>Pièce</th><th>Valeur en po</th></tr></thead>
+                        <tbody>
+                            <tr><td>Pièce de cuivre (pc)</td><td>1/100</td></tr>
+                            <tr><td>Pièce d'argent (pa)</td><td>1/10</td></tr>
+                            <tr><td>Pièce d'électrum (pe)</td><td>1/2</td></tr>
+                            <tr><td>Pièce d'or (po)</td><td>1</td></tr>
+                            <tr><td>Pièce de platine (pp)</td><td>10</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Outils d'artisan</h3>
+                <p>Les outils d'artisan sont axés sur la fabrication et l'exercice d'un métier. Chaque outil demande une maîtrise distincte.</p>
+                <div class="tool-list">
+                    <div class="tool-card"><h4>Matériel d'alchimiste (50 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Identifier une substance DD 15, allumer un feu DD 15.</p><p><strong>Artisanat.</strong> Acide, feu grégeois, huile, papier, parfum, sacoche à composantes.</p></div>
+                    <div class="tool-card"><h4>Matériel de brasseur (20 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 4,5 kg.</p><p><strong>Utilisation.</strong> Détecter une boisson empoisonnée DD 15, identifier un alcool DD 10.</p><p><strong>Artisanat.</strong> Antidote.</p></div>
+                    <div class="tool-card"><h4>Matériel de calligraphe (10 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Écrire avec des fioritures difficiles à contrefaire DD 15.</p><p><strong>Artisanat.</strong> Encre, parchemin de sort.</p></div>
+                    <div class="tool-card"><h4>Matériel de peintre (10 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Produire une image ressemblante DD 10.</p><p><strong>Artisanat.</strong> Focaliseur druidique, symbole sacré.</p></div>
+                    <div class="tool-card"><h4>Outils de bricoleur (50 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 5 kg.</p><p><strong>Utilisation.</strong> Assembler un petit objet temporaire de ferraille DD 20.</p><p><strong>Artisanat.</strong> Mousquet, pistolet, lanterne, menottes, piège, serrure, sifflet et autres objets techniques.</p></div>
+                    <div class="tool-card"><h4>Outils de cartographe (15 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 3 kg.</p><p><strong>Utilisation.</strong> Cartographier une petite région DD 15.</p><p><strong>Artisanat.</strong> Carte.</p></div>
+                    <div class="tool-card"><h4>Outils de charpentier (8 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 3 kg.</p><p><strong>Utilisation.</strong> Sceller ou forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Bâton, bélier, coffre, échelle, gourdin, massue, torche.</p></div>
+                    <div class="tool-card"><h4>Outils de cordonnier (5 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Modifier des chaussures pour avantager la prochaine Acrobaties DD 10.</p><p><strong>Artisanat.</strong> Matériel d'escalade.</p></div>
+                    <div class="tool-card"><h4>Outils de forgeron (20 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Armes de corps à corps, armures intermédiaires et lourdes, munitions, chaînes, grappin, pied-de-biche.</p></div>
+                    <div class="tool-card"><h4>Outils de joaillier (25 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Déterminer la valeur d'une gemme DD 15.</p><p><strong>Artisanat.</strong> Focaliseur arcanique, symbole sacré.</p></div>
+                    <div class="tool-card"><h4>Outils de maçon (10 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Ciseler un symbole ou creuser la pierre DD 10.</p><p><strong>Artisanat.</strong> Palan.</p></div>
+                    <div class="tool-card"><h4>Outils de menuisier (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Sculpter un motif dans le bois DD 10.</p><p><strong>Artisanat.</strong> Armes à distance, flèches, carreaux, focaliseurs, porte-plume.</p></div>
+                    <div class="tool-card"><h4>Outils de potier (10 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Déterminer le contenu récent d'un objet céramique DD 15.</p><p><strong>Artisanat.</strong> Cruche, lampe.</p></div>
+                    <div class="tool-card"><h4>Outils de souffleur de verre (30 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Déterminer le contenu récent d'un objet en verre DD 15.</p><p><strong>Artisanat.</strong> Bouteille, fiole, longue-vue, loupe.</p></div>
+                    <div class="tool-card"><h4>Outils de tanneur (5 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Ajouter un motif à un objet en cuir DD 10.</p><p><strong>Artisanat.</strong> Fouet, fronde, armures de cuir, carquois, étuis, outres, sacs.</p></div>
+                    <div class="tool-card"><h4>Outils de tisserand (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Raccommoder ou coudre un motif DD 10.</p><p><strong>Artisanat.</strong> Armure matelassée, habits, corde, couverture, filet, robe, sac, tente.</p></div>
+                    <div class="tool-card"><h4>Ustensiles de cuisinier (1 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Améliorer la saveur DD 10, détecter un plat avarié ou empoisonné DD 15.</p><p><strong>Artisanat.</strong> Rations.</p></div>
+                </div>
+
+                <h3>Autres outils</h3>
+                <div class="tool-list">
+                    <div class="tool-card"><h4>Accessoires de déguisement (25 po)</h4><p><strong>Carac.</strong> Charisme. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Appliquer du maquillage DD 10.</p><p><strong>Artisanat.</strong> Costume.</p></div>
+                    <div class="tool-card"><h4>Boîte de jeux (variable)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> -.</p><p><strong>Utilisation.</strong> Déterminer si quelqu'un triche DD 10, gagner la partie DD 20.</p><p><strong>Variantes.</strong> Cartes, dés, échecs draconiques, jeu des dragons.</p></div>
+                    <div class="tool-card"><h4>Instrument de musique (variable)</h4><p><strong>Carac.</strong> Charisme. <strong>Poids.</strong> variable.</p><p><strong>Utilisation.</strong> Jouer un air connu DD 10, improviser une chanson DD 15.</p><p><strong>Variantes.</strong> Chalemie, cor, cornemuse, flûte, flûte de pan, luth, lyre, tambour, tympanon, viole.</p></div>
+                    <div class="tool-card"><h4>Instruments de navigateur (25 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Tracer un cap DD 10, déterminer sa position aux étoiles DD 15.</p></div>
+                    <div class="tool-card"><h4>Matériel d'empoisonneur (50 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Déterminer qu'un objet est empoisonné DD 10.</p><p><strong>Artisanat.</strong> Poison standard.</p></div>
+                    <div class="tool-card"><h4>Matériel d'herboriste (5 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Identifier une plante DD 10.</p><p><strong>Artisanat.</strong> Antidote, bougie, trousse de soins, potion de guérison.</p></div>
+                    <div class="tool-card"><h4>Matériel de contrefaçon (15 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Imiter jusqu'à 10 mots DD 15, reproduire un cachet de cire DD 20.</p></div>
+                    <div class="tool-card"><h4>Outils de voleur (25 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 0,5 kg.</p><p><strong>Utilisation.</strong> Crocheter une serrure DD 15, désamorcer un piège DD 15.</p></div>
+                </div>
+
+                <h3>Matériel d'aventurier</h3>
+                <div class="table-scroll">
+                    <table class="equipment-table">
+                        <thead><tr><th>Objet</th><th>Poids</th><th>Prix</th></tr></thead>
+                        <tbody>
+                            <tr><td>Acide</td><td>0,5 kg</td><td>25 po</td></tr>
+                            <tr><td>Antidote</td><td>-</td><td>50 po</td></tr>
+                            <tr><td>Beaux habits</td><td>3 kg</td><td>15 po</td></tr>
+                            <tr><td>Bélier portable</td><td>17,5 kg</td><td>4 po</td></tr>
+                            <tr><td>Billes</td><td>1 kg</td><td>1 po</td></tr>
+                            <tr><td>Boîte à amadou</td><td>0,5 kg</td><td>5 pa</td></tr>
+                            <tr><td>Bougie</td><td>-</td><td>1 pc</td></tr>
+                            <tr><td>Bouteille, verre</td><td>1 kg</td><td>2 po</td></tr>
+                            <tr><td>Cadenas</td><td>0,5 kg</td><td>10 po</td></tr>
+                            <tr><td>Carquois</td><td>0,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Carte</td><td>-</td><td>1 po</td></tr>
+                            <tr><td>Chaîne</td><td>5 kg</td><td>5 po</td></tr>
+                            <tr><td>Chausse-trappes</td><td>1 kg</td><td>1 po</td></tr>
+                            <tr><td>Coffre</td><td>12,5 kg</td><td>5 po</td></tr>
+                            <tr><td>Corde</td><td>2,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Eau bénite</td><td>0,5 kg</td><td>25 po</td></tr>
+                            <tr><td>Feu grégeois</td><td>0,5 kg</td><td>50 po</td></tr>
+                            <tr><td>Filet</td><td>1,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Focaliseur arcanique</td><td>Variable</td><td>Variable</td></tr>
+                            <tr><td>Focaliseur druidique</td><td>Variable</td><td>Variable</td></tr>
+                            <tr><td>Grappin</td><td>2 kg</td><td>2 po</td></tr>
+                            <tr><td>Huile</td><td>0,5 kg</td><td>1 pa</td></tr>
+                            <tr><td>Lampe</td><td>0,5 kg</td><td>5 pa</td></tr>
+                            <tr><td>Lanterne à capote</td><td>1 kg</td><td>5 po</td></tr>
+                            <tr><td>Lanterne sourde</td><td>1 kg</td><td>10 po</td></tr>
+                            <tr><td>Livre</td><td>2,5 kg</td><td>25 po</td></tr>
+                            <tr><td>Longue-vue</td><td>0,5 kg</td><td>1000 po</td></tr>
+                            <tr><td>Loupe</td><td>-</td><td>100 po</td></tr>
+                            <tr><td>Matériel d'escalade</td><td>6 kg</td><td>25 po</td></tr>
+                            <tr><td>Menottes</td><td>3 kg</td><td>2 po</td></tr>
+                            <tr><td>Munitions</td><td>Variable</td><td>Variable</td></tr>
+                            <tr><td>Outre pleine</td><td>2,5 kg</td><td>2 pa</td></tr>
+                            <tr><td>Palan</td><td>2,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Paquetage d'artiste</td><td>29 kg</td><td>40 po</td></tr>
+                            <tr><td>Paquetage d'ecclésiastique</td><td>14,5 kg</td><td>33 po</td></tr>
+                            <tr><td>Paquetage d'érudit</td><td>11 kg</td><td>40 po</td></tr>
+                            <tr><td>Paquetage d'explorateur</td><td>27,5 kg</td><td>10 po</td></tr>
+                            <tr><td>Paquetage d'exploration souterraine</td><td>27,5 kg</td><td>12 po</td></tr>
+                            <tr><td>Paquetage de cambrioleur</td><td>21 kg</td><td>16 po</td></tr>
+                            <tr><td>Paquetage de diplomate</td><td>19,5 kg</td><td>39 po</td></tr>
+                            <tr><td>Parchemin de sort (sort mineur)</td><td>-</td><td>30 po</td></tr>
+                            <tr><td>Parchemin de sort (1er niveau)</td><td>-</td><td>50 po</td></tr>
+                            <tr><td>Pied-de-biche</td><td>2,5 kg</td><td>2 po</td></tr>
+                            <tr><td>Piège à mâchoires</td><td>12,5 kg</td><td>5 po</td></tr>
+                            <tr><td>Poison standard</td><td>-</td><td>100 po</td></tr>
+                            <tr><td>Potion de guérison</td><td>250 g</td><td>50 po</td></tr>
+                            <tr><td>Rations</td><td>1 kg</td><td>5 pa</td></tr>
+                            <tr><td>Sac à dos</td><td>2,5 kg</td><td>2 po</td></tr>
+                            <tr><td>Sac de couchage</td><td>3,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Sacoche à composantes</td><td>1 kg</td><td>25 po</td></tr>
+                            <tr><td>Symbole sacré</td><td>Variable</td><td>Variable</td></tr>
+                            <tr><td>Tente</td><td>10 kg</td><td>2 po</td></tr>
+                            <tr><td>Tenue de voyage</td><td>2 kg</td><td>2 po</td></tr>
+                            <tr><td>Torche</td><td>0,5 kg</td><td>1 pc</td></tr>
+                            <tr><td>Trousse de soins</td><td>1,5 kg</td><td>5 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Objets souvent utiles en session</h3>
+                <div class="item-notes">
+                    <h4>Acide</h4>
+                    <p>Remplace une attaque par le lancer d'une fiole à 6 m. Sauvegarde de Dextérité contre 2d6 dégâts d'acide.</p>
+                    <h4>Antidote</h4>
+                    <p>Action bonus pour boire. Donne l'avantage aux sauvegardes contre l'état Empoisonné pendant 1 heure.</p>
+                    <h4>Bélier portable</h4>
+                    <p>Donne +4 aux jets de Force pour enfoncer une porte, avec avantage si un autre personnage aide.</p>
+                    <h4>Billes</h4>
+                    <p>Action Utilisation pour couvrir 3 m x 3 m. Une créature qui traverse la zone doit réussir DD 10 Dextérité ou tomber à terre.</p>
+                    <h4>Eau bénite</h4>
+                    <p>Remplace une attaque par le lancer d'une flasque à 6 m. Les fiélons et morts-vivants ratant la sauvegarde subissent 2d8 dégâts radiants.</p>
+                    <h4>Feu grégeois</h4>
+                    <p>Remplace une attaque par le lancer d'une flasque. Sur échec de sauvegarde, 1d4 dégâts de feu et la cible prend feu.</p>
+                    <h4>Filet</h4>
+                    <p>Remplace une attaque contre une créature à 4,50 m. Sur échec DD 10 Dextérité, la cible est Entravée.</p>
+                    <h4>Grappin</h4>
+                    <p>Action Utilisation pour l'accrocher jusqu'à 15 m avec un jet de Dextérité (Acrobaties) DD 13.</p>
+                    <h4>Huile</h4>
+                    <p>Peut couvrir une cible ou une zone. Enflammée, elle inflige des dégâts de feu supplémentaires ou brûle comme combustible.</p>
+                    <h4>Lanterne à capote</h4>
+                    <p>Lumière vive sur 9 m et faible sur 9 m de plus. La capote peut réduire l'éclairage à une faible lueur.</p>
+                    <h4>Menottes</h4>
+                    <p>Peuvent entraver une créature agrippée, entravée ou neutralisée avec un jet de Dextérité (Escamotage) DD 13.</p>
+                    <h4>Pied-de-biche</h4>
+                    <p>Donne l'avantage aux jets de Force lorsque l'effet de levier peut aider.</p>
+                    <h4>Potion de guérison</h4>
+                    <p>Action bonus pour boire ou administrer. Rend 2d4 + 2 points de vie.</p>
+                    <h4>Trousse de soins</h4>
+                    <p>10 charges. Une charge stabilise une créature inconsciente à 0 PV avec l'action Utilisation.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

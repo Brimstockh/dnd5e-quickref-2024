@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Armes et armures</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .lead {
+            color: #3e3a34;
+            font-size: 1.05rem;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .rule-box {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            padding: 10px 12px;
+        }
+
+        .rule-box strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .equipment-table {
+            min-width: 760px;
+        }
+
+        .equipment-table .group-row td {
+            background: #f7f2e9;
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .property-list {
+            columns: 2 260px;
+            column-gap: 18px;
+        }
+
+        .property-list h4 {
+            break-after: avoid;
+            margin-top: 0;
+        }
+
+        .property-list p {
+            break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="creation-personnage-2024.html">Création</a>
+            <a class="btn" href="classes/index.html">Classes</a>
+            <a class="btn" href="races/index.html">Races</a>
+            <a class="btn" href="historique.html">Historiques</a>
+            <a class="btn" href="dons.html">Dons</a>
+            <a class="btn" href="mastery-2024.html">Maîtrise</a>
+            <a class="btn" href="outils-aventurier.html">Outils</a>
+            <a class="btn" href="character-sheet-standalone.html">Template</a>
+        </nav>
+
+        <section class="card">
+            <h1>Armes et armures</h1>
+            <div class="content">
+                <p class="lead">Cette page rassemble les principales armes et armures de D&amp;D 2024 pour aider à remplir l'équipement, les attaques, la CA et les maîtrises d'un personnage.</p>
+
+                <div class="rules-grid">
+                    <div class="rule-box">
+                        <strong>Catégorie d'arme</strong>
+                        Toute arme est courante ou de guerre. Les maîtrises d'armes d'un personnage se réfèrent souvent à l'une de ces catégories.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Corps à corps ou distance</strong>
+                        Une arme de corps à corps vise une cible proche. Une arme à distance permet d'attaquer plus loin, selon sa portée.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Maîtrise des armes</strong>
+                        N'importe qui peut tenir une arme, mais il faut la maîtriser pour ajouter son bonus de maîtrise aux jets d'attaque correspondants.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Formation aux armures</strong>
+                        Porter une armure sans formation impose un désavantage aux jets de d20 impliquant Force ou Dextérité, et empêche de lancer des sorts.
+                    </div>
+                </div>
+
+                <h3>Propriétés des armes</h3>
+                <div class="property-list">
+                    <h4>Allonge</h4>
+                    <p>Ajoute 1,50 m à votre allonge lorsque vous attaquez avec l'arme, ainsi qu'à l'allonge de vos attaques d'opportunité.</p>
+                    <h4>Chargement</h4>
+                    <p>Vous ne pouvez tirer qu'un seul projectile lorsque vous attaquez avec cette arme, quelle que soit la quantité d'attaques normalement disponible.</p>
+                    <h4>Deux mains</h4>
+                    <p>L'arme requiert deux mains lorsque vous l'utilisez pour attaquer.</p>
+                    <h4>Finesse</h4>
+                    <p>Vous choisissez entre Force et Dextérité pour les jets d'attaque et de dégâts, en utilisant le même modificateur pour les deux.</p>
+                    <h4>Lancer</h4>
+                    <p>Vous pouvez lancer l'arme pour effectuer une attaque à distance et la dégainer dans le cadre de cette attaque.</p>
+                    <h4>Légère</h4>
+                    <p>Après une attaque avec une arme légère, vous pouvez effectuer plus tard dans le même tour une attaque supplémentaire avec une autre arme légère par une action bonus.</p>
+                    <h4>Lourde</h4>
+                    <p>Vous subissez un désavantage avec une arme lourde si votre Force est inférieure à 13 pour une arme de corps à corps, ou votre Dextérité inférieure à 13 pour une arme à distance.</p>
+                    <h4>Munitions</h4>
+                    <p>L'arme requiert des munitions. Chaque attaque dépense une munition, et la moitié des munitions utilisées peut être récupérée après 1 minute de recherche.</p>
+                    <h4>Polyvalente</h4>
+                    <p>L'arme peut s'utiliser à une ou deux mains. Les dégâts entre parenthèses s'appliquent lorsqu'elle est utilisée à deux mains.</p>
+                    <h4>Portée</h4>
+                    <p>La portée indique une portée normale puis une portée longue. Au-delà de la portée normale, le jet d'attaque subit un désavantage.</p>
+                </div>
+
+                <h3>Bottes d'arme</h3>
+                <p>Chaque arme possède une botte. Elle n'est utilisable que si une capacité, comme Bottes d'arme, permet au personnage de la déverrouiller.</p>
+                <div class="property-list">
+                    <h4>Coup double</h4>
+                    <p>L'attaque supplémentaire de la propriété Légère peut être effectuée dans le cadre de l'action Attaque plutôt qu'avec une action bonus, une fois par tour.</p>
+                    <h4>Écorchure</h4>
+                    <p>Si l'attaque rate, la cible subit des dégâts égaux au modificateur de caractéristique utilisé pour l'attaque.</p>
+                    <h4>Enchaînement</h4>
+                    <p>Après avoir touché une cible au corps à corps, vous pouvez attaquer une seconde créature proche avec la même arme, une fois par tour.</p>
+                    <h4>Ouverture</h4>
+                    <p>Après avoir touché et infligé des dégâts, vous avez l'avantage à votre prochain jet d'attaque contre cette créature avant la fin de votre tour suivant.</p>
+                    <h4>Poussée</h4>
+                    <p>La cible peut être repoussée de 3 m en ligne droite si elle est de taille G ou inférieure.</p>
+                    <h4>Ralentissement</h4>
+                    <p>La vitesse de la cible est réduite de 3 m jusqu'au début de votre prochain tour.</p>
+                    <h4>Renversement</h4>
+                    <p>La cible doit réussir un jet de sauvegarde de Constitution ou subir l'état À terre. Le DD vaut 8 + modificateur d'attaque + bonus de maîtrise.</p>
+                    <h4>Sape</h4>
+                    <p>La cible subit un désavantage à son prochain jet d'attaque avant le début de votre tour suivant.</p>
+                </div>
+
+                <h3>Armes</h3>
+                <div class="table-scroll">
+                    <table class="equipment-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Dégâts</th>
+                                <th>Propriétés</th>
+                                <th>Botte d'arme</th>
+                                <th>Poids</th>
+                                <th>Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="group-row"><td colspan="6">Armes courantes de corps à corps</td></tr>
+                            <tr><td>Bâton de combat</td><td>1d6 contondants</td><td>Polyvalente (1d8)</td><td>Renversement</td><td>2 kg</td><td>2 pa</td></tr>
+                            <tr><td>Dague</td><td>1d4 perforants</td><td>Finesse, Lancer (6/18), Légère</td><td>Coup double</td><td>0,5 kg</td><td>2 po</td></tr>
+                            <tr><td>Gourdin</td><td>1d4 contondants</td><td>Légère</td><td>Ralentissement</td><td>1 kg</td><td>1 pa</td></tr>
+                            <tr><td>Hachette</td><td>1d6 tranchants</td><td>Lancer (6/18), Légère</td><td>Ouverture</td><td>1 kg</td><td>5 po</td></tr>
+                            <tr><td>Javeline</td><td>1d6 perforants</td><td>Lancer (9/36)</td><td>Ralentissement</td><td>1 kg</td><td>5 pa</td></tr>
+                            <tr><td>Lance</td><td>1d6 perforants</td><td>Lancer (6/18), Polyvalente (1d8)</td><td>Sape</td><td>1,5 kg</td><td>1 po</td></tr>
+                            <tr><td>Marteau léger</td><td>1d4 contondants</td><td>Lancer (6/18), Légère</td><td>Coup double</td><td>1 kg</td><td>2 po</td></tr>
+                            <tr><td>Masse d'armes</td><td>1d6 contondants</td><td>-</td><td>Sape</td><td>2 kg</td><td>5 po</td></tr>
+                            <tr><td>Massue</td><td>1d8 contondants</td><td>Deux mains</td><td>Poussée</td><td>5 kg</td><td>2 pa</td></tr>
+                            <tr><td>Serpe</td><td>1d4 tranchants</td><td>Légère</td><td>Coup double</td><td>1 kg</td><td>1 po</td></tr>
+                            <tr class="group-row"><td colspan="6">Armes courantes à distance</td></tr>
+                            <tr><td>Arbalète légère</td><td>1d8 perforants</td><td>Chargement, Deux mains, Munitions (24/96 ; carreaux)</td><td>Ralentissement</td><td>2,5 kg</td><td>25 po</td></tr>
+                            <tr><td>Arc court</td><td>1d6 perforants</td><td>Deux mains, Munitions (24/96 ; flèches)</td><td>Ouverture</td><td>1 kg</td><td>25 po</td></tr>
+                            <tr><td>Fléchette</td><td>1d4 perforants</td><td>Finesse, Lancer (6/18)</td><td>Ouverture</td><td>125 g</td><td>5 pc</td></tr>
+                            <tr><td>Fronde</td><td>1d4 contondants</td><td>Munitions (9/36 ; billes)</td><td>Ralentissement</td><td>-</td><td>1 pa</td></tr>
+                            <tr class="group-row"><td colspan="6">Armes de guerre de corps à corps</td></tr>
+                            <tr><td>Cimeterre</td><td>1d6 tranchants</td><td>Finesse, Légère</td><td>Coup double</td><td>1,5 kg</td><td>25 po</td></tr>
+                            <tr><td>Coutille</td><td>1d10 tranchants</td><td>Allonge, Deux mains, Lourde</td><td>Écorchure</td><td>3 kg</td><td>20 po</td></tr>
+                            <tr><td>Épée à deux mains</td><td>2d6 tranchants</td><td>Deux mains, Lourde</td><td>Écorchure</td><td>3 kg</td><td>50 po</td></tr>
+                            <tr><td>Épée courte</td><td>1d6 perforants</td><td>Finesse, Légère</td><td>Ouverture</td><td>1 kg</td><td>10 po</td></tr>
+                            <tr><td>Épée longue</td><td>1d8 tranchants</td><td>Polyvalente (1d10)</td><td>Sape</td><td>1,5 kg</td><td>15 po</td></tr>
+                            <tr><td>Fléau d'armes</td><td>1d8 contondants</td><td>-</td><td>Sape</td><td>1 kg</td><td>10 po</td></tr>
+                            <tr><td>Fouet</td><td>1d4 tranchants</td><td>Allonge, Finesse</td><td>Ralentissement</td><td>1,5 kg</td><td>2 po</td></tr>
+                            <tr><td>Hache à deux mains</td><td>1d12 tranchants</td><td>Deux mains, Lourde</td><td>Enchaînement</td><td>3,5 kg</td><td>30 po</td></tr>
+                            <tr><td>Hache d'armes</td><td>1d8 tranchants</td><td>Polyvalente (1d10)</td><td>Renversement</td><td>2 kg</td><td>10 po</td></tr>
+                            <tr><td>Hallebarde</td><td>1d10 tranchants</td><td>Allonge, Deux mains, Lourde</td><td>Enchaînement</td><td>3 kg</td><td>20 po</td></tr>
+                            <tr><td>Lance d'arçon</td><td>1d10 perforants</td><td>Allonge, Deux mains sauf à cheval, Lourde</td><td>Renversement</td><td>3 kg</td><td>10 po</td></tr>
+                            <tr><td>Maillet d'armes</td><td>2d6 contondants</td><td>Deux mains, Lourde</td><td>Renversement</td><td>5 kg</td><td>10 po</td></tr>
+                            <tr><td>Marteau de guerre</td><td>1d8 contondants</td><td>Polyvalente (1d10)</td><td>Poussée</td><td>2,5 kg</td><td>15 po</td></tr>
+                            <tr><td>Morgenstern</td><td>1d8 perforants</td><td>-</td><td>Sape</td><td>2 kg</td><td>15 po</td></tr>
+                            <tr><td>Pic de guerre</td><td>1d8 perforants</td><td>Polyvalente (1d10)</td><td>Sape</td><td>1 kg</td><td>5 po</td></tr>
+                            <tr><td>Pique</td><td>1d10 perforants</td><td>Allonge, Deux mains, Lourde</td><td>Poussée</td><td>9 kg</td><td>5 po</td></tr>
+                            <tr><td>Rapière</td><td>1d8 perforants</td><td>Finesse</td><td>Ouverture</td><td>1 kg</td><td>25 po</td></tr>
+                            <tr><td>Trident</td><td>1d8 perforants</td><td>Lancer (6/18), Polyvalente (1d10)</td><td>Renversement</td><td>2 kg</td><td>5 po</td></tr>
+                            <tr class="group-row"><td colspan="6">Armes de guerre à distance</td></tr>
+                            <tr><td>Arbalète de poing</td><td>1d6 perforants</td><td>Chargement, Légère, Munitions (9/36 ; carreaux)</td><td>Ouverture</td><td>1,5 kg</td><td>75 po</td></tr>
+                            <tr><td>Arbalète lourde</td><td>1d10 perforants</td><td>Chargement, Deux mains, Lourde, Munitions (30/120 ; carreaux)</td><td>Poussée</td><td>9 kg</td><td>50 po</td></tr>
+                            <tr><td>Arc long</td><td>1d8 perforants</td><td>Deux mains, Lourde, Munitions (45/180 ; flèches)</td><td>Ralentissement</td><td>1 kg</td><td>50 po</td></tr>
+                            <tr><td>Mousquet</td><td>1d12 perforants</td><td>Chargement, Deux mains, Munitions (12/36 ; balles)</td><td>Ralentissement</td><td>5 kg</td><td>500 po</td></tr>
+                            <tr><td>Pistolet</td><td>1d10 perforants</td><td>Chargement, Munitions (9/27 ; balles)</td><td>Ouverture</td><td>1,5 kg</td><td>250 po</td></tr>
+                            <tr><td>Sarbacane</td><td>1 perforant</td><td>Chargement, Munitions (7,50/30 ; dards)</td><td>Ouverture</td><td>0,5 kg</td><td>10 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Armures</h3>
+                <div class="table-scroll">
+                    <table class="equipment-table">
+                        <thead>
+                            <tr>
+                                <th>Armure</th>
+                                <th>Classe d'armure (CA)</th>
+                                <th>Force</th>
+                                <th>Discrétion</th>
+                                <th>Poids</th>
+                                <th>Coût</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="group-row"><td colspan="6">Armures légères (1 minute pour enfiler ou retirer)</td></tr>
+                            <tr><td>Armure matelassée</td><td>11 + modificateur de Dex</td><td>-</td><td>Désavantage</td><td>4 kg</td><td>5 po</td></tr>
+                            <tr><td>Armure de cuir</td><td>11 + modificateur de Dex</td><td>-</td><td>-</td><td>5 kg</td><td>10 po</td></tr>
+                            <tr><td>Armure de cuir clouté</td><td>12 + modificateur de Dex</td><td>-</td><td>-</td><td>6,5 kg</td><td>45 po</td></tr>
+                            <tr class="group-row"><td colspan="6">Armures intermédiaires (5 minutes pour enfiler, 1 minute pour retirer)</td></tr>
+                            <tr><td>Armure de peaux</td><td>12 + modificateur de Dex (max 2)</td><td>-</td><td>-</td><td>6 kg</td><td>10 po</td></tr>
+                            <tr><td>Chemise de mailles</td><td>13 + modificateur de Dex (max 2)</td><td>-</td><td>-</td><td>10 kg</td><td>50 po</td></tr>
+                            <tr><td>Armure d'écailles</td><td>14 + modificateur de Dex (max 2)</td><td>-</td><td>Désavantage</td><td>22,5 kg</td><td>50 po</td></tr>
+                            <tr><td>Cuirasse</td><td>14 + modificateur de Dex (max 2)</td><td>-</td><td>-</td><td>10 kg</td><td>400 po</td></tr>
+                            <tr><td>Demi-plate</td><td>15 + modificateur de Dex (max 2)</td><td>-</td><td>Désavantage</td><td>20 kg</td><td>750 po</td></tr>
+                            <tr class="group-row"><td colspan="6">Armures lourdes (10 minutes pour enfiler, 5 minutes pour retirer)</td></tr>
+                            <tr><td>Broigne</td><td>14</td><td>-</td><td>Désavantage</td><td>20 kg</td><td>30 po</td></tr>
+                            <tr><td>Cotte de mailles</td><td>16</td><td>For 13</td><td>Désavantage</td><td>27,5 kg</td><td>75 po</td></tr>
+                            <tr><td>Clibanion</td><td>17</td><td>For 15</td><td>Désavantage</td><td>30 kg</td><td>200 po</td></tr>
+                            <tr><td>Harnois</td><td>18</td><td>For 15</td><td>Désavantage</td><td>32,5 kg</td><td>1 500 po</td></tr>
+                            <tr class="group-row"><td colspan="6">Bouclier (action Utilisation pour enfiler ou retirer)</td></tr>
+                            <tr><td>Bouclier</td><td>+2</td><td>-</td><td>-</td><td>3 kg</td><td>10 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Rappels rapides</h3>
+                <ul>
+                    <li>Une créature ne peut porter qu'une armure à la fois, avec au plus un bouclier.</li>
+                    <li>Une armure lourde peut réduire la vitesse si la Force requise n'est pas atteinte.</li>
+                    <li>Le bénéfice de CA d'un bouclier ne s'applique que si le personnage est formé à son port.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
