@@ -25,16 +25,16 @@
         }
 
         .wrap {
-            max-width: 1040px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 16px 20px 28px;
+            padding: 20px;
         }
 
         .topnav {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .topnav a {
@@ -50,11 +50,11 @@
 
         .card {
             background: var(--paper);
-            border: 1px solid var(--line);
+            border: 2px solid var(--accent);
             border-radius: 10px;
             padding: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            overflow: hidden;
         }
 
         .card::after {
@@ -63,10 +63,25 @@
             clear: both;
         }
 
-        h1, h2, h3 {
-            margin: 0 0 10px;
-            font-family: "Lora", serif;
+        .card > h1,
+        .card > h2 {
+            margin: -16px -16px 12px;
+            padding: 10px 14px;
+            font-family: "Lora", Georgia, serif;
+            font-variant: small-caps;
+            color: #fff;
+            background: var(--accent);
+        }
+
+        h3 {
+            margin: 18px 0 10px;
+            padding: 8px 10px;
+            font-family: "Lora", Georgia, serif;
             color: var(--accent);
+            background: #f7f2e9;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
         }
 
         p {
@@ -92,6 +107,7 @@
 
         .trait {
             border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
             border-radius: 8px;
             padding: 10px;
             background: #fff;
@@ -99,6 +115,8 @@
 
         .trait strong {
             color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
         }
 
         .encadre {

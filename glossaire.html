@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Glossaire</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <style>
+        .lead {
+            font-size: 1.06rem;
+            color: #3e3a34;
+        }
+
+        .content p {
+            margin: 0 0 10px;
+        }
+
+        .toc {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px;
+            margin: 14px 0;
+        }
+
+        .toc a {
+            display: block;
+            text-decoration: none;
+            color: var(--accent);
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-weight: 700;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0 14px;
+        }
+
+        .content h4 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .subnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 0;
+        }
+
+        .subnav a {
+            display: inline-block;
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .abbr-table td:nth-child(odd) {
+            white-space: nowrap;
+            font-weight: 700;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="glossaire.html">Glossaire</a>
+            <a class="btn" href="rules-2024.html">Règles</a>
+            <a class="btn" href="combat-2024.html">Combat</a>
+            <a class="btn" href="mastery-2024.html">Maîtrise</a>
+            <a class="btn" href="spells.html">Sorts</a>
+            <a class="btn" href="historique.html">Historiques</a>
+            <a class="btn" href="races/index.html">Races</a>
+            <a class="btn" href="classes/index.html">Classes</a>
+            <a class="btn" href="faerun.html">Royaumes Oubliés</a>
+        </nav>
+
+        <section class="card">
+            <h1>Glossaire des règles D&amp;D 2024</h1>
+            <div class="content">
+                <p class="lead">Cette page regroupe les informations du fichier source autour de trois ensembles : le glossaire général, les actions et les états. Les renvois ont été adaptés pour pointer vers les autres pages du site quand cela était pertinent.</p>
+
+                <div class="toc">
+                    <a href="#abreviations">Abréviations</a>
+                    <a href="#termes">Glossaire général</a>
+                    <a href="#actions">Actions</a>
+                    <a href="#etats">États</a>
+                </div>
+
+                <h3 id="abreviations">Abréviations</h3>
+                <p>Les abréviations énumérées ci-dessous apparaissent dans ce glossaire et ailleurs dans les règles.</p>
+                <div class="table-wrap">
+                    <table class="abbr-table">
+                        <tbody>
+                            <tr><td>BM</td><td>bonus de maîtrise</td><td>Dex</td><td>Dextérité</td><td>MD, MJ</td><td>maître du donjon</td><td>po</td><td>pièce(s) d'or</td></tr>
+                            <tr><td>C</td><td>Concentration</td><td>For</td><td>Force</td><td>N</td><td>Neutre</td><td>pp</td><td>pièce(s) de platine</td></tr>
+                            <tr><td>CA</td><td>classe d'armure</td><td>FP</td><td>facteur de puissance</td><td>NB</td><td>Neutre Bon</td><td>pv</td><td>point(s) de vie</td></tr>
+                            <tr><td>CB</td><td>Chaotique Bon</td><td>Int</td><td>Intelligence</td><td>NM</td><td>Neutre Mauvais</td><td>PX</td><td>point(s) d'expérience</td></tr>
+                            <tr><td>Cha</td><td>Charisme</td><td>JS, JdS</td><td>jet de sauvegarde</td><td>pa</td><td>pièce(s) d'argent</td><td>R</td><td>rituel</td></tr>
+                            <tr><td>CM</td><td>Chaotique Mauvais</td><td>LB</td><td>Loyal Bon</td><td>pc</td><td>pièce(s) de cuivre</td><td>S</td><td>composante somatique</td></tr>
+                            <tr><td>CN</td><td>Chaotique Neutre</td><td>LM</td><td>Loyal Mauvais</td><td>pe</td><td>pièce(s) d'électrum</td><td>Sag</td><td>Sagesse</td></tr>
+                            <tr><td>Con</td><td>Constitution</td><td>LN</td><td>Loyal Neutre</td><td>PJ</td><td>personnage joueur</td><td>V</td><td>composante verbale</td></tr>
+                            <tr><td>DD</td><td>degré de difficulté</td><td>M</td><td>composante matérielle</td><td>PNJ</td><td>personnage non-joueur</td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="termes">
+            <h2>Glossaire général</h2>
+            <div class="content">
+                <div class="subnav">
+                    <a href="#ao">Attaques d'Opportunité</a>
+                    <a href="#concentration">Concentration</a>
+                    <a href="#repos-court">Repos court</a>
+                    <a href="#repos-long">Repos long</a>
+                    <a href="#types">Types de dégâts</a>
+                    <a href="#vitesse">Vitesse</a>
+                </div>
+
+                <h4>Action</h4>
+                <p>Voir <a href="#actions"><strong>Actions</strong></a>.</p>
+                <h4>Action Bonus</h4>
+                <p>Une action Bonus est une action spéciale que vous pouvez entreprendre au même tour qu'une action. Vous ne pouvez pas entreprendre plus d'une action Bonus par tour, et ne jouissez d'une action Bonus que si une règle le stipule explicitement. Lire aussi <a href="mastery-2024.html#bonus">Actions Bonus</a>.</p>
+                <h4 id="ao">Attaques d'Opportunité</h4>
+                <p>Vous pouvez effectuer une attaque d'Opportunité lorsqu'une créature que vous voyez quitte votre zone d'allonge en recourant à son action, à une action Bonus, à sa Réaction ou à l'une de ses vitesses. L'attaque d'Opportunité consiste à jouer votre Réaction pour effectuer une attaque de corps à corps avec arme, ou une attaque à mains nues, contre la créature qui l'a provoquée. L'attaque intervient juste avant que la créature soit sortie de votre zone d'allonge. Lire aussi <a href="combat-2024.html#cac">Combat</a>.</p>
+                <h4>Avantage</h4>
+                <p>Si vous avez un Avantage à un jet de d20, lancez deux d20 et ne retenez que le résultat le plus élevé. Un jet ne peut pas être affecté par plus d'un Avantage, et un Avantage et un Désavantage sur un même jet s'annulent. Lire aussi <a href="rules-2024.html#avantage">Jets de d20</a>.</p>
+                <h4 id="concentration">Concentration</h4>
+                <p>Certains sorts et effets nécessitent la Concentration pour rester actifs, comme stipulé dans leur description. Si son créateur perd sa Concentration, l'effet prend fin. Si l'effet affiche une durée maximale, son descriptif indique combien de temps son créateur peut se concentrer sur lui. Le créateur peut rompre volontairement sa Concentration à tout moment.</p>
+                <p><strong>Autre effet nécessitant la Concentration</strong>. Vous perdez la Concentration sur un effet dès l'instant où vous commencez à lancer un sort nécessitant la Concentration ou activez un autre effet qui la requiert.</p>
+                <p><strong>Dégâts</strong>. Si vous subissez des dégâts, vous devez réussir un jet de sauvegarde de Constitution pour maintenir votre Concentration. Le DD est égal à 10 ou à la moitié des dégâts subis, arrondie à l'inférieur, le nombre le plus élevé étant retenu, jusqu'à un DD maximal de 30.</p>
+                <p><strong>Neutralisé ou mort</strong>. Votre Concentration prend fin si vous subissez l'état <a href="#neutralise">Incapable d'agir/Neutralisé</a> ou si vous mourez.</p>
+                <h4>Cône</h4>
+                <p>Un Cône est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine dans la direction choisie par son créateur. Sa largeur en un point donné est toujours égale à la distance qui sépare ce point de l'origine. Le point d'origine n'est pas situé dans la zone d'effet, sauf si son créateur en décide autrement.</p>
+                <h4>Coup critique</h4>
+                <p>Si vous obtenez un 20 sur le d20 d'un jet d'attaque, il s'agit d'un Coup critique. L'attaque touche quels que soient les modificateurs afférents et la CA de la cible. Tous les dés de dégâts de l'attaque sont lancés deux fois puis additionnés, avant d'ajouter les modificateurs applicables. Lire aussi <a href="combat-2024.html#critiques">Dégâts et soins</a>.</p>
+                <h4>Cube</h4>
+                <p>Un Cube est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine situé n'importe où sur l'une des faces du Cube. L'effet qui crée un Cube spécifie sa taille, à savoir la longueur de chaque arête.</p>
+                <h4>Cylindre</h4>
+                <p>Un Cylindre est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine situé au centre de la partie supérieure ou inférieure du Cylindre. L'effet qui crée un Cylindre spécifie le rayon de la base du Cylindre et sa hauteur.</p>
+                <h4>Désavantage</h4>
+                <p>Si vous avez un Désavantage à un jet de d20, lancez deux d20 et ne retenez que le résultat le plus faible. Un jet ne peut pas être affecté par plus d'un Désavantage, et un Avantage et un Désavantage sur un même jet s'annulent. Lire aussi <a href="rules-2024.html#avantage">Jets de d20</a>.</p>
+                <h4>Émanation</h4>
+                <p>Une Émanation est une zone d'effet qui s'étend en ligne droite depuis une créature ou un objet, dans toutes les directions. Elle se déplace avec la créature ou l'objet qui est son origine, sauf indication contraire.</p>
+                <h4 id="peril">En péril</h4>
+                <p>Une créature est En péril dès qu'il lui reste la moitié ou moins de ses points de vie.</p>
+                <h4>État</h4>
+                <p>Voir <a href="#etats"><strong>États</strong></a>.</p>
+                <h4>Focaliseur d'incantation</h4>
+                <p>Un focaliseur d'incantation est un objet que certaines créatures peuvent utiliser à la place des composantes matérielles d'un sort, à la condition que ces dernières ne soient pas détruites par le sort et n'aient pas de coût spécifié. Lire aussi <a href="spells.html">Sorts</a>.</p>
+                <h4>Immunité</h4>
+                <p>Si vous disposez de l'Immunité contre un type de dégâts ou un état, celui-ci ne vous affecte en aucune manière.</p>
+                <h4>Initiative</h4>
+                <p>L'Initiative détermine la séquence des tours durant un combat. Votre valeur d'Initiative est égale à 10 + votre modificateur de Dextérité. Si vous avez un Avantage au jet d'Initiative, augmentez cette valeur de 5. Si vous subissez un Désavantage, diminuez-la de 5. Lire aussi <a href="combat-2024.html#ordre">Combat</a>.</p>
+                <h4>Inspiration héroïque</h4>
+                <p>Si vous disposez de l'Inspiration héroïque, vous pouvez la dépenser pour rejouer aussitôt tout dé que vous venez de lancer, à condition de conserver ce nouveau jet. Si vous en recevez une alors que vous en avez déjà une, elle est perdue sauf si vous la donnez à un autre personnage-joueur.</p>
+                <h4>Jet de caractéristique</h4>
+                <p>Un jet de caractéristique est un jet de d20 qui représente le recours à l'une des six caractéristiques, ou à une compétence associée, afin de surmonter une épreuve. Lire aussi <a href="rules-2024.html#carac">Jets de d20</a> et <a href="mastery-2024.html">Maîtrise</a>.</p>
+                <h4>Jet de d20</h4>
+                <p>La notion de jet de d20 englobe les trois principaux jets de d20 du jeu : jets de caractéristique, jets d'attaque et jets de sauvegarde. Si un élément du jeu affecte les jets de d20, il affecte ces trois jets. Lire aussi <a href="rules-2024.html#d20">Jets de d20</a>.</p>
+                <h4>Jet de sauvegarde</h4>
+                <p>Un jet de sauvegarde représente une tentative d'échapper à une menace ou d'y résister. Vous ne l'effectuez en temps normal que lorsqu'une règle vous y contraint. Si une cible contrainte d'effectuer un JS ne dispose pas de la valeur de caractéristique associée, elle échoue automatiquement. Lire aussi <a href="rules-2024.html#jds">Jets de d20</a>.</p>
+                <h4>Jet de sauvegarde contre la mort</h4>
+                <p>Un personnage-joueur effectue un jet de sauvegarde contre la mort s'il débute son tour avec 0 point de vie. Lire aussi <a href="combat-2024.html#opv">Dégâts et soins</a>.</p>
+                <h4>Ligne</h4>
+                <p>Une Ligne est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine et couvre une zone définie par sa longueur et sa largeur. Le point d'origine n'est pas situé dans la zone d'effet, sauf si son créateur en décide autrement.</p>
+                <h4 id="lumiere-faible">Lumière faible</h4>
+                <p>Une zone de Lumière faible est à Visibilité réduite. Lire aussi <a href="#visibilite-reduite">Visibilité réduite</a>.</p>
+                <h4>Lumière vive</h4>
+                <p>La Lumière vive est synonyme d'éclairage normal.</p>
+                <h4>Perception passive</h4>
+                <p>La Perception passive est une valeur qui reflète le degré de vigilance d'une créature vis-à-vis de ce qui l'entoure. Elle est égale à 10 + son bonus aux jets de Sagesse (Perception), ajusté de 5 si la créature a l'Avantage ou le Désavantage à ce jet.</p>
+                <h4>Réaction</h4>
+                <p>Une Réaction est une action spéciale entreprise en réponse à un événement déclencheur défini dans sa description. Une fois la Réaction jouée, vous ne pouvez pas en jouer d'autre avant le début de votre tour suivant. Lire aussi <a href="#ao">Attaques d'Opportunité</a> et <a href="mastery-2024.html#reactions">Actions</a>.</p>
+                <h4 id="repos-court">Repos court</h4>
+                <p>Un Repos court est une période d'inactivité d'au moins 1 heure durant laquelle une créature ne fait rien de plus fatigant que se restaurer, discuter, lire ou monter la garde. Pour commencer un Repos court, vous devez avoir au moins 1 point de vie.</p>
+                <p><strong>Bénéfices du repos</strong>. Terminer un Repos court vous permet de dépenser un ou plusieurs dés de vie pour récupérer des points de vie et de recharger certaines capacités spéciales.</p>
+                <p><strong>Repos interrompu</strong>. Le Repos court est interrompu si vous jouez l'Initiative, lancez un sort autre qu'un sort mineur ou subissez des dégâts.</p>
+                <h4 id="repos-long">Repos long</h4>
+                <p>Le Repos long est une période prolongée d'inactivité d'au moins 8 heures. Pendant un Repos long, vous dormez au moins 6 heures et accomplissez de menues tâches pendant un maximum de 2 heures.</p>
+                <p><strong>Bénéfices du repos</strong>. Le Repos long permet de récupérer tous les points de vie perdus, tous les dés de vie dépensés, les valeurs de caractéristiques réduites et de diminuer de 1 un éventuel niveau d'Épuisement.</p>
+                <p><strong>Repos interrompu</strong>. Le Repos long est interrompu si vous jouez l'Initiative, lancez un sort autre qu'un sort mineur, subissez des dégâts, ou accomplissez 1 heure de marche ou un effort comparable. Si vous vous êtes reposé au moins 1 heure avant l'interruption, vous recevez les bénéfices d'un <a href="#repos-court">Repos court</a>.</p>
+                <h4>Résistance</h4>
+                <p>Si vous bénéficiez de la Résistance à un type de dégâts, ces dégâts sont réduits de moitié contre vous. La Résistance ne s'applique qu'une seule fois à des dégâts donnés. Lire aussi <a href="combat-2024.html#resistances">Dégâts et soins</a>.</p>
+                <h4>Rituel</h4>
+                <p>Si l'un de vos sorts préparés porte la mention « rituel », vous pouvez le lancer sous cette forme. Le temps d'incantation augmente alors de 10 minutes, mais aucun emplacement n'est dépensé. Lire aussi <a href="spells.html">Sorts</a>.</p>
+                <h4>Sphère</h4>
+                <p>Une Sphère est une zone d'effet qui s'étend en ligne droite dans toutes les directions à partir d'un point d'origine. L'effet qui crée une Sphère stipule la distance à laquelle elle s'étend, ce qui constitue son rayon.</p>
+                <h4>Stabilisé</h4>
+                <p>Une créature est dite « Stabilisée » si elle a 0 point de vie mais n'a pas à effectuer de jets de sauvegarde contre la mort. Lire aussi <a href="combat-2024.html#stabiliser">Dégâts et soins</a>.</p>
+                <h4 id="tenebres">Ténèbres</h4>
+                <p>Une zone de Ténèbres est une zone à Visibilité nulle. Lire aussi <a href="#visibilite-nulle">Visibilité nulle</a>.</p>
+                <h4>Terrain difficile</h4>
+                <p>Si un espace est un Terrain difficile, le coût de déplacement y est doublé.</p>
+                <h4 id="types">Types de dégâts</h4>
+                <p>Les attaques et autres effets néfastes infligent des types de dégâts différents. En soi, les types de dégâts n'ont pas de règles propres, mais d'autres règles, comme la Résistance, prennent ces types en compte.</p>
+                <div class="table-wrap">
+                    <table>
+                        <tbody>
+                            <tr><th>Type</th><th>Exemples</th></tr>
+                            <tr><td>Acide</td><td>Liquides corrosifs, enzymes digestives</td></tr>
+                            <tr><td>Contondants</td><td>Objets contondants, constriction, chute</td></tr>
+                            <tr><td>Feu</td><td>Flammes, chaleur insupportable</td></tr>
+                            <tr><td>Force</td><td>Énergie magique à l'état pur</td></tr>
+                            <tr><td>Foudre</td><td>Électricité</td></tr>
+                            <tr><td>Froid</td><td>Eau glacée, souffle glacial</td></tr>
+                            <tr><td>Nécrotiques</td><td>Énergie qui siphonne la vie</td></tr>
+                            <tr><td>Perforants</td><td>Crocs, objets pointus</td></tr>
+                            <tr><td>Poison</td><td>Gaz toxique, venin</td></tr>
+                            <tr><td>Psychiques</td><td>Énergie qui attaque l'esprit</td></tr>
+                            <tr><td>Radiants</td><td>Énergie sacrée, radiations brûlantes</td></tr>
+                            <tr><td>Tonnerre</td><td>Son tonitruant</td></tr>
+                            <tr><td>Tranchants</td><td>Griffes, objets coupants</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 id="visibilite-nulle">Visibilité nulle</h4>
+                <p>Vous subissez l'état <a href="#aveugle">Aveuglé</a> lorsque vous essayez de voir quelque chose dans un espace à Visibilité nulle. Lire aussi <a href="#tenebres">Ténèbres</a>.</p>
+                <h4 id="visibilite-reduite">Visibilité réduite</h4>
+                <p>Vous subissez un Désavantage aux jets de Sagesse (Perception) visant à voir quelque chose dans un espace à Visibilité réduite. Lire aussi <a href="#lumiere-faible">Lumière faible</a>.</p>
+                <h4>Vision aveugle</h4>
+                <p>Si vous disposez de la Vision aveugle, vous voyez à la portée spécifiée sans vous appuyer sur le sens physique de la vue. À cette portée, vous voyez tout ce qui ne bénéficie pas d'un Abri total, même si vous subissez l'état <a href="#aveugle">Aveuglé</a> ou vous trouvez dans les Ténèbres. À cette portée, vous distinguez aussi ce qui a l'état <a href="#invisible">Invisible</a>.</p>
+                <h4>Vision dans le noir</h4>
+                <p>Si vous avez la Vision dans le noir, vous voyez dans des conditions de Lumière faible comme s'il s'agissait d'une Lumière vive, et dans les Ténèbres comme dans une zone de Lumière faible. Dans les Ténèbres, vous discernez les couleurs comme des nuances de gris.</p>
+                <h4 id="vitesse">Vitesse</h4>
+                <p>Chaque créature dispose d'une Vitesse, expression de la distance en mètres qu'elle peut parcourir en se déplaçant pendant son tour. Lire aussi <a href="combat-2024.html#deplacement">Combat</a>.</p>
+                <p><strong>Vitesses spéciales</strong>. Certaines créatures ont des vitesses spéciales de type Vitesse d'escalade, Vitesse de fouissement, Vitesse de nage ou Vitesse de vol. Si vous disposez de plus d'un type de vitesse, vous choisissez celle à laquelle vous recourez lors de votre déplacement.</p>
+                <p><strong>Altérations de vos vitesses</strong>. Si un effet augmente ou diminue momentanément votre Vitesse, toute vitesse spéciale dont vous disposez augmente ou diminue du même montant pour la même durée.</p>
+                <h4>Vitesse d'escalade</h4>
+                <p>Une Vitesse d'escalade peut remplacer la Vitesse pour traverser une surface verticale sans avoir à dépenser le déplacement supplémentaire ordinairement associé à l'escalade.</p>
+                <h4>Vitesse de nage</h4>
+                <p>Une Vitesse de nage permet de nager sans la dépense de déplacement supplémentaire ordinairement associée à la nage.</p>
+                <h4>Vitesse de vol</h4>
+                <p>Une Vitesse de vol permet de se déplacer dans les airs. Tant que vous disposez d'une Vitesse de vol, vous restez en l'air jusqu'à ce que vous vous posiez, tombiez ou mouriez.</p>
+                <h4>Vulnérabilité</h4>
+                <p>Si vous présentez une Vulnérabilité à un type de dégâts, ils sont doublés contre vous. La Vulnérabilité ne s'applique qu'une seule fois à des dégâts donnés. Lire aussi <a href="combat-2024.html#resistances">Dégâts et soins</a>.</p>
+            </div>
+        </section>
+
+        <section class="card" id="actions">
+            <h2>Actions</h2>
+            <div class="content">
+                <p>À votre tour, vous pouvez entreprendre une action. Choisissez l'action à entreprendre parmi celles ci-dessous ou parmi les actions spéciales fournies par vos capacités.</p>
+                <div class="subnav">
+                    <a href="#attaque">Attaque</a>
+                    <a href="#desengagement">Désengagement</a>
+                    <a href="#esquive">Esquive</a>
+                    <a href="#etude">Étude</a>
+                    <a href="#furtivite">Furtivité</a>
+                    <a href="#influence">Influence</a>
+                    <a href="#intention">Intention</a>
+                    <a href="#magie">Magie</a>
+                    <a href="#observation">Observation</a>
+                    <a href="#pointe">Pointe</a>
+                    <a href="#soutien">Soutien</a>
+                    <a href="#utilisation">Utilisation</a>
+                </div>
+                <h4 id="attaque">Attaque [Attack]</h4>
+                <p>Lorsque vous entreprenez l'action Attaque, vous effectuez un jet d'attaque avec arme ou une attaque à mains nues.</p>
+                <p><strong>S'équiper et se déséquiper</strong>. Vous pouvez vous équiper ou vous déséquiper d'une arme lorsque vous effectuez une attaque dans le cadre de cette action. Vous pouvez le faire avant ou après l'attaque.</p>
+                <p><strong>Se déplacer entre les attaques</strong>. Si vous vous déplacez pendant votre tour et disposez d'une capacité qui vous octroie plusieurs attaques dans le cadre de l'action Attaque, vous pouvez consacrer tout ou partie de ce déplacement à vous mouvoir entre ces attaques.</p>
+                <h4 id="desengagement">Désengagement [Disengage]</h4>
+                <p>Si vous entreprenez l'action Désengagement, votre déplacement ne provoque pas d'attaque d'Opportunité jusqu'à la fin du tour.</p>
+                <h4 id="esquive">Esquive [Dodge]</h4>
+                <p>Si vous entreprenez l'action Esquive, jusqu'au début de votre tour suivant tout jet d'attaque effectué contre vous par un assaillant que vous voyez subit le Désavantage, et vos jets de sauvegarde de Dextérité ont l'Avantage.</p>
+                <p>Vous perdez ces bénéfices si vous subissez l'état Incapable d'agir/Neutralisé ou si votre Vitesse tombe à 0.</p>
+                <h4 id="etude">Étude [Study]</h4>
+                <p>Lorsque vous entreprenez l'action Étude, vous effectuez un jet d'Intelligence en consultant votre mémoire, un livre, un indice ou une autre source de savoir, à la recherche d'une information importante sur un sujet donné.</p>
+                <div class="table-wrap">
+                    <table>
+                        <tbody>
+                            <tr><th>Compétence</th><th>Domaines</th></tr>
+                            <tr><td>Arcanes</td><td>Sorts, objets magiques, symboles occultes, traditions magiques, plans d'existence et certaines créatures</td></tr>
+                            <tr><td>Histoire</td><td>Événements et personnages historiques, civilisations anciennes, guerres et certaines créatures</td></tr>
+                            <tr><td>Investigation</td><td>Pièges, énigmes, messages cryptés et gadgets divers</td></tr>
+                            <tr><td>Nature</td><td>Terrain, flore, climat et certaines créatures</td></tr>
+                            <tr><td>Religion</td><td>Divinités, hiérarchies et rites religieux, symboles sacrés, cultes et certaines créatures</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 id="furtivite">Furtivité [Hide]</h4>
+                <p>L'action Furtivité vous permet d'essayer de vous cacher. Pour ce faire, vous effectuez un jet de Dextérité (Discrétion) DD 15 à condition d'être dans une zone de Visibilité nulle, ou derrière un Abri supérieur ou total, et de ne pas être dans le champ de vision d'un ennemi.</p>
+                <p>En cas de réussite, vous recevez l'état Invisible tant que vous restez furtif. Cet état prend fin si vous émettez un son plus fort qu'un murmure, si un ennemi vous détecte, si vous effectuez un jet d'attaque ou si vous lancez un sort à composante verbale.</p>
+                <h4 id="influence">Influence [Influence]</h4>
+                <p>Par l'action Influence, vous incitez un monstre à faire quelque chose. Décrivez ou incarnez la façon dont vous communiquez avec le monstre. Le MD détermine alors si le monstre se sent disposé, réticent ou hésitant suite à votre interaction.</p>
+                <p><strong>Disposé</strong>. Si votre requête est en accord avec les désirs du monstre, aucun jet de caractéristique n'est nécessaire.</p>
+                <p><strong>Réticent</strong>. Si votre requête répugne au monstre ou est contraire à son alignement, aucun jet de caractéristique n'est nécessaire.</p>
+                <p><strong>Hésitant</strong>. Si le monstre se montre hésitant, vous devez en passer par un jet de caractéristique.</p>
+                <div class="table-wrap">
+                    <table>
+                        <tbody>
+                            <tr><th>Jet de caractéristique</th><th>Interaction</th></tr>
+                            <tr><td>Charisme (Intimidation)</td><td>Intimider un monstre</td></tr>
+                            <tr><td>Charisme (Persuasion)</td><td>Convaincre un monstre qui vous comprend</td></tr>
+                            <tr><td>Charisme (Représentation)</td><td>Amuser un monstre</td></tr>
+                            <tr><td>Charisme (Tromperie)</td><td>Tromper un monstre qui vous comprend</td></tr>
+                            <tr><td>Sagesse (Dressage)</td><td>Amadouer une Bête ou une Monstruosité</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 id="intention">Intention [Ready]</h4>
+                <p>L'action Intention consiste à attendre une circonstance particulière avant d'agir. Pour ce faire, vous entreprenez cette action à votre tour, ce qui vous permet de jouer votre Réaction avant le début de votre tour suivant.</p>
+                <p>Commencez par décider quelles circonstances perceptibles déclencheront votre Réaction. Puis choisissez l'action que vous entreprendrez en réponse à ce déclencheur, ou optez pour un déplacement n'excédant pas votre Vitesse.</p>
+                <p>Lorsque votre Intention concerne l'incantation d'un sort, vous le lancez normalement mais retenez les énergies magiques jusqu'à l'intervention du déclencheur, ce qui demande de maintenir votre Concentration jusqu'au début de votre tour suivant.</p>
+                <h4 id="magie">Magie [Magic]</h4>
+                <p>Lorsque vous entreprenez l'action Magie, vous lancez un sort dont le temps d'incantation est une action ou recourez à une capacité ou à un objet magique dont l'activation se fait au prix de l'action Magie.</p>
+                <p>Si vous lancez un sort dont le temps d'incantation est de 1 minute ou plus, vous devez entreprendre l'action Magie à chaque tour de l'incantation et maintenir votre Concentration tout du long.</p>
+                <h4 id="observation">Observation [Search]</h4>
+                <p>Lorsque vous entreprenez l'action Observation, vous effectuez un jet de Sagesse visant à discerner ce qui n'est pas évident.</p>
+                <div class="table-wrap">
+                    <table>
+                        <tbody>
+                            <tr><th>Compétence</th><th>Chose à détecter</th></tr>
+                            <tr><td>Intuition</td><td>État d'esprit d'une créature</td></tr>
+                            <tr><td>Médecine</td><td>Mal dont souffre une créature ou cause de sa mort</td></tr>
+                            <tr><td>Perception</td><td>Créature ou objet dissimulé</td></tr>
+                            <tr><td>Survie</td><td>Traces ou nourriture</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 id="pointe">Pointe [Dash]</h4>
+                <p>Lorsque vous entreprenez l'action Pointe, vous recevez du déplacement supplémentaire pour ce tour. Cette augmentation est égale à votre Vitesse, après application d'éventuels modificateurs. Si vous disposez d'une vitesse spéciale, vous pouvez l'utiliser à la place.</p>
+                <h4 id="soutien">Soutien [Help]</h4>
+                <p>Lorsque vous entreprenez l'action Soutien, vous pouvez soit assister un jet de caractéristique d'un allié grâce à l'une de vos maîtrises de compétence ou d'outil, soit distraire momentanément un ennemi dans un rayon de 1,50 m afin d'octroyer l'Avantage au jet d'attaque suivant de l'un de vos alliés contre cet ennemi.</p>
+                <h4 id="utilisation">Utilisation [Utilize]</h4>
+                <p>Vous interagissez souvent avec un objet tout en faisant autre chose, comme lorsque vous dégainez votre épée dans le cadre de l'action Attaque. Lorsqu'un objet requiert spécifiquement votre action, vous entreprenez l'action Utilisation.</p>
+            </div>
+        </section>
+
+        <section class="card" id="etats">
+            <h2>États</h2>
+            <div class="content">
+                <p>Un état est une situation de jeu temporaire qui vous affecte. La définition d'un état indique comment il affecte son destinataire, et diverses règles définissent comment mettre fin à un état. Un état n'est pas cumulable avec lui-même ; seul l'état Épuisement constitue une exception.</p>
+                <div class="subnav">
+                    <a href="#a-terre">À terre</a>
+                    <a href="#agrippe">Agrippé</a>
+                    <a href="#assourdi">Assourdi</a>
+                    <a href="#aveugle">Aveuglé</a>
+                    <a href="#charme">Charmé</a>
+                    <a href="#effraye">Effrayé</a>
+                    <a href="#empoisonne">Empoisonné</a>
+                    <a href="#entrave">Entravé</a>
+                    <a href="#epuisement">Épuisement</a>
+                    <a href="#etourdi">Étourdi</a>
+                    <a href="#neutralise">Neutralisé</a>
+                    <a href="#inconscient">Inconscient</a>
+                    <a href="#invisible">Invisible</a>
+                    <a href="#paralyse">Paralysé</a>
+                    <a href="#petrifie">Pétrifié</a>
+                </div>
+                <h4 id="a-terre">À terre [Prone]</h4>
+                <p><strong>Déplacement limité</strong>. Vos seules possibilités de déplacement sont ramper ou vous relever en dépensant la moitié de votre Vitesse, ce qui met un terme à l'état.</p>
+                <p><strong>Effet sur les attaques</strong>. Vous subissez un Désavantage aux jets d'attaque. Un jet d'attaque contre vous reçoit un Avantage si l'assaillant se trouve dans un rayon de 1,50 m de vous ; sans cela, ce jet subit un Désavantage.</p>
+                <h4 id="agrippe">Agrippé [Grappled]</h4>
+                <p><strong>Vitesse 0</strong>. Votre Vitesse est de 0 et ne peut pas augmenter.</p>
+                <p><strong>Effet sur les attaques</strong>. Vous subissez un Désavantage aux jets d'attaque contre toute cible hormis l'agrippeur.</p>
+                <p><strong>Déplaçable</strong>. L'agrippeur peut vous tirer ou vous porter lorsqu'il se déplace, mais ses coûts de déplacement sont doublés, sauf exceptions de taille.</p>
+                <h4 id="assourdi">Assourdi [Deafened]</h4>
+                <p><strong>Incapable d'entendre</strong>. Vous n'entendez rien et ratez automatiquement tous les jets de caractéristique qui reposent sur l'ouïe.</p>
+                <h4 id="aveugle">Aveuglé [Blinded]</h4>
+                <p><strong>Incapable de voir</strong>. Vous ne voyez rien et ratez automatiquement tout jet de caractéristique reposant sur la vue.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage, et vos jets d'attaque subissent un Désavantage.</p>
+                <h4 id="charme">Charmé [Charmed]</h4>
+                <p><strong>Ne pas nuire au charmeur</strong>. Vous ne pouvez pas attaquer votre charmeur ni le cibler avec des capacités ou effets magiques qui infligent des dégâts.</p>
+                <p><strong>Interaction avec Avantage</strong>. Le charmeur a un Avantage aux jets de caractéristique d'interaction sociale avec vous.</p>
+                <h4 id="effraye">Effrayé [Frightened]</h4>
+                <p><strong>Effet sur les attaques et les jets de caractéristique</strong>. Vous subissez un Désavantage aux jets de caractéristique et aux jets d'attaque tant que la source de votre effroi est dans votre champ de vision.</p>
+                <p><strong>Impossible d'approcher</strong>. Vous ne pouvez pas vous rapprocher volontairement de la source de votre effroi.</p>
+                <h4 id="empoisonne">Empoisonné [Poisoned]</h4>
+                <p><strong>Effet sur les attaques et les jets de caractéristique</strong>. Vous subissez un Désavantage aux jets d'attaque et aux jets de caractéristique.</p>
+                <h4 id="entrave">Entravé [Restrained]</h4>
+                <p><strong>Vitesse 0</strong>. Votre Vitesse est de 0 et ne peut pas augmenter.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage, et vos jets d'attaque subissent un Désavantage.</p>
+                <p><strong>Effet sur les jets de sauvegarde</strong>. Vous subissez un Désavantage aux jets de sauvegarde de Dextérité.</p>
+                <h4 id="epuisement">Épuisement [Exhaustion]</h4>
+                <p><strong>Niveaux d'Épuisement</strong>. Cet état est cumulatif. Chaque fois que vous le recevez, vous subissez 1 niveau d'Épuisement. Vous mourez quand votre niveau d'Épuisement atteint 6.</p>
+                <p><strong>Jets de d20 affectés</strong>. Lorsque vous effectuez un jet de d20, le résultat est réduit de 2 fois votre niveau actuel d'Épuisement.</p>
+                <p><strong>Vitesse réduite</strong>. Votre Vitesse est réduite de 1,50 m multiplié par votre niveau actuel d'Épuisement.</p>
+                <p><strong>Suppression des niveaux d'Épuisement</strong>. Terminer un Repos long dissipe 1 niveau d'Épuisement.</p>
+                <h4 id="etourdi">Étourdi [Stunned]</h4>
+                <p><strong>Incapable d'agir</strong>. Vous subissez l'état Incapable d'agir.</p>
+                <p><strong>Effet sur les jets de sauvegarde</strong>. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage.</p>
+                <h4 id="neutralise">Incapable d'agir/Neutralisé [Incapacitated]</h4>
+                <p><strong>Inactif</strong>. Vous ne pouvez entreprendre ni action, ni action Bonus ni Réaction.</p>
+                <p><strong>Concentration brisée</strong>. Votre Concentration est brisée.</p>
+                <p><strong>Sans voix</strong>. Vous ne pouvez pas parler.</p>
+                <p><strong>Surpris</strong>. Si vous êtes Incapable d'agir au moment de jouer l'Initiative, vous subissez un Désavantage à ce jet.</p>
+                <h4 id="inconscient">Inconscient [Unconscious]</h4>
+                <p><strong>Inerte</strong>. Vous subissez les états À terre et Incapable d'agir, et laissez choir tout ce que vous teniez. Lorsque cet état prend fin, vous êtes toujours À terre.</p>
+                <p><strong>Vitesse 0</strong>. Votre Vitesse est de 0 et ne peut pas augmenter.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage.</p>
+                <p><strong>Effet sur les jets de sauvegarde</strong>. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.</p>
+                <p><strong>Coups critiques automatiques</strong>. Tout jet d'attaque qui vous touche est un Coup critique si l'assaillant se trouve dans un rayon de 1,50 m.</p>
+                <p><strong>Dénué de conscience</strong>. Vous n'avez pas conscience de ce qui vous entoure.</p>
+                <h4 id="invisible">Invisible [Invisible]</h4>
+                <p><strong>Surprise</strong>. Si vous êtes Invisible au moment de jouer l'Initiative, vous avez un Avantage à ce jet.</p>
+                <p><strong>Dissimulé</strong>. Vous n'êtes pas affecté par les effets qui exigent que la cible soit vue, sauf si le créateur de l'effet vous voit par un biais ou un autre. Tout l'équipement que vous portez est lui aussi dissimulé.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous subissent un Désavantage, et vos jets d'attaque ont un Avantage. Si une créature vous voit par un biais ou un autre, vous ne recevez pas ce bénéfice contre elle.</p>
+                <h4 id="paralyse">Paralysé [Paralyzed]</h4>
+                <p><strong>Incapable d'agir</strong>. Vous subissez l'état Incapable d'agir.</p>
+                <p><strong>Vitesse 0</strong>. Votre Vitesse est de 0 et ne peut pas augmenter.</p>
+                <p><strong>Effet sur les jets de sauvegarde</strong>. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage.</p>
+                <p><strong>Coups critiques automatiques</strong>. Tout jet d'attaque qui vous touche est un Coup critique si l'assaillant se trouve dans un rayon de 1,50 m.</p>
+                <h4 id="petrifie">Pétrifié [Petrified]</h4>
+                <p><strong>Transformé en substance inanimée</strong>. Vous êtes transformé, ainsi que les objets non magiques que vous portez, en une substance inanimée et dense, généralement de la pierre. Votre poids est décuplé et vous n'êtes plus soumis au vieillissement.</p>
+                <p><strong>Incapable d'agir</strong>. Vous subissez l'état Incapable d'agir.</p>
+                <p><strong>Vitesse 0</strong>. Votre Vitesse est de 0 et ne peut pas augmenter.</p>
+                <p><strong>Effet sur les attaques</strong>. Les jets d'attaque contre vous ont un Avantage.</p>
+                <p><strong>Effet sur les jets de sauvegarde</strong>. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.</p>
+                <p><strong>Résistance aux dégâts</strong>. Vous avez la Résistance à tous les dégâts.</p>
+                <p><strong>Immunité contre le poison</strong>. Vous avez l'Immunité contre l'état Empoisonné.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
