@@ -167,7 +167,7 @@
 
         .sheet-title {
             display: grid;
-            grid-template-columns: 2.2fr 0.95fr 0.72fr 0.72fr 0.72fr 0.92fr;
+            grid-template-columns: minmax(0, 2.2fr) minmax(24mm, 0.62fr) minmax(26mm, 0.74fr) minmax(29mm, 0.92fr);
             gap: 2.2mm;
             margin-bottom: 2.2mm;
             padding: 0;
@@ -175,19 +175,15 @@
             background: transparent;
         }
 
-        .identity-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 2.2mm;
-            margin-bottom: 2.2mm;
-            padding: 0;
-        }
-
         .sheet-grid {
             display: grid;
-            grid-template-columns: 0.9fr 0.9fr 1.7fr;
+            grid-template-columns: 1fr 1fr 1.2fr;
             gap: 2.2mm;
             align-items: start;
+        }
+
+        .sheet-grid-wide {
+            grid-column: span 2;
         }
 
         .page-two-grid {
@@ -266,7 +262,8 @@
         }
 
         input:focus,
-        textarea:focus {
+        textarea:focus,
+        select:focus {
             outline: 2px solid rgba(122, 18, 15, 0.2);
             border-color: var(--accent);
         }
@@ -304,24 +301,34 @@
         .coin-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
         .attune-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-        .ability-block {
+        .ability-scores-grid {
             display: grid;
-            grid-template-columns: 78px minmax(0, 1fr);
-            gap: 1.6mm;
-            border-bottom: 1px solid rgba(37, 37, 37, 0.18);
-            padding: 1.5mm 0;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 1fr;
+            gap: 1.6mm 2.2mm;
+            align-items: stretch;
         }
 
-        .ability-block:first-child { padding-top: 0; }
-        .ability-block:last-child { border-bottom: 0; padding-bottom: 0; }
+        .ability-block {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr);
+            gap: 1mm;
+            align-items: start;
+            min-width: 0;
+            height: 100%;
+        }
+
+        .ability-details {
+            min-width: 0;
+        }
 
         .ability-score {
             border: 2px solid var(--line);
-            border-radius: 0;
+            border-radius: 4px;
             padding: 1.2mm 1.2mm 0.8mm;
             text-align: center;
             background: #fff;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            min-height: 27mm;
         }
 
         .ability-score strong {
@@ -340,7 +347,20 @@
 
         .ability-score input.mod {
             margin-bottom: 4px;
+            font-size: 0.82rem;
+        }
+
+        .ability-score input:not(.mod) {
+            width: 13mm;
+            height: 13mm;
+            margin: 0 auto;
+            display: block;
+            border: 2px solid rgba(37, 37, 37, 0.55);
+            border-radius: 50%;
+            padding: 0;
             font-size: 1.18rem;
+            line-height: 13mm;
+            background: var(--paper-deep);
         }
 
         .save-line,
@@ -370,11 +390,43 @@
             accent-color: var(--accent);
         }
 
+        .save-line,
+        .skill-line,
+        .prof-line {
+            border-bottom: 1px solid rgba(37, 37, 37, 0.12);
+        }
+
+        .save-line:last-child,
+        .skill-line:last-child,
+        .prof-line:last-child {
+            border-bottom: 0;
+        }
+
         .save-line input[type="text"],
         .skill-line input[type="text"] {
             padding: 3px 4px;
             text-align: center;
             font-family: "IBM Plex Mono", monospace;
+        }
+
+        #page1 .masteries-grid {
+            display: grid;
+            gap: 1.5mm;
+        }
+
+        #page1 .masteries-checks {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 1mm 1.5mm;
+        }
+
+        #page1 .masteries-text {
+            display: grid;
+            gap: 1.5mm;
+        }
+
+        #page1 .masteries-text textarea {
+            min-height: 14mm;
         }
 
         table {
@@ -454,9 +506,7 @@
         }
 
         .title-card,
-        .meta-card,
-        .stat-card,
-        .level-badge {
+        .stat-card {
             border: 2px solid var(--line);
             background: #fff;
             clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
@@ -464,7 +514,6 @@
         }
 
         .title-card,
-        .meta-card,
         .stat-card {
             padding: 1.8mm 2mm 1.6mm;
         }
@@ -473,41 +522,95 @@
             min-height: 19mm;
         }
 
-        .level-badge {
+        .identity-card {
             display: grid;
-            place-items: center;
-            min-height: 100%;
-            min-width: 20mm;
-            padding: 2mm 1.6mm;
-            border-radius: 999px;
-            clip-path: none;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.3mm;
         }
 
-        .level-badge input {
+        .identity-name {
+            grid-column: 1 / -1;
+        }
+
+        .identity-columns {
+            display: contents;
+        }
+
+        .identity-stack {
+            display: grid;
+            gap: 1.2mm;
+        }
+
+        .top-stat-card {
+            display: grid;
+            align-content: start;
+            gap: 1.4mm;
+            text-align: center;
+        }
+
+        .top-stat-card .big-field input {
             text-align: center;
             font-family: "IBM Plex Mono", monospace;
             font-weight: 700;
             font-size: 1rem;
         }
 
+        .sheet-title > .top-stat-card:nth-child(2) .big-field:first-child input {
+            width: 14mm;
+            height: 14mm;
+            min-height: 14mm;
+            margin: 0 auto;
+            display: block;
+            border: 2px solid rgba(37, 37, 37, 0.55);
+            border-radius: 50%;
+            padding: 0;
+            background: var(--paper-deep);
+            font-size: 1.12rem;
+            line-height: 14mm;
+        }
+
+        .top-stat-card > label:not(.checkbox-field) {
+            display: block;
+            margin: 0;
+            color: var(--ink);
+            font-size: 0.54rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .checkbox-field {
+            display: grid;
+            grid-template-columns: 14px minmax(0, 1fr);
+            gap: 1.2mm;
+            align-items: center;
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-align: left;
+        }
+
+        .checkbox-field input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin: 0;
+            padding: 0;
+            accent-color: var(--accent);
+        }
+
         .stat-card .field,
-        .title-card .field,
-        .meta-card .field {
+        .title-card .field {
             margin-bottom: 4px;
         }
 
         .stat-card .field:last-child,
-        .title-card .field:last-child,
-        .meta-card .field:last-child {
+        .title-card .field:last-child {
             margin-bottom: 0;
         }
 
         #page1 .sheet-title {
             align-items: stretch;
-        }
-
-        #page1 .identity-grid {
-            grid-template-columns: 1.3fr 1.15fr 1.15fr 0.9fr;
         }
 
         #page3 .top-spell-grid {
@@ -554,7 +657,6 @@
         }
 
         .sheet-title > div,
-        .identity-grid > div,
         .sheet-grid > div,
         .mini-row > div,
         .vitals-grid > div,
@@ -689,6 +791,8 @@
             height: 12px;
             margin: 0;
             padding: 0;
+            accent-color: var(--accent);
+            transform: rotate(45deg);
         }
 
         .page-three-slots textarea {
@@ -727,11 +831,21 @@
             .sheet-grid,
             .page-two-grid,
             .sheet-title,
-            .identity-grid,
             .page-two-top,
             .page-two-mid,
             .page-two-bottom,
             .page-three-top {
+                grid-template-columns: 1fr;
+            }
+
+            .sheet-grid-wide {
+                grid-column: auto;
+            }
+
+            #page1 .ability-scores-grid,
+            #page1 .identity-card,
+            #page1 .masteries-grid,
+            #page1 .masteries-text {
                 grid-template-columns: 1fr;
             }
         }
@@ -815,114 +929,148 @@
             <main class="sheet">
                 <section class="sheet-page active" id="page1" data-page>
                     <div class="sheet-title">
-                        <div class="title-card">
-                            <div class="field"><label>Nom du personnage</label><input type="text" data-field="name" placeholder="Nom du personnage" /></div>
-                            <div class="field">
-                                <label>Classe</label>
-                                <select data-field="character_class" data-class-select>
-                                    <option value="">Choisir une classe</option>
-                                </select>
-                                <input type="hidden" data-field="class_level" data-class-level />
+                        <div class="title-card identity-card">
+                            <div class="field identity-name"><label>Nom du personnage</label><input type="text" data-field="name" placeholder="Nom du personnage" /></div>
+                            <div class="identity-columns">
+                                <div class="identity-stack">
+                                    <div class="field">
+                                        <label>Espèce</label>
+                                        <select data-field="species" data-species-select>
+                                            <option value="">Choisir une espèce</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label>Historique</label>
+                                        <select data-field="background" data-background-select>
+                                            <option value="">Choisir un historique</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="identity-stack">
+                                    <div class="field">
+                                        <label>Classe</label>
+                                        <select data-field="character_class" data-class-select>
+                                            <option value="">Choisir une classe</option>
+                                        </select>
+                                        <input type="hidden" data-field="class_level" data-class-level />
+                                    </div>
+                                    <div class="field">
+                                        <label>Sous-classe</label>
+                                        <select data-field="subclass" data-subclass-select>
+                                            <option value="">Choisir une sous-classe</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="level-badge field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
-                        <div class="stat-card big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
-                        <div class="stat-card big-field field"><label>PV</label><input type="text" data-field="hp_current" /></div>
-                        <div class="stat-card big-field field"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
-                        <div class="stat-card field">
+                        <div class="stat-card top-stat-card">
+                            <div class="big-field field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
+                            <div class="big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
+                            <label class="checkbox-field"><input type="checkbox" data-field="shield" /><span>Bouclier</span></label>
+                        </div>
+                        <div class="stat-card top-stat-card">
+                            <div class="big-field field"><label>PV</label><input type="text" data-field="hp_current" /></div>
+                            <div class="big-field field"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
+                        </div>
+                        <div class="stat-card top-stat-card">
                             <label>Jets de mort</label>
                             <div class="death-saves-grid">
                                 <div class="death-saves-line"><span>Succès</span><input type="checkbox" data-field="death_success_1" /><input type="checkbox" data-field="death_success_2" /><input type="checkbox" data-field="death_success_3" /></div>
                                 <div class="death-saves-line"><span>Échecs</span><input type="checkbox" data-field="death_failure_1" /><input type="checkbox" data-field="death_failure_2" /><input type="checkbox" data-field="death_failure_3" /></div>
                             </div>
+                            <div class="field"><label>Bonus de maîtrise</label><input type="text" data-field="proficiency_bonus" /></div>
+                            <label class="checkbox-field"><input type="checkbox" data-field="inspiration" /><span>Inspiration</span></label>
                         </div>
-                    </div>
-
-                    <div class="identity-grid">
-                        <div class="meta-card field">
-                            <label>Historique</label>
-                            <select data-field="background" data-background-select>
-                                <option value="">Choisir un historique</option>
-                            </select>
-                        </div>
-                        <div class="meta-card field">
-                            <label>Espèce</label>
-                            <select data-field="species" data-species-select>
-                                <option value="">Choisir une espèce</option>
-                            </select>
-                        </div>
-                        <div class="meta-card field">
-                            <label>Sous-classe</label>
-                            <select data-field="subclass" data-subclass-select>
-                                <option value="">Choisir une sous-classe</option>
-                            </select>
-                        </div>
-                        <div class="meta-card field"><label>Inspiration</label><input type="text" data-field="inspiration" /></div>
                     </div>
 
                     <div class="sheet-grid">
-                        <div>
+                        <div class="sheet-grid-wide">
                             <div class="panel">
                                 <h2>Caractéristiques, sauvegardes et compétences</h2>
                                 <div class="panel-body">
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>FOR</strong><input class="mod" type="text" data-field="str_mod" placeholder="+0" /><input type="text" data-field="str" placeholder="10" /></div>
-                                        <div>
+                                    <div class="ability-scores-grid">
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>FOR</strong><input class="mod" type="text" data-field="str_mod" placeholder="+0" /><input type="text" data-field="str" placeholder="10" /></div>
+                                            <div class="ability-details">
                                             <div class="save-line"><input type="checkbox" data-field="str_save_prof" /><input type="text" data-field="str_save" placeholder="+0" /><span>Sauvegarde</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_athletisme_prof" /><input type="text" data-field="skill_athletisme" placeholder="+0" /><span>Athlétisme</span></div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>DEX</strong><input class="mod" type="text" data-field="dex_mod" placeholder="+0" /><input type="text" data-field="dex" placeholder="10" /></div>
-                                        <div>
-                                            <div class="save-line"><input type="checkbox" data-field="dex_save_prof" /><input type="text" data-field="dex_save" placeholder="+0" /><span>Sauvegarde</span></div>
-                                            <div class="skill-line"><input type="checkbox" data-field="skill_acrobaties_prof" /><input type="text" data-field="skill_acrobaties" placeholder="+0" /><span>Acrobaties</span></div>
-                                            <div class="skill-line"><input type="checkbox" data-field="skill_discretion_prof" /><input type="text" data-field="skill_discretion" placeholder="+0" /><span>Discrétion</span></div>
-                                            <div class="skill-line"><input type="checkbox" data-field="skill_escamotage_prof" /><input type="text" data-field="skill_escamotage" placeholder="+0" /><span>Escamotage</span></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>CON</strong><input class="mod" type="text" data-field="con_mod" placeholder="+0" /><input type="text" data-field="con" placeholder="10" /></div>
-                                        <div>
-                                            <div class="save-line"><input type="checkbox" data-field="con_save_prof" /><input type="text" data-field="con_save" placeholder="+0" /><span>Sauvegarde</span></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>INT</strong><input class="mod" type="text" data-field="int_mod" placeholder="+0" /><input type="text" data-field="int" placeholder="10" /></div>
-                                        <div>
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>INT</strong><input class="mod" type="text" data-field="int_mod" placeholder="+0" /><input type="text" data-field="int" placeholder="10" /></div>
+                                            <div class="ability-details">
                                             <div class="save-line"><input type="checkbox" data-field="int_save_prof" /><input type="text" data-field="int_save" placeholder="+0" /><span>Sauvegarde</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_arcanes_prof" /><input type="text" data-field="skill_arcanes" placeholder="+0" /><span>Arcanes</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_histoire_prof" /><input type="text" data-field="skill_histoire" placeholder="+0" /><span>Histoire</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_investigation_prof" /><input type="text" data-field="skill_investigation" placeholder="+0" /><span>Investigation</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_nature_prof" /><input type="text" data-field="skill_nature" placeholder="+0" /><span>Nature</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_religion_prof" /><input type="text" data-field="skill_religion" placeholder="+0" /><span>Religion</span></div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>SAG</strong><input class="mod" type="text" data-field="wis_mod" placeholder="+0" /><input type="text" data-field="wis" placeholder="10" /></div>
-                                        <div>
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>DEX</strong><input class="mod" type="text" data-field="dex_mod" placeholder="+0" /><input type="text" data-field="dex" placeholder="10" /></div>
+                                            <div class="ability-details">
+                                            <div class="save-line"><input type="checkbox" data-field="dex_save_prof" /><input type="text" data-field="dex_save" placeholder="+0" /><span>Sauvegarde</span></div>
+                                            <div class="skill-line"><input type="checkbox" data-field="skill_acrobaties_prof" /><input type="text" data-field="skill_acrobaties" placeholder="+0" /><span>Acrobaties</span></div>
+                                            <div class="skill-line"><input type="checkbox" data-field="skill_discretion_prof" /><input type="text" data-field="skill_discretion" placeholder="+0" /><span>Discrétion</span></div>
+                                            <div class="skill-line"><input type="checkbox" data-field="skill_escamotage_prof" /><input type="text" data-field="skill_escamotage" placeholder="+0" /><span>Escamotage</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>SAG</strong><input class="mod" type="text" data-field="wis_mod" placeholder="+0" /><input type="text" data-field="wis" placeholder="10" /></div>
+                                            <div class="ability-details">
                                             <div class="save-line"><input type="checkbox" data-field="wis_save_prof" /><input type="text" data-field="wis_save" placeholder="+0" /><span>Sauvegarde</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_dressage_prof" /><input type="text" data-field="skill_dressage" placeholder="+0" /><span>Dressage</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_intuition_prof" /><input type="text" data-field="skill_intuition" placeholder="+0" /><span>Intuition</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_medecine_prof" /><input type="text" data-field="skill_medecine" placeholder="+0" /><span>Médecine</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_perception_prof" /><input type="text" data-field="skill_perception" placeholder="+0" /><span>Perception</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_survie_prof" /><input type="text" data-field="skill_survie" placeholder="+0" /><span>Survie</span></div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="ability-block">
-                                        <div class="ability-score"><strong>CHA</strong><input class="mod" type="text" data-field="cha_mod" placeholder="+0" /><input type="text" data-field="cha" placeholder="10" /></div>
-                                        <div>
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>CON</strong><input class="mod" type="text" data-field="con_mod" placeholder="+0" /><input type="text" data-field="con" placeholder="10" /></div>
+                                            <div class="ability-details">
+                                            <div class="save-line"><input type="checkbox" data-field="con_save_prof" /><input type="text" data-field="con_save" placeholder="+0" /><span>Sauvegarde</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="ability-block">
+                                            <div class="ability-score"><strong>CHA</strong><input class="mod" type="text" data-field="cha_mod" placeholder="+0" /><input type="text" data-field="cha" placeholder="10" /></div>
+                                            <div class="ability-details">
                                             <div class="save-line"><input type="checkbox" data-field="cha_save_prof" /><input type="text" data-field="cha_save" placeholder="+0" /><span>Sauvegarde</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_intimidation_prof" /><input type="text" data-field="skill_intimidation" placeholder="+0" /><span>Intimidation</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_persuasion_prof" /><input type="text" data-field="skill_persuasion" placeholder="+0" /><span>Persuasion</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_representation_prof" /><input type="text" data-field="skill_representation" placeholder="+0" /><span>Représentation</span></div>
                                             <div class="skill-line"><input type="checkbox" data-field="skill_tromperie_prof" /><input type="text" data-field="skill_tromperie" placeholder="+0" /><span>Tromperie</span></div>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <h2>Maîtrises</h2>
+                                <div class="panel-body masteries-grid">
+                                    <div class="masteries-checks">
+                                        <div class="prof-line"><input type="checkbox" data-field="armor_light_prof" /><span></span><span>Armures légères</span></div>
+                                        <div class="prof-line"><input type="checkbox" data-field="armor_medium_prof" /><span></span><span>Armures intermédiaires</span></div>
+                                        <div class="prof-line"><input type="checkbox" data-field="armor_heavy_prof" /><span></span><span>Armures lourdes</span></div>
+                                        <div class="prof-line"><input type="checkbox" data-field="shield_prof" /><span></span><span>Boucliers</span></div>
+                                        <div class="prof-line"><input type="checkbox" data-field="weapon_simple_prof" /><span></span><span>Armes courantes</span></div>
+                                        <div class="prof-line"><input type="checkbox" data-field="weapon_martial_prof" /><span></span><span>Armes de guerre</span></div>
+                                    </div>
+                                    <div class="masteries-text">
+                                        <div class="field"><label>Armes</label><textarea data-field="weapon_proficiencies"></textarea></div>
+                                    </div>
+                                    <div class="masteries-text">
+                                        <div class="field"><label>Outils</label><textarea data-field="tool_proficiencies"></textarea></div>
+                                    </div>
+                                    <div class="masteries-text">
+                                        <div class="field"><label>Langues</label><textarea data-field="languages"></textarea></div>
                                     </div>
                                 </div>
                             </div>
@@ -939,14 +1087,9 @@
                                         <div class="big-field field"><label>Perception passive</label><input type="text" data-field="passive_perception" /></div>
                                     </div>
                                     <div class="mini-row" style="margin-top: 6px;">
-                                        <div class="field"><label>Bonus de maîtrise</label><input type="text" data-field="proficiency_bonus" /></div>
                                         <div class="field"><label>PV max</label><input type="text" data-field="hp_max" /></div>
                                         <div class="field"><label>Conditions</label><input type="text" data-field="conditions_effects" /></div>
-                                    </div>
-                                    <div class="mini-row" style="margin-top: 6px;">
-                                        <div class="field"><label>Bouclier</label><input type="text" data-field="shield" /></div>
                                         <div class="field"><label>Épuisement</label><input type="text" data-field="exhaustion" /></div>
-                                        <div class="field"><label>Inspiration héroïque</label><input type="text" data-field="heroic_inspiration" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -968,42 +1111,24 @@
                                 </div>
                             </div>
 
-                            <div class="feature-grid">
-                                <div class="panel">
-                                    <h2>Aptitudes principales</h2>
-                                    <div class="panel-body"><textarea class="tall-textarea" data-field="features"></textarea></div>
-                                </div>
-                                <div class="panel">
-                                    <h2>Traits d'espèce et origine</h2>
-                                    <div class="panel-body"><textarea class="tall-textarea" data-field="species_traits"></textarea></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="panel">
-                                <h2>Maîtrises</h2>
-                                <div class="panel-body">
-                                    <div class="prof-line"><input type="checkbox" data-field="armor_light_prof" /><span></span><span>Armures légères</span></div>
-                                    <div class="prof-line"><input type="checkbox" data-field="armor_medium_prof" /><span></span><span>Armures intermédiaires</span></div>
-                                    <div class="prof-line"><input type="checkbox" data-field="armor_heavy_prof" /><span></span><span>Armures lourdes</span></div>
-                                    <div class="prof-line"><input type="checkbox" data-field="shield_prof" /><span></span><span>Boucliers</span></div>
-                                    <div class="prof-line"><input type="checkbox" data-field="weapon_simple_prof" /><span></span><span>Armes courantes</span></div>
-                                    <div class="prof-line"><input type="checkbox" data-field="weapon_martial_prof" /><span></span><span>Armes de guerre</span></div>
-                                    <div class="field" style="margin-top: 6px;"><label>Armes</label><textarea data-field="weapon_proficiencies"></textarea></div>
-                                    <div class="field"><label>Outils</label><textarea data-field="tool_proficiencies"></textarea></div>
-                                    <div class="field"><label>Langues</label><textarea data-field="languages"></textarea></div>
-                                </div>
-                            </div>
-
                             <div class="panel">
                                 <h2>Ressources</h2>
                                 <div class="panel-body"><textarea data-field="resources" placeholder="Rage, Inspiration bardique, Ki, Canalisation divine, charges..."></textarea></div>
                             </div>
 
-                            <div class="panel">
-                                <h2>Traits, dons et notes</h2>
-                                <div class="panel-body"><textarea class="tall-textarea" data-field="feats"></textarea></div>
+                            <div class="feature-grid">
+                                <div class="panel">
+                                    <h2>Traits d'espèce et origine</h2>
+                                    <div class="panel-body"><textarea class="tall-textarea" data-field="species_traits"></textarea></div>
+                                </div>
+                                <div class="panel">
+                                    <h2>Aptitudes principales</h2>
+                                    <div class="panel-body"><textarea class="tall-textarea" data-field="features"></textarea></div>
+                                </div>
+                                <div class="panel">
+                                    <h2>Traits, dons et notes</h2>
+                                    <div class="panel-body"><textarea class="tall-textarea" data-field="feats"></textarea></div>
+                                </div>
                             </div>
                         </div>
                     </div>
