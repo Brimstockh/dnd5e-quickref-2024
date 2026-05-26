@@ -4,26 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Feuille de personnage D&amp;D 2024 - Standalone</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700|IBM+Plex+Mono:500,700" rel="stylesheet" type="text/css" />
     <style>
         :root {
             --bg: #d9d4cb;
             --paper: #fbfaf6;
-            --ink: #1e1e1e;
-            --muted: #606060;
+            --paper-deep: #f2efe8;
+            --paper-edge: #ded7ca;
+            --ink: #1f1b18;
+            --muted: #66615b;
             --line: #252525;
             --soft-line: #b8b0a4;
             --accent: #7a120f;
+            --accent-2: #5b0f0d;
             --accent-soft: #f4e5e3;
-            --field: #fff;
+            --field: #fffdfa;
+            --shadow: rgba(0, 0, 0, 0.08);
         }
 
         * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            font-family: "Montserrat", "Segoe UI", sans-serif;
+            font-family: "Source Sans 3", "Segoe UI", sans-serif;
             color: var(--ink);
             background:
                 radial-gradient(circle at 8% 0%, rgba(255,255,255,0.5), transparent 34%),
@@ -31,9 +34,9 @@
         }
 
         .wrap {
-            max-width: 1480px;
+            max-width: 1520px;
             margin: 0 auto;
-            padding: 14px;
+            padding: 18px;
         }
 
         .topnav,
@@ -51,49 +54,51 @@
         .toolbar button,
         .toolbar label,
         .page-tabs button {
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            background: #fff;
-            border-radius: 8px;
-            padding: 7px 10px;
+            border: 1px solid rgba(126, 43, 32, 0.55);
+            color: var(--accent-2);
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,232,218,0.96));
+            border-radius: 999px;
+            padding: 7px 12px;
             font-size: 0.84rem;
-            font-weight: 800;
+            font-weight: 700;
             text-decoration: none;
             cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
         }
 
         .toolbar button.primary,
         .page-tabs button.active {
-            background: var(--accent);
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
             color: #fff;
         }
 
         .app-shell {
             display: grid;
             grid-template-columns: 280px minmax(0, 1fr);
-            gap: 12px;
+            gap: 18px;
         }
 
         .sidebar,
         .sheet {
             background: var(--paper);
             border: 1px solid var(--soft-line);
-            border-radius: 10px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+            border-radius: 18px;
+            box-shadow: 0 18px 40px var(--shadow);
         }
 
         .sidebar {
             position: sticky;
             top: 12px;
             align-self: start;
-            padding: 12px;
+            padding: 16px;
         }
 
         .sidebar h1 {
             margin: 0 0 4px;
             color: var(--accent);
-            font-size: 1.18rem;
-            line-height: 1.15;
+            font-family: "Cinzel", Georgia, serif;
+            font-size: 1.34rem;
+            line-height: 1.2;
         }
 
         .sidebar p {
@@ -116,17 +121,44 @@
         }
 
         .sheet {
-            padding: 12px;
+            display: flex;
+            justify-content: center;
+            padding: 18px;
             overflow: hidden;
         }
 
         .sheet-page {
             display: none;
-            min-height: 980px;
-            padding: 12px;
+            position: relative;
+            width: min(100%, 210mm);
+            min-height: 297mm;
+            height: 297mm;
+            padding: 6mm;
             background: #fff;
             border: 2px solid var(--line);
-            border-radius: 8px;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        .sheet-page::before,
+        .sheet-page::after {
+            content: "";
+            position: absolute;
+            inset: 2.5mm;
+            border: 1px solid rgba(37, 37, 37, 0.5);
+            border-radius: 0;
+            pointer-events: none;
+        }
+
+        .sheet-page::after {
+            display: none;
+        }
+
+        .sheet-page > * {
+            position: relative;
+            z-index: 1;
+            min-width: 0;
         }
 
         .sheet-page.active {
@@ -135,68 +167,85 @@
 
         .sheet-title {
             display: grid;
-            grid-template-columns: 2fr 1fr 0.8fr 0.8fr 0.8fr;
-            gap: 8px;
-            margin-bottom: 8px;
+            grid-template-columns: 2.2fr 0.95fr 0.72fr 0.72fr 0.72fr 0.92fr;
+            gap: 2.2mm;
+            margin-bottom: 2.2mm;
+            padding: 0;
+            border: 0;
+            background: transparent;
         }
 
         .identity-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 2.2mm;
+            margin-bottom: 2.2mm;
+            padding: 0;
         }
 
         .sheet-grid {
             display: grid;
-            grid-template-columns: 1.05fr 1.45fr 1.15fr;
-            gap: 8px;
+            grid-template-columns: 0.9fr 0.9fr 1.7fr;
+            gap: 2.2mm;
             align-items: start;
         }
 
         .page-two-grid {
             display: grid;
-            grid-template-columns: 1.35fr 0.95fr;
-            gap: 8px;
+            grid-template-columns: 1fr 0.92fr;
+            gap: 2.2mm;
             align-items: start;
         }
 
         .panel {
+            position: relative;
             border: 2px solid var(--line);
-            border-radius: 8px;
-            background: var(--paper);
+            border-radius: 0;
+            background: #fff;
             overflow: hidden;
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
         }
 
         .panel + .panel {
-            margin-top: 8px;
+            margin-top: 2.2mm;
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(37, 37, 37, 0.42);
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            pointer-events: none;
         }
 
         .panel h2,
         .panel h3 {
             margin: 0;
-            padding: 6px 8px;
-            color: #fff;
-            background: var(--line);
-            font-size: 0.76rem;
-            line-height: 1.1;
+            padding: 1.1mm 2mm 1mm;
+            color: var(--ink);
+            background: #fff;
+            font-family: "Cinzel", Georgia, serif;
+            font-size: 0.6rem;
+            line-height: 1.2;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.12em;
+            border-bottom: 1px solid rgba(37, 37, 37, 0.5);
         }
 
         .panel-body {
-            padding: 8px;
+            padding: 1.8mm;
         }
 
         .field label,
         .box-label {
             display: block;
-            margin: 0 0 3px;
-            color: var(--muted);
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
+            margin: 0 0 4px;
+            color: var(--ink);
+            font-size: 0.54rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
@@ -204,12 +253,16 @@
         textarea,
         select {
             width: 100%;
-            border: 1px solid var(--soft-line);
-            border-radius: 5px;
-            background: var(--field);
+            max-width: 100%;
+            border: 0;
+            border-bottom: 1px solid rgba(37, 37, 37, 0.4);
+            border-radius: 0;
+            background: transparent;
             color: var(--ink);
             font: inherit;
-            padding: 6px 7px;
+            padding: 1mm 0.3mm 1.1mm;
+            box-shadow: none;
+            min-width: 0;
         }
 
         input:focus,
@@ -220,16 +273,20 @@
 
         textarea {
             min-height: 92px;
-            resize: vertical;
+            resize: none;
             line-height: 1.35;
+            overflow: auto;
         }
 
         .big-field input {
-            min-height: 54px;
+            min-height: 15mm;
             text-align: center;
             font-family: "IBM Plex Mono", monospace;
-            font-size: 1.65rem;
+            font-size: 1.45rem;
             font-weight: 700;
+            border: 0;
+            border-bottom: 1px solid rgba(37, 37, 37, 0.4);
+            background: transparent;
         }
 
         .mini-row,
@@ -238,7 +295,7 @@
         .coin-grid,
         .attune-grid {
             display: grid;
-            gap: 6px;
+            gap: 1.5mm;
         }
 
         .mini-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -249,10 +306,10 @@
 
         .ability-block {
             display: grid;
-            grid-template-columns: 70px minmax(0, 1fr);
-            gap: 6px;
-            border-bottom: 1px solid var(--soft-line);
-            padding: 7px 0;
+            grid-template-columns: 78px minmax(0, 1fr);
+            gap: 1.6mm;
+            border-bottom: 1px solid rgba(37, 37, 37, 0.18);
+            padding: 1.5mm 0;
         }
 
         .ability-block:first-child { padding-top: 0; }
@@ -260,17 +317,19 @@
 
         .ability-score {
             border: 2px solid var(--line);
-            border-radius: 8px;
-            padding: 5px;
+            border-radius: 0;
+            padding: 1.2mm 1.2mm 0.8mm;
             text-align: center;
             background: #fff;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
 
         .ability-score strong {
             display: block;
-            margin-bottom: 4px;
-            font-size: 0.72rem;
-            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+            font-family: "Cinzel", Georgia, serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
         }
 
         .ability-score input {
@@ -289,10 +348,17 @@
         .prof-line {
             display: grid;
             grid-template-columns: 18px 42px minmax(0, 1fr);
-            gap: 5px;
+            gap: 6px;
             align-items: center;
-            margin-bottom: 4px;
-            font-size: 0.78rem;
+            margin-bottom: 1mm;
+            font-size: 0.66rem;
+        }
+
+        .save-line span,
+        .skill-line span,
+        .prof-line span {
+            min-width: 0;
+            overflow-wrap: anywhere;
         }
 
         .save-line input[type="checkbox"],
@@ -314,23 +380,27 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.82rem;
+            font-size: 0.64rem;
+            background: #fff;
+            border-radius: 0;
+            overflow: hidden;
         }
 
         th,
         td {
-            border: 1px solid var(--soft-line);
-            padding: 4px;
+            border: 1px solid rgba(37, 37, 37, 0.3);
+            padding: 0.9mm 0.8mm;
             text-align: left;
             vertical-align: top;
         }
 
         th {
-            color: #fff;
-            background: var(--line);
-            font-size: 0.64rem;
+            color: var(--ink);
+            background: #fff;
+            font-family: "Cinzel", Georgia, serif;
+            font-size: 0.52rem;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.08em;
         }
 
         td input {
@@ -341,12 +411,13 @@
         }
 
         .feature-grid {
-            display: block;
+            display: grid;
+            gap: 2.2mm;
         }
 
         .feature-grid textarea,
         .tall-textarea {
-            min-height: 180px;
+            min-height: 32mm;
         }
 
         .spell-table input[type="checkbox"] {
@@ -356,30 +427,288 @@
         }
 
         .spell-table th:nth-child(1),
-        .spell-table td:nth-child(1) { width: 44px; text-align: center; }
+        .spell-table td:nth-child(1) { width: 32px; text-align: center; }
         .spell-table th:nth-child(3),
-        .spell-table td:nth-child(3),
+        .spell-table td:nth-child(3) { width: 68px; }
         .spell-table th:nth-child(4),
-        .spell-table td:nth-child(4) { width: 88px; }
+        .spell-table td:nth-child(4),
         .spell-table th:nth-child(5),
         .spell-table td:nth-child(5),
         .spell-table th:nth-child(6),
-        .spell-table td:nth-child(6),
+        .spell-table td:nth-child(6) { width: 58px; }
         .spell-table th:nth-child(7),
-        .spell-table td:nth-child(7) { width: 34px; text-align: center; }
+        .spell-table td:nth-child(7) { width: 64px; text-align: center; }
+        .spell-table th:nth-child(9),
+        .spell-table td:nth-child(9) { width: 34px; text-align: center; }
 
-        .spell-table td:nth-child(5) input,
-        .spell-table td:nth-child(6) input,
         .spell-table td:nth-child(7) input {
             margin: 3px auto;
             display: block;
         }
 
         .muted-note {
-            margin: 8px 0 0;
+            margin: 2mm 0 0;
             color: var(--muted);
-            font-size: 0.78rem;
-            line-height: 1.35;
+            font-size: 0.65rem;
+            line-height: 1.45;
+        }
+
+        .title-card,
+        .meta-card,
+        .stat-card,
+        .level-badge {
+            border: 2px solid var(--line);
+            background: #fff;
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+            min-width: 0;
+        }
+
+        .title-card,
+        .meta-card,
+        .stat-card {
+            padding: 1.8mm 2mm 1.6mm;
+        }
+
+        .title-card {
+            min-height: 19mm;
+        }
+
+        .level-badge {
+            display: grid;
+            place-items: center;
+            min-height: 100%;
+            min-width: 20mm;
+            padding: 2mm 1.6mm;
+            border-radius: 999px;
+            clip-path: none;
+        }
+
+        .level-badge input {
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .stat-card .field,
+        .title-card .field,
+        .meta-card .field {
+            margin-bottom: 4px;
+        }
+
+        .stat-card .field:last-child,
+        .title-card .field:last-child,
+        .meta-card .field:last-child {
+            margin-bottom: 0;
+        }
+
+        #page1 .sheet-title {
+            align-items: stretch;
+        }
+
+        #page1 .identity-grid {
+            grid-template-columns: 1.3fr 1.15fr 1.15fr 0.9fr;
+        }
+
+        #page3 .top-spell-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.7fr 1fr;
+            gap: 2.2mm;
+            margin-bottom: 2.2mm;
+        }
+
+        .spell-components-cell {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6mm;
+            align-items: center;
+        }
+
+        .spell-components-cell label {
+            display: grid;
+            justify-items: center;
+            gap: 0.2mm;
+            font-size: 0.44rem;
+            text-transform: uppercase;
+        }
+
+        #page3 .spell-table th:nth-child(8),
+        #page3 .spell-table td:nth-child(8) {
+            width: 32%;
+        }
+
+        .compact-panel textarea {
+            min-height: 22mm;
+        }
+
+        .lined-table td {
+            height: 5.5mm;
+        }
+
+        .page-two-top,
+        .page-two-mid,
+        .page-two-bottom,
+        .page-three-top {
+            display: grid;
+            gap: 2.2mm;
+        }
+
+        .sheet-title > div,
+        .identity-grid > div,
+        .sheet-grid > div,
+        .mini-row > div,
+        .vitals-grid > div,
+        .spell-stat-grid > div,
+        .coin-grid > div,
+        .attune-grid > div,
+        .page-two-top > div,
+        .page-two-mid > div,
+        .page-two-bottom > div,
+        .page-three-top > div,
+        .companion-top > div,
+        .companion-abilities > div {
+            min-width: 0;
+        }
+
+        .page-two-top,
+        .page-two-mid {
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 2.2mm;
+        }
+
+        .page-two-bottom {
+            grid-template-columns: 0.76fr 1.24fr;
+            align-items: start;
+        }
+
+        .stack-tight > .panel + .panel {
+            margin-top: 2.2mm;
+        }
+
+        .page-two-notes textarea {
+            min-height: 86mm;
+        }
+
+        .section-stack {
+            display: grid;
+            gap: 1.4mm;
+        }
+
+        .section-stack .field label {
+            margin-bottom: 0.6mm;
+        }
+
+        .section-stack textarea {
+            min-height: 18mm;
+        }
+
+        .section-stack textarea.compact {
+            min-height: 12mm;
+        }
+
+        .page-two-spells .panel-body {
+            padding-bottom: 1.2mm;
+        }
+
+        .page-two-spells table td {
+            height: 5.1mm;
+        }
+
+        .page-two-personality textarea {
+            min-height: 17mm;
+        }
+
+        .page-two-story textarea {
+            min-height: 28mm;
+        }
+
+        .page-two-appearance textarea {
+            min-height: 20mm;
+        }
+
+        .page-two-equipment textarea {
+            min-height: 13mm;
+        }
+
+        .page-two-attuned textarea {
+            min-height: 24mm;
+        }
+
+        .coin-grid.compact-coins {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .companion-top {
+            display: grid;
+            grid-template-columns: 1.5fr 0.55fr 1fr 0.9fr;
+            gap: 1.6mm;
+            margin-bottom: 1.8mm;
+        }
+
+        .companion-top .panel + .panel {
+            margin-top: 0;
+        }
+
+        .companion-abilities {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4mm;
+            margin-bottom: 1.8mm;
+        }
+
+        .companion-ability {
+            border: 1px solid rgba(37, 37, 37, 0.35);
+            padding: 1mm;
+            min-width: 0;
+        }
+
+        .companion-rows {
+            display: grid;
+            gap: 1.8mm;
+        }
+
+        .companion-rows textarea {
+            min-height: 16mm;
+        }
+
+        .death-saves-grid {
+            display: grid;
+            gap: 1mm;
+        }
+
+        .death-saves-line {
+            display: grid;
+            grid-template-columns: 1fr repeat(3, 12px);
+            gap: 0.8mm;
+            align-items: center;
+            font-size: 0.62rem;
+        }
+
+        .death-saves-line input[type="checkbox"] {
+            width: 12px;
+            height: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-three-slots textarea {
+            min-height: 23mm;
+        }
+
+        .page-three-components textarea {
+            min-height: 23mm;
+        }
+
+        .page-three-main table td {
+            height: 5mm;
+        }
+
+        .page-three-main .panel-body {
+            padding-top: 1.2mm;
+        }
+
+        .page-four-main table td {
+            height: 5.2mm;
         }
 
         @media (max-width: 1100px) {
@@ -391,10 +720,18 @@
                 position: static;
             }
 
+            .sheet {
+                padding: 10px;
+            }
+
             .sheet-grid,
             .page-two-grid,
             .sheet-title,
-            .identity-grid {
+            .identity-grid,
+            .page-two-top,
+            .page-two-mid,
+            .page-two-bottom,
+            .page-three-top {
                 grid-template-columns: 1fr;
             }
         }
@@ -402,7 +739,10 @@
         @media (max-width: 760px) {
             .wrap { padding: 8px; }
             .sheet { padding: 8px; }
-            .sheet-page { padding: 8px; }
+            .sheet-page {
+                min-height: 0;
+                padding: 18px 12px 12px;
+            }
             .vitals-grid,
             .spell-stat-grid,
             .mini-row,
@@ -414,6 +754,11 @@
         }
 
         @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
             body { background: #fff; }
             .topnav,
             .sidebar { display: none; }
@@ -421,10 +766,13 @@
             .sheet { border: 0; box-shadow: none; padding: 0; }
             .sheet-page {
                 display: block !important;
-                min-height: 0;
-                margin: 0 0 12px;
+                width: 210mm;
+                min-height: 297mm;
+                height: 297mm;
+                margin: 0;
                 page-break-after: always;
                 border-radius: 0;
+                box-shadow: none;
             }
         }
     </style>
@@ -447,11 +795,12 @@
         <div class="app-shell">
             <aside class="sidebar">
                 <h1>Feuille D&amp;D 2024</h1>
-                <p>Format inspiré du créateur joint, en 3 pages compactes. Les champs restent éditables et sauvegardés localement.</p>
+                <p>Format inspiré du créateur joint, en 4 pages compactes. Les champs restent éditables et sauvegardés localement.</p>
                 <div class="page-tabs" role="tablist" aria-label="Pages de la feuille">
                     <button type="button" class="active" data-page-target="page1">P 1</button>
                     <button type="button" data-page-target="page2">P 2</button>
                     <button type="button" data-page-target="page3">P 3</button>
+                    <button type="button" data-page-target="page4">P 4</button>
                 </div>
                 <div class="toolbar">
                     <button type="button" id="saveBtn" class="primary">Sauvegarder</button>
@@ -466,39 +815,49 @@
             <main class="sheet">
                 <section class="sheet-page active" id="page1" data-page>
                     <div class="sheet-title">
-                        <div class="field"><label>Nom du personnage</label><input type="text" data-field="name" placeholder="Nom du personnage" /></div>
-                        <div class="field">
-                            <label>Classe</label>
-                            <select data-field="character_class" data-class-select>
-                                <option value="">Choisir une classe</option>
-                            </select>
-                            <input type="hidden" data-field="class_level" data-class-level />
+                        <div class="title-card">
+                            <div class="field"><label>Nom du personnage</label><input type="text" data-field="name" placeholder="Nom du personnage" /></div>
+                            <div class="field">
+                                <label>Classe</label>
+                                <select data-field="character_class" data-class-select>
+                                    <option value="">Choisir une classe</option>
+                                </select>
+                                <input type="hidden" data-field="class_level" data-class-level />
+                            </div>
                         </div>
-                        <div class="big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
-                        <div class="big-field field"><label>PV</label><input type="text" data-field="hp_current" /></div>
-                        <div class="big-field field"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
+                        <div class="level-badge field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
+                        <div class="stat-card big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
+                        <div class="stat-card big-field field"><label>PV</label><input type="text" data-field="hp_current" /></div>
+                        <div class="stat-card big-field field"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
+                        <div class="stat-card field">
+                            <label>Jets de mort</label>
+                            <div class="death-saves-grid">
+                                <div class="death-saves-line"><span>Succès</span><input type="checkbox" data-field="death_success_1" /><input type="checkbox" data-field="death_success_2" /><input type="checkbox" data-field="death_success_3" /></div>
+                                <div class="death-saves-line"><span>Échecs</span><input type="checkbox" data-field="death_failure_1" /><input type="checkbox" data-field="death_failure_2" /><input type="checkbox" data-field="death_failure_3" /></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="identity-grid">
-                        <div class="field">
+                        <div class="meta-card field">
                             <label>Historique</label>
                             <select data-field="background" data-background-select>
                                 <option value="">Choisir un historique</option>
                             </select>
                         </div>
-                        <div class="field">
+                        <div class="meta-card field">
                             <label>Espèce</label>
                             <select data-field="species" data-species-select>
                                 <option value="">Choisir une espèce</option>
                             </select>
                         </div>
-                        <div class="field">
+                        <div class="meta-card field">
                             <label>Sous-classe</label>
                             <select data-field="subclass" data-subclass-select>
                                 <option value="">Choisir une sous-classe</option>
                             </select>
                         </div>
-                        <div class="field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
+                        <div class="meta-card field"><label>Inspiration</label><input type="text" data-field="inspiration" /></div>
                     </div>
 
                     <div class="sheet-grid">
@@ -582,7 +941,12 @@
                                     <div class="mini-row" style="margin-top: 6px;">
                                         <div class="field"><label>Bonus de maîtrise</label><input type="text" data-field="proficiency_bonus" /></div>
                                         <div class="field"><label>PV max</label><input type="text" data-field="hp_max" /></div>
-                                        <div class="field"><label>Inspiration</label><input type="text" data-field="inspiration" /></div>
+                                        <div class="field"><label>Conditions</label><input type="text" data-field="conditions_effects" /></div>
+                                    </div>
+                                    <div class="mini-row" style="margin-top: 6px;">
+                                        <div class="field"><label>Bouclier</label><input type="text" data-field="shield" /></div>
+                                        <div class="field"><label>Épuisement</label><input type="text" data-field="exhaustion" /></div>
+                                        <div class="field"><label>Inspiration héroïque</label><input type="text" data-field="heroic_inspiration" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -646,63 +1010,121 @@
                 </section>
 
                 <section class="sheet-page" id="page2" data-page>
-                    <div class="page-two-grid">
-                        <div>
-                            <div class="panel">
-                                <h2>Incantation</h2>
-                                <div class="panel-body">
-                                    <div class="spell-stat-grid">
-                                        <div class="field"><label>Carac.</label><input type="text" data-field="spell_stat" /></div>
-                                        <div class="field"><label>Mod.</label><input type="text" data-field="spell_mod" /></div>
-                                        <div class="field"><label>DD</label><input type="text" data-field="spell_dc" /></div>
-                                        <div class="field"><label>Attaque</label><input type="text" data-field="spell_attack_bonus" /></div>
-                                    </div>
-                                    <div class="field" style="margin-top: 6px;"><label>Emplacements par niveau</label><input type="text" data-field="spell_slots" placeholder="1: 4 / 2: 3 / 3: 2..." /></div>
-                                </div>
-                            </div>
-
-                            <div class="panel">
-                                <h2>Sorts préparés et connus</h2>
-                                <div class="panel-body">
-                                    <table class="spell-table">
-                                        <thead><tr><th>Niv.</th><th>Sort</th><th>Incant.</th><th>Portée</th><th>C</th><th>R</th><th>M</th><th>Notes</th></tr></thead>
-                                        <tbody id="spellRowsA"></tbody>
-                                    </table>
-                                </div>
+                    <div class="page-two-top">
+                        <div class="panel compact-panel page-two-equipment">
+                            <h2>Équipement</h2>
+                            <div class="panel-body section-stack">
+                                <div class="field"><label>Armure portée</label><textarea class="compact" data-field="armor_worn"></textarea></div>
+                                <div class="field"><label>Armes</label><textarea class="compact" data-field="weapons_carried"></textarea></div>
+                                <div class="field"><label>Munitions, potions et consommables</label><textarea data-field="consumables"></textarea></div>
+                                <div class="field"><label>Autre équipement</label><textarea data-field="gear"></textarea></div>
                             </div>
                         </div>
+                        <div class="panel compact-panel page-two-appearance">
+                            <h2>Apparence</h2>
+                            <div class="panel-body section-stack">
+                                <div class="field"><label>Apparence</label><textarea data-field="appearance"></textarea></div>
+                                <div class="field"><label>Description physique</label><textarea data-field="physical_description"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div>
-                            <div class="panel">
-                                <h2>Apparence</h2>
-                                <div class="panel-body"><textarea data-field="appearance" class="tall-textarea"></textarea></div>
+                    <div class="page-two-mid">
+                        <div class="panel compact-panel page-two-story">
+                            <h2>Histoire et personnalité</h2>
+                            <div class="panel-body section-stack">
+                                <div class="field"><label>Histoire et personnalité</label><textarea data-field="story"></textarea></div>
+                                <div class="field"><label>Alignement</label><input type="text" data-field="alignment" /></div>
+                            </div>
+                        </div>
+                        <div class="panel page-two-notes">
+                            <h2>Aptitudes supplémentaires et notes</h2>
+                            <div class="panel-body"><textarea data-field="features_page_2" class="tall-textarea"></textarea></div>
+                        </div>
+                    </div>
+
+                    <div class="page-two-bottom">
+                        <div class="stack-tight">
+                            <div class="panel page-two-attuned">
+                                <h2>Objets magiques harmonisés</h2>
+                                <div class="panel-body"><textarea data-field="attuned_magic_items"></textarea></div>
                             </div>
                             <div class="panel">
-                                <h2>Histoire</h2>
-                                <div class="panel-body"><textarea data-field="story" class="tall-textarea"></textarea></div>
-                            </div>
-                            <div class="panel">
-                                <h2>Équipement</h2>
-                                <div class="panel-body"><textarea data-field="gear" class="tall-textarea"></textarea></div>
-                            </div>
-                            <div class="panel">
-                                <h2>Harmonisation et richesse</h2>
-                                <div class="panel-body">
-                                    <div class="attune-grid">
-                                        <div class="field"><label>Objet 1</label><input type="text" data-field="attunement_1" /></div>
-                                        <div class="field"><label>Objet 2</label><input type="text" data-field="attunement_2" /></div>
-                                        <div class="field"><label>Objet 3</label><input type="text" data-field="attunement_3" /></div>
-                                    </div>
-                                    <div class="coin-grid" style="margin-top: 6px;">
+                                <h2>Pièces et richesse</h2>
+                                <div class="panel-body section-stack">
+                                    <div class="coin-grid compact-coins">
                                         <div class="field"><label>PC</label><input type="text" data-field="cp" /></div>
                                         <div class="field"><label>PA</label><input type="text" data-field="sp" /></div>
                                         <div class="field"><label>PE</label><input type="text" data-field="ep" /></div>
                                         <div class="field"><label>PO</label><input type="text" data-field="gp" /></div>
                                         <div class="field"><label>PP</label><input type="text" data-field="pp" /></div>
                                     </div>
+                                    <div class="field"><label>Autre richesse</label><textarea class="compact" data-field="other_wealth"></textarea></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stack-tight">
+                            <div class="panel">
+                                <h2>Compagnon ou familier</h2>
+                                <div class="panel-body">
+                                    <div class="companion-top">
+                                        <div class="panel">
+                                            <h3>Identité</h3>
+                                            <div class="panel-body section-stack">
+                                                <div class="field"><label>Nom du compagnon</label><input type="text" data-field="companion_name" /></div>
+                                                <div class="field"><label>Type</label><input type="text" data-field="companion_type" /></div>
+                                                <div class="field"><label>Créature, type et taille</label><input type="text" data-field="companion_creature_size" /></div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <h3>Dépl.</h3>
+                                            <div class="panel-body section-stack">
+                                                <div class="field"><label>Vitesse</label><input type="text" data-field="companion_speed" /></div>
+                                                <div class="field"><label>CA</label><input type="text" data-field="companion_ac" /></div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <h3>Points de vie</h3>
+                                            <div class="panel-body section-stack">
+                                                <div class="field"><label>Actuels</label><input type="text" data-field="companion_hp_current" /></div>
+                                                <div class="field"><label>Max</label><input type="text" data-field="companion_hp_max" /></div>
+                                                <div class="field"><label>Temp.</label><input type="text" data-field="companion_hp_temp" /></div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <h3>Dés de vie</h3>
+                                            <div class="panel-body section-stack">
+                                                <div class="field"><label>Max</label><input type="text" data-field="companion_hit_dice_max" /></div>
+                                                <div class="field"><label>Dépensés</label><input type="text" data-field="companion_hit_dice_spent" /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="companion-abilities">
+                                        <div class="companion-ability field"><label>FOR</label><input type="text" data-field="companion_str" /></div>
+                                        <div class="companion-ability field"><label>DEX</label><input type="text" data-field="companion_dex" /></div>
+                                        <div class="companion-ability field"><label>CON</label><input type="text" data-field="companion_con" /></div>
+                                        <div class="companion-ability field"><label>INT</label><input type="text" data-field="companion_int" /></div>
+                                        <div class="companion-ability field"><label>SAG</label><input type="text" data-field="companion_wis" /></div>
+                                        <div class="companion-ability field"><label>CHA</label><input type="text" data-field="companion_cha" /></div>
+                                    </div>
+                                    <div class="companion-rows">
+                                        <div class="field"><label>Attaques et dégâts</label><textarea data-field="companion_attacks"></textarea></div>
+                                        <div class="field"><label>Aptitudes et traits</label><textarea data-field="companion_features"></textarea></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel">
+                                <h2>Harmonisation</h2>
+                                <div class="panel-body">
+                                    <div class="attune-grid">
+                                        <div class="field"><label>Objet 1</label><input type="text" data-field="attunement_1" /></div>
+                                        <div class="field"><label>Objet 2</label><input type="text" data-field="attunement_2" /></div>
+                                        <div class="field"><label>Objet 3</label><input type="text" data-field="attunement_3" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel page-two-personality">
                                 <h2>Personnalité</h2>
                                 <div class="panel-body"><textarea data-field="personality"></textarea></div>
                             </div>
@@ -711,14 +1133,46 @@
                 </section>
 
                 <section class="sheet-page" id="page3" data-page>
-                    <div class="panel">
-                        <h2>Sorts supplémentaires</h2>
+                    <div class="page-three-top">
+                        <div class="top-spell-grid">
+                            <div class="panel page-three-slots">
+                                <h2>Emplacements de sorts</h2>
+                                <div class="panel-body"><textarea data-field="spell_slots" placeholder="1: 4 / 2: 3 / 3: 2..."></textarea></div>
+                            </div>
+                            <div class="panel">
+                                <h2>Incantation</h2>
+                                <div class="panel-body">
+                                    <div class="field"><label>Carac.</label><input type="text" data-field="spell_stat" /></div>
+                                    <div class="field"><label>Mod.</label><input type="text" data-field="spell_mod" /></div>
+                                    <div class="field"><label>DD</label><input type="text" data-field="spell_dc" /></div>
+                                    <div class="field"><label>Attaque</label><input type="text" data-field="spell_attack_bonus" /></div>
+                                </div>
+                            </div>
+                            <div class="panel page-three-components">
+                                <h2>Composantes et focus</h2>
+                                <div class="panel-body"><textarea data-field="spell_components_notes"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel lined-table page-three-main">
+                        <h2>Cantrips et sorts préparés</h2>
                         <div class="panel-body">
                             <table class="spell-table">
-                                <thead><tr><th>Niv.</th><th>Sort</th><th>Incant.</th><th>Portée</th><th>C</th><th>R</th><th>M</th><th>Notes</th></tr></thead>
+                                <thead><tr><th>Niv.</th><th>Nom</th><th>École</th><th>Incant.</th><th>Portée</th><th>Durée</th><th>Compos.</th><th>Notes</th><th>Page</th></tr></thead>
                                 <tbody id="spellRowsB"></tbody>
                             </table>
-                            <p class="muted-note">Cette troisième page suit l'esprit du fichier joint: elle sert surtout de grande réserve pour les lanceurs de sorts, les rituels et les notes de préparation.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sheet-page" id="page4" data-page>
+                    <div class="panel lined-table page-four-main">
+                        <h2>Cantrips et sorts préparés</h2>
+                        <div class="panel-body">
+                            <table class="spell-table">
+                                <thead><tr><th>Niv.</th><th>Nom</th><th>École</th><th>Incant.</th><th>Portée</th><th>Durée</th><th>Compos.</th><th>Notes</th><th>Page</th></tr></thead>
+                                <tbody id="spellRowsC"></tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
@@ -737,6 +1191,7 @@
             var importFile = document.getElementById("importFile");
             var spellRowsA = document.getElementById("spellRowsA");
             var spellRowsB = document.getElementById("spellRowsB");
+            var spellRowsC = document.getElementById("spellRowsC");
             var classSelect = document.querySelector("[data-class-select]");
             var speciesSelect = document.querySelector("[data-species-select]");
             var backgroundSelect = document.querySelector("[data-background-select]");
@@ -893,23 +1348,25 @@
                     "<tr>",
                     "<td><input type=\"text\" data-field=\"spell_" + index + "_level\" /></td>",
                     "<td><input type=\"text\" data-field=\"spell_" + index + "_name\" /></td>",
+                    "<td><input type=\"text\" data-field=\"spell_" + index + "_school\" /></td>",
                     "<td><input type=\"text\" data-field=\"spell_" + index + "_cast\" /></td>",
                     "<td><input type=\"text\" data-field=\"spell_" + index + "_range\" /></td>",
-                    "<td><input type=\"checkbox\" data-field=\"spell_" + index + "_concentration\" /></td>",
-                    "<td><input type=\"checkbox\" data-field=\"spell_" + index + "_ritual\" /></td>",
-                    "<td><input type=\"checkbox\" data-field=\"spell_" + index + "_material\" /></td>",
+                    "<td><input type=\"text\" data-field=\"spell_" + index + "_duration\" /></td>",
+                    "<td><div class=\"spell-components-cell\"><label>V<input type=\"checkbox\" data-field=\"spell_" + index + "_verbal\" /></label><label>S<input type=\"checkbox\" data-field=\"spell_" + index + "_somatic\" /></label><label>M<input type=\"checkbox\" data-field=\"spell_" + index + "_material\" /></label></div></td>",
                     "<td><input type=\"text\" data-field=\"spell_" + index + "_notes\" /></td>",
+                    "<td><input type=\"text\" data-field=\"spell_" + index + "_page\" /></td>",
                     "</tr>"
                 ].join("");
             }
 
             function buildSpellRows() {
-                var rowsA = [];
                 var rowsB = [];
-                for (var i = 1; i <= 30; i += 1) rowsA.push(spellRow(i));
-                for (var j = 31; j <= 75; j += 1) rowsB.push(spellRow(j));
-                spellRowsA.innerHTML = rowsA.join("");
-                spellRowsB.innerHTML = rowsB.join("");
+                var rowsC = [];
+                for (var j = 1; j <= 22; j += 1) rowsB.push(spellRow(j));
+                for (var k = 23; k <= 52; k += 1) rowsC.push(spellRow(k));
+                if (spellRowsA) spellRowsA.innerHTML = "";
+                if (spellRowsB) spellRowsB.innerHTML = rowsB.join("");
+                if (spellRowsC) spellRowsC.innerHTML = rowsC.join("");
             }
 
             buildSpellRows();
