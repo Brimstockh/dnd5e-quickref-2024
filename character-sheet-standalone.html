@@ -172,7 +172,7 @@
 
         .sheet-title {
             display: grid;
-            grid-template-columns: minmax(0, 2.2fr) minmax(28mm, 0.72fr) minmax(58mm, 1.4fr);
+            grid-template-columns: minmax(0, 1.72fr) minmax(44mm, 0.96fr) minmax(58mm, 1.18fr);
             gap: var(--page-gap);
             margin-bottom: 0;
             padding: 0;
@@ -309,7 +309,7 @@
         }
 
         .mini-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .vitals-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .vitals-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         .spell-stat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         .coin-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
         .attune-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -321,6 +321,13 @@
             align-items: start;
         }
 
+        .ability-column {
+            display: grid;
+            gap: 1.2mm;
+            align-content: start;
+            min-width: 0;
+        }
+
         .ability-meta-card {
             border: 2px solid var(--line);
             border-radius: 4px;
@@ -330,54 +337,26 @@
             gap: 1.2mm;
         }
 
+        .ability-meta-card .field input {
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .ability-meta-card .field:has([data-field="proficiency_bonus"]) { order: 1; }
+        .ability-meta-card .field:has([data-field="initiative"]) { order: 2; }
+        .ability-meta-card .checkbox-field { order: 3; }
+
         .ability-meta-card .checkbox-field {
             font-size: 0.62rem;
         }
 
-        .ability-scores-grid > .ability-meta-card,
-        .ability-scores-grid > .ability-block {
+        .ability-column > .ability-meta-card,
+        .ability-column > .ability-block {
             align-self: start;
         }
 
-        .ability-scores-grid > .ability-meta-card {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(2) {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(3) {
-            grid-column: 2;
-            grid-row: 1;
-            position: relative;
-            top: 4.5mm;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(4) {
-            grid-column: 2;
-            grid-row: 2;
-            position: relative;
-            top: 4.5mm;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(5) {
-            grid-column: 1;
-            grid-row: 3;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(6) {
-            grid-column: 2;
-            grid-row: 3;
-            position: relative;
-            top: 4.5mm;
-        }
-
-        .ability-scores-grid > .ability-block:nth-child(7) {
-            grid-column: 1;
-            grid-row: 4;
+        .ability-column-right {
+            padding-top: 0;
         }
 
         .ability-block {
@@ -497,7 +476,7 @@
 
         #page1 .masteries-checks {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1mm 1.5mm;
         }
 
@@ -551,7 +530,7 @@
 
         .feature-grid textarea,
         .tall-textarea {
-            min-height: 32mm;
+            min-height: 12mm;
         }
 
         .spell-table input[type="checkbox"] {
@@ -606,8 +585,9 @@
 
         .identity-card {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.3mm;
+            grid-template-columns: 0.58fr 1.12fr;
+            gap: 0.0mm 1mm;
+            max-width: 96mm;
         }
 
         .identity-name {
@@ -620,7 +600,7 @@
 
         .identity-stack {
             display: grid;
-            gap: 0.2mm;
+            gap: 0.1mm;
         }
 
         .top-stat-card {
@@ -631,12 +611,36 @@
         }
 
         .level-ac-card {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.72fr 1fr;
+            gap: 1mm;
             align-items: start;
+            border: 1;
+            background: transparent;
+            clip-path: none;
+            padding: 0;
         }
 
-        .level-ac-card .full-row {
-            grid-column: 1 / -1;
+        .level-card,
+        .ac-shield-card {
+            border: 1px solid rgba(37, 37, 37, 0.45);
+            min-width: 0;
+            padding: 0.8mm 0.9mm;
+            background: #fff;
+        }
+
+        .level-card {
+            display: grid;
+            align-content: start;
+        }
+
+        .ac-shield-card {
+            display: grid;
+            gap: 0.8mm;
+            align-content: start;
+        }
+
+        .ac-shield-card .checkbox-field {
+            margin-top: 0.2mm;
         }
 
         .top-stat-card .big-field input {
@@ -684,7 +688,7 @@
 
         .hp-summary-card {
             display: grid;
-            grid-template-columns: 1.05fr 0.8fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto auto;
             gap: 1.2mm 1.6mm;
             align-items: start;
@@ -692,7 +696,7 @@
 
         .hp-summary-card .hp-current {
             grid-column: 1;
-            grid-row: 1 / span 2;
+            grid-row: 1;
         }
 
         .hp-summary-card .hp-temp {
@@ -701,13 +705,18 @@
         }
 
         .hp-summary-card .hp-max {
-            grid-column: 2;
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .hp-summary-card .hit-dice-block {
+            grid-column: 1 / span 1;
             grid-row: 2;
         }
 
         .hp-summary-card .death-block {
-            grid-column: 3;
-            grid-row: 1 / span 2;
+            grid-column: 2 / span 2;
+            grid-row: 2;
         }
 
         .hp-summary-card .big-field input {
@@ -715,8 +724,19 @@
             font-size: 1.05rem;
         }
 
-        .death-block {
+        .hit-dice-block input {
             text-align: left;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .death-block {
+            justify-self: end;
+            width: max-content;
+            text-align: right;
+        }
+
+        .status-row {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .checkbox-field input[type="checkbox"] {
@@ -959,13 +979,14 @@
 
         .death-saves-grid {
             display: grid;
-            gap: 1mm;
+            gap: 0.6mm;
         }
 
         .death-saves-line {
             display: grid;
-            grid-template-columns: 1fr repeat(3, 12px);
-            gap: 0.8mm;
+            grid-template-columns: auto repeat(3, 12px);
+            justify-content: end;
+            gap: 0.9mm;
             align-items: center;
             font-size: 0.72rem;
         }
@@ -1013,6 +1034,7 @@
         #page1 .panel-body,
         #page1 .masteries-grid {
             min-height: 0;
+            
         }
 
         #page1 .sheet-grid-wide {
@@ -1043,7 +1065,7 @@
         #page1 .page-one-feats { grid-area: feats; }
 
         #page1 .page-one-class-features textarea {
-            min-height: 58mm;
+            min-height: 30mm;
         }
 
         #page1 .page-one-species-traits textarea,
@@ -1237,14 +1259,19 @@
                             </div>
                         </div>
                         <div class="stat-card top-stat-card level-ac-card">
-                            <div class="big-field field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
-                            <div class="big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
-                            <div class="field full-row"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
+                            <div class="level-card">
+                                <div class="big-field field"><label>Niveau</label><input type="text" data-field="Niveau" data-level-input /></div>
+                            </div>
+                            <div class="ac-shield-card">
+                                <div class="big-field field"><label>CA</label><input type="text" data-field="ac" /></div>
+                                <label class="checkbox-field"><input type="checkbox" data-field="shield" /><span>Bouclier</span></label>
+                            </div>
                         </div>
                         <div class="stat-card hp-summary-card">
                             <div class="big-field field hp-current"><label>PV</label><input type="text" data-field="hp_current" /></div>
                             <div class="big-field field hp-temp"><label>Temp</label><input type="text" data-field="hp_temp" /></div>
                             <div class="big-field field hp-max"><label>Max</label><input type="text" data-field="hp_max" /></div>
+                            <div class="field hit-dice-block"><label>Dés de vie</label><input type="text" data-field="hit_dice" /></div>
                             <div class="death-block">
                                 <label>Jets de mort</label>
                                 <div class="death-saves-grid">
@@ -1258,10 +1285,11 @@
                     <div class="sheet-grid">
                         <div class="sheet-grid-wide">
                             <div class="panel">
-                                <h2>Caractéristiques, sauvegardes et compétences</h2>
+                                <h2>Caractéristiques et compétences</h2>
                                 <div class="panel-body">
                                     <div class="ability-scores-grid">
                                         <div class="ability-meta-card">
+                                            <div class="field"><label>Initiative</label><input type="text" data-field="initiative" /></div>
                                             <div class="field"><label>Bonus de maîtrise</label><input type="text" data-field="proficiency_bonus" /></div>
                                             <label class="checkbox-field"><input type="checkbox" data-field="inspiration" /><span>Inspiration</span></label>
                                         </div>
@@ -1331,6 +1359,23 @@
                             </div>
 
                             <div class="panel">
+                                <h2>Défense et déplacement</h2>
+                                <div class="panel-body">
+                                    <div class="vitals-grid">
+                                        <div class="big-field field"><label>Vitesse</label><input type="text" data-field="speed" /></div>
+                                        <div class="big-field field"><label>Perception passive</label><input type="text" data-field="passive_perception" /></div>
+                                    </div>
+                                    <div class="mini-row status-row" style="margin-top: 6px;">
+                                        <div class="field"><label>Conditions</label><input type="text" data-field="conditions_effects" /></div>
+                                        <div class="field"><label>Épuisement</label><input type="text" data-field="exhaustion" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="page-one-side">
+                            
+                            <div class="panel">
                                 <h2>Maîtrises</h2>
                                 <div class="panel-body masteries-grid">
                                     <div class="masteries-checks">
@@ -1349,25 +1394,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="page-one-side">
-                            <div class="panel">
-                                <h2>Défense et déplacement</h2>
-                                <div class="panel-body">
-                                    <div class="vitals-grid">
-                                        <div class="big-field field"><label>Initiative</label><input type="text" data-field="initiative" /></div>
-                                        <div class="big-field field"><label>Vitesse</label><input type="text" data-field="speed" /></div>
-                                        <div class="big-field field"><label>Taille</label><input type="text" data-field="size" /></div>
-                                        <div class="big-field field"><label>Perception passive</label><input type="text" data-field="passive_perception" /></div>
-                                    </div>
-                                    <div class="mini-row" style="margin-top: 6px;">
-                                        <div class="field"><label>Bouclier</label><input type="text" data-field="shield" /></div>
-                                        <div class="field"><label>Conditions</label><input type="text" data-field="conditions_effects" /></div>
-                                        <div class="field"><label>Épuisement</label><input type="text" data-field="exhaustion" /></div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="panel">
                                 <h2>Attaques</h2>
@@ -1379,8 +1405,6 @@
                                             <tr><td><input type="text" data-field="atk_2_name" /></td><td><input type="text" data-field="atk_2_bonus" /></td><td><input type="text" data-field="atk_2_dmg" /></td><td><input type="text" data-field="atk_2_notes" /></td></tr>
                                             <tr><td><input type="text" data-field="atk_3_name" /></td><td><input type="text" data-field="atk_3_bonus" /></td><td><input type="text" data-field="atk_3_dmg" /></td><td><input type="text" data-field="atk_3_notes" /></td></tr>
                                             <tr><td><input type="text" data-field="atk_4_name" /></td><td><input type="text" data-field="atk_4_bonus" /></td><td><input type="text" data-field="atk_4_dmg" /></td><td><input type="text" data-field="atk_4_notes" /></td></tr>
-                                            <tr><td><input type="text" data-field="atk_5_name" /></td><td><input type="text" data-field="atk_5_bonus" /></td><td><input type="text" data-field="atk_5_dmg" /></td><td><input type="text" data-field="atk_5_notes" /></td></tr>
-                                            <tr><td><input type="text" data-field="atk_6_name" /></td><td><input type="text" data-field="atk_6_bonus" /></td><td><input type="text" data-field="atk_6_dmg" /></td><td><input type="text" data-field="atk_6_notes" /></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -1420,6 +1444,22 @@
                                 <div class="field"><label>Autre équipement</label><textarea data-field="gear"></textarea></div>
                             </div>
                         </div>
+                        <div class="panel compact-panel page-two-story">
+                            <h2>Histoire et personnalité</h2>
+                            <div class="panel-body section-stack">
+                                <div class="field"><label>Histoire et personnalité</label><textarea data-field="story"></textarea></div>
+                                <div class="field"><label>Alignement</label><input type="text" data-field="alignment" /></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="page-two-mid">
+                        <div class="panel page-two-attuned">
+                            <h2>Objets magiques harmonisés</h2>
+                            <div class="panel-body"><textarea data-field="attuned_magic_items"></textarea></div>
+                        </div>
                         <div class="panel compact-panel page-two-appearance">
                             <h2>Apparence</h2>
                             <div class="panel-body section-stack">
@@ -1429,26 +1469,8 @@
                         </div>
                     </div>
 
-                    <div class="page-two-mid">
-                        <div class="panel compact-panel page-two-story">
-                            <h2>Histoire et personnalité</h2>
-                            <div class="panel-body section-stack">
-                                <div class="field"><label>Histoire et personnalité</label><textarea data-field="story"></textarea></div>
-                                <div class="field"><label>Alignement</label><input type="text" data-field="alignment" /></div>
-                            </div>
-                        </div>
-                        <div class="panel page-two-notes">
-                            <h2>Aptitudes supplémentaires et notes</h2>
-                            <div class="panel-body"><textarea data-field="features_page_2" class="tall-textarea"></textarea></div>
-                        </div>
-                    </div>
-
                     <div class="page-two-bottom">
                         <div class="stack-tight">
-                            <div class="panel page-two-attuned">
-                                <h2>Objets magiques harmonisés</h2>
-                                <div class="panel-body"><textarea data-field="attuned_magic_items"></textarea></div>
-                            </div>
                             <div class="panel">
                                 <h2>Pièces et richesse</h2>
                                 <div class="panel-body section-stack">
@@ -1462,6 +1484,11 @@
                                     <div class="field"><label>Autre richesse</label><textarea class="compact" data-field="other_wealth"></textarea></div>
                                 </div>
                             </div>
+                            <div class="panel page-two-notes">
+                                <h2>Aptitudes supplémentaires et notes</h2>
+                                <div class="panel-body"><textarea data-field="features_page_2" class="tall-textarea"></textarea></div>
+                            </div>
+
                         </div>
 
                         <div class="stack-tight">
@@ -1514,20 +1541,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel">
-                                <h2>Harmonisation</h2>
-                                <div class="panel-body">
-                                    <div class="attune-grid">
-                                        <div class="field"><label>Objet 1</label><input type="text" data-field="attunement_1" /></div>
-                                        <div class="field"><label>Objet 2</label><input type="text" data-field="attunement_2" /></div>
-                                        <div class="field"><label>Objet 3</label><input type="text" data-field="attunement_3" /></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel page-two-personality">
-                                <h2>Personnalité</h2>
-                                <div class="panel-body"><textarea data-field="personality"></textarea></div>
-                            </div>
+                            
                         </div>
                     </div>
                 </section>
@@ -1762,8 +1776,8 @@
             function buildSpellRows() {
                 var rowsB = [];
                 var rowsC = [];
-                for (var j = 1; j <= 22; j += 1) rowsB.push(spellRow(j));
-                for (var k = 23; k <= 52; k += 1) rowsC.push(spellRow(k));
+                for (var j = 1; j <= 19; j += 1) rowsB.push(spellRow(j));
+                for (var k = 20; k <= 44; k += 1) rowsC.push(spellRow(k));
                 if (spellRowsA) spellRowsA.innerHTML = "";
                 if (spellRowsB) spellRowsB.innerHTML = rowsB.join("");
                 if (spellRowsC) spellRowsC.innerHTML = rowsC.join("");
@@ -1879,6 +1893,48 @@
                 return document.querySelector("[data-field=\"" + key + "\"]");
             }
 
+            function setupAbilityColumns() {
+                var grid = document.querySelector(".ability-scores-grid");
+                if (!grid || grid.querySelector(".ability-column")) return;
+
+                var meta = grid.querySelector(".ability-meta-card");
+                var blocks = Array.prototype.slice.call(grid.querySelectorAll(".ability-block"));
+                if (!meta || !blocks.length) return;
+
+                function findBlock(fieldName) {
+                    return blocks.filter(function (block) {
+                        return !!block.querySelector("[data-field=\"" + fieldName + "\"]");
+                    })[0] || null;
+                }
+
+                var left = document.createElement("div");
+                left.className = "ability-column ability-column-left";
+
+                var right = document.createElement("div");
+                right.className = "ability-column ability-column-right";
+
+                [
+                    meta,
+                    findBlock("str"),
+                    findBlock("dex"),
+                    findBlock("con")
+                ].filter(Boolean).forEach(function (node) {
+                    left.appendChild(node);
+                });
+
+                [
+                    findBlock("int"),
+                    findBlock("wis"),
+                    findBlock("cha")
+                ].filter(Boolean).forEach(function (node) {
+                    right.appendChild(node);
+                });
+
+                grid.innerHTML = "";
+                grid.appendChild(left);
+                grid.appendChild(right);
+            }
+
             function parseNumber(value) {
                 var parsed = parseInt(String(value || "").replace(/[^\d-]/g, ""), 10);
                 return Number.isNaN(parsed) ? null : parsed;
@@ -1886,6 +1942,11 @@
 
             function formatSigned(value) {
                 return (value >= 0 ? "+" : "") + value;
+            }
+
+            function shortHitDie(value) {
+                var match = String(value || "").match(/d\d+/i);
+                return match ? match[0].toUpperCase() : String(value || "").trim();
             }
 
             function proficiencyFromLevel(level) {
@@ -1919,33 +1980,59 @@
                 if (clean) lines.push(label + ": " + clean);
             }
 
+            function autoMarkers(label) {
+                var hash = 0;
+                var text = String(label || "");
+                for (var i = 0; i < text.length; i++) {
+                    hash = ((hash << 5) - hash + text.charCodeAt(i)) >>> 0;
+                }
+                var bits = hash.toString(2).replace(/0/g, "\u200b").replace(/1/g, "\u200c");
+                var token = "\u2063" + bits + "\u2063";
+                return {
+                    start: token + "\u200d",
+                    end: token + "\u200e"
+                };
+            }
+
+            function stripAutoMarkers(value) {
+                return String(value || "")
+                    .replace(/\[Auto - [^\]]+\]\s*\n?/g, "")
+                    .replace(/\[\/Auto - [^\]]+\]\s*\n?/g, "")
+                    .replace(/\u2063[\u200b\u200c]+\u2063[\u200d\u200e]/g, "")
+                    .replace(/\n{3,}/g, "\n\n")
+                    .trim();
+            }
+
             function autoBlock(label, content) {
                 var clean = String(content || "").trim();
-                return clean ? "[Auto - " + label + "]\n" + clean : "";
+                if (!clean) return "";
+                var markers = autoMarkers(label);
+                return markers.start + clean + markers.end;
             }
 
             function setAutoBlock(fieldKey, label, content) {
                 var field = getField(fieldKey);
                 if (!field) return;
-                var start = "[Auto - " + label + "]";
-                var end = "[/Auto - " + label + "]";
+                var markers = autoMarkers(label);
+                var start = markers.start;
+                var end = markers.end;
                 var block = autoBlock(label, content);
                 var value = field.value || "";
                 var startIndex = value.indexOf(start);
                 var endIndex = value.indexOf(end);
                 if (startIndex !== -1) {
-                    var before = value.slice(0, startIndex).trim();
+                    var before = stripAutoMarkers(value.slice(0, startIndex));
                     var replaceEnd = -1;
                     if (endIndex !== -1 && endIndex >= startIndex) {
                         replaceEnd = endIndex + end.length;
                     } else {
-                        var nextStartIndex = value.indexOf("[Auto - ", startIndex + start.length);
-                        replaceEnd = nextStartIndex !== -1 ? nextStartIndex : value.length;
+                        replaceEnd = value.length;
                     }
-                    var after = value.slice(replaceEnd).trim();
+                    var after = stripAutoMarkers(value.slice(replaceEnd));
                     field.value = [before, block, after].filter(Boolean).join("\n\n");
                     return;
                 }
+                value = stripAutoMarkers(value);
                 if (!block) return;
                 field.value = [value.trim(), block].filter(Boolean).join("\n\n");
             }
@@ -2275,7 +2362,7 @@
             function applyClassDetails(details) {
                 currentClassDetails = details || null;
                 if (!details) return;
-                if (details.hitDie) setFieldValue("hit_dice", details.hitDie);
+                if (details.hitDie) setFieldValue("hit_dice", shortHitDie(details.hitDie));
                 if (details.tools) setAutoBlock("tool_proficiencies", "Classe", details.tools);
                 if (details.equipment) setAutoBlock("gear", "Équipement de classe", details.equipment);
                 var featureLines = [];
@@ -2630,6 +2717,7 @@
                     .catch(function () {});
             }
 
+            setupAbilityColumns();
             loadDynamicOptions();
 
             var fields = Array.prototype.slice.call(document.querySelectorAll("[data-field]"));
@@ -2661,7 +2749,7 @@
                     if (el.type === "checkbox") {
                         el.checked = Boolean(data[key]);
                     } else {
-                        el.value = data[key];
+                        el.value = stripAutoMarkers(data[key]);
                     }
                 });
                 if (classSelect && data.class_level && !data.character_class) {
