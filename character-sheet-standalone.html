@@ -763,9 +763,23 @@
 
         #page3 .top-spell-grid {
             display: grid;
-            grid-template-columns: 1.4fr 0.7fr 1fr;
-            gap: 2.2mm;
-            margin-bottom: 2.2mm;
+            grid-template-columns: 0.78fr 1.22fr;
+            grid-template-rows: auto auto;
+            grid-template-areas:
+                "casting slots"
+                "casting components";
+            gap: var(--page-gap);
+            margin-bottom: var(--page-gap);
+        }
+
+        #page3 .page-three-casting { grid-area: casting; }
+        #page3 .page-three-slots { grid-area: slots; }
+        #page3 .page-three-components { grid-area: components; }
+
+        #page3 .page-three-casting .panel-body {
+            display: grid;
+            align-content: stretch;
+            min-height: 100%;
         }
 
         .spell-components-cell {
@@ -833,6 +847,13 @@
             margin-bottom: 0;
         }
 
+        .page-two-top-right {
+            display: grid;
+            gap: var(--page-gap);
+            align-content: stretch;
+            min-width: 0;
+        }
+
         .page-two-bottom {
             grid-template-columns: 0.76fr 1.24fr;
             align-items: start;
@@ -847,6 +868,16 @@
             height: 100%;
         }
 
+        .page-two-top {
+            min-height: 118mm;
+            align-items: stretch;
+        }
+
+        .page-two-equipment,
+        .page-two-story {
+            min-height: 156mm;
+        }
+
         .section-stack {
             display: grid;
             gap: 1.4mm;
@@ -855,6 +886,15 @@
 
         .section-stack .field label {
             margin-bottom: 0.6mm;
+        }
+
+        .page-two-equipment .section-stack > .field,
+        .page-two-story .section-stack > .field,
+        .page-two-appearance .section-stack > .field,
+        .companion-rows > .field {
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+            min-height: 0;
         }
 
         .section-stack textarea {
@@ -878,15 +918,37 @@
         }
 
         .page-two-story textarea {
-            min-height: 22mm;
+            min-height: 34mm;
         }
 
         .page-two-appearance textarea {
             min-height: 20mm;
         }
 
-        .page-two-equipment textarea {
+        .page-two-attuned .panel-body {
+            display: grid;
+            min-height: 0;
+        }
+
+        .page-two-attuned textarea,
+        .page-two-equipment textarea,
+        .page-two-story textarea,
+        .page-two-appearance textarea,
+        .companion-rows textarea {
+            min-height: 0;
+            height: 100%;
+        }
+
+        .page-two-equipment textarea.compact {
             min-height: 11mm;
+        }
+
+        .page-two-equipment .section-stack {
+            grid-template-rows: 0.72fr 0.72fr 0.9fr 1.22fr;
+        }
+
+        .page-two-story .section-stack {
+            grid-template-rows: minmax(0, 1.45fr) auto;
         }
 
         .page-two-attuned textarea {
@@ -945,7 +1007,7 @@
 
         .companion-top {
             display: grid;
-            grid-template-columns: 1.5fr 0.55fr 1fr 0.9fr;
+            grid-template-columns: 1.45fr 0.58fr 1.22fr;
             gap: 1.6mm;
             margin-bottom: 1.8mm;
         }
@@ -977,6 +1039,12 @@
             min-height: 16mm;
         }
 
+        .companion-hp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2mm 1.4mm;
+        }
+
         .death-saves-grid {
             display: grid;
             gap: 0.6mm;
@@ -1001,11 +1069,11 @@
         }
 
         .page-three-slots textarea {
-            min-height: 23mm;
+            min-height: 20mm;
         }
 
         .page-three-components textarea {
-            min-height: 23mm;
+            min-height: 18mm;
         }
 
         .page-three-main table td {
@@ -1074,11 +1142,10 @@
         }
 
         #page2 {
-            grid-template-rows: auto auto minmax(0, 1fr);
+            grid-template-rows: auto minmax(0, 1fr);
         }
 
         #page2 .page-two-top,
-        #page2 .page-two-mid,
         #page2 .page-two-bottom,
         #page2 .page-two-bottom > .stack-tight,
         #page2 .page-two-notes,
@@ -1444,33 +1511,31 @@
                                 <div class="field"><label>Autre équipement</label><textarea data-field="gear"></textarea></div>
                             </div>
                         </div>
-                        <div class="panel compact-panel page-two-story">
+                        <div class="page-two-top-right">
+                            <div class="panel compact-panel page-two-story">
                             <h2>Histoire et personnalité</h2>
                             <div class="panel-body section-stack">
                                 <div class="field"><label>Histoire et personnalité</label><textarea data-field="story"></textarea></div>
                                 <div class="field"><label>Alignement</label><input type="text" data-field="alignment" /></div>
                             </div>
-                        </div>
+                            </div>
 
-                        
-                    </div>
-
-                    <div class="page-two-mid">
-                        <div class="panel page-two-attuned">
-                            <h2>Objets magiques harmonisés</h2>
-                            <div class="panel-body"><textarea data-field="attuned_magic_items"></textarea></div>
-                        </div>
-                        <div class="panel compact-panel page-two-appearance">
-                            <h2>Apparence</h2>
-                            <div class="panel-body section-stack">
-                                <div class="field"><label>Apparence</label><textarea data-field="appearance"></textarea></div>
-                                <div class="field"><label>Description physique</label><textarea data-field="physical_description"></textarea></div>
+                            <div class="panel compact-panel page-two-appearance">
+                                <h2>Apparence</h2>
+                                <div class="panel-body section-stack">
+                                    <div class="field"><label>Apparence</label><textarea data-field="appearance"></textarea></div>
+                                    <div class="field"><label>Description physique</label><textarea data-field="physical_description"></textarea></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="page-two-bottom">
                         <div class="stack-tight">
+                            <div class="panel page-two-attuned">
+                                <h2>Objets magiques harmonisÃ©s</h2>
+                                <div class="panel-body"><textarea data-field="attuned_magic_items"></textarea></div>
+                            </div>
                             <div class="panel">
                                 <h2>Pièces et richesse</h2>
                                 <div class="panel-body section-stack">
@@ -1501,7 +1566,6 @@
                                             <div class="panel-body section-stack">
                                                 <div class="field"><label>Nom du compagnon</label><input type="text" data-field="companion_name" /></div>
                                                 <div class="field"><label>Type</label><input type="text" data-field="companion_type" /></div>
-                                                <div class="field"><label>Créature, type et taille</label><input type="text" data-field="companion_creature_size" /></div>
                                             </div>
                                         </div>
                                         <div class="panel">
@@ -1513,17 +1577,11 @@
                                         </div>
                                         <div class="panel">
                                             <h3>Points de vie</h3>
-                                            <div class="panel-body section-stack">
+                                            <div class="panel-body companion-hp-grid">
                                                 <div class="field"><label>Actuels</label><input type="text" data-field="companion_hp_current" /></div>
                                                 <div class="field"><label>Max</label><input type="text" data-field="companion_hp_max" /></div>
+                                                <div class="field"><label>Dés de vie</label><input type="text" data-field="companion_hit_dice_max" /></div>
                                                 <div class="field"><label>Temp.</label><input type="text" data-field="companion_hp_temp" /></div>
-                                            </div>
-                                        </div>
-                                        <div class="panel">
-                                            <h3>Dés de vie</h3>
-                                            <div class="panel-body section-stack">
-                                                <div class="field"><label>Max</label><input type="text" data-field="companion_hit_dice_max" /></div>
-                                                <div class="field"><label>Dépensés</label><input type="text" data-field="companion_hit_dice_spent" /></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1553,7 +1611,7 @@
                                 <h2>Emplacements de sorts</h2>
                                 <div class="panel-body"><textarea data-field="spell_slots" placeholder="1: 4 / 2: 3 / 3: 2..."></textarea></div>
                             </div>
-                            <div class="panel">
+                            <div class="panel page-three-casting">
                                 <h2>Incantation</h2>
                                 <div class="panel-body">
                                     <div class="field"><label>Carac.</label><input type="text" data-field="spell_stat" /></div>
@@ -1776,7 +1834,7 @@
             function buildSpellRows() {
                 var rowsB = [];
                 var rowsC = [];
-                for (var j = 1; j <= 19; j += 1) rowsB.push(spellRow(j));
+                for (var j = 1; j <= 18; j += 1) rowsB.push(spellRow(j));
                 for (var k = 20; k <= 44; k += 1) rowsC.push(spellRow(k));
                 if (spellRowsA) spellRowsA.innerHTML = "";
                 if (spellRowsB) spellRowsB.innerHTML = rowsB.join("");
