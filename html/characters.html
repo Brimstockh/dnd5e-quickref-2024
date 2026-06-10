@@ -155,29 +155,44 @@
       return await res.json();
     }
 
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function render(list) {
       const root = $("list");
       root.innerHTML = "";
 
       for (const c of list) {
+        const key = String(c.key ?? "");
+        const name = escapeHtml(c.name);
+        const species = escapeHtml(c.species ?? "—");
+        const characterClass = escapeHtml(c.class ?? "—");
+        const level = escapeHtml(c.level ?? "—");
+        const encodedKey = encodeURIComponent(key);
         const wrap = document.createElement("div");
         wrap.className = "card char-card";
-        wrap.dataset.search = `${c.name} ${c.class} ${c.species} ${c.level}`.toLowerCase();
+        wrap.dataset.search = `${c.name ?? ""} ${c.class ?? ""} ${c.species ?? ""} ${c.level ?? ""}`.toLowerCase();
 
-        const imgPath = `../img/characters/${encodeURIComponent(c.key)}.png`;
+        const imgPath = `../img/characters/${encodedKey}.png`;
 
         wrap.innerHTML = `
           <div class="char-card__left">
-            <strong>${c.name}</strong>
-            <div class="meta">${c.species ?? "—"} • ${c.class ?? "—"} niv. ${c.level ?? "—"}</div>
+            <strong>${name}</strong>
+            <div class="meta">${species} • ${characterClass} niv. ${level}</div>
 
             <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn" href="character-profile.html?c=${encodeURIComponent(c.key)}">Présentation</a>
-              <a class="btn" href="character.html?c=${encodeURIComponent(c.key)}">Fiche (DnD)</a>
+              <a class="btn" href="character-profile.html?c=${encodedKey}">Présentation</a>
+              <a class="btn" href="character.html?c=${encodedKey}">Fiche (DnD)</a>
             </div>
           </div>
 
-          <img class="char-card__img" src="${imgPath}" alt="Portrait de ${c.name}" />
+          <img class="char-card__img" src="${imgPath}" alt="Portrait de ${name}" />
         `;
 
         // Fallback: si l'image n'existe pas, on la cache
@@ -216,7 +231,7 @@
         $("list").innerHTML = `
           <div class="card">
             <strong>Impossible de charger la liste</strong>
-            <div class="meta">${String(e.message ?? e)}</div>
+            <div class="meta">${escapeHtml(e.message ?? e)}</div>
           </div>
         `;
       }
