@@ -120,7 +120,7 @@ data_action = [
         icon: "round-shield",
         subtitle: "Équiper ou déséquiper un bouclier",
         description: "Équiper ou déséquiper un bouclier",
-        reference: "PHB, pgs. .",
+        reference: "Voir la page « Armes et armures ».",
         bullets: [
             "Les boucliers nécessitent l'action <i>Utiliser</i> pour être équipés ou retirés.",
             "Les armures prennent plusieurs minutes à enfiler ou retirer.",

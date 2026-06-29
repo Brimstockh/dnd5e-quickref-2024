@@ -267,7 +267,7 @@
                 <input id="searchInput" type="text" placeholder="Ex: dragon, zombie, perception..." />
             </div>
             <div>
-                <label for="crSelect">CR</label>
+                <label for="crSelect">FP</label>
                 <select id="crSelect"><option value="">Tous</option></select>
             </div>
             <div>
@@ -285,8 +285,8 @@
             <div>
                 <label for="sortSelect">Tri</label>
                 <select id="sortSelect">
-                    <option value="cr_asc">CR croissant</option>
-                    <option value="cr_desc">CR décroissant</option>
+                    <option value="cr_asc">FP croissant</option>
+                    <option value="cr_desc">FP décroissant</option>
                     <option value="name_asc">Nom A-Z</option>
                     <option value="name_desc">Nom Z-A</option>
                     <option value="type_asc">Type A-Z</option>
@@ -332,8 +332,85 @@
                 return String(value || "").toLowerCase();
             }
 
+            const translations = [
+                ["Medium or Small", "Moyenne ou Petite"],
+                ["Lawful Good", "Loyal bon"],
+                ["Lawful Neutral", "Loyal neutre"],
+                ["Lawful Evil", "Loyal mauvais"],
+                ["Neutral Good", "Neutre bon"],
+                ["Neutral Evil", "Neutre mauvais"],
+                ["Chaotic Good", "Chaotique bon"],
+                ["Chaotic Neutral", "Chaotique neutre"],
+                ["Chaotic Evil", "Chaotique mauvais"],
+                ["Any Alignment", "Tout alignement"],
+                ["Unaligned", "Non aligné"],
+                ["Aberration", "Aberration"],
+                ["Beast", "Bête"],
+                ["Celestial", "Céleste"],
+                ["Construct", "Artificiel"],
+                ["Elemental", "Élémentaire"],
+                ["Fey", "Fée"],
+                ["Fiend", "Fiélon"],
+                ["Giant", "Géant"],
+                ["Humanoid", "Humanoïde"],
+                ["Monstrosity", "Monstruosité"],
+                ["Ooze", "Vase"],
+                ["Undead", "Mort-vivant"],
+                ["Tiny", "Minuscule"],
+                ["Small", "Petite"],
+                ["Medium", "Moyenne"],
+                ["Large", "Grande"],
+                ["Huge", "Très grande"],
+                ["Gargantuan", "Gigantesque"],
+                ["Neutral", "Neutre"],
+                ["Arcana", "Arcanes"],
+                ["Athletics", "Athlétisme"],
+                ["Animal Handling", "Dressage"],
+                ["Deception", "Tromperie"],
+                ["History", "Histoire"],
+                ["Insight", "Intuition"],
+                ["Medicine", "Médecine"],
+                ["Performance", "Représentation"],
+                ["Sleight of Hand", "Escamotage"],
+                ["Stealth", "Discrétion"],
+                ["Survival", "Survie"],
+                ["Passive Perception", "Perception passive"],
+                ["Darkvision", "Vision dans le noir"],
+                ["Truesight", "Vision lucide"],
+                ["Blindsight", "Vision aveugle"],
+                ["Tremorsense", "Perception des vibrations"],
+                ["Bludgeoning", "Contondants"],
+                ["Piercing", "Perforants"],
+                ["Slashing", "Tranchants"],
+                ["Lightning", "Foudre"],
+                ["Thunder", "Tonnerre"],
+                ["Necrotic", "Nécrotiques"],
+                ["Radiant", "Radiants"],
+                ["Psychic", "Psychiques"],
+                ["Poison", "Poison"],
+                ["Fire", "Feu"],
+                ["Cold", "Froid"],
+                ["Acid", "Acide"],
+                ["Common", "Commun"],
+                ["Fly", "Vol"],
+                ["Swim", "Nage"],
+                ["Climb", "Escalade"],
+                ["Burrow", "Fouissement"],
+                ["Hover", "Surplace"]
+            ];
+
+            function localize(value) {
+                let text = String(value || "");
+                translations.forEach(([source, target]) => {
+                    text = text.replace(new RegExp(`\\b${source}\\b`, "g"), target);
+                });
+                return text.replace(/\b(\d+) ft\./g, function (_, feet) {
+                    return `${(Number(feet) * 0.3).toLocaleString("fr-FR")} m`;
+                });
+            }
+
             function option(value) {
-                return `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`;
+                return `<option value="${escapeHtml(value)}">${escapeHtml(localize(value))}</option>`;
             }
 
             function uniqueValues(field) {
@@ -346,9 +423,9 @@
             }
 
             function crLabel(monster) {
-                const xp = monster.xp ? `, ${monster.xp} XP` : "";
-                const pb = monster.pb ? `, PB ${monster.pb}` : "";
-                return `CR ${monster.cr || "-"}${xp}${pb}`;
+                const xp = monster.xp ? `, ${monster.xp} PX` : "";
+                const pb = monster.pb ? `, BM ${monster.pb}` : "";
+                return `FP ${monster.cr || "-"}${xp}${pb}`;
             }
 
             function applyFilters() {
@@ -382,7 +459,7 @@
                         monster.resistances,
                         monster.vulnerabilities
                     ].join(" "));
-                    return haystack.includes(query);
+                    return haystack.includes(query) || norm(localize(haystack)).includes(query);
                 });
 
                 filtered.sort((a, b) => {
@@ -399,11 +476,14 @@
 
             function line(label, value) {
                 if (!value) return "";
-                return `<p class="monster-lines"><strong>${escapeHtml(label)}.</strong> ${escapeHtml(value)}</p>`;
+                return `<p class="monster-lines"><strong>${escapeHtml(label)}.</strong> ${escapeHtml(localize(value))}</p>`;
             }
 
             function card(monster) {
-                const typeLine = [monster.kind || monster.type, monster.size, monster.alignment].filter(Boolean).join(" • ");
+                const typeLine = [monster.kind || monster.type, monster.size, monster.alignment]
+                    .filter(Boolean)
+                    .map(localize)
+                    .join(" • ");
                 const misc = [
                     line("Vitesse", monster.speed),
                     line("Compétences", monster.skills),
