@@ -307,11 +307,15 @@
         <div class="list-tools">
             <button id="expandAllBtn" type="button">Tout ouvrir</button>
             <button id="collapseAllBtn" type="button">Tout fermer</button>
+            <button id="exportTxtBtn" type="button" disabled>Exporter les sorts affichés (.txt)</button>
+            <span id="exportStatus" aria-live="polite"></span>
         </div>
         <div id="summary" class="summary"></div>
         <div id="spellsGrid" class="grid"></div>
     </div>
 
+    <script src="js/rich-html.js"></script>
+    <script src="js/spell-export.js"></script>
     <script>
         (function () {
             const searchInput = document.getElementById("searchInput");
@@ -320,6 +324,8 @@
             const classList = document.getElementById("classList");
             const expandAllBtn = document.getElementById("expandAllBtn");
             const collapseAllBtn = document.getElementById("collapseAllBtn");
+            const exportTxtBtn = document.getElementById("exportTxtBtn");
+            const exportStatus = document.getElementById("exportStatus");
             const summary = document.getElementById("summary");
             const spellsGrid = document.getElementById("spellsGrid");
             const sourceNote = document.getElementById("sourceNote");
@@ -391,7 +397,7 @@
                     `Durée: ${spell.duration || "-"}`
                 ];
                 const desc = spell.description_html && spell.description_html.trim()
-                    ? spell.description_html
+                    ? window.DndHtml.sanitizeRichHtml(spell.description_html)
                     : escapeHtml(spell.description || "Description non disponible.");
                 return `
                     <details class="spell">
@@ -414,11 +420,30 @@
             function render() {
                 const filtered = applyFilters();
                 summary.textContent = `${filtered.length} sort(s) affiché(s) sur ${spells.length}.`;
+                exportTxtBtn.disabled = filtered.length === 0;
+                exportStatus.textContent = "";
                 if (!filtered.length) {
                     spellsGrid.innerHTML = `<div class="empty">Aucun sort ne correspond aux filtres actuels.</div>`;
                     return;
                 }
                 spellsGrid.innerHTML = filtered.map(card).join("");
+            }
+
+            function exportVisibleSpells() {
+                const filtered = applyFilters();
+                if (!filtered.length) return;
+
+                const content = window.DndSpellExport.buildSpellExportText(filtered);
+                const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "sorts-dnd-2024.txt";
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                exportStatus.textContent = `${filtered.length} sort(s) exporté(s).`;
+                setTimeout(function () { URL.revokeObjectURL(url); }, 0);
             }
 
             function setAllCards(open) {
@@ -445,6 +470,7 @@
                 sortSelect.addEventListener("change", render);
                 expandAllBtn.addEventListener("click", function () { setAllCards(true); });
                 collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+                exportTxtBtn.addEventListener("click", exportVisibleSpells);
                 render();
             }
 

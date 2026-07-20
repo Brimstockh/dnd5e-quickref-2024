@@ -252,20 +252,14 @@
   </main>
 
   <script type="module">
+    import { validateCharacterKey } from "../js/character-key.js";
+    import { escapeHtml as esc } from "../js/html-utils.js";
+
     const $ = (id) => document.getElementById(id);
 
     function getParam(name, fallback=null){
       const url = new URL(window.location.href);
       return url.searchParams.get(name) ?? fallback;
-    }
-
-    function esc(s){
-      return String(s ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
     }
 
     function renderList(arr){
@@ -283,19 +277,19 @@
     }
 
     (async function main(){
-      const key = getParam("c", "cleira");
-      const img = document.getElementById("profileImage");
-      if (img) {
-        const path = `../img/characters/${key}-full.png`;
-        img.src = path;
-
-        img.onerror = () => {
-          img.style.display = "none";
-        };
-      }
-      $("sheetLink").href = `character.html?c=${encodeURIComponent(key)}`;
-
       try{
+        const key = validateCharacterKey(getParam("c", "cleira"));
+        const img = document.getElementById("profileImage");
+        if (img) {
+          const path = `../img/characters/${key}-full.png`;
+          img.src = path;
+
+          img.onerror = () => {
+            img.style.display = "none";
+          };
+        }
+        $("sheetLink").href = `character.html?c=${encodeURIComponent(key)}`;
+
         const charPath = `../data/characters/${key}.json`;
         const storyPath = `../data/characters/${key}.story.json`;
 

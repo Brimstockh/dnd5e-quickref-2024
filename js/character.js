@@ -1,3 +1,6 @@
+import { escapeHtml as esc } from "./html-utils.js";
+import { validateCharacterKey } from "./character-key.js";
+
 function $(id) { return document.getElementById(id); }
 
 function fmtMod(n){
@@ -11,7 +14,7 @@ function getParam(name, fallback=null){
 }
 
 async function loadCharacter(){
-    const key = getParam("c", "cleira");
+    const key = validateCharacterKey(getParam("c", "cleira"));
     const path = `../data/characters/${key}.json`;
   
     const res = await fetch(path, { cache: "no-store" });
@@ -56,8 +59,8 @@ function renderAbilities(c){
     el.className = "ability";
     el.innerHTML = `
       <div class="ability__name">${names[k]}</div>
-      <div class="ability__mod">${fmtMod(mod)}</div>
-      <div class="ability__score">${score}</div>
+      <div class="ability__mod">${esc(fmtMod(mod))}</div>
+      <div class="ability__score">${esc(score)}</div>
     `;
     root.appendChild(el);
   }
@@ -76,9 +79,9 @@ function renderSaves(c){
     el.innerHTML = `
       <div class="item__left">
         <span class="dot ${s.proficient ? "is-prof":""}"></span>
-        <span class="item__name">${map[s.ability] ?? s.ability}</span>
+        <span class="item__name">${esc(map[s.ability] ?? s.ability)}</span>
       </div>
-      <div class="item__value">${fmtMod(s.bonus ?? 0)}</div>
+      <div class="item__value">${esc(fmtMod(s.bonus ?? 0))}</div>
     `;
     root.appendChild(el);
   }
@@ -104,7 +107,7 @@ function renderPassives(c){
     el.className = "item";
     el.innerHTML = `
       <div class="item__name">${name}</div>
-      <div class="item__value">${val ?? "—"}</div>
+      <div class="item__value">${esc(val ?? "—")}</div>
     `;
     root.appendChild(el);
   }
@@ -129,7 +132,7 @@ function renderProfs(c){
     const wrap = document.createElement("div");
     wrap.innerHTML = `
       <div class="kv__k">${k}</div>
-      <div class="kv__v">${(arr && arr.length) ? arr.join(", ") : "<span class='muted'>—</span>"}</div>
+      <div class="kv__v">${(arr && arr.length) ? esc(arr.join(", ")) : "<span class='muted'>—</span>"}</div>
     `;
     root.appendChild(wrap);
   }
@@ -150,11 +153,11 @@ function renderSkills(c){
       <div class="item__left">
         <span class="dot ${sk.proficient ? "is-prof":""}"></span>
         <div style="min-width:0">
-          <div class="item__name">${sk.name}</div>
-          <div class="item__meta">${(sk.ability ?? "").toUpperCase()}</div>
+          <div class="item__name">${esc(sk.name)}</div>
+          <div class="item__meta">${esc((sk.ability ?? "").toUpperCase())}</div>
         </div>
       </div>
-      <div class="item__value">${fmtMod(sk.bonus ?? 0)}</div>
+      <div class="item__value">${esc(fmtMod(sk.bonus ?? 0))}</div>
     `;
     root.appendChild(el);
   }
@@ -183,10 +186,10 @@ function renderActions(c){
     const el = document.createElement("div");
     el.className = "trow";
     el.innerHTML = `
-      <div><strong>${a.name}</strong></div>
-      <div class="muted">${a.range ?? "—"}</div>
-      <div>${fmtMod(a.toHit ?? 0)}</div>
-      <div>${a.damage ?? "—"} <span class="muted">${a.notes ? "• " + a.notes : ""}</span></div>
+      <div><strong>${esc(a.name)}</strong></div>
+      <div class="muted">${esc(a.range ?? "—")}</div>
+      <div>${esc(fmtMod(a.toHit ?? 0))}</div>
+      <div>${esc(a.damage ?? "—")} <span class="muted">${esc(a.notes ? "• " + a.notes : "")}</span></div>
     `;
     root.appendChild(el);
   }
@@ -210,10 +213,10 @@ function renderSpells(c){
     const el = document.createElement("div");
     el.className = "trow";
     el.innerHTML = `
-      <div><strong>${s.name}</strong></div>
-      <div class="muted">${s.level ?? "—"}</div>
-      <div class="muted">${s.school ?? "—"}</div>
-      <div class="muted">${s.notes ?? ""}</div>
+      <div><strong>${esc(s.name)}</strong></div>
+      <div class="muted">${esc(s.level ?? "—")}</div>
+      <div class="muted">${esc(s.school ?? "—")}</div>
+      <div class="muted">${esc(s.notes ?? "")}</div>
     `;
     root.appendChild(el);
   }
@@ -279,15 +282,6 @@ function setupTabs(){
   }
 }
 
-function esc(s){
-    return String(s ?? "")
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-  
   function renderStory(story){
     const root = $("story");
     if(!story){
@@ -383,17 +377,21 @@ async function main(){
     renderNotes(c);
     renderStory(story);
 
-    $("loading").textContent = "OK";
-    $("loading").classList.remove("pill--muted");
+    const loading = $("loading");
+    if (loading) {
+      loading.textContent = "OK";
+      loading.classList.remove("pill--muted");
+    }
     $("sheet").setAttribute("aria-busy","false");
     document.title = `Fiche - ${c.name ?? "Personnage"}`;
   }catch(err){
     console.error(err);
-    $("loading").textContent = "Erreur";
+    const loading = $("loading");
+    if (loading) loading.textContent = "Erreur";
     $("sheet").innerHTML = `
       <section class="card">
         <h1 class="h1">Impossible de charger la fiche</h1>
-        <p class="muted">${String(err.message ?? err)}</p>
+        <p class="muted">${esc(err.message ?? err)}</p>
         <p class="muted small">Astuce : utilise <code>?c=cleira</code> et vérifie que <code>data/characters/cleira.json</code> existe.</p>
       </section>
     `;
