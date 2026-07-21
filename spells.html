@@ -314,9 +314,13 @@
         <div id="spellsGrid" class="grid"></div>
     </div>
 
-    <script src="js/rich-html.js"></script>
-    <script src="js/spell-export.js"></script>
-    <script>
+    <script type="module">
+        import { fetchJson } from "./js/fetch-json.js";
+        import { escapeHtml } from "./js/html-utils.js";
+        import { sanitizeRichHtml } from "./js/rich-html.js";
+        import { buildSpellExportText } from "./js/spell-export.js";
+        import { filterAndSortSpells } from "./js/spell-filters.js";
+
         (function () {
             const searchInput = document.getElementById("searchInput");
             const levelSelect = document.getElementById("levelSelect");
@@ -333,19 +337,6 @@
             let spells = [];
             let selectedClasses = new Set();
 
-            function escapeHtml(value) {
-                return String(value)
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/\"/g, "&quot;")
-                    .replace(/'/g, "&#39;");
-            }
-
-            function norm(s) {
-                return String(s || "").toLowerCase();
-            }
-
             function renderClassFilters(allClasses) {
                 classList.innerHTML = allClasses.map(cls => {
                     return `<label class="class-item"><input type="checkbox" value="${escapeHtml(cls)}" />${escapeHtml(cls)}</label>`;
@@ -361,32 +352,13 @@
             }
 
             function applyFilters() {
-                const q = norm(searchInput.value.trim());
                 const level = levelSelect.value === "" ? null : Number(levelSelect.value);
-                let out = spells.filter(spell => {
-                    if (level !== null && spell.level !== level) return false;
-                    if (selectedClasses.size > 0) {
-                        const any = spell.classes.some(c => selectedClasses.has(c));
-                        if (!any) return false;
-                    }
-                    if (!q) return true;
-                    const hay = norm(
-                        spell.name + " " +
-                        spell.school + " " +
-                        spell.classes.join(" ") + " " +
-                        spell.description
-                    );
-                    return hay.includes(q);
+                return filterAndSortSpells(spells, {
+                    query: searchInput.value,
+                    level,
+                    selectedClasses,
+                    sort: sortSelect.value,
                 });
-
-                const mode = sortSelect.value;
-                out.sort((a, b) => {
-                    if (mode === "level_asc") return a.level - b.level || a.name.localeCompare(b.name, "fr");
-                    if (mode === "level_desc") return b.level - a.level || a.name.localeCompare(b.name, "fr");
-                    if (mode === "name_desc") return b.name.localeCompare(a.name, "fr");
-                    return a.name.localeCompare(b.name, "fr");
-                });
-                return out;
             }
 
             function card(spell) {
@@ -397,7 +369,7 @@
                     `Durée: ${spell.duration || "-"}`
                 ];
                 const desc = spell.description_html && spell.description_html.trim()
-                    ? window.DndHtml.sanitizeRichHtml(spell.description_html)
+                    ? sanitizeRichHtml(spell.description_html)
                     : escapeHtml(spell.description || "Description non disponible.");
                 return `
                     <details class="spell">
@@ -433,7 +405,7 @@
                 const filtered = applyFilters();
                 if (!filtered.length) return;
 
-                const content = window.DndSpellExport.buildSpellExportText(filtered);
+                const content = buildSpellExportText(filtered);
                 const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement("a");
@@ -482,8 +454,7 @@
             if (window.SPELLS_DATA && window.SPELLS_DATA.spells) {
                 init(window.SPELLS_DATA);
             } else {
-                fetch("data/spells_2024.json")
-                    .then(r => r.json())
+                fetchJson("data/spells_2024.json")
                     .then(init)
                     .catch(failMessage);
             }

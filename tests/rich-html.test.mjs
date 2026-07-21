@@ -1,12 +1,7 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import test from "node:test";
-import vm from "node:vm";
 
-const source = readFileSync(new URL("../js/rich-html.js", import.meta.url), "utf8");
-const context = {};
-vm.runInNewContext(source, context);
-const { sanitizeRichHtml } = context.DndHtml;
+import { sanitizeRichHtml } from "../js/rich-html.js";
 
 test("sanitizeRichHtml preserves the spell-description allowlist", () => {
   const value = "<p>Texte <strong>important</strong></p><ul><li>Effet</li></ul>";
