@@ -10,8 +10,19 @@
     const summary = document.getElementById("summary");
     const monstersGrid = document.getElementById("monstersGrid");
     const sourceNote = document.getElementById("sourceNote");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
 
     let monsters = [];
+    const progressive = window.DndProgressiveList.create({
+        button: loadMoreBtn,
+        batchSize: 72,
+        onChange: render,
+    });
+
+    function queryFromUrl() {
+        if (!window.location || typeof URLSearchParams === "undefined") return "";
+        return new URLSearchParams(window.location.search).get("q") || "";
+    }
 
     function escapeHtml(value) {
         return String(value || "")
@@ -210,12 +221,18 @@
 
     function render() {
         const filtered = applyFilters();
-        summary.textContent = `${filtered.length} monstre(s) affiché(s) sur ${monsters.length}.`;
+        const visible = progressive.take(filtered);
+        summary.textContent = `${filtered.length} monstre(s) trouvé(s) sur ${monsters.length} · ${visible.length} affiché(s).`;
         if (!filtered.length) {
             monstersGrid.innerHTML = `<div class="empty">Aucun monstre ne correspond aux filtres actuels.</div>`;
             return;
         }
-        monstersGrid.innerHTML = filtered.map(card).join("");
+        monstersGrid.innerHTML = visible.map(card).join("");
+    }
+
+    function resetAndRender() {
+        progressive.reset();
+        render();
     }
 
     function setAllCards(open) {
@@ -226,6 +243,7 @@
 
     function init(data) {
         monsters = data.monsters || [];
+        searchInput.value = queryFromUrl();
         sourceNote.textContent = data.note
             ? `${data.count || monsters.length} monstres chargés. ${data.note}`
             : `${data.count || monsters.length} monstres chargés.`;
@@ -240,18 +258,22 @@
         fillSelect(sizeSelect, uniqueValues("size"));
 
         [searchInput, crSelect, typeSelect, alignmentSelect, sizeSelect, sortSelect].forEach(el => {
-            el.addEventListener("input", render);
-            el.addEventListener("change", render);
+            el.addEventListener("input", resetAndRender);
+            el.addEventListener("change", resetAndRender);
         });
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
         collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
         render();
     }
 
-    if (window.MONSTERS_DATA && window.MONSTERS_DATA.monsters) {
-        init(window.MONSTERS_DATA);
-    } else {
-        sourceNote.textContent = "Impossible de charger les données de monstres.";
-        monstersGrid.innerHTML = `<div class="empty">Le fichier data/monsters_2024.js est introuvable ou invalide.</div>`;
-    }
+    fetch("data/monsters_2024.json", { credentials: "omit" })
+        .then(function (response) {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(init)
+        .catch(function () {
+            sourceNote.textContent = "Impossible de charger les données de monstres.";
+            monstersGrid.innerHTML = `<div class="empty">Le fichier de données des monstres est introuvable ou invalide.</div>`;
+        });
 })();

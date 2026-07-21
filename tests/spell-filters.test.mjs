@@ -20,6 +20,12 @@ test("filterAndSortSpells filters the cached searchable text", () => {
     filterAndSortSpells(spells, { query: "abjuration" }).map((spell) => spell.name),
     ["Aide"],
   );
+  assert.deepEqual(
+    filterAndSortSpells([
+      { name: "Rayon", level: 1, school: "\u00c9vocation", classes: [], description: "" },
+    ], { query: "evocation" }).map((spell) => spell.name),
+    ["Rayon"],
+  );
 });
 
 test("filterAndSortSpells combines level and class filters", () => {

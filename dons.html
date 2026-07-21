@@ -6,247 +6,17 @@
     <title>D&D 2024 - Dons</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
-    <style>
-        :root {
-            --bg: #f1ece3;
-            --paper: #fffef9;
-            --ink: #222;
-            --accent: #7a120f;
-            --line: #d8d2c5;
-            --muted: #5f5f5f;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            font-family: "Noto Sans", "Segoe UI", sans-serif;
-            color: var(--ink);
-            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
-        }
-
-        .wrap {
-            max-width: 1220px;
-            margin: 0 auto;
-            padding: 14px;
-        }
-
-        .topnav {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .topnav a {
-            text-decoration: none;
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            color: var(--accent);
-            background: #fff;
-            padding: 7px 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .hero {
-            background: var(--paper);
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 {
-            margin: 0 0 5px;
-            color: var(--accent);
-            font-family: "Lora", serif;
-            font-size: 1.5rem;
-        }
-
-        .hero p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .filters {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            padding: 10px;
-            display: grid;
-            gap: 8px;
-            grid-template-columns: 2fr 1.2fr 1fr 1fr 1fr;
-            margin-bottom: 10px;
-        }
-
-        .filters label {
-            display: block;
-            font-size: 0.74rem;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 4px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-        }
-
-        .filters input,
-        .filters select {
-            width: 100%;
-            border: 1px solid #cabfae;
-            border-radius: 8px;
-            padding: 8px;
-            font: inherit;
-            background: #fff;
-        }
-
-        .summary {
-            color: var(--muted);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .list-tools {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 8px;
-        }
-
-        .list-tools button {
-            border: 1px solid var(--accent);
-            background: #fff;
-            color: var(--accent);
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 8px;
-        }
-
-        .feat {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .feat-head {
-            padding: 9px 10px;
-            background: #f8f3f2;
-            border-bottom: 1px solid var(--line);
-        }
-
-        details.feat > summary {
-            list-style: none;
-            cursor: pointer;
-        }
-
-        details.feat > summary::-webkit-details-marker {
-            display: none;
-        }
-
-        details.feat > summary .feat-head {
-            position: relative;
-            padding-right: 34px;
-        }
-
-        details.feat > summary .feat-head::after {
-            content: "+";
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1.05rem;
-            line-height: 1;
-        }
-
-        details.feat[open] > summary .feat-head::after {
-            content: "−";
-        }
-
-        .feat-title {
-            margin: 0;
-            color: var(--accent);
-            font-family: "Lora", serif;
-            font-size: 1rem;
-        }
-
-        .feat-meta {
-            color: var(--muted);
-            font-size: 0.85rem;
-            margin-top: 3px;
-        }
-
-        .feat-body {
-            padding: 9px 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .feat-body p {
-            margin: 0 0 8px;
-        }
-
-        .feat-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        .feat-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0 0 8px;
-            font-size: 0.88rem;
-            background: #fff;
-        }
-
-        .feat-body th,
-        .feat-body td {
-            border: 1px solid var(--line);
-            padding: 6px 8px;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .feat-body th {
-            background: #f7f2e9;
-            color: var(--accent);
-        }
-
-        .aliases {
-            margin: 0 0 8px;
-            color: var(--muted);
-            font-size: 0.84rem;
-        }
-
-        .empty {
-            background: var(--paper);
-            border: 1px dashed var(--line);
-            border-radius: 10px;
-            padding: 14px;
-            color: var(--muted);
-        }
-
-        @media (max-width: 1000px) {
-            .filters {
-                grid-template-columns: 1fr;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/legacy-catalog.css" />
+    <link rel="preload" href="data/feats_2024.json" as="fetch" type="application/json" crossorigin="anonymous" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/legacy-catalog-ui.js" defer></script>
+    <script src="js/feats-page.js" defer></script>
 </head>
-<body>
+<body class="legacy-catalog-page" data-library-title="Dons" data-library-category="Catalogue" data-library-description="Catalogue des dons D&D 2024">
+    <header data-site-header data-active="feats"></header>
     <div class="wrap">
         <nav class="topnav">
             <a href="index.html">Accueil</a>
@@ -271,7 +41,7 @@
         <section class="filters">
             <div>
                 <label for="searchInput">Recherche</label>
-                <input id="searchInput" type="text" placeholder="Ex: magie, bouclier, télépathie..." />
+                <input id="searchInput" type="search" data-page-search placeholder="Ex: magie, bouclier, télépathie..." />
             </div>
             <div>
                 <label for="categorySelect">Catégorie</label>
@@ -315,11 +85,8 @@
             <button id="expandAllBtn" type="button">Tout ouvrir</button>
             <button id="collapseAllBtn" type="button">Tout fermer</button>
         </div>
-        <div id="summary" class="summary"></div>
+        <div id="summary" class="summary" role="status" aria-live="polite"></div>
         <div id="featsGrid" class="grid"></div>
     </div>
-
-    <script src="data/feats_2024.js"></script>
-    <script src="js/feats-page.js"></script>
 </body>
 </html>

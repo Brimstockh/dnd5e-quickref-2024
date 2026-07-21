@@ -3,237 +3,186 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>D&D 2024 - Accueil</title>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <meta name="description" content="Référence francophone D&D 2024 : règles, sorts, monstres, création de personnage et Royaumes Oubliés." />
+    <title>Référence D&amp;D 2024</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/quicklinks.css" />
-    <style>
-        :root {
-            --bg: #f4f1e8;
-            --paper: #fffef9;
-            --ink: #222;
-            --accent: #7a120f;
-            --line: #d8d2c5;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            font-family: "Noto Sans", "Segoe UI", sans-serif;
-            color: var(--ink);
-            background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%);
-        }
-
-        .page {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .hero {
-            background: var(--paper);
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 14px;
-        }
-
-        h1 {
-            margin: 0 0 8px;
-            font-family: "Lora", Georgia, serif;
-            color: var(--accent);
-            font-size: 1.9rem;
-        }
-
-        .hero p {
-            margin: 0;
-            color: #4c4c4c;
-        }
-
-        .section-block {
-            margin: 0 0 18px;
-            padding: 16px;
-            background: rgba(255, 254, 249, 0.82);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-        }
-
-        .section-block h2 {
-            margin: 0 0 6px;
-            font-family: "Lora", Georgia, serif;
-            color: var(--accent);
-            font-size: 1.35rem;
-        }
-
-        .section-block p {
-            margin: 0 0 12px;
-            color: #555;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 10px;
-        }
-
-        .card {
-            text-decoration: none;
-            color: inherit;
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-left: 4px solid var(--accent);
-            border-radius: 10px;
-            padding: 14px;
-            display: block;
-            transition: transform 0.08s ease, box-shadow 0.08s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-        }
-
-        .card strong {
-            display: block;
-            color: var(--accent);
-            margin-bottom: 4px;
-            font-size: 1rem;
-        }
-
-        .note {
-            margin-top: 12px;
-            font-size: 0.9rem;
-            color: #5e5e5e;
-        }
-    </style>
+    <link rel="stylesheet" href="css/home.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
 </head>
-<body>
-    <main class="page">
-        <section class="hero">
-            <h1>D&D 2024 - Royaumes Oubliés</h1>
+<body class="home-page" data-library-title="Accueil" data-library-category="Page" data-track-recent="false">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="home">
+        <nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav>
+    </header>
+
+    <main class="home-main" id="main-content">
+        <section class="home-hero" aria-labelledby="home-title">
+            <div class="home-hero__content">
+                <p class="home-hero__eyebrow">Bienvenue dans la</p>
+                <h1 id="home-title">Référence D&amp;D 2024</h1>
+                <p class="home-hero__description">Toutes les règles, options et histoires utiles pour jouer et maîtriser vos aventures, réunies dans une interface rapide à consulter en pleine partie.</p>
+                <button class="hero-search" type="button" data-open-site-search>
+                    <span class="hero-search__icon" aria-hidden="true">⌕</span>
+                    <span class="hero-search__label">Rechercher une règle, un sort, une classe ou une page…</span>
+                    <kbd>Ctrl K</kbd>
+                </button>
+            </div>
+            <div class="home-hero__sigil" aria-hidden="true"><span>D20</span></div>
         </section>
 
-        <section class="section-block">
-            <h2>Règles du jeu de rôle</h2>
-            <p>Retrouve ici les références utiles en session pour arbitrer une action, un combat, un sort ou une règle particulière.</p>
-            <div class="grid">
-                <a class="card" href="quickref.html">
-                    <strong>Référence rapide</strong>
-                    <span>Actions, déplacements, réactions, états et environnement en combat.</span>
-                </a>
-                <a class="card" href="rules-2024.html">
-                    <strong>Règles D&amp;D 2024</strong>
-                    <span>Résumé des règles générales et points importants de la version 2024.</span>
-                </a>
-                <a class="card" href="mastery-2024.html">
-                    <strong>Maîtrise et actions</strong>
-                    <span>Référence dédiée aux maîtrises d'armes et options d'action.</span>
-                </a>
-                <a class="card" href="combat-2024.html">
-                    <strong>Combat et dégâts</strong>
-                    <span>Résumé de l'initiative, attaques, conditions de combat et types de dégâts.</span>
-                </a>
-                <a class="card" href="glossaire.html">
-                    <strong>Glossaire D&amp;D 2024</strong>
-                    <span>Glossaire des termes de règles, actions, états et abréviations utiles en jeu.</span>
-                </a>
-                <a class="card" href="spells.html">
-                    <strong>Sorts D&amp;D 2024</strong>
-                    <span>Catalogue des sorts avec filtres par niveau et classes.</span>
-                </a>
-                <a class="card" href="dons.html">
-                    <strong>Dons D&amp;D 2024</strong>
-                    <span>Recherche, tri et consultation des dons par catégorie, prérequis et répétabilité.</span>
-                </a>
-                <a class="card" href="monstres.html">
-                    <strong>Monstres D&amp;D 2024</strong>
-                    <span>Bestiaire filtrable par CR, type, alignement et taille.</span>
-                </a>
+        <section class="home-section" aria-labelledby="quick-access-title">
+            <div class="home-section__heading">
+                <h2 id="quick-access-title">Accès rapides</h2>
+                <p>Les outils les plus utiles en session.</p>
+            </div>
+            <div class="quick-access-grid">
+                <article class="quick-access-card quick-access-card--reference" data-library-item data-library-url="quickref.html" data-library-title="Référence rapide" data-library-category="Règle" data-library-description="Actions, conditions et environnement">
+                    <a class="quick-access-card__link" href="quickref.html">
+                        <span class="quick-access-card__icon" aria-hidden="true">◈</span>
+                        <h3>Référence rapide</h3>
+                        <p>Actions, déplacements, réactions et conditions en un coup d’œil.</p>
+                        <span class="quick-access-card__action">Consulter <span aria-hidden="true">→</span></span>
+                    </a>
+                    <button data-favorite-button></button>
+                </article>
+
+                <article class="quick-access-card quick-access-card--spells" data-library-item data-library-url="spells.html" data-library-title="Sorts" data-library-category="Catalogue" data-library-description="Les 391 sorts de 2024">
+                    <a class="quick-access-card__link" href="spells.html">
+                        <span class="quick-access-card__icon" aria-hidden="true">✦</span>
+                        <h3>Sorts</h3>
+                        <p>Recherchez et filtrez l’ensemble des sorts de la version 2024.</p>
+                        <span class="quick-access-card__action">Explorer <span aria-hidden="true">→</span></span>
+                    </a>
+                    <button data-favorite-button></button>
+                </article>
+
+                <article class="quick-access-card quick-access-card--monsters" data-library-item data-library-url="monstres.html" data-library-title="Monstres" data-library-category="Catalogue" data-library-description="Bestiaire par FP, type et taille">
+                    <a class="quick-access-card__link" href="monstres.html">
+                        <span class="quick-access-card__icon" aria-hidden="true">♜</span>
+                        <h3>Monstres</h3>
+                        <p>Parcourez le bestiaire par facteur de puissance, type et taille.</p>
+                        <span class="quick-access-card__action">Ouvrir le bestiaire <span aria-hidden="true">→</span></span>
+                    </a>
+                    <button data-favorite-button></button>
+                </article>
+
+                <article class="quick-access-card quick-access-card--sheet" data-library-item data-library-url="character-sheet-standalone.html" data-library-title="Feuille de personnage" data-library-category="Outil" data-library-description="Fiche autonome sauvegardée localement">
+                    <a class="quick-access-card__link" href="character-sheet-standalone.html">
+                        <span class="quick-access-card__icon" aria-hidden="true">✎</span>
+                        <h3>Feuille de personnage</h3>
+                        <p>Créez, sauvegardez, importez et imprimez vos personnages.</p>
+                        <span class="quick-access-card__action">Créer une fiche <span aria-hidden="true">→</span></span>
+                    </a>
+                    <button data-favorite-button></button>
+                </article>
             </div>
         </section>
 
-        <section class="section-block">
-            <h2>Création de personnage</h2>
-            <p>Cette section rassemble les pages utiles pour concevoir un personnage, choisir ses options et consulter ses fiches.</p>
-            <div class="grid">
-                <a class="card" href="creation-personnage-2024.html">
-                    <strong>Création de personnage</strong>
-                    <span>Conseils pour la création de personnages à partir du manuel des joueurs.</span>
-                </a>
-                <a class="card" href="classes/index.html">
-                    <strong>Guides de classes</strong>
-                    <span>Fiches débutant pour les 12 classes, avec navigation par classe.</span>
-                </a>
-                <a class="card" href="races/index.html">
-                    <strong>Races D&amp;D 2024</strong>
-                    <span>Introduction aux races, à leur rôle narratif et à leurs traits principaux.</span>
-                </a>
-                <a class="card" href="historique.html">
-                    <strong>Historiques</strong>
-                    <span>Description des 16 historiques, avec dons, compétences, équipements et résumés narratifs.</span>
-                </a>
-                <a class="card" href="armes-armures.html">
-                    <strong>Armes et armures</strong>
-                    <span>Tableaux des armes, armures, propriétés, bottes d'arme et rappels de formation.</span>
-                </a>
-                <a class="card" href="outils-aventurier.html">
-                    <strong>Outils et matériel</strong>
-                    <span>Outils d'artisan, autres outils, pièces, paquetages et matériel d'aventurier.</span>
-                </a>
-                <a class="card" href="character-sheet-standalone.html">
-                    <strong>Feuille de personnage autonome</strong>
-                    <span>Nouvelle feuille autonome avec sauvegarde locale, import/export JSON et sections compactes.</span>
-                </a>
-                <a class="card" href="html/characters.html">
-                    <strong>Personnages</strong>
-                    <span>Accès aux fiches de personnage (lecture) depuis des JSON.</span>
-                </a>
-            </div>
+        <section class="home-section dashboard-grid" aria-label="Ressources principales">
+            <article class="dashboard-panel dashboard-panel--rules">
+                <header class="dashboard-panel__heading">
+                    <h2>Règles du jeu</h2>
+                    <a class="panel-action" href="rules-2024.html">Voir tout</a>
+                </header>
+                <ul class="resource-list">
+                    <li class="resource-row" data-library-item data-library-url="rules-2024.html" data-library-title="Règles D&D 2024" data-library-category="Règle" data-library-description="Principes généraux">
+                        <a class="resource-row__link" href="rules-2024.html"><span class="resource-row__icon" aria-hidden="true">▤</span><span class="resource-row__text"><strong>Règles D&amp;D 2024</strong><small>Principes généraux et rappels essentiels</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="combat-2024.html" data-library-title="Combat et dégâts" data-library-category="Règle" data-library-description="Initiative, attaques et dégâts">
+                        <a class="resource-row__link" href="combat-2024.html"><span class="resource-row__icon" aria-hidden="true">⚔</span><span class="resource-row__text"><strong>Combat et dégâts</strong><small>Initiative, attaques, défenses et dégâts</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="mastery-2024.html" data-library-title="Maîtrise et actions" data-library-category="Règle" data-library-description="Maîtrises d’armes">
+                        <a class="resource-row__link" href="mastery-2024.html"><span class="resource-row__icon" aria-hidden="true">✥</span><span class="resource-row__text"><strong>Maîtrise et actions</strong><small>Maîtrises d’armes et options d’action</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="glossaire.html" data-library-title="Glossaire" data-library-category="Règle" data-library-description="Termes, états et abréviations">
+                        <a class="resource-row__link" href="glossaire.html"><span class="resource-row__icon" aria-hidden="true">◇</span><span class="resource-row__text"><strong>Glossaire</strong><small>Termes, états et abréviations utiles</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="armes-armures.html" data-library-title="Armes et armures" data-library-category="Équipement" data-library-description="Armes, armures et propriétés">
+                        <a class="resource-row__link" href="armes-armures.html"><span class="resource-row__icon" aria-hidden="true">♢</span><span class="resource-row__text"><strong>Armes et armures</strong><small>Équipement, propriétés et formations</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="dashboard-panel dashboard-panel--character">
+                <header class="dashboard-panel__heading">
+                    <h2>Création de personnage</h2>
+                    <a class="panel-action" href="creation-personnage-2024.html">Voir tout</a>
+                </header>
+                <ul class="resource-list">
+                    <li class="resource-row" data-library-item data-library-url="classes/index.html" data-library-title="Classes" data-library-category="Création" data-library-description="Les douze classes">
+                        <a class="resource-row__link" href="classes/index.html"><span class="resource-row__icon" aria-hidden="true">♞</span><span class="resource-row__text"><strong>Classes</strong><small>Guides des douze classes de personnage</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="races/index.html" data-library-title="Espèces" data-library-category="Création" data-library-description="Peuples et origines">
+                        <a class="resource-row__link" href="races/index.html"><span class="resource-row__icon" aria-hidden="true">◉</span><span class="resource-row__text"><strong>Espèces</strong><small>Peuples, origines et traits principaux</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="historique.html" data-library-title="Historiques" data-library-category="Création" data-library-description="Dons et compétences d’origine">
+                        <a class="resource-row__link" href="historique.html"><span class="resource-row__icon" aria-hidden="true">▧</span><span class="resource-row__text"><strong>Historiques</strong><small>Dons, compétences et équipements d’origine</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="dons.html" data-library-title="Dons" data-library-category="Création" data-library-description="Capacités spéciales">
+                        <a class="resource-row__link" href="dons.html"><span class="resource-row__icon" aria-hidden="true">✧</span><span class="resource-row__text"><strong>Dons</strong><small>Capacités spéciales et prérequis</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="creation-personnage-2024.html" data-library-title="Guide de création" data-library-category="Création" data-library-description="Créer un personnage pas à pas">
+                        <a class="resource-row__link" href="creation-personnage-2024.html"><span class="resource-row__icon" aria-hidden="true">⬡</span><span class="resource-row__text"><strong>Guide de création</strong><small>Concevoir un personnage pas à pas</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="dashboard-panel dashboard-panel--universe">
+                <header class="dashboard-panel__heading">
+                    <h2>Royaumes Oubliés</h2>
+                    <a class="panel-action" href="faerun.html">Explorer</a>
+                </header>
+                <a class="universe-feature" href="faerun.html"><strong>Découvrez Faerûn</strong><small>Régions, peuples et forces qui façonnent les Royaumes Oubliés.</small></a>
+                <ul class="resource-list">
+                    <li class="resource-row" data-library-item data-library-url="histoire-royaumes.html" data-library-title="Histoire des Royaumes" data-library-category="Univers" data-library-description="Chronologie de Faerûn">
+                        <a class="resource-row__link" href="histoire-royaumes.html"><span class="resource-row__icon" aria-hidden="true">▱</span><span class="resource-row__text"><strong>Histoire</strong><small>Chronologie et grands bouleversements</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="divinites.html" data-library-title="Divinités" data-library-category="Univers" data-library-description="Dieux et domaines">
+                        <a class="resource-row__link" href="divinites.html"><span class="resource-row__icon" aria-hidden="true">☼</span><span class="resource-row__text"><strong>Divinités</strong><small>Panthéon de Faerûn et domaines</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="groupes-royaumes.html" data-library-title="Factions" data-library-category="Univers" data-library-description="Groupes et organisations">
+                        <a class="resource-row__link" href="groupes-royaumes.html"><span class="resource-row__icon" aria-hidden="true">⚑</span><span class="resource-row__text"><strong>Factions</strong><small>Organisations et groupes influents</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="personnages-royaumes.html" data-library-title="Personnages importants" data-library-category="Univers" data-library-description="Figures célèbres de Faerûn">
+                        <a class="resource-row__link" href="personnages-royaumes.html"><span class="resource-row__icon" aria-hidden="true">♙</span><span class="resource-row__text"><strong>Personnages importants</strong><small>Figures célèbres de Faerûn</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                    <li class="resource-row" data-library-item data-library-url="plans-existence.html" data-library-title="Plans d’existence" data-library-category="Univers" data-library-description="Les autres réalités">
+                        <a class="resource-row__link" href="plans-existence.html"><span class="resource-row__icon" aria-hidden="true">⊛</span><span class="resource-row__text"><strong>Plans d’existence</strong><small>Les autres réalités du multivers</small></span><span class="resource-row__chevron" aria-hidden="true">›</span></a><button data-favorite-button></button>
+                    </li>
+                </ul>
+            </article>
         </section>
 
-        <section class="section-block">
-            <h2>Histoire du monde</h2>
-            <p>Pour poser le décor d'une campagne dans les Royaumes Oubliés, explorer Faerûn et mieux comprendre les forces divines qui façonnent le monde.</p>
-            <div class="grid">
-                <a class="card" href="faerun.html">
-                    <strong>Les Royaumes Oubliés</strong>
-                    <span>Vue d'ensemble de Toril et de Faerûn, des grandes régions, des factions et des grands thèmes du cadre de jeu.</span>
-                </a>
-                <a class="card" href="divinites.html">
-                    <strong>Divinités des Royaumes Oubliés</strong>
-                    <span>Panthéon de Faerûn, domaines suggérés, symboles sacrés et notes sur les dieux non humains.</span>
-                </a>
-                <a class="card" href="histoire-royaumes.html">
-                    <strong>Histoire des Royaumes Oubliés</strong>
-                    <span>Chronologie des grands bouleversements : Temps des Troubles, retour du Nétheril, Magepeste et Fracture.</span>
-                </a>
-                <a class="card" href="personnages-royaumes.html">
-                    <strong>Personnages importants des Royaumes Oubliés</strong>
-                    <span>Grandes figures de Faerûn : mages légendaires, aventuriers, tyrans et maîtres de l'intrigue.</span>
-                </a>
-                <a class="card" href="groupes-royaumes.html">
-                    <strong>Groupes importants des Royaumes Oubliés</strong>
-                    <span>Grandes factions, ordres, réseaux et cultes qui influencent Faerûn au quotidien.</span>
-                </a>
-                <a class="card" href="plans-existence.html">
-                    <strong>Les plans d'existence</strong>
-                    <span>Vue d'ensemble du Plan matériel, de la Féerie, de la Gisombre, des plans extérieurs et des autres réalités de D&amp;D.</span>
-                </a>
-            </div>
-        </section>
+        <section class="home-section dashboard-grid" aria-label="Bibliothèque personnelle">
+            <article class="dashboard-panel dashboard-panel--recent">
+                <header class="dashboard-panel__heading"><h2>Consultés récemment</h2><button class="panel-action" type="button" data-clear-recent>Effacer</button></header>
+                <ul class="library-list" data-recent-list></ul>
+            </article>
 
-        <section class="quicklinks" data-quicklinks data-quicklinks-key="home">
-            <div class="quicklinks-head">
-                <h2 class="quicklinks-title">Liens rapides</h2>
-                <button type="button" class="quicklinks-edit" data-quicklinks-edit>Modifier</button>
-            </div>
-            <p class="quicklinks-help">Enregistre tes liens de session (VTT, docs, campagnes) localement dans ton navigateur.</p>
-            <div class="quicklinks-list" data-quicklinks-list></div>
-        </section>
+            <article class="dashboard-panel dashboard-panel--favorites">
+                <header class="dashboard-panel__heading"><h2>Mes favoris</h2></header>
+                <ul class="library-list" data-favorites-list></ul>
+            </article>
 
-        <p class="note">Astuce: utilise <strong>quickref.html</strong> pour la consultation rapide en session.</p>
+            <article class="dashboard-panel dashboard-panel--session">
+                <header class="dashboard-panel__heading"><h2>Liens de session</h2></header>
+                <section class="quicklinks" data-quicklinks data-quicklinks-key="home">
+                    <div class="quicklinks-head"><h3 class="quicklinks-title">Vos raccourcis personnels</h3><button type="button" class="quicklinks-edit" data-quicklinks-edit>Modifier</button></div>
+                    <p class="quicklinks-help">Enregistrez vos liens VTT, documents et campagnes localement dans ce navigateur.</p>
+                    <div class="quicklinks-list" data-quicklinks-list></div>
+                </section>
+            </article>
+
+            <aside class="dashboard-panel dashboard-panel--quote">
+                <blockquote class="dashboard-quote">Le sort n’est rien sans la compréhension, la lame n’est rien sans la maîtrise, et l’aventure n’est rien sans courage.<cite>— Guide du Maître</cite></blockquote>
+            </aside>
+        </section>
     </main>
+
     <script src="js/quicklinks.js"></script>
 </body>
 </html>

@@ -20,6 +20,21 @@ const contentTypes = {
 let server;
 let baseUrl;
 
+async function standaloneHtmlPages() {
+  const directories = ["", "classes", "races", "html"];
+  const pages = [];
+  for (const directory of directories) {
+    const entries = await readdir(resolve(root, directory), { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isFile() || !entry.name.endsWith(".html")) continue;
+      const page = directory ? `${directory}/${entry.name}` : entry.name;
+      const source = await readFile(resolve(root, page), "utf8");
+      if (/<html[\s>]/i.test(source) && /<body[\s>]/i.test(source)) pages.push(page);
+    }
+  }
+  return pages.sort();
+}
+
 test.before(async () => {
   server = createServer(async (request, response) => {
     try {
@@ -64,6 +79,14 @@ test("critical pages and modules are served over HTTP", async () => {
     "/classes/index.html",
     "/css/races.css",
     "/css/classes.css",
+    "/css/theme.css",
+    "/css/components.css",
+    "/css/catalog.css",
+    "/css/legacy-catalog.css",
+    "/css/content-page.css",
+    "/css/content-catalog.css",
+    "/css/character-sheet-app.css",
+    "/css/quickref-page.css",
     "/faerun.html#carte",
     "/html/characters.html",
     "/html/character.html?c=cleira",
@@ -73,9 +96,17 @@ test("critical pages and modules are served over HTTP", async () => {
     "/js/feats-page.js",
     "/js/faerun-map.js",
     "/js/monsters-page.js",
+    "/js/progressive-list.js",
     "/js/fetch-json.js",
     "/js/spell-filters.js",
+    "/js/catalog-ui.js",
+    "/js/legacy-catalog-ui.js",
+    "/js/content-catalog.js",
+    "/js/character-sheet-ui.js",
     "/js/spells-page.js",
+    "/js/user-library.js",
+    "/js/site-shell.js",
+    "/js/search-engine.js",
   ];
 
   for (const path of paths) {
@@ -91,10 +122,26 @@ test("critical JSON data is available and valid", async () => {
   assert.equal(spellsResponse.status, 200);
   assert.equal(spells.spells.length, 391);
 
+  const monstersResponse = await fetch(`${baseUrl}/data/monsters_2024.json`);
+  const monsters = await monstersResponse.json();
+  assert.equal(monstersResponse.status, 200);
+  assert.equal(monsters.monsters.length, 499);
+
+  const featsResponse = await fetch(`${baseUrl}/data/feats_2024.json`);
+  const feats = await featsResponse.json();
+  assert.equal(featsResponse.status, 200);
+  assert.equal(feats.feats.length, 75);
+
   const charactersResponse = await fetch(`${baseUrl}/data/characters/index.json`);
   const characters = await charactersResponse.json();
   assert.equal(charactersResponse.status, 200);
   assert.ok(characters.characters.length > 0);
+
+  const searchResponse = await fetch(`${baseUrl}/data/search-index.json`);
+  const search = await searchResponse.json();
+  assert.equal(searchResponse.status, 200);
+  assert.equal(search.count, search.entries.length);
+  assert.ok(search.entries.length > 1000);
 });
 
 test("optimized images are served with their expected format", async () => {
@@ -113,26 +160,7 @@ test("optimized images are served with their expected format", async () => {
 });
 
 test("critical pages do not reference missing local files", async () => {
-  const racePages = (await readdir(resolve(root, "races")))
-    .filter((name) => name.startsWith("race-") && name.endsWith(".html"))
-    .map((name) => `races/${name}`);
-  const classPages = (await readdir(resolve(root, "classes")))
-    .filter((name) => name.startsWith("class-") && name.endsWith(".html"))
-    .map((name) => `classes/${name}`);
-  const pages = [
-    "index.html",
-    "quickref.html",
-    "spells.html",
-    "dons.html",
-    "monstres.html",
-    "faerun.html",
-    "races/index.html",
-    "html/characters.html",
-    "html/character.html",
-    "html/character-profile.html",
-    ...racePages,
-    ...classPages,
-  ];
+  const pages = await standaloneHtmlPages();
 
   for (const page of pages) {
     const source = await readFile(resolve(root, page), "utf8");
@@ -153,14 +181,156 @@ test("critical pages do not reference missing local files", async () => {
   }
 });
 
-test("the standalone sheet keeps valid inline JavaScript", async () => {
-  const source = await readFile(resolve(root, "character-sheet-standalone.html"), "utf8");
-  const scripts = [...source.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
-    .map((match) => match[1])
-    .filter((script) => script.trim());
+test("every standalone page uses the shared visual shell", async () => {
+  const pages = await standaloneHtmlPages();
+  assert.equal(pages.length, 49);
 
-  assert.ok(scripts.length > 0);
-  for (const script of scripts) {
-    assert.doesNotThrow(() => new vm.Script(script));
+  for (const page of pages) {
+    const source = await readFile(resolve(root, page), "utf8");
+    const response = await fetch(`${baseUrl}/${page}`);
+    assert.equal(response.status, 200, page);
+    assert.match(source, /(?:\.\.\/|)css\/theme\.css/, page);
+    assert.match(source, /(?:\.\.\/|)css\/components\.css/, page);
+    assert.match(source, /(?:\.\.\/|)js\/user-library\.js/, page);
+    assert.match(source, /(?:\.\.\/|)js\/site-shell\.js/, page);
+    assert.match(source, /data-site-header data-active="[^"]+"/, page);
+    if (/<body[^>]*\bcontent-page\b/i.test(source)) {
+      assert.match(source, /(?:\.\.\/|)css\/content-page\.css/, page);
+    }
   }
+});
+
+test("the shared content theme preserves print output", async () => {
+  const source = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  assert.match(source, /@media print/);
+  assert.match(source, /body\.content-page\s*\{[^}]*background:\s*#fff/s);
+});
+
+test("the standalone sheet keeps its implementation in external assets", async () => {
+  const source = await readFile(resolve(root, "character-sheet-standalone.html"), "utf8");
+  const script = await readFile(resolve(root, "js/character-sheet.js"), "utf8");
+  const styles = await readFile(resolve(root, "css/character-sheet.css"), "utf8");
+
+  assert.doesNotMatch(source, /<style[\s>]/i);
+  assert.doesNotMatch(source, /<script>([\s\S]*?)<\/script>/i);
+  assert.match(source, /href="css\/character-sheet\.css"/);
+  assert.match(source, /src="js\/character-sheet\.js"\s+defer/);
+  assert.ok(styles.length > 20_000);
+  assert.doesNotThrow(() => new vm.Script(script));
+});
+
+test("pilot pages use the shared site shell", async () => {
+  const pilotPages = [
+    ["index.html", "home"],
+    ["spells.html", "spells"],
+    ["quickref.html", "quickref"],
+    ["character-sheet-standalone.html", "sheet"],
+  ];
+
+  for (const [page, activePage] of pilotPages) {
+    const source = await readFile(resolve(root, page), "utf8");
+    assert.match(source, /href="css\/theme\.css"/);
+    assert.match(source, /href="css\/components\.css"/);
+    assert.match(source, /src="js\/user-library\.js"\s+defer/);
+    assert.match(source, /src="js\/site-shell\.js"\s+defer/);
+    assert.match(source, new RegExp(`data-site-header data-active="${activePage}"`));
+    assert.match(source, /class="skip-link"/);
+  }
+});
+
+test("the home dashboard exposes quick access and personal library regions", async () => {
+  const source = await readFile(resolve(root, "index.html"), "utf8");
+  assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 4);
+  assert.ok([...source.matchAll(/data-library-item/g)].length >= 15);
+  assert.match(source, /data-recent-list/);
+  assert.match(source, /data-favorites-list/);
+  assert.match(source, /data-open-site-search/);
+});
+
+test("the spells catalog exposes persistent filters and its mobile drawer", async () => {
+  const source = await readFile(resolve(root, "spells.html"), "utf8");
+  assert.match(source, /href="css\/catalog\.css"/);
+  assert.match(source, /data-page-search/);
+  assert.match(source, /id="activeFilters"/);
+  assert.match(source, /id="filterPanel"/);
+  assert.match(source, /id="openFiltersBtn"/);
+  assert.match(source, /src="js\/catalog-ui\.js"/);
+  assert.match(source, /src="js\/progressive-list\.js"\s+defer/);
+  assert.match(source, /id="loadMoreBtn"/);
+});
+
+test("the quick reference exposes search, category shortcuts, and a detail drawer", async () => {
+  const source = await readFile(resolve(root, "quickref.html"), "utf8");
+  assert.match(source, /id="quickref-search"[^>]*data-page-search/);
+  assert.match(source, /class="quickref-category-nav"/);
+  assert.match(source, /id="quickref-detail-panel"[^>]*role="dialog"/);
+  assert.match(source, /id="quickref-detail-backdrop"/);
+  assert.doesNotMatch(source, /id="modal"/);
+});
+
+test("the shared shell exposes indexed search and persistent session mode", async () => {
+  const source = await readFile(resolve(root, "js/site-shell.js"), "utf8");
+  assert.match(source, /dnd2024_session_mode/);
+  assert.match(source, /data\/search-index\.json/);
+  assert.match(source, /sessionButton\.setAttribute\("aria-pressed"/);
+  assert.match(source, /function ensureSkipLink/);
+  assert.match(source, /aria-autocomplete/);
+  assert.match(source, /results\.setAttribute\("role", "listbox"\)/);
+  assert.match(source, /drawer\.setAttribute\("aria-modal", "true"\)/);
+  assert.match(source, /function createSessionPanel/);
+  assert.match(source, /sessionPanel\.panel\.setAttribute\("aria-hidden"/);
+  assert.match(source, /sessionPanel\.panel\.setAttribute\("inert"/);
+  assert.match(source, /session-panel__quick-actions/);
+  assert.match(source, /window\.DndLibrary\.clearRecent/);
+  for (const path of ["quickref.html", "spells.html", "monstres.html", "combat-2024.html"]) {
+    assert.match(source, new RegExp(path.replace(".", "\\.")), path);
+  }
+});
+
+test("the monsters and feats catalogs use the consolidated catalog shell", async () => {
+  const catalogs = [
+    ["monstres.html", "monsters"],
+    ["dons.html", "feats"],
+  ];
+
+  for (const [page, activePage] of catalogs) {
+    const source = await readFile(resolve(root, page), "utf8");
+    assert.doesNotMatch(source, /<style[\s>]/i);
+    assert.match(source, /class="legacy-catalog-page"/);
+    assert.match(source, /href="css\/theme\.css"/);
+    assert.match(source, /href="css\/components\.css"/);
+    assert.match(source, /href="css\/legacy-catalog\.css"/);
+    assert.match(source, /src="js\/legacy-catalog-ui\.js"\s+defer/);
+    assert.match(source, new RegExp(`data-site-header data-active="${activePage}"`));
+    assert.match(source, /data-page-search/);
+    assert.match(source, /aria-live="polite"/);
+    assert.match(source, /rel="preload" href="data\/(?:monsters|feats)_2024\.json"/);
+  }
+});
+
+test("the remaining content catalogs expose the shared filtering experience", async () => {
+  const catalogs = [
+    ["classes/index.html", "classes", "../"],
+    ["races/index.html", "species", "../"],
+    ["armes-armures.html", "equipment", ""],
+    ["historique.html", "backgrounds", ""],
+  ];
+
+  for (const [page, kind, prefix] of catalogs) {
+    const source = await readFile(resolve(root, page), "utf8");
+    assert.match(source, new RegExp(`data-catalog-kind="${kind}"`));
+    assert.match(source, new RegExp(`href="${prefix.replace("../", "\\.\\.\\/")}css/content-catalog\\.css"`));
+    assert.match(source, new RegExp(`src="${prefix.replace("../", "\\.\\.\\/")}js/content-catalog\\.js"\\s+defer`));
+  }
+});
+
+test("the standalone sheet exposes critical values and compact page navigation", async () => {
+  const source = await readFile(resolve(root, "character-sheet-standalone.html"), "utf8");
+  assert.match(source, /href="css\/character-sheet\.css"/);
+  assert.match(source, /href="css\/character-sheet-app\.css"/);
+  assert.match(source, /src="js\/character-sheet\.js"\s+defer/);
+  assert.match(source, /src="js\/character-sheet-ui\.js"\s+defer/);
+  assert.match(source, /id="previousPageBtn"/);
+  assert.match(source, /id="nextPageBtn"/);
+  assert.ok([...source.matchAll(/data-mirror-field=/g)].length >= 8);
 });
