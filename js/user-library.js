@@ -41,6 +41,18 @@
         return /^(?:https?:|mailto:)/.test(value) ? value : new URL(value, siteRoot).href;
     }
 
+    function createIcon(name) {
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        svg.setAttribute("class", "icon");
+        svg.setAttribute("viewBox", "0 0 64 64");
+        svg.setAttribute("aria-hidden", "true");
+        svg.setAttribute("focusable", "false");
+        use.setAttribute("href", pageUrl("assets/icons/site-icons.svg#" + name));
+        svg.appendChild(use);
+        return svg;
+    }
+
     function cleanEntry(entry) {
         return {
             url: relativeUrl(entry.url),
@@ -118,7 +130,7 @@
         button.setAttribute("aria-pressed", String(active));
         button.setAttribute("aria-label", active ? "Retirer des favoris : " + entry.title : "Ajouter aux favoris : " + entry.title);
         button.title = active ? "Retirer des favoris" : "Ajouter aux favoris";
-        button.textContent = active ? "★" : "☆";
+        button.replaceChildren(createIcon(active ? "favorite-filled" : "favorite-empty"));
     }
 
     function connectFavoriteButton(button, entry, listenForChanges) {
@@ -145,7 +157,7 @@
         link.href = pageUrl(entry.url);
         icon.className = "resource-row__icon";
         icon.setAttribute("aria-hidden", "true");
-        icon.textContent = favoriteAction ? "★" : "◈";
+        icon.appendChild(createIcon(favoriteAction ? "favorite-filled" : "history"));
         text.className = "library-row__text";
         title.textContent = entry.title;
         meta.textContent = entry.category + (entry.description ? " — " + entry.description : "");

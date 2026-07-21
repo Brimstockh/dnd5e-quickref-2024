@@ -14,6 +14,7 @@ const contentTypes = {
   ".js": "text/javascript",
   ".json": "application/json",
   ".png": "image/png",
+  ".svg": "image/svg+xml",
   ".webp": "image/webp",
 };
 
@@ -107,12 +108,18 @@ test("critical pages and modules are served over HTTP", async () => {
     "/js/user-library.js",
     "/js/site-shell.js",
     "/js/search-engine.js",
+    "/assets/icons/site-icons.svg",
+    "/assets/icons/site-emblem.svg",
+    "/assets/decor/arcane-circle.svg",
+    "/assets/decor/panel-corners.svg",
+    "/assets/decor/header-lines.svg",
+    "/assets/decor/section-divider.svg",
   ];
 
   for (const path of paths) {
     const response = await fetch(`${baseUrl}${path}`);
     assert.equal(response.status, 200, path);
-    assert.match(response.headers.get("content-type"), /text\/(css|html|javascript)/, path);
+    assert.match(response.headers.get("content-type"), /(?:text\/(?:css|html|javascript)|image\/svg\+xml)/, path);
   }
 });
 
@@ -157,6 +164,25 @@ test("optimized images are served with their expected format", async () => {
     assert.equal(response.headers.get("content-type"), "image/webp", path);
     assert.ok((await response.arrayBuffer()).byteLength > 0, path);
   }
+});
+
+test("the visual asset system is local, complete, and lightweight", async () => {
+  const sprite = await readFile(resolve(root, "assets/icons/site-icons.svg"), "utf8");
+  const emblem = await readFile(resolve(root, "assets/icons/site-emblem.svg"), "utf8");
+  const city = await readFile(resolve(root, "assets/images/faerun-city.webp"));
+  const ids = [...sprite.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  const required = [
+    "site-emblem", "quick-reference", "spells", "monsters", "character-sheet",
+    "rules", "combat", "mastery", "glossary", "equipment", "classes", "species",
+    "backgrounds", "feats", "history", "gods", "factions", "characters", "planes",
+    "search", "theme-sun", "theme-moon", "session", "favorite-empty", "favorite-filled",
+    "menu", "close", "chevron-down", "chevron-right",
+  ];
+
+  assert.equal(new Set(ids).size, ids.length, "sprite icon ids must be unique");
+  for (const id of required) assert.ok(ids.includes(id), `missing sprite icon: ${id}`);
+  assert.match(emblem, /viewBox="0 0 64 64"/);
+  assert.ok(city.length < 300_000, "Faerûn illustration exceeds its transfer budget");
 });
 
 test("critical pages do not reference missing local files", async () => {
@@ -240,7 +266,16 @@ test("pilot pages use the shared site shell", async () => {
 
 test("the home dashboard exposes quick access and personal library regions", async () => {
   const source = await readFile(resolve(root, "index.html"), "utf8");
+  const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
+  const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
   assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 4);
+  assert.match(source, /class="home-intro-grid"[\s\S]*class="home-hero"[\s\S]*class="home-quick-access"/);
+  for (const icon of ["quick-reference", "spells", "monsters", "character-sheet"]) {
+    assert.match(source, new RegExp(`site-icons\\.svg#${icon}`));
+  }
+  assert.match(shell, /createIcon\("site-emblem"\)/);
+  assert.doesNotMatch(shell, /markText|textContent\s*=\s*"D20"/);
+  assert.doesNotMatch(source + shell + library, /[◈✦♜✎⚔☼♞◉▧✧⬡▱⚑♙⊛☆★☾☰⌕×›◆⚡]/);
   assert.ok([...source.matchAll(/data-library-item/g)].length >= 15);
   assert.match(source, /data-recent-list/);
   assert.match(source, /data-favorites-list/);

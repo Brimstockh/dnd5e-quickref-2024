@@ -1,23 +1,23 @@
 :root {
     color-scheme: dark;
-    --color-bg: #11100f;
-    --color-bg-elevated: #171512;
-    --color-surface: #1b1916;
-    --color-surface-hover: #24211c;
-    --color-surface-active: #2d281f;
+    --color-bg: #0c0b09;
+    --color-bg-elevated: #11100d;
+    --color-surface: #15130f;
+    --color-surface-hover: #1c1914;
+    --color-surface-active: #242018;
     --color-text: #eee8dc;
-    --color-text-muted: #b6aa97;
-    --color-text-subtle: #847969;
-    --color-gold: #c4a15d;
-    --color-gold-bright: #dcc184;
-    --color-gold-dark: #7f6635;
-    --color-danger: #8f3029;
-    --color-danger-bright: #b9473d;
-    --color-border: #40392f;
-    --color-border-light: #5b4c36;
+    --color-text-muted: #b3a692;
+    --color-text-subtle: #817564;
+    --color-gold: #b99756;
+    --color-gold-bright: #d2b374;
+    --color-gold-dark: #735b31;
+    --color-danger: #7b2824;
+    --color-danger-bright: #aa4037;
+    --color-border: #352d22;
+    --color-border-light: #53442f;
     --color-focus: #f0cf87;
-    --shadow-card: 0 8px 24px rgb(0 0 0 / 30%);
-    --shadow-header: 0 8px 26px rgb(0 0 0 / 34%);
+    --shadow-card: 0 3px 12px rgb(0 0 0 / 18%);
+    --shadow-header: 0 4px 18px rgb(0 0 0 / 24%);
     --font-display: "Cinzel", "Cormorant Garamond", "Lora", Georgia, serif;
     --font-body: "Source Sans 3", "Noto Sans", "Segoe UI", system-ui, sans-serif;
     --space-1: 0.25rem;
@@ -26,11 +26,11 @@
     --space-4: 1rem;
     --space-5: 1.5rem;
     --space-6: 2rem;
-    --radius-sm: 0.4rem;
-    --radius-md: 0.65rem;
-    --radius-lg: 0.9rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.35rem;
+    --radius-lg: 0.5rem;
     --content-width: 1440px;
-    --header-height: 76px;
+    --header-height: 72px;
     --transition-fast: 150ms ease;
     --page-background:
         radial-gradient(circle at 18% -10%, rgb(196 161 93 / 7%), transparent 30rem),
@@ -55,8 +55,8 @@
     --color-border: #c9bda9;
     --color-border-light: #a89576;
     --color-focus: #6e4e12;
-    --shadow-card: 0 8px 24px rgb(54 40 20 / 12%);
-    --shadow-header: 0 8px 26px rgb(54 40 20 / 14%);
+    --shadow-card: 0 3px 12px rgb(54 40 20 / 9%);
+    --shadow-header: 0 4px 18px rgb(54 40 20 / 11%);
     --page-background:
         radial-gradient(circle at 18% -10%, rgb(128 101 47 / 10%), transparent 30rem),
         linear-gradient(145deg, #f4efe5 0%, var(--color-bg) 55%, #e8dfd0 100%);
@@ -114,6 +114,16 @@ textarea {
 
 a {
     color: var(--color-gold-bright);
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    vertical-align: -0.125em;
 }
 
 ::selection {

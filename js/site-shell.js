@@ -61,6 +61,22 @@
         return new URL(path, siteRoot).href;
     }
 
+    function createIcon(name, className) {
+        var svg = doc.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var use = doc.createElementNS("http://www.w3.org/2000/svg", "use");
+        svg.setAttribute("class", "icon" + (className ? " " + className : ""));
+        svg.setAttribute("viewBox", "0 0 64 64");
+        svg.setAttribute("aria-hidden", "true");
+        svg.setAttribute("focusable", "false");
+        use.setAttribute("href", pageUrl("assets/icons/site-icons.svg#" + name));
+        svg.appendChild(use);
+        return svg;
+    }
+
+    function setButtonIcon(button, name) {
+        button.replaceChildren(createIcon(name));
+    }
+
     function normalize(value) {
         return String(value || "")
             .normalize("NFD")
@@ -92,12 +108,12 @@
         try { return localStorage.getItem(sessionKey) === "true"; } catch (error) { return false; }
     }
 
-    function iconButton(className, label, symbol) {
+    function iconButton(className, label, iconName) {
         var button = doc.createElement("button");
         button.type = "button";
         button.className = "icon-button " + className;
         button.setAttribute("aria-label", label);
-        button.textContent = symbol;
+        setButtonIcon(button, iconName);
         return button;
     }
 
@@ -205,7 +221,7 @@
             var groupIsActive = false;
 
             details.className = "nav-dropdown";
-            summary.textContent = group.label;
+            summary.append(doc.createTextNode(group.label), createIcon("chevron-down", "nav-dropdown__chevron"));
             menu.className = "nav-dropdown__menu";
 
             group.links.forEach(function (entry) {
@@ -244,7 +260,7 @@
         var dialog = doc.createElement("dialog");
         var header = doc.createElement("div");
         var input = doc.createElement("input");
-        var close = iconButton("search-dialog__close", "Fermer la recherche", "×");
+        var close = iconButton("search-dialog__close", "Fermer la recherche", "close");
         var filters = doc.createElement("div");
         var resultCount = doc.createElement("p");
         var results = doc.createElement("ul");
@@ -480,14 +496,14 @@
     }
 
     function createSessionPanel() {
-        var openButton = iconButton("session-panel-toggle", "Ouvrir le panneau de session", "⚡");
+        var openButton = iconButton("session-panel-toggle", "Ouvrir le panneau de session", "session");
         var panel = doc.createElement("aside");
         var backdrop = doc.createElement("button");
         var header = doc.createElement("header");
         var heading = doc.createElement("div");
         var eyebrow = doc.createElement("span");
         var title = doc.createElement("h2");
-        var closeButton = iconButton("session-panel__close", "Fermer le panneau de session", "×");
+        var closeButton = iconButton("session-panel__close", "Fermer le panneau de session", "close");
         var quickTitle = doc.createElement("h3");
         var quickActions = doc.createElement("nav");
         var library = doc.createElement("div");
@@ -502,10 +518,10 @@
         var exitButton = doc.createElement("button");
 
         var actionEntries = [
-            ["◇", "Référence rapide", "Actions et états", "quickref.html"],
-            ["✦", "Sorts", "Catalogue complet", "spells.html"],
-            ["♜", "Monstres", "Bestiaire", "monstres.html"],
-            ["⚔", "Combat", "Règles essentielles", "combat-2024.html"],
+            ["quick-reference", "Référence rapide", "Actions et états", "quickref.html"],
+            ["spells", "Sorts", "Catalogue complet", "spells.html"],
+            ["monsters", "Monstres", "Bestiaire", "monstres.html"],
+            ["combat", "Combat", "Règles essentielles", "combat-2024.html"],
         ];
 
         openButton.setAttribute("aria-controls", "sessionPanel");
@@ -541,7 +557,7 @@
             var small = doc.createElement("small");
             link.href = pageUrl(entry[3]);
             icon.setAttribute("aria-hidden", "true");
-            icon.textContent = entry[0];
+            icon.appendChild(createIcon(entry[0]));
             strong.textContent = entry[1];
             small.textContent = entry[2];
             text.append(strong, small);
@@ -616,6 +632,9 @@
     function init() {
         setTheme(initialTheme(), false);
         setSessionMode(initialSessionMode(), false);
+        doc.querySelectorAll("svg.icon:not([viewBox])").forEach(function (icon) {
+            icon.setAttribute("viewBox", "0 0 64 64");
+        });
         var mount = doc.querySelector("[data-site-header]");
         if (!mount) return;
 
@@ -625,20 +644,22 @@
         var inner = doc.createElement("div");
         var logo = doc.createElement("a");
         var mark = doc.createElement("span");
-        var markText = doc.createElement("span");
         var logoText = doc.createElement("span");
         var logoTitle = doc.createElement("span");
         var logoSubtitle = doc.createElement("span");
         var actions = doc.createElement("div");
         var searchButton = doc.createElement("button");
-        var themeButton = iconButton("theme-toggle", "Changer de thème", "☼");
-        var sessionButton = iconButton("session-toggle", "Activer le mode session", "◉");
+        var searchIcon = doc.createElement("span");
+        var searchLabel = doc.createElement("span");
+        var searchShortcut = doc.createElement("kbd");
+        var themeButton = iconButton("theme-toggle", "Changer de thème", "theme-sun");
+        var sessionButton = iconButton("session-toggle", "Activer le mode session", "session");
         var favoriteButton = null;
-        var menuButton = iconButton("mobile-navigation-toggle", "Ouvrir le menu", "☰");
+        var menuButton = iconButton("mobile-navigation-toggle", "Ouvrir le menu", "menu");
         var drawer = doc.createElement("aside");
         var drawerHead = doc.createElement("div");
         var drawerTitle = doc.createElement("span");
-        var drawerClose = iconButton("mobile-navigation__close", "Fermer le menu", "×");
+        var drawerClose = iconButton("mobile-navigation__close", "Fermer le menu", "close");
         var backdrop = doc.createElement("button");
         var search = createSearch();
         var sessionPanel = createSessionPanel();
@@ -649,7 +670,7 @@
         logo.href = pageUrl("index.html");
         logo.setAttribute("aria-label", "D&D 2024 — Accueil");
         mark.className = "site-logo__mark";
-        markText.textContent = "D20";
+        mark.appendChild(createIcon("site-emblem"));
         logoText.className = "site-logo__text";
         logoTitle.className = "site-logo__title";
         logoTitle.textContent = "D&D 2024";
@@ -659,7 +680,13 @@
         searchButton.type = "button";
         searchButton.className = "search-trigger";
         searchButton.setAttribute("aria-label", "Ouvrir la recherche");
-        searchButton.innerHTML = "<span class=\"search-trigger__icon\" aria-hidden=\"true\">⌕</span><span class=\"search-trigger__label\">Rechercher…</span><kbd>Ctrl K</kbd>";
+        searchIcon.className = "search-trigger__icon";
+        searchIcon.setAttribute("aria-hidden", "true");
+        searchIcon.appendChild(createIcon("search"));
+        searchLabel.className = "search-trigger__label";
+        searchLabel.textContent = "Rechercher…";
+        searchShortcut.textContent = "Ctrl K";
+        searchButton.append(searchIcon, searchLabel, searchShortcut);
 
         drawer.className = "mobile-navigation";
         drawer.setAttribute("role", "dialog");
@@ -673,7 +700,7 @@
         backdrop.className = "drawer-backdrop";
         backdrop.type = "button";
         backdrop.setAttribute("aria-label", "Fermer la navigation");
-        themeButton.textContent = doc.documentElement.dataset.theme === "dark" ? "☼" : "☾";
+        setButtonIcon(themeButton, doc.documentElement.dataset.theme === "dark" ? "theme-sun" : "theme-moon");
         sessionButton.setAttribute("aria-pressed", String(doc.documentElement.dataset.session === "true"));
         sessionButton.classList.toggle("is-active", doc.documentElement.dataset.session === "true");
         if (doc.documentElement.dataset.session === "true") sessionButton.setAttribute("aria-label", "Désactiver le mode session");
@@ -710,7 +737,7 @@
         }
 
         if (window.DndLibrary && activePage !== "home") {
-            favoriteButton = iconButton("favorite-current", "Ajouter cette page aux favoris", "☆");
+            favoriteButton = iconButton("favorite-current", "Ajouter cette page aux favoris", "favorite-empty");
             window.DndLibrary.connectFavoriteButton(favoriteButton, window.DndLibrary.currentEntry());
         }
 
@@ -734,7 +761,7 @@
         themeButton.addEventListener("click", function () {
             var next = doc.documentElement.dataset.theme === "dark" ? "light" : "dark";
             setTheme(next, true);
-            themeButton.textContent = next === "dark" ? "☼" : "☾";
+            setButtonIcon(themeButton, next === "dark" ? "theme-sun" : "theme-moon");
         });
         sessionButton.addEventListener("click", function () {
             var enabled = doc.documentElement.dataset.session !== "true";
@@ -804,7 +831,6 @@
             }
         });
 
-        mark.appendChild(markText);
         logoText.append(logoTitle, logoSubtitle);
         logo.append(mark, logoText);
         actions.append(searchButton);
