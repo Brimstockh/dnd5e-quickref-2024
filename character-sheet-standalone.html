@@ -1824,8 +1824,10 @@
 
     <script>
         (function () {
+            var SHEET_VERSION = "standalone_v2";
             var STORAGE_KEY = "dnd_character_sheet_standalone_v2";
             var LEGACY_STORAGE_KEY = "dnd_character_sheet_standalone_v1";
+            var MAX_IMPORT_BYTES = 1024 * 1024;
             var statusEl = document.getElementById("status");
             var saveBtn = document.getElementById("saveBtn");
             var resetBtn = document.getElementById("resetBtn");
@@ -1842,6 +1844,7 @@
             var classLevelField = document.querySelector("[data-class-level]");
             var levelInput = document.querySelector("[data-level-input]");
             var saveTimer = null;
+            var localStorageFailed = false;
             var currentClassDetails = null;
             var classOptions = [];
             var subclassCache = {};
@@ -2971,6 +2974,31 @@
                 return data;
             }
 
+            function normalizePayload(payload) {
+                if (!payload || typeof payload !== "object" || Array.isArray(payload)) return null;
+                if (payload.version && payload.version !== SHEET_VERSION && payload.version !== "standalone_v1") {
+                    return null;
+                }
+                if (!payload.data || typeof payload.data !== "object" || Array.isArray(payload.data)) return null;
+
+                var data = {};
+                fields.forEach(function (el) {
+                    var key = el.getAttribute("data-field");
+                    if (!Object.prototype.hasOwnProperty.call(payload.data, key)) return;
+                    var value = payload.data[key];
+                    if (el.type === "checkbox") {
+                        if (typeof value === "boolean") data[key] = value;
+                    } else if (typeof value === "string" || typeof value === "number") {
+                        data[key] = String(value);
+                    }
+                });
+                if (typeof payload.data.character_level === "string" || typeof payload.data.character_level === "number") {
+                    data.character_level = String(payload.data.character_level);
+                }
+
+                return Object.keys(data).length ? data : null;
+            }
+
             function apply(data) {
                 fields.forEach(function (el) {
                     var key = el.getAttribute("data-field");
@@ -3008,20 +3036,36 @@
             function save() {
                 var payload = {
                     updated_at: new Date().toISOString(),
-                    version: "standalone_v2",
+                    version: SHEET_VERSION,
                     data: collect()
                 };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-                setStatus("Sauvegardé à " + nowText());
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+                    localStorageFailed = false;
+                    setStatus("Sauvegardé à " + nowText());
+                    return true;
+                } catch (err) {
+                    localStorageFailed = true;
+                    setStatus("Sauvegarde locale impossible. Exporte la fiche en JSON.");
+                    return false;
+                }
             }
 
             function loadFromKey(key) {
-                var raw = localStorage.getItem(key);
+                var raw;
+                try {
+                    raw = localStorage.getItem(key);
+                } catch (err) {
+                    localStorageFailed = true;
+                    return false;
+                }
                 if (!raw) return false;
+
                 try {
                     var parsed = JSON.parse(raw);
-                    if (parsed && parsed.data) {
-                        apply(parsed.data);
+                    var data = normalizePayload(parsed);
+                    if (data) {
+                        apply(data);
                         return true;
                     }
                 } catch (err) {
@@ -3040,7 +3084,9 @@
                     setStatus("Ancienne sauvegarde reprise et convertie.");
                     return;
                 }
-                setStatus("Aucune sauvegarde trouvée.");
+                setStatus(localStorageFailed
+                    ? "Stockage local indisponible. Utilise l'export JSON."
+                    : "Aucune sauvegarde trouvée.");
             }
 
             function scheduleAutoSave() {
@@ -3058,14 +3104,19 @@
                         el.value = "";
                     }
                 });
-                localStorage.removeItem(STORAGE_KEY);
-                setStatus("Feuille réinitialisée.");
+                try {
+                    localStorage.removeItem(STORAGE_KEY);
+                    setStatus("Feuille réinitialisée.");
+                } catch (err) {
+                    localStorageFailed = true;
+                    setStatus("Champs vidés, mais la sauvegarde locale n'a pas pu être supprimée.");
+                }
             }
 
             function exportJson() {
                 var payload = {
                     exported_at: new Date().toISOString(),
-                    version: "standalone_v2",
+                    version: SHEET_VERSION,
                     data: collect()
                 };
                 var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -3076,25 +3127,32 @@
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-                URL.revokeObjectURL(url);
+                setTimeout(function () { URL.revokeObjectURL(url); }, 0);
                 setStatus("Export JSON généré.");
             }
 
             function importJson(file) {
+                if (!file || file.size > MAX_IMPORT_BYTES) {
+                    alert("Le fichier JSON est absent ou trop volumineux (maximum 1 Mo).");
+                    return;
+                }
                 var reader = new FileReader();
                 reader.onload = function () {
                     try {
                         var parsed = JSON.parse(String(reader.result || "{}"));
-                        if (!parsed || !parsed.data || typeof parsed.data !== "object") {
-                            alert("Format JSON invalide.");
+                        var data = normalizePayload(parsed);
+                        if (!data) {
+                            alert("Format ou version de fiche JSON invalide.");
                             return;
                         }
-                        apply(parsed.data);
-                        save();
-                        setStatus("Import terminé.");
+                        apply(data);
+                        if (save()) setStatus("Import terminé.");
                     } catch (err) {
                         alert("Le fichier n'est pas un JSON valide.");
                     }
+                };
+                reader.onerror = function () {
+                    alert("Impossible de lire le fichier JSON.");
                 };
                 reader.readAsText(file);
             }
