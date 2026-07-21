@@ -203,7 +203,10 @@
       </div>
     
       <div class="intro">
-        <img id="profileImage" class="profile-image" alt="Illustration du personnage" />
+        <picture style="display: contents;">
+          <source id="profileImageSource" type="image/webp" />
+          <img id="profileImage" class="profile-image" decoding="async" alt="Illustration du personnage" />
+        </picture>
     
         <div class="intro-summary card-soft">
           <h2 style="margin-top:0;">Résumé</h2>
@@ -253,7 +256,9 @@
 
   <script type="module">
     import { validateCharacterKey } from "../js/character-key.js";
+    import { fetchJson } from "../js/fetch-json.js";
     import { escapeHtml as esc } from "../js/html-utils.js";
+    import { configurePictureImage } from "../js/picture-source.js";
 
     const $ = (id) => document.getElementById(id);
 
@@ -267,34 +272,25 @@
       return `<ul>${arr.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
     }
 
-    async function loadJson(path, optional=false){
-      const res = await fetch(path, { cache: "no-store" });
-      if(!res.ok){
-        if(optional) return null;
-        throw new Error(`Impossible de charger ${path} (HTTP ${res.status})`);
-      }
-      return await res.json();
-    }
-
     (async function main(){
       try{
         const key = validateCharacterKey(getParam("c", "cleira"));
         const img = document.getElementById("profileImage");
         if (img) {
-          const path = `../img/characters/${key}-full.png`;
-          img.src = path;
-
-          img.onerror = () => {
-            img.style.display = "none";
-          };
+          configurePictureImage({
+            image: img,
+            source: document.getElementById("profileImageSource"),
+            webpPath: `../img/characters/${key}-full.webp`,
+            fallbackPath: `../img/characters/${key}-full.png`,
+          });
         }
         $("sheetLink").href = `character.html?c=${encodeURIComponent(key)}`;
 
         const charPath = `../data/characters/${key}.json`;
         const storyPath = `../data/characters/${key}.story.json`;
 
-        const c = await loadJson(charPath);
-        const s = await loadJson(storyPath, true);
+        const c = await fetchJson(charPath);
+        const s = await fetchJson(storyPath, { optional: true });
 
         $("name").textContent = c.name ?? "Présentation";
         $("line").textContent = `${c.species ?? "—"} • ${c.class ?? "—"} niv. ${c.level ?? "—"}`;

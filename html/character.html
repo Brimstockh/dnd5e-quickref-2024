@@ -23,7 +23,10 @@
 
     <section class="card header">
       <div class="header__left">
-        <img id="charImage" class="avatar" alt="Portrait du personnage" />
+        <picture style="display: contents;">
+          <source id="charImageSource" type="image/webp" />
+          <img id="charImage" class="avatar" decoding="async" alt="Portrait du personnage" />
+        </picture>
         <div>
           <h1 class="h1" id="c-name">—</h1>
           <div class="sub" id="c-line">—</div>

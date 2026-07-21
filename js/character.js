@@ -1,5 +1,7 @@
 import { escapeHtml as esc } from "./html-utils.js";
 import { validateCharacterKey } from "./character-key.js";
+import { fetchJson } from "./fetch-json.js";
+import { configurePictureImage } from "./picture-source.js";
 
 function $(id) { return document.getElementById(id); }
 
@@ -17,16 +19,12 @@ async function loadCharacter(){
     const key = validateCharacterKey(getParam("c", "cleira"));
     const path = `../data/characters/${key}.json`;
   
-    const res = await fetch(path, { cache: "no-store" });
-    if(!res.ok) throw new Error(`Impossible de charger ${path} (${res.status})`);
-    return { key, character: await res.json() };
+    return { key, character: await fetchJson(path) };
   }
 
 async function loadStory(key){
     const path = `../data/characters/${key}.story.json`;
-    const res = await fetch(path, { cache: "no-store" });
-    if(!res.ok) return null; // story optionnelle
-    return await res.json();
+    return await fetchJson(path, { optional: true });
 }
 
 function renderHeader(c){
@@ -354,12 +352,12 @@ async function main(){
     const { key, character: c } = await loadCharacter();
     const img = document.getElementById("charImage");
     if (img) {
-      const path = `../img/characters/${key}.png`;
-      img.src = path;
-
-      img.onerror = () => {
-        img.style.display = "none"; // cache si image absente
-      };
+      configurePictureImage({
+        image: img,
+        source: document.getElementById("charImageSource"),
+        webpPath: `../img/characters/${key}.webp`,
+        fallbackPath: `../img/characters/${key}.png`,
+      });
     }
     const story = await loadStory(key);
     const link = document.getElementById("profileLink");

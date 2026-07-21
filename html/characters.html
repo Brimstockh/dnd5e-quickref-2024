@@ -147,21 +147,14 @@
   </main>
 
   <script type="module">
+    import { fetchJson } from "../js/fetch-json.js";
+    import { escapeHtml } from "../js/html-utils.js";
+    import { configurePictureImage } from "../js/picture-source.js";
+
     const $ = (id) => document.getElementById(id);
 
     async function loadIndex() {
-      const res = await fetch("../data/characters/index.json", { cache: "no-store" });
-      if (!res.ok) throw new Error(`Index introuvable (HTTP ${res.status})`);
-      return await res.json();
-    }
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+      return await fetchJson("../data/characters/index.json");
     }
 
     function render(list) {
@@ -179,7 +172,8 @@
         wrap.className = "card char-card";
         wrap.dataset.search = `${c.name ?? ""} ${c.class ?? ""} ${c.species ?? ""} ${c.level ?? ""}`.toLowerCase();
 
-        const imgPath = `../img/characters/${encodedKey}.png`;
+        const pngPath = `../img/characters/${encodedKey}.png`;
+        const webpPath = `../img/characters/${encodedKey}.webp`;
 
         wrap.innerHTML = `
           <div class="char-card__left">
@@ -192,13 +186,25 @@
             </div>
           </div>
 
-          <img class="char-card__img" src="${imgPath}" alt="Portrait de ${name}" />
+          <picture style="display: contents;">
+            <source type="image/webp" />
+            <img
+              class="char-card__img"
+              width="74"
+              height="74"
+              loading="lazy"
+              decoding="async"
+              alt="Portrait de ${name}"
+            />
+          </picture>
         `;
 
-        // Fallback: si l'image n'existe pas, on la cache
         const img = wrap.querySelector("img");
-        img.addEventListener("error", () => {
-          img.style.display = "none";
+        configurePictureImage({
+          image: img,
+          source: wrap.querySelector("source"),
+          webpPath,
+          fallbackPath: pngPath,
         });
 
         root.appendChild(wrap);

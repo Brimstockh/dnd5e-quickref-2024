@@ -92,7 +92,8 @@
             margin: 10px 0;
         }
 
-        .map-toolbar button {
+        .map-toolbar button,
+        .map-toolbar a {
             border: 1px solid var(--accent);
             border-radius: 8px;
             color: var(--accent);
@@ -101,9 +102,11 @@
             font: inherit;
             font-weight: 700;
             cursor: pointer;
+            text-decoration: none;
         }
 
-        .map-toolbar button:hover {
+        .map-toolbar button:hover,
+        .map-toolbar a:hover {
             background: #f7eceb;
         }
 
@@ -137,6 +140,10 @@
             transform-origin: 0 0;
             will-change: transform;
             pointer-events: none;
+        }
+
+        .map-viewer picture {
+            display: contents;
         }
 
         .map-viewer.is-missing img {
@@ -359,16 +366,29 @@
 
                 <p>Voir aussi : <strong><a href="histoire-royaumes.html">Histoire des Royaumes Oubliés</a></strong>, <strong><a href="personnages-royaumes.html">Personnages importants des Royaumes Oubliés</a></strong> et <strong><a href="groupes-royaumes.html">Groupes importants des Royaumes Oubliés</a></strong>.</p>
 
-                <h2>Carte de Faerûn</h2>
+                <h2 id="carte">Carte de Faerûn</h2>
                 <div class="map-toolbar" aria-label="Contrôles de la carte">
                     <button type="button" data-map-zoom-out aria-label="Dézoomer">-</button>
                     <button type="button" data-map-zoom-in aria-label="Zoomer">+</button>
                     <button type="button" data-map-reset>Réinitialiser</button>
                     <span class="map-zoom-value" data-map-zoom-value>100%</span>
+                    <a href="img/map/faerun-map.jpg" download>Télécharger la carte HD (JPEG)</a>
                 </div>
                 <div class="map-viewer" data-map-viewer>
-                    <img src="img/map/faerun-map.jpg" alt="Carte de Faerûn" data-map-image />
-                    <div class="map-fallback">Carte introuvable : img/map/faerun-map.jpg</div>
+                    <picture>
+                        <source srcset="img/map/faerun-map.webp" type="image/webp" />
+                        <img
+                            src="img/map/faerun-map.jpg"
+                            width="5000"
+                            height="3468"
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
+                            alt="Carte de Faerûn"
+                            data-map-image
+                        />
+                    </picture>
+                    <div class="map-fallback">Carte introuvable.</div>
                 </div>
             </div>
         </section>
