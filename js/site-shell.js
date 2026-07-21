@@ -675,7 +675,7 @@
         logoTitle.className = "site-logo__title";
         logoTitle.textContent = "D&D 2024";
         logoSubtitle.className = "site-logo__subtitle";
-        logoSubtitle.textContent = "Référence francophone";
+        logoSubtitle.textContent = "Le Compagnon de jeu";
         actions.className = "site-header__actions";
         searchButton.type = "button";
         searchButton.className = "search-trigger";

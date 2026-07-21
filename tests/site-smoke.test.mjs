@@ -185,6 +185,31 @@ test("the visual asset system is local, complete, and lightweight", async () => 
   assert.ok(city.length < 300_000, "Faerûn illustration exceeds its transfer budget");
 });
 
+test("featured content pages expose shared illustrated HTML page features", async () => {
+  const styles = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  const cases = [
+    ["classes/index.html", "classes", "Classes", "Création de personnage"],
+    ["rules-2024.html", "rules", "Règles du jeu", "Référence D&amp;D 2024"],
+    ["faerun.html", "faerun", "Les Royaumes Oubliés", "Univers"],
+  ];
+
+  for (const [page, modifier, title, eyebrow] of cases) {
+    const source = await readFile(resolve(root, page), "utf8");
+    const feature = source.match(new RegExp(`<section class="page-feature page-feature--${modifier}"[\\s\\S]*?</section>`));
+    assert.ok(feature, `${page}: missing shared page feature`);
+    assert.match(feature[0], new RegExp(`<h1[^>]*>${title}</h1>`));
+    assert.ok(feature[0].includes(eyebrow));
+    assert.doesNotMatch(feature[0], /<img\b/i);
+  }
+
+  assert.match(styles, /page-feature--classes[\s\S]*classes-heroes\.webp/);
+  assert.match(styles, /page-feature--rules[\s\S]*rules-game-table\.webp/);
+  assert.match(styles, /page-feature--faerun[\s\S]*faerun-city\.webp/);
+  for (const asset of ["classes-heroes.webp", "rules-game-table.webp", "faerun-city.webp"]) {
+    assert.ok((await readFile(resolve(root, "assets/images", asset))).length > 0, `missing ${asset}`);
+  }
+});
+
 test("critical pages do not reference missing local files", async () => {
   const pages = await standaloneHtmlPages();
 
@@ -266,6 +291,7 @@ test("pilot pages use the shared site shell", async () => {
 
 test("the home dashboard exposes quick access and personal library regions", async () => {
   const source = await readFile(resolve(root, "index.html"), "utf8");
+  const styles = await readFile(resolve(root, "css/home.css"), "utf8");
   const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
   assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 4);
@@ -273,6 +299,23 @@ test("the home dashboard exposes quick access and personal library regions", asy
   for (const icon of ["quick-reference", "spells", "monsters", "character-sheet"]) {
     assert.match(source, new RegExp(`site-icons\\.svg#${icon}`));
   }
+  assert.equal([...source.matchAll(/quick-access-card__action[\s\S]{0,180}site-icons\.svg#chevron-right/g)].length, 4);
+  assert.doesNotMatch(source, /quick-access-card__action[\s\S]{0,160}#chevron-down/);
+  assert.equal([...source.matchAll(/class="dashboard-feature dashboard-feature--/g)].length, 3);
+  for (const feature of ["rules", "classes", "universe"]) {
+    assert.match(source, new RegExp(`dashboard-feature--${feature}`));
+  }
+  for (const asset of ["rules-game-table.webp", "classes-heroes.webp", "faerun-city.webp"]) {
+    assert.match(styles, new RegExp(asset.replace(".", "\\.")));
+  }
+  for (const card of source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)) {
+    assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
+  }
+  assert.match(styles, /@media \(hover: hover\) and \(pointer: fine\)[\s\S]*favorite-button:not\(\[aria-pressed="true"\]\)/);
+  assert.match(styles, /quick-access-card:focus-within > \.favorite-button/);
+  assert.match(styles, /@media \(max-width: 900px\)[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(styles, /@media \(max-width: 420px\)[\s\S]*grid-template-columns: 1fr/);
+  assert.match(library, /setAttribute\("aria-pressed"/);
   assert.match(shell, /createIcon\("site-emblem"\)/);
   assert.doesNotMatch(shell, /markText|textContent\s*=\s*"D20"/);
   assert.doesNotMatch(source + shell + library, /[◈✦♜✎⚔☼♞◉▧✧⬡▱⚑♙⊛☆★☾☰⌕×›◆⚡]/);

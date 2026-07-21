@@ -75,3 +75,22 @@ test("the quick-links editor behaves as an accessible modal", async () => {
   assert.match(source, /previousFocus\.focus\(\)/);
   assert.doesNotMatch(source, /\balert\(/);
 });
+
+test("home quick-access favorites remain independently keyboard accessible", async () => {
+  const source = await readFile(resolve(root, "index.html"), "utf8");
+  const styles = await readFile(resolve(root, "css/home.css"), "utf8");
+  const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
+
+  const cards = [...source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)];
+  assert.equal(cards.length, 4);
+  for (const card of cards) {
+    assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
+    assert.doesNotMatch(card[0], /<a[^>]*>[\s\S]*<button data-favorite-button>[\s\S]*<\/a>/);
+    assert.match(card[0], /aria-hidden="true"/);
+  }
+
+  assert.match(library, /setAttribute\("aria-pressed", String\(active\)\)/);
+  assert.match(library, /setAttribute\("aria-label", active \?/);
+  assert.match(styles, /quick-access-card:focus-within > \.favorite-button/);
+  assert.match(styles, /quick-access-card > \.favorite-button:focus-visible/);
+});

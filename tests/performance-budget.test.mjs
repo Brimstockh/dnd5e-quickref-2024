@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname.slice(1));
+const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("catalog data stays within its transfer budget", async () => {
   const budgets = [
@@ -28,5 +29,15 @@ test("large catalogs preload JSON and use progressive rendering", async () => {
     assert.match(source, new RegExp(`rel="preload" href="data/${data}" as="fetch"`));
     assert.match(source, /src="js\/progressive-list\.js" defer/);
     assert.match(source, /id="loadMoreBtn"/);
+  }
+});
+
+test("editorial hero images stay within their transfer budget", async () => {
+  for (const path of [
+    "assets/images/classes-heroes.webp",
+    "assets/images/rules-game-table.webp",
+  ]) {
+    const { size } = await stat(resolve(root, path));
+    assert.ok(size <= 300_000, `${path}: ${size} octets dépasse le budget de 300000`);
   }
 });
