@@ -55,6 +55,17 @@ test("motion, contrast and forced-colors preferences are supported", async () =>
   assert.match(source, /@media \(forced-colors: active\)/);
 });
 
+test("legacy content surfaces inherit the shared dark theme", async () => {
+  const contentTheme = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  const sheetTheme = await readFile(resolve(root, "css/character-sheet-app.css"), "utf8");
+
+  for (const selector of [".encadre", ".toc a", ".timeline-item", ".kv-item", ".trow", ".domain"]) {
+    assert.ok(contentTheme.includes(selector), `missing legacy theme override for ${selector}`);
+  }
+  assert.match(contentTheme, /\.content :is\(h1, h3\)/);
+  assert.match(sheetTheme, /\.level-card/);
+});
+
 test("the quick-links editor behaves as an accessible modal", async () => {
   const source = await readFile(resolve(root, "js/quicklinks.js"), "utf8");
   assert.match(source, /setAttribute\("role", "dialog"\)/);

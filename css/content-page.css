@@ -136,6 +136,125 @@ body.content-page {
 
 .content-page summary { color: var(--color-gold-bright); }
 
+/* Normalize legacy inner surfaces that still declare light theme colors. */
+.content-page .skip-link { color: #17120b; }
+
+.content-page :is(.rules-content, .combat-content, .mastery-content) {
+    color: var(--color-text);
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-card);
+}
+
+.content-page :is(
+    .rule-box,
+    .tool-card,
+    .race-link,
+    .class-grid a,
+    .character-card,
+    .region-card,
+    .group-card,
+    .plan-card,
+    .deity-note,
+    .intro-summary,
+    .statbox,
+    .hp,
+    .ability,
+    .item,
+    .toc,
+    .timeline-item,
+    .kv-item,
+    .trow,
+    .chip,
+    .story .block,
+    .domain
+) {
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border);
+}
+
+.content-page :is(.rules-content, .combat-content, .mastery-content) .content :is(h1, h3) {
+    color: var(--color-gold-bright);
+    background: var(--color-surface-active);
+    border-color: var(--color-border);
+}
+
+.content-page :is(.toc a, .subnav a, .tag, .tab, .btn, .map-toolbar button, .map-toolbar a) {
+    color: var(--color-gold-bright);
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border);
+}
+
+.content-page :is(.toc a, .subnav a, .tab, .btn, .map-toolbar button, .map-toolbar a):hover {
+    color: var(--color-gold-bright);
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-light);
+}
+
+.content-page .card .content .encadre,
+.content-page .timeline-note {
+    color: var(--color-text-muted);
+    background: var(--color-surface-active);
+    border-color: var(--color-border);
+}
+
+.content-page .map-fallback {
+    color: var(--color-text-muted);
+    background: var(--color-bg-elevated);
+}
+
+.content-page :is(.rule-box, .tool-card, .race-link, .class-grid a, .character-card, .region-card, .group-card, .plan-card) {
+    box-shadow: 0 4px 14px rgb(0 0 0 / 16%);
+}
+
+.content-page :is(.rule-box, .tool-card, .race-link, .class-grid a, .character-card, .region-card, .group-card, .plan-card):hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-light);
+}
+
+.content-page :is(.card .content, .rules-content .content, .combat-content .content, .mastery-content .content) {
+    color: var(--color-text);
+    background-color: transparent;
+}
+
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) table,
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) tbody,
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) tr,
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) td {
+    color: var(--color-text-muted);
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+}
+
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) th,
+.content-page .equipment-table .group-row td {
+    color: var(--color-gold-bright);
+    background-color: var(--color-surface-active);
+    border-color: var(--color-border);
+}
+
+.content-page :is(.card .content, .rules-content, .combat-content, .mastery-content) tr:nth-child(even) td {
+    background-color: rgb(196 161 93 / 5%);
+}
+
+.content-page :is(.card .content, .rules-content .content, .combat-content .content, .mastery-content .content) h4,
+.content-page :is(.rule-box, .tool-card, .race-link, .class-grid a, .character-card) strong {
+    color: var(--color-gold-bright);
+}
+
+.content-page :is(.meta, .sub, .statbox__label, .hp__label, .ability__name, .ability__score, .item__meta, .deity-note, .timeline-note) {
+    color: var(--color-text-muted);
+}
+
+.content-page :is(.statbox__value, .item__value, .kv .v) { color: var(--color-text); }
+
+.content-page .input {
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border-light);
+}
+
 :root[data-session="true"] .content-page .lead,
 :root[data-session="true"] .content-page .hero > p,
 :root[data-session="true"] .content-page .card > p:first-of-type { display: none; }

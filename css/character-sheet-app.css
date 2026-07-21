@@ -102,6 +102,7 @@
 :root[data-theme="dark"] .sheet-app-page th,
 :root[data-theme="dark"] .sheet-app-page .title-card,
 :root[data-theme="dark"] .sheet-app-page .stat-card,
+:root[data-theme="dark"] .sheet-app-page .level-card,
 :root[data-theme="dark"] .sheet-app-page .ac-shield-card { background: var(--paper); }
 
 :root[data-theme="dark"] .sheet-app-page .sheet-page::before,
