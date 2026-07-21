@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { filterAndSortSpells } from "../js/spell-filters.js";
+import { loadClassicScript } from "./load-classic-script.mjs";
+
+const { filterAndSortSpells } = loadClassicScript("../js/spell-filters.js").DndSpellFilters;
 
 const spells = [
   { name: "Lumière", level: 0, school: "Évocation", classes: ["Clerc"], description: "Lumière vive." },

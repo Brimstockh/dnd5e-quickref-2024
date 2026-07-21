@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { sanitizeRichHtml } from "../js/rich-html.js";
+import { loadClassicScript } from "./load-classic-script.mjs";
+
+const { sanitizeRichHtml } = loadClassicScript("../js/rich-html.js").DndHtml;
 
 test("sanitizeRichHtml preserves the spell-description allowlist", () => {
   const value = "<p>Texte <strong>important</strong></p><ul><li>Effet</li></ul>";

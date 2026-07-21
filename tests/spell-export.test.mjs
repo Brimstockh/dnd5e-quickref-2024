@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { buildSpellExportText } from "../js/spell-export.js";
+import { loadClassicScript } from "./load-classic-script.mjs";
+
+const { buildSpellExportText } = loadClassicScript("../js/spell-export.js").DndSpellExport;
 
 test("buildSpellExportText exports only the supplied spells in their current order", () => {
   const output = buildSpellExportText([
