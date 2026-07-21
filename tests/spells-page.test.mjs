@@ -20,7 +20,6 @@ class FakeElement {
 }
 
 test("spells.html initializes and renders the local spell dataset", async () => {
-  const html = readFileSync(new URL("../spells.html", import.meta.url), "utf8");
   const data = JSON.parse(readFileSync(new URL("../data/spells_2024.json", import.meta.url), "utf8"));
   const elements = Object.fromEntries([
     "searchInput",
@@ -59,11 +58,8 @@ test("spells.html initializes and renders the local spell dataset", async () => 
     vm.runInContext(source, context, { filename: path });
   }
 
-  const pageScript = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
-    .map((match) => match[1])
-    .find((source) => source.includes("const searchInput"));
-  assert.ok(pageScript);
-  vm.runInContext(pageScript, context, { filename: "spells.html" });
+  const pageScript = readFileSync(new URL("../js/spells-page.js", import.meta.url), "utf8");
+  vm.runInContext(pageScript, context, { filename: "spells-page.js" });
   await new Promise((resolve) => setImmediate(resolve));
 
   assert.match(elements.sourceNote.textContent, /391 sorts chargés/);

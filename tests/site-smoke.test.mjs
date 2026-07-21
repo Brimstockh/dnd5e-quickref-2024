@@ -58,6 +58,8 @@ test("critical pages and modules are served over HTTP", async () => {
     "/",
     "/quickref.html",
     "/spells.html",
+    "/dons.html",
+    "/monstres.html",
     "/races/index.html",
     "/classes/index.html",
     "/css/races.css",
@@ -68,8 +70,12 @@ test("critical pages and modules are served over HTTP", async () => {
     "/html/character-profile.html?c=cleira",
     "/js/characters-page.js",
     "/js/character-profile.js",
+    "/js/feats-page.js",
+    "/js/faerun-map.js",
+    "/js/monsters-page.js",
     "/js/fetch-json.js",
     "/js/spell-filters.js",
+    "/js/spells-page.js",
   ];
 
   for (const path of paths) {
@@ -117,6 +123,8 @@ test("critical pages do not reference missing local files", async () => {
     "index.html",
     "quickref.html",
     "spells.html",
+    "dons.html",
+    "monstres.html",
     "faerun.html",
     "races/index.html",
     "html/characters.html",
