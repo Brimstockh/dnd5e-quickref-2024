@@ -56,11 +56,18 @@ test.after(async () => {
 test("critical pages and modules are served over HTTP", async () => {
   const paths = [
     "/",
+    "/quickref.html",
     "/spells.html",
+    "/races/index.html",
+    "/classes/index.html",
+    "/css/races.css",
+    "/css/classes.css",
     "/faerun.html#carte",
     "/html/characters.html",
     "/html/character.html?c=cleira",
     "/html/character-profile.html?c=cleira",
+    "/js/characters-page.js",
+    "/js/character-profile.js",
     "/js/fetch-json.js",
     "/js/spell-filters.js",
   ];
@@ -68,7 +75,7 @@ test("critical pages and modules are served over HTTP", async () => {
   for (const path of paths) {
     const response = await fetch(`${baseUrl}${path}`);
     assert.equal(response.status, 200, path);
-    assert.match(response.headers.get("content-type"), /text\/(html|javascript)/, path);
+    assert.match(response.headers.get("content-type"), /text\/(css|html|javascript)/, path);
   }
 });
 
@@ -103,14 +110,20 @@ test("critical pages do not reference missing local files", async () => {
   const racePages = (await readdir(resolve(root, "races")))
     .filter((name) => name.startsWith("race-") && name.endsWith(".html"))
     .map((name) => `races/${name}`);
+  const classPages = (await readdir(resolve(root, "classes")))
+    .filter((name) => name.startsWith("class-") && name.endsWith(".html"))
+    .map((name) => `classes/${name}`);
   const pages = [
     "index.html",
+    "quickref.html",
     "spells.html",
     "faerun.html",
+    "races/index.html",
     "html/characters.html",
     "html/character.html",
     "html/character-profile.html",
     ...racePages,
+    ...classPages,
   ];
 
   for (const page of pages) {
