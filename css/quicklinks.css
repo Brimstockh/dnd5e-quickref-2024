@@ -1,8 +1,8 @@
 .quicklinks {
     margin-top: 14px;
-    background: #fffef9;
-    border: 1px solid #d8d2c5;
-    border-left: 4px solid #7a120f;
+    background: var(--color-surface, #fffef9);
+    border: 1px solid var(--color-border, #d8d2c5);
+    border-left: 4px solid var(--color-gold, #7a120f);
     border-radius: 10px;
     padding: 12px;
 }
@@ -17,15 +17,15 @@
 
 .quicklinks-title {
     margin: 0;
-    color: #7a120f;
+    color: var(--color-gold-bright, #7a120f);
     font-size: 1rem;
     font-family: "Lora", Georgia, serif;
 }
 
 .quicklinks-edit {
-    border: 1px solid #7a120f;
-    color: #7a120f;
-    background: #fff;
+    border: 1px solid var(--color-gold, #7a120f);
+    color: var(--color-gold-bright, #7a120f);
+    background: var(--color-bg-elevated, #fff);
     border-radius: 7px;
     padding: 5px 9px;
     font-size: 0.85rem;
@@ -35,7 +35,7 @@
 
 .quicklinks-help {
     margin: 0 0 8px;
-    color: #575757;
+    color: var(--color-text-muted, #575757);
     font-size: 0.9rem;
 }
 
@@ -47,17 +47,17 @@
 
 .quicklinks-pill {
     text-decoration: none;
-    border: 1px solid #b6b0a5;
+    border: 1px solid var(--color-border-light, #b6b0a5);
     border-radius: 999px;
-    color: #2b2b2b;
-    background: #fff;
+    color: var(--color-text, #2b2b2b);
+    background: var(--color-bg-elevated, #fff);
     padding: 6px 10px;
     font-size: 0.86rem;
 }
 
 .quicklinks-pill:hover {
-    border-color: #7a120f;
-    color: #7a120f;
+    border-color: var(--color-gold, #7a120f);
+    color: var(--color-gold-bright, #7a120f);
 }
 
 .quicklinks-modal {
@@ -71,10 +71,15 @@
     padding: 12px;
 }
 
+body.quicklinks-modal-open {
+    overflow: hidden;
+}
+
 .quicklinks-dialog {
     width: min(760px, 100%);
-    background: #fff;
-    border: 1px solid #d8d2c5;
+    color: var(--color-text, #2b2b2b);
+    background: var(--color-bg-elevated, #fff);
+    border: 1px solid var(--color-border, #d8d2c5);
     border-radius: 10px;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
     padding: 12px;
@@ -82,20 +87,28 @@
 
 .quicklinks-dialog h3 {
     margin: 0 0 8px;
-    color: #7a120f;
+    color: var(--color-gold-bright, #7a120f);
     font-family: "Lora", Georgia, serif;
 }
 
 .quicklinks-dialog p {
     margin: 0 0 8px;
-    color: #4d4d4d;
+    color: var(--color-text-muted, #4d4d4d);
     font-size: 0.9rem;
+}
+
+.quicklinks-dialog .quicklinks-error {
+    margin-top: 8px;
+    color: var(--color-danger-bright, #b63b32);
+    font-weight: 700;
 }
 
 .quicklinks-dialog textarea {
     width: 100%;
     min-height: 220px;
-    border: 1px solid #cfc7bb;
+    color: var(--color-text, #222);
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border-light, #cfc7bb);
     border-radius: 7px;
     padding: 8px;
     font: inherit;
@@ -110,19 +123,19 @@
 }
 
 .quicklinks-actions button {
-    border: 1px solid #7a120f;
+    border: 1px solid var(--color-gold, #7a120f);
     border-radius: 7px;
     padding: 6px 10px;
     font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
-    background: #fff;
-    color: #7a120f;
+    background: var(--color-surface, #fff);
+    color: var(--color-gold-bright, #7a120f);
 }
 
 .quicklinks-actions .quicklinks-save {
-    background: #7a120f;
-    color: #fff;
+    background: var(--color-gold-dark, #7a120f);
+    color: var(--color-text, #fff);
 }
 
 @media (max-width: 700px) {

@@ -4,7 +4,10 @@
   const searchTextCache = new WeakMap();
 
   function normalize(value) {
-    return String(value ?? "").toLowerCase();
+    return String(value ?? "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
   }
 
   function getSearchText(spell) {

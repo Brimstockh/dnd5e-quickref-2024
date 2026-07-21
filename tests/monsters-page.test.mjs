@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 class FakeElement {
   constructor() {
+    this.hidden = false;
     this.innerHTML = "";
     this.open = false;
     this.textContent = "";
@@ -16,35 +17,35 @@ class FakeElement {
   querySelectorAll() { return []; }
 }
 
-test("monstres.html initializes and renders the local monster dataset", () => {
+test("monstres.html progressively renders the local monster dataset", async () => {
+  const data = JSON.parse(readFileSync(new URL("../data/monsters_2024.json", import.meta.url), "utf8"));
   const elements = Object.fromEntries([
-    "searchInput",
-    "crSelect",
-    "typeSelect",
-    "alignmentSelect",
-    "sizeSelect",
-    "sortSelect",
-    "expandAllBtn",
-    "collapseAllBtn",
-    "summary",
-    "monstersGrid",
-    "sourceNote",
+    "searchInput", "crSelect", "typeSelect", "alignmentSelect", "sizeSelect", "sortSelect",
+    "expandAllBtn", "collapseAllBtn", "summary", "monstersGrid", "sourceNote", "loadMoreBtn",
   ].map((id) => [id, new FakeElement()]));
   const context = vm.createContext({
     console,
-    document: {
-      getElementById: (id) => elements[id] ?? null,
+    document: { getElementById: (id) => elements[id] ?? null },
+    fetch: async (path, options) => {
+      assert.equal(path, "data/monsters_2024.json");
+      assert.equal(options.credentials, "omit");
+      return { ok: true, status: 200, json: async () => data };
     },
+    location: { search: "" },
+    URLSearchParams,
   });
   context.window = context;
 
-  for (const path of ["../data/monsters_2024.js", "../js/monsters-page.js"]) {
+  for (const path of ["../js/progressive-list.js", "../js/monsters-page.js"]) {
     const source = readFileSync(new URL(path, import.meta.url), "utf8");
     vm.runInContext(source, context, { filename: path });
   }
+  await new Promise((resolve) => setImmediate(resolve));
 
-  assert.match(elements.sourceNote.textContent, /499 monstres chargés/);
-  assert.equal(elements.summary.textContent, "499 monstre(s) affiché(s) sur 499.");
-  assert.match(elements.monstersGrid.innerHTML, /<details class="monster">/);
+  assert.match(elements.sourceNote.textContent, /499 monstres charg/);
+  assert.match(elements.summary.textContent, /^499 monstre\(s\).*499.*72 affich/);
+  assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster">/g) || []).length, 72);
+  assert.equal(elements.loadMoreBtn.hidden, false);
+  assert.match(elements.loadMoreBtn.textContent, /72\/499/);
   assert.match(elements.crSelect.innerHTML, /<option/);
 });

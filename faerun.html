@@ -164,8 +164,14 @@
             display: grid;
         }
     </style>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/content-page.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
 </head>
-<body>
+<body class="content-page" data-library-title="Les Royaumes Oubliés" data-library-category="Univers" data-library-description="Référence D&amp;D 2024">
+    <header data-site-header data-active="faerun"></header>
     <main class="page">
         <nav class="topnav">
             <a class="btn" href="index.html">Accueil</a>
@@ -187,8 +193,16 @@
             <a class="btn" href="quickref.html">Référence rapide</a>
         </nav>
 
+        <section class="page-feature page-feature--faerun" aria-labelledby="faerun-title">
+            <div class="page-feature__content">
+                <p class="page-feature__eyebrow">Univers</p>
+                <h1 id="faerun-title">Les Royaumes Oubliés</h1>
+                <p>Explorez Faerûn, ses royaumes, ses peuples et les forces qui façonnent son histoire.</p>
+            </div>
+        </section>
+
         <section class="card">
-            <h1>Les Royaumes Oubliés</h1>
+            <h2>Faerûn, cœur des Royaumes Oubliés</h2>
             <div class="content">
                 <p class="lead">Le monde des Royaumes Oubliés se nomme <strong>Toril</strong>. Faerûn en est le continent le plus célèbre, mais il partage cette planète avec <strong>Kara-Tur</strong>, <strong>Maztica</strong> et <strong>Zakhara</strong>, chacun possédant sa propre identité culturelle.</p>
                 <p>Faerûn lui-même se divise en grandes régions très différentes, allant des forteresses naines du Nord aux théocraties des Anciens empires, en passant par les royaumes marchands, les déserts nethérisses, les jungles de Chult et les puissances magiques de l'est.</p>

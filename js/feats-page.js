@@ -21,6 +21,11 @@
 
     let feats = [];
 
+    function queryFromUrl() {
+        if (!window.location || typeof URLSearchParams === "undefined") return "";
+        return new URLSearchParams(window.location.search).get("q") || "";
+    }
+
     function escapeHtml(value) {
         return String(value)
             .replace(/&/g, "&amp;")
@@ -168,6 +173,7 @@
 
     function init(data) {
         feats = data.feats || [];
+        searchInput.value = queryFromUrl();
         sourceNote.textContent = data.note
             ? `${data.count || feats.length} dons chargés. ${data.note}`
             : `${data.count || feats.length} dons chargés.`;
@@ -182,10 +188,14 @@
         render();
     }
 
-    if (window.FEATS_DATA && window.FEATS_DATA.feats) {
-        init(window.FEATS_DATA);
-    } else {
-        sourceNote.textContent = "Impossible de charger les données de dons.";
-        featsGrid.innerHTML = `<div class="empty">Le fichier de données des dons est introuvable ou invalide.</div>`;
-    }
+    fetch("data/feats_2024.json", { credentials: "omit" })
+        .then(function (response) {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(init)
+        .catch(function () {
+            sourceNote.textContent = "Impossible de charger les données de dons.";
+            featsGrid.innerHTML = `<div class="empty">Le fichier de données des dons est introuvable ou invalide.</div>`;
+        });
 })();

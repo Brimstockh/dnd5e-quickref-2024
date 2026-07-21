@@ -4,152 +4,165 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Référence rapide D&amp;D 2024</title>
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/quickref.css">
-    <link rel="stylesheet" type="text/css" href="css/icons.css">
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/quickref.css" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/quickref-page.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
 </head>
-<body class="page-background">
-    <nav aria-label="Navigation principale" style="max-width:960px;margin:8px auto 0 auto;padding:0 20px;">
-        <a href="index.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Accueil</a>
-        <a href="classes/index.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Guides de classes D&D 2024</a>
-        <a href="races/index.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Races D&D 2024</a>
-        <a href="spells.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Sorts D&D 2024</a>
-        <a href="rules-2024.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Règles D&D 2024</a>
-        <a href="mastery-2024.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Maîtrise &amp; Actions</a>
-        <a href="combat-2024.html" style="display:inline-block;padding:6px 10px;border:1px solid #7a120f;border-radius:8px;text-decoration:none;color:#7a120f;background:#fff;font-weight:700;">Combat &amp; Dégâts</a>
-    </nav>
-    <div class="page fontsize" data-size="fullscreen">
+<body class="page-background quickref-page" data-library-title="Référence rapide" data-library-category="Règle" data-library-description="Actions, conditions et environnement">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="quickref">
+        <nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav>
+    </header>
 
-        <!-- Movement section -->
-        <div id="section-movement" class="section-container">
-            <div class="section-title">
-                Déplacement <span class="float-right">limité par la vitesse de déplacement</span>
+    <main class="page fontsize quickref-shell" id="main-content" data-size="fullscreen">
+        <section class="quickref-hero" aria-labelledby="quickref-title">
+            <div>
+                <p class="quickref-hero__eyebrow">Aide de jeu</p>
+                <h1 id="quickref-title">Référence rapide</h1>
+                <p>Retrouvez immédiatement les actions, états et règles utiles pendant une partie.</p>
             </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Vous pouvez vous déplacer à tout moment pendant votre tour (avant, après ou pendant des actions).
-                </div>
-                <div class="section-row" id="basic-movement">
-                </div>
+            <span class="quickref-hero__badge">D&D 2024</span>
+        </section>
+
+        <div class="quickref-toolbar">
+            <div class="quickref-search">
+                <label class="visually-hidden" for="quickref-search">Rechercher une action, un état ou une règle</label>
+                <span aria-hidden="true">⌕</span>
+                <input id="quickref-search" data-page-search type="search" autocomplete="off" placeholder="Rechercher une action, un état, une règle…" />
+                <kbd aria-hidden="true">/</kbd>
             </div>
+            <span id="quickref-result-count" class="quickref-result-count" aria-live="polite"></span>
         </div>
 
-        <!-- Action section -->
-        <div id="section-action" class="section-container">
-            <div class="section-title">
-                Action <span class="float-right">1/tour</span>
-            </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Vous pouvez aussi interagir gratuitement avec un objet ou
-                    un élément de l'environnement.
-                </div>
-                <div class="section-row" id="basic-actions"></div>
-            </div>
-        </div>
+        <nav class="quickref-category-nav" aria-label="Catégories de la référence rapide">
+            <a href="#section-movement"><span aria-hidden="true">↗</span> Déplacement</a>
+            <a href="#section-action"><span aria-hidden="true">◆</span> Action</a>
+            <a href="#section-bonus-action"><span aria-hidden="true">✦</span> Action bonus</a>
+            <a href="#section-reaction"><span aria-hidden="true">↩</span> Réaction</a>
+            <a href="#section-condition"><span aria-hidden="true">!</span> États</a>
+            <a href="#section-environment"><span aria-hidden="true">◉</span> Environnement</a>
+        </nav>
 
-        <!-- Bonus action section -->
-        <div id="section-bonus-action" class="section-container">
-            <div class="section-title">
-                Action bonus <span class="float-right">max. 1/tour</span>
-            </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Vous ne pouvez effectuer une action bonus que lorsqu'une capacité spéciale,
-                    un sort ou un trait indique que vous pouvez faire quelque chose en action bonus.
-                </div>
-                <div class="section-row" id="basic-bonus-actions"></div>
-            </div>
-        </div>
-
-        <!-- Reaction section -->
-        <div id="section-reaction" class="section-container">
-            <div class="section-title">
-                Réaction <span class="float-right">max. 1/round</span>
-            </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Une réaction est une réponse instantanée à un déclencheur, qui
-                    peut se produire pendant votre tour ou celui d'un autre.
-                </div>
-                <div class="section-row" id="basic-reactions"></div>
-            </div>
-        </div>
-
-        <!-- Condition section -->
-        <div id="section-condition" class="section-container">
-            <div class="section-title">
-                État
-            </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Les états modifient vos capacités de différentes manières et peuvent résulter d'un sort, d'un trait de classe, d'une attaque de monstre ou d'un autre effet.
-                </div>
-                <div class="section-row" id="basic-conditions"></div>
-            </div>
-        </div>
-        
-        <!-- Environmental section -->
-        <div id="section-environment" class="section-container">
-            <div class="section-title">
-                Effets environnementaux
-            </div>
-            <div class="section-content">
-                <div class="section-row section-subtitle text fontsize">
-                    Les effets qui obscurcissent la vision peuvent être un obstacle majeur pour la plupart des tâches d'aventure.
-                </div>
-                <div class="section-row" id="environment-obscurance"></div>
-                <div class="section-row section-subtitle text fontsize">
-                    La présence ou l'absence de lumière dans un environnement crée trois catégories d'éclairage.
-                </div>
-                <div class="section-row" id="environment-light"></div>
-                <div class="section-row section-subtitle text fontsize">
-                    Certaines créatures possèdent des sens extraordinaires qui leur permettent de percevoir leur environnement.
-                </div>
-                <div class="section-row" id="environment-vision"></div>
-                <div class="section-row section-subtitle text fontsize">
-                    Les obstacles peuvent fournir un couvert pendant le combat, rendant une cible plus difficile à blesser.
-                </div>
-                <div class="section-row" id="environment-cover"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" id="modal" tabindex="-1">
-        <div class="modal-backdrop" id="modal-backdrop"></div>
-        <div class="modal-dialog modalsize">
-            <div class="section-container modal-container" id="modal-container">
-                <div class="section-title" id="modal-title">
-                    Titre de la fenêtre<span class="float-right">Action</span>
-                </div>
+        <div class="quickref-sections">
+            <section id="section-movement" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">↗</span> Déplacement</span>
+                    <span class="float-right">limité par la vitesse de déplacement</span>
+                </h2>
                 <div class="section-content">
-                    <div class="section-row section-subtitle text" id="modal-subtitle">
-                        Sous-titre
-                    </div>
-                    <div class="section-row text">
-                        <div id="modal-bullets">
-                        </div>
-                    </div>
-                    <div class="section-row text" id="modal-reference">
-                    </div>
+                    <p class="section-row section-subtitle text fontsize">Vous pouvez vous déplacer à tout moment pendant votre tour, avant, après ou pendant vos actions.</p>
+                    <div class="section-row" id="basic-movement"></div>
                 </div>
-            </div>
+            </section>
+
+            <section id="section-action" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">◆</span> Action</span>
+                    <span class="float-right">1 par tour</span>
+                </h2>
+                <div class="section-content">
+                    <p class="section-row section-subtitle text fontsize">Vous pouvez aussi interagir gratuitement avec un objet ou un élément de l’environnement.</p>
+                    <div class="section-row" id="basic-actions"></div>
+                </div>
+            </section>
+
+            <section id="section-bonus-action" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">✦</span> Action bonus</span>
+                    <span class="float-right">maximum 1 par tour</span>
+                </h2>
+                <div class="section-content">
+                    <p class="section-row section-subtitle text fontsize">Disponible uniquement lorsqu’une capacité, un sort ou un trait vous autorise à l’utiliser.</p>
+                    <div class="section-row" id="basic-bonus-actions"></div>
+                </div>
+            </section>
+
+            <section id="section-reaction" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">↩</span> Réaction</span>
+                    <span class="float-right">maximum 1 par round</span>
+                </h2>
+                <div class="section-content">
+                    <p class="section-row section-subtitle text fontsize">Une réponse instantanée à un déclencheur, pendant votre tour ou celui d’une autre créature.</p>
+                    <div class="section-row" id="basic-reactions"></div>
+                </div>
+            </section>
+
+            <section id="section-condition" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">!</span> États</span>
+                </h2>
+                <div class="section-content">
+                    <p class="section-row section-subtitle text fontsize">Les états modifient les capacités d’une créature et peuvent résulter d’un sort, d’une attaque ou d’un autre effet.</p>
+                    <div class="section-row" id="basic-conditions"></div>
+                </div>
+            </section>
+
+            <section id="section-environment" class="section-container">
+                <h2 class="section-title">
+                    <span class="section-title__label"><span aria-hidden="true">◉</span> Effets environnementaux</span>
+                </h2>
+                <div class="section-content">
+                    <p class="section-row section-subtitle text fontsize">Visibilité et obscurcissement.</p>
+                    <div class="section-row" id="environment-obscurance"></div>
+                    <p class="section-row section-subtitle text fontsize">Éclairage et lumière.</p>
+                    <div class="section-row" id="environment-light"></div>
+                    <p class="section-row section-subtitle text fontsize">Sens extraordinaires.</p>
+                    <div class="section-row" id="environment-vision"></div>
+                    <p class="section-row section-subtitle text fontsize">Couvert et obstacles.</p>
+                    <div class="section-row" id="environment-cover"></div>
+                </div>
+            </section>
         </div>
+
+        <div class="empty-state quickref-empty" id="quickref-empty" hidden>
+            <strong>Aucun résultat</strong>
+            <span>Essayez un autre terme de recherche.</span>
+        </div>
+    </main>
+
+    <div class="quickref-detail-layer" id="quickref-detail-layer" aria-hidden="true" inert>
+        <button class="quickref-detail-backdrop" id="quickref-detail-backdrop" type="button" aria-label="Fermer le détail"></button>
+        <aside class="quickref-detail-panel" id="quickref-detail-panel" role="dialog" aria-modal="true" aria-labelledby="quickref-detail-title" tabindex="-1">
+            <header class="quickref-detail__header">
+                <div>
+                    <span class="quickref-detail__type" id="quickref-detail-type">Action</span>
+                    <h2 id="quickref-detail-title">Détail</h2>
+                </div>
+                <button class="icon-button" id="quickref-detail-close" type="button" aria-label="Fermer le détail">×</button>
+            </header>
+            <div class="quickref-detail__body">
+                <p class="quickref-detail__summary" id="quickref-detail-summary"></p>
+                <dl class="quickref-detail__meta">
+                    <div>
+                        <dt>Coût ou catégorie</dt>
+                        <dd id="quickref-detail-cost">Action</dd>
+                    </div>
+                    <div>
+                        <dt>Référence</dt>
+                        <dd id="quickref-detail-reference">—</dd>
+                    </div>
+                </dl>
+                <section aria-labelledby="quickref-detail-rules-title">
+                    <h3 id="quickref-detail-rules-title">À retenir</h3>
+                    <div id="quickref-detail-bullets"></div>
+                </section>
+            </div>
+        </aside>
     </div>
 
-    <!-- Data -->
-    <script type="text/javascript" src="js/data_movement.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/data_action.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/data_bonusaction.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/data_reaction.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/data_condition.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/data_environment.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/quickref.js" charset="utf-8"></script>
+    <script src="js/data_movement.js" charset="utf-8"></script>
+    <script src="js/data_action.js" charset="utf-8"></script>
+    <script src="js/data_bonusaction.js" charset="utf-8"></script>
+    <script src="js/data_reaction.js" charset="utf-8"></script>
+    <script src="js/data_condition.js" charset="utf-8"></script>
+    <script src="js/data_environment.js" charset="utf-8"></script>
+    <script src="js/quickref.js" charset="utf-8"></script>
 </body>
 </html>
-

@@ -50,6 +50,12 @@ Then open:
 http://localhost:8000/
 ```
 
+## Publication
+
+Le workflow `Recette et publication` reconstruit l’index de recherche et exécute tous les tests avant chaque déploiement. Les pull requests lancent uniquement la recette ; une mise à jour de `main` publie ensuite le site avec GitHub Pages.
+
+Dans les paramètres GitHub Pages du dépôt, la source doit être configurée sur **GitHub Actions**.
+
 ## Character data
 
 Character pages are driven by files in `data/characters/`:

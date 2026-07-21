@@ -12,20 +12,29 @@ class FakeClassList {
 
 class FakeElement {
   constructor() {
+    this.attributes = new Map();
     this.children = [];
     this.classList = new FakeClassList();
+    this.hidden = false;
     this.listeners = {};
-    this.style = {};
+    this.style = { setProperty: (name, value) => { this.style[name] = value; } };
     this.textContent = "";
+    this.value = "";
   }
 
   addEventListener(name, callback) { this.listeners[name] = callback; }
   appendChild(child) { this.children.push(child); child.parentNode = this; }
+  closest() { return this.section ?? null; }
+  focus() { this.focused = true; }
+  querySelectorAll() { return []; }
   replaceChildren() { this.children = []; }
+  removeAttribute(name) { this.attributes.delete(name); }
+  setAttribute(name, value) { this.attributes.set(name, String(value)); }
+  getAttribute(name) { return this.attributes.get(name) ?? null; }
 }
 
-test("quick reference initializes and opens a modal without jQuery", () => {
-  const ids = [
+test("quick reference filters entries and opens an accessible detail panel", () => {
+  const collectionIds = [
     "basic-movement",
     "basic-actions",
     "basic-bonus-actions",
@@ -35,31 +44,40 @@ test("quick reference initializes and opens a modal without jQuery", () => {
     "environment-light",
     "environment-vision",
     "environment-cover",
-    "modal",
-    "modal-backdrop",
-    "modal-container",
-    "modal-title",
-    "modal-subtitle",
-    "modal-bullets",
-    "modal-reference",
+  ];
+  const ids = [
+    ...collectionIds,
+    "quickref-search",
+    "quickref-result-count",
+    "quickref-empty",
+    "quickref-detail-layer",
+    "quickref-detail-panel",
+    "quickref-detail-backdrop",
+    "quickref-detail-close",
+    "quickref-detail-title",
+    "quickref-detail-type",
+    "quickref-detail-cost",
+    "quickref-detail-summary",
+    "quickref-detail-reference",
+    "quickref-detail-bullets",
   ];
   const elements = Object.fromEntries(ids.map((id) => [id, new FakeElement()]));
-  ids.slice(0, 9).forEach((id) => {
-    elements[id].parentNode = { parentNode: {} };
+  collectionIds.forEach((id) => {
+    elements[id].section = new FakeElement();
   });
 
-  let readyHandler;
+  const documentListeners = {};
   const document = {
+    activeElement: null,
     body: new FakeElement(),
-    addEventListener: (name, callback) => {
-      if (name === "DOMContentLoaded") readyHandler = callback;
-    },
+    addEventListener: (name, callback) => { documentListeners[name] = callback; },
     createElement: () => new FakeElement(),
     getElementById: (id) => elements[id] ?? null,
   };
   const item = {
     title: "Attaquer",
     subtitle: "Effectuer une attaque",
+    description: "Faites un jet d’attaque.",
     bullets: ["Jet avec <b>avantage</b>."],
     reference: "PHB",
   };
@@ -67,8 +85,10 @@ test("quick reference initializes and opens a modal without jQuery", () => {
     console,
     document,
     window: {
-      getComputedStyle: () => ({ backgroundColor: "rgb(1, 2, 3)" }),
-      innerHeight: 800,
+      getComputedStyle: () => ({
+        backgroundColor: "rgb(1, 2, 3)",
+        getPropertyValue: () => "#708b5b",
+      }),
     },
     data_movement: [item],
     data_action: [item],
@@ -83,14 +103,29 @@ test("quick reference initializes and opens a modal without jQuery", () => {
 
   const source = readFileSync(new URL("../js/quickref.js", import.meta.url), "utf8");
   vm.runInNewContext(source, sandbox);
-  assert.equal(typeof readyHandler, "function");
-  readyHandler();
+  assert.equal(typeof documentListeners.DOMContentLoaded, "function");
+  documentListeners.DOMContentLoaded();
 
   assert.equal(elements["basic-actions"].children.length, 1);
-  elements["basic-actions"].children[0].listeners.click();
-  assert.equal(document.body.classList.contains("modal-open"), true);
-  assert.equal(elements.modal.classList.contains("modal-visible"), true);
-  assert.equal(elements["modal-title"].textContent, "Attaquer");
-  assert.equal(elements["modal-bullets"].children.length, 1);
-  assert.equal(elements["modal-bullets"].children[0].innerHTML, "Jet avec <b>avantage</b>.");
+  assert.equal(elements["quickref-result-count"].textContent, "9 entrées");
+
+  const action = elements["basic-actions"].children[0];
+  action.listeners.click();
+  assert.equal(document.body.classList.contains("quickref-detail-open"), true);
+  assert.equal(elements["quickref-detail-layer"].classList.contains("is-open"), true);
+  assert.equal(elements["quickref-detail-layer"].getAttribute("aria-hidden"), "false");
+  assert.equal(elements["quickref-detail-layer"].getAttribute("inert"), null);
+  assert.equal(elements["quickref-detail-title"].textContent, "Attaquer");
+  assert.equal(elements["quickref-detail-cost"].textContent, "Action");
+  assert.equal(elements["quickref-detail-bullets"].children[0].innerHTML, "Jet avec <b>avantage</b>.");
+
+  elements["quickref-detail-close"].listeners.click();
+  assert.equal(elements["quickref-detail-layer"].getAttribute("aria-hidden"), "true");
+  assert.equal(elements["quickref-detail-layer"].getAttribute("inert"), "");
+  assert.equal(action.getAttribute("aria-expanded"), "false");
+
+  elements["quickref-search"].value = "introuvable";
+  elements["quickref-search"].listeners.input();
+  assert.equal(elements["quickref-result-count"].textContent, "0 entrée");
+  assert.equal(elements["quickref-empty"].hidden, false);
 });

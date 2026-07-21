@@ -52,8 +52,14 @@
         .rules-content .content ol { margin: 0 0 10px; padding-left: 18px; }
         .rules-content .content table { margin-bottom: 12px; }
     </style>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/content-page.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
 </head>
-<body class="page-background">
+<body class="page-background content-page" data-library-title="Règles D&D 2024" data-library-category="Règle" data-library-description="Référence D&amp;D 2024">
+    <header data-site-header data-active="rules"></header>
     <div class="rules-wrap">
         <nav class="topnav">
             <a href="index.html">Accueil</a>
@@ -70,6 +76,15 @@
             <a href="character-sheet-standalone.html">Modèle</a>
             <a href="quickref.html">Référence rapide</a>
         </nav>
+
+        <section class="page-feature page-feature--rules" aria-labelledby="rules-title">
+            <div class="page-feature__content">
+                <p class="page-feature__eyebrow">Référence D&amp;D 2024</p>
+                <h1 id="rules-title">Règles du jeu</h1>
+                <p>Les principes essentiels pour résoudre les actions, les combats, l’exploration et les interactions.</p>
+            </div>
+        </section>
+
         <article class="rules-content">
             
 		<h1>Les six caractéristiques</h1>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <!-- Fixed brand colors preserve the emblem identity in both light and dark themes. -->
+  <title id="title">Emblème arcanique au dé à vingt faces</title>
+  <g fill="none" stroke="#b99756" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="25" stroke-width="1.6"/>
+    <circle cx="32" cy="32" r="20.5" stroke-width="1" stroke-dasharray="2 3"/>
+    <path d="M32 3l3.2 6.2L32 13l-3.2-3.8L32 3ZM61 32l-6.2 3.2L51 32l3.8-3.2L61 32ZM32 61l-3.2-6.2L32 51l3.2 3.8L32 61ZM3 32l6.2-3.2L13 32l-3.8 3.2L3 32Z" fill="#735b31" stroke-width="1.2"/>
+    <path d="M32 14 47 24l-5.7 18H22.7L17 24 32 14Z" fill="#601f1b" stroke="#d2b374" stroke-width="1.8"/>
+    <path d="m32 14-5 13 5 15 5-15-5-13ZM17 24l10 3 5-13 5 13 10-3M22.7 42 27 27h10l4.3 15M27 27l-4.3 15M37 27l4.3 15" stroke="#d2b374" stroke-width="1.15"/>
+    <circle cx="32" cy="32" r="2" fill="#d2b374" stroke="none"/>
+  </g>
+</svg>
