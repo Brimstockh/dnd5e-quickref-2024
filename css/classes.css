@@ -186,6 +186,34 @@ small.note {
     color: var(--muted);
 }
 
+.classe-illu {
+    float: right;
+    width: 400px;
+    max-width: 48%;
+    height: 561px;
+    object-fit: cover;
+    margin: 0 0 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 4px;
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .classe-illu {
+        float: none;
+        display: block;
+        width: 55%;
+        max-width: 220px;
+        height: auto;
+        margin: 0 auto 10px;
+    }
+}
+
 @media print {
     body {
         background: #fff;
