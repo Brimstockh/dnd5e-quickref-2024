@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Comparer les options de création de personnage D&D 2024." />
+    <title>Comparateur — D&amp;D 2024</title>
+    <link rel="preload" href="data/character-creation.json" as="fetch" crossorigin />
+    <link rel="preload" href="data/search-index.json" as="fetch" crossorigin />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/creator-tools.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+</head>
+<body class="creator-page" data-library-title="Comparateur" data-library-category="Création">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="comparator"><nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav></header>
+    <main class="creator-main" id="main-content">
+        <header class="creator-hero"><p>Création de personnage</p><h1>Comparer les options</h1><span>Choisissez de deux à quatre éléments. Les estimations de complexité et de rôle sont éditoriales.</span></header>
+        <section class="creator-card comparator-controls">
+            <label for="compareType">Catégorie</label>
+            <select id="compareType">
+                <option value="classes">Classes</option>
+                <option value="species">Espèces</option>
+                <option value="backgrounds">Historiques</option>
+                <option value="feat">Dons</option>
+                <option value="spell">Sorts</option>
+                <option value="equipment">Armes et armures</option>
+            </select>
+            <label for="compareSearch">Rechercher</label><input id="compareSearch" type="search" />
+            <button type="button" id="resetCompare">Réinitialiser</button>
+        </section>
+        <p id="compareStatus" role="status" aria-live="polite"></p>
+        <section class="compare-picker" id="comparePicker" aria-label="Éléments disponibles" aria-describedby="compareStatus"></section>
+        <section class="creator-card compare-output" aria-labelledby="compareTitle">
+            <h2 id="compareTitle">Comparaison</h2>
+            <div class="compare-table-wrap" tabindex="0" role="region" aria-label="Tableau comparatif défilable"><table id="compareTable"></table></div>
+        </section>
+    </main>
+    <script src="js/comparator.js" type="module"></script>
+</body>
+</html>

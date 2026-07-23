@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v5";
+const CACHE_VERSION = "dnd-companion-v9";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -14,6 +14,9 @@ const SCOPE_URL = new URL(self.registration.scope);
 
 const CORE_ASSETS = Object.freeze([
     "./index.html",
+    "./assistant-creation.html",
+    "./comparateur.html",
+    "./espace-personnel.html",
     "./offline.html",
     "./manifest.webmanifest",
     "./armes-armures.html",
@@ -78,6 +81,9 @@ const CORE_ASSETS = Object.freeze([
     "./css/quicklinks.css",
     "./css/quickref.css",
     "./css/quickref-page.css",
+    "./css/personal-space.css",
+    "./css/session-tools.css",
+    "./css/creator-tools.css",
     "./css/races.css",
     "./css/theme.css",
     "./js/catalog-ui.js",
@@ -90,6 +96,9 @@ const CORE_ASSETS = Object.freeze([
     "./js/content-catalog.js",
     "./js/content-ids.js",
     "./js/context-share.js",
+    "./js/comparator.js",
+    "./js/creation-state.js",
+    "./js/creation-wizard.js",
     "./js/data_action.js",
     "./js/data_bonusaction.js",
     "./js/data_condition.js",
@@ -106,6 +115,9 @@ const CORE_ASSETS = Object.freeze([
     "./js/legacy-catalog-ui.js",
     "./js/monsters-page.js",
     "./js/picture-source.js",
+    "./js/personal-space.js",
+    "./js/session-state.js",
+    "./js/session-tools.js",
     "./js/progressive-list.js",
     "./js/pwa-client.js",
     "./js/source-meta.js",
@@ -120,6 +132,9 @@ const CORE_ASSETS = Object.freeze([
     "./js/spells-page.js",
     "./js/user-library.js",
     "./data/feats_2024.json",
+    "./data/character-creation.json",
+    "./data/content-inventory.json",
+    "./data/local-storage-contracts.json",
     "./data/monsters_2024.json",
     "./data/content-relations.json",
     "./data/glossary.json",

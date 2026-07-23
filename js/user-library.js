@@ -69,6 +69,40 @@
             }
         }
 
+        function migrateJson(key, options) {
+            var config = options && typeof options === "object" ? options : {};
+            var currentVersion = Math.max(1, Number(config.currentVersion) || 1);
+            var fallbackValue = config.fallback;
+            var original = getJson(key, null);
+            if (original === null) return fallbackValue;
+            if (!original || typeof original !== "object" || Array.isArray(original)) return fallbackValue;
+            var version = Math.max(0, Number(original.schemaVersion) || 0);
+            if (version > currentVersion) return original;
+            if (version === currentVersion) return original;
+            var backupKey = key + "_backup_v" + version;
+            if (readRaw(backupKey, null) === null) setJson(backupKey, original);
+            try {
+                var migrated = original;
+                while (version < currentVersion) {
+                    var migration = config.migrations?.[version];
+                    if (typeof migration !== "function") throw new Error("Migration manquante : v" + version);
+                    migrated = migration(migrated);
+                    if (!migrated || typeof migrated !== "object" || Array.isArray(migrated)) {
+                        throw new Error("Migration invalide : v" + version);
+                    }
+                    version += 1;
+                    migrated.schemaVersion = version;
+                }
+                if (typeof config.validate === "function" && !config.validate(migrated)) {
+                    throw new Error("Données migrées invalides");
+                }
+                setJson(key, migrated);
+                return migrated;
+            } catch (error) {
+                return fallbackValue;
+            }
+        }
+
         window.DndStorage = Object.freeze({
             schemaVersion: 1,
             get: readRaw,
@@ -76,6 +110,7 @@
             remove: remove,
             getJson: getJson,
             setJson: setJson,
+            migrateJson: migrateJson,
             isPersistent: function () { return persistenceAvailable; },
         });
     }
@@ -83,6 +118,7 @@
     var storage = window.DndStorage;
     var favoritesKey = "dnd2024_favorites_v1";
     var recentKey = "dnd2024_recent_v1";
+    var personalKey = "dnd2024_personal_v1";
     var maxRecentItems = 8;
     var script = document.currentScript;
     var siteRoot = new URL("../", script ? script.src : window.location.href);
@@ -184,6 +220,123 @@
     function clearRecent() {
         safeWrite(recentKey, []);
         notify();
+    }
+
+    function createPersonalState() {
+        return {
+            schemaVersion: 2,
+            activeProfileId: null,
+            profiles: [],
+            lists: [],
+            notes: {},
+            updatedAt: null,
+        };
+    }
+
+    function migratePersonalValue(value) {
+        if (!value || typeof value !== "object") return createPersonalState();
+        if (Number(value.schemaVersion) === 1) {
+            return Object.assign({}, value, { schemaVersion: 2, updatedAt: value.updatedAt || null });
+        }
+        return value;
+    }
+
+    function cleanPersonalState(value) {
+        var fallback = createPersonalState();
+        var migrated = migratePersonalValue(value);
+        if (!migrated || typeof migrated !== "object" || Number(migrated.schemaVersion) !== 2) return fallback;
+        return Object.assign({}, migrated, {
+            schemaVersion: 2,
+            activeProfileId: typeof migrated.activeProfileId === "string" ? migrated.activeProfileId : null,
+            profiles: Array.isArray(migrated.profiles) ? migrated.profiles.filter(function (profile) {
+                return profile && typeof profile.id === "string" && typeof profile.name === "string";
+            }) : [],
+            lists: Array.isArray(migrated.lists) ? migrated.lists.filter(function (list) {
+                return list && typeof list.id === "string" && typeof list.name === "string" && Array.isArray(list.items);
+            }) : [],
+            notes: migrated.notes && typeof migrated.notes === "object" && !Array.isArray(migrated.notes) ? migrated.notes : {},
+            updatedAt: typeof migrated.updatedAt === "string" ? migrated.updatedAt : null,
+        });
+    }
+
+    function getPersonalState() {
+        return cleanPersonalState(storage.migrateJson(personalKey, {
+            currentVersion: 2,
+            fallback: createPersonalState(),
+            migrations: { 1: migratePersonalValue },
+            validate: function (value) { return Number(value.schemaVersion) === 2; },
+        }));
+    }
+
+    function setPersonalState(value) {
+        var state = cleanPersonalState(value);
+        state.updatedAt = new Date().toISOString();
+        safeWrite(personalKey, state);
+        window.dispatchEvent(new CustomEvent("dndpersonalchange", { detail: state }));
+        return state;
+    }
+
+    function createId(prefix) {
+        return prefix + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+    }
+
+    function getProfiles() {
+        return getPersonalState().profiles.slice();
+    }
+
+    function getActiveProfile() {
+        var state = getPersonalState();
+        return state.profiles.find(function (profile) { return profile.id === state.activeProfileId; }) || null;
+    }
+
+    function saveProfile(profile) {
+        var state = getPersonalState();
+        var normalized = {
+            id: typeof profile.id === "string" && profile.id ? profile.id : createId("profile"),
+            name: String(profile.name || "Nouveau personnage").trim(),
+            class: String(profile.class || "").trim(),
+            level: Math.max(1, Math.min(20, Number(profile.level) || 1)),
+            species: String(profile.species || "").trim(),
+            portrait: String(profile.portrait || "").trim(),
+            sheetUrl: String(profile.sheetUrl || "").trim(),
+            preparedSpells: Array.isArray(profile.preparedSpells) ? profile.preparedSpells : [],
+            pinnedRules: Array.isArray(profile.pinnedRules) ? profile.pinnedRules : [],
+            shortcuts: Array.isArray(profile.shortcuts) ? profile.shortcuts : [],
+        };
+        var index = state.profiles.findIndex(function (item) { return item.id === normalized.id; });
+        if (index === -1) state.profiles.push(normalized);
+        else state.profiles[index] = normalized;
+        if (!state.activeProfileId) state.activeProfileId = normalized.id;
+        setPersonalState(state);
+        return normalized;
+    }
+
+    function setActiveProfile(id) {
+        var state = getPersonalState();
+        state.activeProfileId = state.profiles.some(function (profile) { return profile.id === id; }) ? id : null;
+        setPersonalState(state);
+    }
+
+    function deleteProfile(id) {
+        var state = getPersonalState();
+        state.profiles = state.profiles.filter(function (profile) { return profile.id !== id; });
+        state.lists = state.lists.filter(function (list) { return list.profileId !== id; });
+        if (state.activeProfileId === id) state.activeProfileId = state.profiles[0]?.id || null;
+        setPersonalState(state);
+    }
+
+    function getNote(contentId) {
+        return String(getPersonalState().notes[String(contentId || "")] || "");
+    }
+
+    function setNote(contentId, value) {
+        var id = String(contentId || "").trim();
+        if (!id) return;
+        var state = getPersonalState();
+        var note = String(value || "").trim();
+        if (note) state.notes[id] = note;
+        else delete state.notes[id];
+        setPersonalState(state);
     }
 
     function entryFromElement(element) {
@@ -288,6 +441,24 @@
         clearRecent: clearRecent,
         connectFavoriteButton: connectFavoriteButton,
     };
+
+    window.DndPersonal = Object.freeze({
+        schemaVersion: 2,
+        storageKey: personalKey,
+        createId: createId,
+        getState: getPersonalState,
+        setState: setPersonalState,
+        getNote: getNote,
+        setNote: setNote,
+    });
+
+    window.DndProfiles = Object.freeze({
+        getAll: getProfiles,
+        getActive: getActiveProfile,
+        save: saveProfile,
+        setActive: setActiveProfile,
+        remove: deleteProfile,
+    });
 
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
     else init();

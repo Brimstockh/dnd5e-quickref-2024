@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Assistant local de création de personnage D&D 2024." />
+    <title>Assistant de création — D&amp;D 2024</title>
+    <link rel="preload" href="data/character-creation.json" as="fetch" crossorigin />
+    <link rel="preload" href="data/spells_2024.json" as="fetch" crossorigin />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/creator-tools.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/creation-state.js" defer></script>
+</head>
+<body class="creator-page" data-library-title="Assistant de création" data-library-category="Création" data-track-recent="false">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="creator"><nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav></header>
+    <main class="creator-main" id="main-content">
+        <header class="creator-hero"><p>Assistant local et pédagogique</p><h1>Créer un personnage</h1><span>Vos choix sont sauvegardés sur cet appareil. Vous pouvez revenir en arrière à tout moment.</span></header>
+        <div class="wizard-shell">
+            <aside class="creator-card wizard-nav">
+                <label class="wizard-field">Progression <progress class="wizard-progress" id="wizardProgress" max="11" value="1"></progress></label>
+                <label class="wizard-field"><input type="checkbox" id="expertMode" /> Mode expert</label>
+                <nav class="wizard-steps" id="wizardSteps" aria-label="Étapes de création"></nav>
+                <button type="button" id="resetDraft">Recommencer</button>
+            </aside>
+            <section class="creator-card wizard-panel" id="wizardPanel" aria-live="polite"></section>
+        </div>
+        <p id="wizardStatus" role="status" aria-live="polite"></p>
+    </main>
+    <script src="js/creation-wizard.js" defer></script>
+</body>
+</html>

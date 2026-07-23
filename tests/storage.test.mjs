@@ -79,6 +79,44 @@ test("DndStorage falls back to memory when browser storage is unavailable", asyn
   assert.equal(storage.getJson("profile", null), null);
 });
 
+test("DndStorage migrates versioned data after creating a recoverable backup", async () => {
+  const local = memoryLocalStorage({
+    profile: JSON.stringify({ schemaVersion: 1, name: "Lyria", unknownField: "preserved" }),
+  });
+  const storage = await loadStorage(local);
+  const migrated = storage.migrateJson("profile", {
+    currentVersion: 2,
+    fallback: null,
+    migrations: {
+      1: (value) => ({ ...value, level: 5 }),
+    },
+    validate: (value) => value.level === 5,
+  });
+
+  assert.equal(migrated.schemaVersion, 2);
+  assert.equal(migrated.unknownField, "preserved");
+  assert.equal(JSON.parse(local.values.get("profile")).level, 5);
+  assert.deepEqual(
+    JSON.parse(local.values.get("profile_backup_v1")),
+    { schemaVersion: 1, name: "Lyria", unknownField: "preserved" },
+  );
+});
+
+test("DndStorage leaves the source untouched when a migration fails", async () => {
+  const original = { schemaVersion: 1, name: "Lyria" };
+  const local = memoryLocalStorage({ profile: JSON.stringify(original) });
+  const storage = await loadStorage(local);
+  const migrated = storage.migrateJson("profile", {
+    currentVersion: 3,
+    fallback: { safe: true },
+    migrations: { 1: (value) => ({ ...value }) },
+  });
+
+  assert.equal(JSON.stringify(migrated), '{"safe":true}');
+  assert.deepEqual(JSON.parse(local.values.get("profile")), original);
+  assert.deepEqual(JSON.parse(local.values.get("profile_backup_v1")), original);
+});
+
 test("feature modules no longer access browser storage directly", async () => {
   for (const path of ["js/site-shell.js", "js/quicklinks.js", "js/character-sheet.js"]) {
     const source = await readFile(resolve(root, path), "utf8");

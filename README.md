@@ -25,11 +25,16 @@ Main entry points:
 - `classes/index.html`: class guides
 - `html/characters.html`: character directory
 - `character-sheet-standalone.html`: editable standalone character sheet
+- `espace-personnel.html`: local library, notes, lists, and character profiles
+- `assistant-creation.html`: guided character creator
+- `comparateur.html`: shareable character-option comparator
 
 Content and assets:
 
 - `data/characters/`: character JSON files and story JSON files
 - `data/spells_2024.json`: spell dataset
+- `data/content-inventory.json`: generated content and quality inventory
+- `data/local-storage-contracts.json`: versioned local-storage registry
 - `js/`: rendering logic for quick reference and character pages
 - `css/`: shared styling
 - `img/`: icons, race art, class icons, and character portraits
@@ -49,6 +54,14 @@ Then open:
 ```text
 http://localhost:8000/
 ```
+
+Run the complete validation recipe with:
+
+```bash
+npm run recette
+```
+
+Generated indexes must stay synchronized. Use `npm run build:inventory` after changing indexed content.
 
 ## Publication
 

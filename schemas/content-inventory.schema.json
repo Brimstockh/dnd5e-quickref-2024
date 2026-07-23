@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/content-inventory.schema.json",
+  "title": "Inventaire consolidé des contenus",
+  "type": "object",
+  "required": ["schemaVersion", "count", "byType", "pages", "quality"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "count": {"type": "integer", "minimum": 0},
+    "byType": {"type": "object"},
+    "pages": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "quality": {
+      "type": "object",
+      "required": ["duplicateIds", "invalidUrls", "incompleteEntries"],
+      "properties": {
+        "duplicateIds": {"type": "array"},
+        "invalidUrls": {"type": "array"},
+        "incompleteEntries": {"type": "array"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

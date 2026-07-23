@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "contracts": [
+    {"key":"dnd2024_personal_v1","owner":"DndPersonal","currentVersion":2,"backupBeforeMigration":true,"contains":["profiles","lists","notes"]},
+    {"key":"dnd_character_session_v1","owner":"DndSessionState","currentVersion":1,"backupBeforeMigration":true,"contains":["resources","spell slots","prepared spells","shortcuts","history"]},
+    {"key":"dnd_character_creator_draft_v1","owner":"DndCreationState","currentVersion":1,"backupBeforeMigration":true,"contains":["creation draft"]},
+    {"key":"dnd_character_sheet_standalone_v2","owner":"CharacterSheet","currentVersion":2,"backupBeforeMigration":true,"contains":["character sheet"]},
+    {"key":"dnd2024_favorites_v1","owner":"DndLibrary","currentVersion":1,"backupBeforeMigration":false,"contains":["global favorites"]},
+    {"key":"dnd2024_recent_v1","owner":"DndLibrary","currentVersion":1,"backupBeforeMigration":false,"contains":["recent pages"]}
+  ]
+}

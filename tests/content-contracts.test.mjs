@@ -20,6 +20,9 @@ const schemas = await Promise.all([
   loadJson("../schemas/content-relations-source.schema.json"),
   loadJson("../schemas/glossary.schema.json"),
   loadJson("../schemas/search-aliases.schema.json"),
+  loadJson("../schemas/character-creation.schema.json"),
+  loadJson("../schemas/local-storage-contracts.schema.json"),
+  loadJson("../schemas/content-inventory.schema.json"),
 ]);
 
 test("content IDs are stable, readable, and aligned with catalog slugs", () => {

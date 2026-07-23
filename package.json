@@ -5,12 +5,14 @@
     "build:search": "node scripts/build-search-index.mjs",
     "build:relations": "node scripts/build-relations-index.mjs",
     "build:glossary": "node scripts/build-glossary.mjs",
+    "build:inventory": "node scripts/build-content-inventory.mjs",
     "check:contracts": "node scripts/validate-content-contracts.mjs",
     "check:glossary": "node scripts/build-glossary.mjs --check",
+    "check:inventory": "node scripts/build-content-inventory.mjs --check",
     "check:navigation": "node scripts/validate-navigation.mjs",
     "check:relations": "node scripts/build-relations-index.mjs --check",
     "check:search": "node scripts/build-search-index.mjs --check",
-    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run check:contracts && npm run check:navigation && npm test",
+    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run check:inventory && npm run check:contracts && npm run check:navigation && npm test",
     "test": "node --test tests/*.test.mjs"
   }
 }
