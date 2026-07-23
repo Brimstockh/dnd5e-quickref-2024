@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/glossary.schema.json",
+  "title": "Glossaire interactif D&D 2024",
+  "type": "object",
+  "required": ["schemaVersion", "count", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "count": { "type": "integer", "minimum": 0 },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "aliases", "summary", "url", "anchor", "category", "related"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^glossary-[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "label": { "type": "string", "minLength": 1 },
+          "aliases": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "summary": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "anchor": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "category": { "type": "string", "minLength": 1 },
+          "related": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

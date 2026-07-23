@@ -26,10 +26,12 @@
   function filterAndSortSpells(spells, {
     query = "",
     level = null,
+    school = "",
     selectedClasses = new Set(),
     sort = "name_asc",
   } = {}) {
     const normalizedQuery = normalize(query).trim();
+    const normalizedSchool = normalize(school).trim();
     const classFilter = selectedClasses instanceof Set
       ? selectedClasses
       : new Set(selectedClasses);
@@ -37,6 +39,7 @@
 
     const filtered = items.filter((spell) => {
       if (level !== null && spell.level !== level) return false;
+      if (normalizedSchool && normalize(spell.school) !== normalizedSchool) return false;
       if (classFilter.size > 0) {
         const classes = Array.isArray(spell.classes) ? spell.classes : [];
         if (!classes.some((name) => classFilter.has(name))) return false;

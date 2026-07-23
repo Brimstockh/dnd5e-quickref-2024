@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "relations": [
+    {
+      "source": "page-regles-du-jeu",
+      "target": "page-glossaire",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "page-regles-du-jeu",
+      "target": "page-combat",
+      "type": "related-rule",
+      "order": 20
+    },
+    {
+      "source": "page-regles-du-jeu",
+      "target": "page-maitrises-d-armes",
+      "type": "related-rule",
+      "order": 30
+    },
+    {
+      "source": "page-combat",
+      "target": "page-reference-rapide",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "page-combat",
+      "target": "page-glossaire",
+      "type": "related-rule",
+      "order": 20
+    },
+    {
+      "source": "page-equipement",
+      "target": "page-maitrises-d-armes",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "page-historiques",
+      "target": "page-dons",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "page-historiques",
+      "target": "page-creation-de-personnage",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "page-sorts",
+      "target": "page-classes",
+      "type": "available-for",
+      "order": 10
+    },
+    {
+      "source": "page-sorts",
+      "target": "page-glossaire",
+      "type": "related-rule",
+      "label": "Termes d’incantation",
+      "url": "glossaire.html#termes",
+      "order": 20
+    },
+    {
+      "source": "page-dons",
+      "target": "page-historiques",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "page-dons",
+      "target": "page-creation-de-personnage",
+      "type": "prerequisite",
+      "order": 20
+    },
+    {
+      "source": "page-classes",
+      "target": "page-creation-de-personnage",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "page-especes",
+      "target": "page-creation-de-personnage",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "condition-a-terre",
+      "target": "movement-se-relever",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "condition-a-terre",
+      "target": "rule-combat-2024-attaque",
+      "type": "related-rule",
+      "order": 20
+    },
+    {
+      "source": "condition-agrippe",
+      "target": "action-s-echapper",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "condition-agrippe",
+      "target": "movement-deplacement-en-prise",
+      "type": "related-rule",
+      "order": 20
+    },
+    {
+      "source": "condition-inconscient",
+      "target": "rule-combat-2024-opv",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "action-attaquer",
+      "target": "rule-combat-2024-attaque",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "action-stabiliser-une-creature",
+      "target": "rule-combat-2024-opv",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "rule-combat-2024-attaque",
+      "target": "rule-rules-2024-attaque",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "rule-combat-2024-opv",
+      "target": "action-stabiliser-une-creature",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "rule-rules-2024-avantage",
+      "target": "page-glossaire",
+      "type": "see-also",
+      "label": "Avantage et désavantage dans le glossaire",
+      "url": "glossaire.html#termes",
+      "order": 10
+    }
+  ]
+}

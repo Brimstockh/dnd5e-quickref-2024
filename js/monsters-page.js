@@ -13,16 +13,12 @@
     const loadMoreBtn = document.getElementById("loadMoreBtn");
 
     let monsters = [];
+    let revealSelection = true;
     const progressive = window.DndProgressiveList.create({
         button: loadMoreBtn,
         batchSize: 72,
         onChange: render,
     });
-
-    function queryFromUrl() {
-        if (!window.location || typeof URLSearchParams === "undefined") return "";
-        return new URLSearchParams(window.location.search).get("q") || "";
-    }
 
     function escapeHtml(value) {
         return String(value || "")
@@ -200,14 +196,14 @@
         ].join("");
 
         return `
-            <details class="monster">
+            <details class="monster" id="monster-${escapeHtml(monster.slug)}" data-content-id="${escapeHtml(monster.slug)}">
                 <summary>
                     <header class="monster-head">
                         <h2 class="monster-title">${escapeHtml(monster.name)}</h2>
                         <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
                     </header>
                 </summary>
-                <div class="monster-body">
+                <div class="monster-body" data-glossary-richtext>
                     <div class="stat-grid">
                         <div class="stat"><strong>CA</strong>${escapeHtml(monster.ac || "-")}</div>
                         <div class="stat"><strong>PV</strong>${escapeHtml(monster.hp || "-")}</div>
@@ -220,7 +216,15 @@
     }
 
     function render() {
-        const filtered = applyFilters();
+        let filtered = applyFilters();
+        let selectedSlug = window.DndCatalogUI.readSelection("monster");
+        const selectedIndex = filtered.findIndex(function (monster) { return monster.slug === selectedSlug; });
+        if (selectedSlug && selectedIndex === -1) {
+            window.DndCatalogUI.updateSelection("monster", "", { mode: "replace" });
+            selectedSlug = "";
+        } else if (selectedIndex > 0) {
+            filtered = [filtered[selectedIndex]].concat(filtered.slice(0, selectedIndex), filtered.slice(selectedIndex + 1));
+        }
         const visible = progressive.take(filtered);
         summary.textContent = `${filtered.length} monstre(s) trouvé(s) sur ${monsters.length} · ${visible.length} affiché(s).`;
         if (!filtered.length) {
@@ -228,6 +232,33 @@
             return;
         }
         monstersGrid.innerHTML = visible.map(card).join("");
+        connectDetails(selectedSlug);
+    }
+
+    function connectDetails(selectedSlug) {
+        const detailsElements = Array.from(monstersGrid.querySelectorAll("details[data-content-id]"));
+        detailsElements.forEach(function (details) {
+            const slug = details.getAttribute("data-content-id");
+            details.open = Boolean(selectedSlug && slug === selectedSlug);
+            details.querySelector("summary")?.addEventListener("click", function () {
+                if (!details.open) {
+                    detailsElements.forEach(function (other) {
+                        if (other !== details) other.open = false;
+                    });
+                    window.DndCatalogUI.updateSelection("monster", slug, { mode: "push" });
+                } else if (window.DndCatalogUI.readSelection("monster") === slug) {
+                    window.DndCatalogUI.updateSelection("monster", "", { mode: "replace" });
+                }
+            });
+        });
+        const selected = detailsElements.find(function (details) {
+            return details.getAttribute("data-content-id") === selectedSlug;
+        });
+        if (selected && revealSelection) {
+            selected.scrollIntoView({ block: "start" });
+            selected.querySelector("summary")?.focus({ preventScroll: true });
+        }
+        revealSelection = false;
     }
 
     function resetAndRender() {
@@ -241,9 +272,24 @@
         });
     }
 
+    function applyUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        searchInput.value = params.get("q") || "";
+        [
+            [crSelect, "cr"],
+            [typeSelect, "type"],
+            [alignmentSelect, "alignment"],
+            [sizeSelect, "size"],
+            [sortSelect, "sort"],
+        ].forEach(function ([select, parameter]) {
+            const value = params.get(parameter) || "";
+            if (!select.options || !Array.from(select.options).some(function (option) { return option.value === value; })) return;
+            select.value = value;
+        });
+    }
+
     function init(data) {
         monsters = data.monsters || [];
-        searchInput.value = queryFromUrl();
         sourceNote.textContent = data.note
             ? `${data.count || monsters.length} monstres chargés. ${data.note}`
             : `${data.count || monsters.length} monstres chargés.`;
@@ -256,6 +302,7 @@
         fillSelect(typeSelect, uniqueValues("type"));
         fillSelect(alignmentSelect, uniqueValues("alignment"));
         fillSelect(sizeSelect, uniqueValues("size"));
+        applyUrlState();
 
         [searchInput, crSelect, typeSelect, alignmentSelect, sizeSelect, sortSelect].forEach(el => {
             el.addEventListener("input", resetAndRender);
@@ -263,6 +310,14 @@
         });
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
         collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+        if (typeof window.addEventListener === "function") {
+            window.addEventListener("popstate", function () {
+                applyUrlState();
+                progressive.reset();
+                revealSelection = true;
+                render();
+            });
+        }
         render();
     }
 

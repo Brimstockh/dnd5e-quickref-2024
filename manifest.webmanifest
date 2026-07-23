@@ -1,0 +1,30 @@
+{
+  "id": "./",
+  "name": "Compagnon D&D 2024",
+  "short_name": "D&D 2024",
+  "description": "Référence francophone D&D 2024 utilisable en session, même hors connexion.",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#0d0c0a",
+  "theme_color": "#0d0c0a",
+  "icons": [
+    {
+      "src": "./assets/icons/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icons/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -84,12 +84,14 @@ test("quick reference filters entries and opens an accessible detail panel", () 
   const sandbox = {
     console,
     document,
-    window: {
-      getComputedStyle: () => ({
-        backgroundColor: "rgb(1, 2, 3)",
-        getPropertyValue: () => "#708b5b",
-      }),
-    },
+    getComputedStyle: () => ({
+      backgroundColor: "rgb(1, 2, 3)",
+      getPropertyValue: () => "#708b5b",
+    }),
+    history: { pushState() {}, replaceState() {} },
+    location: { href: "https://dnd.local/quickref.html", hash: "", pathname: "/quickref.html", search: "" },
+    URL,
+    URLSearchParams,
     data_movement: [item],
     data_action: [item],
     data_bonusaction: [item],
@@ -100,9 +102,12 @@ test("quick reference filters entries and opens an accessible detail panel", () 
     data_environment_vision: [item],
     data_environment_cover: [item],
   };
+  sandbox.window = sandbox;
 
-  const source = readFileSync(new URL("../js/quickref.js", import.meta.url), "utf8");
-  vm.runInNewContext(source, sandbox);
+  for (const path of ["../js/catalog-ui.js", "../js/quickref.js"]) {
+    const source = readFileSync(new URL(path, import.meta.url), "utf8");
+    vm.runInNewContext(source, sandbox);
+  }
   assert.equal(typeof documentListeners.DOMContentLoaded, "function");
   documentListeners.DOMContentLoaded();
 

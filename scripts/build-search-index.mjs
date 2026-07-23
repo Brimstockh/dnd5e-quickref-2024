@@ -1,6 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { EOL } from "node:os";
 import { resolve } from "node:path";
 import vm from "node:vm";
+import { buildContentAliasMap, createContentId } from "../js/content-ids.js";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -11,7 +13,7 @@ function plainText(value) {
     .trim();
 }
 
-function excerpt(value, length = 180) {
+function excerpt(value, length = 110) {
   const text = plainText(value);
   return text.length > length ? `${text.slice(0, length - 1).trimEnd()}…` : text;
 }
@@ -63,7 +65,9 @@ async function equipmentSearchEntries() {
       }
       const title = cells[0];
       return [{
-        id: `equipment-${tableIndex + 1}-${title}`,
+        id: createContentId("equipment", title),
+        type: "equipment",
+        legacyIds: [`equipment-${tableIndex + 1}-${title}`],
         title,
         category: "Objet",
         url: queryUrl("armes-armures.html", title),
@@ -83,7 +87,8 @@ async function backgroundSearchEntries() {
     const body = textFromHtml(source.slice(start, end));
     const title = textFromHtml(heading[2]);
     return {
-      id: `background-${heading[1]}`,
+      id: createContentId("background", heading[1]),
+      type: "background",
       title,
       category: "Historique",
       url: queryUrl("historique.html", title),
@@ -102,7 +107,9 @@ async function anchoredRuleEntries(path) {
     const title = textFromHtml(heading[2]);
     const body = textFromHtml(source.slice(start, end));
     return {
-      id: `rule-${path}-${heading[1]}`,
+      id: createContentId("rule", `${path.replace(/\.html$/i, "")}-${heading[1]}`),
+      type: "rule",
+      legacyIds: [`rule-${path}-${heading[1]}`],
       title,
       category: "Règle",
       url: `${path}#${heading[1]}`,
@@ -115,19 +122,24 @@ async function anchoredRuleEntries(path) {
 const spells = JSON.parse(await readFile(resolve(root, "data/spells_2024.json"), "utf8")).spells;
 const monsters = JSON.parse(await readFile(resolve(root, "data/monsters_2024.json"), "utf8")).monsters;
 const feats = JSON.parse(await readFile(resolve(root, "data/feats_2024.json"), "utf8")).feats;
+const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8")).entries;
+const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
 const conditions = await loadGlobalData("js/data_condition.js", "data_condition");
 const quickReferenceGroups = [
-  ["js/data_movement.js", ["data_movement"], "Mouvement"],
-  ["js/data_action.js", ["data_action"], "Action"],
-  ["js/data_bonusaction.js", ["data_bonusaction"], "Action bonus"],
-  ["js/data_reaction.js", ["data_reaction"], "Réaction"],
-  ["js/data_environment.js", ["data_environment_obscurance", "data_environment_light", "data_environment_vision", "data_environment_cover"], "Environnement"],
+  ["js/data_movement.js", ["data_movement"], "Mouvement", "movement"],
+  ["js/data_action.js", ["data_action"], "Action", "action"],
+  ["js/data_bonusaction.js", ["data_bonusaction"], "Action bonus", "bonus-action"],
+  ["js/data_reaction.js", ["data_reaction"], "Réaction", "reaction"],
+  ["js/data_environment.js", ["data_environment_obscurance", "data_environment_light", "data_environment_vision", "data_environment_cover"], "Environnement", "environment"],
 ];
-const quickReferenceEntries = (await Promise.all(quickReferenceGroups.map(async ([path, keys, category]) => ({
+const quickReferenceEntries = (await Promise.all(quickReferenceGroups.map(async ([path, keys, category, type]) => ({
   category,
+  type,
   items: await loadGlobalDataSets(path, keys),
-})))).flatMap(({ category, items }) => items.map((item, index) => ({
-  id: `quickref-${category}-${index + 1}`,
+})))).flatMap(({ category, type, items }) => items.map((item, index) => ({
+  id: createContentId(type, item.title),
+  type,
+  legacyIds: [`quickref-${category}-${index + 1}`],
   title: item.title,
   category,
   url: queryUrl("quickref.html", item.title),
@@ -163,6 +175,12 @@ const pages = [
   ["Combat", "Règle", "combat-2024.html", "Initiative, attaques et dégâts"],
   ["Maîtrises d’armes", "Règle", "mastery-2024.html", "Maîtrises et propriétés des armes"],
   ["Glossaire", "Glossaire", "glossaire.html", "Termes et états de jeu"],
+  ["Référence rapide", "Règle", "quickref.html", "Actions, mouvements, réactions et états"],
+  ["Sorts", "Sort", "spells.html", "Catalogue des sorts D&D 2024"],
+  ["Dons", "Don", "dons.html", "Catalogue des dons D&D 2024"],
+  ["Classes", "Classe", "classes/index.html", "Catalogue des classes D&D 2024"],
+  ["Espèces", "Espèce", "races/index.html", "Catalogue des espèces D&D 2024"],
+  ["Monstres", "Monstre", "monstres.html", "Bestiaire D&D 2024"],
   ["Équipement", "Objet", "armes-armures.html", "Armes, armures et équipement"],
   ["Création de personnage", "Page", "creation-personnage-2024.html", "Guide de création D&D 2024"],
   ["Historiques", "Historique", "historique.html", "Origines, maîtrises et dons"],
@@ -177,7 +195,9 @@ const pages = [
 
 const entries = [
   ...spells.map((spell) => ({
-    id: `spell-${spell.id}`,
+    id: createContentId("spell", spell.slug || spell.name),
+    type: "spell",
+    legacyIds: [`spell-${spell.id}`],
     title: spell.name,
     category: "Sort",
     url: queryUrl("spells.html", spell.name),
@@ -185,7 +205,9 @@ const entries = [
     excerpt: excerpt(spell.description),
   })),
   ...monsters.map((monster) => ({
-    id: `monster-${monster.id}`,
+    id: createContentId("monster", monster.slug || monster.name),
+    type: "monster",
+    legacyIds: [`monster-${monster.id}`],
     title: monster.name,
     category: "Monstre",
     url: queryUrl("monstres.html", monster.name),
@@ -193,15 +215,20 @@ const entries = [
     excerpt: excerpt([monster.kind || monster.type, monster.size, monster.alignment, monster.cr ? `FP ${monster.cr}` : ""].filter(Boolean).join(" · ")),
   })),
   ...feats.map((feat, index) => ({
-    id: `feat-${index + 1}`,
+    id: createContentId("feat", feat.slug || feat.name),
+    type: "feat",
+    legacyIds: [`feat-${index + 1}`],
     title: feat.name,
     category: "Don",
     url: queryUrl("dons.html", feat.name),
     keywords: [feat.category, feat.prerequis, ...(feat.aliases || []), feat.repeatable ? "répétable" : ""],
+    aliases: feat.aliases || [],
     excerpt: excerpt(feat.description),
   })),
   ...conditions.map((condition, index) => ({
-    id: `condition-${index + 1}`,
+    id: createContentId("condition", condition.title),
+    type: "condition",
+    legacyIds: [`condition-${index + 1}`],
     title: condition.title,
     category: "État",
     url: queryUrl("quickref.html", condition.title),
@@ -212,8 +239,20 @@ const entries = [
   ...equipment,
   ...backgrounds,
   ...rules,
+  ...glossary.map((entry) => ({
+    id: entry.id,
+    type: "glossary",
+    title: entry.label,
+    category: "Glossaire",
+    url: entry.url,
+    aliases: entry.aliases,
+    keywords: [entry.category, ...entry.aliases],
+    excerpt: excerpt(entry.summary),
+  })),
   ...classes.map(([title, file]) => ({
-    id: `class-${file}`,
+    id: createContentId("class", title),
+    type: "class",
+    legacyIds: [`class-${file}`],
     title,
     category: "Classe",
     url: `classes/${file}`,
@@ -221,7 +260,9 @@ const entries = [
     excerpt: `Classe de personnage : ${title}.`,
   })),
   ...species.map(([title, file]) => ({
-    id: `species-${file}`,
+    id: createContentId("species", title),
+    type: "species",
+    legacyIds: [`species-${file}`],
     title,
     category: "Espèce",
     url: `races/${file}`,
@@ -229,7 +270,9 @@ const entries = [
     excerpt: `Espèce de personnage : ${title}.`,
   })),
   ...pages.map(([title, category, url, description], index) => ({
-    id: `page-${index + 1}`,
+    id: createContentId("page", title),
+    type: "page",
+    legacyIds: [`page-${index + 1}`],
     title,
     category,
     url,
@@ -239,5 +282,40 @@ const entries = [
 ];
 
 entries.sort((first, second) => first.title.localeCompare(second.title, "fr"));
-await writeFile(resolve(root, "data/search-index.json"), `${JSON.stringify({ version: 2, count: entries.length, entries })}\n`, "utf8");
-console.log(`Generated ${entries.length} search entries.`);
+const knownIds = new Set(entries.map(({ id }) => id));
+for (const id of Object.keys(searchAliasSource.aliases)) {
+  if (!knownIds.has(id)) throw new Error(`Unknown search alias target: ${id}`);
+}
+const aliases = buildContentAliasMap(entries);
+const searchEntries = entries.map(({ legacyIds, ...entry }) => ({
+  ...entry,
+  aliases: Array.from(new Set([
+    ...(entry.aliases || []),
+    ...(searchAliasSource.aliases[entry.id] || []),
+  ].map((value) => String(value).trim()).filter(Boolean))),
+}));
+const outputs = [
+  [
+    resolve(root, "data/search-index.json"),
+    `${JSON.stringify({ schemaVersion: 1, version: 4, count: searchEntries.length, entries: searchEntries })}${EOL}`,
+  ],
+  [
+    resolve(root, "data/content-id-aliases.json"),
+    `${JSON.stringify({ schemaVersion: 1, count: Object.keys(aliases).length, aliases })}${EOL}`,
+  ],
+];
+
+if (process.argv.includes("--check")) {
+  const stale = [];
+  for (const [path, expected] of outputs) {
+    const current = await readFile(path, "utf8").catch(() => "");
+    if (current !== expected) stale.push(path.replace(`${root}\\`, ""));
+  }
+  if (stale.length) {
+    throw new Error(`Generated search files are stale: ${stale.join(", ")}`);
+  }
+  console.log(`Verified ${searchEntries.length} search entries and ${Object.keys(aliases).length} legacy aliases.`);
+} else {
+  await Promise.all(outputs.map(([path, content]) => writeFile(path, content, "utf8")));
+  console.log(`Generated ${searchEntries.length} search entries and ${Object.keys(aliases).length} legacy aliases.`);
+}

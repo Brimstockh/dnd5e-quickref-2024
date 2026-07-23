@@ -1,6 +1,86 @@
 (function () {
     "use strict";
 
+    if (!window.DndStorage) {
+        var memoryStorage = Object.create(null);
+        var persistenceAvailable = true;
+
+        function readRaw(key, fallbackValue) {
+            if (
+                !persistenceAvailable
+                && Object.prototype.hasOwnProperty.call(memoryStorage, key)
+            ) {
+                return memoryStorage[key];
+            }
+            try {
+                var value = window.localStorage.getItem(key);
+                persistenceAvailable = true;
+                if (value === null) delete memoryStorage[key];
+                else memoryStorage[key] = value;
+                return value === null ? fallbackValue : value;
+            } catch (error) {
+                persistenceAvailable = false;
+                return Object.prototype.hasOwnProperty.call(memoryStorage, key)
+                    ? memoryStorage[key]
+                    : fallbackValue;
+            }
+        }
+
+        function writeRaw(key, value) {
+            var serialized = String(value);
+            memoryStorage[key] = serialized;
+            try {
+                window.localStorage.setItem(key, serialized);
+                persistenceAvailable = true;
+                return true;
+            } catch (error) {
+                persistenceAvailable = false;
+                return false;
+            }
+        }
+
+        function remove(key) {
+            delete memoryStorage[key];
+            try {
+                window.localStorage.removeItem(key);
+                persistenceAvailable = true;
+                return true;
+            } catch (error) {
+                persistenceAvailable = false;
+                return false;
+            }
+        }
+
+        function getJson(key, fallbackValue) {
+            var raw = readRaw(key, null);
+            if (raw === null) return fallbackValue;
+            try {
+                return JSON.parse(raw);
+            } catch (error) {
+                return fallbackValue;
+            }
+        }
+
+        function setJson(key, value) {
+            try {
+                return writeRaw(key, JSON.stringify(value));
+            } catch (error) {
+                return false;
+            }
+        }
+
+        window.DndStorage = Object.freeze({
+            schemaVersion: 1,
+            get: readRaw,
+            set: writeRaw,
+            remove: remove,
+            getJson: getJson,
+            setJson: setJson,
+            isPersistent: function () { return persistenceAvailable; },
+        });
+    }
+
+    var storage = window.DndStorage;
     var favoritesKey = "dnd2024_favorites_v1";
     var recentKey = "dnd2024_recent_v1";
     var maxRecentItems = 8;
@@ -8,21 +88,12 @@
     var siteRoot = new URL("../", script ? script.src : window.location.href);
 
     function safeRead(key) {
-        try {
-            var value = JSON.parse(localStorage.getItem(key) || "[]");
-            return Array.isArray(value) ? value.filter(isValidEntry) : [];
-        } catch (error) {
-            return [];
-        }
+        var value = storage.getJson(key, []);
+        return Array.isArray(value) ? value.filter(isValidEntry) : [];
     }
 
     function safeWrite(key, value) {
-        try {
-            localStorage.setItem(key, JSON.stringify(value));
-            return true;
-        } catch (error) {
-            return false;
-        }
+        return storage.setJson(key, value);
     }
 
     function isValidEntry(entry) {
