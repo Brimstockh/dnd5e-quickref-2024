@@ -45,9 +45,10 @@
         var params = new URLSearchParams(window.location.search);
         controls.forEach(function (control) {
             var value = params.get(parameterById[control.id]);
-            if (value === null) return;
+            if (value === null) value = defaults.get(control.id);
             control.value = value;
-            if (control.value === value) dispatch(control);
+            if (control.value !== value) control.value = defaults.get(control.id);
+            dispatch(control);
         });
     }
 
@@ -161,6 +162,10 @@
 
     restoreFromUrl();
     renderChips();
+    window.addEventListener("popstate", function () {
+        restoreFromUrl();
+        renderChips();
+    });
     controls.forEach(function (control) {
         control.addEventListener(control.tagName === "SELECT" ? "change" : "input", function () {
             window.clearTimeout(inputTimer);

@@ -16,6 +16,7 @@ const contentTypes = {
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
+  ".webmanifest": "application/manifest+json",
 };
 
 let server;
@@ -96,6 +97,7 @@ test("critical pages and modules are served over HTTP", async () => {
     "/js/character-profile.js",
     "/js/feats-page.js",
     "/js/faerun-map.js",
+    "/js/github-report.js",
     "/js/monsters-page.js",
     "/js/progressive-list.js",
     "/js/fetch-json.js",
@@ -107,7 +109,15 @@ test("critical pages and modules are served over HTTP", async () => {
     "/js/spells-page.js",
     "/js/user-library.js",
     "/js/site-shell.js",
+    "/js/pwa-client.js",
+    "/js/source-meta.js",
     "/js/search-engine.js",
+    "/service-worker.js",
+    "/manifest.webmanifest",
+    "/offline.html",
+    "/data/source-metadata.json",
+    "/assets/icons/pwa-192.png",
+    "/assets/icons/pwa-512.png",
     "/assets/icons/site-icons.svg",
     "/assets/icons/site-emblem.svg",
     "/assets/decor/arcane-circle.svg",
@@ -119,7 +129,7 @@ test("critical pages and modules are served over HTTP", async () => {
   for (const path of paths) {
     const response = await fetch(`${baseUrl}${path}`);
     assert.equal(response.status, 200, path);
-    assert.match(response.headers.get("content-type"), /(?:text\/(?:css|html|javascript)|image\/svg\+xml)/, path);
+    assert.match(response.headers.get("content-type"), /(?:text\/(?:css|html|javascript)|application\/(?:json|manifest\+json)|image\/(?:png|svg\+xml))/, path);
   }
 });
 
@@ -149,6 +159,12 @@ test("critical JSON data is available and valid", async () => {
   assert.equal(searchResponse.status, 200);
   assert.equal(search.count, search.entries.length);
   assert.ok(search.entries.length > 1000);
+
+  const sourceMetadataResponse = await fetch(`${baseUrl}/data/source-metadata.json`);
+  const sourceMetadata = await sourceMetadataResponse.json();
+  assert.equal(sourceMetadataResponse.status, 200);
+  assert.equal(sourceMetadata.schemaVersion, 1);
+  assert.ok(sourceMetadata.entries.length >= 9);
 });
 
 test("optimized images are served with their expected format", async () => {
@@ -233,7 +249,7 @@ test("critical pages do not reference missing local files", async () => {
 });
 
 test("every standalone page uses the shared visual shell", async () => {
-  const pages = await standaloneHtmlPages();
+  const pages = (await standaloneHtmlPages()).filter((page) => page !== "offline.html");
   assert.equal(pages.length, 49);
 
   for (const page of pages) {
@@ -244,6 +260,10 @@ test("every standalone page uses the shared visual shell", async () => {
     assert.match(source, /(?:\.\.\/|)css\/components\.css/, page);
     assert.match(source, /(?:\.\.\/|)js\/user-library\.js/, page);
     assert.match(source, /(?:\.\.\/|)js\/site-shell\.js/, page);
+    assert.ok(
+      source.indexOf("js/user-library.js") < source.indexOf("js/site-shell.js"),
+      `${page}: storage bootstrap must load before the shared shell`,
+    );
     assert.match(source, /data-site-header data-active="[^"]+"/, page);
     if (/<body[^>]*\bcontent-page\b/i.test(source)) {
       assert.match(source, /(?:\.\.\/|)css\/content-page\.css/, page);
@@ -330,6 +350,7 @@ test("the spells catalog exposes persistent filters and its mobile drawer", asyn
   assert.match(source, /href="css\/catalog\.css"/);
   assert.match(source, /data-page-search/);
   assert.match(source, /id="activeFilters"/);
+  assert.match(source, /id="schoolSelect"/);
   assert.match(source, /id="filterPanel"/);
   assert.match(source, /id="openFiltersBtn"/);
   assert.match(source, /src="js\/catalog-ui\.js"/);
@@ -343,6 +364,7 @@ test("the quick reference exposes search, category shortcuts, and a detail drawe
   assert.match(source, /class="quickref-category-nav"/);
   assert.match(source, /id="quickref-detail-panel"[^>]*role="dialog"/);
   assert.match(source, /id="quickref-detail-backdrop"/);
+  assert.match(source, /src="js\/catalog-ui\.js"/);
   assert.doesNotMatch(source, /id="modal"/);
 });
 
@@ -360,6 +382,13 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   assert.match(source, /sessionPanel\.panel\.setAttribute\("inert"/);
   assert.match(source, /session-panel__quick-actions/);
   assert.match(source, /window\.DndLibrary\.clearRecent/);
+  assert.match(source, /function copyCurrentLink/);
+  assert.match(source, /navigator\.clipboard\.writeText\(window\.location\.href\)/);
+  assert.match(source, /function shareCurrentPage/);
+  assert.match(source, /navigator\.share/);
+  assert.match(source, /js\/github-report\.js/);
+  assert.match(source, /function enhanceDeepLinks/);
+  assert.match(source, /window\.addEventListener\("hashchange", revealHashTarget\)/);
   for (const path of ["quickref.html", "spells.html", "monstres.html", "combat-2024.html"]) {
     assert.match(source, new RegExp(path.replace(".", "\\.")), path);
   }
@@ -378,12 +407,35 @@ test("the monsters and feats catalogs use the consolidated catalog shell", async
     assert.match(source, /href="css\/theme\.css"/);
     assert.match(source, /href="css\/components\.css"/);
     assert.match(source, /href="css\/legacy-catalog\.css"/);
+    assert.match(source, /src="js\/catalog-ui\.js"\s+defer/);
     assert.match(source, /src="js\/legacy-catalog-ui\.js"\s+defer/);
     assert.match(source, new RegExp(`data-site-header data-active="${activePage}"`));
     assert.match(source, /data-page-search/);
     assert.match(source, /aria-live="polite"/);
     assert.match(source, /rel="preload" href="data\/(?:monsters|feats)_2024\.json"/);
   }
+});
+
+test("catalog details expose stable deep-link parameters and history restoration", async () => {
+  const scripts = {
+    "js/spells-page.js": "spell",
+    "js/monsters-page.js": "monster",
+    "js/feats-page.js": "feat",
+  };
+  for (const [path, parameter] of Object.entries(scripts)) {
+    const source = await readFile(resolve(root, path), "utf8");
+    assert.match(source, new RegExp(`readSelection\\("${parameter}"\\)`), path);
+    assert.match(source, new RegExp(`updateSelection\\("${parameter}"`), path);
+    assert.match(source, /data-content-id/, path);
+    assert.match(source, /addEventListener\("popstate"/, path);
+  }
+
+  const quickref = await readFile(resolve(root, "js/quickref.js"), "utf8");
+  for (const parameter of ["movement", "action", "bonus", "reaction", "condition", "environment"]) {
+    assert.match(quickref, new RegExp(`"${parameter}"`), parameter);
+  }
+  assert.match(quickref, /updateSelection\(record\.parameter, record\.slug/);
+  assert.match(quickref, /addEventListener\("popstate", restoreFromUrl\)/);
 });
 
 test("the remaining content catalogs expose the shared filtering experience", async () => {
@@ -398,6 +450,7 @@ test("the remaining content catalogs expose the shared filtering experience", as
     const source = await readFile(resolve(root, page), "utf8");
     assert.match(source, new RegExp(`data-catalog-kind="${kind}"`));
     assert.match(source, new RegExp(`href="${prefix.replace("../", "\\.\\.\\/")}css/content-catalog\\.css"`));
+    assert.match(source, new RegExp(`src="${prefix.replace("../", "\\.\\.\\/")}js/catalog-ui\\.js"\\s+defer`));
     assert.match(source, new RegExp(`src="${prefix.replace("../", "\\.\\.\\/")}js/content-catalog\\.js"\\s+defer`));
   }
 });

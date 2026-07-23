@@ -2,6 +2,7 @@
     var SHEET_VERSION = "standalone_v2";
     var STORAGE_KEY = "dnd_character_sheet_standalone_v2";
     var LEGACY_STORAGE_KEY = "dnd_character_sheet_standalone_v1";
+    var storage = window.DndStorage;
     var MAX_IMPORT_BYTES = 1024 * 1024;
     var statusEl = document.getElementById("status");
     var saveBtn = document.getElementById("saveBtn");
@@ -19,7 +20,7 @@
     var classLevelField = document.querySelector("[data-class-level]");
     var levelInput = document.querySelector("[data-level-input]");
     var saveTimer = null;
-    var localStorageFailed = false;
+    var storageFailed = false;
     var currentClassDetails = null;
     var classOptions = [];
     var subclassCache = {};
@@ -1214,30 +1215,23 @@
             version: SHEET_VERSION,
             data: collect()
         };
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-            localStorageFailed = false;
+        if (storage.setJson(STORAGE_KEY, payload)) {
+            storageFailed = false;
             setStatus("Sauvegardé à " + nowText());
             return true;
-        } catch (err) {
-            localStorageFailed = true;
-            setStatus("Sauvegarde locale impossible. Exporte la fiche en JSON.");
-            return false;
         }
+        storageFailed = true;
+        setStatus("Sauvegarde locale impossible. Exporte la fiche en JSON.");
+        return false;
     }
 
     function loadFromKey(key) {
-        var raw;
-        try {
-            raw = localStorage.getItem(key);
-        } catch (err) {
-            localStorageFailed = true;
+        var parsed = storage.getJson(key, null);
+        if (parsed === null) {
+            if (!storage.isPersistent()) storageFailed = true;
             return false;
         }
-        if (!raw) return false;
-
         try {
-            var parsed = JSON.parse(raw);
             var data = normalizePayload(parsed);
             if (data) {
                 apply(data);
@@ -1259,7 +1253,7 @@
             setStatus("Ancienne sauvegarde reprise et convertie.");
             return;
         }
-        setStatus(localStorageFailed
+        setStatus(storageFailed
             ? "Stockage local indisponible. Utilise l'export JSON."
             : "Aucune sauvegarde trouvée.");
     }
@@ -1279,11 +1273,10 @@
                 el.value = "";
             }
         });
-        try {
-            localStorage.removeItem(STORAGE_KEY);
+        if (storage.remove(STORAGE_KEY)) {
             setStatus("Feuille réinitialisée.");
-        } catch (err) {
-            localStorageFailed = true;
+        } else {
+            storageFailed = true;
             setStatus("Champs vidés, mais la sauvegarde locale n'a pas pu être supprimée.");
         }
     }

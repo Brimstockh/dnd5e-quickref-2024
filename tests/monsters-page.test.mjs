@@ -31,12 +31,14 @@ test("monstres.html progressively renders the local monster dataset", async () =
       assert.equal(options.credentials, "omit");
       return { ok: true, status: 200, json: async () => data };
     },
-    location: { search: "" },
+    history: { pushState() {}, replaceState() {} },
+    location: { href: "https://dnd.local/monstres.html", hash: "", pathname: "/monstres.html", search: "" },
+    URL,
     URLSearchParams,
   });
   context.window = context;
 
-  for (const path of ["../js/progressive-list.js", "../js/monsters-page.js"]) {
+  for (const path of ["../js/catalog-ui.js", "../js/progressive-list.js", "../js/monsters-page.js"]) {
     const source = readFileSync(new URL(path, import.meta.url), "utf8");
     vm.runInContext(source, context, { filename: path });
   }
@@ -44,7 +46,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
 
   assert.match(elements.sourceNote.textContent, /499 monstres charg/);
   assert.match(elements.summary.textContent, /^499 monstre\(s\).*499.*72 affich/);
-  assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster">/g) || []).length, 72);
+  assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster"/g) || []).length, 72);
   assert.equal(elements.loadMoreBtn.hidden, false);
   assert.match(elements.loadMoreBtn.textContent, /72\/499/);
   assert.match(elements.crSelect.innerHTML, /<option/);

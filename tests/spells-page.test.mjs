@@ -34,6 +34,7 @@ test("spells.html initializes and renders the local spell dataset", async () => 
   const elements = Object.fromEntries([
     "searchInput",
     "levelSelect",
+    "schoolSelect",
     "sortSelect",
     "classList",
     "activeFilters",
@@ -94,7 +95,7 @@ test("spells.html initializes and renders the local spell dataset", async () => 
 
   assert.match(elements.sourceNote.textContent, /391 sorts disponibles/);
   assert.equal(elements.summary.textContent, "391 sorts sur 391 · 60 affichés");
-  assert.equal((elements.spellsGrid.innerHTML.match(/<details class="spell catalog-card">/g) || []).length, 60);
+  assert.equal((elements.spellsGrid.innerHTML.match(/<details class="spell catalog-card"/g) || []).length, 60);
   assert.equal(elements.loadMoreBtn.hidden, false);
   assert.match(elements.loadMoreBtn.textContent, /60\/391/);
 });

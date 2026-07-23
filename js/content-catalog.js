@@ -99,6 +99,9 @@
                 body.appendChild(list);
                 var type = tableIndex === 0 ? "Arme" : "Armure";
                 var element = createDetailsItem(title, type + " · " + group, body);
+                var slug = window.DndCatalogUI.slugify(title);
+                element.id = "equipment-" + slug;
+                element.dataset.contentId = slug;
                 container.appendChild(element);
                 items.push({
                     element: element,
@@ -165,6 +168,7 @@
             var meta = [abilities.join(", "), feat].filter(Boolean).join(" · ");
             var element = createDetailsItem(title, meta, body);
             element.id = heading.id;
+            element.dataset.contentId = heading.id || window.DndCatalogUI.slugify(title);
             heading.remove();
             container.appendChild(element);
             items.push({ element: element, title: title, text: element.textContent, index: index, values: { ability: abilities, feat: feat ? [feat] : [] } });
@@ -203,6 +207,7 @@
         var empty = document.createElement("div");
         var backdrop = document.createElement("button");
         var filterControls = new Map();
+        var selectionParameter = kind === "equipment" ? "equipment" : kind === "backgrounds" ? "background" : "";
 
         root.className = "content-catalog";
         root.setAttribute("aria-label", "Catalogue des " + config.label);
@@ -343,6 +348,55 @@
             empty.hidden = visible.length !== 0;
             renderChips();
             updateUrl();
+            restoreSelection(false);
+        }
+
+        function restoreSelection(reveal) {
+            if (!selectionParameter) return;
+            var selectedId = window.DndCatalogUI.readSelection(selectionParameter);
+            var selected = config.items.find(function (item) {
+                return item.element.dataset.contentId === selectedId && !item.element.hidden;
+            });
+            config.items.forEach(function (item) {
+                if (item.element.matches("details")) item.element.open = Boolean(selected && item === selected);
+            });
+            if (selectedId && !selected) {
+                window.DndCatalogUI.updateSelection(selectionParameter, "", { mode: "replace" });
+                return;
+            }
+            if (selected && reveal) {
+                selected.element.scrollIntoView({ block: "start" });
+                selected.element.querySelector("summary")?.focus({ preventScroll: true });
+            }
+        }
+
+        function connectSelections() {
+            if (!selectionParameter) return;
+            config.items.forEach(function (item) {
+                if (!item.element.matches("details")) return;
+                item.element.querySelector("summary")?.addEventListener("click", function () {
+                    var id = item.element.dataset.contentId;
+                    if (!item.element.open) {
+                        config.items.forEach(function (other) {
+                            if (other !== item && other.element.matches("details")) other.element.open = false;
+                        });
+                        window.DndCatalogUI.updateSelection(selectionParameter, id, { mode: "push" });
+                    } else if (window.DndCatalogUI.readSelection(selectionParameter) === id) {
+                        window.DndCatalogUI.updateSelection(selectionParameter, "", { mode: "replace" });
+                    }
+                });
+            });
+        }
+
+        function restoreControlsFromUrl() {
+            var params = new URLSearchParams(window.location.search);
+            search.value = params.get("q") || "";
+            sort.value = defaultSort;
+            if (params.get("sort") && Array.from(sort.options).some(function (option) { return option.value === params.get("sort"); })) sort.value = params.get("sort");
+            filterControls.forEach(function (control, key) {
+                var value = params.get(key) || "";
+                control.select.value = Array.from(control.select.options).some(function (option) { return option.value === value; }) ? value : "";
+            });
         }
 
         function setFiltersOpen(open) {
@@ -361,13 +415,8 @@
             }
         }
 
-        var params = new URLSearchParams(window.location.search);
-        search.value = params.get("q") || "";
-        if (params.get("sort") && Array.from(sort.options).some(function (option) { return option.value === params.get("sort"); })) sort.value = params.get("sort");
-        filterControls.forEach(function (control, key) {
-            var value = params.get(key);
-            if (value && Array.from(control.select.options).some(function (option) { return option.value === value; })) control.select.value = value;
-        });
+        restoreControlsFromUrl();
+        connectSelections();
 
         search.addEventListener("input", apply);
         sort.addEventListener("change", apply);
@@ -392,7 +441,13 @@
             if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
             else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
         });
+        window.addEventListener("popstate", function () {
+            restoreControlsFromUrl();
+            apply();
+            restoreSelection(true);
+        });
         apply();
+        restoreSelection(true);
     }
 
     enhance(buildCatalog());

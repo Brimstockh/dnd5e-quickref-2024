@@ -38,6 +38,13 @@ test("filterAndSortSpells combines level and class filters", () => {
   );
 });
 
+test("filterAndSortSpells supports a shareable school filter", () => {
+  assert.deepEqual(
+    filterAndSortSpells(spells, { school: "evocation" }).map((spell) => spell.name),
+    ["Boule de feu", "Lumière"],
+  );
+});
+
 test("filterAndSortSpells supports every current sort mode without mutating input", () => {
   const originalOrder = spells.map((spell) => spell.name);
 

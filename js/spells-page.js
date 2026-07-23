@@ -3,6 +3,7 @@
 
     const searchInput = document.getElementById("searchInput");
     const levelSelect = document.getElementById("levelSelect");
+    const schoolSelect = document.getElementById("schoolSelect");
     const sortSelect = document.getElementById("sortSelect");
     const classList = document.getElementById("classList");
     const activeFilters = document.getElementById("activeFilters");
@@ -16,7 +17,6 @@
     const spellsGrid = document.getElementById("spellsGrid");
     const loadMoreBtn = document.getElementById("loadMoreBtn");
     const sourceNote = document.getElementById("sourceNote");
-    const initialState = window.DndCatalogUI.readState(window.location.search);
     const progressive = window.DndProgressiveList.create({
         button: loadMoreBtn,
         batchSize: 60,
@@ -25,6 +25,8 @@
 
     let spells = [];
     let allClasses = [];
+    let allSchools = [];
+    let revealSelection = true;
     const selectedClasses = new Set();
     const allowedSorts = new Set(["level_asc", "level_desc", "name_asc", "name_desc"]);
 
@@ -41,6 +43,7 @@
         return {
             query: searchInput.value,
             level: levelSelect.value,
+            school: schoolSelect.value,
             classes: Array.from(selectedClasses),
             sort: sortSelect.value,
         };
@@ -66,6 +69,7 @@
         return window.DndSpellFilters.filterAndSortSpells(spells, {
             query: searchInput.value,
             level,
+            school: schoolSelect.value,
             selectedClasses,
             sort: sortSelect.value,
         });
@@ -81,7 +85,7 @@
             : escapeHtml(spell.description || "Description non disponible.");
         const classes = (spell.classes || []).join(", ") || "Classe non précisée";
         return `
-            <details class="spell catalog-card">
+            <details class="spell catalog-card" id="spell-${escapeHtml(spell.slug)}" data-content-id="${escapeHtml(spell.slug)}">
                 <summary>
                     <header class="catalog-card__head">
                         <h2 class="catalog-card__title">${escapeHtml(spell.name)}</h2>
@@ -110,6 +114,7 @@
         const query = searchInput.value.trim();
         if (query) chips.push({ type: "query", label: `Recherche : ${query}` });
         if (levelSelect.value !== "") chips.push({ type: "level", label: levelLabel(levelSelect.value) });
+        if (schoolSelect.value) chips.push({ type: "school", label: `École : ${schoolSelect.value}` });
         Array.from(selectedClasses).sort(function (first, second) {
             return first.localeCompare(second, "fr");
         }).forEach(function (className) {
@@ -121,6 +126,7 @@
     function removeChip(chip) {
         if (chip.type === "query") searchInput.value = "";
         if (chip.type === "level") levelSelect.value = "";
+        if (chip.type === "school") schoolSelect.value = "";
         if (chip.type === "class") {
             selectedClasses.delete(chip.value);
             renderClassFilters();
@@ -129,7 +135,15 @@
     }
 
     function render() {
-        const filtered = applyFilters();
+        let filtered = applyFilters();
+        let selectedSlug = window.DndCatalogUI.readSelection("spell");
+        const selectedIndex = filtered.findIndex(function (spell) { return spell.slug === selectedSlug; });
+        if (selectedSlug && selectedIndex === -1) {
+            window.DndCatalogUI.updateSelection("spell", "", { mode: "replace" });
+            selectedSlug = "";
+        } else if (selectedIndex > 0) {
+            filtered = [filtered[selectedIndex]].concat(filtered.slice(0, selectedIndex), filtered.slice(selectedIndex + 1));
+        }
         const visible = progressive.take(filtered);
         const chips = buildChips();
         summary.textContent = `${filtered.length} ${filtered.length > 1 ? "sorts" : "sort"} sur ${spells.length} · ${visible.length} affiché${visible.length > 1 ? "s" : ""}`;
@@ -144,6 +158,33 @@
             return;
         }
         spellsGrid.innerHTML = visible.map(card).join("");
+        connectDetails(selectedSlug);
+    }
+
+    function connectDetails(selectedSlug) {
+        const detailsElements = Array.from(spellsGrid.querySelectorAll("details[data-content-id]"));
+        detailsElements.forEach(function (details) {
+            const slug = details.getAttribute("data-content-id");
+            details.open = Boolean(selectedSlug && slug === selectedSlug);
+            details.querySelector("summary")?.addEventListener("click", function () {
+                if (!details.open) {
+                    detailsElements.forEach(function (other) {
+                        if (other !== details) other.open = false;
+                    });
+                    window.DndCatalogUI.updateSelection("spell", slug, { mode: "push" });
+                } else if (window.DndCatalogUI.readSelection("spell") === slug) {
+                    window.DndCatalogUI.updateSelection("spell", "", { mode: "replace" });
+                }
+            });
+        });
+        const selected = detailsElements.find(function (details) {
+            return details.getAttribute("data-content-id") === selectedSlug;
+        });
+        if (selected && revealSelection) {
+            selected.scrollIntoView({ block: "start" });
+            selected.querySelector("summary")?.focus({ preventScroll: true });
+        }
+        revealSelection = false;
     }
 
     function resetAndRender() {
@@ -154,6 +195,7 @@
     function resetFilters() {
         searchInput.value = "";
         levelSelect.value = "";
+        schoolSelect.value = "";
         sortSelect.value = "level_asc";
         selectedClasses.clear();
         renderClassFilters();
@@ -184,11 +226,14 @@
         });
     }
 
-    function applyInitialState() {
-        searchInput.value = initialState.query;
-        if (/^[0-9]$/.test(initialState.level)) levelSelect.value = initialState.level;
-        if (allowedSorts.has(initialState.sort)) sortSelect.value = initialState.sort;
-        initialState.classes.forEach(function (className) {
+    function applyUrlState() {
+        const state = window.DndCatalogUI.readState(window.location.search);
+        searchInput.value = state.query;
+        levelSelect.value = /^[0-9]$/.test(state.level) ? state.level : "";
+        schoolSelect.value = allSchools.includes(state.school) ? state.school : "";
+        sortSelect.value = allowedSorts.has(state.sort) ? state.sort : "level_asc";
+        selectedClasses.clear();
+        state.classes.forEach(function (className) {
             if (allClasses.includes(className)) selectedClasses.add(className);
         });
     }
@@ -201,11 +246,17 @@
         }))).sort(function (first, second) {
             return first.localeCompare(second, "fr");
         });
+        allSchools = Array.from(new Set(spells.map(function (spell) { return spell.school; }).filter(Boolean)))
+            .sort(function (first, second) { return first.localeCompare(second, "fr"); });
+        schoolSelect.innerHTML = `<option value="">Toutes les écoles</option>${allSchools.map(function (school) {
+            return `<option value="${escapeHtml(school)}">${escapeHtml(school)}</option>`;
+        }).join("")}`;
 
-        applyInitialState();
+        applyUrlState();
         renderClassFilters();
         searchInput.addEventListener("input", resetAndRender);
         levelSelect.addEventListener("change", resetAndRender);
+        schoolSelect.addEventListener("change", resetAndRender);
         sortSelect.addEventListener("change", resetAndRender);
         resetFiltersBtn.addEventListener("click", resetFilters);
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
@@ -220,6 +271,15 @@
                 { button: document.getElementById("openSortBtn"), focusTarget: sortSelect },
             ],
         });
+        if (typeof window.addEventListener === "function") {
+            window.addEventListener("popstate", function () {
+                applyUrlState();
+                renderClassFilters();
+                progressive.reset();
+                revealSelection = true;
+                render();
+            });
+        }
         render();
     }
 

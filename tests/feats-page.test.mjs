@@ -29,16 +29,20 @@ test("dons.html renders the local feat dataset", async () => {
       assert.equal(options.credentials, "omit");
       return { ok: true, status: 200, json: async () => data };
     },
-    location: { search: "" },
+    history: { pushState() {}, replaceState() {} },
+    location: { href: "https://dnd.local/dons.html", hash: "", pathname: "/dons.html", search: "" },
+    URL,
     URLSearchParams,
   });
   context.window = context;
 
-  const source = readFileSync(new URL("../js/feats-page.js", import.meta.url), "utf8");
-  vm.runInContext(source, context, { filename: "feats-page.js" });
+  for (const path of ["../js/catalog-ui.js", "../js/feats-page.js"]) {
+    const source = readFileSync(new URL(path, import.meta.url), "utf8");
+    vm.runInContext(source, context, { filename: path });
+  }
   await new Promise((resolve) => setImmediate(resolve));
 
   assert.match(elements.sourceNote.textContent, /75 dons charg/);
   assert.match(elements.summary.textContent, /^75 don\(s\).*75/);
-  assert.match(elements.featsGrid.innerHTML, /<details class="feat">/);
+  assert.match(elements.featsGrid.innerHTML, /<details class="feat"/);
 });

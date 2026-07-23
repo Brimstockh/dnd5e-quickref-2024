@@ -25,11 +25,8 @@ jobs:
         with:
           node-version: 24
 
-      - name: Reconstruire l’index de recherche
-        run: npm run build:search
-
       - name: Exécuter la recette automatisée
-        run: npm test
+        run: npm run recette
 
       - name: Configurer GitHub Pages
         if: github.event_name != 'pull_request'

@@ -6,8 +6,10 @@
         return {
             query: params.get("q") || "",
             level: params.get("level") || "",
+            school: params.get("school") || "",
             classes: params.getAll("class").filter(Boolean),
             sort: params.get("sort") || "level_asc",
+            spell: params.get("spell") || "",
         };
     }
 
@@ -15,15 +17,18 @@
         var params = new URLSearchParams();
         var query = String(state.query || "").trim();
         var level = String(state.level || "");
+        var school = String(state.school || "");
         var sort = String(state.sort || "level_asc");
         var classes = Array.isArray(state.classes) ? state.classes : Array.from(state.classes || []);
 
         if (query) params.set("q", query);
         if (level) params.set("level", level);
+        if (school) params.set("school", school);
         classes.filter(Boolean).sort(function (a, b) {
             return String(a).localeCompare(String(b), "fr");
         }).forEach(function (className) { params.append("class", className); });
         if (sort !== "level_asc") params.set("sort", sort);
+        if (state.spell) params.set("spell", state.spell);
         return params.toString();
     }
 
@@ -31,9 +36,54 @@
         var locationValue = locationObject || root.location;
         var historyValue = historyObject || root.history;
         if (!locationValue || !historyValue || typeof historyValue.replaceState !== "function") return;
-        var search = buildSearch(state);
-        var next = locationValue.pathname + (search ? "?" + search : "") + (locationValue.hash || "");
+        var current = new URL(
+            locationValue.href || locationValue.pathname + (locationValue.search || "") + (locationValue.hash || ""),
+            "https://dnd.local",
+        );
+        ["q", "level", "school", "class", "sort"].forEach(function (parameter) {
+            current.searchParams.delete(parameter);
+        });
+        var search = new URLSearchParams(buildSearch(state));
+        search.forEach(function (value, key) {
+            if (key !== "spell") current.searchParams.append(key, value);
+        });
+        var next = current.pathname + current.search + current.hash;
         historyValue.replaceState(null, "", next);
+    }
+
+    function slugify(value) {
+        return String(value || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase("fr")
+            .replace(/['’]/g, "-")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+    }
+
+    function readSelection(parameter, search) {
+        if (!parameter) return "";
+        return new URLSearchParams(search === undefined ? root.location?.search || "" : search).get(parameter) || "";
+    }
+
+    function updateSelection(parameter, value, options) {
+        options = options || {};
+        var locationValue = options.location || root.location;
+        var historyValue = options.history || root.history;
+        var mode = options.mode === "replace" ? "replaceState" : "pushState";
+        if (!parameter || !locationValue || !historyValue || typeof historyValue[mode] !== "function") return;
+
+        var current = new URL(
+            locationValue.href || locationValue.pathname + (locationValue.search || "") + (locationValue.hash || ""),
+            "https://dnd.local",
+        );
+        (options.clear || []).forEach(function (key) { current.searchParams.delete(key); });
+        if (value) current.searchParams.set(parameter, value);
+        else current.searchParams.delete(parameter);
+        var next = current.pathname + current.search + current.hash;
+        var previous = locationValue.pathname + (locationValue.search || "") + (locationValue.hash || "");
+        if (next === previous) return;
+        historyValue[mode]({ dndSelection: value ? parameter : null }, "", next);
     }
 
     function renderChips(container, chips, onRemove) {
@@ -152,7 +202,10 @@
     root.DndCatalogUI = {
         readState: readState,
         buildSearch: buildSearch,
+        readSelection: readSelection,
         replaceUrlState: replaceUrlState,
+        slugify: slugify,
+        updateSelection: updateSelection,
         renderChips: renderChips,
         connectDrawer: connectDrawer,
     };

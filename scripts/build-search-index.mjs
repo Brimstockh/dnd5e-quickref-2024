@@ -1,4 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { EOL } from "node:os";
 import { resolve } from "node:path";
 import vm from "node:vm";
 
@@ -239,5 +240,9 @@ const entries = [
 ];
 
 entries.sort((first, second) => first.title.localeCompare(second.title, "fr"));
-await writeFile(resolve(root, "data/search-index.json"), `${JSON.stringify({ version: 2, count: entries.length, entries })}\n`, "utf8");
+await writeFile(
+  resolve(root, "data/search-index.json"),
+  `${JSON.stringify({ version: 2, count: entries.length, entries })}${EOL}`,
+  "utf8",
+);
 console.log(`Generated ${entries.length} search entries.`);

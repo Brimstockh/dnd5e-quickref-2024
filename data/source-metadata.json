@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "defaults": {
+    "edition": "D&D 2024",
+    "language": "fr",
+    "updated": "2026-07-23",
+    "status": "editorial"
+  },
+  "entries": [
+    {
+      "path": "rules-2024.html",
+      "document": "SRD 5.2 et règles D&D 2024",
+      "type": "Synthèse de règles",
+      "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "path": "combat-2024.html",
+      "document": "SRD 5.2 et règles D&D 2024",
+      "type": "Référence de combat",
+      "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "path": "mastery-2024.html",
+      "document": "Règles D&D 2024",
+      "type": "Synthèse des maîtrises",
+      "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "path": "spells.html",
+      "document": "Référentiel de sorts D&D 2024 du projet",
+      "type": "Catalogue structuré",
+      "status": "structured",
+      "translationNote": "Noms et descriptions en français harmonisés pour la consultation ; vérifiez l’ouvrage de référence en cas d’ambiguïté."
+    },
+    {
+      "path": "dons.html",
+      "document": "Manuel des Joueurs 2024",
+      "type": "Catalogue de dons",
+      "status": "structured",
+      "translationNote": "Adaptation française non officielle destinée à la consultation ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "path": "armes-armures.html",
+      "document": "Manuel des Joueurs 2024",
+      "type": "Référence d’équipement",
+      "translationNote": "Adaptation française non officielle destinée à la consultation ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "path": "glossaire.html",
+      "document": "SRD 5.2 et règles D&D 2024",
+      "type": "Glossaire éditorial",
+      "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "prefix": "classes/",
+      "document": "Manuel des Joueurs 2024",
+      "type": "Référence de classe",
+      "translationNote": "Adaptation française non officielle destinée à la consultation ; ce contenu ne remplace pas l’ouvrage de référence."
+    },
+    {
+      "prefix": "races/",
+      "document": "Manuel des Joueurs 2024",
+      "type": "Référence d’espèce",
+      "translationNote": "Adaptation française non officielle destinée à la consultation ; ce contenu ne remplace pas l’ouvrage de référence."
+    }
+  ]
+}

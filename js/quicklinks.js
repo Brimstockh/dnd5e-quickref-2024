@@ -7,6 +7,7 @@
         { label: "Règles 2024", url: "rules-2024.html" },
         { label: "Combat", url: "combat-2024.html" }
     ];
+    var storage = window.DndStorage;
 
     function getScope(el) {
         return el.getAttribute("data-quicklinks-key") || window.location.pathname;
@@ -26,21 +27,15 @@
     }
 
     function loadLinks(scope) {
-        try {
-            var raw = localStorage.getItem(getStorageKey(scope));
-            if (!raw) return DEFAULT_LINKS.slice();
-            var parsed = JSON.parse(raw);
-            if (!Array.isArray(parsed)) return DEFAULT_LINKS.slice();
-            return parsed.filter(function (x) {
-                return x && typeof x.label === "string" && typeof x.url === "string";
-            });
-        } catch (err) {
-            return DEFAULT_LINKS.slice();
-        }
+        var parsed = storage.getJson(getStorageKey(scope), null);
+        if (!Array.isArray(parsed)) return DEFAULT_LINKS.slice();
+        return parsed.filter(function (x) {
+            return x && typeof x.label === "string" && typeof x.url === "string";
+        });
     }
 
     function saveLinks(scope, links) {
-        localStorage.setItem(getStorageKey(scope), JSON.stringify(links));
+        storage.setJson(getStorageKey(scope), links);
     }
 
     function linksToText(links) {

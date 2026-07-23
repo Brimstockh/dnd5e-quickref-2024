@@ -20,11 +20,7 @@
     };
 
     let feats = [];
-
-    function queryFromUrl() {
-        if (!window.location || typeof URLSearchParams === "undefined") return "";
-        return new URLSearchParams(window.location.search).get("q") || "";
-    }
+    let revealSelection = true;
 
     function escapeHtml(value) {
         return String(value)
@@ -140,7 +136,7 @@
             : "";
 
         return `
-            <details class="feat">
+            <details class="feat" id="feat-${escapeHtml(window.DndCatalogUI.slugify(feat.name))}" data-content-id="${escapeHtml(window.DndCatalogUI.slugify(feat.name))}">
                 <summary>
                     <header class="feat-head">
                         <h2 class="feat-title">${escapeHtml(feat.name)}</h2>
@@ -156,13 +152,50 @@
     }
 
     function render() {
-        const filtered = applyFilters();
+        let filtered = applyFilters();
+        let selectedSlug = window.DndCatalogUI.readSelection("feat");
+        const selectedIndex = filtered.findIndex(function (feat) {
+            return window.DndCatalogUI.slugify(feat.name) === selectedSlug;
+        });
+        if (selectedSlug && selectedIndex === -1) {
+            window.DndCatalogUI.updateSelection("feat", "", { mode: "replace" });
+            selectedSlug = "";
+        } else if (selectedIndex > 0) {
+            filtered = [filtered[selectedIndex]].concat(filtered.slice(0, selectedIndex), filtered.slice(selectedIndex + 1));
+        }
         summary.textContent = `${filtered.length} don(s) affiché(s) sur ${feats.length}.`;
         if (!filtered.length) {
             featsGrid.innerHTML = `<div class="empty">Aucun don ne correspond aux filtres actuels.</div>`;
             return;
         }
         featsGrid.innerHTML = filtered.map(card).join("");
+        connectDetails(selectedSlug);
+    }
+
+    function connectDetails(selectedSlug) {
+        const detailsElements = Array.from(featsGrid.querySelectorAll("details[data-content-id]"));
+        detailsElements.forEach(function (details) {
+            const slug = details.getAttribute("data-content-id");
+            details.open = Boolean(selectedSlug && slug === selectedSlug);
+            details.querySelector("summary")?.addEventListener("click", function () {
+                if (!details.open) {
+                    detailsElements.forEach(function (other) {
+                        if (other !== details) other.open = false;
+                    });
+                    window.DndCatalogUI.updateSelection("feat", slug, { mode: "push" });
+                } else if (window.DndCatalogUI.readSelection("feat") === slug) {
+                    window.DndCatalogUI.updateSelection("feat", "", { mode: "replace" });
+                }
+            });
+        });
+        const selected = detailsElements.find(function (details) {
+            return details.getAttribute("data-content-id") === selectedSlug;
+        });
+        if (selected && revealSelection) {
+            selected.scrollIntoView({ block: "start" });
+            selected.querySelector("summary")?.focus({ preventScroll: true });
+        }
+        revealSelection = false;
     }
 
     function setAllCards(open) {
@@ -171,9 +204,24 @@
         });
     }
 
+    function applyUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        searchInput.value = params.get("q") || "";
+        [
+            [categorySelect, "category"],
+            [prereqSelect, "prereq"],
+            [repeatableSelect, "repeatable"],
+            [sortSelect, "sort"],
+        ].forEach(function ([select, parameter]) {
+            const value = params.get(parameter) || "";
+            if (!select.options || !Array.from(select.options).some(function (option) { return option.value === value; })) return;
+            select.value = value;
+        });
+    }
+
     function init(data) {
         feats = data.feats || [];
-        searchInput.value = queryFromUrl();
+        applyUrlState();
         sourceNote.textContent = data.note
             ? `${data.count || feats.length} dons chargés. ${data.note}`
             : `${data.count || feats.length} dons chargés.`;
@@ -185,6 +233,13 @@
         sortSelect.addEventListener("change", render);
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
         collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+        if (typeof window.addEventListener === "function") {
+            window.addEventListener("popstate", function () {
+                applyUrlState();
+                revealSelection = true;
+                render();
+            });
+        }
         render();
     }
 

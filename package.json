@@ -3,6 +3,8 @@
   "type": "module",
   "scripts": {
     "build:search": "node scripts/build-search-index.mjs",
+    "check:search": "npm run build:search && git diff --exit-code -- data/search-index.json",
+    "recette": "npm run check:search && npm test",
     "test": "node --test tests/*.test.mjs"
   }
 }
