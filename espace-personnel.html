@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Bibliothèque, listes, notes et profils locaux du compagnon D&D 2024." />
+    <title>Espace personnel — D&amp;D 2024</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/personal-space.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+</head>
+<body class="personal-page" data-library-title="Espace personnel" data-library-category="Outil" data-track-recent="false">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="personal">
+        <nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav>
+    </header>
+
+    <main class="personal-main" id="main-content">
+        <header class="personal-hero">
+            <p class="personal-eyebrow">Données privées sur cet appareil</p>
+            <h1>Mon espace personnel</h1>
+            <p>Organisez vos ressources et vos personnages. Rien n’est envoyé en ligne.</p>
+        </header>
+
+        <p class="personal-status" id="personalStatus" role="status" aria-live="polite"></p>
+
+        <section class="personal-grid" aria-label="Profils et sauvegarde">
+            <article class="personal-card">
+                <div class="personal-card__heading"><h2>Profils de personnage</h2><button class="btn" type="button" id="newProfileBtn">Créer</button></div>
+                <label for="activeProfileSelect">Profil actif</label>
+                <select id="activeProfileSelect"><option value="">Aucun profil</option></select>
+                <form id="profileForm" hidden>
+                    <input type="hidden" id="profileId" />
+                    <label for="profileName">Nom</label><input id="profileName" required maxlength="80" />
+                    <div class="personal-form-row">
+                        <label>Classe<input id="profileClass" maxlength="80" /></label>
+                        <label>Niveau<input id="profileLevel" type="number" min="1" max="20" value="1" /></label>
+                        <label>Espèce<input id="profileSpecies" maxlength="80" /></label>
+                    </div>
+                    <label for="profileSheetUrl">Lien vers une feuille locale</label><input id="profileSheetUrl" type="url" />
+                    <div class="personal-actions">
+                        <button class="btn" type="submit">Enregistrer</button>
+                        <button class="btn btn--secondary" type="button" id="duplicateProfileBtn">Dupliquer</button>
+                        <button class="btn btn--danger" type="button" id="deleteProfileBtn">Supprimer</button>
+                    </div>
+                </form>
+            </article>
+
+            <article class="personal-card">
+                <h2>Sauvegarde</h2>
+                <p>Exportez favoris, listes, notes, profils et paramètres dans un fichier JSON unique.</p>
+                <label class="personal-check"><input type="checkbox" id="includeSheet" checked /> Inclure la feuille autonome</label>
+                <div class="personal-actions">
+                    <button class="btn" type="button" id="exportBackupBtn">Exporter</button>
+                    <label class="btn btn--secondary" for="importBackupInput">Importer</label>
+                    <input class="visually-hidden" id="importBackupInput" type="file" accept="application/json,.json" />
+                </div>
+            </article>
+        </section>
+
+        <section class="personal-card" aria-labelledby="libraryTitle">
+            <div class="personal-card__heading">
+                <div><h2 id="libraryTitle">Bibliothèque</h2><p>Vos favoris globaux et vos listes personnalisées.</p></div>
+                <button class="btn" type="button" id="newListBtn">Nouvelle liste</button>
+            </div>
+            <label for="librarySearch">Rechercher dans la bibliothèque</label>
+            <input id="librarySearch" type="search" placeholder="Titre, catégorie, tag ou note…" />
+            <div id="personalLists" class="personal-lists"></div>
+        </section>
+
+        <section class="personal-card" aria-labelledby="notesTitle">
+            <h2 id="notesTitle">Notes personnelles</h2>
+            <p class="personal-disclaimer">Ces notes sont personnelles et ne font pas partie des règles officielles.</p>
+            <form id="pageNoteForm">
+                <label for="noteContentId">Identifiant ou URL du contenu</label>
+                <input id="noteContentId" required placeholder="rule-concentration ou rules-2024.html#concentration" />
+                <label for="noteText">Note personnelle</label>
+                <textarea id="noteText" rows="4" maxlength="5000"></textarea>
+                <div class="personal-actions"><button class="btn" type="submit">Enregistrer la note</button><button class="btn btn--danger" type="button" id="deleteNoteBtn">Supprimer</button></div>
+            </form>
+            <div id="notesList" class="personal-notes"></div>
+        </section>
+    </main>
+    <dialog class="personal-prompt" id="personalPromptDialog" aria-labelledby="personalPromptTitle">
+        <form method="dialog">
+            <h2 id="personalPromptTitle">Saisie</h2>
+            <label for="personalPromptInput" id="personalPromptLabel">Valeur</label>
+            <input id="personalPromptInput" />
+            <div class="personal-actions">
+                <button class="btn" value="confirm">Valider</button>
+                <button class="btn btn--secondary" value="cancel" formnovalidate>Annuler</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="js/personal-space.js" defer></script>
+</body>
+</html>

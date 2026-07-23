@@ -11,6 +11,9 @@ const aliasRegistry = JSON.parse(await readFile(resolve(root, "data/content-id-a
 const relationIndex = JSON.parse(await readFile(resolve(root, "data/content-relations.json"), "utf8"));
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8"));
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
+const creation = JSON.parse(await readFile(resolve(root, "data/character-creation.json"), "utf8"));
+const storageContracts = JSON.parse(await readFile(resolve(root, "data/local-storage-contracts.json"), "utf8"));
+const inventory = JSON.parse(await readFile(resolve(root, "data/content-inventory.json"), "utf8"));
 const errors = [];
 
 if (index.schemaVersion !== 1) errors.push("search index schemaVersion must be 1");
@@ -95,9 +98,52 @@ for (const [position, entry] of (glossary.entries || []).entries()) {
   }
 }
 
+if (creation.schemaVersion !== 1) errors.push("character creation schemaVersion must be 1");
+for (const field of ["edition", "document", "updated", "language", "status"]) {
+  if (!String(creation.source?.[field] || "").trim()) errors.push(`character creation source is missing ${field}`);
+}
+for (const [collectionName, type] of [["classes", "class"], ["species", "species"], ["backgrounds", "background"]]) {
+  const collectionIds = new Set();
+  for (const entry of creation[collectionName] || []) {
+    const context = `character creation ${collectionName}: ${entry?.id || "(missing)"}`;
+    if (!/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(entry?.id || "")) errors.push(`${context} has an invalid stable ID`);
+    if (collectionIds.has(entry.id)) errors.push(`${context} duplicates an ID`);
+    collectionIds.add(entry.id);
+    if (!String(entry?.name || "").trim()) errors.push(`${context} has no name`);
+    const contentId = `${type}-${entry.id}`;
+    if (!ids.has(contentId)) errors.push(`${context} has no canonical search content: ${contentId}`);
+  }
+}
+if (creation.classes?.length !== 12) errors.push("character creation must contain 12 classes");
+if (creation.species?.length !== 10) errors.push("character creation must contain 10 species");
+if (creation.backgrounds?.length !== 16) errors.push("character creation must contain 16 backgrounds");
+if (new Set(creation.languages || []).size !== creation.languages?.length) errors.push("character creation languages contain duplicates");
+
+if (storageContracts.schemaVersion !== 1) errors.push("local storage contracts schemaVersion must be 1");
+const storageKeys = new Set();
+for (const contract of storageContracts.contracts || []) {
+  if (!String(contract.key || "").trim()) errors.push("local storage contract has no key");
+  if (storageKeys.has(contract.key)) errors.push(`local storage contract duplicates key: ${contract.key}`);
+  storageKeys.add(contract.key);
+  if (!Number.isInteger(contract.currentVersion) || contract.currentVersion < 1) {
+    errors.push(`local storage contract has an invalid version: ${contract.key}`);
+  }
+  if (!Array.isArray(contract.contains) || !contract.contains.length) errors.push(`local storage contract has no contents: ${contract.key}`);
+}
+
+if (inventory.schemaVersion !== 1) errors.push("content inventory schemaVersion must be 1");
+if (inventory.count !== index.entries?.length) errors.push("content inventory count does not match search index");
+if (Object.values(inventory.byType || {}).reduce((sum, count) => sum + count, 0) !== inventory.count) {
+  errors.push("content inventory type counts do not match total");
+}
+for (const [key, entries] of Object.entries(inventory.quality || {})) {
+  if (!Array.isArray(entries)) errors.push(`content inventory quality ${key} must be an array`);
+  else if (entries.length) errors.push(`content inventory reports ${entries.length} ${key}`);
+}
+
 if (errors.length) {
   console.error(errors.map((error) => `- ${error}`).join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Validated ${index.entries.length} content IDs, ${aliasRegistry.count} aliases, ${relationCount} relations, and ${glossary.count} glossary entries.`);
+  console.log(`Validated ${index.entries.length} content IDs, ${aliasRegistry.count} aliases, ${relationCount} relations, ${glossary.count} glossary entries, ${creation.classes.length + creation.species.length + creation.backgrounds.length} creation choices, and ${storageContracts.contracts.length} storage contracts.`);
 }

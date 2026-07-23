@@ -7,7 +7,7 @@
         var next = document.getElementById("nextPageBtn");
         var indicator = document.getElementById("pageIndicator");
         var status = document.getElementById("status");
-        var labels = ["Essentiel", "Aventure", "Sorts I", "Sorts II"];
+        var labels = ["Session", "Essentiel", "Aventure", "Sorts I", "Sorts II"];
 
         function activeIndex() {
             var index = tabs.findIndex(function (tab) { return tab.classList.contains("active"); });

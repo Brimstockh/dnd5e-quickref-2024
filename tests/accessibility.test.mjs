@@ -94,3 +94,18 @@ test("home quick-access favorites remain independently keyboard accessible", asy
   assert.match(styles, /quick-access-card:focus-within > \.favorite-button/);
   assert.match(styles, /quick-access-card > \.favorite-button:focus-visible/);
 });
+
+test("creation tools expose keyboard focus, live status, and an accessible comparison table", async () => {
+  const wizardHtml = await readFile(resolve(root, "assistant-creation.html"), "utf8");
+  const wizardScript = await readFile(resolve(root, "js/creation-wizard.js"), "utf8");
+  const comparatorHtml = await readFile(resolve(root, "comparateur.html"), "utf8");
+  const comparatorScript = await readFile(resolve(root, "js/comparator.js"), "utf8");
+
+  assert.match(wizardHtml, /id="wizardStatus" role="status" aria-live="polite"/);
+  assert.match(wizardScript, /heading\.tabIndex = -1/);
+  assert.match(wizardScript, /heading\.focus\(\)/);
+  assert.match(comparatorHtml, /role="region" aria-label="Tableau comparatif défilable"/);
+  assert.match(comparatorHtml, /aria-describedby="compareStatus"/);
+  assert.match(comparatorScript, /document\.createElement\("caption"\)/);
+  assert.match(comparatorScript, /cell\.scope = "col"/);
+});

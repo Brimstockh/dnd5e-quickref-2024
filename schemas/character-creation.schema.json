@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/character-creation.schema.json",
+  "title": "Modèle de création de personnage",
+  "type": "object",
+  "required": ["schemaVersion", "source", "abilities", "standardArray", "classes", "species", "backgrounds", "languages", "alignments"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "source": {
+      "type": "object",
+      "required": ["edition", "document", "updated", "language", "status"]
+    },
+    "abilities": {"type": "array", "minItems": 6, "maxItems": 6, "uniqueItems": true, "items": {"type": "string"}},
+    "standardArray": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "integer"}},
+    "classes": {"type": "array", "minItems": 12, "items": {"$ref": "#/$defs/namedChoice"}},
+    "species": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/namedChoice"}},
+    "backgrounds": {"type": "array", "minItems": 16, "items": {"$ref": "#/$defs/namedChoice"}},
+    "languages": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "alignments": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "namedChoice": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"},
+        "name": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

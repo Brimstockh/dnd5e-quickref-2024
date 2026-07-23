@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "edition": "D&D 2024",
+    "document": "SRD 5.2 et synthèse éditoriale",
+    "updated": "2026-07-23",
+    "language": "fr",
+    "status": "editorial"
+  },
+  "abilities": ["Force", "Dextérité", "Constitution", "Intelligence", "Sagesse", "Charisme"],
+  "standardArray": [15, 14, 13, 12, 10, 8],
+  "classes": [
+    {"id":"barbare","name":"Barbare","hitDie":12,"primary":["Force"],"savingThrows":["Force","Constitution"],"armor":["Légères","Intermédiaires","Boucliers"],"weapons":["Courantes","De guerre"],"magic":"Aucune au niveau 1","complexity":"Moyenne","role":"Attaquant résistant","mobility":"Moyenne","support":"Faible","resilience":"Élevée","standardArray":[15,13,14,10,12,8]},
+    {"id":"barde","name":"Barde","hitDie":8,"primary":["Charisme"],"savingThrows":["Dextérité","Charisme"],"armor":["Légères"],"weapons":["Courantes"],"magic":"Lanceur de sorts complet","complexity":"Élevée","role":"Soutien polyvalent","mobility":"Moyenne","support":"Élevé","resilience":"Faible","standardArray":[8,14,12,13,10,15]},
+    {"id":"clerc","name":"Clerc","hitDie":8,"primary":["Sagesse"],"savingThrows":["Sagesse","Charisme"],"armor":["Légères","Intermédiaires","Boucliers"],"weapons":["Courantes"],"magic":"Lanceur de sorts complet","complexity":"Moyenne","role":"Soutien divin","mobility":"Faible","support":"Élevé","resilience":"Moyenne","standardArray":[14,8,13,10,15,12]},
+    {"id":"druide","name":"Druide","hitDie":8,"primary":["Sagesse"],"savingThrows":["Intelligence","Sagesse"],"armor":["Légères","Boucliers"],"weapons":["Courantes"],"magic":"Lanceur de sorts complet","complexity":"Élevée","role":"Contrôle et soutien","mobility":"Élevée","support":"Élevé","resilience":"Moyenne","standardArray":[8,12,14,13,15,10]},
+    {"id":"guerrier","name":"Guerrier","hitDie":10,"primary":["Force","Dextérité"],"savingThrows":["Force","Constitution"],"armor":["Toutes","Boucliers"],"weapons":["Courantes","De guerre"],"magic":"Aucune par défaut","complexity":"Faible","role":"Combattant polyvalent","mobility":"Moyenne","support":"Faible","resilience":"Élevée","standardArray":[15,14,13,8,10,12]},
+    {"id":"moine","name":"Moine","hitDie":8,"primary":["Dextérité","Sagesse"],"savingThrows":["Force","Dextérité"],"armor":["Aucune"],"weapons":["Courantes légères"],"magic":"Focus martial","complexity":"Élevée","role":"Combattant mobile","mobility":"Élevée","support":"Faible","resilience":"Moyenne","standardArray":[12,15,13,10,14,8]},
+    {"id":"paladin","name":"Paladin","hitDie":10,"primary":["Force","Charisme"],"savingThrows":["Sagesse","Charisme"],"armor":["Toutes","Boucliers"],"weapons":["Courantes","De guerre"],"magic":"Demi-lanceur de sorts","complexity":"Moyenne","role":"Défense et soutien","mobility":"Faible","support":"Élevé","resilience":"Élevée","standardArray":[15,10,13,8,12,14]},
+    {"id":"rodeur","name":"Rôdeur","hitDie":10,"primary":["Dextérité","Sagesse"],"savingThrows":["Force","Dextérité"],"armor":["Légères","Intermédiaires","Boucliers"],"weapons":["Courantes","De guerre"],"magic":"Demi-lanceur de sorts","complexity":"Moyenne","role":"Exploration et attaque","mobility":"Élevée","support":"Moyen","resilience":"Moyenne","standardArray":[12,15,13,8,14,10]},
+    {"id":"roublard","name":"Roublard","hitDie":8,"primary":["Dextérité"],"savingThrows":["Dextérité","Intelligence"],"armor":["Légères"],"weapons":["Courantes"],"magic":"Aucune par défaut","complexity":"Faible","role":"Expert et attaquant","mobility":"Élevée","support":"Faible","resilience":"Faible","standardArray":[12,15,13,14,10,8]},
+    {"id":"ensorceleur","name":"Ensorceleur","hitDie":6,"primary":["Charisme"],"savingThrows":["Constitution","Charisme"],"armor":["Aucune"],"weapons":["Courantes"],"magic":"Lanceur de sorts complet","complexity":"Élevée","role":"Magie offensive","mobility":"Moyenne","support":"Moyen","resilience":"Faible","standardArray":[10,13,14,8,12,15]},
+    {"id":"occultiste","name":"Occultiste","hitDie":8,"primary":["Charisme"],"savingThrows":["Sagesse","Charisme"],"armor":["Légères"],"weapons":["Courantes"],"magic":"Magie de pacte","complexity":"Élevée","role":"Attaque magique","mobility":"Moyenne","support":"Moyen","resilience":"Moyenne","standardArray":[8,14,13,12,10,15]},
+    {"id":"magicien","name":"Magicien","hitDie":6,"primary":["Intelligence"],"savingThrows":["Intelligence","Sagesse"],"armor":["Aucune"],"weapons":["Courantes"],"magic":"Lanceur de sorts complet","complexity":"Moyenne","role":"Contrôle arcanique","mobility":"Moyenne","support":"Élevé","resilience":"Faible","standardArray":[8,12,13,15,14,10]}
+  ],
+  "species": [
+    {"id":"aasimar","name":"Aasimar","size":"Moyenne ou Petite","speed":"9 m","traits":["Résistance céleste","Mains guérisseuses","Révélation céleste"],"complexity":"Moyenne"},
+    {"id":"drakeide","name":"Drakéide","size":"Moyenne","speed":"9 m","traits":["Ascendance draconique","Souffle","Résistance aux dégâts"],"complexity":"Moyenne"},
+    {"id":"nain","name":"Nain","size":"Moyenne","speed":"9 m","traits":["Vision dans le noir","Résistance naine","Solidité naine"],"complexity":"Faible"},
+    {"id":"elfe","name":"Elfe","size":"Moyenne","speed":"9 m","traits":["Vision dans le noir","Ascendance féerique","Transe","Lignée elfique"],"complexity":"Moyenne"},
+    {"id":"gnome","name":"Gnome","size":"Petite","speed":"9 m","traits":["Vision dans le noir","Ruse gnome","Lignée gnome"],"complexity":"Moyenne"},
+    {"id":"goliath","name":"Goliath","size":"Moyenne","speed":"10,5 m","traits":["Ascendance de géant","Grande carrure"],"complexity":"Moyenne"},
+    {"id":"halfelin","name":"Halfelin","size":"Petite","speed":"9 m","traits":["Chanceux","Brave","Agilité halfeline"],"complexity":"Faible"},
+    {"id":"humain","name":"Humain","size":"Moyenne ou Petite","speed":"9 m","traits":["Ingéniosité","Talent","Polyvalence"],"complexity":"Faible"},
+    {"id":"orc","name":"Orc","size":"Moyenne","speed":"9 m","traits":["Poussée d'adrénaline","Endurance implacable","Vision dans le noir"],"complexity":"Faible"},
+    {"id":"tieffelin","name":"Tieffelin","size":"Moyenne ou Petite","speed":"9 m","traits":["Héritage fiélon","Résistance d'outre-monde","Magie innée"],"complexity":"Moyenne"}
+  ],
+  "backgrounds": [
+    {"id":"acolyte","name":"Acolyte","abilities":["Intelligence","Sagesse","Charisme"],"feat":"Initié à la magie (clerc)","skills":["Intuition","Religion"]},
+    {"id":"artisan","name":"Artisan","abilities":["Force","Dextérité","Intelligence"],"feat":"Façonneur","skills":["Investigation","Persuasion"]},
+    {"id":"artiste","name":"Artiste","abilities":["Force","Dextérité","Charisme"],"feat":"Musicien","skills":["Acrobaties","Représentation"]},
+    {"id":"charlatan","name":"Charlatan","abilities":["Dextérité","Constitution","Charisme"],"feat":"Doué","skills":["Escamotage","Tromperie"]},
+    {"id":"criminel","name":"Criminel","abilities":["Dextérité","Constitution","Intelligence"],"feat":"Vigilant","skills":["Escamotage","Discrétion"]},
+    {"id":"ermite","name":"Ermite","abilities":["Constitution","Sagesse","Charisme"],"feat":"Guérisseur","skills":["Médecine","Religion"]},
+    {"id":"fermier","name":"Fermier","abilities":["Force","Constitution","Sagesse"],"feat":"Robuste","skills":["Dressage","Nature"]},
+    {"id":"garde","name":"Garde","abilities":["Force","Intelligence","Sagesse"],"feat":"Vigilant","skills":["Athlétisme","Perception"]},
+    {"id":"guide","name":"Guide","abilities":["Dextérité","Constitution","Sagesse"],"feat":"Initié à la magie (druide)","skills":["Discrétion","Survie"]},
+    {"id":"marchand","name":"Marchand","abilities":["Constitution","Intelligence","Charisme"],"feat":"Chanceux","skills":["Dressage","Persuasion"]},
+    {"id":"marin","name":"Marin","abilities":["Force","Dextérité","Sagesse"],"feat":"Bagarreur de tavernes","skills":["Acrobaties","Perception"]},
+    {"id":"noble","name":"Noble","abilities":["Force","Intelligence","Charisme"],"feat":"Doué","skills":["Histoire","Persuasion"]},
+    {"id":"sage","name":"Sage","abilities":["Constitution","Intelligence","Sagesse"],"feat":"Initié à la magie (magicien)","skills":["Arcanes","Histoire"]},
+    {"id":"scribe","name":"Scribe","abilities":["Dextérité","Intelligence","Sagesse"],"feat":"Doué","skills":["Investigation","Perception"]},
+    {"id":"soldat","name":"Soldat","abilities":["Force","Dextérité","Constitution"],"feat":"Sauvagerie martiale","skills":["Athlétisme","Intimidation"]},
+    {"id":"voyageur","name":"Voyageur","abilities":["Dextérité","Sagesse","Charisme"],"feat":"Chanceux","skills":["Discrétion","Intuition"]}
+  ],
+  "languages": ["Commun","Langue des signes commune","Draconique","Nain","Elfique","Géant","Gnome","Gobelin","Halfelin","Orc"],
+  "alignments": ["Loyal Bon","Neutre Bon","Chaotique Bon","Loyal Neutre","Neutre","Chaotique Neutre","Loyal Mauvais","Neutre Mauvais","Chaotique Mauvais"]
+}

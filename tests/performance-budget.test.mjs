@@ -15,12 +15,34 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
     ["data/glossary.json", 40_000],
+    ["data/character-creation.json", 15_000],
+    ["data/content-inventory.json", 3_000],
+    ["data/local-storage-contracts.json", 2_000],
   ];
 
   for (const [path, maximum] of budgets) {
     const { size } = await stat(resolve(root, path));
     assert.ok(size <= maximum, `${path}: ${size} octets dépasse le budget de ${maximum}`);
   }
+});
+
+test("personal and creation tools stay lightweight and preload shared data", async () => {
+  const budgets = [
+    ["js/user-library.js", 25_000],
+    ["js/creation-wizard.js", 30_000],
+    ["js/comparator.js", 10_000],
+    ["js/session-tools.js", 30_000],
+    ["js/personal-space.js", 30_000],
+  ];
+  for (const [path, maximum] of budgets) {
+    const { size } = await stat(resolve(root, path));
+    assert.ok(size <= maximum, `${path}: ${size} octets dépasse le budget de ${maximum}`);
+  }
+  const wizard = await readFile(resolve(root, "assistant-creation.html"), "utf8");
+  const comparator = await readFile(resolve(root, "comparateur.html"), "utf8");
+  assert.match(wizard, /rel="preload" href="data\/character-creation\.json" as="fetch"/);
+  assert.match(wizard, /rel="preload" href="data\/spells_2024\.json" as="fetch"/);
+  assert.match(comparator, /rel="preload" href="data\/search-index\.json" as="fetch"/);
 });
 
 test("large catalogs preload JSON and use progressive rendering", async () => {

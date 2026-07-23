@@ -59,6 +59,8 @@
             label: "Création de personnage",
             links: [
                 ["creation", "Créer un personnage", "creation-personnage-2024.html", "Guide de création"],
+                ["creator", "Assistant guidé", "assistant-creation.html", "Création en 11 étapes"],
+                ["compare", "Comparateur", "comparateur.html", "Comparer classes, espèces et options"],
                 ["classes", "Classes", "classes/index.html", "Les douze classes"],
                 ["species", "Espèces", "races/index.html", "Peuples et origines"],
                 ["backgrounds", "Historiques", "historique.html", "Dons et compétences"],
@@ -82,6 +84,7 @@
             id: "tools",
             label: "Outils",
             links: [
+                ["personal", "Espace personnel", "espace-personnel.html", "Bibliothèque, notes et profils"],
                 ["sheet-tools", "Feuille autonome", "character-sheet-standalone.html", "Créer et sauvegarder une fiche"],
                 ["characters", "Personnages sauvegardés", "html/characters.html", "Consulter les personnages"],
                 ["tools", "Matériel d’aventurier", "outils-aventurier.html", "Outils, paquetages et objets"],
@@ -942,6 +945,15 @@
             "share",
         );
         var favoriteButton = null;
+        var personalLink = doc.createElement("a");
+        var profileSelect = doc.createElement("select");
+        var noteButton = iconButton("note-current", "Ajouter une note personnelle", "glossary");
+        var noteDialog = doc.createElement("dialog");
+        var noteTitle = doc.createElement("h2");
+        var noteLabel = doc.createElement("label");
+        var noteField = doc.createElement("textarea");
+        var noteHelp = doc.createElement("p");
+        var noteClose = doc.createElement("button");
         var menuButton = iconButton("mobile-navigation-toggle", "Ouvrir le menu", "menu");
         var drawer = doc.createElement("aside");
         var drawerHead = doc.createElement("div");
@@ -965,6 +977,58 @@
         logoSubtitle.className = "site-logo__subtitle";
         logoSubtitle.textContent = "Le Compagnon de jeu";
         actions.className = "site-header__actions";
+        personalLink.className = "icon-button personal-space-link";
+        personalLink.href = pageUrl("espace-personnel.html");
+        personalLink.setAttribute("aria-label", "Ouvrir mon espace personnel");
+        personalLink.title = "Espace personnel";
+        personalLink.appendChild(createIcon("characters"));
+        profileSelect.className = "active-profile-select";
+        profileSelect.setAttribute("aria-label", "Profil de personnage actif");
+        function renderProfileSelect() {
+            var api = window.DndProfiles;
+            var all = api && typeof api.getAll === "function" ? api.getAll() : [];
+            var active = api && typeof api.getActive === "function" ? api.getActive() : null;
+            profileSelect.replaceChildren(new Option("Sans profil", ""));
+            all.forEach(function (profile) { profileSelect.appendChild(new Option(profile.name, profile.id)); });
+            profileSelect.value = active?.id || "";
+            profileSelect.hidden = all.length === 0;
+        }
+        profileSelect.addEventListener("change", function () {
+            if (window.DndProfiles) window.DndProfiles.setActive(profileSelect.value);
+        });
+        window.addEventListener("dndpersonalchange", renderProfileSelect);
+        renderProfileSelect();
+        var noteId = doc.body.dataset.contentId || (
+            window.location.pathname.slice(siteRoot.pathname.length) + window.location.search + window.location.hash
+        );
+        noteDialog.className = "personal-note-dialog";
+        noteTitle.textContent = "Note personnelle";
+        noteLabel.textContent = "Votre note sur cette page";
+        noteLabel.htmlFor = "personal-page-note";
+        noteField.id = "personal-page-note";
+        noteField.rows = 7;
+        noteField.maxLength = 5000;
+        noteHelp.textContent = "Enregistrée automatiquement sur cet appareil. Elle ne fait pas partie des règles officielles.";
+        noteClose.className = "button";
+        noteClose.type = "button";
+        noteClose.textContent = "Fermer";
+        noteDialog.append(noteTitle, noteHelp, noteLabel, noteField, noteClose);
+        function updateNoteButton() {
+            var hasNote = Boolean(window.DndPersonal?.getNote(noteId));
+            noteButton.classList.toggle("is-active", hasNote);
+            noteButton.setAttribute("aria-label", hasNote ? "Modifier la note personnelle" : "Ajouter une note personnelle");
+        }
+        noteButton.addEventListener("click", function () {
+            noteField.value = window.DndPersonal?.getNote(noteId) || "";
+            noteDialog.showModal();
+            noteField.focus();
+        });
+        noteField.addEventListener("input", function () {
+            if (window.DndPersonal) window.DndPersonal.setNote(noteId, noteField.value);
+        });
+        noteClose.addEventListener("click", function () { noteDialog.close(); });
+        window.addEventListener("dndpersonalchange", updateNoteButton);
+        updateNoteButton();
         shareStatus.className = "share-feedback";
         shareStatus.setAttribute("role", "status");
         shareStatus.setAttribute("aria-live", "polite");
@@ -1127,12 +1191,12 @@
         logo.append(mark, logoText);
         actions.append(searchButton);
         if (favoriteButton) actions.append(favoriteButton);
-        actions.append(shareButton, sessionPanel.openButton, sessionButton, themeButton, menuButton);
+        actions.append(profileSelect, personalLink, noteButton, shareButton, sessionPanel.openButton, sessionButton, themeButton, menuButton);
         inner.append(logo, createNavigation(activePage, false), actions);
         drawerHead.append(drawerTitle, drawerClose);
         drawer.append(drawerHead, createNavigation(activePage, true));
         mount.replaceChildren(inner);
-        doc.body.append(backdrop, drawer, sessionPanel.backdrop, sessionPanel.panel, shareStatus);
+        doc.body.append(backdrop, drawer, sessionPanel.backdrop, sessionPanel.panel, noteDialog, shareStatus);
         enhanceDeepLinks();
         import(pageUrl("js/related-content.js"))
             .then(function (module) { return module.initRelatedContent(doc, window); })

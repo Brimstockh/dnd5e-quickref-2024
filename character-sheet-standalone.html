@@ -11,8 +11,11 @@
     <script src="js/site-shell.js" defer></script>
     <link rel="stylesheet" href="css/character-sheet.css" />
     <link rel="stylesheet" href="css/character-sheet-app.css" />
+    <link rel="stylesheet" href="css/session-tools.css" />
     <script src="js/character-sheet.js" defer></script>
     <script src="js/character-sheet-ui.js" defer></script>
+    <script src="js/session-state.js" defer></script>
+    <script src="js/session-tools.js" defer></script>
 </head>
 <body class="sheet-app-page" data-library-title="Feuille de personnage" data-library-category="Outil" data-library-description="Fiche autonome sauvegardée localement">
     <a class="skip-link" href="#main-content">Aller au contenu</a>
@@ -23,13 +26,18 @@
         <div class="app-shell">
             <aside class="sidebar">
                 <h1>Feuille D&amp;D 2024</h1>
-                <p>Quatre pages éditables, sauvegardées automatiquement sur cet appareil.</p>
+                <p>Cinq vues, dont un tableau compact pour jouer en session.</p>
+                <div class="sheet-mode-switch" aria-label="Mode de la feuille">
+                    <button type="button" id="sheetModeRead" aria-pressed="false">Lecture</button>
+                    <button type="button" id="sheetModeEdit" aria-pressed="true">Édition</button>
+                </div>
                 <div class="sheet-page-nav" aria-label="Navigation entre les pages">
                     <button type="button" id="previousPageBtn" aria-label="Page précédente">←</button>
                     <strong id="pageIndicator">Page 1 / 4 · Essentiel</strong>
                     <button type="button" id="nextPageBtn" aria-label="Page suivante">→</button>
                 </div>
                 <div class="page-tabs" role="tablist" aria-label="Pages de la feuille">
+                    <button type="button" data-page-target="sessionPage">Session</button>
                     <button type="button" class="active" data-page-target="page1">Essentiel</button>
                     <button type="button" data-page-target="page2">Aventure</button>
                     <button type="button" data-page-target="page3">Sorts I</button>
@@ -57,6 +65,79 @@
             </aside>
 
             <main class="sheet" id="main-content">
+                <section class="sheet-page session-page" id="sessionPage" data-page>
+                    <header class="session-heading">
+                        <div><p class="session-eyebrow">Tableau de jeu local</p><h2>Ma session</h2></div>
+                        <div class="session-rest-actions"><button type="button" id="shortRestBtn">Repos court</button><button type="button" id="longRestBtn">Repos long</button></div>
+                    </header>
+
+                    <div class="session-summary" aria-label="Valeurs essentielles">
+                        <div><span>CA</span><strong data-session-mirror="ac">—</strong></div>
+                        <div><span>PV</span><strong data-session-mirror="hp_current">—</strong><small data-session-max="hp_max"></small></div>
+                        <div><span>Vitesse</span><strong data-session-mirror="speed">—</strong></div>
+                        <div><span>Initiative</span><strong data-session-mirror="initiative">—</strong></div>
+                        <div><span>Perception</span><strong data-session-mirror="passive_perception">—</strong></div>
+                        <div><span>DD sorts</span><strong data-session-mirror="spell_dc">—</strong></div>
+                    </div>
+
+                    <div class="session-layout">
+                        <details class="session-card" open>
+                            <summary>Ressources</summary>
+                            <div id="sessionResources" class="session-list"></div>
+                            <form id="resourceForm" class="session-inline-form">
+                                <label>Nom<input id="resourceLabel" required maxlength="80" placeholder="Canalisation divine" /></label>
+                                <label>Actuel<input id="resourceCurrent" type="number" min="0" value="1" required /></label>
+                                <label>Maximum<input id="resourceMax" type="number" min="0" value="1" required /></label>
+                                <label>Recharge<select id="resourceReset"><option value="short-rest">Repos court</option><option value="long-rest">Repos long</option><option value="manual">Manuelle</option></select></label>
+                                <button type="submit">Ajouter</button>
+                            </form>
+                        </details>
+
+                        <details class="session-card" open>
+                            <summary>Emplacements de sorts</summary>
+                            <p class="session-help">Configuration générique : indiquez le maximum disponible pour chaque niveau.</p>
+                            <div id="sessionSlots" class="session-slots"></div>
+                        </details>
+
+                        <details class="session-card session-card--wide" open>
+                            <summary>Sorts préparés</summary>
+                            <div class="session-spell-filters">
+                                <label>Recherche<input id="preparedSpellSearch" type="search" /></label>
+                                <label>Classe<select id="preparedSpellClass"><option value="">Toutes</option></select></label>
+                                <label>Niveau<select id="preparedSpellLevel"><option value="">Tous</option></select></label>
+                            </div>
+                            <div id="preparedSpellResults" class="session-spell-results" aria-live="polite"></div>
+                            <h3>Sorts connus</h3>
+                            <div id="knownSpells" class="session-list"></div>
+                            <h3>Sorts préparés</h3>
+                            <div id="preparedSpells" class="session-list"></div>
+                        </details>
+
+                        <details class="session-card" open>
+                            <summary>Raccourcis</summary>
+                            <form id="shortcutForm" class="session-inline-form">
+                                <label>Libellé<input id="shortcutLabel" required maxlength="100" /></label>
+                                <label>Type<select id="shortcutType"><option>Action</option><option>Réaction</option><option>Sort</option><option>Règle</option><option>Équipement</option></select></label>
+                                <label>URL<input id="shortcutUrl" placeholder="quickref.html?condition=a-terre" /></label>
+                                <button type="submit">Épingler</button>
+                            </form>
+                            <div id="sessionShortcuts" class="session-list"></div>
+                        </details>
+
+                        <details class="session-card" open>
+                            <summary>Notes de session</summary>
+                            <label class="visually-hidden" for="sessionNotes">Notes de session</label>
+                            <textarea id="sessionNotes" rows="8" placeholder="Décisions, objectifs et rappels…"></textarea>
+                        </details>
+
+                        <details class="session-card session-card--wide">
+                            <summary>Historique récent</summary>
+                            <ol id="sessionHistory" class="session-history"></ol>
+                            <button type="button" id="clearSessionHistory">Effacer l’historique</button>
+                        </details>
+                    </div>
+                </section>
+
                 <section class="sheet-page active" id="page1" data-page>
                     <div class="sheet-title">
                         <div class="title-card identity-card">
@@ -423,6 +504,15 @@
             </main>
         </div>
     </div>
+
+    <dialog class="rest-dialog" id="restDialog" aria-labelledby="restDialogTitle">
+        <form method="dialog">
+            <h2 id="restDialogTitle">Confirmer le repos</h2>
+            <p>Les éléments suivants seront restaurés :</p>
+            <ul id="restPreview"></ul>
+            <div class="session-rest-actions"><button value="confirm">Appliquer</button><button value="cancel">Annuler</button></div>
+        </form>
+    </dialog>
 
 </body>
 </html>
