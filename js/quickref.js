@@ -94,6 +94,9 @@
         document.getElementById("quickref-detail-cost").textContent = type || "Règle";
         document.getElementById("quickref-detail-summary").textContent = data.description || data.subtitle || "";
         document.getElementById("quickref-detail-reference").textContent = data.reference || "Non précisée";
+        panel.setAttribute("data-context-share-parameter", record ? record.parameter : "");
+        panel.setAttribute("data-context-share-value", record ? record.slug : "");
+        panel.setAttribute("data-context-share-title", data.title || "[sans titre]");
         panel.style.setProperty("--category-color", color || "#7f6635");
 
         bulletsEl.replaceChildren();
@@ -106,6 +109,7 @@
             bullets.forEach(function (bullet) {
                 var paragraph = document.createElement("div");
                 paragraph.className = "quickref-detail__bullet";
+                paragraph.setAttribute("data-glossary-richtext", "");
                 paragraph.innerHTML = bullet;
                 bulletsEl.appendChild(paragraph);
             });

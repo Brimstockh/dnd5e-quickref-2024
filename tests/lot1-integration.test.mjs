@@ -41,8 +41,8 @@ test("Lot 1 preserves URL context through sharing and reporting", async () => {
 
   assert.match(catalog, /historyValue\.replaceState/);
   assert.match(catalog, /var mode = options\.mode === "replace" \? "replaceState" : "pushState"/);
-  assert.match(shell, /url: window\.location\.href/);
-  assert.match(shell, /navigator\.clipboard\.writeText\(window\.location\.href\)/);
+  assert.match(shell, /shareLink\(window\.location\.href/);
+  assert.match(shell, /copyLink\(window\.location\.href/);
   assert.match(report, /url: window\.location\.href/);
   assert.match(report, /contentId: selectedContent\(window\.location\.href, path\)/);
 });
@@ -52,11 +52,11 @@ test("continuous integration runs the complete recipe before publication", async
   const testsWorkflow = await readFile(resolve(root, ".github/workflows/tests.yml"), "utf8");
   const pagesWorkflow = await readFile(resolve(root, ".github/workflows/pages.yml"), "utf8");
 
-  assert.equal(
-    packageJson.scripts["check:search"],
-    "npm run build:search && git diff --exit-code -- data/search-index.json",
-  );
-  assert.equal(packageJson.scripts.recette, "npm run check:search && npm test");
+  assert.match(packageJson.scripts["check:search"], /build-search-index\.mjs --check/);
+  assert.match(packageJson.scripts["check:navigation"], /validate-navigation\.mjs/);
+  assert.match(packageJson.scripts.recette, /^npm run check:search\b/);
+  assert.match(packageJson.scripts.recette, /\bcheck:navigation\b/);
+  assert.match(packageJson.scripts.recette, /\bnpm test$/);
   assert.match(testsWorkflow, /npm run recette/);
   assert.match(pagesWorkflow, /npm run recette/);
   assert.match(pagesWorkflow, /actions\/configure-pages@/);

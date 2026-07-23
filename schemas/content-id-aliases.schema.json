@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/content-id-aliases.schema.json",
+  "title": "Alias historiques des contenus D&D 2024",
+  "type": "object",
+  "required": ["schemaVersion", "count", "aliases"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "count": { "type": "integer", "minimum": 0 },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$"
+      }
+    }
+  },
+  "additionalProperties": false
+}

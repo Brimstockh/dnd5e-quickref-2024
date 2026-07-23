@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v1";
+const CACHE_VERSION = "dnd-companion-v5";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -88,6 +88,8 @@ const CORE_ASSETS = Object.freeze([
     "./js/character-sheet-ui.js",
     "./js/characters-page.js",
     "./js/content-catalog.js",
+    "./js/content-ids.js",
+    "./js/context-share.js",
     "./js/data_action.js",
     "./js/data_bonusaction.js",
     "./js/data_condition.js",
@@ -98,6 +100,8 @@ const CORE_ASSETS = Object.freeze([
     "./js/feats-page.js",
     "./js/fetch-json.js",
     "./js/github-report.js",
+    "./js/glossary-client.js",
+    "./js/glossary-page.js",
     "./js/html-utils.js",
     "./js/legacy-catalog-ui.js",
     "./js/monsters-page.js",
@@ -107,6 +111,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/source-meta.js",
     "./js/quicklinks.js",
     "./js/quickref.js",
+    "./js/related-content.js",
     "./js/rich-html.js",
     "./js/search-engine.js",
     "./js/site-shell.js",
@@ -116,6 +121,8 @@ const CORE_ASSETS = Object.freeze([
     "./js/user-library.js",
     "./data/feats_2024.json",
     "./data/monsters_2024.json",
+    "./data/content-relations.json",
+    "./data/glossary.json",
     "./data/search-index.json",
     "./data/source-metadata.json",
     "./data/spells_2024.json",

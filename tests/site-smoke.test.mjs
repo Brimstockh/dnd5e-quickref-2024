@@ -383,12 +383,14 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   assert.match(source, /session-panel__quick-actions/);
   assert.match(source, /window\.DndLibrary\.clearRecent/);
   assert.match(source, /function copyCurrentLink/);
-  assert.match(source, /navigator\.clipboard\.writeText\(window\.location\.href\)/);
+  assert.match(source, /window\.DndShare = Object\.freeze/);
+  assert.match(source, /js\/context-share\.js/);
   assert.match(source, /function shareCurrentPage/);
   assert.match(source, /navigator\.share/);
   assert.match(source, /js\/github-report\.js/);
   assert.match(source, /function enhanceDeepLinks/);
   assert.match(source, /window\.addEventListener\("hashchange", revealHashTarget\)/);
+  assert.match(source, /details\.contains\(target\)/);
   for (const path of ["quickref.html", "spells.html", "monstres.html", "combat-2024.html"]) {
     assert.match(source, new RegExp(path.replace(".", "\\.")), path);
   }

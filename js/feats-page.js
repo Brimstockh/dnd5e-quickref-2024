@@ -145,7 +145,7 @@
                 </summary>
                 <div class="feat-body">
                     ${aliases}
-                    ${renderDescription(feat.description)}
+                    <div data-glossary-richtext>${renderDescription(feat.description)}</div>
                 </div>
             </details>
         `;

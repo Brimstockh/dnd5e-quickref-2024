@@ -103,7 +103,7 @@
                 </summary>
                 <div class="catalog-card__body">
                     <p class="catalog-card__details"><strong>Composantes :</strong> ${escapeHtml(spell.components || "—")}</p>
-                    <div>${description}</div>
+                    <div data-glossary-richtext>${description}</div>
                 </div>
             </details>
         `;

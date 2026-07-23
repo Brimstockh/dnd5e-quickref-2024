@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/content-relations-source.schema.json",
+  "title": "Relations éditoriales entre contenus D&D 2024",
+  "type": "object",
+  "required": ["schemaVersion", "relations"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "type"],
+        "properties": {
+          "source": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$"
+          },
+          "target": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$"
+          },
+          "type": {
+            "enum": ["available-for", "prerequisite", "related-rule", "see-also"]
+          },
+          "label": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "order": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

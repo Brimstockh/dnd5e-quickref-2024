@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "aliases": {
+    "action": ["Action"],
+    "action-bonus": ["Bonus Action"],
+    "avantage": ["Advantage"],
+    "classe-d-armure": ["Armor Class", "AC", "CA"],
+    "concentration": ["Concentration"],
+    "coup-critique": ["Critical Hit", "Critique"],
+    "desavantage": ["Disadvantage"],
+    "jet-de-caracteristique": ["Ability Check", "Test de caractéristique"],
+    "jet-de-sauvegarde": ["Saving Throw", "JS", "JdS"],
+    "perception-passive": ["Passive Perception"],
+    "points-de-vie": ["Hit Points", "HP", "PV"],
+    "reaction": ["Reaction"],
+    "repos-court": ["Short Rest"],
+    "repos-long": ["Long Rest"],
+    "rituel": ["Ritual"],
+    "terrain-difficile": ["Difficult Terrain"]
+  }
+}

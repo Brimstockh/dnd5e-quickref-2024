@@ -203,7 +203,7 @@
                         <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
                     </header>
                 </summary>
-                <div class="monster-body">
+                <div class="monster-body" data-glossary-richtext>
                     <div class="stat-grid">
                         <div class="stat"><strong>CA</strong>${escapeHtml(monster.ac || "-")}</div>
                         <div class="stat"><strong>PV</strong>${escapeHtml(monster.hp || "-")}</div>
