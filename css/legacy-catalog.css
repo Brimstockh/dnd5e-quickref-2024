@@ -196,6 +196,34 @@
 .legacy-catalog-page .feat-body strong { color: var(--color-gold-bright); }
 .legacy-catalog-page .stat strong { display: block; margin-bottom: 0.1rem; font-size: 0.76rem; text-transform: uppercase; }
 .legacy-catalog-page .monster-lines { margin: 0; }
+.legacy-catalog-page .monster-abilities {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+}
+.legacy-catalog-page .monster-ability {
+    min-width: 0;
+    padding: 0.4rem 0.25rem;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+.legacy-catalog-page .monster-ability strong,
+.legacy-catalog-page .monster-ability span,
+.legacy-catalog-page .monster-ability b,
+.legacy-catalog-page .monster-ability small { display: block; }
+.legacy-catalog-page .monster-ability strong { margin-bottom: 0.1rem; color: var(--color-gold-bright); font-size: 0.76rem; }
+.legacy-catalog-page .monster-ability span { overflow: hidden; color: var(--color-text-muted); font-size: 0.65rem; text-overflow: ellipsis; white-space: nowrap; }
+.legacy-catalog-page .monster-ability b { margin-top: 0.15rem; font-size: 1rem; }
+.legacy-catalog-page .monster-ability small { color: var(--color-text-muted); font-size: 0.64rem; line-height: 1.2; }
+.legacy-catalog-page .monster-options { margin-top: 0.85rem; padding-top: 0.7rem; border-top: 1px solid var(--color-border); }
+.legacy-catalog-page .monster-options h3 { margin: 0 0 0.45rem; color: var(--color-gold-bright); font-family: var(--font-display); font-size: 0.95rem; }
+.legacy-catalog-page .monster-option + .monster-option { margin-top: 0.55rem; padding-top: 0.55rem; border-top: 1px solid var(--color-border); }
+.legacy-catalog-page .monster-option p { margin: 0; }
+.legacy-catalog-page .monster-option strong { color: var(--color-text); }
 .legacy-catalog-page .feat-body p { margin: 0 0 0.5rem; }
 .legacy-catalog-page .feat-body p:last-child { margin-bottom: 0; }
 .legacy-catalog-page .feat-body table {
@@ -270,5 +298,6 @@
     .legacy-filter-backdrop.is-open { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
     .legacy-catalog-page .grid { grid-template-columns: 1fr; }
     .legacy-catalog-page .stat-grid { grid-template-columns: 1fr; }
+    .legacy-catalog-page .monster-abilities { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     body.has-open-legacy-filters { overflow: hidden; }
 }

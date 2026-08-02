@@ -21,7 +21,7 @@
     });
 
     function escapeHtml(value) {
-        return String(value || "")
+        return String(value ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
@@ -100,6 +100,23 @@
         ["Hover", "Surplace"]
     ];
 
+    const abilityOrder = [
+        ["STR", "Force"],
+        ["DEX", "Dextérité"],
+        ["CON", "Constitution"],
+        ["INT", "Intelligence"],
+        ["WIS", "Sagesse"],
+        ["CHA", "Charisme"]
+    ];
+
+    const optionSections = [
+        ["Traits", "traits"],
+        ["Actions", "actions"],
+        ["Actions bonus", "bonus_actions"],
+        ["Réactions", "reactions"],
+        ["Actions légendaires", "legendary_actions"]
+    ];
+
     function localize(value) {
         let text = String(value || "");
         translations.forEach(([source, target]) => {
@@ -127,6 +144,12 @@
         const xp = monster.xp ? `, ${monster.xp} PX` : "";
         const pb = monster.pb ? `, BM ${monster.pb}` : "";
         return `FP ${monster.cr || "-"}${xp}${pb}`;
+    }
+
+    function optionSearchText(monster) {
+        return optionSections
+            .flatMap(([, field]) => (monster[field] || []).flatMap(entry => [entry.name, entry.description]))
+            .join(" ");
     }
 
     function applyFilters() {
@@ -158,7 +181,12 @@
                 monster.languages,
                 monster.immunities,
                 monster.resistances,
-                monster.vulnerabilities
+                monster.vulnerabilities,
+                optionSearchText(monster),
+                ...abilityOrder.flatMap(([code]) => {
+                    const ability = monster.abilities?.[code] || {};
+                    return [code, ability.score, ability.modifier, ability.save];
+                })
             ].join(" "));
             return haystack.includes(query) || norm(localize(haystack)).includes(query);
         });
@@ -178,6 +206,31 @@
     function line(label, value) {
         if (!value) return "";
         return `<p class="monster-lines"><strong>${escapeHtml(label)}.</strong> ${escapeHtml(localize(value))}</p>`;
+    }
+
+    function abilityMarkup(monster) {
+        return abilityOrder.map(([code, label]) => {
+            const ability = monster.abilities?.[code] || {};
+            const save = ability.save ? `S ${ability.save}` : "";
+            const modifier = ability.modifier ? `Mod ${ability.modifier}` : "";
+            return `
+                <div class="monster-ability" title="${escapeHtml(label)}">
+                    <strong>${code}</strong>
+                    <span>${escapeHtml(label)}</span>
+                    <b>${escapeHtml(ability.score ?? "-")}</b>
+                    <small>${escapeHtml([modifier, save].filter(Boolean).join(" · "))}</small>
+                </div>
+            `;
+        }).join("");
+    }
+
+    function optionMarkup(label, entries) {
+        if (!Array.isArray(entries) || !entries.length) return "";
+        const content = entries.map(entry => {
+            const title = entry.name ? `<strong>${escapeHtml(localize(entry.name))}.</strong> ` : "";
+            return `<div class="monster-option"><p>${title}${escapeHtml(localize(entry.description || ""))}</p></div>`;
+        }).join("");
+        return `<section class="monster-options"><h3>${escapeHtml(label)}</h3>${content}</section>`;
     }
 
     function card(monster) {
@@ -209,7 +262,9 @@
                         <div class="stat"><strong>PV</strong>${escapeHtml(monster.hp || "-")}</div>
                         <div class="stat"><strong>Initiative</strong>${escapeHtml(monster.initiative || "-")}</div>
                     </div>
+                    <div class="monster-abilities">${abilityMarkup(monster)}</div>
                     ${misc || "<p class=\"monster-lines\">Aucune information secondaire extraite.</p>"}
+                    ${optionSections.map(([label, field]) => optionMarkup(label, monster[field])).join("")}
                 </div>
             </details>
         `;
@@ -288,6 +343,25 @@
         });
     }
 
+    function loadMonsterDetails() {
+        fetch("data/monsters_2024_details.json", { credentials: "omit" })
+            .then(function (response) {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.json();
+            })
+            .then(function (detailsData) {
+                const details = detailsData.monsters || {};
+                monsters = monsters.map(function (monster) {
+                    return Object.assign({}, monster, details[monster.slug] || {});
+                });
+                progressive.reset();
+                render();
+            })
+            .catch(function () {
+                sourceNote.textContent += " Les blocs détaillés n'ont pas pu être chargés.";
+            });
+    }
+
     function init(data) {
         monsters = data.monsters || [];
         sourceNote.textContent = data.note
@@ -319,6 +393,7 @@
             });
         }
         render();
+        loadMonsterDetails();
     }
 
     fetch("data/monsters_2024.json", { credentials: "omit" })
