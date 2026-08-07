@@ -15,6 +15,7 @@
     <script src="js/catalog-ui.js" defer></script>
     <script src="js/legacy-catalog-ui.js" defer></script>
     <script src="js/progressive-list.js" defer></script>
+    <script src="js/monster-export.js" defer></script>
     <script src="js/monsters-page.js" defer></script>
 </head>
 <body class="legacy-catalog-page" data-library-title="Monstres" data-library-category="Catalogue" data-library-description="Bestiaire D&D 2024">
@@ -69,8 +70,10 @@
         </section>
 
         <div class="list-tools">
+            <span id="exportStatus" class="export-status" aria-live="polite"></span>
             <button id="expandAllBtn" type="button">Tout ouvrir</button>
             <button id="collapseAllBtn" type="button">Tout fermer</button>
+            <button id="exportJsonBtn" type="button" disabled>Exporter (.json)</button>
         </div>
         <div id="summary" class="summary" role="status" aria-live="polite"></div>
         <div id="monstersGrid" class="grid"></div>

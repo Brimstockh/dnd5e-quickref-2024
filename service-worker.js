@@ -114,6 +114,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/html-utils.js",
     "./js/legacy-catalog-ui.js",
     "./js/monsters-page.js",
+    "./js/monster-export.js",
     "./js/picture-source.js",
     "./js/personal-space.js",
     "./js/session-state.js",

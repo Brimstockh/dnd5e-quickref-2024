@@ -7,12 +7,15 @@
     const sortSelect = document.getElementById("sortSelect");
     const expandAllBtn = document.getElementById("expandAllBtn");
     const collapseAllBtn = document.getElementById("collapseAllBtn");
+    const exportJsonBtn = document.getElementById("exportJsonBtn");
+    const exportStatus = document.getElementById("exportStatus");
     const summary = document.getElementById("summary");
     const monstersGrid = document.getElementById("monstersGrid");
     const sourceNote = document.getElementById("sourceNote");
     const loadMoreBtn = document.getElementById("loadMoreBtn");
 
     let monsters = [];
+    let detailsLoaded = false;
     let revealSelection = true;
     const progressive = window.DndProgressiveList.create({
         button: loadMoreBtn,
@@ -282,6 +285,8 @@
         }
         const visible = progressive.take(filtered);
         summary.textContent = `${filtered.length} monstre(s) trouvé(s) sur ${monsters.length} · ${visible.length} affiché(s).`;
+        exportJsonBtn.disabled = !detailsLoaded || filtered.length === 0;
+        exportStatus.textContent = "";
         if (!filtered.length) {
             monstersGrid.innerHTML = `<div class="empty">Aucun monstre ne correspond aux filtres actuels.</div>`;
             return;
@@ -321,6 +326,16 @@
         render();
     }
 
+    function exportVisibleMonsters() {
+        const filtered = applyFilters();
+        if (!detailsLoaded || !filtered.length) return;
+
+        filtered.forEach(function (monster) {
+            window.DndMonsterExport.downloadMonsterJson(monster);
+        });
+        exportStatus.textContent = `${filtered.length} fichier${filtered.length > 1 ? "s" : ""} JSON exporté${filtered.length > 1 ? "s" : ""}.`;
+    }
+
     function setAllCards(open) {
         monstersGrid.querySelectorAll("details.monster").forEach(el => {
             el.open = open;
@@ -354,6 +369,7 @@
                 monsters = monsters.map(function (monster) {
                     return Object.assign({}, monster, details[monster.slug] || {});
                 });
+                detailsLoaded = true;
                 progressive.reset();
                 render();
             })
@@ -384,6 +400,7 @@
         });
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
         collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+        exportJsonBtn.addEventListener("click", exportVisibleMonsters);
         if (typeof window.addEventListener === "function") {
             window.addEventListener("popstate", function () {
                 applyUrlState();

@@ -103,6 +103,7 @@
 }
 
 .legacy-catalog-page .list-tools { display: flex; gap: 0.5rem; justify-content: flex-end; margin: 0 0 0.6rem; }
+.legacy-catalog-page .export-status { align-self: center; margin-right: auto; color: var(--color-text-muted); font-size: 0.84rem; }
 .legacy-catalog-page .list-tools button {
     min-height: 2.35rem;
     padding: 0.45rem 0.75rem;
@@ -115,6 +116,7 @@
     font-weight: 700;
 }
 .legacy-catalog-page .list-tools button:hover { color: var(--color-gold-bright); border-color: var(--color-border-light); }
+.legacy-catalog-page .list-tools button:disabled { cursor: not-allowed; opacity: 0.55; }
 .legacy-catalog-page .summary { margin: 0 0 0.75rem; color: var(--color-text-muted); font-size: 0.88rem; }
 .legacy-catalog-page .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 0.75rem; }
 
@@ -299,5 +301,7 @@
     .legacy-catalog-page .grid { grid-template-columns: 1fr; }
     .legacy-catalog-page .stat-grid { grid-template-columns: 1fr; }
     .legacy-catalog-page .monster-abilities { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .legacy-catalog-page .list-tools { flex-wrap: wrap; }
+    .legacy-catalog-page .export-status { width: 100%; }
     body.has-open-legacy-filters { overflow: hidden; }
 }

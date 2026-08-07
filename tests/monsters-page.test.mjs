@@ -6,6 +6,7 @@ import vm from "node:vm";
 class FakeElement {
   constructor() {
     this.hidden = false;
+    this.disabled = false;
     this.innerHTML = "";
     this.open = false;
     this.textContent = "";
@@ -22,7 +23,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
   const details = JSON.parse(readFileSync(new URL("../data/monsters_2024_details.json", import.meta.url), "utf8"));
   const elements = Object.fromEntries([
     "searchInput", "crSelect", "typeSelect", "alignmentSelect", "sizeSelect", "sortSelect",
-    "expandAllBtn", "collapseAllBtn", "summary", "monstersGrid", "sourceNote", "loadMoreBtn",
+    "expandAllBtn", "collapseAllBtn", "exportJsonBtn", "exportStatus", "summary", "monstersGrid", "sourceNote", "loadMoreBtn",
   ].map((id) => [id, new FakeElement()]));
   const context = vm.createContext({
     console,
@@ -40,7 +41,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
   });
   context.window = context;
 
-  for (const path of ["../js/catalog-ui.js", "../js/progressive-list.js", "../js/monsters-page.js"]) {
+  for (const path of ["../js/catalog-ui.js", "../js/progressive-list.js", "../js/monster-export.js", "../js/monsters-page.js"]) {
     const source = readFileSync(new URL(path, import.meta.url), "utf8");
     vm.runInContext(source, context, { filename: path });
   }
@@ -57,4 +58,5 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.equal(elements.loadMoreBtn.hidden, false);
   assert.match(elements.loadMoreBtn.textContent, /72\/499/);
   assert.match(elements.crSelect.innerHTML, /<option/);
+  assert.equal(elements.exportJsonBtn.disabled, false);
 });
