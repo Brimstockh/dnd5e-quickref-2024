@@ -99,6 +99,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/comparator.js",
     "./js/creation-state.js",
     "./js/creation-wizard.js",
+    "./js/encounter-budget.js",
     "./js/data_action.js",
     "./js/data_bonusaction.js",
     "./js/data_condition.js",

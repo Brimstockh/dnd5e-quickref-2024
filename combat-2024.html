@@ -52,12 +52,91 @@
         .combat-content .content ul,
         .combat-content .content ol { margin: 0 0 10px; padding-left: 18px; }
         .combat-content .content table { margin-bottom: 12px; }
+        .combat-content .combat-formula {
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45em;
+            overflow-x: auto;
+            margin: 0 0 12px;
+            padding: 14px 12px;
+            color: #fffef9;
+            background: #17130f;
+            border: 1px solid #7a120f;
+            border-radius: 8px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+            font-style: italic;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .combat-content .combat-formula__term { display: inline-block; }
+        .combat-content .combat-formula sub,
+        .combat-content .combat-formula sup { font-size: 0.58em; line-height: 0; }
+        .combat-content .combat-formula__sum {
+            position: relative;
+            display: inline-block;
+            width: 1.25em;
+            margin: 0 0.12em;
+            font-size: 1.55em;
+            font-style: normal;
+            line-height: 0.9;
+            text-align: center;
+        }
+        .combat-content .combat-formula__sum sup,
+        .combat-content .combat-formula__sum sub { position: absolute; left: 50%; transform: translateX(-50%); }
+        .combat-content .combat-formula__sum sup { top: -0.55em; }
+        .combat-content .combat-formula__sum sub { bottom: -0.48em; }
+        .combat-content .combat-calculator {
+            margin: 14px 0 18px;
+            padding: 12px;
+            color: #222;
+            background: #f7f2e9;
+            border: 1px solid #d8d2c5;
+            border-left: 4px solid #7a120f;
+            border-radius: 8px;
+        }
+        .combat-content .combat-calculator h4 { margin-top: 0; color: #7a120f; }
+        .combat-content .combat-calculator__intro { margin-bottom: 12px; }
+        .combat-content .combat-calculator__controls {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .combat-content .combat-calculator label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
+        .combat-content .combat-calculator input,
+        .combat-content .combat-calculator select {
+            box-sizing: border-box;
+            min-height: 38px;
+            padding: 7px 9px;
+            color: #222;
+            background: #fff;
+            border: 1px solid #b6b0a5;
+            border-radius: 6px;
+            font: inherit;
+        }
+        .combat-content .combat-level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+            margin: 0 0 12px;
+        }
+        .combat-content .combat-calculator__result { margin: 0; background: #fff; }
+        .combat-content .combat-calculator__result output { display: block; margin-top: 3px; color: #7a120f; font-size: 1.35rem; }
+        .combat-content .combat-calculator__breakdown { display: block; margin-top: 5px; font-size: 0.9rem; }
+        @media (max-width: 560px) {
+            .combat-content .combat-calculator__controls { grid-template-columns: 1fr; }
+        }
     </style>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/content-page.css" />
     <script src="js/user-library.js" defer></script>
     <script src="js/site-shell.js" defer></script>
+    <script src="js/encounter-budget.js" defer></script>
 </head>
 <body class="page-background content-page" data-library-title="Combat & Dégâts D&D 2024" data-library-category="Règle" data-library-description="Référence D&amp;D 2024">
     <header data-site-header data-active="combat"></header>
@@ -81,6 +160,111 @@
             
 		<h1>Combat </h1>
 		<div class="content v24"><p>Les aventuriers font face à de nombreux monstres redoutables et d’infâmes adversaires. C’est dans ces moments qu’un combat éclate souvent.</p>
+<h3><a id="facteur-puissance" class="ancre" href="#facteur-puissance">Définition du Facteur de Puissance</a></h3>
+<p>Le Facteur de Puissance (FP) — <em>Challenge Rating (CR)</em> en anglais — est une valeur qui résume la menace globale représentée par une créature.</p>
+<p>Dans les règles D&amp;D 2024, le FP est défini par rapport à un groupe de référence de quatre personnages : si le FP d’une créature est supérieur au niveau des personnages, elle est susceptible d’être particulièrement dangereuse ; s’il est inférieur, elle représente généralement une menace plus faible. Le nombre de personnages, leurs ressources et les circonstances du combat peuvent toutefois fortement modifier cette estimation.</p>
+<p>Chaque FP correspond à une valeur fixe en PX. Pour construire une rencontre en 2024, on ne somme pas les FP : on additionne les PX de toutes les créatures et on les compare au budget de la rencontre.</p>
+<table>
+<thead>
+<tr>
+<th>FP</th>
+<th>PX</th>
+<th>FP</th>
+<th>PX</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>0 ou 10</td><td>10</td><td>5 900</td></tr>
+<tr><td>1/8</td><td>25</td><td>11</td><td>7 200</td></tr>
+<tr><td>1/4</td><td>50</td><td>12</td><td>8 400</td></tr>
+<tr><td>1/2</td><td>100</td><td>13</td><td>10 000</td></tr>
+<tr><td>1</td><td>200</td><td>14</td><td>11 500</td></tr>
+<tr><td>2</td><td>450</td><td>15</td><td>13 000</td></tr>
+<tr><td>3</td><td>700</td><td>16</td><td>15 000</td></tr>
+<tr><td>4</td><td>1 100</td><td>17</td><td>18 000</td></tr>
+<tr><td>5</td><td>1 800</td><td>18</td><td>20 000</td></tr>
+<tr><td>6</td><td>2 300</td><td>19</td><td>22 000</td></tr>
+<tr><td>7</td><td>2 900</td><td>20</td><td>25 000</td></tr>
+<tr><td>8</td><td>3 900</td><td>21</td><td>33 000</td></tr>
+<tr><td>9</td><td>5 000</td><td>22</td><td>41 000</td></tr>
+<tr><td>23</td><td>50 000</td><td>27</td><td>105 000</td></tr>
+<tr><td>24</td><td>62 000</td><td>28</td><td>120 000</td></tr>
+<tr><td>25</td><td>75 000</td><td>29</td><td>135 000</td></tr>
+<tr><td>26</td><td>90 000</td><td>30</td><td>155 000</td></tr>
+</tbody>
+</table>
+<h4>Construire le budget d’une rencontre</h4>
+<p>Avec les règles D&amp;D 2024, le calcul est très simple : chaque personnage apporte un budget de PX dépendant de son niveau et de la difficulté choisie. On additionne ensuite ces budgets pour obtenir le budget total de la rencontre.</p>
+<h4>Formule générale</h4>
+<p>Si tous les joueurs sont au même niveau :</p>
+<div class="combat-formula" role="math" aria-label="Budget rencontre égale nombre de PJ multiplié par budget du niveau et de la difficulté">
+<span class="combat-formula__term">Budget<sub>rencontre</sub></span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">Nombre<sub>PJ</sub></span>
+<span aria-hidden="true">×</span>
+<span class="combat-formula__term">Budget<sub>niveau, difficulté</sub></span>
+</div>
+<p>Si les personnages ont des niveaux différents :</p>
+<div class="combat-formula" role="math" aria-label="Budget rencontre égale la somme, de i égal 1 à N, du budget correspondant au niveau de chaque PJ et à la difficulté">
+<span class="combat-formula__term">Budget<sub>rencontre</sub></span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__sum" aria-hidden="true"><sup>N</sup>∑<sub>i=1</sub></span>
+<span class="combat-formula__term">Budget(Niveau<sub>i</sub>, Difficulté)</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>Niveau du PJ</th>
+<th>Low</th>
+<th>Moderate</th>
+<th>High</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>50</td><td>75</td><td>100</td></tr>
+<tr><td>2</td><td>100</td><td>150</td><td>200</td></tr>
+<tr><td><strong>3</strong></td><td><strong>150</strong></td><td><strong>225</strong></td><td><strong>400</strong></td></tr>
+<tr><td>4</td><td>250</td><td>375</td><td>500</td></tr>
+<tr><td>5</td><td>500</td><td>750</td><td>1 100</td></tr>
+<tr><td>6</td><td>600</td><td>1 000</td><td>1 400</td></tr>
+<tr><td>7</td><td>750</td><td>1 300</td><td>1 700</td></tr>
+<tr><td>8</td><td>1 000</td><td>1 700</td><td>2 100</td></tr>
+<tr><td>9</td><td>1 300</td><td>2 000</td><td>2 600</td></tr>
+<tr><td>10</td><td>1 600</td><td>2 300</td><td>3 100</td></tr>
+<tr><td>11</td><td>1 900</td><td>2 900</td><td>4 100</td></tr>
+<tr><td>12</td><td>2 200</td><td>3 700</td><td>4 700</td></tr>
+<tr><td>13</td><td>2 600</td><td>4 200</td><td>5 400</td></tr>
+<tr><td>14</td><td>2 900</td><td>4 900</td><td>6 200</td></tr>
+<tr><td>15</td><td>3 300</td><td>5 400</td><td>7 800</td></tr>
+<tr><td>16</td><td>3 800</td><td>6 100</td><td>9 800</td></tr>
+<tr><td>17</td><td>4 500</td><td>7 200</td><td>11 700</td></tr>
+<tr><td>18</td><td>5 000</td><td>8 700</td><td>14 200</td></tr>
+<tr><td>19</td><td>5 500</td><td>10 700</td><td>17 200</td></tr>
+<tr><td>20</td><td>6 400</td><td>13 200</td><td>22 000</td></tr>
+</tbody>
+</table>
+<div class="combat-calculator" data-encounter-calculator>
+<h4>Calculateur de budget de rencontre</h4>
+<p class="combat-calculator__intro">Indiquez le nombre de PJ, leur niveau et la difficulté pour obtenir le budget total en PX. Les niveaux peuvent être différents.</p>
+<div class="combat-calculator__controls">
+<label for="encounter-player-count">Nombre de PJ
+<input id="encounter-player-count" data-player-count type="number" min="1" max="20" value="4" inputmode="numeric">
+</label>
+<label for="encounter-difficulty">Difficulté
+<select id="encounter-difficulty" data-difficulty>
+<option value="LOW">Low</option>
+<option value="MODERATE" selected>Moderate</option>
+<option value="HIGH">High</option>
+</select>
+</label>
+</div>
+<div class="combat-level-grid" data-player-levels></div>
+<div class="encadre combat-calculator__result" aria-live="polite">
+<strong>Budget total de la rencontre</strong>
+<output data-encounter-output>900 PX</output>
+<span class="combat-calculator__breakdown" data-encounter-breakdown></span>
+</div>
+</div>
 <h3><a id="ordre" class="ancre" href="#ordre">L'ordre du combat</a></h3>
 <p>Le combat classique est un affrontement entre deux camps, qui se traduit par des coups portés avec diverses armes, des feintes, des parades, des déplacements tactiques et des incantations de sorts. Le jeu structure le combat en cycles faits de rounds et de tours. Un round représente un intervalle d’environ 6 secondes dans l’univers de jeu. Au cours d’un round, chaque participant à la bataille joue un tour. L’ordre des tours est déterminé au début du combat, lorsque chacun lance le dé d’Initiative. Une fois que tout le monde a joué son tour, l’affrontement se prolonge par un round supplémentaire si aucun des camps n’est vaincu.</p>
 <h4>Combat étape par étape</h4>
