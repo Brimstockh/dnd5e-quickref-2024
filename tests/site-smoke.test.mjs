@@ -172,6 +172,8 @@ test("optimized images are served with their expected format", async () => {
     "/img/map/faerun-map.webp",
     "/img/race/aasimar.webp",
     "/img/characters/cleira-full.webp",
+    "/img/enemies/Beast/Allosaurus.webp",
+    "/img/enemies/Dragon/Adult%20Black%20Dragon.webp",
   ];
 
   for (const path of paths) {

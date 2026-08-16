@@ -54,7 +54,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.match(elements.summary.textContent, /^499 monstre\(s\).*499.*72 affich/);
   assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster"/g) || []).length, 72);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-image-frame"/);
-  assert.match(elements.monstersGrid.innerHTML, /src="img\/enemies\//);
+  assert.match(elements.monstersGrid.innerHTML, /src="img\/enemies\/.*\.webp"/);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-abilities"/);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-options"/);
   assert.equal(elements.loadMoreBtn.hidden, false);

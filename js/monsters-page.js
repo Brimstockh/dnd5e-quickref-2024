@@ -241,10 +241,10 @@
         const name = String(monster.name || "").trim();
         if (!type || !name) return "";
 
-        const path = `img/enemies/${encodeURIComponent(type)}/${encodeURIComponent(name)}.png`;
+        const path = `img/enemies/${encodeURIComponent(type)}/${encodeURIComponent(name)}.webp`;
         return `
             <div class="monster-image-frame">
-                <img class="monster-image" src="${escapeHtml(path)}" alt="Illustration de ${escapeHtml(monster.name)}" loading="lazy" decoding="async" onerror="this.parentElement.remove()" />
+                <img class="monster-image" src="${escapeHtml(path)}" alt="Illustration de ${escapeHtml(monster.name)}" loading="lazy" decoding="async" onerror="console.warn('Monster image not found:', this.src); this.parentElement.remove()" />
             </div>
         `;
     }

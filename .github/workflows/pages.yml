@@ -34,9 +34,17 @@ jobs:
 
       - name: Préparer le site statique
         if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p _site
+          git archive --format=tar HEAD | tar -xf - -C _site
+          find _site/img/enemies -type f -name '*.png' -delete
+          test -z "$(find _site/img/enemies -type f -name '*.png' -print -quit)"
+
+      - name: Téléverser l’artefact GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
   deploy:
     if: github.event_name != 'pull_request'
