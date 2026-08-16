@@ -19,15 +19,21 @@ class FakeElement {
 }
 
 test("monstres.html progressively renders the local monster dataset", async () => {
+  const page = readFileSync(new URL("../monstres.html", import.meta.url), "utf8");
   const data = JSON.parse(readFileSync(new URL("../data/monsters_2024.json", import.meta.url), "utf8"));
   const details = JSON.parse(readFileSync(new URL("../data/monsters_2024_details.json", import.meta.url), "utf8"));
   const elements = Object.fromEntries([
     "searchInput", "crSelect", "typeSelect", "alignmentSelect", "sizeSelect", "sortSelect",
     "expandAllBtn", "collapseAllBtn", "exportJsonBtn", "exportStatus", "summary", "monstersGrid", "sourceNote", "loadMoreBtn",
+    "monsterImageDialog", "monsterImageDialogImage", "monsterImageDialogClose",
   ].map((id) => [id, new FakeElement()]));
   const context = vm.createContext({
     console,
-    document: { getElementById: (id) => elements[id] ?? null },
+    document: {
+      getElementById: (id) => elements[id] ?? null,
+      querySelector: (selector) => selector === ".monster-image-dialog-close" ? elements.monsterImageDialogClose : null,
+      addEventListener() {},
+    },
     fetch: async (path, options) => {
       assert.equal(options.credentials, "omit");
       if (path === "data/monsters_2024.json") return { ok: true, status: 200, json: async () => data };
@@ -53,6 +59,8 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.match(elements.sourceNote.textContent, /499 monstres charg/);
   assert.match(elements.summary.textContent, /^499 monstre\(s\).*499.*72 affich/);
   assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster"/g) || []).length, 72);
+  assert.match(elements.monstersGrid.innerHTML, /class="monster-image-button"/);
+  assert.match(elements.monstersGrid.innerHTML, /data-monster-image="img\/enemies\/.*\.webp"/);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-image-frame"/);
   assert.match(elements.monstersGrid.innerHTML, /src="img\/enemies\/.*\.webp"/);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-abilities"/);
@@ -61,4 +69,6 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.match(elements.loadMoreBtn.textContent, /72\/499/);
   assert.match(elements.crSelect.innerHTML, /<option/);
   assert.equal(elements.exportJsonBtn.disabled, false);
+  assert.match(page, /<dialog id="monsterImageDialog" class="monster-image-dialog"/);
+  assert.match(page, /class="monster-image-dialog-close"/);
 });

@@ -120,7 +120,7 @@
 .legacy-catalog-page .summary { margin: 0 0 0.75rem; color: var(--color-text-muted); font-size: 0.88rem; }
 .legacy-catalog-page .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 0.75rem; }
 
-.legacy-catalog-page .monster,
+.legacy-catalog-page .monster-card,
 .legacy-catalog-page .feat {
     overflow: hidden;
     color: var(--color-text);
@@ -133,8 +133,18 @@
     transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
-.legacy-catalog-page .monster:hover,
+.legacy-catalog-page .monster-card:hover,
 .legacy-catalog-page .feat:hover { background: var(--color-surface-hover); border-color: var(--color-border-light); }
+.legacy-catalog-page .monster-card > details.monster {
+    overflow: visible;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+}
 .legacy-catalog-page details > summary {
     color: var(--color-text);
     cursor: pointer;
@@ -147,13 +157,76 @@
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
 }
+.legacy-catalog-page .monster-image-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: zoom-in;
+    font: inherit;
+    text-align: inherit;
+}
+.legacy-catalog-page .monster-image-button:focus-visible {
+    outline: 2px solid var(--color-gold-bright);
+    outline-offset: -2px;
+}
 .legacy-catalog-page .monster-image {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 28%;
+    transition: transform var(--transition-fast);
 }
+.legacy-catalog-page .monster-image-button:hover .monster-image { transform: scale(1.02); }
+.legacy-catalog-page .monster-image-dialog {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 1.5rem;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+}
+.legacy-catalog-page .monster-image-dialog[open] { display: flex; }
+.legacy-catalog-page .monster-image-dialog::backdrop { background: rgb(0 0 0 / 85%); }
+.legacy-catalog-page .monster-image-dialog-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(90vw, 1200px);
+    max-height: 90vh;
+    max-height: 90dvh;
+    object-fit: contain;
+}
+.legacy-catalog-page .monster-image-dialog-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    place-items: center;
+    color: var(--color-text);
+    background: rgb(13 12 10 / 82%);
+    border: 1px solid var(--color-border-light);
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.75rem;
+    line-height: 1;
+}
+.legacy-catalog-page .monster-image-dialog-close:hover,
+.legacy-catalog-page .monster-image-dialog-close:focus-visible { color: var(--color-gold-bright); border-color: var(--color-gold-bright); }
 .legacy-catalog-page .monster-head,
 .legacy-catalog-page .feat-head {
     position: relative;

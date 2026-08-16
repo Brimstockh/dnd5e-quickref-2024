@@ -13,6 +13,9 @@
     const monstersGrid = document.getElementById("monstersGrid");
     const sourceNote = document.getElementById("sourceNote");
     const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const monsterImageDialog = document.getElementById("monsterImageDialog");
+    const monsterImageDialogImage = document.getElementById("monsterImageDialogImage");
+    const monsterImageDialogClose = document.querySelector(".monster-image-dialog-close");
 
     let monsters = [];
     let detailsLoaded = false;
@@ -242,11 +245,65 @@
         if (!type || !name) return "";
 
         const path = `img/enemies/${encodeURIComponent(type)}/${encodeURIComponent(name)}.webp`;
+        const alt = `Illustration de ${name}`;
         return `
-            <div class="monster-image-frame">
-                <img class="monster-image" src="${escapeHtml(path)}" alt="Illustration de ${escapeHtml(monster.name)}" loading="lazy" decoding="async" onerror="console.warn('Monster image not found:', this.src); this.parentElement.remove()" />
-            </div>
+            <button class="monster-image-button" type="button" data-monster-image="${escapeHtml(path)}" data-monster-name="${escapeHtml(name)}" aria-label="Agrandir l’illustration de ${escapeHtml(name)}">
+                <div class="monster-image-frame">
+                    <img class="monster-image" src="${escapeHtml(path)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />
+                </div>
+            </button>
         `;
+    }
+
+    function openMonsterImage(button) {
+        const imagePath = button.getAttribute("data-monster-image");
+        const monsterName = button.getAttribute("data-monster-name") || "";
+        if (!imagePath || !monsterImageDialog || !monsterImageDialogImage || typeof monsterImageDialog.showModal !== "function") return;
+
+        monsterImageDialogImage.src = imagePath;
+        monsterImageDialogImage.alt = `Illustration de ${monsterName}`;
+        monsterImageDialog.showModal();
+    }
+
+    function closeMonsterImage() {
+        if (monsterImageDialog?.open) monsterImageDialog.close();
+    }
+
+    function handleMonsterGridClick(event) {
+        const button = event.target?.closest?.(".monster-image-button");
+        if (!button) return;
+
+        event.preventDefault();
+        openMonsterImage(button);
+    }
+
+    function handleMonsterImageError(event) {
+        const image = event.target;
+        if (!image?.classList?.contains("monster-image")) return;
+
+        console.warn("Monster image not found:", image.currentSrc || image.src);
+        const button = image.closest?.(".monster-image-button");
+        const frame = image.closest?.(".monster-image-frame");
+        (button || frame)?.remove();
+    }
+
+    function handleMonsterDialogClick(event) {
+        if (event.target === monsterImageDialog) closeMonsterImage();
+    }
+
+    function handleMonsterDialogKeydown(event) {
+        if (event.key !== "Escape" || !monsterImageDialog?.open) return;
+
+        event.preventDefault();
+        closeMonsterImage();
+    }
+
+    function bindMonsterImageInteractions() {
+        monstersGrid.addEventListener("click", handleMonsterGridClick);
+        monstersGrid.addEventListener("error", handleMonsterImageError, true);
+        monsterImageDialogClose?.addEventListener("click", closeMonsterImage);
+        monsterImageDialog?.addEventListener("click", handleMonsterDialogClick);
+        document.addEventListener("keydown", handleMonsterDialogKeydown);
     }
 
     function card(monster) {
@@ -265,25 +322,27 @@
         ].join("");
 
         return `
-            <details class="monster" id="monster-${escapeHtml(monster.slug)}" data-content-id="${escapeHtml(monster.slug)}">
-                <summary>
-                    ${monsterImageMarkup(monster)}
-                    <header class="monster-head">
-                        <h2 class="monster-title">${escapeHtml(monster.name)}</h2>
-                        <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
-                    </header>
-                </summary>
-                <div class="monster-body" data-glossary-richtext>
-                    <div class="stat-grid">
-                        <div class="stat"><strong>CA</strong>${escapeHtml(monster.ac || "-")}</div>
-                        <div class="stat"><strong>PV</strong>${escapeHtml(monster.hp || "-")}</div>
-                        <div class="stat"><strong>Initiative</strong>${escapeHtml(monster.initiative || "-")}</div>
+            <article class="monster-card">
+                ${monsterImageMarkup(monster)}
+                <details class="monster" id="monster-${escapeHtml(monster.slug)}" data-content-id="${escapeHtml(monster.slug)}">
+                    <summary>
+                        <header class="monster-head">
+                            <h2 class="monster-title">${escapeHtml(monster.name)}</h2>
+                            <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
+                        </header>
+                    </summary>
+                    <div class="monster-body" data-glossary-richtext>
+                        <div class="stat-grid">
+                            <div class="stat"><strong>CA</strong>${escapeHtml(monster.ac || "-")}</div>
+                            <div class="stat"><strong>PV</strong>${escapeHtml(monster.hp || "-")}</div>
+                            <div class="stat"><strong>Initiative</strong>${escapeHtml(monster.initiative || "-")}</div>
+                        </div>
+                        <div class="monster-abilities">${abilityMarkup(monster)}</div>
+                        ${misc || "<p class=\"monster-lines\">Aucune information secondaire extraite.</p>"}
+                        ${optionSections.map(([label, field]) => optionMarkup(label, monster[field])).join("")}
                     </div>
-                    <div class="monster-abilities">${abilityMarkup(monster)}</div>
-                    ${misc || "<p class=\"monster-lines\">Aucune information secondaire extraite.</p>"}
-                    ${optionSections.map(([label, field]) => optionMarkup(label, monster[field])).join("")}
-                </div>
-            </details>
+                </details>
+            </article>
         `;
     }
 
@@ -407,6 +466,7 @@
         fillSelect(alignmentSelect, uniqueValues("alignment"));
         fillSelect(sizeSelect, uniqueValues("size"));
         applyUrlState();
+        bindMonsterImageInteractions();
 
         [searchInput, crSelect, typeSelect, alignmentSelect, sizeSelect, sortSelect].forEach(el => {
             el.addEventListener("input", resetAndRender);
