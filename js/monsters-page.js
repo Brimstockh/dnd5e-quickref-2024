@@ -236,6 +236,19 @@
         return `<section class="monster-options"><h3>${escapeHtml(label)}</h3>${content}</section>`;
     }
 
+    function monsterImageMarkup(monster) {
+        const type = String(monster.type || "").trim();
+        const name = String(monster.name || "").trim();
+        if (!type || !name) return "";
+
+        const path = `img/enemies/${encodeURIComponent(type)}/${encodeURIComponent(name)}.png`;
+        return `
+            <div class="monster-image-frame">
+                <img class="monster-image" src="${escapeHtml(path)}" alt="Illustration de ${escapeHtml(monster.name)}" loading="lazy" decoding="async" onerror="this.parentElement.remove()" />
+            </div>
+        `;
+    }
+
     function card(monster) {
         const typeLine = [monster.kind || monster.type, monster.size, monster.alignment]
             .filter(Boolean)
@@ -254,6 +267,7 @@
         return `
             <details class="monster" id="monster-${escapeHtml(monster.slug)}" data-content-id="${escapeHtml(monster.slug)}">
                 <summary>
+                    ${monsterImageMarkup(monster)}
                     <header class="monster-head">
                         <h2 class="monster-title">${escapeHtml(monster.name)}</h2>
                         <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
