@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 1233,
+  "count": 1234,
   "byType": {
     "action": 19,
     "background": 16,
@@ -15,7 +15,7 @@
     "movement": 13,
     "page": 20,
     "reaction": 3,
-    "rule": 22,
+    "rule": 23,
     "species": 10,
     "spell": 391
   },

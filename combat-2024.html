@@ -52,6 +52,13 @@
         .combat-content .content ul,
         .combat-content .content ol { margin: 0 0 10px; padding-left: 18px; }
         .combat-content .content table { margin-bottom: 12px; }
+        .combat-content .combat-table-scroll {
+            max-width: 100%;
+            margin: 10px 0 14px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .combat-content .combat-table-scroll table { min-width: 760px; margin: 0; }
         .combat-content .combat-formula {
             display: flex;
             width: 100%;
@@ -355,6 +362,113 @@
 <li><strong>Déterminez les modificateurs</strong>. Le MD détermine si la cible dispose d’un abri et si un Avantage ou un Désavantage s’applique contre elle. Par ailleurs, des sorts, capacités spéciales et autres effets peuvent entraîner des malus ou bonus à votre jet d’attaque.</li>
 <li><strong>Résolvez l’attaque</strong>. Vous effectuez le jet d’attaque. S’il touche, vous déterminez les dégâts, sauf si l’attaque concernée est assortie de règles qui spécifient autre chose. Certaines attaques entraînent des effets spéciaux en plus des dégâts ou à leur place.</li>
 </ol>
+<h3><a id="jets-attaque-sort" class="ancre" href="#jets-attaque-sort">Résoudre une attaque ou un sort</a></h3>
+<p><strong>Attaque contre CA :</strong> l’attaquant lance 1d20 + bonus d’attaque. <strong>Sauvegarde :</strong> la cible lance 1d20 + bonus contre le DD.</p>
+<h4>Attaque d’arme au corps à corps</h4>
+<p>Elle utilise généralement la Force. Ajoutez la maîtrise seulement si l’arme est maîtrisée.</p>
+<div class="combat-formula" role="math" aria-label="Jet d’attaque au corps à corps égale un d20 plus modificateur de Force plus bonus de maîtrise si l’arme est maîtrisée">
+<span class="combat-formula__term">Jet d’attaque</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">1d20</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. Force</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">maîtrise si arme maîtrisée</span>
+</div>
+<p>À la CA : <strong>résultat ≥ CA</strong>, touche ; <strong>résultat &lt; CA</strong>, rate. Force 18 (+4), maîtrise +3, épée longue maîtrisée : <strong>1d20 + 4 + 3 = 1d20 + 7</strong>.</p>
+<h4>Dégâts d’une attaque d’arme</h4>
+<div class="combat-formula" role="math" aria-label="Dégâts égale dés de dégâts de l’arme plus modificateur de caractéristique utilisé pour l’attaque">
+<span class="combat-formula__term">Dégâts</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">dés de l’arme</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. utilisé pour l’attaque</span>
+</div>
+<p>Épée longue avec Force 18 : <strong>1d8 + 4</strong>.</p>
+<p class="encadre"><strong>Important :</strong> le bonus de maîtrise n’est <strong>pas</strong> ajouté aux dégâts d’une attaque d’arme.</p>
+<h4>Attaque d’arme à distance</h4>
+<p>Généralement Dextérité ; comparez à la CA.</p>
+<div class="combat-formula" role="math" aria-label="Jet d’attaque à distance égale un d20 plus modificateur de Dextérité plus bonus de maîtrise si l’arme est maîtrisée">
+<span class="combat-formula__term">Jet d’attaque</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">1d20</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. Dextérité</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">maîtrise si arme maîtrisée</span>
+</div>
+<p>Dextérité 16 (+3), maîtrise +3, arc long maîtrisé : attaque <strong>1d20 + 3 + 3 = 1d20 + 6</strong> ; dégâts <strong>1d8 + 3</strong>.</p>
+<h4>Exceptions d’armes</h4>
+<p><strong>Finesse :</strong> Force <strong>ou</strong> Dextérité, avec le même choix pour l’attaque et les dégâts (ex. rapière). <strong>Arme lancée :</strong> utilisez normalement la caractéristique de l’arme, pas automatiquement la Dextérité (ex. javeline : généralement Force).</p>
+<h4>Jet d’attaque de sort</h4>
+<p>Incantation : Intelligence, Sagesse ou Charisme selon la classe/capacité.</p>
+<div class="combat-formula" role="math" aria-label="Jet d’attaque de sort égale un d20 plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<span class="combat-formula__term">Jet d’attaque de sort</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">1d20</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. d’incantation</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">bonus de maîtrise</span>
+</div>
+<p>À la CA : Magicien niveau 5, Intelligence 18 (+4), maîtrise +3 : <strong>1d20 + 4 + 3 = 1d20 + 7</strong>.</p>
+<h4>Dégâts des sorts</h4>
+<p>Le modificateur d’incantation n’est <strong>pas automatique</strong> : les dégâts suivent le sort (dés, modificateur indiqué ou capacité de classe).</p>
+<h4>Sort avec jet de sauvegarde</h4>
+<p>Le lanceur ne fait généralement pas de jet d’attaque : la cible fait le jet de sauvegarde. Calculez le DD des sorts.</p>
+<div class="combat-formula" role="math" aria-label="DD de sauvegarde des sorts égale huit plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<span class="combat-formula__term">DD des sorts</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">8</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. d’incantation</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">bonus de maîtrise</span>
+</div>
+<p>Exemple : Intelligence 18 (+4), maîtrise +3 : <strong>8 + 4 + 3 = 15</strong>.</p>
+<h4>Jet de sauvegarde de la cible</h4>
+<p>Le sort indique Force, Dextérité, Constitution, Intelligence, Sagesse ou Charisme. Maîtrise seulement si cette sauvegarde est maîtrisée.</p>
+<div class="combat-formula" role="math" aria-label="Jet de sauvegarde égale un d20 plus modificateur de la caractéristique demandée plus bonus de maîtrise si la sauvegarde est maîtrisée">
+<span class="combat-formula__term">Jet de sauvegarde</span>
+<span aria-hidden="true">=</span>
+<span class="combat-formula__term">1d20</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">mod. demandé</span>
+<span aria-hidden="true">+</span>
+<span class="combat-formula__term">maîtrise si maîtrisée</span>
+</div>
+<p><strong>≥ DD</strong> : réussite ; <strong>&lt; DD</strong> : échec. Sagesse 12 (+1), DD 15 : sans maîtrise <strong>1d20 + 1</strong> ; avec +3 <strong>1d20 + 1 + 3 = 1d20 + 4</strong>.</p>
+<p>Résultat : aucun effet, demi-dégâts, durée réduite ou autre.</p>
+<h4>Tableau récapitulatif</h4>
+<div class="combat-table-scroll" role="region" aria-label="Tableau récapitulatif des jets d’attaque et de sauvegarde" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Action</th>
+<th scope="col">Jet / formule</th>
+<th scope="col">Caractéristique</th>
+<th scope="col">Bonus de maîtrise</th>
+<th scope="col">Valeur cible</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Arme au corps à corps</td><td>1d20 + FOR + maîtrise</td><td>Force</td><td>Si arme maîtrisée</td><td>CA</td></tr>
+<tr><td>Arme à distance</td><td>1d20 + DEX + maîtrise</td><td>Dextérité</td><td>Si arme maîtrisée</td><td>CA</td></tr>
+<tr><td>Arme Finesse</td><td>1d20 + FOR ou DEX + maîtrise</td><td>Force ou Dextérité</td><td>Si arme maîtrisée</td><td>CA</td></tr>
+<tr><td>Attaque de sort</td><td>1d20 + incantation + maîtrise</td><td>INT / SAG / CHA</td><td>Oui</td><td>CA</td></tr>
+<tr><td>DD de sort</td><td>8 + incantation + maîtrise</td><td>INT / SAG / CHA</td><td>Oui</td><td>—</td></tr>
+<tr><td>Résister à un sort</td><td>1d20 + caractéristique + maîtrise éventuelle</td><td>Indiquée par le sort</td><td>Si sauvegarde maîtrisée</td><td>DD</td></tr>
+</tbody>
+</table>
+</div>
+<div class="encadre">
+<strong>À retenir</strong>
+<ul>
+<li><strong>CA :</strong> attaquant. <strong>Sauvegarde :</strong> généralement cible.</li>
+<li>Maîtrise : arme si maîtrisée ; attaque/DD de sort oui ; jamais aux dégâts.</li>
+<li>Dégâts d’arme : mod. carac. généralement oui ; sort : incantation si indiqué.</li>
+</ul>
+</div>
 <h4>Abri</h4>
 <p class="encadre"><strong>ASSAILLANTS ET CIBLES NON VISIBLES</strong><br><br>Lorsque vous effectuez un jet d’attaque contre une cible que vous ne voyez pas, vous avez un Désavantage au jet. Cela reste vrai que vous tentiez de deviner la position de la cible ou que vous cibliez une créature que vous entendez, mais ne voyez pas. Si la cible ne se trouve pas à l’endroit que vous visez, votre attaque rate.<br>Lorsqu'une créature ne vous voit pas, vous avez un Avantage aux jets d’attaque contre elle. Si vous êtes caché quand vous effectuez un jet d’attaque, votre position est révélée lorsque votre attaque touche ou rate.</p>
 <p>Les murs, arbres, créatures et autres obstacles peuvent fournir un abri, qui protège la cible. Comme détaillé dans la table ci-dessous, il existe trois degrés d’abris qui octroient chacun un bénéfice différent aux cibles.</p>
