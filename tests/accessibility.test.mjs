@@ -109,3 +109,17 @@ test("creation tools expose keyboard focus, live status, and an accessible compa
   assert.match(comparatorScript, /document\.createElement\("caption"\)/);
   assert.match(comparatorScript, /cell\.scope = "col"/);
 });
+
+test("dice statistics expose labeled controls, an accessible SVG, and exact-only calculations", async () => {
+  const html = await readFile(resolve(root, "dice-stats.html"), "utf8");
+  const script = await readFile(resolve(root, "js/dice-stats.js"), "utf8");
+
+  assert.match(html, /data-site-header data-active="dice-stats"/);
+  assert.match(html, /<label for="diceCount">Nombre de dés<\/label>/);
+  assert.match(html, /<label for="diceSides">Type de dé<\/label>/);
+  assert.match(html, /<label for="diceThreshold">Seuil<\/label>/);
+  assert.match(html, /role="img" aria-labelledby="diceHistogramTitle diceHistogramDescription" aria-describedby="histogramSummary"/);
+  assert.match(html, /role="tooltip"/);
+  assert.doesNotMatch(script, /Math\.random/);
+  assert.match(script, /function valueAtRank\(distribution, rank\)/);
+});

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 1234,
+  "count": 1235,
   "byType": {
     "action": 19,
     "background": 16,
@@ -13,7 +13,7 @@
     "glossary": 71,
     "monster": 499,
     "movement": 13,
-    "page": 20,
+    "page": 21,
     "reaction": 3,
     "rule": 23,
     "species": 10,
@@ -37,6 +37,7 @@
     "classes/index.html",
     "combat-2024.html",
     "creation-personnage-2024.html",
+    "dice-stats.html",
     "divinites.html",
     "dons.html",
     "faerun.html",

@@ -88,6 +88,7 @@
                 ["sheet-tools", "Feuille autonome", "character-sheet-standalone.html", "Créer et sauvegarder une fiche"],
                 ["characters", "Personnages sauvegardés", "html/characters.html", "Consulter les personnages"],
                 ["tools", "Matériel d’aventurier", "outils-aventurier.html", "Outils, paquetages et objets"],
+                ["dice-stats", "Statistiques de dés", "dice-stats.html", "Probabilités et distributions des jets de dés"],
             ],
         },
     ];

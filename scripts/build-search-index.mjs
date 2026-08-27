@@ -191,6 +191,7 @@ const pages = [
   ["Personnages importants", "Univers", "personnages-royaumes.html", "Figures importantes"],
   ["Plans d’existence", "Univers", "plans-existence.html", "Les autres réalités"],
   ["Feuille de personnage", "Outil", "character-sheet-standalone.html", "Fiche autonome sauvegardée localement"],
+  ["Statistiques de dés", "Outil", "dice-stats.html", "Probabilités et distributions des jets de dés"],
 ];
 
 const entries = [

@@ -11,7 +11,7 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/monsters_2024.json", 250_000],
     ["data/feats_2024.json", 55_000],
     ["data/spells_2024.json", 800_000],
-    ["data/search-index.json", 455_000],
+    ["data/search-index.json", 456_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
     ["data/glossary.json", 40_000],
@@ -31,6 +31,7 @@ test("personal and creation tools stay lightweight and preload shared data", asy
     ["js/user-library.js", 25_000],
     ["js/creation-wizard.js", 30_000],
     ["js/comparator.js", 10_000],
+    ["js/dice-stats.js", 22_000],
     ["js/session-tools.js", 30_000],
     ["js/personal-space.js", 30_000],
   ];

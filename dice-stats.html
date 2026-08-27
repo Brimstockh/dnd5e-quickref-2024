@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Analysez les probabilités et la distribution exacte de vos jets de dés." />
+    <title>Statistiques de dés — D&amp;D 2024</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/creator-tools.css" />
+    <link rel="stylesheet" href="css/dice-stats.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+</head>
+<body class="creator-page" data-library-title="Statistiques de dés" data-library-category="Outil">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header data-site-header data-active="dice-stats"><nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav></header>
+    <main class="creator-main dice-stats-main" id="main-content">
+        <header class="creator-hero">
+            <p>Outils</p>
+            <h1>Statistiques de dés</h1>
+            <span>Analysez les probabilités et la distribution exacte de vos jets de dés.</span>
+        </header>
+
+        <section class="creator-card dice-config" aria-labelledby="dice-config-title">
+            <h2 id="dice-config-title">Configuration du jet</h2>
+            <div class="dice-config__fields">
+                <div class="dice-field">
+                    <label for="diceCount">Nombre de dés</label>
+                    <input id="diceCount" type="number" min="1" max="50" step="1" value="2" inputmode="numeric" />
+                </div>
+                <div class="dice-field">
+                    <label for="diceSides">Type de dé</label>
+                    <select id="diceSides">
+                        <option value="4">d4</option>
+                        <option value="6" selected>d6</option>
+                        <option value="8">d8</option>
+                        <option value="10">d10</option>
+                        <option value="12">d12</option>
+                        <option value="20">d20</option>
+                        <option value="100">d100</option>
+                    </select>
+                </div>
+                <div class="dice-notation">
+                    <span class="dice-notation__label">Notation</span>
+                    <output id="diceNotation" aria-live="polite">2d6</output>
+                </div>
+            </div>
+        </section>
+        <p id="diceStatus" class="dice-status" role="status" aria-live="polite"></p>
+
+        <div class="dice-stats-layout">
+            <section class="creator-card dice-card" aria-labelledby="distribution-title">
+                <h2 id="distribution-title">Distribution exacte</h2>
+                <div class="dice-chart-frame">
+                    <div id="diceHistogramTooltip" class="dice-chart-tooltip" role="tooltip" hidden></div>
+                    <div class="dice-chart-scroll" tabindex="0" role="region" aria-label="Histogramme de la distribution des résultats">
+                        <svg id="diceHistogram" role="img" aria-labelledby="diceHistogramTitle diceHistogramDescription" aria-describedby="histogramSummary"></svg>
+                    </div>
+                </div>
+                <p id="histogramSummary" class="dice-chart-summary"></p>
+                <ul class="dice-legend" aria-label="Légende des repères statistiques">
+                    <li><span class="dice-legend__swatch dice-legend__swatch--mean" aria-hidden="true"></span>Moyenne</li>
+                    <li><span class="dice-legend__swatch dice-legend__swatch--median" aria-hidden="true"></span>Médiane</li>
+                    <li><span class="dice-legend__swatch dice-legend__swatch--mode" aria-hidden="true"></span>Mode</li>
+                </ul>
+            </section>
+
+            <section class="creator-card dice-card" aria-labelledby="statistics-title">
+                <h2 id="statistics-title">Statistiques</h2>
+                <dl class="dice-stat-list">
+                    <div><dt>Minimum</dt><dd id="statMin">—</dd></div>
+                    <div><dt>Maximum</dt><dd id="statMax">—</dd></div>
+                    <div><dt>Étendue</dt><dd id="statRange">—</dd></div>
+                    <div><dt>Moyenne</dt><dd id="statMean">—</dd></div>
+                    <div><dt>Médiane</dt><dd id="statMedian">—</dd></div>
+                    <div><dt>Mode</dt><dd id="statMode">—</dd></div>
+                    <div><dt>Variance</dt><dd id="statVariance">—</dd></div>
+                    <div><dt>Écart-type</dt><dd id="statStandardDeviation">—</dd></div>
+                    <div><dt>Combinaisons</dt><dd id="statCombinations">—</dd></div>
+                </dl>
+            </section>
+        </div>
+
+        <section class="creator-card dice-threshold" aria-labelledby="threshold-title">
+            <h2 id="threshold-title">Probabilités de seuil</h2>
+            <div class="dice-threshold__controls">
+                <div class="dice-threshold__field">
+                    <label for="diceThreshold">Seuil</label>
+                    <input id="diceThreshold" type="number" min="2" max="12" step="1" value="7" inputmode="numeric" aria-describedby="thresholdBounds" />
+                </div>
+                <p id="thresholdBounds" class="dice-threshold__bounds">Résultats possibles : 2 à 12</p>
+            </div>
+            <dl class="dice-threshold__results">
+                <div><dt id="thresholdAtLeastLabel">P(total ≥ 7)</dt><dd id="thresholdAtLeast">—</dd></div>
+                <div><dt id="thresholdGreaterThanLabel">P(total &gt; 7)</dt><dd id="thresholdGreaterThan">—</dd></div>
+                <div><dt id="thresholdAtMostLabel">P(total ≤ 7)</dt><dd id="thresholdAtMost">—</dd></div>
+                <div><dt id="thresholdLessThanLabel">P(total &lt; 7)</dt><dd id="thresholdLessThan">—</dd></div>
+                <div><dt id="thresholdEqualLabel">P(total = 7)</dt><dd id="thresholdEqual">—</dd></div>
+            </dl>
+        </section>
+    </main>
+    <script src="js/dice-stats.js" type="module"></script>
+</body>
+</html>

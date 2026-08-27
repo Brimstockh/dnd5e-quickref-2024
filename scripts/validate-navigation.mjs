@@ -16,6 +16,7 @@ const queryParameters = Object.freeze({
   "monstres.html": new Set(["q", "cr", "type", "alignment", "size", "sort", "monster"]),
   "quickref.html": new Set(["q", "movement", "action", "bonus", "reaction", "condition", "environment"]),
   "spells.html": new Set(["q", "level", "school", "class", "sort", "spell"]),
+  "dice-stats.html": new Set(["count", "sides", "threshold"]),
 });
 
 export function inspectNavigationUrl(rawUrl, knownIds = new Set()) {

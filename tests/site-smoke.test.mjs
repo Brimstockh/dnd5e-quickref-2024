@@ -252,7 +252,7 @@ test("critical pages do not reference missing local files", async () => {
 
 test("every standalone page uses the shared visual shell", async () => {
   const pages = (await standaloneHtmlPages()).filter((page) => page !== "offline.html");
-  assert.equal(pages.length, 52);
+  assert.equal(pages.length, 53);
 
   for (const page of pages) {
     const source = await readFile(resolve(root, page), "utf8");
