@@ -121,6 +121,8 @@ async function anchoredRuleEntries(path) {
 
 const spells = JSON.parse(await readFile(resolve(root, "data/spells_2024.json"), "utf8")).spells;
 const monsters = JSON.parse(await readFile(resolve(root, "data/monsters_2024.json"), "utf8")).monsters;
+const monsterTranslations = JSON.parse(await readFile(resolve(root, "data/monster-names-fr.json"), "utf8"));
+const monsterNamesFr = monsterTranslations.monsterNamesFr || {};
 const feats = JSON.parse(await readFile(resolve(root, "data/feats_2024.json"), "utf8")).feats;
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8")).entries;
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
@@ -205,16 +207,20 @@ const entries = [
     keywords: [spell.school, `niveau ${spell.level}`, ...(spell.classes || []), spell.casting_time, spell.range],
     excerpt: excerpt(spell.description),
   })),
-  ...monsters.map((monster) => ({
-    id: createContentId("monster", monster.slug || monster.name),
-    type: "monster",
-    legacyIds: [`monster-${monster.id}`],
-    title: monster.name,
-    category: "Monstre",
-    url: queryUrl("monstres.html", monster.name),
-    keywords: [monster.type, monster.kind, monster.size, monster.alignment, `FP ${monster.cr}`],
-    excerpt: excerpt([monster.kind || monster.type, monster.size, monster.alignment, monster.cr ? `FP ${monster.cr}` : ""].filter(Boolean).join(" · ")),
-  })),
+  ...monsters.map((monster) => {
+    const nameFr = monsterNamesFr[monster.name] || "";
+    return {
+      id: createContentId("monster", monster.slug || monster.name),
+      type: "monster",
+      legacyIds: [`monster-${monster.id}`],
+      title: nameFr || monster.name,
+      category: "Monstre",
+      url: queryUrl("monstres.html", nameFr || monster.name),
+      aliases: nameFr ? [monster.name] : [],
+      keywords: [monster.name, nameFr, monster.type, monster.kind, monster.size, monster.alignment, `FP ${monster.cr}`].filter(Boolean),
+      excerpt: excerpt([nameFr || monster.name, monster.kind || monster.type, monster.size, monster.alignment, monster.cr ? `FP ${monster.cr}` : ""].filter(Boolean).join(" · ")),
+    };
+  }),
   ...feats.map((feat, index) => ({
     id: createContentId("feat", feat.slug || feat.name),
     type: "feat",

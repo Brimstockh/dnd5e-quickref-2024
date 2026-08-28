@@ -9,9 +9,10 @@ const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 test("catalog data stays within its transfer budget", async () => {
   const budgets = [
     ["data/monsters_2024.json", 250_000],
+    ["data/monster-names-fr.json", 25_000],
     ["data/feats_2024.json", 55_000],
     ["data/spells_2024.json", 800_000],
-    ["data/search-index.json", 456_000],
+    ["data/search-index.json", 500_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
     ["data/glossary.json", 40_000],

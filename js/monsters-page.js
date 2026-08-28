@@ -18,6 +18,8 @@
     const monsterImageDialogClose = document.querySelector(".monster-image-dialog-close");
 
     let monsters = [];
+    let monsterNamesFr = {};
+    let unresolvedMonsterTranslations = [];
     let detailsLoaded = false;
     let revealSelection = true;
     const progressive = window.DndProgressiveList.create({
@@ -36,7 +38,18 @@
     }
 
     function norm(value) {
-        return String(value || "").toLowerCase();
+        return String(value || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase("fr-FR");
+    }
+
+    function displayName(monster) {
+        return monster.nameFr || `${monster.name} (traduction française non résolue)`;
+    }
+
+    function sortName(monster) {
+        return monster.nameFr || monster.name;
     }
 
     const translations = [
@@ -173,6 +186,7 @@
             if (!query) return true;
             const haystack = norm([
                 monster.name,
+                monster.nameFr,
                 monster.type,
                 monster.subtype,
                 monster.kind,
@@ -199,11 +213,11 @@
 
         filtered.sort((a, b) => {
             const mode = sortSelect.value;
-            if (mode === "cr_desc") return b.cr_sort - a.cr_sort || a.name.localeCompare(b.name, "fr");
-            if (mode === "name_asc") return a.name.localeCompare(b.name, "fr");
-            if (mode === "name_desc") return b.name.localeCompare(a.name, "fr");
-            if (mode === "type_asc") return a.type.localeCompare(b.type, "fr") || a.name.localeCompare(b.name, "fr");
-            return a.cr_sort - b.cr_sort || a.name.localeCompare(b.name, "fr");
+            if (mode === "cr_desc") return b.cr_sort - a.cr_sort || sortName(a).localeCompare(sortName(b), "fr");
+            if (mode === "name_asc") return sortName(a).localeCompare(sortName(b), "fr");
+            if (mode === "name_desc") return sortName(b).localeCompare(sortName(a), "fr");
+            if (mode === "type_asc") return a.type.localeCompare(b.type, "fr") || sortName(a).localeCompare(sortName(b), "fr");
+            return a.cr_sort - b.cr_sort || sortName(a).localeCompare(sortName(b), "fr");
         });
 
         return filtered;
@@ -245,9 +259,10 @@
         if (!type || !name) return "";
 
         const path = `img/enemies/${encodeURIComponent(type)}/${encodeURIComponent(name)}.webp`;
-        const alt = `Illustration de ${name}`;
+        const label = displayName(monster);
+        const alt = `Illustration de ${label}`;
         return `
-            <button class="monster-image-button" type="button" data-monster-image="${escapeHtml(path)}" data-monster-name="${escapeHtml(name)}" aria-label="Agrandir l’illustration de ${escapeHtml(name)}">
+            <button class="monster-image-button" type="button" data-monster-image="${escapeHtml(path)}" data-monster-name="${escapeHtml(label)}" aria-label="Agrandir l’illustration de ${escapeHtml(label)}">
                 <div class="monster-image-frame">
                     <img class="monster-image" src="${escapeHtml(path)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />
                 </div>
@@ -327,7 +342,7 @@
                 <details class="monster" id="monster-${escapeHtml(monster.slug)}" data-content-id="${escapeHtml(monster.slug)}">
                     <summary>
                         <header class="monster-head">
-                            <h2 class="monster-title">${escapeHtml(monster.name)}</h2>
+                            <h2 class="monster-title">${escapeHtml(displayName(monster))}</h2>
                             <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
                         </header>
                     </summary>
@@ -451,11 +466,16 @@
             });
     }
 
-    function init(data) {
-        monsters = data.monsters || [];
+    function init(data, translationsData) {
+        monsterNamesFr = translationsData.monsterNamesFr || {};
+        unresolvedMonsterTranslations = translationsData.unresolvedMonsterTranslations || [];
+        monsters = (data.monsters || []).map(function (monster) {
+            return Object.assign({}, monster, { nameFr: monsterNamesFr[monster.name] || "" });
+        });
+        const resolvedCount = monsters.filter(monster => monster.nameFr).length;
         sourceNote.textContent = data.note
-            ? `${data.count || monsters.length} monstres chargés. ${data.note}`
-            : `${data.count || monsters.length} monstres chargés.`;
+            ? `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés, ${unresolvedMonsterTranslations.length} non résolus. ${data.note}`
+            : `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés, ${unresolvedMonsterTranslations.length} non résolus.`;
 
         fillSelect(crSelect, uniqueValues("cr").sort((a, b) => {
             const am = monsters.find(m => m.cr === a);
@@ -487,12 +507,13 @@
         loadMonsterDetails();
     }
 
-    fetch("data/monsters_2024.json", { credentials: "omit" })
-        .then(function (response) {
+    Promise.all(["data/monsters_2024.json", "data/monster-names-fr.json"].map(function (path) {
+        return fetch(path, { credentials: "omit" }).then(function (response) {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.json();
-        })
-        .then(init)
+        });
+    }))
+        .then(function ([data, translationsData]) { init(data, translationsData); })
         .catch(function () {
             sourceNote.textContent = "Impossible de charger les données de monstres.";
             monstersGrid.innerHTML = `<div class="empty">Le fichier de données des monstres est introuvable ou invalide.</div>`;

@@ -141,6 +141,7 @@ const CORE_ASSETS = Object.freeze([
     "./data/content-inventory.json",
     "./data/local-storage-contracts.json",
     "./data/monsters_2024.json",
+    "./data/monster-names-fr.json",
     "./data/content-relations.json",
     "./data/glossary.json",
     "./data/search-index.json",

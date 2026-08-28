@@ -38,6 +38,13 @@ test("global search includes glossary terms and bilingual aliases", () => {
   assert.match(glossary.url, /^glossaire\.html\?term=/);
 });
 
+test("global monster search exposes French labels and English aliases", () => {
+  const monster = index.entries.find((entry) => entry.id === "monster-mind-flayer");
+  assert.equal(monster.title, "Flagelleur mental");
+  assert.ok(monster.aliases.includes("Mind Flayer"));
+  assert.match(monster.url, /^monstres\.html\?q=/);
+});
+
 test("global search results link to focused catalog queries", () => {
   const spell = index.entries.find((entry) => entry.category === "Sort" && entry.title === "Boule de feu");
   const monster = index.entries.find((entry) => entry.category === "Monstre");
