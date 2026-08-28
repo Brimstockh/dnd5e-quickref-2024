@@ -97,7 +97,7 @@
         }
         setStatus("registering");
         try {
-            var nextRegistration = await navigator.serviceWorker.register(pageUrl("service-worker.js"), {
+            var nextRegistration = await navigator.serviceWorker.register(pageUrl("sw.js"), {
                 scope: siteRoot.pathname,
             });
             watchRegistration(nextRegistration);

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D 2024 — Règles de campagne</title>
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/catalog.css" />
+  <link rel="stylesheet" href="css/campaign-rules.css" />
+  <link rel="preload" href="data/campaign-rules.json" as="fetch" type="application/json" crossorigin="anonymous" />
+  <script src="js/user-library.js" defer></script>
+  <script src="js/site-shell.js" defer></script>
+  <script src="js/campaign-rules-page.js" defer></script>
+</head>
+<body class="catalog-page" data-library-title="Règles de campagne" data-library-category="Règle de campagne" data-library-description="Décisions propres à notre table">
+  <header data-site-header data-active="campaign-rules"></header>
+  <main class="catalog-main" id="main-content">
+    <section class="catalog-header campaign-header" aria-labelledby="catalog-title">
+      <div>
+        <p class="catalog-header__eyebrow">Décisions de la table</p>
+        <h1 id="catalog-title">Règles de campagne</h1>
+        <p>Ces entrées sont des règles locales. Elles ne remplacent ni ne modifient silencieusement la référence officielle.</p>
+      </div>
+      <span class="campaign-badge">RÈGLE DE TABLE</span>
+    </section>
+    <section class="catalog-toolbar" aria-label="Recherche dans les règles de campagne">
+      <div class="catalog-search"><label class="visually-hidden" for="searchInput">Rechercher une règle de campagne</label><span class="catalog-search__icon" aria-hidden="true">⌕</span><input id="searchInput" data-page-search type="search" autocomplete="off" placeholder="Rechercher une règle de table…" /><kbd aria-hidden="true">/</kbd></div>
+      <div class="catalog-toolbar__bottom"><span id="summary" class="catalog-summary" aria-live="polite"></span></div>
+    </section>
+    <section aria-labelledby="results-title"><h2 id="results-title" class="visually-hidden">Règles locales</h2><div id="rulesGrid" class="catalog-grid"></div></section>
+  </main>
+</body>
+</html>

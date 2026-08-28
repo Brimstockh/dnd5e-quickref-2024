@@ -3,7 +3,6 @@ const DEFAULT_SIDES = 6;
 const DEFAULT_THRESHOLD = 7;
 const MAX_DICE = 50;
 const DIE_SIDES = Object.freeze([4, 6, 8, 10, 12, 20, 100]);
-
 const numberFormat = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 });
 const percentFormat = new Intl.NumberFormat("fr-FR", {
     style: "percent",
@@ -185,10 +184,6 @@ export function readDiceConfig(search = "") {
         sides: params.get("sides"),
         threshold: params.get("threshold"),
     });
-}
-
-function formatNumber(value) {
-    return numberFormat.format(value);
 }
 
 function formatPercent(value) {
@@ -380,7 +375,7 @@ export function renderStatistics(elements, statistics) {
     };
     Object.entries(values).forEach(([id, value]) => {
         const element = elements[id] || document.getElementById(id);
-        if (element) element.textContent = typeof value === "number" ? formatNumber(value) : String(value);
+        if (element) element.textContent = typeof value === "number" ? numberFormat.format(value) : String(value);
     });
 }
 

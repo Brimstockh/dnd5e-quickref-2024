@@ -6,9 +6,15 @@ import { fileURLToPath } from "node:url";
 
 const loadJson = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const searchIndex = await loadJson("../data/search-index.json");
+const [primaryIndex, deepIndex] = await Promise.all([
+  loadJson("../data/search-index.json"),
+  loadJson("../data/search-index-deep.json"),
+]);
 const relationIndex = await loadJson("../data/content-relations.json");
-const searchIds = new Set(searchIndex.entries.map((entry) => entry.id));
+const searchIds = new Set([
+  ...(primaryIndex.entries || []),
+  ...(deepIndex.entries || []),
+].map((entry) => entry.id));
 
 function relationsFor(contentId) {
   return relationIndex.sources[contentId]?.relations || [];

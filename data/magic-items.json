@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "ruleset": "2024",
+  "sourceRef": "srd-5.2.1-fr",
+  "items": [
+    {
+      "id": "magic-item-potion-de-guerison",
+      "name": "Potion de guérison",
+      "type": "Potion",
+      "rarity": "Commun",
+      "requiresAttunement": false,
+      "charges": null,
+      "description": "Vous récupérez 2d4 + 2 points de vie lorsque vous buvez cette potion.",
+      "sourceRef": "srd-5.2.1-fr",
+      "sourceSection": "Objets magiques — potions",
+      "aliases": ["Potion de soins", "Healing Potion"]
+    }
+  ]
+}

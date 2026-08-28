@@ -5,6 +5,7 @@ import {
   buildContextUrl,
   ROUTE_SELECTION_TYPES,
 } from "../js/context-share.js";
+import { slugifyContent } from "../js/content-ids.js";
 
 const root = resolve(import.meta.dirname, "..");
 const baseUrl = "https://dnd.local/";
@@ -15,9 +16,58 @@ const queryParameters = Object.freeze({
   "historique.html": new Set(["q", "sort", "ability", "feat", "background"]),
   "monstres.html": new Set(["q", "cr", "type", "alignment", "size", "sort", "monster"]),
   "quickref.html": new Set(["q", "movement", "action", "bonus", "reaction", "condition", "environment"]),
+  "objets-magiques.html": new Set(["q", "rarity", "type", "attunement"]),
+  "regles-campagne.html": new Set(["q"]),
   "spells.html": new Set(["q", "level", "school", "class", "sort", "spell"]),
   "dice-stats.html": new Set(["count", "sides", "threshold"]),
 });
+
+function visibleText(value) {
+  return String(value || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function generatedAnchorIds(source) {
+  const ids = new Set([...source.matchAll(/\bid=["']([^"']+)["']/gi)].map((match) => match[1]));
+  const addGenerated = (label) => {
+    const base = slugifyContent(label) || "section";
+    let id = base;
+    let suffix = 2;
+    while (ids.has(id)) {
+      id = `${base}-${suffix}`;
+      suffix += 1;
+    }
+    ids.add(id);
+  };
+
+  for (const heading of source.matchAll(/<h[234](?:\s[^>]*)?>([\s\S]*?)<\/h[234]>/gi)) {
+    if (/<a\b[^>]*\bid=/i.test(heading[1])) continue;
+    addGenerated(visibleText(heading[1])
+      .replace(/^Niveau\s+\d+\s*:\s*/i, "")
+      .replace(/\s*\([^)]*\)\s*$/, ""));
+  }
+  for (const trait of source.matchAll(/<div class="trait">([\s\S]*?)<\/div>/gi)) {
+    const label = visibleText(trait[1].match(/<(?:h3|h4|strong)[^>]*>([\s\S]*?)<\/(?:h3|h4|strong)>/i)?.[1] || "")
+      .replace(/\s*\([^)]*\)\s*$/, "")
+      .replace(/:$/, "")
+      .trim();
+    if (label && !/^Objet$|^Poids$|^Prix$/i.test(label)) addGenerated(label);
+  }
+  for (const row of source.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const label = visibleText(row[1].match(/<td[^>]*>([\s\S]*?)<\/td>/i)?.[1] || "")
+      .replace(/\s*\([^)]*\)\s*$/, "")
+      .replace(/:$/, "")
+      .trim();
+    if (label && !/^Objet$|^Poids$|^Prix$/i.test(label)) addGenerated(label);
+  }
+  return ids;
+}
 
 export function inspectNavigationUrl(rawUrl, knownIds = new Set()) {
   const errors = [];
@@ -80,7 +130,14 @@ export function contextualUrlForEntry(entry) {
 }
 
 async function main() {
-  const searchIndex = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
+  const [primaryIndex, deepIndex] = await Promise.all([
+    readFile(resolve(root, "data/search-index.json"), "utf8").then(JSON.parse),
+    readFile(resolve(root, "data/search-index-deep.json"), "utf8").then(JSON.parse),
+  ]);
+  const searchIndex = {
+    ...primaryIndex,
+    entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])],
+  };
   const relationIndex = JSON.parse(await readFile(resolve(root, "data/content-relations.json"), "utf8"));
   const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8"));
   const knownIds = new Set(searchIndex.entries.map((entry) => entry.id));
@@ -145,7 +202,9 @@ async function main() {
       continue;
     }
     const escaped = anchor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    if (!new RegExp(`\\b(?:id|name)=["']${escaped}["']`).test(pageSources.get(page))) {
+    const pageSource = pageSources.get(page);
+    if (!new RegExp(`\\b(?:id|name)=["']${escaped}["']`).test(pageSource)
+      && !generatedAnchorIds(pageSource).has(anchor)) {
       errors.push(`${context}: ancre absente (${page}#${anchor})`);
     }
   }

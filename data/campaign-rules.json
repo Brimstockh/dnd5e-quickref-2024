@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "ruleset": "2024",
+  "sourceRef": "campaign-local",
+  "entries": [
+    {
+      "id": "campaign-rule-potion",
+      "title": "Boire une potion",
+      "type": "campaign-rule",
+      "status": "house-rule",
+      "sourceRef": "campaign-local",
+      "summary": "Décision de la table à compléter par le MJ : précisez ici l’action nécessaire pour boire ou administrer une potion.",
+      "related": ["magic-item-potion-de-guerison", "action-utiliser"],
+      "aliases": ["Potion", "Règle de potion"]
+    }
+  ]
+}

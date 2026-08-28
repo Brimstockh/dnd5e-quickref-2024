@@ -1,0 +1,17 @@
+.campaign-header { align-items: center; }
+.campaign-badge {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.75rem;
+    color: #fff;
+    background: #8f271d;
+    border: 2px solid #d77a58;
+    border-radius: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+.campaign-rule-card { border-left: 4px solid #b94c35; }
+.campaign-rule-card .catalog-card__badges .badge--campaign { color: #ffd9c7; background: #6d2119; }
+.campaign-rule-card__note { color: var(--color-text-subtle); font-size: 0.78rem; }
+.campaign-rule-card__related { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0 0; }
+.campaign-rule-card__related a { color: var(--color-gold-bright); }
