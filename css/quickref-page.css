@@ -118,6 +118,15 @@ body.quickref-detail-open { overflow: hidden; }
 
 .quickref-category-nav a:hover { color: var(--color-gold-bright); border-color: var(--color-border-light); }
 .quickref-category-nav a span { color: var(--color-gold); }
+.quickref-situations { margin: 0 0 0.85rem; padding: 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+.quickref-situations__head { display: flex; gap: 1rem; align-items: end; justify-content: space-between; margin-bottom: 0.75rem; }
+.quickref-situations h2 { margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 1.3rem; }
+.quickref-situations__hint { color: var(--color-text-muted); font-size: 0.76rem; }
+.quickref-situations__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 0.55rem; }
+.quickref-situations__grid article { padding: 0.7rem; background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.quickref-situation { color: var(--color-gold-bright); font-weight: 800; }
+.quickref-situations article p { margin: 0.4rem 0 0; color: var(--color-text-muted); font-size: 0.75rem; line-height: 1.5; }
+.quickref-situations article p a { color: var(--color-text-muted); }
 
 .quickref-sections { display: grid; gap: 0.85rem; }
 

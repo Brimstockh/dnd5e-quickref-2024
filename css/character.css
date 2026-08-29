@@ -155,6 +155,14 @@ a{ color:inherit; text-decoration:none; }
   font-size: 1.15rem;
 }
 
+.character-references-card { margin-top: var(--gap); }
+.character-references { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.9rem; }
+.character-references__group { min-width: 0; }
+.character-references__group h3 { margin: 0 0 0.35rem; color: var(--accent); font-size: 0.95rem; }
+.character-references__list { display: grid; gap: 0.3rem; margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.85rem; }
+.character-references__list a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+.character-references__unresolved { color: var(--muted); }
+
 /* Abilities */
 .abilities{
   display:grid;

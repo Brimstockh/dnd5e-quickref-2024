@@ -6,7 +6,15 @@ import {
 } from "../js/content-ids.js";
 
 const root = resolve(import.meta.dirname, "..");
-const index = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
+const [primaryIndex, deepIndex] = await Promise.all([
+  readFile(resolve(root, "data/search-index.json"), "utf8").then(JSON.parse),
+  readFile(resolve(root, "data/search-index-deep.json"), "utf8").then(JSON.parse),
+]);
+const index = {
+  ...primaryIndex,
+  entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])],
+};
+index.count = index.entries.length;
 const aliasRegistry = JSON.parse(await readFile(resolve(root, "data/content-id-aliases.json"), "utf8"));
 const relationIndex = JSON.parse(await readFile(resolve(root, "data/content-relations.json"), "utf8"));
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8"));
@@ -14,12 +22,39 @@ const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-a
 const creation = JSON.parse(await readFile(resolve(root, "data/character-creation.json"), "utf8"));
 const storageContracts = JSON.parse(await readFile(resolve(root, "data/local-storage-contracts.json"), "utf8"));
 const inventory = JSON.parse(await readFile(resolve(root, "data/content-inventory.json"), "utf8"));
+const contentSources = JSON.parse(await readFile(resolve(root, "data/content-sources.json"), "utf8"));
+const proficiency = JSON.parse(await readFile(resolve(root, "data/proficiency-bonus.json"), "utf8"));
+const magicItems = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8"));
+const campaignRules = JSON.parse(await readFile(resolve(root, "data/campaign-rules.json"), "utf8"));
 const errors = [];
 
 if (index.schemaVersion !== 1) errors.push("search index schemaVersion must be 1");
 if (index.version !== 4) errors.push("search index version must be 4");
 if (!Array.isArray(index.entries)) errors.push("search index entries must be an array");
 if (index.count !== index.entries?.length) errors.push("search index count does not match entries");
+
+if (contentSources.schemaVersion !== 1) errors.push("content sources schemaVersion must be 1");
+const sourceIds = new Set((contentSources.sources || []).map((source) => source.id));
+for (const source of contentSources.sources || []) {
+  for (const field of ["id", "ruleset", "source", "sourceSection", "license"]) {
+    if (!String(source[field] || "").trim()) errors.push(`content source is missing ${field}: ${source.id || "(missing)"}`);
+  }
+}
+
+const expectedProficiency = [
+  { min: 1, max: 4, bonus: 2 },
+  { min: 5, max: 8, bonus: 3 },
+  { min: 9, max: 12, bonus: 4 },
+  { min: 13, max: 16, bonus: 5 },
+  { min: 17, max: 20, bonus: 6 },
+  { min: 21, max: 24, bonus: 7 },
+  { min: 25, max: 28, bonus: 8 },
+  { min: 29, max: 30, bonus: 9 },
+];
+if (proficiency.schemaVersion !== 1 || JSON.stringify(proficiency.table) !== JSON.stringify(expectedProficiency)) {
+  errors.push("proficiency bonus table does not match the D&D 2024 contract");
+}
+if (!sourceIds.has(proficiency.sourceRef)) errors.push(`proficiency bonus references an unknown source: ${proficiency.sourceRef}`);
 
 const ids = new Set();
 for (const [position, entry] of (index.entries || []).entries()) {
@@ -38,6 +73,32 @@ for (const [position, entry] of (index.entries || []).entries()) {
   if (!Array.isArray(entry.aliases)) errors.push(`${context} aliases must be an array`);
   if (new Set(entry.aliases || []).size !== entry.aliases?.length) errors.push(`${context} aliases contain duplicates`);
   if (typeof entry.excerpt !== "string") errors.push(`${context} excerpt must be a string`);
+  if (entry.sourceRef && !sourceIds.has(entry.sourceRef)) errors.push(`${context} references an unknown source: ${entry.sourceRef}`);
+}
+
+const magicItemIds = new Set();
+for (const item of magicItems.items || []) {
+  const context = `magic item ${item.id || "(missing)"}`;
+  if (!isContentId(item.id) || !item.id.startsWith("magic-item-")) errors.push(`${context} has an invalid ID`);
+  if (magicItemIds.has(item.id)) errors.push(`${context} duplicates an ID`);
+  magicItemIds.add(item.id);
+  for (const field of ["name", "type", "rarity", "description", "sourceRef"]) {
+    if (!String(item[field] ?? "").trim()) errors.push(`${context} is missing ${field}`);
+  }
+  if (!Array.isArray(item.aliases)) errors.push(`${context} aliases must be an array`);
+  if (!sourceIds.has(item.sourceRef)) errors.push(`${context} references an unknown source`);
+}
+
+const campaignRuleIds = new Set();
+for (const rule of campaignRules.entries || []) {
+  const context = `campaign rule ${rule.id || "(missing)"}`;
+  if (!isContentId(rule.id) || !rule.id.startsWith("campaign-rule-")) errors.push(`${context} has an invalid ID`);
+  if (campaignRuleIds.has(rule.id)) errors.push(`${context} duplicates an ID`);
+  campaignRuleIds.add(rule.id);
+  if (rule.type !== "campaign-rule") errors.push(`${context} must have type campaign-rule`);
+  if (rule.status !== "house-rule") errors.push(`${context} must have status house-rule`);
+  if (!String(rule.title || "").trim() || !String(rule.summary || "").trim()) errors.push(`${context} is missing title or summary`);
+  if (!sourceIds.has(rule.sourceRef || campaignRules.sourceRef)) errors.push(`${context} references an unknown source`);
 }
 
 if (searchAliasSource.schemaVersion !== 1) errors.push("search alias schemaVersion must be 1");

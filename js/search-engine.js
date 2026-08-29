@@ -10,6 +10,11 @@ export const SEARCH_COMMANDS = Object.freeze([
   { command: "action", aliases: ["action"], category: "Action", label: "Actions" },
   { command: "monstre", aliases: ["monstre", "monster"], category: "Monstre", label: "Monstres" },
   { command: "historique", aliases: ["historique", "background"], category: "Historique", label: "Historiques" },
+  { command: "capacité", aliases: ["capacite", "capacité", "feature"], category: "Capacité de classe", label: "Capacités" },
+  { command: "sous-classe", aliases: ["sous-classe", "subclass"], category: "Sous-classe", label: "Sous-classes" },
+  { command: "outil", aliases: ["outil", "tool"], category: "Outil", label: "Outils" },
+  { command: "objet-magique", aliases: ["objet-magique", "magic-item", "magique"], category: "Objet magique", label: "Objets magiques" },
+  { command: "campagne", aliases: ["campagne", "table", "house-rule"], category: "Règle de campagne", label: "Règles de campagne" },
 ]);
 
 export function normalizeSearch(value) {

@@ -52,6 +52,20 @@
       "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
     },
     {
+      "path": "objets-magiques.html",
+      "document": "SRD 5.2.1 FR et contenu de campagne",
+      "type": "Catalogue structuré",
+      "status": "structured",
+      "translationNote": "Les objets propres à la campagne sont signalés séparément ; vérifiez la source de chaque entrée."
+    },
+    {
+      "path": "regles-campagne.html",
+      "document": "Règles propres à la campagne",
+      "type": "Règles de table",
+      "status": "editorial",
+      "translationNote": "Ces décisions appartiennent à la table et ne constituent pas des règles officielles D&D."
+    },
+    {
       "prefix": "classes/",
       "document": "Manuel des Joueurs 2024",
       "type": "Référence de classe",

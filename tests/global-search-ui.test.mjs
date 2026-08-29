@@ -25,8 +25,14 @@ test("global search UI exposes commands, match reasons and recent content", asyn
 
 test("search aliases are explicit and target canonical content IDs", async () => {
   const source = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
-  const index = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
-  const ids = new Set(index.entries.map(({ id }) => id));
+  const [primary, deep] = await Promise.all([
+    readFile(resolve(root, "data/search-index.json"), "utf8").then(JSON.parse),
+    readFile(resolve(root, "data/search-index-deep.json"), "utf8").then(JSON.parse),
+  ]);
+  const ids = new Set([
+    ...(primary.entries || []),
+    ...(deep.entries || []),
+  ].map(({ id }) => id));
 
   assert.equal(source.schemaVersion, 1);
   assert.ok(Object.keys(source.aliases).length >= 30);

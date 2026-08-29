@@ -2,6 +2,7 @@ import { escapeHtml as esc } from "./html-utils.js";
 import { validateCharacterKey } from "./character-key.js";
 import { fetchJson } from "./fetch-json.js";
 import { configurePictureImage } from "./picture-source.js";
+import { renderCharacterReferences } from "./character-references.js";
 
 function $(id) { return document.getElementById(id); }
 
@@ -25,6 +26,14 @@ async function loadCharacter(){
 async function loadStory(key){
     const path = `../data/characters/${key}.story.json`;
     return await fetchJson(path, { optional: true });
+}
+
+async function loadSearchIndex(){
+  const payloads = await Promise.all([
+    fetchJson("../data/search-index.json", { optional: true }).catch(() => null),
+    fetchJson("../data/search-index-deep.json", { optional: true }).catch(() => null),
+  ]);
+  return { entries: payloads.flatMap((payload) => payload?.entries || []) };
 }
 
 function renderHeader(c){
@@ -360,6 +369,7 @@ async function main(){
       });
     }
     const story = await loadStory(key);
+    const searchIndex = await loadSearchIndex();
     const link = document.getElementById("profileLink");
     if (link) link.href = `character-profile.html?c=${encodeURIComponent(key)}`;
 
@@ -374,6 +384,7 @@ async function main(){
     renderDefensesAndConditions(c);
     renderNotes(c);
     renderStory(story);
+    renderCharacterReferences(document.getElementById("character-references"), c, searchIndex);
 
     const loading = $("loading");
     if (loading) {

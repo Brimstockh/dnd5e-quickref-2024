@@ -51,6 +51,8 @@
                 ["glossary", "Glossaire", "glossaire.html", "Termes et états de jeu"],
                 ["spells", "Sorts", "spells.html", "Catalogue des sorts"],
                 ["equipment", "Équipement", "armes-armures.html", "Armes et armures"],
+                ["magic-items", "Objets magiques", "objets-magiques.html", "Objets magiques de la campagne"],
+                ["campaign-rules", "Règles de campagne", "regles-campagne.html", "Décisions propres à notre table"],
                 ["monsters", "Monstres", "monstres.html", "Bestiaire"],
             ],
         },
@@ -210,12 +212,15 @@
     function enhanceDeepLinks() {
         if (!doc.body.classList.contains("content-page")) return;
         var used = new Set(Array.from(doc.querySelectorAll("[id]")).map(function (element) { return element.id; }));
-        doc.querySelectorAll("main h2, main h3").forEach(function (heading) {
+        doc.querySelectorAll("main h2, main h3, main h4").forEach(function (heading) {
             if (heading.closest("[data-site-header], dialog, .search-dialog, .session-panel")) return;
             var legacyAnchor = heading.querySelector("a[id]");
             var id = heading.id || (legacyAnchor ? legacyAnchor.id : "");
             if (!id) {
-                var base = slugify(heading.textContent) || "section";
+                var label = heading.textContent
+                    .replace(/^Niveau\s+\d+\s*:\s*/i, "")
+                    .replace(/\s*\([^)]*\)\s*$/, "");
+                var base = slugify(label) || "section";
                 id = base;
                 var suffix = 2;
                 while (used.has(id)) {
@@ -225,13 +230,29 @@
                 heading.id = id;
                 used.add(id);
             }
-            if (heading.querySelector(".heading-anchor")) return;
+            if (heading.tagName === "H4" || heading.querySelector(".heading-anchor")) return;
             var anchor = doc.createElement("a");
             anchor.className = "heading-anchor";
             anchor.href = "#" + encodeURIComponent(id);
             anchor.setAttribute("aria-label", "Lien vers la section « " + heading.textContent.trim() + " »");
             anchor.textContent = "#";
             heading.appendChild(anchor);
+        });
+        doc.querySelectorAll("main .trait, main table.equipment-table tr").forEach(function (element) {
+            if (element.id || element.closest("[data-site-header], dialog, .search-dialog, .session-panel")) return;
+            var labelElement = element.querySelector("h3, h4, strong, td");
+            var label = labelElement ? labelElement.textContent : "";
+            label = label.replace(/\s*\([^)]*\)\s*$/, "").replace(/:$/, "").trim();
+            if (!label || /^Objet$|^Poids$|^Prix$/i.test(label)) return;
+            var base = slugify(label) || "entry";
+            var id = base;
+            var suffix = 2;
+            while (used.has(id)) {
+                id = base + "-" + suffix;
+                suffix += 1;
+            }
+            element.id = id;
+            used.add(id);
         });
         window.addEventListener("hashchange", revealHashTarget);
         window.addEventListener("popstate", function () {
@@ -465,6 +486,8 @@
         var activeCategory = "";
         var indexLoaded = false;
         var indexLoading = null;
+        var deepIndexLoaded = false;
+        var deepIndexLoading = null;
         var engine = null;
         var engineLoading = null;
         var previousFocus = null;
@@ -501,6 +524,25 @@
             return engineLoading;
         }
 
+        function appendIndexed(indexed) {
+            var knownPaths = new Set(entries.map(function (entry) { return entry.path; }));
+            indexed.slice(0, 3000).forEach(function (entry) {
+                if (!entry || !entry.title || !entry.url) return;
+                if (knownPaths.has(String(entry.url))) return;
+                knownPaths.add(String(entry.url));
+                entries.push({
+                    id: String(entry.id || entry.url),
+                    title: String(entry.title),
+                    path: String(entry.url),
+                    group: String(entry.category || "Contenu"),
+                    description: String(entry.excerpt || ""),
+                    aliases: Array.isArray(entry.aliases) ? entry.aliases : [],
+                    keywords: Array.isArray(entry.keywords) ? entry.keywords.join(" ") : "",
+                    isBase: false,
+                });
+            });
+        }
+
         function loadIndex() {
             if (indexLoaded || indexLoading || typeof window.fetch !== "function") return indexLoading;
             indexLoading = window.fetch(pageUrl("data/search-index.json"))
@@ -510,27 +552,28 @@
                 })
                 .then(function (payload) {
                     var indexed = payload && Array.isArray(payload.entries) ? payload.entries : [];
-                    var knownPaths = new Set(entries.map(function (entry) { return entry.path; }));
-                    indexed.slice(0, 3000).forEach(function (entry) {
-                        if (!entry || !entry.title || !entry.url) return;
-                        if (knownPaths.has(String(entry.url))) return;
-                        knownPaths.add(String(entry.url));
-                        entries.push({
-                            id: String(entry.id || entry.url),
-                            title: String(entry.title),
-                            path: String(entry.url),
-                            group: String(entry.category || "Contenu"),
-                            description: String(entry.excerpt || ""),
-                            aliases: Array.isArray(entry.aliases) ? entry.aliases : [],
-                            keywords: Array.isArray(entry.keywords) ? entry.keywords.join(" ") : "",
-                            isBase: false,
-                        });
-                    });
+                    appendIndexed(indexed);
                     indexLoaded = true;
                     render();
                 })
                 .catch(function () { indexLoaded = true; });
             return indexLoading;
+        }
+
+        function loadDeepIndex() {
+            if (deepIndexLoaded || deepIndexLoading || typeof window.fetch !== "function") return deepIndexLoading;
+            deepIndexLoading = window.fetch(pageUrl("data/search-index-deep.json"))
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Deep search index unavailable");
+                    return response.json();
+                })
+                .then(function (payload) {
+                    appendIndexed(payload && Array.isArray(payload.entries) ? payload.entries : []);
+                    deepIndexLoaded = true;
+                    render();
+                })
+                .catch(function () { deepIndexLoaded = true; });
+            return deepIndexLoading;
         }
 
         function recentEntries() {
@@ -719,7 +762,12 @@
             if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
         }
 
-        input.addEventListener("input", function () { selectedIndex = 0; activeCategory = ""; render(); });
+        input.addEventListener("input", function () {
+            selectedIndex = 0;
+            activeCategory = "";
+            loadDeepIndex();
+            render();
+        });
         input.addEventListener("keydown", function (event) {
             var matches = matchingEntries(activeCategory, 24);
             if (event.key === "ArrowDown" && matches.length) {

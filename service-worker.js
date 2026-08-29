@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v11";
+const CACHE_VERSION = "dnd-companion-v12";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -20,6 +20,8 @@ const CORE_ASSETS = Object.freeze([
     "./espace-personnel.html",
     "./offline.html",
     "./manifest.webmanifest",
+    "./sw.js",
+    "./service-worker.js",
     "./armes-armures.html",
     "./character-sheet-standalone.html",
     "./character-template.html",
@@ -39,6 +41,8 @@ const CORE_ASSETS = Object.freeze([
     "./personnages-royaumes.html",
     "./plans-existence.html",
     "./quickref.html",
+    "./objets-magiques.html",
+    "./regles-campagne.html",
     "./rules-2024.html",
     "./spells.html",
     "./classes/index.html",
@@ -70,6 +74,7 @@ const CORE_ASSETS = Object.freeze([
     "./html/characters.html",
     "./css/catalog.css",
     "./css/character.css",
+    "./css/campaign-rules.css",
     "./css/character-sheet.css",
     "./css/character-sheet-app.css",
     "./css/classes.css",
@@ -90,6 +95,7 @@ const CORE_ASSETS = Object.freeze([
     "./css/theme.css",
     "./js/catalog-ui.js",
     "./js/character.js",
+    "./js/character-references.js",
     "./js/character-key.js",
     "./js/character-profile.js",
     "./js/character-sheet.js",
@@ -132,6 +138,8 @@ const CORE_ASSETS = Object.freeze([
     "./js/rich-html.js",
     "./js/search-engine.js",
     "./js/site-shell.js",
+    "./js/magic-items-page.js",
+    "./js/campaign-rules-page.js",
     "./js/spell-export.js",
     "./js/spell-filters.js",
     "./js/spells-page.js",
@@ -145,7 +153,12 @@ const CORE_ASSETS = Object.freeze([
     "./data/content-relations.json",
     "./data/glossary.json",
     "./data/search-index.json",
+    "./data/search-index-deep.json",
     "./data/source-metadata.json",
+    "./data/content-sources.json",
+    "./data/proficiency-bonus.json",
+    "./data/magic-items.json",
+    "./data/campaign-rules.json",
     "./data/spells_2024.json",
     "./data/characters/index.json",
     "./data/characters/character-template.json",

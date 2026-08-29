@@ -4,7 +4,11 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const outputPath = resolve(root, "data/content-inventory.json");
 const checkOnly = process.argv.includes("--check");
-const index = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
+const [primaryIndex, deepIndex] = await Promise.all([
+  readFile(resolve(root, "data/search-index.json"), "utf8").then(JSON.parse),
+  readFile(resolve(root, "data/search-index-deep.json"), "utf8").then(JSON.parse),
+]);
+const index = { entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])] };
 const byType = {};
 const seen = new Set();
 const duplicateIds = [];

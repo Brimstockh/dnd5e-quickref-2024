@@ -5,10 +5,18 @@ import { createContentId, slugifyContent } from "../js/content-ids.js";
 
 const root = resolve(import.meta.dirname, "..");
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
-const searchIndex = await readJson("data/search-index.json");
+const [primaryIndex, deepIndex] = await Promise.all([
+  readJson("data/search-index.json"),
+  readJson("data/search-index-deep.json"),
+]);
+const searchIndex = {
+  ...primaryIndex,
+  entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])],
+};
 const source = await readJson("data/content-relations.source.json");
 const spells = (await readJson("data/spells_2024.json")).spells;
 const feats = (await readJson("data/feats_2024.json")).feats;
+const campaignRules = (await readJson("data/campaign-rules.json")).entries;
 const entries = new Map(searchIndex.entries.map((entry) => [entry.id, entry]));
 const relations = [];
 const relationKeys = new Set();
@@ -43,6 +51,17 @@ function addRelation(definition) {
 }
 
 for (const definition of source.relations || []) addRelation(definition);
+
+for (const rule of campaignRules || []) {
+  for (const target of rule.related || []) {
+    addRelation({
+      source: rule.id,
+      target,
+      type: "related-rule",
+      label: "Contenu associé",
+    });
+  }
+}
 
 for (const spell of spells) {
   const spellId = createContentId("spell", spell.slug || spell.name);

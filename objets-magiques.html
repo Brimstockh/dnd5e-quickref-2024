@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D 2024 — Objets magiques</title>
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/catalog.css" />
+  <link rel="preload" href="data/magic-items.json" as="fetch" type="application/json" crossorigin="anonymous" />
+  <script src="js/user-library.js" defer></script>
+  <script src="js/site-shell.js" defer></script>
+  <script src="js/magic-items-page.js" defer></script>
+</head>
+<body class="catalog-page" data-library-title="Objets magiques" data-library-category="Catalogue" data-library-description="Objets magiques disponibles dans le projet">
+  <header data-site-header data-active="magic-items"></header>
+  <main class="catalog-main" id="main-content">
+    <section class="catalog-header" aria-labelledby="catalog-title">
+      <div>
+        <p class="catalog-header__eyebrow">Trésors de la campagne</p>
+        <h1 id="catalog-title">Objets magiques</h1>
+        <p id="sourceNote">Chargement des objets magiques…</p>
+      </div>
+      <span class="catalog-header__stat" id="catalogStat">—</span>
+    </section>
+
+    <section class="catalog-toolbar" aria-label="Recherche dans les objets magiques">
+      <div class="catalog-search">
+        <label class="visually-hidden" for="searchInput">Rechercher un objet magique</label>
+        <span class="catalog-search__icon" aria-hidden="true">⌕</span>
+        <input id="searchInput" data-page-search type="search" autocomplete="off" placeholder="Nom, type, rareté, harmonisation…" />
+        <kbd aria-hidden="true">/</kbd>
+      </div>
+      <div class="catalog-toolbar__bottom"><span class="catalog-summary" id="summary" aria-live="polite"></span></div>
+    </section>
+
+    <div class="catalog-layout">
+      <aside class="catalog-filters" aria-labelledby="filter-title">
+        <div class="catalog-filters__header"><h2 id="filter-title">Filtrer</h2></div>
+        <div class="catalog-filters__body">
+          <div class="filter-group"><label for="raritySelect">Rareté</label><select id="raritySelect"><option value="">Toutes</option><option>Commun</option><option>Peu commun</option><option>Rare</option><option>Très rare</option><option>Légendaire</option></select></div>
+          <div class="filter-group"><label for="typeSelect">Type</label><select id="typeSelect"><option value="">Tous</option></select></div>
+          <div class="filter-group"><label for="attunementSelect">Harmonisation</label><select id="attunementSelect"><option value="">Toutes</option><option value="yes">Requise</option><option value="no">Non requise</option></select></div>
+          <button class="catalog-reset" id="resetBtn" type="button">Réinitialiser</button>
+        </div>
+      </aside>
+      <section class="catalog-results" aria-labelledby="results-title">
+        <h2 id="results-title" class="visually-hidden">Résultats</h2>
+        <div id="itemsGrid" class="catalog-grid"></div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

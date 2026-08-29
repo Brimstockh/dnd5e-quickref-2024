@@ -1,8 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { EOL } from "node:os";
 import { resolve } from "node:path";
 import vm from "node:vm";
-import { buildContentAliasMap, createContentId } from "../js/content-ids.js";
+import { buildContentAliasMap, createContentId, slugifyContent } from "../js/content-ids.js";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -13,7 +13,7 @@ function plainText(value) {
     .trim();
 }
 
-function excerpt(value, length = 110) {
+function excerpt(value, length = 90) {
   const text = plainText(value);
   return text.length > length ? `${text.slice(0, length - 1).trimEnd()}…` : text;
 }
@@ -49,6 +49,29 @@ function decodeHtml(value) {
 
 function textFromHtml(value) {
   return plainText(decodeHtml(value));
+}
+
+function headingText(value) {
+  return textFromHtml(value)
+    .replace(/^Niveau\s+\d+\s*:\s*/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function fragmentFor(title, fallback, used) {
+  const base = slugifyContent(title) || fallback;
+  let fragment = base;
+  let suffix = 2;
+  while (used.has(fragment)) {
+    fragment = `${base}-${suffix}`;
+    suffix += 1;
+  }
+  used.add(fragment);
+  return fragment;
+}
+
+function existingIds(source) {
+  return new Set([...source.matchAll(/\bid=["']([^"']+)["']/gi)].map((match) => match[1]));
 }
 
 async function equipmentSearchEntries() {
@@ -100,23 +123,193 @@ async function backgroundSearchEntries() {
 
 async function anchoredRuleEntries(path) {
   const source = await readFile(resolve(root, path), "utf8");
-  const headings = [...source.matchAll(/<h3><a id="([^"]+)"[^>]*>([\s\S]*?)<\/a><\/h3>/gi)];
+  const headings = [...source.matchAll(/<h([234])(?:\s[^>]*)?>([\s\S]*?)<\/h\1>/gi)]
+    .filter((heading) => heading[2].trim() && (!/<(?:a|button)\b[^>]*href=/i.test(heading[2])
+      || /<a\b[^>]*\bid=/i.test(heading[2])));
+  const usedFragments = existingIds(source);
   return headings.map((heading, index) => {
     const start = heading.index + heading[0].length;
     const end = headings[index + 1]?.index ?? source.length;
-    const title = textFromHtml(heading[2]);
+    const anchor = heading[2].match(/<a\b[^>]*\bid="([^"]+)"[^>]*>/i)?.[1] || "";
+    const title = headingText(heading[2].replace(/<a\b[^>]*>|<\/a>/gi, ""));
     const body = textFromHtml(source.slice(start, end));
+    const fragment = anchor || fragmentFor(title, `section-${index + 1}`, usedFragments);
+    usedFragments.add(fragment);
     return {
-      id: createContentId("rule", `${path.replace(/\.html$/i, "")}-${heading[1]}`),
+      id: createContentId("rule", `${path.replace(/\.html$/i, "")}-${fragment}`),
       type: "rule",
-      legacyIds: [`rule-${path}-${heading[1]}`],
+      ...(anchor ? { legacyIds: [`rule-${path}-${anchor}`] } : {}),
       title,
       category: "Règle",
-      url: `${path}#${heading[1]}`,
+      url: `${path}#${fragment}`,
       keywords: ["règle", body],
       excerpt: excerpt(body),
     };
   });
+}
+
+async function classSearchEntries() {
+  const files = (await readdir(resolve(root, "classes")))
+    .filter((file) => /^class-[a-z0-9-]+\.html$/i.test(file))
+    .sort();
+  const entries = [];
+
+  for (const file of files) {
+    const source = await readFile(resolve(root, "classes", file), "utf8");
+    const classTitle = textFromHtml(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || file);
+    const classId = createContentId("class", classTitle).slice("class-".length);
+    const headings = [...source.matchAll(/<h([234])(?:\s[^>]*)?>([\s\S]*?)<\/h\1>/gi)];
+    let subclass = "";
+    const usedFragments = existingIds(source);
+
+    headings.forEach((heading, index) => {
+      const headingLevel = Number(heading[1]);
+      const inner = heading[2];
+      const title = headingText(inner.replace(/<a\b[^>]*>|<\/a>/gi, ""));
+      if (!title) return;
+      const start = heading.index + heading[0].length;
+      const end = headings[index + 1]?.index ?? source.length;
+      const body = textFromHtml(source.slice(start, end));
+      const bodyExcerpt = excerpt(body, 120);
+      const anchor = inner.match(/<a\b[^>]*\bid="([^"]+)"[^>]*>/i)?.[1] || "";
+      const featureLevel = Number(inner.match(/^\s*Niveau\s+(\d+)/i)?.[1] || 0);
+
+      if (headingLevel === 3 && anchor && !/^Devenir\b|^Capacités de classe\b/i.test(title)) {
+        subclass = title;
+        usedFragments.add(anchor);
+        entries.push({
+          id: createContentId("subclass", `${classId}-${title}`),
+          type: "subclass",
+          title,
+          category: "Sous-classe",
+          sourceRef: "phb-2024-fr",
+          url: `classes/${file}#${anchor}`,
+          keywords: [classTitle, "sous-classe", bodyExcerpt],
+          excerpt: bodyExcerpt,
+        });
+        return;
+      }
+
+      if (headingLevel !== 4 || /^En tant que personnage/i.test(title)) return;
+      const fragment = anchor || fragmentFor(title, `feature-${index + 1}`, usedFragments);
+      entries.push({
+        id: createContentId("class-feature", `${classId}-${title}-${fragment}`),
+        type: "class-feature",
+        title,
+          category: "Capacité de classe",
+          sourceRef: "phb-2024-fr",
+          className: classTitle,
+          ...(featureLevel ? { level: featureLevel } : {}),
+          ...(subclass ? { subclass } : {}),
+        url: `classes/${file}#${fragment}`,
+        keywords: [classTitle, subclass, "capacité", bodyExcerpt],
+        excerpt: bodyExcerpt,
+      });
+    });
+  }
+  return entries;
+}
+
+async function speciesFeatureSearchEntries() {
+  const files = (await readdir(resolve(root, "races")))
+    .filter((file) => /^race-[a-z0-9-]+\.html$/i.test(file))
+    .sort();
+  const entries = [];
+
+  for (const file of files) {
+    const source = await readFile(resolve(root, "races", file), "utf8");
+    const speciesTitle = textFromHtml(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || file);
+    const speciesId = createContentId("species", speciesTitle).slice("species-".length);
+    const usedFragments = existingIds(source);
+    const blocks = [...source.matchAll(/<div class="trait">([\s\S]*?)<\/div>/gi)];
+
+    for (const block of blocks) {
+      const name = headingText(block[1].match(/<strong>([\s\S]*?)<\/strong>/i)?.[1] || "")
+        .replace(/:$/, "");
+      if (!name) continue;
+      const fragment = fragmentFor(name, "trait", usedFragments);
+      const body = textFromHtml(block[1]);
+      const bodyExcerpt = excerpt(body, 120);
+      entries.push({
+        id: createContentId("species-feature", `${speciesId}-${name}-${fragment}`),
+        type: "species-feature",
+        title: name,
+        category: "Trait d’espèce",
+        sourceRef: "phb-2024-fr",
+        url: `races/${file}#${fragment}`,
+        keywords: [speciesTitle, "espèce", "trait", bodyExcerpt],
+        excerpt: bodyExcerpt,
+      });
+    }
+
+    const headings = [...source.matchAll(/<h3(?:\s[^>]*)?>([\s\S]*?)<\/h3>/gi)];
+    for (const heading of headings) {
+      const title = headingText(heading[1]);
+      if (!title) continue;
+      const fragment = fragmentFor(title.replace(/\s*\([^)]*\)\s*$/, ""), "subspecies", usedFragments);
+      const bodyStart = heading.index + heading[0].length;
+      const bodyEnd = source.indexOf("</div>", bodyStart);
+      const body = textFromHtml(source.slice(bodyStart, bodyEnd === -1 ? source.length : bodyEnd));
+      const bodyExcerpt = excerpt(body, 120);
+      entries.push({
+        id: createContentId("species-feature", `${speciesId}-${title}-${fragment}`),
+        type: "species-feature",
+        title,
+        category: "Trait d’espèce",
+        sourceRef: "phb-2024-fr",
+        url: `races/${file}#${fragment}`,
+        keywords: [speciesTitle, "ascendance", "héritage", bodyExcerpt],
+        excerpt: bodyExcerpt,
+      });
+    }
+  }
+  return entries;
+}
+
+async function toolSearchEntries() {
+  const source = await readFile(resolve(root, "outils-aventurier.html"), "utf8");
+  const blocks = [...source.matchAll(/<div class="tool-card">([\s\S]*?)<\/div>/gi)];
+  const usedFragments = existingIds(source);
+  return blocks.flatMap((block) => {
+    const rawTitle = textFromHtml(block[1].match(/<h4[^>]*>([\s\S]*?)<\/h4>/i)?.[1] || "");
+    const title = rawTitle.replace(/\s*\([^)]*\)\s*$/, "").trim();
+    if (!title) return [];
+    const body = textFromHtml(block[1]);
+    const bodyExcerpt = excerpt(body, 120);
+    const fragment = fragmentFor(title, "outil", usedFragments);
+    return [{
+      id: createContentId("tool", title),
+      type: "tool",
+      title,
+      category: "Outil",
+      sourceRef: "phb-2024-fr",
+      url: `outils-aventurier.html#${fragment}`,
+      keywords: ["outil", "maîtrise", bodyExcerpt],
+      excerpt: bodyExcerpt,
+    }];
+  });
+}
+
+async function adventuringGearSearchEntries() {
+  const source = await readFile(resolve(root, "outils-aventurier.html"), "utf8");
+  const tables = [...source.matchAll(/<table class="equipment-table">([\s\S]*?)<\/table>/gi)];
+  const usedFragments = existingIds(source);
+  return tables.flatMap((table) => [...table[1].matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)].flatMap((row) => {
+    const cells = [...row[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((cell) => textFromHtml(cell[1]));
+    if (cells.length < 2) return [];
+    const title = cells[0];
+    const fragment = fragmentFor(title.replace(/\s*\([^)]*\)\s*$/, ""), "materiel", usedFragments);
+    return [{
+      id: createContentId("adventuring-gear", title),
+      type: "adventuring-gear",
+      title,
+      category: "Matériel",
+      sourceRef: "phb-2024-fr",
+      url: `outils-aventurier.html#${fragment}`,
+      keywords: ["matériel d’aventurier", ...cells.slice(1)],
+      excerpt: excerpt(cells.slice(1).join(" · ")),
+    }];
+  }));
 }
 
 const spells = JSON.parse(await readFile(resolve(root, "data/spells_2024.json"), "utf8")).spells;
@@ -125,6 +318,8 @@ const monsterTranslations = JSON.parse(await readFile(resolve(root, "data/monste
 const monsterNamesFr = monsterTranslations.monsterNamesFr || {};
 const feats = JSON.parse(await readFile(resolve(root, "data/feats_2024.json"), "utf8")).feats;
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8")).entries;
+const magicItems = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8")).items;
+const campaignRules = JSON.parse(await readFile(resolve(root, "data/campaign-rules.json"), "utf8")).entries;
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
 const conditions = await loadGlobalData("js/data_condition.js", "data_condition");
 const quickReferenceGroups = [
@@ -194,6 +389,8 @@ const pages = [
   ["Plans d’existence", "Univers", "plans-existence.html", "Les autres réalités"],
   ["Feuille de personnage", "Outil", "character-sheet-standalone.html", "Fiche autonome sauvegardée localement"],
   ["Statistiques de dés", "Outil", "dice-stats.html", "Probabilités et distributions des jets de dés"],
+  ["Objets magiques", "Objet magique", "objets-magiques.html", "Catalogue des objets magiques de la campagne"],
+  ["Règles de campagne", "Règle de campagne", "regles-campagne.html", "Décisions propres à notre table"],
 ];
 
 const entries = [
@@ -244,8 +441,35 @@ const entries = [
   })),
   ...quickReferenceEntries,
   ...equipment,
+  ...await toolSearchEntries(),
+  ...await adventuringGearSearchEntries(),
   ...backgrounds,
   ...rules,
+  ...await classSearchEntries(),
+  ...await speciesFeatureSearchEntries(),
+  ...magicItems.map((item) => ({
+    id: item.id || createContentId("magic-item", item.name),
+    type: "magic-item",
+    title: item.name,
+    category: "Objet magique",
+    sourceRef: item.sourceRef || "srd-5.2.1-fr",
+    url: queryUrl("objets-magiques.html", item.name),
+    aliases: item.aliases || [],
+    keywords: [item.type, item.rarity, item.requiresAttunement ? "harmonisation" : "sans harmonisation", item.sourceSection],
+    excerpt: excerpt(item.description),
+  })),
+  ...campaignRules.map((rule) => ({
+    id: rule.id || createContentId("campaign-rule", rule.title),
+    type: "campaign-rule",
+    title: rule.title,
+    category: "Règle de campagne",
+    sourceRef: rule.sourceRef || "campaign-local",
+    status: rule.status,
+    url: queryUrl("regles-campagne.html", rule.title),
+    aliases: rule.aliases || [],
+    keywords: ["règle de table", "house rule", ...(rule.related || [])],
+    excerpt: excerpt(rule.summary),
+  })),
   ...glossary.map((entry) => ({
     id: entry.id,
     type: "glossary",
@@ -301,10 +525,17 @@ const searchEntries = entries.map(({ legacyIds, ...entry }) => ({
     ...(searchAliasSource.aliases[entry.id] || []),
   ].map((value) => String(value).trim()).filter(Boolean))),
 }));
+const deepTypes = new Set(["class-feature", "subclass", "species-feature", "tool", "adventuring-gear"]);
+const deepSearchEntries = searchEntries.filter((entry) => deepTypes.has(entry.type));
+const primarySearchEntries = searchEntries.filter((entry) => !deepTypes.has(entry.type));
 const outputs = [
   [
     resolve(root, "data/search-index.json"),
-    `${JSON.stringify({ schemaVersion: 1, version: 4, count: searchEntries.length, entries: searchEntries })}${EOL}`,
+    `${JSON.stringify({ schemaVersion: 1, version: 4, count: primarySearchEntries.length, entries: primarySearchEntries })}${EOL}`,
+  ],
+  [
+    resolve(root, "data/search-index-deep.json"),
+    `${JSON.stringify({ schemaVersion: 1, version: 4, count: deepSearchEntries.length, entries: deepSearchEntries })}${EOL}`,
   ],
   [
     resolve(root, "data/content-id-aliases.json"),
@@ -321,8 +552,8 @@ if (process.argv.includes("--check")) {
   if (stale.length) {
     throw new Error(`Generated search files are stale: ${stale.join(", ")}`);
   }
-  console.log(`Verified ${searchEntries.length} search entries and ${Object.keys(aliases).length} legacy aliases.`);
+  console.log(`Verified ${searchEntries.length} search entries (${primarySearchEntries.length} primary, ${deepSearchEntries.length} deep) and ${Object.keys(aliases).length} legacy aliases.`);
 } else {
   await Promise.all(outputs.map(([path, content]) => writeFile(path, content, "utf8")));
-  console.log(`Generated ${searchEntries.length} search entries and ${Object.keys(aliases).length} legacy aliases.`);
+  console.log(`Generated ${searchEntries.length} search entries (${primarySearchEntries.length} primary, ${deepSearchEntries.length} deep) and ${Object.keys(aliases).length} legacy aliases.`);
 }
