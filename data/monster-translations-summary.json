@@ -1,0 +1,3681 @@
+{
+  "schemaVersion": 1,
+  "title": "Synthèse de la traduction française des monstres 2024",
+  "scope": {
+    "totalMonsters": 499,
+    "confirmedFrenchTranslations": 484,
+    "unresolvedFrenchTranslations": 15,
+    "unaccountedMonsters": 0,
+    "coverageComplete": true
+  },
+  "source": {
+    "primary": "Index français du bestiaire fourni en six photographies",
+    "photographCount": 6,
+    "mappingFile": "data/monster-names-fr.json"
+  },
+  "workCompleted": {
+    "technicalIdentifiersPreserved": true,
+    "preservedFields": [
+      "id",
+      "slug",
+      "type",
+      "kind",
+      "imagePath",
+      "monsterData"
+    ],
+    "displayUsesFrenchNames": true,
+    "searchSupportsFrenchAndEnglish": true,
+    "sortingUsesFrenchNames": true,
+    "unresolvedNamesKeepEnglishFallback": true,
+    "unresolvedNamesAreExplicitlyMarked": true,
+    "globalSearchIndexRegenerated": true
+  },
+  "validation": {
+    "translationCoverageCheck": "passed",
+    "automatedTestSuite": {
+      "command": "npm run recette",
+      "passed": 147,
+      "failed": 0
+    },
+    "visualChecks": [
+      "Recherche française",
+      "Recherche anglaise",
+      "Ouverture d'une fiche de monstre",
+      "Tri alphabétique français",
+      "Contrôle des débordements visuels"
+    ]
+  },
+  "unresolvedMonsters": [
+    {
+      "nameEn": "Aberrant Spirit",
+      "candidateFrenchLabels": [
+        "Esprit aberrant"
+      ]
+    },
+    {
+      "nameEn": "Animated Object",
+      "candidateFrenchLabels": [
+        "Objet animé"
+      ]
+    },
+    {
+      "nameEn": "Beast Of the Land",
+      "candidateFrenchLabels": [
+        "Bête de la terre"
+      ]
+    },
+    {
+      "nameEn": "Beast Of the Sea",
+      "candidateFrenchLabels": [
+        "Bête de la mer"
+      ]
+    },
+    {
+      "nameEn": "Beast Of the Sky",
+      "candidateFrenchLabels": [
+        "Bête du ciel"
+      ]
+    },
+    {
+      "nameEn": "Bestial Spirit",
+      "candidateFrenchLabels": [
+        "Esprit bestial"
+      ]
+    },
+    {
+      "nameEn": "Celestial Spirit",
+      "candidateFrenchLabels": [
+        "Esprit céleste"
+      ]
+    },
+    {
+      "nameEn": "Construct Spirit",
+      "candidateFrenchLabels": [
+        "Esprit artificiel"
+      ]
+    },
+    {
+      "nameEn": "Draconic Spirit",
+      "candidateFrenchLabels": [
+        "Esprit draconique"
+      ]
+    },
+    {
+      "nameEn": "Elemental Spirit",
+      "candidateFrenchLabels": [
+        "Esprit élémentaire"
+      ]
+    },
+    {
+      "nameEn": "Fey Spirit",
+      "candidateFrenchLabels": [
+        "Esprit féerique"
+      ]
+    },
+    {
+      "nameEn": "Fiendish Spirit",
+      "candidateFrenchLabels": [
+        "Esprit fiélon"
+      ]
+    },
+    {
+      "nameEn": "Giant Insect",
+      "candidateFrenchLabels": [
+        "Insecte géant"
+      ]
+    },
+    {
+      "nameEn": "Otherworldly Steed",
+      "candidateFrenchLabels": [
+        "Monture d'outre-monde"
+      ]
+    },
+    {
+      "nameEn": "Undead Spirit",
+      "candidateFrenchLabels": [
+        "Esprit mort-vivant"
+      ]
+    }
+  ],
+  "monsterNameCorrespondence": [
+    {
+      "id": 1,
+      "slug": "aarakocra-aeromancer",
+      "nameEn": "Aarakocra Aeromancer",
+      "nameFr": "Aéromancien aarakocre",
+      "status": "confirmed"
+    },
+    {
+      "id": 2,
+      "slug": "aarakocra-skirmisher",
+      "nameEn": "Aarakocra Skirmisher",
+      "nameFr": "Tirailleur aarakocre",
+      "status": "confirmed"
+    },
+    {
+      "id": 3,
+      "slug": "aberrant-cultist",
+      "nameEn": "Aberrant Cultist",
+      "nameFr": "Sectateur de l'Aberration",
+      "status": "confirmed"
+    },
+    {
+      "id": 4,
+      "slug": "aberrant-spirit",
+      "nameEn": "Aberrant Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit aberrant"
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "aboleth",
+      "nameEn": "Aboleth",
+      "nameFr": "Aboleth",
+      "status": "confirmed"
+    },
+    {
+      "id": 6,
+      "slug": "abominable-yeti",
+      "nameEn": "Abominable Yeti",
+      "nameFr": "Yéti abominable",
+      "status": "confirmed"
+    },
+    {
+      "id": 7,
+      "slug": "adult-black-dragon",
+      "nameEn": "Adult Black Dragon",
+      "nameFr": "Dragon noir adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 8,
+      "slug": "adult-blue-dragon",
+      "nameEn": "Adult Blue Dragon",
+      "nameFr": "Dragon bleu adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 9,
+      "slug": "adult-brass-dragon",
+      "nameEn": "Adult Brass Dragon",
+      "nameFr": "Dragon d'airain adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 10,
+      "slug": "adult-bronze-dragon",
+      "nameEn": "Adult Bronze Dragon",
+      "nameFr": "Dragon de bronze adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 11,
+      "slug": "adult-copper-dragon",
+      "nameEn": "Adult Copper Dragon",
+      "nameFr": "Dragon de cuivre adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 12,
+      "slug": "adult-gold-dragon",
+      "nameEn": "Adult Gold Dragon",
+      "nameFr": "Dragon d'or adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 13,
+      "slug": "adult-green-dragon",
+      "nameEn": "Adult Green Dragon",
+      "nameFr": "Dragon vert adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 14,
+      "slug": "adult-red-dragon",
+      "nameEn": "Adult Red Dragon",
+      "nameFr": "Dragon rouge adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 15,
+      "slug": "adult-silver-dragon",
+      "nameEn": "Adult Silver Dragon",
+      "nameFr": "Dragon d'argent adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 16,
+      "slug": "adult-white-dragon",
+      "nameEn": "Adult White Dragon",
+      "nameFr": "Dragon blanc adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 17,
+      "slug": "air-elemental",
+      "nameEn": "Air Elemental",
+      "nameFr": "Élémentaire de l'air",
+      "status": "confirmed"
+    },
+    {
+      "id": 18,
+      "slug": "allosaurus",
+      "nameEn": "Allosaurus",
+      "nameFr": "Allosaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 19,
+      "slug": "ancient-black-dragon",
+      "nameEn": "Ancient Black Dragon",
+      "nameFr": "Dragon noir vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 20,
+      "slug": "ancient-blue-dragon",
+      "nameEn": "Ancient Blue Dragon",
+      "nameFr": "Dragon bleu vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 21,
+      "slug": "ancient-brass-dragon",
+      "nameEn": "Ancient Brass Dragon",
+      "nameFr": "Dragon d'airain vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 22,
+      "slug": "ancient-bronze-dragon",
+      "nameEn": "Ancient Bronze Dragon",
+      "nameFr": "Dragon de bronze vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 23,
+      "slug": "ancient-copper-dragon",
+      "nameEn": "Ancient Copper Dragon",
+      "nameFr": "Dragon de cuivre vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 24,
+      "slug": "ancient-gold-dragon",
+      "nameEn": "Ancient Gold Dragon",
+      "nameFr": "Dragon d'or vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 25,
+      "slug": "ancient-green-dragon",
+      "nameEn": "Ancient Green Dragon",
+      "nameFr": "Dragon vert vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 26,
+      "slug": "ancient-red-dragon",
+      "nameEn": "Ancient Red Dragon",
+      "nameFr": "Dragon rouge vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 27,
+      "slug": "ancient-silver-dragon",
+      "nameEn": "Ancient Silver Dragon",
+      "nameFr": "Dragon d'argent vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 28,
+      "slug": "ancient-white-dragon",
+      "nameEn": "Ancient White Dragon",
+      "nameFr": "Dragon blanc vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 29,
+      "slug": "animal-lord",
+      "nameEn": "Animal Lord",
+      "nameFr": "Seigneur des bêtes",
+      "status": "confirmed"
+    },
+    {
+      "id": 30,
+      "slug": "animated-armor",
+      "nameEn": "Animated Armor",
+      "nameFr": "Armure animée",
+      "status": "confirmed"
+    },
+    {
+      "id": 31,
+      "slug": "animated-broom",
+      "nameEn": "Animated Broom",
+      "nameFr": "Balai animé",
+      "status": "confirmed"
+    },
+    {
+      "id": 32,
+      "slug": "animated-flying-sword",
+      "nameEn": "Animated Flying Sword",
+      "nameFr": "Épée volante",
+      "status": "confirmed"
+    },
+    {
+      "id": 33,
+      "slug": "animated-object",
+      "nameEn": "Animated Object",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Objet animé"
+      ]
+    },
+    {
+      "id": 34,
+      "slug": "animated-rug-of-smothering",
+      "nameEn": "Animated Rug Of Smothering",
+      "nameFr": "Tapis étrangleur",
+      "status": "confirmed"
+    },
+    {
+      "id": 35,
+      "slug": "ankheg",
+      "nameEn": "Ankheg",
+      "nameFr": "Ankheg",
+      "status": "confirmed"
+    },
+    {
+      "id": 36,
+      "slug": "ankylosaurus",
+      "nameEn": "Ankylosaurus",
+      "nameFr": "Ankylosaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 37,
+      "slug": "ape",
+      "nameEn": "Ape",
+      "nameFr": "Grand singe",
+      "status": "confirmed"
+    },
+    {
+      "id": 38,
+      "slug": "arcanaloth",
+      "nameEn": "Arcanaloth",
+      "nameFr": "Arcanaloth",
+      "status": "confirmed"
+    },
+    {
+      "id": 39,
+      "slug": "arch-hag",
+      "nameEn": "Arch-hag",
+      "nameFr": "Archi-guenaude",
+      "status": "confirmed"
+    },
+    {
+      "id": 40,
+      "slug": "archelon",
+      "nameEn": "Archelon",
+      "nameFr": "Archélon",
+      "status": "confirmed"
+    },
+    {
+      "id": 41,
+      "slug": "archmage",
+      "nameEn": "Archmage",
+      "nameFr": "Archimage",
+      "status": "confirmed"
+    },
+    {
+      "id": 42,
+      "slug": "archpriest",
+      "nameEn": "Archpriest",
+      "nameFr": "Archiprêtre",
+      "status": "confirmed"
+    },
+    {
+      "id": 43,
+      "slug": "assassin",
+      "nameEn": "Assassin",
+      "nameFr": "Assassin",
+      "status": "confirmed"
+    },
+    {
+      "id": 44,
+      "slug": "awakened-shrub",
+      "nameEn": "Awakened Shrub",
+      "nameFr": "Arbuste éveillé",
+      "status": "confirmed"
+    },
+    {
+      "id": 45,
+      "slug": "awakened-tree",
+      "nameEn": "Awakened Tree",
+      "nameFr": "Arbre éveillé",
+      "status": "confirmed"
+    },
+    {
+      "id": 46,
+      "slug": "axe-beak",
+      "nameEn": "Axe Beak",
+      "nameFr": "Autrache",
+      "status": "confirmed"
+    },
+    {
+      "id": 47,
+      "slug": "azer-pyromancer",
+      "nameEn": "Azer Pyromancer",
+      "nameFr": "Pyromancien azer",
+      "status": "confirmed"
+    },
+    {
+      "id": 48,
+      "slug": "azer-sentinel",
+      "nameEn": "Azer Sentinel",
+      "nameFr": "Sentinelle azer",
+      "status": "confirmed"
+    },
+    {
+      "id": 49,
+      "slug": "baboon",
+      "nameEn": "Baboon",
+      "nameFr": "Babouin",
+      "status": "confirmed"
+    },
+    {
+      "id": 50,
+      "slug": "badger",
+      "nameEn": "Badger",
+      "nameFr": "Blaireau",
+      "status": "confirmed"
+    },
+    {
+      "id": 51,
+      "slug": "balor",
+      "nameEn": "Balor",
+      "nameFr": "Balor",
+      "status": "confirmed"
+    },
+    {
+      "id": 52,
+      "slug": "bandit",
+      "nameEn": "Bandit",
+      "nameFr": "Bandit",
+      "status": "confirmed"
+    },
+    {
+      "id": 53,
+      "slug": "bandit-captain",
+      "nameEn": "Bandit Captain",
+      "nameFr": "Chef de bande",
+      "status": "confirmed"
+    },
+    {
+      "id": 54,
+      "slug": "bandit-crime-lord",
+      "nameEn": "Bandit Crime Lord",
+      "nameFr": "Baron du crime",
+      "status": "confirmed"
+    },
+    {
+      "id": 55,
+      "slug": "bandit-deceiver",
+      "nameEn": "Bandit Deceiver",
+      "nameFr": "Embrouilleur",
+      "status": "confirmed"
+    },
+    {
+      "id": 56,
+      "slug": "banshee",
+      "nameEn": "Banshee",
+      "nameFr": "Banshie",
+      "status": "confirmed"
+    },
+    {
+      "id": 57,
+      "slug": "barbed-devil",
+      "nameEn": "Barbed Devil",
+      "nameFr": "Diable barbelé",
+      "status": "confirmed"
+    },
+    {
+      "id": 58,
+      "slug": "barlgura",
+      "nameEn": "Barlgura",
+      "nameFr": "Barlgura",
+      "status": "confirmed"
+    },
+    {
+      "id": 59,
+      "slug": "basilisk",
+      "nameEn": "Basilisk",
+      "nameFr": "Basilic",
+      "status": "confirmed"
+    },
+    {
+      "id": 60,
+      "slug": "bat",
+      "nameEn": "Bat",
+      "nameFr": "Chauve-souris",
+      "status": "confirmed"
+    },
+    {
+      "id": 61,
+      "slug": "bearded-devil",
+      "nameEn": "Bearded Devil",
+      "nameFr": "Diable barbu",
+      "status": "confirmed"
+    },
+    {
+      "id": 62,
+      "slug": "beast-of-the-land",
+      "nameEn": "Beast Of the Land",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Bête de la terre"
+      ]
+    },
+    {
+      "id": 63,
+      "slug": "beast-of-the-sea",
+      "nameEn": "Beast Of the Sea",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Bête de la mer"
+      ]
+    },
+    {
+      "id": 64,
+      "slug": "beast-of-the-sky",
+      "nameEn": "Beast Of the Sky",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Bête du ciel"
+      ]
+    },
+    {
+      "id": 65,
+      "slug": "behir",
+      "nameEn": "Behir",
+      "nameFr": "Béhir",
+      "status": "confirmed"
+    },
+    {
+      "id": 66,
+      "slug": "beholder",
+      "nameEn": "Beholder",
+      "nameFr": "Tyrannœil",
+      "status": "confirmed"
+    },
+    {
+      "id": 67,
+      "slug": "beholder-zombie",
+      "nameEn": "Beholder Zombie",
+      "nameFr": "Tyrannœil zombi",
+      "status": "confirmed"
+    },
+    {
+      "id": 68,
+      "slug": "berserker",
+      "nameEn": "Berserker",
+      "nameFr": "Berserker",
+      "status": "confirmed"
+    },
+    {
+      "id": 69,
+      "slug": "berserker-commander",
+      "nameEn": "Berserker Commander",
+      "nameFr": "Chef berserker",
+      "status": "confirmed"
+    },
+    {
+      "id": 70,
+      "slug": "bestial-spirit",
+      "nameEn": "Bestial Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit bestial"
+      ]
+    },
+    {
+      "id": 71,
+      "slug": "black-bear",
+      "nameEn": "Black Bear",
+      "nameFr": "Ours noir",
+      "status": "confirmed"
+    },
+    {
+      "id": 72,
+      "slug": "black-dragon-wyrmling",
+      "nameEn": "Black Dragon Wyrmling",
+      "nameFr": "Dragonnet noir",
+      "status": "confirmed"
+    },
+    {
+      "id": 73,
+      "slug": "black-pudding",
+      "nameEn": "Black Pudding",
+      "nameFr": "Pouding noir",
+      "status": "confirmed"
+    },
+    {
+      "id": 74,
+      "slug": "blink-dog",
+      "nameEn": "Blink Dog",
+      "nameFr": "Chien esquiveur",
+      "status": "confirmed"
+    },
+    {
+      "id": 75,
+      "slug": "blob-of-annihilation",
+      "nameEn": "Blob Of Annihilation",
+      "nameFr": "Blob d'annihilation",
+      "status": "confirmed"
+    },
+    {
+      "id": 76,
+      "slug": "blood-hawk",
+      "nameEn": "Blood Hawk",
+      "nameFr": "Faucon de sang",
+      "status": "confirmed"
+    },
+    {
+      "id": 77,
+      "slug": "blue-dragon-wyrmling",
+      "nameEn": "Blue Dragon Wyrmling",
+      "nameFr": "Dragonnet bleu",
+      "status": "confirmed"
+    },
+    {
+      "id": 78,
+      "slug": "blue-slaad",
+      "nameEn": "Blue Slaad",
+      "nameFr": "Slaad bleu",
+      "status": "confirmed"
+    },
+    {
+      "id": 79,
+      "slug": "boar",
+      "nameEn": "Boar",
+      "nameFr": "Sanglier",
+      "status": "confirmed"
+    },
+    {
+      "id": 80,
+      "slug": "bone-devil",
+      "nameEn": "Bone Devil",
+      "nameFr": "Diable osseux",
+      "status": "confirmed"
+    },
+    {
+      "id": 81,
+      "slug": "bone-naga",
+      "nameEn": "Bone Naga",
+      "nameFr": "Naga osseux",
+      "status": "confirmed"
+    },
+    {
+      "id": 82,
+      "slug": "brass-dragon-wyrmling",
+      "nameEn": "Brass Dragon Wyrmling",
+      "nameFr": "Dragonnet d'airain",
+      "status": "confirmed"
+    },
+    {
+      "id": 83,
+      "slug": "brazen-gorgon",
+      "nameEn": "Brazen Gorgon",
+      "nameFr": "Gorgone ardente",
+      "status": "confirmed"
+    },
+    {
+      "id": 84,
+      "slug": "bronze-dragon-wyrmling",
+      "nameEn": "Bronze Dragon Wyrmling",
+      "nameFr": "Dragonnet de bronze",
+      "status": "confirmed"
+    },
+    {
+      "id": 85,
+      "slug": "brown-bear",
+      "nameEn": "Brown Bear",
+      "nameFr": "Ours brun",
+      "status": "confirmed"
+    },
+    {
+      "id": 86,
+      "slug": "bugbear-stalker",
+      "nameEn": "Bugbear Stalker",
+      "nameFr": "Traqueur gobelours",
+      "status": "confirmed"
+    },
+    {
+      "id": 87,
+      "slug": "bugbear-warrior",
+      "nameEn": "Bugbear Warrior",
+      "nameFr": "Combattant gobelours",
+      "status": "confirmed"
+    },
+    {
+      "id": 88,
+      "slug": "bulette",
+      "nameEn": "Bulette",
+      "nameFr": "Bulette",
+      "status": "confirmed"
+    },
+    {
+      "id": 89,
+      "slug": "bulette-pup",
+      "nameEn": "Bulette Pup",
+      "nameFr": "Bulettiot",
+      "status": "confirmed"
+    },
+    {
+      "id": 90,
+      "slug": "bullywug-bog-sage",
+      "nameEn": "Bullywug Bog Sage",
+      "nameFr": "Sage du marais brutacien",
+      "status": "confirmed"
+    },
+    {
+      "id": 91,
+      "slug": "bullywug-warrior",
+      "nameEn": "Bullywug Warrior",
+      "nameFr": "Combattant brutacien",
+      "status": "confirmed"
+    },
+    {
+      "id": 92,
+      "slug": "cambion",
+      "nameEn": "Cambion",
+      "nameFr": "Cambion",
+      "status": "confirmed"
+    },
+    {
+      "id": 93,
+      "slug": "camel",
+      "nameEn": "Camel",
+      "nameFr": "Chameau",
+      "status": "confirmed"
+    },
+    {
+      "id": 94,
+      "slug": "carrion-crawler",
+      "nameEn": "Carrion Crawler",
+      "nameFr": "Charognard rampant",
+      "status": "confirmed"
+    },
+    {
+      "id": 95,
+      "slug": "cat",
+      "nameEn": "Cat",
+      "nameFr": "Chat",
+      "status": "confirmed"
+    },
+    {
+      "id": 96,
+      "slug": "celestial-spirit",
+      "nameEn": "Celestial Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit céleste"
+      ]
+    },
+    {
+      "id": 97,
+      "slug": "centaur-trooper",
+      "nameEn": "Centaur Trooper",
+      "nameFr": "Soldat centaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 98,
+      "slug": "centaur-warden",
+      "nameEn": "Centaur Warden",
+      "nameFr": "Gardien centaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 99,
+      "slug": "chain-devil",
+      "nameEn": "Chain Devil",
+      "nameFr": "Diable des chaînes",
+      "status": "confirmed"
+    },
+    {
+      "id": 100,
+      "slug": "chasme",
+      "nameEn": "Chasme",
+      "nameFr": "Chasme",
+      "status": "confirmed"
+    },
+    {
+      "id": 101,
+      "slug": "chimera",
+      "nameEn": "Chimera",
+      "nameFr": "Chimère",
+      "status": "confirmed"
+    },
+    {
+      "id": 102,
+      "slug": "chuul",
+      "nameEn": "Chuul",
+      "nameFr": "Chuul",
+      "status": "confirmed"
+    },
+    {
+      "id": 103,
+      "slug": "clay-golem",
+      "nameEn": "Clay Golem",
+      "nameFr": "Golem d'argile",
+      "status": "confirmed"
+    },
+    {
+      "id": 104,
+      "slug": "cloaker",
+      "nameEn": "Cloaker",
+      "nameFr": "Manteleur",
+      "status": "confirmed"
+    },
+    {
+      "id": 105,
+      "slug": "cloud-giant",
+      "nameEn": "Cloud Giant",
+      "nameFr": "Géant des nuages",
+      "status": "confirmed"
+    },
+    {
+      "id": 106,
+      "slug": "cockatrice",
+      "nameEn": "Cockatrice",
+      "nameFr": "Cockatrice",
+      "status": "confirmed"
+    },
+    {
+      "id": 107,
+      "slug": "cockatrice-regent",
+      "nameEn": "Cockatrice Regent",
+      "nameFr": "Cockatrice souveraine",
+      "status": "confirmed"
+    },
+    {
+      "id": 108,
+      "slug": "colossus",
+      "nameEn": "Colossus",
+      "nameFr": "Colosse",
+      "status": "confirmed"
+    },
+    {
+      "id": 109,
+      "slug": "commoner",
+      "nameEn": "Commoner",
+      "nameFr": "Roturier",
+      "status": "confirmed"
+    },
+    {
+      "id": 110,
+      "slug": "constrictor-snake",
+      "nameEn": "Constrictor Snake",
+      "nameFr": "Serpent constricteur",
+      "status": "confirmed"
+    },
+    {
+      "id": 111,
+      "slug": "construct-spirit",
+      "nameEn": "Construct Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit artificiel"
+      ]
+    },
+    {
+      "id": 112,
+      "slug": "copper-dragon-wyrmling",
+      "nameEn": "Copper Dragon Wyrmling",
+      "nameFr": "Dragonnet de cuivre",
+      "status": "confirmed"
+    },
+    {
+      "id": 113,
+      "slug": "couatl",
+      "nameEn": "Couatl",
+      "nameFr": "Couatl",
+      "status": "confirmed"
+    },
+    {
+      "id": 114,
+      "slug": "crab",
+      "nameEn": "Crab",
+      "nameFr": "Crabe",
+      "status": "confirmed"
+    },
+    {
+      "id": 115,
+      "slug": "crawling-claw",
+      "nameEn": "Crawling Claw",
+      "nameFr": "Sénestre",
+      "status": "confirmed"
+    },
+    {
+      "id": 116,
+      "slug": "crocodile",
+      "nameEn": "Crocodile",
+      "nameFr": "Crocodile",
+      "status": "confirmed"
+    },
+    {
+      "id": 117,
+      "slug": "cultist",
+      "nameEn": "Cultist",
+      "nameFr": "Sectateur",
+      "status": "confirmed"
+    },
+    {
+      "id": 118,
+      "slug": "cultist-fanatic",
+      "nameEn": "Cultist Fanatic",
+      "nameFr": "Fanatique de secte",
+      "status": "confirmed"
+    },
+    {
+      "id": 119,
+      "slug": "cultist-hierophant",
+      "nameEn": "Cultist Hierophant",
+      "nameFr": "Hiérophante de secte",
+      "status": "confirmed"
+    },
+    {
+      "id": 120,
+      "slug": "cyclops-oracle",
+      "nameEn": "Cyclops Oracle",
+      "nameFr": "Oracle cyclope",
+      "status": "confirmed"
+    },
+    {
+      "id": 121,
+      "slug": "cyclops-sentry",
+      "nameEn": "Cyclops Sentry",
+      "nameFr": "Sentinelle cyclope",
+      "status": "confirmed"
+    },
+    {
+      "id": 122,
+      "slug": "dao",
+      "nameEn": "Dao",
+      "nameFr": "Dao",
+      "status": "confirmed"
+    },
+    {
+      "id": 123,
+      "slug": "darkmantle",
+      "nameEn": "Darkmantle",
+      "nameFr": "Mante obscure",
+      "status": "confirmed"
+    },
+    {
+      "id": 124,
+      "slug": "death-cultist",
+      "nameEn": "Death Cultist",
+      "nameFr": "Sectateur funeste",
+      "status": "confirmed"
+    },
+    {
+      "id": 125,
+      "slug": "death-dog",
+      "nameEn": "Death Dog",
+      "nameFr": "Chien du trépas",
+      "status": "confirmed"
+    },
+    {
+      "id": 126,
+      "slug": "death-knight",
+      "nameEn": "Death Knight",
+      "nameFr": "Chevalier de la mort",
+      "status": "confirmed"
+    },
+    {
+      "id": 127,
+      "slug": "death-knight-aspirant",
+      "nameEn": "Death Knight Aspirant",
+      "nameFr": "Aspirant chevalier de la mort",
+      "status": "confirmed"
+    },
+    {
+      "id": 128,
+      "slug": "death-slaad",
+      "nameEn": "Death Slaad",
+      "nameFr": "Slaad funeste",
+      "status": "confirmed"
+    },
+    {
+      "id": 129,
+      "slug": "death-tyrant",
+      "nameEn": "Death Tyrant",
+      "nameFr": "Tyramort",
+      "status": "confirmed"
+    },
+    {
+      "id": 130,
+      "slug": "deer",
+      "nameEn": "Deer",
+      "nameFr": "Petit cervidé",
+      "status": "confirmed"
+    },
+    {
+      "id": 131,
+      "slug": "demilich",
+      "nameEn": "Demilich",
+      "nameFr": "Demi-liche",
+      "status": "confirmed"
+    },
+    {
+      "id": 132,
+      "slug": "deva",
+      "nameEn": "Deva",
+      "nameFr": "Déva",
+      "status": "confirmed"
+    },
+    {
+      "id": 133,
+      "slug": "dire-wolf",
+      "nameEn": "Dire Wolf",
+      "nameFr": "Loup sanguinaire",
+      "status": "confirmed"
+    },
+    {
+      "id": 134,
+      "slug": "dire-worg",
+      "nameEn": "Dire Worg",
+      "nameFr": "Worg sanguinaire",
+      "status": "confirmed"
+    },
+    {
+      "id": 135,
+      "slug": "displacer-beast",
+      "nameEn": "Displacer Beast",
+      "nameFr": "Bête éclipsante",
+      "status": "confirmed"
+    },
+    {
+      "id": 136,
+      "slug": "djinni",
+      "nameEn": "Djinni",
+      "nameFr": "Djinn",
+      "status": "confirmed"
+    },
+    {
+      "id": 137,
+      "slug": "doppelganger",
+      "nameEn": "Doppelganger",
+      "nameFr": "Doppelganger",
+      "status": "confirmed"
+    },
+    {
+      "id": 138,
+      "slug": "dracolich",
+      "nameEn": "Dracolich",
+      "nameFr": "Dracoliche",
+      "status": "confirmed"
+    },
+    {
+      "id": 139,
+      "slug": "draconic-spirit",
+      "nameEn": "Draconic Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit draconique"
+      ]
+    },
+    {
+      "id": 140,
+      "slug": "draft-horse",
+      "nameEn": "Draft Horse",
+      "nameFr": "Cheval de trait",
+      "status": "confirmed"
+    },
+    {
+      "id": 141,
+      "slug": "dragon-turtle",
+      "nameEn": "Dragon Turtle",
+      "nameFr": "Dragon-tortue",
+      "status": "confirmed"
+    },
+    {
+      "id": 142,
+      "slug": "dretch",
+      "nameEn": "Dretch",
+      "nameFr": "Dretch",
+      "status": "confirmed"
+    },
+    {
+      "id": 143,
+      "slug": "drider",
+      "nameEn": "Drider",
+      "nameFr": "Drider",
+      "status": "confirmed"
+    },
+    {
+      "id": 144,
+      "slug": "druid",
+      "nameEn": "Druid",
+      "nameFr": "Druide",
+      "status": "confirmed"
+    },
+    {
+      "id": 145,
+      "slug": "dryad",
+      "nameEn": "Dryad",
+      "nameFr": "Dryade",
+      "status": "confirmed"
+    },
+    {
+      "id": 146,
+      "slug": "dust-mephit",
+      "nameEn": "Dust Mephit",
+      "nameFr": "Méphite poussiéreux",
+      "status": "confirmed"
+    },
+    {
+      "id": 147,
+      "slug": "eagle",
+      "nameEn": "Eagle",
+      "nameFr": "Aigle",
+      "status": "confirmed"
+    },
+    {
+      "id": 148,
+      "slug": "earth-elemental",
+      "nameEn": "Earth Elemental",
+      "nameFr": "Élémentaire de la terre",
+      "status": "confirmed"
+    },
+    {
+      "id": 149,
+      "slug": "efreeti",
+      "nameEn": "Efreeti",
+      "nameFr": "Éfrit",
+      "status": "confirmed"
+    },
+    {
+      "id": 150,
+      "slug": "elemental-cataclysm",
+      "nameEn": "Elemental Cataclysm",
+      "nameFr": "Cataclysme élémentaire",
+      "status": "confirmed"
+    },
+    {
+      "id": 151,
+      "slug": "elemental-cultist",
+      "nameEn": "Elemental Cultist",
+      "nameFr": "Sectateur élémentaire",
+      "status": "confirmed"
+    },
+    {
+      "id": 152,
+      "slug": "elemental-spirit",
+      "nameEn": "Elemental Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit élémentaire"
+      ]
+    },
+    {
+      "id": 153,
+      "slug": "elephant",
+      "nameEn": "Elephant",
+      "nameFr": "Éléphant",
+      "status": "confirmed"
+    },
+    {
+      "id": 154,
+      "slug": "elk",
+      "nameEn": "Elk",
+      "nameFr": "Grand cervidé",
+      "status": "confirmed"
+    },
+    {
+      "id": 155,
+      "slug": "empyrean",
+      "nameEn": "Empyrean",
+      "nameFr": "Empyréen",
+      "status": "confirmed"
+    },
+    {
+      "id": 156,
+      "slug": "empyrean-iota",
+      "nameEn": "Empyrean Iota",
+      "nameFr": "Empyréen iota",
+      "status": "confirmed"
+    },
+    {
+      "id": 157,
+      "slug": "erinyes",
+      "nameEn": "Erinyes",
+      "nameFr": "Érinye",
+      "status": "confirmed"
+    },
+    {
+      "id": 158,
+      "slug": "ettercap",
+      "nameEn": "Ettercap",
+      "nameFr": "Ettercap",
+      "status": "confirmed"
+    },
+    {
+      "id": 159,
+      "slug": "ettin",
+      "nameEn": "Ettin",
+      "nameFr": "Ettin",
+      "status": "confirmed"
+    },
+    {
+      "id": 160,
+      "slug": "faerie-dragon-adult",
+      "nameEn": "Faerie Dragon Adult",
+      "nameFr": "Dragon féerique adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 161,
+      "slug": "faerie-dragon-youth",
+      "nameEn": "Faerie Dragon Youth",
+      "nameFr": "Dragon féerique juvénile",
+      "status": "confirmed"
+    },
+    {
+      "id": 162,
+      "slug": "fey-spirit",
+      "nameEn": "Fey Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit féerique"
+      ]
+    },
+    {
+      "id": 163,
+      "slug": "fiend-cultist",
+      "nameEn": "Fiend Cultist",
+      "nameFr": "Sectateur du Fiélon",
+      "status": "confirmed"
+    },
+    {
+      "id": 164,
+      "slug": "fiendish-spirit",
+      "nameEn": "Fiendish Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit fiélon"
+      ]
+    },
+    {
+      "id": 165,
+      "slug": "fire-elemental",
+      "nameEn": "Fire Elemental",
+      "nameFr": "Élémentaire du feu",
+      "status": "confirmed"
+    },
+    {
+      "id": 166,
+      "slug": "fire-giant",
+      "nameEn": "Fire Giant",
+      "nameFr": "Géant du feu",
+      "status": "confirmed"
+    },
+    {
+      "id": 167,
+      "slug": "flameskull",
+      "nameEn": "Flameskull",
+      "nameFr": "Crânefeu",
+      "status": "confirmed"
+    },
+    {
+      "id": 168,
+      "slug": "flaming-skeleton",
+      "nameEn": "Flaming Skeleton",
+      "nameFr": "Squelette enflammé",
+      "status": "confirmed"
+    },
+    {
+      "id": 169,
+      "slug": "flesh-golem",
+      "nameEn": "Flesh Golem",
+      "nameFr": "Golem de chair",
+      "status": "confirmed"
+    },
+    {
+      "id": 170,
+      "slug": "flumph",
+      "nameEn": "Flumph",
+      "nameFr": "Flumph",
+      "status": "confirmed"
+    },
+    {
+      "id": 171,
+      "slug": "flying-snake",
+      "nameEn": "Flying Snake",
+      "nameFr": "Serpent volant",
+      "status": "confirmed"
+    },
+    {
+      "id": 172,
+      "slug": "fomorian",
+      "nameEn": "Fomorian",
+      "nameFr": "Fomoire",
+      "status": "confirmed"
+    },
+    {
+      "id": 173,
+      "slug": "frog",
+      "nameEn": "Frog",
+      "nameFr": "Grenouille",
+      "status": "confirmed"
+    },
+    {
+      "id": 174,
+      "slug": "frost-giant",
+      "nameEn": "Frost Giant",
+      "nameFr": "Géant du givre",
+      "status": "confirmed"
+    },
+    {
+      "id": 175,
+      "slug": "galeb-duhr",
+      "nameEn": "Galeb Duhr",
+      "nameFr": "Galeb Duhr",
+      "status": "confirmed"
+    },
+    {
+      "id": 176,
+      "slug": "gargoyle",
+      "nameEn": "Gargoyle",
+      "nameFr": "Gargouille",
+      "status": "confirmed"
+    },
+    {
+      "id": 177,
+      "slug": "gas-spore-fungus",
+      "nameEn": "Gas Spore Fungus",
+      "nameFr": "Spore gazeuse",
+      "status": "confirmed"
+    },
+    {
+      "id": 178,
+      "slug": "gelatinous-cube",
+      "nameEn": "Gelatinous Cube",
+      "nameFr": "Cube gélatineux",
+      "status": "confirmed"
+    },
+    {
+      "id": 179,
+      "slug": "ghast",
+      "nameEn": "Ghast",
+      "nameFr": "Blême",
+      "status": "confirmed"
+    },
+    {
+      "id": 180,
+      "slug": "ghast-gravecaller",
+      "nameEn": "Ghast Gravecaller",
+      "nameFr": "Fossoyeuse blême",
+      "status": "confirmed"
+    },
+    {
+      "id": 181,
+      "slug": "ghost",
+      "nameEn": "Ghost",
+      "nameFr": "Fantôme",
+      "status": "confirmed"
+    },
+    {
+      "id": 182,
+      "slug": "ghoul",
+      "nameEn": "Ghoul",
+      "nameFr": "Goule",
+      "status": "confirmed"
+    },
+    {
+      "id": 183,
+      "slug": "giant-ape",
+      "nameEn": "Giant Ape",
+      "nameFr": "Singe géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 184,
+      "slug": "giant-axe-beak",
+      "nameEn": "Giant Axe Beak",
+      "nameFr": "Autrache géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 185,
+      "slug": "giant-badger",
+      "nameEn": "Giant Badger",
+      "nameFr": "Blaireau géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 186,
+      "slug": "giant-bat",
+      "nameEn": "Giant Bat",
+      "nameFr": "Chauve-souris géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 187,
+      "slug": "giant-boar",
+      "nameEn": "Giant Boar",
+      "nameFr": "Sanglier géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 188,
+      "slug": "giant-centipede",
+      "nameEn": "Giant Centipede",
+      "nameFr": "Mille-pattes géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 189,
+      "slug": "giant-constrictor-snake",
+      "nameEn": "Giant Constrictor Snake",
+      "nameFr": "Serpent constricteur géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 190,
+      "slug": "giant-crab",
+      "nameEn": "Giant Crab",
+      "nameFr": "Crabe géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 191,
+      "slug": "giant-crocodile",
+      "nameEn": "Giant Crocodile",
+      "nameFr": "Crocodile géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 192,
+      "slug": "giant-eagle",
+      "nameEn": "Giant Eagle",
+      "nameFr": "Aigle géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 193,
+      "slug": "giant-elk",
+      "nameEn": "Giant Elk",
+      "nameFr": "Cervidé géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 194,
+      "slug": "giant-fire-beetle",
+      "nameEn": "Giant Fire Beetle",
+      "nameFr": "Scarabée de feu géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 195,
+      "slug": "giant-frog",
+      "nameEn": "Giant Frog",
+      "nameFr": "Grenouille géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 196,
+      "slug": "giant-goat",
+      "nameEn": "Giant Goat",
+      "nameFr": "Chèvre géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 197,
+      "slug": "giant-hyena",
+      "nameEn": "Giant Hyena",
+      "nameFr": "Hyène géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 198,
+      "slug": "giant-insect",
+      "nameEn": "Giant Insect",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Insecte géant"
+      ]
+    },
+    {
+      "id": 199,
+      "slug": "giant-lizard",
+      "nameEn": "Giant Lizard",
+      "nameFr": "Lézard géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 200,
+      "slug": "giant-octopus",
+      "nameEn": "Giant Octopus",
+      "nameFr": "Pieuvre géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 201,
+      "slug": "giant-owl",
+      "nameEn": "Giant Owl",
+      "nameFr": "Chouette géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 202,
+      "slug": "giant-rat",
+      "nameEn": "Giant Rat",
+      "nameFr": "Rat géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 203,
+      "slug": "giant-scorpion",
+      "nameEn": "Giant Scorpion",
+      "nameFr": "Scorpion géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 204,
+      "slug": "giant-seahorse",
+      "nameEn": "Giant Seahorse",
+      "nameFr": "Hippocampe géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 205,
+      "slug": "giant-shark",
+      "nameEn": "Giant Shark",
+      "nameFr": "Requin géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 206,
+      "slug": "giant-spider",
+      "nameEn": "Giant Spider",
+      "nameFr": "Araignée géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 207,
+      "slug": "giant-squid",
+      "nameEn": "Giant Squid",
+      "nameFr": "Calamar géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 208,
+      "slug": "giant-toad",
+      "nameEn": "Giant Toad",
+      "nameFr": "Crapaud géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 209,
+      "slug": "giant-venomous-snake",
+      "nameEn": "Giant Venomous Snake",
+      "nameFr": "Serpent venimeux géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 210,
+      "slug": "giant-vulture",
+      "nameEn": "Giant Vulture",
+      "nameFr": "Vautour géant",
+      "status": "confirmed"
+    },
+    {
+      "id": 211,
+      "slug": "giant-wasp",
+      "nameEn": "Giant Wasp",
+      "nameFr": "Guêpe géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 212,
+      "slug": "giant-weasel",
+      "nameEn": "Giant Weasel",
+      "nameFr": "Belette géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 213,
+      "slug": "giant-wolf-spider",
+      "nameEn": "Giant Wolf Spider",
+      "nameFr": "Araignée-loup géante",
+      "status": "confirmed"
+    },
+    {
+      "id": 214,
+      "slug": "gibbering-mouther",
+      "nameEn": "Gibbering Mouther",
+      "nameFr": "Babélien",
+      "status": "confirmed"
+    },
+    {
+      "id": 215,
+      "slug": "githyanki-dracomancer",
+      "nameEn": "Githyanki Dracomancer",
+      "nameFr": "Dracomancien githyanki",
+      "status": "confirmed"
+    },
+    {
+      "id": 216,
+      "slug": "githyanki-knight",
+      "nameEn": "Githyanki Knight",
+      "nameFr": "Chevalier githyanki",
+      "status": "confirmed"
+    },
+    {
+      "id": 217,
+      "slug": "githyanki-warrior",
+      "nameEn": "Githyanki Warrior",
+      "nameFr": "Combattant githyanki",
+      "status": "confirmed"
+    },
+    {
+      "id": 218,
+      "slug": "githzerai-monk",
+      "nameEn": "Githzerai Monk",
+      "nameFr": "Moine githzerai",
+      "status": "confirmed"
+    },
+    {
+      "id": 219,
+      "slug": "githzerai-psion",
+      "nameEn": "Githzerai Psion",
+      "nameFr": "Psion githzerai",
+      "status": "confirmed"
+    },
+    {
+      "id": 220,
+      "slug": "githzerai-zerth",
+      "nameEn": "Githzerai Zerth",
+      "nameFr": "Zerth githzerai",
+      "status": "confirmed"
+    },
+    {
+      "id": 221,
+      "slug": "glabrezu",
+      "nameEn": "Glabrezu",
+      "nameFr": "Glabrezu",
+      "status": "confirmed"
+    },
+    {
+      "id": 222,
+      "slug": "gladiator",
+      "nameEn": "Gladiator",
+      "nameFr": "Gladiateur",
+      "status": "confirmed"
+    },
+    {
+      "id": 223,
+      "slug": "gnoll-demoniac",
+      "nameEn": "Gnoll Demoniac",
+      "nameFr": "Démoniaque gnoll",
+      "status": "confirmed"
+    },
+    {
+      "id": 224,
+      "slug": "gnoll-fang-of-yeenoghu",
+      "nameEn": "Gnoll Fang Of Yeenoghu",
+      "nameFr": "Croc de Yeenoghu gnoll",
+      "status": "confirmed"
+    },
+    {
+      "id": 225,
+      "slug": "gnoll-pack-lord",
+      "nameEn": "Gnoll Pack Lord",
+      "nameFr": "Chef de meute gnoll",
+      "status": "confirmed"
+    },
+    {
+      "id": 226,
+      "slug": "gnoll-warrior",
+      "nameEn": "Gnoll Warrior",
+      "nameFr": "Combattant gnoll",
+      "status": "confirmed"
+    },
+    {
+      "id": 227,
+      "slug": "goat",
+      "nameEn": "Goat",
+      "nameFr": "Chèvre",
+      "status": "confirmed"
+    },
+    {
+      "id": 228,
+      "slug": "goblin-boss",
+      "nameEn": "Goblin Boss",
+      "nameFr": "Chef gobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 229,
+      "slug": "goblin-hexer",
+      "nameEn": "Goblin Hexer",
+      "nameFr": "Maléficeur gobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 230,
+      "slug": "goblin-minion",
+      "nameEn": "Goblin Minion",
+      "nameFr": "Sbire gobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 231,
+      "slug": "goblin-warrior",
+      "nameEn": "Goblin Warrior",
+      "nameFr": "Combattant gobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 232,
+      "slug": "gold-dragon-wyrmling",
+      "nameEn": "Gold Dragon Wyrmling",
+      "nameFr": "Dragonnet d'or",
+      "status": "confirmed"
+    },
+    {
+      "id": 233,
+      "slug": "gorgon",
+      "nameEn": "Gorgon",
+      "nameFr": "Gorgone",
+      "status": "confirmed"
+    },
+    {
+      "id": 234,
+      "slug": "goristro",
+      "nameEn": "Goristro",
+      "nameFr": "Goristro",
+      "status": "confirmed"
+    },
+    {
+      "id": 235,
+      "slug": "graveyard-revenant",
+      "nameEn": "Graveyard Revenant",
+      "nameFr": "Revenant charnier",
+      "status": "confirmed"
+    },
+    {
+      "id": 236,
+      "slug": "gray-ooze",
+      "nameEn": "Gray Ooze",
+      "nameFr": "Vase grise",
+      "status": "confirmed"
+    },
+    {
+      "id": 237,
+      "slug": "gray-slaad",
+      "nameEn": "Gray Slaad",
+      "nameFr": "Slaad gris",
+      "status": "confirmed"
+    },
+    {
+      "id": 238,
+      "slug": "green-dragon-wyrmling",
+      "nameEn": "Green Dragon Wyrmling",
+      "nameFr": "Dragonnet vert",
+      "status": "confirmed"
+    },
+    {
+      "id": 239,
+      "slug": "green-hag",
+      "nameEn": "Green Hag",
+      "nameFr": "Guenaude verte",
+      "status": "confirmed"
+    },
+    {
+      "id": 240,
+      "slug": "green-slaad",
+      "nameEn": "Green Slaad",
+      "nameFr": "Slaad vert",
+      "status": "confirmed"
+    },
+    {
+      "id": 241,
+      "slug": "grell",
+      "nameEn": "Grell",
+      "nameFr": "Grell",
+      "status": "confirmed"
+    },
+    {
+      "id": 242,
+      "slug": "grick",
+      "nameEn": "Grick",
+      "nameFr": "Grick",
+      "status": "confirmed"
+    },
+    {
+      "id": 243,
+      "slug": "grick-ancient",
+      "nameEn": "Grick Ancient",
+      "nameFr": "Grick vénérable",
+      "status": "confirmed"
+    },
+    {
+      "id": 244,
+      "slug": "griffon",
+      "nameEn": "Griffon",
+      "nameFr": "Griffon",
+      "status": "confirmed"
+    },
+    {
+      "id": 245,
+      "slug": "grimlock",
+      "nameEn": "Grimlock",
+      "nameFr": "Torve",
+      "status": "confirmed"
+    },
+    {
+      "id": 246,
+      "slug": "guard",
+      "nameEn": "Guard",
+      "nameFr": "Garde",
+      "status": "confirmed"
+    },
+    {
+      "id": 247,
+      "slug": "guard-captain",
+      "nameEn": "Guard Captain",
+      "nameFr": "Capitaine de la garde",
+      "status": "confirmed"
+    },
+    {
+      "id": 248,
+      "slug": "guardian-naga",
+      "nameEn": "Guardian Naga",
+      "nameFr": "Naga gardien",
+      "status": "confirmed"
+    },
+    {
+      "id": 249,
+      "slug": "gulthias-blight",
+      "nameEn": "Gulthias Blight",
+      "nameFr": "Rouilleux de Gulthias",
+      "status": "confirmed"
+    },
+    {
+      "id": 250,
+      "slug": "half-dragon",
+      "nameEn": "Half-dragon",
+      "nameFr": "Demi-dragon",
+      "status": "confirmed"
+    },
+    {
+      "id": 251,
+      "slug": "harpy",
+      "nameEn": "Harpy",
+      "nameFr": "Harpie",
+      "status": "confirmed"
+    },
+    {
+      "id": 252,
+      "slug": "haunting-revenant",
+      "nameEn": "Haunting Revenant",
+      "nameFr": "Revenant tourmenteur",
+      "status": "confirmed"
+    },
+    {
+      "id": 253,
+      "slug": "hawk",
+      "nameEn": "Hawk",
+      "nameFr": "Faucon",
+      "status": "confirmed"
+    },
+    {
+      "id": 254,
+      "slug": "hell-hound",
+      "nameEn": "Hell Hound",
+      "nameFr": "Molosse infernal",
+      "status": "confirmed"
+    },
+    {
+      "id": 255,
+      "slug": "helmed-horror",
+      "nameEn": "Helmed Horror",
+      "nameFr": "Horreur casquée",
+      "status": "confirmed"
+    },
+    {
+      "id": 256,
+      "slug": "hezrou",
+      "nameEn": "Hezrou",
+      "nameFr": "Hezrou",
+      "status": "confirmed"
+    },
+    {
+      "id": 257,
+      "slug": "hill-giant",
+      "nameEn": "Hill Giant",
+      "nameFr": "Géant des collines",
+      "status": "confirmed"
+    },
+    {
+      "id": 258,
+      "slug": "hippogriff",
+      "nameEn": "Hippogriff",
+      "nameFr": "Hippogriffe",
+      "status": "confirmed"
+    },
+    {
+      "id": 259,
+      "slug": "hippopotamus",
+      "nameEn": "Hippopotamus",
+      "nameFr": "Hippopotame",
+      "status": "confirmed"
+    },
+    {
+      "id": 260,
+      "slug": "hobgoblin-captain",
+      "nameEn": "Hobgoblin Captain",
+      "nameFr": "Capitaine hobgobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 261,
+      "slug": "hobgoblin-warlord",
+      "nameEn": "Hobgoblin Warlord",
+      "nameFr": "Seigneur de guerre hobgobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 262,
+      "slug": "hobgoblin-warrior",
+      "nameEn": "Hobgoblin Warrior",
+      "nameFr": "Combattant hobgobelin",
+      "status": "confirmed"
+    },
+    {
+      "id": 263,
+      "slug": "homunculus",
+      "nameEn": "Homunculus",
+      "nameFr": "Homoncule",
+      "status": "confirmed"
+    },
+    {
+      "id": 264,
+      "slug": "hook-horror",
+      "nameEn": "Hook Horror",
+      "nameFr": "Horreur crochue",
+      "status": "confirmed"
+    },
+    {
+      "id": 265,
+      "slug": "horned-devil",
+      "nameEn": "Horned Devil",
+      "nameFr": "Diable cornu",
+      "status": "confirmed"
+    },
+    {
+      "id": 266,
+      "slug": "hunter-shark",
+      "nameEn": "Hunter Shark",
+      "nameFr": "Requin-chasseur",
+      "status": "confirmed"
+    },
+    {
+      "id": 267,
+      "slug": "hydra",
+      "nameEn": "Hydra",
+      "nameFr": "Hydre",
+      "status": "confirmed"
+    },
+    {
+      "id": 268,
+      "slug": "hyena",
+      "nameEn": "Hyena",
+      "nameFr": "Hyène",
+      "status": "confirmed"
+    },
+    {
+      "id": 269,
+      "slug": "ice-devil",
+      "nameEn": "Ice Devil",
+      "nameFr": "Diable gelé",
+      "status": "confirmed"
+    },
+    {
+      "id": 270,
+      "slug": "ice-mephit",
+      "nameEn": "Ice Mephit",
+      "nameFr": "Méphite gelé",
+      "status": "confirmed"
+    },
+    {
+      "id": 271,
+      "slug": "imp",
+      "nameEn": "Imp",
+      "nameFr": "Diablotin",
+      "status": "confirmed"
+    },
+    {
+      "id": 272,
+      "slug": "incubus",
+      "nameEn": "Incubus",
+      "nameFr": "Incube",
+      "status": "confirmed"
+    },
+    {
+      "id": 273,
+      "slug": "intellect-devourer",
+      "nameEn": "Intellect Devourer",
+      "nameFr": "Dévoreur d'intellect",
+      "status": "confirmed"
+    },
+    {
+      "id": 274,
+      "slug": "invisible-stalker",
+      "nameEn": "Invisible Stalker",
+      "nameFr": "Traqueur invisible",
+      "status": "confirmed"
+    },
+    {
+      "id": 275,
+      "slug": "iron-golem",
+      "nameEn": "Iron Golem",
+      "nameFr": "Golem de fer",
+      "status": "confirmed"
+    },
+    {
+      "id": 276,
+      "slug": "jackal",
+      "nameEn": "Jackal",
+      "nameFr": "Chacal",
+      "status": "confirmed"
+    },
+    {
+      "id": 277,
+      "slug": "jackalwere",
+      "nameEn": "Jackalwere",
+      "nameFr": "Garou-chacal",
+      "status": "confirmed"
+    },
+    {
+      "id": 278,
+      "slug": "juvenile-shadow-dragon",
+      "nameEn": "Juvenile Shadow Dragon",
+      "nameFr": "Dragon d'ombre immature",
+      "status": "confirmed"
+    },
+    {
+      "id": 279,
+      "slug": "kenku",
+      "nameEn": "Kenku",
+      "nameFr": "Kenku",
+      "status": "confirmed"
+    },
+    {
+      "id": 280,
+      "slug": "killer-whale",
+      "nameEn": "Killer Whale",
+      "nameFr": "Épaulard",
+      "status": "confirmed"
+    },
+    {
+      "id": 281,
+      "slug": "knight",
+      "nameEn": "Knight",
+      "nameFr": "Chevalier",
+      "status": "confirmed"
+    },
+    {
+      "id": 282,
+      "slug": "kobold-warrior",
+      "nameEn": "Kobold Warrior",
+      "nameFr": "Combattant kobold",
+      "status": "confirmed"
+    },
+    {
+      "id": 283,
+      "slug": "kraken",
+      "nameEn": "Kraken",
+      "nameFr": "Kraken",
+      "status": "confirmed"
+    },
+    {
+      "id": 284,
+      "slug": "kuo-toa",
+      "nameEn": "Kuo-toa",
+      "nameFr": "Kuo-toa",
+      "status": "confirmed"
+    },
+    {
+      "id": 285,
+      "slug": "kuo-toa-archpriest",
+      "nameEn": "Kuo-toa Archpriest",
+      "nameFr": "Archiprêtre kuo-toa",
+      "status": "confirmed"
+    },
+    {
+      "id": 286,
+      "slug": "kuo-toa-monitor",
+      "nameEn": "Kuo-toa Monitor",
+      "nameFr": "Cornac kuo-toa",
+      "status": "confirmed"
+    },
+    {
+      "id": 287,
+      "slug": "kuo-toa-whip",
+      "nameEn": "Kuo-toa Whip",
+      "nameFr": "Fouet kuo-toa",
+      "status": "confirmed"
+    },
+    {
+      "id": 288,
+      "slug": "lacedon-ghoul",
+      "nameEn": "Lacedon Ghoul",
+      "nameFr": "Lacédone",
+      "status": "confirmed"
+    },
+    {
+      "id": 289,
+      "slug": "lamia",
+      "nameEn": "Lamia",
+      "nameFr": "Lamie",
+      "status": "confirmed"
+    },
+    {
+      "id": 290,
+      "slug": "larva",
+      "nameEn": "Larva",
+      "nameFr": "Larve",
+      "status": "confirmed"
+    },
+    {
+      "id": 291,
+      "slug": "lemure",
+      "nameEn": "Lemure",
+      "nameFr": "Lémure",
+      "status": "confirmed"
+    },
+    {
+      "id": 292,
+      "slug": "lich",
+      "nameEn": "Lich",
+      "nameFr": "Liche",
+      "status": "confirmed"
+    },
+    {
+      "id": 293,
+      "slug": "lion",
+      "nameEn": "Lion",
+      "nameFr": "Lion",
+      "status": "confirmed"
+    },
+    {
+      "id": 294,
+      "slug": "lizard",
+      "nameEn": "Lizard",
+      "nameFr": "Lézard",
+      "status": "confirmed"
+    },
+    {
+      "id": 295,
+      "slug": "lizardfolk-geomancer",
+      "nameEn": "Lizardfolk Geomancer",
+      "nameFr": "Géomancien saurial",
+      "status": "confirmed"
+    },
+    {
+      "id": 296,
+      "slug": "lizardfolk-sovereign",
+      "nameEn": "Lizardfolk Sovereign",
+      "nameFr": "Souverain saurial",
+      "status": "confirmed"
+    },
+    {
+      "id": 297,
+      "slug": "mage",
+      "nameEn": "Mage",
+      "nameFr": "Mage",
+      "status": "confirmed"
+    },
+    {
+      "id": 298,
+      "slug": "mage-apprentice",
+      "nameEn": "Mage Apprentice",
+      "nameFr": "Apprenti mage",
+      "status": "confirmed"
+    },
+    {
+      "id": 299,
+      "slug": "magma-mephit",
+      "nameEn": "Magma Mephit",
+      "nameFr": "Méphite magmatique",
+      "status": "confirmed"
+    },
+    {
+      "id": 300,
+      "slug": "magmin",
+      "nameEn": "Magmin",
+      "nameFr": "Magmatique",
+      "status": "confirmed"
+    },
+    {
+      "id": 301,
+      "slug": "mammoth",
+      "nameEn": "Mammoth",
+      "nameFr": "Mammouth",
+      "status": "confirmed"
+    },
+    {
+      "id": 302,
+      "slug": "manes",
+      "nameEn": "Manes",
+      "nameFr": "Mâne",
+      "status": "confirmed"
+    },
+    {
+      "id": 303,
+      "slug": "manes-vaporspawn",
+      "nameEn": "Manes Vaporspawn",
+      "nameFr": "Mâne vaporeux",
+      "status": "confirmed"
+    },
+    {
+      "id": 304,
+      "slug": "manticore",
+      "nameEn": "Manticore",
+      "nameFr": "Manticore",
+      "status": "confirmed"
+    },
+    {
+      "id": 305,
+      "slug": "marid",
+      "nameEn": "Marid",
+      "nameFr": "Maride",
+      "status": "confirmed"
+    },
+    {
+      "id": 306,
+      "slug": "marilith",
+      "nameEn": "Marilith",
+      "nameFr": "Marilith",
+      "status": "confirmed"
+    },
+    {
+      "id": 307,
+      "slug": "mastiff",
+      "nameEn": "Mastiff",
+      "nameFr": "Molosse",
+      "status": "confirmed"
+    },
+    {
+      "id": 308,
+      "slug": "medusa",
+      "nameEn": "Medusa",
+      "nameFr": "Méduse",
+      "status": "confirmed"
+    },
+    {
+      "id": 309,
+      "slug": "merfolk-skirmisher",
+      "nameEn": "Merfolk Skirmisher",
+      "nameFr": "Tirailleur thalasséen",
+      "status": "confirmed"
+    },
+    {
+      "id": 310,
+      "slug": "merfolk-wavebender",
+      "nameEn": "Merfolk Wavebender",
+      "nameFr": "Dompteur de l'onde thalasséen",
+      "status": "confirmed"
+    },
+    {
+      "id": 311,
+      "slug": "merrow",
+      "nameEn": "Merrow",
+      "nameFr": "Merrow",
+      "status": "confirmed"
+    },
+    {
+      "id": 312,
+      "slug": "mezzoloth",
+      "nameEn": "Mezzoloth",
+      "nameFr": "Mezzoloth",
+      "status": "confirmed"
+    },
+    {
+      "id": 313,
+      "slug": "mimic",
+      "nameEn": "Mimic",
+      "nameFr": "Mimique",
+      "status": "confirmed"
+    },
+    {
+      "id": 314,
+      "slug": "mind-flayer",
+      "nameEn": "Mind Flayer",
+      "nameFr": "Flagelleur mental",
+      "status": "confirmed"
+    },
+    {
+      "id": 315,
+      "slug": "mind-flayer-arcanist",
+      "nameEn": "Mind Flayer Arcanist",
+      "nameFr": "Arcaniste flagelleur mental",
+      "status": "confirmed"
+    },
+    {
+      "id": 316,
+      "slug": "minotaur-of-baphomet",
+      "nameEn": "Minotaur Of Baphomet",
+      "nameFr": "Minotaure de Baphomet",
+      "status": "confirmed"
+    },
+    {
+      "id": 317,
+      "slug": "minotaur-skeleton",
+      "nameEn": "Minotaur Skeleton",
+      "nameFr": "Minotaure squelette",
+      "status": "confirmed"
+    },
+    {
+      "id": 318,
+      "slug": "mud-mephit",
+      "nameEn": "Mud Mephit",
+      "nameFr": "Méphite boueux",
+      "status": "confirmed"
+    },
+    {
+      "id": 319,
+      "slug": "mule",
+      "nameEn": "Mule",
+      "nameFr": "Mule",
+      "status": "confirmed"
+    },
+    {
+      "id": 320,
+      "slug": "mummy",
+      "nameEn": "Mummy",
+      "nameFr": "Momie",
+      "status": "confirmed"
+    },
+    {
+      "id": 321,
+      "slug": "mummy-lord",
+      "nameEn": "Mummy Lord",
+      "nameFr": "Momie auguste",
+      "status": "confirmed"
+    },
+    {
+      "id": 322,
+      "slug": "myconid-adult",
+      "nameEn": "Myconid Adult",
+      "nameFr": "Myconide adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 323,
+      "slug": "myconid-sovereign",
+      "nameEn": "Myconid Sovereign",
+      "nameFr": "Myconide souverain",
+      "status": "confirmed"
+    },
+    {
+      "id": 324,
+      "slug": "myconid-spore-servant",
+      "nameEn": "Myconid Spore Servant",
+      "nameFr": "Serviteur des spores myconide",
+      "status": "confirmed"
+    },
+    {
+      "id": 325,
+      "slug": "myconid-sprout",
+      "nameEn": "Myconid Sprout",
+      "nameFr": "Pousse de myconide",
+      "status": "confirmed"
+    },
+    {
+      "id": 326,
+      "slug": "nalfeshnee",
+      "nameEn": "Nalfeshnee",
+      "nameFr": "Nalfeshnie",
+      "status": "confirmed"
+    },
+    {
+      "id": 327,
+      "slug": "needle-blight",
+      "nameEn": "Needle Blight",
+      "nameFr": "Résineux",
+      "status": "confirmed"
+    },
+    {
+      "id": 328,
+      "slug": "night-hag",
+      "nameEn": "Night Hag",
+      "nameFr": "Guenaude nocturne",
+      "status": "confirmed"
+    },
+    {
+      "id": 329,
+      "slug": "nightmare",
+      "nameEn": "Nightmare",
+      "nameFr": "Horriflamme",
+      "status": "confirmed"
+    },
+    {
+      "id": 330,
+      "slug": "noble",
+      "nameEn": "Noble",
+      "nameFr": "Noble",
+      "status": "confirmed"
+    },
+    {
+      "id": 331,
+      "slug": "noble-prodigy",
+      "nameEn": "Noble Prodigy",
+      "nameFr": "Prodige noble",
+      "status": "confirmed"
+    },
+    {
+      "id": 332,
+      "slug": "nothic",
+      "nameEn": "Nothic",
+      "nameFr": "Nothic",
+      "status": "confirmed"
+    },
+    {
+      "id": 333,
+      "slug": "nycaloth",
+      "nameEn": "Nycaloth",
+      "nameFr": "Nycaloth",
+      "status": "confirmed"
+    },
+    {
+      "id": 334,
+      "slug": "ochre-jelly",
+      "nameEn": "Ochre Jelly",
+      "nameFr": "Gelée ocre",
+      "status": "confirmed"
+    },
+    {
+      "id": 335,
+      "slug": "octopus",
+      "nameEn": "Octopus",
+      "nameFr": "Pieuvre",
+      "status": "confirmed"
+    },
+    {
+      "id": 336,
+      "slug": "ogre",
+      "nameEn": "Ogre",
+      "nameFr": "Ogre",
+      "status": "confirmed"
+    },
+    {
+      "id": 337,
+      "slug": "ogre-zombie",
+      "nameEn": "Ogre Zombie",
+      "nameFr": "Ogre zombi",
+      "status": "confirmed"
+    },
+    {
+      "id": 338,
+      "slug": "ogrillon-ogre",
+      "nameEn": "Ogrillon Ogre",
+      "nameFr": "Ogrillon",
+      "status": "confirmed"
+    },
+    {
+      "id": 339,
+      "slug": "oni",
+      "nameEn": "Oni",
+      "nameFr": "Oni",
+      "status": "confirmed"
+    },
+    {
+      "id": 340,
+      "slug": "otherworldly-steed",
+      "nameEn": "Otherworldly Steed",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Monture d'outre-monde"
+      ]
+    },
+    {
+      "id": 341,
+      "slug": "otyugh",
+      "nameEn": "Otyugh",
+      "nameFr": "Otyugh",
+      "status": "confirmed"
+    },
+    {
+      "id": 342,
+      "slug": "owl",
+      "nameEn": "Owl",
+      "nameFr": "Chouette",
+      "status": "confirmed"
+    },
+    {
+      "id": 343,
+      "slug": "owlbear",
+      "nameEn": "Owlbear",
+      "nameFr": "Hibours",
+      "status": "confirmed"
+    },
+    {
+      "id": 344,
+      "slug": "panther",
+      "nameEn": "Panther",
+      "nameFr": "Panthère",
+      "status": "confirmed"
+    },
+    {
+      "id": 345,
+      "slug": "pegasus",
+      "nameEn": "Pegasus",
+      "nameFr": "Pégase",
+      "status": "confirmed"
+    },
+    {
+      "id": 346,
+      "slug": "performer",
+      "nameEn": "Performer",
+      "nameFr": "Saltimbanque",
+      "status": "confirmed"
+    },
+    {
+      "id": 347,
+      "slug": "performer-legend",
+      "nameEn": "Performer Legend",
+      "nameFr": "Saltimbanque de légende",
+      "status": "confirmed"
+    },
+    {
+      "id": 348,
+      "slug": "performer-maestro",
+      "nameEn": "Performer Maestro",
+      "nameFr": "Saltimbanque maestro",
+      "status": "confirmed"
+    },
+    {
+      "id": 349,
+      "slug": "peryton",
+      "nameEn": "Peryton",
+      "nameFr": "Péryton",
+      "status": "confirmed"
+    },
+    {
+      "id": 350,
+      "slug": "phase-spider",
+      "nameEn": "Phase Spider",
+      "nameFr": "Araignée de phase",
+      "status": "confirmed"
+    },
+    {
+      "id": 351,
+      "slug": "piercer",
+      "nameEn": "Piercer",
+      "nameFr": "Perforateur",
+      "status": "confirmed"
+    },
+    {
+      "id": 352,
+      "slug": "piranha",
+      "nameEn": "Piranha",
+      "nameFr": "Piranha",
+      "status": "confirmed"
+    },
+    {
+      "id": 353,
+      "slug": "pirate",
+      "nameEn": "Pirate",
+      "nameFr": "Pirate",
+      "status": "confirmed"
+    },
+    {
+      "id": 354,
+      "slug": "pirate-admiral",
+      "nameEn": "Pirate Admiral",
+      "nameFr": "Amiral pirate",
+      "status": "confirmed"
+    },
+    {
+      "id": 355,
+      "slug": "pirate-captain",
+      "nameEn": "Pirate Captain",
+      "nameFr": "Capitaine pirate",
+      "status": "confirmed"
+    },
+    {
+      "id": 356,
+      "slug": "pit-fiend",
+      "nameEn": "Pit Fiend",
+      "nameFr": "Diantrefosse",
+      "status": "confirmed"
+    },
+    {
+      "id": 357,
+      "slug": "pixie",
+      "nameEn": "Pixie",
+      "nameFr": "Pixie",
+      "status": "confirmed"
+    },
+    {
+      "id": 358,
+      "slug": "pixie-wonderbringer",
+      "nameEn": "Pixie Wonderbringer",
+      "nameFr": "Émerveilleuse pixie",
+      "status": "confirmed"
+    },
+    {
+      "id": 359,
+      "slug": "planetar",
+      "nameEn": "Planetar",
+      "nameFr": "Planétar",
+      "status": "confirmed"
+    },
+    {
+      "id": 360,
+      "slug": "plesiosaurus",
+      "nameEn": "Plesiosaurus",
+      "nameFr": "Plésiosaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 361,
+      "slug": "polar-bear",
+      "nameEn": "Polar Bear",
+      "nameFr": "Ours polaire",
+      "status": "confirmed"
+    },
+    {
+      "id": 362,
+      "slug": "poltergeist",
+      "nameEn": "Poltergeist",
+      "nameFr": "Poltergeist",
+      "status": "confirmed"
+    },
+    {
+      "id": 363,
+      "slug": "pony",
+      "nameEn": "Pony",
+      "nameFr": "Poney",
+      "status": "confirmed"
+    },
+    {
+      "id": 364,
+      "slug": "priest",
+      "nameEn": "Priest",
+      "nameFr": "Prêtre",
+      "status": "confirmed"
+    },
+    {
+      "id": 365,
+      "slug": "priest-acolyte",
+      "nameEn": "Priest Acolyte",
+      "nameFr": "Acolyte",
+      "status": "confirmed"
+    },
+    {
+      "id": 366,
+      "slug": "primeval-owlbear",
+      "nameEn": "Primeval Owlbear",
+      "nameFr": "Hibours primitif",
+      "status": "confirmed"
+    },
+    {
+      "id": 367,
+      "slug": "pseudodragon",
+      "nameEn": "Pseudodragon",
+      "nameFr": "Pseudodragon",
+      "status": "confirmed"
+    },
+    {
+      "id": 368,
+      "slug": "psychic-gray-ooze",
+      "nameEn": "Psychic Gray Ooze",
+      "nameFr": "Vase grise psychique",
+      "status": "confirmed"
+    },
+    {
+      "id": 369,
+      "slug": "pteranodon",
+      "nameEn": "Pteranodon",
+      "nameFr": "Ptéranodon",
+      "status": "confirmed"
+    },
+    {
+      "id": 370,
+      "slug": "purple-worm",
+      "nameEn": "Purple Worm",
+      "nameFr": "Ver pourpre",
+      "status": "confirmed"
+    },
+    {
+      "id": 371,
+      "slug": "quaggoth",
+      "nameEn": "Quaggoth",
+      "nameFr": "Quaggoth",
+      "status": "confirmed"
+    },
+    {
+      "id": 372,
+      "slug": "quaggoth-thonot",
+      "nameEn": "Quaggoth Thonot",
+      "nameFr": "Thonot quaggoth",
+      "status": "confirmed"
+    },
+    {
+      "id": 373,
+      "slug": "quasit",
+      "nameEn": "Quasit",
+      "nameFr": "Quasit",
+      "status": "confirmed"
+    },
+    {
+      "id": 374,
+      "slug": "questing-knight",
+      "nameEn": "Questing Knight",
+      "nameFr": "Chevalier errant",
+      "status": "confirmed"
+    },
+    {
+      "id": 375,
+      "slug": "rakshasa",
+      "nameEn": "Rakshasa",
+      "nameFr": "Rakshasa",
+      "status": "confirmed"
+    },
+    {
+      "id": 376,
+      "slug": "rat",
+      "nameEn": "Rat",
+      "nameFr": "Rat",
+      "status": "confirmed"
+    },
+    {
+      "id": 377,
+      "slug": "raven",
+      "nameEn": "Raven",
+      "nameFr": "Corbeau",
+      "status": "confirmed"
+    },
+    {
+      "id": 378,
+      "slug": "red-dragon-wyrmling",
+      "nameEn": "Red Dragon Wyrmling",
+      "nameFr": "Dragonnet rouge",
+      "status": "confirmed"
+    },
+    {
+      "id": 379,
+      "slug": "red-slaad",
+      "nameEn": "Red Slaad",
+      "nameFr": "Slaad rouge",
+      "status": "confirmed"
+    },
+    {
+      "id": 380,
+      "slug": "reef-shark",
+      "nameEn": "Reef Shark",
+      "nameFr": "Requin de récif",
+      "status": "confirmed"
+    },
+    {
+      "id": 381,
+      "slug": "remorhaz",
+      "nameEn": "Remorhaz",
+      "nameFr": "Remorhaz",
+      "status": "confirmed"
+    },
+    {
+      "id": 382,
+      "slug": "revenant",
+      "nameEn": "Revenant",
+      "nameFr": "Revenant",
+      "status": "confirmed"
+    },
+    {
+      "id": 383,
+      "slug": "rhinoceros",
+      "nameEn": "Rhinoceros",
+      "nameFr": "Rhinocéros",
+      "status": "confirmed"
+    },
+    {
+      "id": 384,
+      "slug": "riding-horse",
+      "nameEn": "Riding Horse",
+      "nameFr": "Cheval de selle",
+      "status": "confirmed"
+    },
+    {
+      "id": 385,
+      "slug": "roc",
+      "nameEn": "Roc",
+      "nameFr": "Rukh",
+      "status": "confirmed"
+    },
+    {
+      "id": 386,
+      "slug": "roper",
+      "nameEn": "Roper",
+      "nameFr": "Enlaceur",
+      "status": "confirmed"
+    },
+    {
+      "id": 387,
+      "slug": "rust-monster",
+      "nameEn": "Rust Monster",
+      "nameFr": "Oxydeur",
+      "status": "confirmed"
+    },
+    {
+      "id": 388,
+      "slug": "saber-toothed-tiger",
+      "nameEn": "Saber-toothed Tiger",
+      "nameFr": "Tigre à dents de sabre",
+      "status": "confirmed"
+    },
+    {
+      "id": 389,
+      "slug": "sahuagin-baron",
+      "nameEn": "Sahuagin Baron",
+      "nameFr": "Baron sahuagin",
+      "status": "confirmed"
+    },
+    {
+      "id": 390,
+      "slug": "sahuagin-priest",
+      "nameEn": "Sahuagin Priest",
+      "nameFr": "Prêtre sahuagin",
+      "status": "confirmed"
+    },
+    {
+      "id": 391,
+      "slug": "sahuagin-warrior",
+      "nameEn": "Sahuagin Warrior",
+      "nameFr": "Combattant sahuagin",
+      "status": "confirmed"
+    },
+    {
+      "id": 392,
+      "slug": "salamander",
+      "nameEn": "Salamander",
+      "nameFr": "Salamandre",
+      "status": "confirmed"
+    },
+    {
+      "id": 393,
+      "slug": "salamander-fire-snake",
+      "nameEn": "Salamander Fire Snake",
+      "nameFr": "Serpent de feu",
+      "status": "confirmed"
+    },
+    {
+      "id": 394,
+      "slug": "salamander-inferno-master",
+      "nameEn": "Salamander Inferno Master",
+      "nameFr": "Maîtresse des fournaises salamandre",
+      "status": "confirmed"
+    },
+    {
+      "id": 395,
+      "slug": "satyr",
+      "nameEn": "Satyr",
+      "nameFr": "Satyre",
+      "status": "confirmed"
+    },
+    {
+      "id": 396,
+      "slug": "satyr-revelmaster",
+      "nameEn": "Satyr Revelmaster",
+      "nameFr": "Maître des réjouissances satyre",
+      "status": "confirmed"
+    },
+    {
+      "id": 397,
+      "slug": "scarecrow",
+      "nameEn": "Scarecrow",
+      "nameFr": "Épouvantail",
+      "status": "confirmed"
+    },
+    {
+      "id": 398,
+      "slug": "scorpion",
+      "nameEn": "Scorpion",
+      "nameFr": "Scorpion",
+      "status": "confirmed"
+    },
+    {
+      "id": 399,
+      "slug": "scout",
+      "nameEn": "Scout",
+      "nameFr": "Éclaireur",
+      "status": "confirmed"
+    },
+    {
+      "id": 400,
+      "slug": "scout-captain",
+      "nameEn": "Scout Captain",
+      "nameFr": "Capitaine éclaireur",
+      "status": "confirmed"
+    },
+    {
+      "id": 401,
+      "slug": "sea-hag",
+      "nameEn": "Sea Hag",
+      "nameFr": "Guenaude marine",
+      "status": "confirmed"
+    },
+    {
+      "id": 402,
+      "slug": "seahorse",
+      "nameEn": "Seahorse",
+      "nameFr": "Hippocampe",
+      "status": "confirmed"
+    },
+    {
+      "id": 403,
+      "slug": "shadow",
+      "nameEn": "Shadow",
+      "nameFr": "Ombre",
+      "status": "confirmed"
+    },
+    {
+      "id": 404,
+      "slug": "shadow-demon",
+      "nameEn": "Shadow Demon",
+      "nameFr": "Démon des ombres",
+      "status": "confirmed"
+    },
+    {
+      "id": 405,
+      "slug": "shadow-dragon",
+      "nameEn": "Shadow Dragon",
+      "nameFr": "Dragon d'ombre",
+      "status": "confirmed"
+    },
+    {
+      "id": 406,
+      "slug": "shambling-mound",
+      "nameEn": "Shambling Mound",
+      "nameFr": "Tertre errant",
+      "status": "confirmed"
+    },
+    {
+      "id": 407,
+      "slug": "shield-guardian",
+      "nameEn": "Shield Guardian",
+      "nameFr": "Garde animé",
+      "status": "confirmed"
+    },
+    {
+      "id": 408,
+      "slug": "shrieker-fungus",
+      "nameEn": "Shrieker Fungus",
+      "nameFr": "Criard",
+      "status": "confirmed"
+    },
+    {
+      "id": 409,
+      "slug": "silver-dragon-wyrmling",
+      "nameEn": "Silver Dragon Wyrmling",
+      "nameFr": "Dragonnet d'argent",
+      "status": "confirmed"
+    },
+    {
+      "id": 410,
+      "slug": "skeleton",
+      "nameEn": "Skeleton",
+      "nameFr": "Squelette",
+      "status": "confirmed"
+    },
+    {
+      "id": 411,
+      "slug": "slaad-tadpole",
+      "nameEn": "Slaad Tadpole",
+      "nameFr": "Têtard slaad",
+      "status": "confirmed"
+    },
+    {
+      "id": 412,
+      "slug": "smoke-mephit",
+      "nameEn": "Smoke Mephit",
+      "nameFr": "Méphite fumant",
+      "status": "confirmed"
+    },
+    {
+      "id": 413,
+      "slug": "solar",
+      "nameEn": "Solar",
+      "nameFr": "Solar",
+      "status": "confirmed"
+    },
+    {
+      "id": 414,
+      "slug": "spectator",
+      "nameEn": "Spectator",
+      "nameFr": "Spectateur",
+      "status": "confirmed"
+    },
+    {
+      "id": 415,
+      "slug": "specter",
+      "nameEn": "Specter",
+      "nameFr": "Spectre",
+      "status": "confirmed"
+    },
+    {
+      "id": 416,
+      "slug": "sphinx-of-lore",
+      "nameEn": "Sphinx Of Lore",
+      "nameFr": "Sphinx érudit",
+      "status": "confirmed"
+    },
+    {
+      "id": 417,
+      "slug": "sphinx-of-secrets",
+      "nameEn": "Sphinx Of Secrets",
+      "nameFr": "Sphinx mystérieux",
+      "status": "confirmed"
+    },
+    {
+      "id": 418,
+      "slug": "sphinx-of-valor",
+      "nameEn": "Sphinx Of Valor",
+      "nameFr": "Sphinx valeureux",
+      "status": "confirmed"
+    },
+    {
+      "id": 419,
+      "slug": "sphinx-of-wonder",
+      "nameEn": "Sphinx Of Wonder",
+      "nameFr": "Sphinx merveilleux",
+      "status": "confirmed"
+    },
+    {
+      "id": 420,
+      "slug": "spider",
+      "nameEn": "Spider",
+      "nameFr": "Araignée",
+      "status": "confirmed"
+    },
+    {
+      "id": 421,
+      "slug": "spined-devil",
+      "nameEn": "Spined Devil",
+      "nameFr": "Diable épineux",
+      "status": "confirmed"
+    },
+    {
+      "id": 422,
+      "slug": "spirit-naga",
+      "nameEn": "Spirit Naga",
+      "nameFr": "Naga corrupteur",
+      "status": "confirmed"
+    },
+    {
+      "id": 423,
+      "slug": "sprite",
+      "nameEn": "Sprite",
+      "nameFr": "Esprit follet",
+      "status": "confirmed"
+    },
+    {
+      "id": 424,
+      "slug": "spy",
+      "nameEn": "Spy",
+      "nameFr": "Espion",
+      "status": "confirmed"
+    },
+    {
+      "id": 425,
+      "slug": "spy-master",
+      "nameEn": "Spy Master",
+      "nameFr": "Maître-espion",
+      "status": "confirmed"
+    },
+    {
+      "id": 426,
+      "slug": "steam-mephit",
+      "nameEn": "Steam Mephit",
+      "nameFr": "Méphite vaporeux",
+      "status": "confirmed"
+    },
+    {
+      "id": 427,
+      "slug": "stirge",
+      "nameEn": "Stirge",
+      "nameFr": "Strige",
+      "status": "confirmed"
+    },
+    {
+      "id": 428,
+      "slug": "stone-giant",
+      "nameEn": "Stone Giant",
+      "nameFr": "Géant des pierres",
+      "status": "confirmed"
+    },
+    {
+      "id": 429,
+      "slug": "stone-golem",
+      "nameEn": "Stone Golem",
+      "nameFr": "Golem de pierre",
+      "status": "confirmed"
+    },
+    {
+      "id": 430,
+      "slug": "storm-giant",
+      "nameEn": "Storm Giant",
+      "nameFr": "Géant des tempêtes",
+      "status": "confirmed"
+    },
+    {
+      "id": 431,
+      "slug": "succubus",
+      "nameEn": "Succubus",
+      "nameFr": "Succube",
+      "status": "confirmed"
+    },
+    {
+      "id": 432,
+      "slug": "tarrasque",
+      "nameEn": "Tarrasque",
+      "nameFr": "Tarasque",
+      "status": "confirmed"
+    },
+    {
+      "id": 433,
+      "slug": "thri-kreen-marauder",
+      "nameEn": "Thri-kreen Marauder",
+      "nameFr": "Maraudeur thri-kreen",
+      "status": "confirmed"
+    },
+    {
+      "id": 434,
+      "slug": "thri-kreen-psion",
+      "nameEn": "Thri-kreen Psion",
+      "nameFr": "Psion thri-kreen",
+      "status": "confirmed"
+    },
+    {
+      "id": 435,
+      "slug": "tiger",
+      "nameEn": "Tiger",
+      "nameFr": "Tigre",
+      "status": "confirmed"
+    },
+    {
+      "id": 436,
+      "slug": "tough",
+      "nameEn": "Tough",
+      "nameFr": "Gros-bras",
+      "status": "confirmed"
+    },
+    {
+      "id": 437,
+      "slug": "tough-boss",
+      "nameEn": "Tough Boss",
+      "nameFr": "Chef gros-bras",
+      "status": "confirmed"
+    },
+    {
+      "id": 438,
+      "slug": "treant",
+      "nameEn": "Treant",
+      "nameFr": "Sylvanien",
+      "status": "confirmed"
+    },
+    {
+      "id": 439,
+      "slug": "tree-blight",
+      "nameEn": "Tree Blight",
+      "nameFr": "Arbroyeux",
+      "status": "confirmed"
+    },
+    {
+      "id": 440,
+      "slug": "triceratops",
+      "nameEn": "Triceratops",
+      "nameFr": "Tricératops",
+      "status": "confirmed"
+    },
+    {
+      "id": 441,
+      "slug": "troglodyte",
+      "nameEn": "Troglodyte",
+      "nameFr": "Troglodyte",
+      "status": "confirmed"
+    },
+    {
+      "id": 442,
+      "slug": "troll",
+      "nameEn": "Troll",
+      "nameFr": "Troll",
+      "status": "confirmed"
+    },
+    {
+      "id": 443,
+      "slug": "troll-limb",
+      "nameEn": "Troll Limb",
+      "nameFr": "Abattis de troll",
+      "status": "confirmed"
+    },
+    {
+      "id": 444,
+      "slug": "twig-blight",
+      "nameEn": "Twig Blight",
+      "nameFr": "Nielleux",
+      "status": "confirmed"
+    },
+    {
+      "id": 445,
+      "slug": "tyrannosaurus-rex",
+      "nameEn": "Tyrannosaurus Rex",
+      "nameFr": "Tyrannosaure",
+      "status": "confirmed"
+    },
+    {
+      "id": 446,
+      "slug": "ultroloth",
+      "nameEn": "Ultroloth",
+      "nameFr": "Ultroloth",
+      "status": "confirmed"
+    },
+    {
+      "id": 447,
+      "slug": "umber-hulk",
+      "nameEn": "Umber Hulk",
+      "nameFr": "Mastodonte des ombres",
+      "status": "confirmed"
+    },
+    {
+      "id": 448,
+      "slug": "undead-spirit",
+      "nameEn": "Undead Spirit",
+      "nameFr": null,
+      "status": "unresolved",
+      "candidateFrenchLabels": [
+        "Esprit mort-vivant"
+      ]
+    },
+    {
+      "id": 449,
+      "slug": "unicorn",
+      "nameEn": "Unicorn",
+      "nameFr": "Licorne",
+      "status": "confirmed"
+    },
+    {
+      "id": 450,
+      "slug": "vampire",
+      "nameEn": "Vampire",
+      "nameFr": "Vampire",
+      "status": "confirmed"
+    },
+    {
+      "id": 451,
+      "slug": "vampire-familiar",
+      "nameEn": "Vampire Familiar",
+      "nameFr": "Familier de vampire",
+      "status": "confirmed"
+    },
+    {
+      "id": 452,
+      "slug": "vampire-nightbringer",
+      "nameEn": "Vampire Nightbringer",
+      "nameFr": "Héraut de la nuit",
+      "status": "confirmed"
+    },
+    {
+      "id": 453,
+      "slug": "vampire-spawn",
+      "nameEn": "Vampire Spawn",
+      "nameFr": "Vampirien",
+      "status": "confirmed"
+    },
+    {
+      "id": 454,
+      "slug": "vampire-umbral-lord",
+      "nameEn": "Vampire Umbral Lord",
+      "nameFr": "Seigneur des ombres",
+      "status": "confirmed"
+    },
+    {
+      "id": 455,
+      "slug": "venomous-snake",
+      "nameEn": "Venomous Snake",
+      "nameFr": "Serpent venimeux",
+      "status": "confirmed"
+    },
+    {
+      "id": 456,
+      "slug": "vine-blight",
+      "nameEn": "Vine Blight",
+      "nameFr": "Lierreux",
+      "status": "confirmed"
+    },
+    {
+      "id": 457,
+      "slug": "violet-fungus",
+      "nameEn": "Violet Fungus",
+      "nameFr": "Thallophyte violette",
+      "status": "confirmed"
+    },
+    {
+      "id": 458,
+      "slug": "violet-fungus-necrohulk",
+      "nameEn": "Violet Fungus Necrohulk",
+      "nameFr": "Mastonécrofonge",
+      "status": "confirmed"
+    },
+    {
+      "id": 459,
+      "slug": "vrock",
+      "nameEn": "Vrock",
+      "nameFr": "Vrock",
+      "status": "confirmed"
+    },
+    {
+      "id": 460,
+      "slug": "vulture",
+      "nameEn": "Vulture",
+      "nameFr": "Vautour",
+      "status": "confirmed"
+    },
+    {
+      "id": 461,
+      "slug": "warhorse",
+      "nameEn": "Warhorse",
+      "nameFr": "Destrier",
+      "status": "confirmed"
+    },
+    {
+      "id": 462,
+      "slug": "warhorse-skeleton",
+      "nameEn": "Warhorse Skeleton",
+      "nameFr": "Destrier squelette",
+      "status": "confirmed"
+    },
+    {
+      "id": 463,
+      "slug": "warrior-commander",
+      "nameEn": "Warrior Commander",
+      "nameFr": "Foudre de guerre",
+      "status": "confirmed"
+    },
+    {
+      "id": 464,
+      "slug": "warrior-infantry",
+      "nameEn": "Warrior Infantry",
+      "nameFr": "Fantassin",
+      "status": "confirmed"
+    },
+    {
+      "id": 465,
+      "slug": "warrior-veteran",
+      "nameEn": "Warrior Veteran",
+      "nameFr": "Vétéran",
+      "status": "confirmed"
+    },
+    {
+      "id": 466,
+      "slug": "water-elemental",
+      "nameEn": "Water Elemental",
+      "nameFr": "Élémentaire de l'eau",
+      "status": "confirmed"
+    },
+    {
+      "id": 467,
+      "slug": "water-weird",
+      "nameEn": "Water Weird",
+      "nameFr": "Sibylle de l'eau",
+      "status": "confirmed"
+    },
+    {
+      "id": 468,
+      "slug": "weasel",
+      "nameEn": "Weasel",
+      "nameFr": "Belette",
+      "status": "confirmed"
+    },
+    {
+      "id": 469,
+      "slug": "werebear",
+      "nameEn": "Werebear",
+      "nameFr": "Ours-garou",
+      "status": "confirmed"
+    },
+    {
+      "id": 470,
+      "slug": "wereboar",
+      "nameEn": "Wereboar",
+      "nameFr": "Sanglier-garou",
+      "status": "confirmed"
+    },
+    {
+      "id": 471,
+      "slug": "wererat",
+      "nameEn": "Wererat",
+      "nameFr": "Rat-garou",
+      "status": "confirmed"
+    },
+    {
+      "id": 472,
+      "slug": "weretiger",
+      "nameEn": "Weretiger",
+      "nameFr": "Tigre-garou",
+      "status": "confirmed"
+    },
+    {
+      "id": 473,
+      "slug": "werewolf",
+      "nameEn": "Werewolf",
+      "nameFr": "Loup-garou",
+      "status": "confirmed"
+    },
+    {
+      "id": 474,
+      "slug": "white-dragon-wyrmling",
+      "nameEn": "White Dragon Wyrmling",
+      "nameFr": "Dragonnet blanc",
+      "status": "confirmed"
+    },
+    {
+      "id": 475,
+      "slug": "wight",
+      "nameEn": "Wight",
+      "nameFr": "Nécronte",
+      "status": "confirmed"
+    },
+    {
+      "id": 476,
+      "slug": "will-o-wisp",
+      "nameEn": "Will-o'-wisp",
+      "nameFr": "Feu follet",
+      "status": "confirmed"
+    },
+    {
+      "id": 477,
+      "slug": "winged-kobold",
+      "nameEn": "Winged Kobold",
+      "nameFr": "Kobold ailé",
+      "status": "confirmed"
+    },
+    {
+      "id": 478,
+      "slug": "winter-wolf",
+      "nameEn": "Winter Wolf",
+      "nameFr": "Loup arctique",
+      "status": "confirmed"
+    },
+    {
+      "id": 479,
+      "slug": "wolf",
+      "nameEn": "Wolf",
+      "nameFr": "Loup",
+      "status": "confirmed"
+    },
+    {
+      "id": 480,
+      "slug": "worg",
+      "nameEn": "Worg",
+      "nameFr": "Worg",
+      "status": "confirmed"
+    },
+    {
+      "id": 481,
+      "slug": "wraith",
+      "nameEn": "Wraith",
+      "nameFr": "Âme-en-peine",
+      "status": "confirmed"
+    },
+    {
+      "id": 482,
+      "slug": "wyvern",
+      "nameEn": "Wyvern",
+      "nameFr": "Vouivre",
+      "status": "confirmed"
+    },
+    {
+      "id": 483,
+      "slug": "xorn",
+      "nameEn": "Xorn",
+      "nameFr": "Xorn",
+      "status": "confirmed"
+    },
+    {
+      "id": 484,
+      "slug": "yeti",
+      "nameEn": "Yeti",
+      "nameFr": "Yéti",
+      "status": "confirmed"
+    },
+    {
+      "id": 485,
+      "slug": "yochlol",
+      "nameEn": "Yochlol",
+      "nameFr": "Yochlol",
+      "status": "confirmed"
+    },
+    {
+      "id": 486,
+      "slug": "young-black-dragon",
+      "nameEn": "Young Black Dragon",
+      "nameFr": "Jeune dragon noir",
+      "status": "confirmed"
+    },
+    {
+      "id": 487,
+      "slug": "young-blue-dragon",
+      "nameEn": "Young Blue Dragon",
+      "nameFr": "Jeune dragon bleu",
+      "status": "confirmed"
+    },
+    {
+      "id": 488,
+      "slug": "young-brass-dragon",
+      "nameEn": "Young Brass Dragon",
+      "nameFr": "Jeune dragon d'airain",
+      "status": "confirmed"
+    },
+    {
+      "id": 489,
+      "slug": "young-bronze-dragon",
+      "nameEn": "Young Bronze Dragon",
+      "nameFr": "Jeune dragon de bronze",
+      "status": "confirmed"
+    },
+    {
+      "id": 490,
+      "slug": "young-copper-dragon",
+      "nameEn": "Young Copper Dragon",
+      "nameFr": "Jeune dragon de cuivre",
+      "status": "confirmed"
+    },
+    {
+      "id": 491,
+      "slug": "young-gold-dragon",
+      "nameEn": "Young Gold Dragon",
+      "nameFr": "Jeune dragon d'or",
+      "status": "confirmed"
+    },
+    {
+      "id": 492,
+      "slug": "young-green-dragon",
+      "nameEn": "Young Green Dragon",
+      "nameFr": "Jeune dragon vert",
+      "status": "confirmed"
+    },
+    {
+      "id": 493,
+      "slug": "young-red-dragon",
+      "nameEn": "Young Red Dragon",
+      "nameFr": "Jeune dragon rouge",
+      "status": "confirmed"
+    },
+    {
+      "id": 494,
+      "slug": "young-remorhaz",
+      "nameEn": "Young Remorhaz",
+      "nameFr": "Jeune remorhaz",
+      "status": "confirmed"
+    },
+    {
+      "id": 495,
+      "slug": "young-silver-dragon",
+      "nameEn": "Young Silver Dragon",
+      "nameFr": "Jeune dragon d'argent",
+      "status": "confirmed"
+    },
+    {
+      "id": 496,
+      "slug": "young-white-dragon",
+      "nameEn": "Young White Dragon",
+      "nameFr": "Jeune dragon blanc",
+      "status": "confirmed"
+    },
+    {
+      "id": 497,
+      "slug": "yuan-ti-abomination",
+      "nameEn": "Yuan-ti Abomination",
+      "nameFr": "Abomination yuan-ti",
+      "status": "confirmed"
+    },
+    {
+      "id": 498,
+      "slug": "yuan-ti-infiltrator",
+      "nameEn": "Yuan-ti Infiltrator",
+      "nameFr": "Infiltrateur yuan-ti",
+      "status": "confirmed"
+    },
+    {
+      "id": 499,
+      "slug": "zombie",
+      "nameEn": "Zombie",
+      "nameFr": "Zombi",
+      "status": "confirmed"
+    }
+  ],
+  "unresolvedPolicy": "Aucune traduction française non attestée dans les photographies n'est affichée comme confirmée. Les 15 noms restent en anglais et portent la mention de traduction non résolue."
+}
