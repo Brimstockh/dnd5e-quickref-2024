@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "title": "Synthèse de la traduction française des monstres 2024",
   "scope": {
-    "totalMonsters": 499,
-    "confirmedFrenchTranslations": 484,
+    "totalMonsters": 503,
+    "confirmedFrenchTranslations": 488,
     "unresolvedFrenchTranslations": 15,
     "unaccountedMonsters": 0,
     "coverageComplete": true
@@ -3674,6 +3674,34 @@
       "slug": "zombie",
       "nameEn": "Zombie",
       "nameFr": "Zombi",
+      "status": "confirmed"
+    },
+    {
+      "id": 500,
+      "slug": "fey-dragon-wyrmling",
+      "nameEn": "Fey Dragon Wyrmling",
+      "nameFr": "Dragonnet fée",
+      "status": "confirmed"
+    },
+    {
+      "id": 501,
+      "slug": "young-fey-dragon",
+      "nameEn": "Young Fey Dragon",
+      "nameFr": "Jeune dragon fée",
+      "status": "confirmed"
+    },
+    {
+      "id": 502,
+      "slug": "adult-fey-dragon",
+      "nameEn": "Adult Fey Dragon",
+      "nameFr": "Dragon fée adulte",
+      "status": "confirmed"
+    },
+    {
+      "id": 503,
+      "slug": "ancient-fey-dragon",
+      "nameEn": "Ancient Fey Dragon",
+      "nameFr": "Dragon fée vénérable",
       "status": "confirmed"
     }
   ],

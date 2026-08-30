@@ -58,9 +58,9 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.deepEqual(Object.keys(details.monsters[data.monsters[0].slug].abilities), ["STR", "DEX", "CON", "INT", "WIS", "CHA"]);
   assert.ok(Object.values(details.monsters).some((monster) => monster.traits?.length));
   assert.ok(Object.values(details.monsters).some((monster) => monster.legendary_actions?.length));
-  assert.match(elements.sourceNote.textContent, /499 monstres charg/);
-  assert.match(elements.sourceNote.textContent, /484 noms français confirmés, 15 non résolus/);
-  assert.match(elements.summary.textContent, /^499 monstre\(s\).*499.*72 affich/);
+  assert.match(elements.sourceNote.textContent, /503 monstres charg/);
+  assert.match(elements.sourceNote.textContent, /488 noms français confirmés, 15 non résolus/);
+  assert.match(elements.summary.textContent, /^503 monstre\(s\).*503.*72 affich/);
   assert.equal((elements.monstersGrid.innerHTML.match(/<details class="monster"/g) || []).length, 72);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-image-button"/);
   assert.match(elements.monstersGrid.innerHTML, /data-monster-image="img\/enemies\/.*\.webp"/);
@@ -69,7 +69,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
   assert.match(elements.monstersGrid.innerHTML, /class="monster-abilities"/);
   assert.match(elements.monstersGrid.innerHTML, /class="monster-options"/);
   assert.equal(elements.loadMoreBtn.hidden, false);
-  assert.match(elements.loadMoreBtn.textContent, /72\/499/);
+  assert.match(elements.loadMoreBtn.textContent, /72\/503/);
   assert.match(elements.crSelect.innerHTML, /<option/);
   assert.equal(elements.exportJsonBtn.disabled, false);
   assert.match(page, /<dialog id="monsterImageDialog" class="monster-image-dialog"/);

@@ -142,7 +142,7 @@ test("critical JSON data is available and valid", async () => {
   const monstersResponse = await fetch(`${baseUrl}/data/monsters_2024.json`);
   const monsters = await monstersResponse.json();
   assert.equal(monstersResponse.status, 200);
-  assert.equal(monsters.monsters.length, 499);
+  assert.equal(monsters.monsters.length, 503);
 
   const featsResponse = await fetch(`${baseUrl}/data/feats_2024.json`);
   const feats = await featsResponse.json();
