@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v14";
+const CACHE_VERSION = "dnd-companion-v15";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -102,6 +102,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/character-sheet-ui.js",
     "./js/characters-page.js",
     "./js/content-catalog.js",
+    "./js/dense-pages.js",
     "./js/content-ids.js",
     "./js/context-share.js",
     "./js/comparator.js",

@@ -1247,6 +1247,11 @@
         mount.replaceChildren(inner);
         doc.body.append(backdrop, drawer, sessionPanel.backdrop, sessionPanel.panel, noteDialog, shareStatus);
         enhanceDeepLinks();
+        if (doc.body.classList.contains("dense-page")) {
+            import(pageUrl("js/dense-pages.js"))
+                .then(function (module) { return module.initDensePage(doc, window); })
+                .catch(function () {});
+        }
         import(pageUrl("js/related-content.js"))
             .then(function (module) { return module.initRelatedContent(doc, window); })
             .catch(function () {});

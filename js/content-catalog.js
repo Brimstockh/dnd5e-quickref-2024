@@ -152,7 +152,7 @@
         content.insertBefore(container, headings[0]);
 
         headings.forEach(function (heading, index) {
-            var title = heading.textContent.trim();
+            var title = heading.textContent.trim().replace(/\s*#\s*$/, "");
             var nodes = [];
             var cursor = heading.nextSibling;
             while (cursor && !(cursor.nodeType === 1 && cursor.matches("h3[id]"))) {
