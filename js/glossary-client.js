@@ -1,35 +1,66 @@
 const ENHANCED_ATTRIBUTE = "data-glossary-enhanced";
 const RICHTEXT_SELECTOR = "[data-glossary-richtext]";
-const SKIPPED_SELECTOR = "a, button, code, pre, h1, h2, h3, h4, h5, h6, input, select, textarea, [data-glossary-term]";
-const MAX_TERMS_PER_SCOPE = 16;
+const SKIPPED_SELECTOR = "a, button, code, pre, script, style, table, h1, h2, h3, h4, h5, h6, input, select, textarea, [data-glossary-term], [data-glossary-skip]";
+const MAX_TERMS_PER_BLOCK = 16;
 
-function normalize(value) {
+export function normalizeGlossaryText(value) {
   return String(value ?? "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘‛]/g, "'")
     .toLocaleLowerCase("fr");
+}
+
+function normalizedWithMap(value) {
+  const original = String(value ?? "");
+  let text = "";
+  const map = [];
+  for (let index = 0; index < original.length;) {
+    const originalChar = String.fromCodePoint(original.codePointAt(index));
+    const normalizedChar = normalizeGlossaryText(originalChar);
+    text += normalizedChar;
+    for (let offset = 0; offset < normalizedChar.length; offset += 1) map.push(index);
+    index += originalChar.length;
+  }
+  return { text, map };
 }
 
 export function glossaryTerms(entries) {
   return entries
-    .flatMap((entry) => [entry.label, ...(entry.aliases || [])].map((label) => ({ entry, label })))
-    .filter(({ label }) => label.trim().length >= 4)
-    .sort((first, second) => second.label.length - first.label.length);
+    .filter((entry) => entry.autoLink !== false)
+    .flatMap((entry) => {
+      const abbreviations = new Set(entry.abbreviations || []);
+      return [entry.label, ...(entry.aliases || [])].map((label) => ({
+        entry,
+        label,
+        normalizedLabel: normalizeGlossaryText(label),
+        isAbbreviation: abbreviations.has(label),
+      }));
+    })
+    .filter(({ label, isAbbreviation }) => isAbbreviation || label.trim().length >= 4)
+    .sort((first, second) => second.normalizedLabel.length - first.normalizedLabel.length);
 }
 
 export function findGlossaryMatch(value, terms, ignoredIds = new Set()) {
-  const normalizedValue = normalize(value);
+  const originalValue = String(value ?? "");
+  const normalizedValue = normalizedWithMap(originalValue);
   for (const term of terms) {
     if (ignoredIds.has(term.entry.id)) continue;
-    const normalizedLabel = normalize(term.label);
-    let index = normalizedValue.indexOf(normalizedLabel);
+    const normalizedLabel = term.normalizedLabel || normalizeGlossaryText(term.label);
+    let index = normalizedValue.text.indexOf(normalizedLabel);
     while (index !== -1) {
-      const before = normalizedValue[index - 1] || "";
-      const after = normalizedValue[index + normalizedLabel.length] || "";
+      const before = normalizedValue.text[index - 1] || "";
+      const after = normalizedValue.text[index + normalizedLabel.length] || "";
       if (!/[\p{L}\p{N}]/u.test(before) && !/[\p{L}\p{N}]/u.test(after)) {
-        return { index, length: term.label.length, entry: term.entry };
+        const originalStart = normalizedValue.map[index];
+        const normalizedEnd = index + normalizedLabel.length;
+        const originalEnd = normalizedValue.map[normalizedEnd] ?? originalValue.length;
+        const originalText = originalValue.slice(originalStart, originalEnd);
+        if (!term.isAbbreviation || originalText === term.label) {
+          return { index: originalStart, length: originalText.length, entry: term.entry };
+        }
       }
-      index = normalizedValue.indexOf(normalizedLabel, index + 1);
+      index = normalizedValue.text.indexOf(normalizedLabel, index + 1);
     }
   }
   return null;
@@ -78,26 +109,41 @@ function enhanceScope(scope, terms, doc) {
   const textNodes = [];
   let current = walker.nextNode();
   while (current) {
-    if (current.textContent.trim() && !current.parentElement?.closest(SKIPPED_SELECTOR)) {
+    const richtextParent = current.parentElement?.closest(RICHTEXT_SELECTOR);
+    if (richtextParent === scope && current.textContent.trim() && !current.parentElement?.closest(SKIPPED_SELECTOR)) {
       textNodes.push(current);
     }
     current = walker.nextNode();
   }
 
-  const usedIds = new Set();
-  let remaining = MAX_TERMS_PER_SCOPE;
+  const headings = Array.from(scope.querySelectorAll("h1, h2, h3, h4, h5, h6"))
+    .filter((heading) => heading.parentElement?.closest(RICHTEXT_SELECTOR) === scope);
+  const groups = [[]];
+  let headingIndex = 0;
   for (const textNode of textNodes) {
-    if (!remaining) break;
-    let tail = textNode;
-    while (tail && remaining) {
-      const match = findGlossaryMatch(tail.textContent, terms, usedIds);
-      if (!match) break;
-      const matchedNode = tail.splitText(match.index);
-      const after = matchedNode.splitText(match.length);
-      matchedNode.replaceWith(createTermButton(doc, matchedNode.textContent, match.entry));
-      usedIds.add(match.entry.id);
-      remaining -= 1;
-      tail = after;
+    while (headings[headingIndex] && (headings[headingIndex].compareDocumentPosition(textNode) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+      groups.push([]);
+      headingIndex += 1;
+    }
+    groups.at(-1).push(textNode);
+  }
+
+  for (const group of groups) {
+    const usedIds = new Set();
+    let remaining = MAX_TERMS_PER_BLOCK;
+    for (const textNode of group) {
+      if (!remaining) break;
+      let tail = textNode;
+      while (tail && remaining) {
+        const match = findGlossaryMatch(tail.textContent, terms, usedIds);
+        if (!match) break;
+        const matchedNode = tail.splitText(match.index);
+        const after = matchedNode.splitText(match.length);
+        matchedNode.replaceWith(createTermButton(doc, matchedNode.textContent, match.entry));
+        usedIds.add(match.entry.id);
+        remaining -= 1;
+        tail = after;
+      }
     }
   }
 }

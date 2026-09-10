@@ -73,9 +73,13 @@ function focusTerm(entries, term) {
 }
 
 export async function initGlossaryPage() {
-  const response = await fetch(new URL("../data/glossary.json", import.meta.url));
+  const [response, relationResponse] = await Promise.all([
+    fetch(new URL("../data/glossary.json", import.meta.url)),
+    fetch(new URL("../data/content-relations.json", import.meta.url)),
+  ]);
   if (!response.ok) return;
   const data = await response.json();
+  const relationIndex = relationResponse.ok ? await relationResponse.json() : { targets: {} };
   const intro = document.querySelector("main > .card");
   if (!intro) return;
   assignDefinitionAnchors(data.entries);
@@ -162,9 +166,22 @@ export async function initGlossaryPage() {
       full.href = `glossaire.html?term=${encodeURIComponent(entry.id.replace(/^glossary-/, ""))}`;
       footer.append(badge, full);
       if (entry.related.length) {
-        const related = element("a", "glossary-entry__related", "Référence rapide");
-        related.href = `quickref.html?q=${encodeURIComponent(entry.label)}`;
-        footer.insertBefore(related, full);
+        const relatedTargets = entry.related
+          .map((id) => relationIndex.targets?.[id])
+          .filter(Boolean);
+        if (relatedTargets.length) {
+          relatedTargets.forEach((target, index) => {
+            if (index) footer.insertBefore(document.createTextNode(" · "), full);
+            const related = element("a", "glossary-entry__related", target.title);
+            related.href = target.url;
+            related.setAttribute("aria-label", `Référence rapide : ${target.title}`);
+            footer.insertBefore(related, full);
+          });
+        } else {
+          const related = element("a", "glossary-entry__related", "Référence rapide");
+          related.href = `quickref.html?q=${encodeURIComponent(entry.label)}`;
+          footer.insertBefore(related, full);
+        }
       }
       card.append(title, alias, summary, footer);
       results.appendChild(card);

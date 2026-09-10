@@ -4,6 +4,7 @@ import {
   CONTENT_TYPES,
   isContentId,
 } from "../js/content-ids.js";
+import { glossaryTerms } from "../js/glossary-client.js";
 
 const root = resolve(import.meta.dirname, "..");
 const [primaryIndex, deepIndex] = await Promise.all([
@@ -18,6 +19,7 @@ index.count = index.entries.length;
 const aliasRegistry = JSON.parse(await readFile(resolve(root, "data/content-id-aliases.json"), "utf8"));
 const relationIndex = JSON.parse(await readFile(resolve(root, "data/content-relations.json"), "utf8"));
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8"));
+const glossaryAliasSource = JSON.parse(await readFile(resolve(root, "data/glossary-aliases.source.json"), "utf8"));
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
 const creation = JSON.parse(await readFile(resolve(root, "data/character-creation.json"), "utf8"));
 const storageContracts = JSON.parse(await readFile(resolve(root, "data/local-storage-contracts.json"), "utf8"));
@@ -74,6 +76,24 @@ for (const [position, entry] of (index.entries || []).entries()) {
   if (new Set(entry.aliases || []).size !== entry.aliases?.length) errors.push(`${context} aliases contain duplicates`);
   if (typeof entry.excerpt !== "string") errors.push(`${context} excerpt must be a string`);
   if (entry.sourceRef && !sourceIds.has(entry.sourceRef)) errors.push(`${context} references an unknown source: ${entry.sourceRef}`);
+}
+
+if (glossaryAliasSource.schemaVersion !== 1) errors.push("glossary alias source schemaVersion must be 1");
+const glossarySlugs = new Set((glossary.entries || []).map((entry) => entry.id.replace(/^glossary-/, "")));
+for (const key of new Set([
+  ...Object.keys(glossaryAliasSource.aliases || {}),
+  ...Object.keys(glossaryAliasSource.abbreviations || {}),
+  ...Object.keys(glossaryAliasSource.autoLink || {}),
+])) {
+  if (!glossarySlugs.has(key)) errors.push(`glossary source targets an unknown entry: ${key}`);
+}
+const glossaryLabels = new Map();
+for (const term of glossaryTerms(glossary.entries || [])) {
+  const previous = glossaryLabels.get(term.normalizedLabel);
+  if (previous && previous.entry.id !== term.entry.id) {
+    errors.push(`glossary alias collision after client normalization: ${term.label} (${term.entry.id}) conflicts with ${previous.label} (${previous.entry.id})`);
+  }
+  glossaryLabels.set(term.normalizedLabel, term);
 }
 
 const magicItemIds = new Set();
@@ -151,6 +171,12 @@ for (const [position, entry] of (glossary.entries || []).entries()) {
   if (!String(entry.summary || "").trim()) errors.push(`${context} has no summary`);
   if (!["Actions", "États", "Termes"].includes(entry.category)) errors.push(`${context} has an invalid category`);
   if (!Array.isArray(entry.aliases)) errors.push(`${context} aliases must be an array`);
+  if (!Array.isArray(entry.abbreviations)) errors.push(`${context} abbreviations must be an array`);
+  if (new Set(entry.abbreviations || []).size !== entry.abbreviations?.length) errors.push(`${context} abbreviations contain duplicates`);
+  if (typeof entry.autoLink !== "boolean") errors.push(`${context} autoLink must be a boolean`);
+  for (const abbreviation of entry.abbreviations || []) {
+    if (!(entry.aliases || []).includes(abbreviation)) errors.push(`${context} abbreviation is missing from aliases: ${abbreviation}`);
+  }
   if (!Array.isArray(entry.related)) errors.push(`${context} related must be an array`);
   if (glossaryAnchors.has(entry.anchor)) errors.push(`${context} duplicates anchor: ${entry.anchor}`);
   glossaryAnchors.add(entry.anchor);

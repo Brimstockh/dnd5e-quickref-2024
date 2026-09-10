@@ -66,6 +66,14 @@ test("page-level relations provide a useful fallback without an open catalog ite
   }
 });
 
+test("glossary entries link to their canonical quick references", () => {
+  assert.ok(relationsFor("glossary-attaque").some((relation) => relation.target === "action-attaquer"));
+  assert.ok(relationsFor("glossary-desengagement").some((relation) => relation.target === "action-se-desengager"));
+  assert.ok(relationsFor("glossary-furtivite").some((relation) => relation.target === "action-se-cacher"));
+  assert.ok(relationsFor("glossary-attaques-d-opportunite").some((relation) => relation.target === "reaction-attaque-d-opportunite"));
+  assert.ok(relationsFor("action-attaquer").some((relation) => relation.target === "glossary-attaque"));
+});
+
 test("contextual links with fragments target existing anchors", async () => {
   const pages = new Map();
   for (const source of Object.values(relationIndex.sources)) {

@@ -10,6 +10,7 @@
     "check:monster-translations": "node scripts/validate-monster-translations.mjs",
     "check:contracts": "node scripts/validate-content-contracts.mjs",
     "check:glossary": "node scripts/build-glossary.mjs --check",
+    "audit:glossary": "node scripts/audit-glossary-coverage.mjs",
     "check:inventory": "node scripts/build-content-inventory.mjs --check",
     "check:navigation": "node scripts/validate-navigation.mjs",
     "check:relations": "node scripts/build-relations-index.mjs --check",

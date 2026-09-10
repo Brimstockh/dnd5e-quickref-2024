@@ -18,7 +18,7 @@
       var target = targets.get(id);
       return target ? `<a href="${esc(target.url)}">${esc(target.title)}</a>` : `<span>${esc(id)}</span>`;
     }).join(" · ");
-    return `<details class="catalog-card campaign-rule-card" id="${esc(slug(rule.title))}"><summary><div class="catalog-card__head"><h3 class="catalog-card__title">${esc(rule.title)}</h3><div class="catalog-card__badges"><span class="badge badge--campaign">RÈGLE DE TABLE</span><span class="badge badge--muted">${esc(rule.status)}</span></div></div></summary><div class="catalog-card__body"><p>${esc(rule.summary)}</p><p class="campaign-rule-card__note">Source : règles propres à la campagne · statut : ${esc(rule.status)}</p>${related ? `<p class="campaign-rule-card__related"><strong>Références :</strong> ${related}</p>` : ""}</div></details>`;
+    return `<details class="catalog-card campaign-rule-card" id="${esc(slug(rule.title))}"><summary><div class="catalog-card__head"><h3 class="catalog-card__title">${esc(rule.title)}</h3><div class="catalog-card__badges"><span class="badge badge--campaign">RÈGLE DE TABLE</span><span class="badge badge--muted">${esc(rule.status)}</span></div></div></summary><div class="catalog-card__body"><p data-glossary-richtext>${esc(rule.summary)}</p><p class="campaign-rule-card__note">Source : règles propres à la campagne · statut : ${esc(rule.status)}</p>${related ? `<p class="campaign-rule-card__related"><strong>Références :</strong> ${related}</p>` : ""}</div></details>`;
   }
 
   function render() {

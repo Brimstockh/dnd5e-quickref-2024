@@ -58,7 +58,7 @@
     var aliases = item.aliases?.length ? `<p><strong>Alias :</strong> ${escapeHtml(item.aliases.join(", "))}</p>` : "";
     return `<details class="catalog-card" id="${escapeHtml(slug(item.name))}">
       <summary><div class="catalog-card__head"><h3 class="catalog-card__title">${escapeHtml(item.name)}</h3><div class="catalog-card__badges">${badges.map(function (badge) { return `<span class="badge badge--muted">${escapeHtml(badge)}</span>`; }).join("")}</div></div></summary>
-      <div class="catalog-card__body"><p>${escapeHtml(item.description)}</p><dl class="catalog-card__details"><dt>Charges</dt><dd>${escapeHtml(charges)}</dd><dt>Source</dt><dd>${escapeHtml(item.sourceSection || item.sourceRef || "Non précisée")}</dd></dl>${aliases}</div>
+      <div class="catalog-card__body"><p data-glossary-richtext>${escapeHtml(item.description)}</p><dl class="catalog-card__details"><dt>Charges</dt><dd>${escapeHtml(charges)}</dd><dt>Source</dt><dd>${escapeHtml(item.sourceSection || item.sourceRef || "Non précisée")}</dd></dl>${aliases}</div>
     </details>`;
   }
 

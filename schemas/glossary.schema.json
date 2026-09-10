@@ -11,18 +11,24 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "label", "aliases", "summary", "url", "anchor", "category", "related"],
+        "required": ["id", "label", "aliases", "abbreviations", "autoLink", "summary", "url", "anchor", "category", "related"],
         "properties": {
           "id": {
             "type": "string",
             "pattern": "^glossary-[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "label": { "type": "string", "minLength": 1 },
-          "aliases": {
-            "type": "array",
-            "items": { "type": "string", "minLength": 1 },
-            "uniqueItems": true
-          },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "abbreviations": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "autoLink": { "type": "boolean" },
           "summary": { "type": "string", "minLength": 1 },
           "url": { "type": "string", "minLength": 1 },
           "anchor": {

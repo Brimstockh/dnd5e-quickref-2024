@@ -7,6 +7,7 @@ const root = resolve(import.meta.dirname, "..");
 const source = await readFile(resolve(root, "glossaire.html"), "utf8");
 const aliasesSource = JSON.parse(await readFile(resolve(root, "data/glossary-aliases.source.json"), "utf8"));
 const searchIndex = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
+const contentRelationsSource = JSON.parse(await readFile(resolve(root, "data/content-relations.source.json"), "utf8"));
 
 function decodeHtml(value) {
   return String(value ?? "")
@@ -30,6 +31,14 @@ function concise(value, limit = 230) {
   return text.length > limit ? `${text.slice(0, limit - 1).trimEnd()}…` : text;
 }
 
+function normalizeGlossaryLabel(value) {
+  return String(value ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘‛]/g, "'")
+    .toLocaleLowerCase("fr");
+}
+
 const categoryLabels = Object.freeze({
   actions: "Actions",
   etats: "États",
@@ -37,6 +46,7 @@ const categoryLabels = Object.freeze({
 });
 const relatedTypes = new Set(["action", "bonus-action", "condition", "movement", "reaction"]);
 const searchableEntries = searchIndex.entries.filter((entry) => relatedTypes.has(entry.type));
+const searchableEntriesById = new Map(searchIndex.entries.map((entry) => [entry.id, entry]));
 const sections = [...source.matchAll(/<section[^>]*\bid=["'](termes|actions|etats)["'][^>]*>/gi)];
 const headings = [...source.matchAll(/<h4([^>]*)>([\s\S]*?)<\/h4>/gi)];
 const entries = [];
@@ -57,27 +67,62 @@ for (const [index, heading] of headings.entries()) {
   const bodyEnd = headings[index + 1]?.index ?? source.length;
   const body = source.slice(bodyStart, bodyEnd);
   const firstParagraph = body.match(/<p[^>]*>([\s\S]*?)<\/p>/i)?.[1] || body;
+  const abbreviations = (aliasesSource.abbreviations?.[slug] || [])
+    .filter((value, aliasIndex, values) => values.findIndex((candidate) => normalizeGlossaryLabel(candidate) === normalizeGlossaryLabel(value)) === aliasIndex);
   const aliases = [
     ...(aliasMatch ? [aliasMatch[1]] : []),
     ...(aliasesSource.aliases?.[slug] || []),
+    ...abbreviations,
   ].filter((value, aliasIndex, values) => (
-    value.toLocaleLowerCase("fr") !== label.toLocaleLowerCase("fr")
-    && values.findIndex((candidate) => candidate.toLocaleLowerCase("fr") === value.toLocaleLowerCase("fr")) === aliasIndex
+    normalizeGlossaryLabel(value) !== normalizeGlossaryLabel(label)
+    && values.findIndex((candidate) => normalizeGlossaryLabel(candidate) === normalizeGlossaryLabel(value)) === aliasIndex
   ));
-  const related = searchableEntries
+  const relatedIds = new Set(searchableEntries
     .filter((entry) => slugifyContent(entry.title) === slug)
-    .map((entry) => entry.id);
+    .map((entry) => entry.id));
+  for (const relation of contentRelationsSource.relations || []) {
+    if (relation.source !== `glossary-${slug}`) continue;
+    if (!searchableEntriesById.has(relation.target)) {
+      throw new Error(`Unknown glossary relation target: ${relation.target}`);
+    }
+    relatedIds.add(relation.target);
+  }
+  const related = [...relatedIds];
 
   entries.push({
     id: createContentId("glossary", slug),
     label,
     aliases,
+    abbreviations,
+    autoLink: aliasesSource.autoLink?.[slug] !== false,
     summary: concise(firstParagraph),
     url: `glossaire.html?term=${encodeURIComponent(slug)}`,
     anchor: headingId || slug,
     category: categoryLabels[category],
     related,
   });
+}
+
+const entriesBySlug = new Map(entries.map((entry) => [entry.id.replace(/^glossary-/, ""), entry]));
+for (const key of new Set([
+  ...Object.keys(aliasesSource.aliases || {}),
+  ...Object.keys(aliasesSource.abbreviations || {}),
+])) {
+  if (!entriesBySlug.has(key)) {
+    throw new Error(`Orphan glossary alias source key "${key}" in data/glossary-aliases.source.json: no matching glossary entry`);
+  }
+}
+
+const normalizedLabels = new Map();
+for (const entry of entries) {
+  for (const label of [entry.label, ...entry.aliases]) {
+    const normalized = normalizeGlossaryLabel(label);
+    const previous = normalizedLabels.get(normalized);
+    if (previous && previous.entry.id !== entry.id) {
+      throw new Error(`Glossary alias collision after client normalization: "${label}" (${entry.id}) conflicts with "${previous.label}" (${previous.entry.id})`);
+    }
+    normalizedLabels.set(normalized, { entry, label });
+  }
 }
 
 entries.sort((first, second) => first.label.localeCompare(second.label, "fr"));

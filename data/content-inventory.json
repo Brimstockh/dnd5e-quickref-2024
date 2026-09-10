@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 1955,
+  "count": 1984,
   "byType": {
     "action": 19,
     "adventuring-gear": 55,
@@ -13,7 +13,7 @@
     "environment": 12,
     "equipment": 51,
     "feat": 75,
-    "glossary": 71,
+    "glossary": 100,
     "magic-item": 1,
     "monster": 503,
     "movement": 13,

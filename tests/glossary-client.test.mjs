@@ -28,15 +28,31 @@ test("contextual matcher understands accent-insensitive aliases and exclusions",
   );
 });
 
+test("contextual matcher recognizes approved abbreviations without false positives", () => {
+  const terms = glossaryTerms(glossary.entries);
+  assert.equal(findGlossaryMatch("CA 17", terms).entry.id, "glossary-classe-d-armure");
+  assert.equal(findGlossaryMatch("12 PV", terms).entry.id, "glossary-points-de-vie");
+  assert.equal(findGlossaryMatch("DD 15", terms).entry.id, "glossary-degre-de-difficulte");
+  assert.equal(findGlossaryMatch("JS", terms).entry.id, "glossary-jet-de-sauvegarde");
+  assert.equal(findGlossaryMatch("JdS", terms).entry.id, "glossary-jet-de-sauvegarde");
+  assert.equal(findGlossaryMatch("ca 17", terms), null);
+  assert.equal(findGlossaryMatch("CAP", terms), null);
+  assert.equal(findGlossaryMatch("PVx", terms), null);
+  assert.equal(findGlossaryMatch("Une maîtrise", terms), null);
+});
+
 test("shared glossary client is explicit, bounded and keyboard accessible", async () => {
   const source = await readFile(resolve(root, "js/glossary-client.js"), "utf8");
   const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   assert.match(source, /\[data-glossary-richtext\]/);
-  assert.match(source, /MAX_TERMS_PER_SCOPE = 16/);
+  assert.match(source, /MAX_TERMS_PER_BLOCK = 16/);
   assert.match(source, /aria-haspopup/);
   assert.match(source, /aria-expanded/);
   assert.match(source, /event\.key === "Escape"/);
   assert.match(source, /restoreFocus/);
+  assert.match(source, /script, style, table/);
+  assert.match(source, /closest\(RICHTEXT_SELECTOR\)/);
+  assert.match(source, /const groups = \[\[\]\]/);
   assert.match(shell, /js\/glossary-client\.js/);
   assert.doesNotMatch(source, /createTreeWalker\(doc\.body/);
 });

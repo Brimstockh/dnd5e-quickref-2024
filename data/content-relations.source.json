@@ -2,6 +2,147 @@
   "schemaVersion": 1,
   "relations": [
     {
+      "source": "glossary-attaque",
+      "target": "action-attaquer",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-desengagement",
+      "target": "action-se-desengager",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-esquive",
+      "target": "action-esquiver",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-etude",
+      "target": "action-etudier",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-furtivite",
+      "target": "action-se-cacher",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-influence",
+      "target": "action-influencer",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-intention",
+      "target": "action-se-preparer",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-magie",
+      "target": "action-lancer-un-sort",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-observation",
+      "target": "action-rechercher",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-pointe",
+      "target": "action-foncer",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-soutien",
+      "target": "action-aider",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-utilisation",
+      "target": "action-utiliser",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-attaques-d-opportunite",
+      "target": "reaction-attaque-d-opportunite",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-stabilise",
+      "target": "action-stabiliser-une-creature",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-stabilise",
+      "target": "rule-combat-2024-stabiliser-un-personnage",
+      "type": "related-rule",
+      "url": "combat-2024.html#stabiliser",
+      "order": 20
+    },
+    {
+      "source": "glossary-vitesse-de-nage",
+      "target": "movement-nager",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-vitesse-de-vol",
+      "target": "movement-voler",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-agrippe",
+      "target": "action-agripper",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "glossary-agrippe",
+      "target": "action-s-echapper",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "glossary-agrippe",
+      "target": "movement-deplacement-en-prise",
+      "type": "related-rule",
+      "order": 30
+    },
+    {
+      "source": "glossary-classe-d-armure",
+      "target": "rule-rules-2024-attaque",
+      "type": "related-rule",
+      "label": "Classe d'armure dans les jets d'attaque",
+      "url": "rules-2024.html#attaque",
+      "order": 10
+    },
+    {
+      "source": "glossary-points-de-vie",
+      "target": "rule-combat-2024-pv",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
+      "source": "glossary-points-de-vie-temporaires",
+      "target": "rule-combat-2024-temp",
+      "type": "related-rule",
+      "order": 10
+    },
+    {
       "source": "page-regles-du-jeu",
       "target": "page-glossaire",
       "type": "see-also",

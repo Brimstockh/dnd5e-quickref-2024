@@ -50,7 +50,20 @@ function addRelation(definition) {
   });
 }
 
-for (const definition of source.relations || []) addRelation(definition);
+for (const definition of source.relations || []) {
+  addRelation(definition);
+  const sourceEntry = entries.get(definition.source);
+  const targetEntry = entries.get(definition.target);
+  if (sourceEntry?.type !== "glossary" || targetEntry?.type === "glossary") continue;
+  addRelation({
+    source: definition.target,
+    target: definition.source,
+    type: "see-also",
+    label: `${sourceEntry.title} dans le glossaire`,
+    url: sourceEntry.url,
+    order: 90,
+  });
+}
 
 for (const rule of campaignRules || []) {
   for (const target of rule.related || []) {
