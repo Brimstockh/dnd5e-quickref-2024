@@ -49,11 +49,44 @@
         }
 
         .character-card h2 {
-            margin: -14px -14px 10px;
+            margin: 0 0 10px;
             padding: 8px 12px;
             color: #fff;
             background: var(--accent);
-            border-radius: 6px 6px 0 0;
+            border-radius: 6px;
+        }
+
+        .character-card__layout {
+            display: grid;
+            grid-template-columns: minmax(140px, clamp(140px, 18vw, 220px)) minmax(0, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+
+        .character-card__portrait {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: #17120b;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+        }
+
+        .character-card__content {
+            min-width: 0;
+        }
+
+        @media (max-width: 700px) {
+            .character-card__layout {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .character-card__portrait {
+                width: min(100%, 220px);
+                margin-inline: auto;
+            }
         }
 
         .tag-row {
@@ -122,146 +155,211 @@
 
                 <div class="character-grid">
                     <section class="character-card" id="elminster">
-                        <h2>Elminster</h2>
-                        <div class="tag-row">
-                            <span class="tag">Valombre</span>
-                            <span class="tag">Plans</span>
-                            <span class="tag">Ménestrels</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Elminster.webp" width="1086" height="1448" decoding="async" alt="Portrait d'Elminster" />
+                            <div class="character-card__content">
+                                <h2>Elminster</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Valombre</span>
+                                    <span class="tag">Plans</span>
+                                    <span class="tag">Ménestrels</span>
+                                </div>
+                                <p>Elminster Aumar est l'un des personnages les plus anciens et les plus puissants des Royaumes Oubliés. Selon la légende, il était déjà présent à Myth Drannor entre 240 et 260 CV et s'y trouvait encore en 1487 lors de la chute finale de la cité.</p>
+                                <p>Installé à <strong>Valombre</strong>, il parcourt Faerûn et d'autres plans dans une quête permanente de savoir. Nombre de ses anciens élèves et alliés comptent parmi les grandes puissances des Royaumes, notamment les seigneurs de Waterdeep, la Simbul d'Aglarond et les Ménestrels.</p>
+                            </div>
                         </div>
-                        <p>Elminster Aumar est l'un des personnages les plus anciens et les plus puissants des Royaumes Oubliés. Selon la légende, il était déjà présent à Myth Drannor entre 240 et 260 CV et s'y trouvait encore en 1487 lors de la chute finale de la cité.</p>
-                        <p>Installé à <strong>Valombre</strong>, il parcourt Faerûn et d'autres plans dans une quête permanente de savoir. Nombre de ses anciens élèves et alliés comptent parmi les grandes puissances des Royaumes, notamment les seigneurs de Waterdeep, la Simbul d'Aglarond et les Ménestrels.</p>
                     </section>
 
                     <section class="character-card" id="laeral">
-                        <h2>Laeral Silverhand</h2>
-                        <div class="tag-row">
-                            <span class="tag">Waterdeep</span>
-                            <span class="tag">Mystra</span>
-                            <span class="tag">Objets magiques</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Laeral Silverhand.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait de Laeral Silverhand" />
+                            <div class="character-card__content">
+                                <h2>Laeral Silverhand</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Waterdeep</span>
+                                    <span class="tag">Mystra</span>
+                                    <span class="tag">Objets magiques</span>
+                                </div>
+                                <p>Laeral Silverhand est la cinquième des sept filles de <strong>Mystra</strong>. Elle a porté le titre de reine-sorcière du Nord, a épousé Khelben Arunsun, premier Bâton Noir de Waterdeep, et elle est aujourd'hui le <strong>Seigneur manifeste de Waterdeep</strong>.</p>
+                                <p>Elle passe pour l'une des plus grandes créatrices d'objets magiques de l'histoire. Sa maîtrise des arcanes demeure immense, même si une partie de son énergie est désormais absorbée par le maintien de son corps très ancien.</p>
+                            </div>
                         </div>
-                        <p>Laeral Silverhand est la cinquième des sept filles de <strong>Mystra</strong>. Elle a porté le titre de reine-sorcière du Nord, a épousé Khelben Arunsun, premier Bâton Noir de Waterdeep, et elle est aujourd'hui le <strong>Seigneur manifeste de Waterdeep</strong>.</p>
-                        <p>Elle passe pour l'une des plus grandes créatrices d'objets magiques de l'histoire. Sa maîtrise des arcanes demeure immense, même si une partie de son énergie est désormais absorbée par le maintien de son corps très ancien.</p>
                     </section>
 
                     <section class="character-card" id="alustriel">
-                        <h2>Alustriel Silverhand</h2>
-                        <div class="tag-row">
-                            <span class="tag">Lunargent</span>
-                            <span class="tag">Marches d'Argent</span>
-                            <span class="tag">Élue de Mystra</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Alustriel Silverhand.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait d'Alustriel Silverhand" />
+                            <div class="character-card__content">
+                                <h2>Alustriel Silverhand</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Lunargent</span>
+                                    <span class="tag">Marches d'Argent</span>
+                                    <span class="tag">Élue de Mystra</span>
+                                </div>
+                                <p>Alustriel Silverhand a servi comme Haut Mage de Lunargent à partir de 1235 CV puis comme Haute Dame de la Confédération des Marches d'Argent à partir de 1369 CV. Réputée pour son dévouement envers son peuple, elle était connue sous le nom de <strong>Dame Espoir</strong>.</p>
+                                <p>Laissée pour morte lors de la Magepeste, elle se trouvait en réalité à Candlekeep avec sa sœur Laeral afin de protéger la Toile. Elle s'est depuis éloignée de la politique active.</p>
+                            </div>
                         </div>
-                        <p>Alustriel Silverhand a servi comme Haut Mage de Lunargent à partir de 1235 CV puis comme Haute Dame de la Confédération des Marches d'Argent à partir de 1369 CV. Réputée pour son dévouement envers son peuple, elle était connue sous le nom de <strong>Dame Espoir</strong>.</p>
-                        <p>Laissée pour morte lors de la Magepeste, elle se trouvait en réalité à Candlekeep avec sa sœur Laeral afin de protéger la Toile. Elle s'est depuis éloignée de la politique active.</p>
                     </section>
 
                     <section class="character-card" id="drizzt">
-                        <h2>Drizzt Do'Urden</h2>
-                        <div class="tag-row">
-                            <span class="tag">Drow</span>
-                            <span class="tag">Menzoberranzan</span>
-                            <span class="tag">Guenhwyvar</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Drizzt Do'Urden.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait de Drizzt Do'Urden" />
+                            <div class="character-card__content">
+                                <h2>Drizzt Do'Urden</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Drow</span>
+                                    <span class="tag">Menzoberranzan</span>
+                                    <span class="tag">Guenhwyvar</span>
+                                </div>
+                                <p>Drizzt Do'Urden est un rôdeur drow renégat à la chevelure blanche, échappé du système oppressif de <strong>Menzoberranzan</strong>. Ses exploits à la surface en ont fait l'un des elfes noirs les plus connus de Faerûn.</p>
+                                <p>Il combat avec les cimeterres <strong>Icingdeath</strong> et <strong>Twinkle</strong>, porte une cotte de mailles magique offerte par Bruenor et possède la figurine d'onyx qui invoque la panthère <strong>Guenhwyvar</strong>. Ses compagnons les plus connus sont Bruenor, Cattie-Brie, Régis et Wulfgar.</p>
+                            </div>
                         </div>
-                        <p>Drizzt Do'Urden est un rôdeur drow renégat à la chevelure blanche, échappé du système oppressif de <strong>Menzoberranzan</strong>. Ses exploits à la surface en ont fait l'un des elfes noirs les plus connus de Faerûn.</p>
-                        <p>Il combat avec les cimeterres <strong>Icingdeath</strong> et <strong>Twinkle</strong>, porte une cotte de mailles magique offerte par Bruenor et possède la figurine d'onyx qui invoque la panthère <strong>Guenhwyvar</strong>. Ses compagnons les plus connus sont Bruenor, Cattie-Brie, Régis et Wulfgar.</p>
                     </section>
 
                     <section class="character-card" id="jarlaxle">
-                        <h2>Jarlaxle</h2>
-                        <div class="tag-row">
-                            <span class="tag">Bregan D'aerthe</span>
-                            <span class="tag">Luskan</span>
-                            <span class="tag">Menzoberranzan</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Jarlaxle.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait de Jarlaxle" />
+                            <div class="character-card__content">
+                                <h2>Jarlaxle</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Bregan D'aerthe</span>
+                                    <span class="tag">Luskan</span>
+                                    <span class="tag">Menzoberranzan</span>
+                                </div>
+                                <p>Jarlaxle Baenre est un drow originaire de Menzoberranzan, chef et fondateur de <strong>Bregan D'aerthe</strong>, une organisation de mercenaires, d'espions et d'assassins. Troisième fils de la matrone Yvonnel Baenre, il fait partie des rares mâles à détenir une forme d'autorité dans la société drow.</p>
+                                <p>Il passe une grande partie de son temps à la surface, notamment à <strong>Luskan</strong>, pour y développer ses affaires. Son principal lieutenant est le psionique <strong>Kimmuriel Oblodra</strong>.</p>
+                            </div>
                         </div>
-                        <p>Jarlaxle Baenre est un drow originaire de Menzoberranzan, chef et fondateur de <strong>Bregan D'aerthe</strong>, une organisation de mercenaires, d'espions et d'assassins. Troisième fils de la matrone Yvonnel Baenre, il fait partie des rares mâles à détenir une forme d'autorité dans la société drow.</p>
-                        <p>Il passe une grande partie de son temps à la surface, notamment à <strong>Luskan</strong>, pour y développer ses affaires. Son principal lieutenant est le psionique <strong>Kimmuriel Oblodra</strong>.</p>
                     </section>
 
                     <section class="character-card" id="manshoon">
-                        <h2>Manshoon</h2>
-                        <div class="tag-row">
-                            <span class="tag">Zhentarim</span>
-                            <span class="tag">Clones</span>
-                            <span class="tag">Cormyr</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Manshoon.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait de Manshoon" />
+                            <div class="character-card__content">
+                                <h2>Manshoon</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Zhentarim</span>
+                                    <span class="tag">Clones</span>
+                                    <span class="tag">Cormyr</span>
+                                </div>
+                                <p>Manshoon est un archimage malfaisant et le fondateur du <strong>Zhentarim</strong> en 1261. Après son assassinat par Fzoul en 1370, ses nombreux clones entrent en guerre les uns contre les autres.</p>
+                                <p>Seuls quelques clones survivent : l'un retourne au Zhentarim avant de périr avec Château-Zhentil, un autre se réfugie à Undermountain, et un troisième, devenu vampire sous le nom d'Orbakh, dirige un temps les Masques de la nuit à Port-Ponant avant d'être détruit par Elminster.</p>
+                            </div>
                         </div>
-                        <p>Manshoon est un archimage malfaisant et le fondateur du <strong>Zhentarim</strong> en 1261. Après son assassinat par Fzoul en 1370, ses nombreux clones entrent en guerre les uns contre les autres.</p>
-                        <p>Seuls quelques clones survivent : l'un retourne au Zhentarim avant de périr avec Château-Zhentil, un autre se réfugie à Undermountain, et un troisième, devenu vampire sous le nom d'Orbakh, dirige un temps les Masques de la nuit à Port-Ponant avant d'être détruit par Elminster.</p>
                     </section>
 
                     <section class="character-card" id="szass">
-                        <h2>Szass Tam</h2>
-                        <div class="tag-row">
-                            <span class="tag">Liche</span>
-                            <span class="tag">Thay</span>
-                            <span class="tag">Nécromancie</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Szass Tam.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait de Szass Tam" />
+                            <div class="character-card__content">
+                                <h2>Szass Tam</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Liche</span>
+                                    <span class="tag">Thay</span>
+                                    <span class="tag">Nécromancie</span>
+                                </div>
+                                <p>Szass Tam est une puissante liche et l'ancien zulkir de nécromancie du Thay. Depuis 1385, il règne seul sur ce royaume peuplé de morts-vivants et d'orcs, tout en demeurant le chef des Magiciens Rouges.</p>
+                                <p>Après la Magepeste, affaibli, il invoque <strong>Bane</strong> afin d'obtenir la maîtrise de la magie nouvelle et davantage de puissance, au prix de son âme dans mille ans.</p>
+                            </div>
                         </div>
-                        <p>Szass Tam est une puissante liche et l'ancien zulkir de nécromancie du Thay. Depuis 1385, il règne seul sur ce royaume peuplé de morts-vivants et d'orcs, tout en demeurant le chef des Magiciens Rouges.</p>
-                        <p>Après la Magepeste, affaibli, il invoque <strong>Bane</strong> afin d'obtenir la maîtrise de la magie nouvelle et davantage de puissance, au prix de son âme dans mille ans.</p>
                     </section>
 
                     <section class="character-card" id="volo">
-                        <h2>Volo</h2>
-                        <div class="tag-row">
-                            <span class="tag">Guides</span>
-                            <span class="tag">Voyages</span>
-                            <span class="tag">Érudition</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Volo.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait de Volo" />
+                            <div class="character-card__content">
+                                <h2>Volo</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Guides</span>
+                                    <span class="tag">Voyages</span>
+                                    <span class="tag">Érudition</span>
+                                </div>
+                                <p>Volothamp Geddarm, ou <strong>Volo</strong>, est un magicien de bas niveau, voyageur et auteur de nombreux guides consacrés aux cités et aux mœurs des Royaumes. Sa franchise lui attire régulièrement des ennuis avec les autorités, les marchands et les mages.</p>
+                                <p>Il reste cependant une source de savoir précieuse sur la géographie, la magie et les usages de Faerûn.</p>
+                            </div>
                         </div>
-                        <p>Volothamp Geddarm, ou <strong>Volo</strong>, est un magicien de bas niveau, voyageur et auteur de nombreux guides consacrés aux cités et aux mœurs des Royaumes. Sa franchise lui attire régulièrement des ennuis avec les autorités, les marchands et les mages.</p>
-                        <p>Il reste cependant une source de savoir précieuse sur la géographie, la magie et les usages de Faerûn.</p>
                     </section>
 
                     <section class="character-card" id="xanathar">
-                        <h2>Xanathar</h2>
-                        <div class="tag-row">
-                            <span class="tag">Beholder</span>
-                            <span class="tag">Waterdeep</span>
-                            <span class="tag">Crime</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Xanathar.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait de Xanathar" />
+                            <div class="character-card__content">
+                                <h2>Xanathar</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Beholder</span>
+                                    <span class="tag">Waterdeep</span>
+                                    <span class="tag">Crime</span>
+                                </div>
+                                <p>Xanathar est le titre porté par les beholders qui se succèdent à la tête de la guilde criminelle de Port-crâne, sous Waterdeep. Depuis 1479, ce rôle est tenu par le jeune beholder <strong>Zushaxx</strong>.</p>
+                                <p>Il a noué une alliance avec le flagelleur mental <strong>Suthool</strong> et avec <strong>Belvarra Bowmantle</strong>, agente d'Asmodée, afin d'écarter le Zhentarim de Waterdeep. Il est notoirement attaché à son poisson <strong>Sylgar</strong>.</p>
+                            </div>
                         </div>
-                        <p>Xanathar est le titre porté par les beholders qui se succèdent à la tête de la guilde criminelle de Port-crâne, sous Waterdeep. Depuis 1479, ce rôle est tenu par le jeune beholder <strong>Zushaxx</strong>.</p>
-                        <p>Il a noué une alliance avec le flagelleur mental <strong>Suthool</strong> et avec <strong>Belvarra Bowmantle</strong>, agente d'Asmodée, afin d'écarter le Zhentarim de Waterdeep. Il est notoirement attaché à son poisson <strong>Sylgar</strong>.</p>
                     </section>
 
                     <section class="character-card" id="bigby">
-                        <h2>Bigby</h2>
-                        <div class="tag-row">
-                            <span class="tag">Main de Bigby</span>
-                            <span class="tag">Cercle des Huit</span>
-                            <span class="tag">Multivers</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Bigby.webp" width="1057" height="1488" loading="lazy" decoding="async" alt="Portrait de Bigby" />
+                            <div class="character-card__content">
+                                <h2>Bigby</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Main de Bigby</span>
+                                    <span class="tag">Cercle des Huit</span>
+                                    <span class="tag">Multivers</span>
+                                </div>
+                                <p>Bigby fut un temps l'apprenti de <strong>Mordenkainen</strong>. Avec lui, il participe à la fondation du <strong>Cercle des Huit</strong> et devient l'un des grands magiciens du multivers.</p>
+                                <p>Il donne son nom au sort <em>Main de Bigby</em>. Tué lors d'un affrontement contre Halmadar le Cruel, il est cloné par Mordenkainen puis revient à la vie, avant d'être grièvement blessé lors de la trahison de Rary.</p>
+                            </div>
                         </div>
-                        <p>Bigby fut un temps l'apprenti de <strong>Mordenkainen</strong>. Avec lui, il participe à la fondation du <strong>Cercle des Huit</strong> et devient l'un des grands magiciens du multivers.</p>
-                        <p>Il donne son nom au sort <em>Main de Bigby</em>. Tué lors d'un affrontement contre Halmadar le Cruel, il est cloné par Mordenkainen puis revient à la vie, avant d'être grièvement blessé lors de la trahison de Rary.</p>
                     </section>
 
                     <section class="character-card" id="mordenkainen">
-                        <h2>Mordenkainen</h2>
-                        <div class="tag-row">
-                            <span class="tag">Équilibre</span>
-                            <span class="tag">Cercle des Huit</span>
-                            <span class="tag">Archimage</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Mordenkainen.webp" width="1056" height="1489" loading="lazy" decoding="async" alt="Portrait de Mordenkainen" />
+                            <div class="character-card__content">
+                                <h2>Mordenkainen</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Équilibre</span>
+                                    <span class="tag">Cercle des Huit</span>
+                                    <span class="tag">Archimage</span>
+                                </div>
+                                <p>Mordenkainen est un puissant magicien neutre, manipulateur, qui cherche avant tout à préserver l'équilibre entre le bien et le mal. Il est à l'origine du <strong>Cercle des Huit</strong>, cabale de mages dont il demeure la figure centrale.</p>
+                                <p>Le cercle a compté notamment Bigby, Bucknard, Drawmij, Léomund, Nystul, Otto, Rary, puis Tenser, Otiluke et Jallarzi Sallavarian. La cohésion du groupe est finalement brisée par la trahison de Rary.</p>
+                            </div>
                         </div>
-                        <p>Mordenkainen est un puissant magicien neutre, manipulateur, qui cherche avant tout à préserver l'équilibre entre le bien et le mal. Il est à l'origine du <strong>Cercle des Huit</strong>, cabale de mages dont il demeure la figure centrale.</p>
-                        <p>Le cercle a compté notamment Bigby, Bucknard, Drawmij, Léomund, Nystul, Otto, Rary, puis Tenser, Otiluke et Jallarzi Sallavarian. La cohésion du groupe est finalement brisée par la trahison de Rary.</p>
                     </section>
 
                     <section class="character-card" id="tasha">
-                        <h2>Tasha</h2>
-                        <div class="tag-row">
-                            <span class="tag">Iggwilv</span>
-                            <span class="tag">Graz'zt</span>
-                            <span class="tag">Démonomicon</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Tasha.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait de Tasha" />
+                            <div class="character-card__content">
+                                <h2>Tasha</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Iggwilv</span>
+                                    <span class="tag">Graz'zt</span>
+                                    <span class="tag">Démonomicon</span>
+                                </div>
+                                <p>Connue plus tard sous le nom d'<strong>Iggwilv</strong>, Tasha est une puissante magicienne élevée par <strong>Baba Yaga</strong>. Elle fut la maîtresse et l'alliée de Graz'zt, s'opposa aux Neuf Enfers et affronta aussi le Cercle des Huit de Mordenkainen.</p>
+                                <p>Son familier est un quasit nommé <strong>Black Comet</strong>. Elle est aussi l'autrice du <strong>Démonomicon d'Iggwilv</strong>, ouvrage consacré aux démons, aux Abysses et aux rituels d'invocation.</p>
+                            </div>
                         </div>
-                        <p>Connue plus tard sous le nom d'<strong>Iggwilv</strong>, Tasha est une puissante magicienne élevée par <strong>Baba Yaga</strong>. Elle fut la maîtresse et l'alliée de Graz'zt, s'opposa aux Neuf Enfers et affronta aussi le Cercle des Huit de Mordenkainen.</p>
-                        <p>Son familier est un quasit nommé <strong>Black Comet</strong>. Elle est aussi l'autrice du <strong>Démonomicon d'Iggwilv</strong>, ouvrage consacré aux démons, aux Abysses et aux rituels d'invocation.</p>
                     </section>
 
                     <section class="character-card" id="vecna">
-                        <h2>Vecna</h2>
-                        <div class="tag-row">
-                            <span class="tag">Liche</span>
-                            <span class="tag">Kas</span>
-                            <span class="tag">Chapitres interdits</span>
+                        <div class="character-card__layout">
+                            <img class="character-card__portrait" src="img/vip/Vecna.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Portrait de Vecna" />
+                            <div class="character-card__content">
+                                <h2>Vecna</h2>
+                                <div class="tag-row">
+                                    <span class="tag">Liche</span>
+                                    <span class="tag">Kas</span>
+                                    <span class="tag">Chapitres interdits</span>
+                                </div>
+                                <p>Vecna est un ancien magicien humain devenu liche, puis puissance divine. Il forge l'<strong>Épée de Kas</strong> pour son garde du corps, mais Kas finit par se retourner contre lui et lui arrache son œil et sa main gauches.</p>
+                                <p>Après des siècles de quête et de retour à la puissance, Vecna se rend jusque dans les plans extérieurs, envahit Sigil et atteint le statut de dieu. On lui attribue également les <strong>Chapitres interdits</strong>, compilation de magie archi-noire et de savoirs corrupteurs.</p>
+                            </div>
                         </div>
-                        <p>Vecna est un ancien magicien humain devenu liche, puis puissance divine. Il forge l'<strong>Épée de Kas</strong> pour son garde du corps, mais Kas finit par se retourner contre lui et lui arrache son œil et sa main gauches.</p>
-                        <p>Après des siècles de quête et de retour à la puissance, Vecna se rend jusque dans les plans extérieurs, envahit Sigil et atteint le statut de dieu. On lui attribue également les <strong>Chapitres interdits</strong>, compilation de magie archi-noire et de savoirs corrupteurs.</p>
                     </section>
                 </div>
             </div>
