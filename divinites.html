@@ -34,6 +34,22 @@
             color: var(--accent);
         }
 
+        .deity-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emblem-frame.deity-cell__frame {
+            width: 3.25rem;
+            padding: 3px;
+            border-radius: 6px;
+        }
+
+        .deity-cell__name {
+            min-width: 0;
+        }
+
         .table-wrap {
             overflow-x: auto;
             margin-top: 12px;
@@ -115,19 +131,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Bahamut</strong>, dieu du Bien des dragons</td><td class="alignment">LB</td><td><span class="domain">Guerre</span><span class="domain">Vie</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Bahamut.webp" width="640" height="640" loading="lazy" decoding="async" alt="Symbole sacré de Bahamut" /></span><span class="deity-cell__name"><strong>Bahamut</strong>, dieu du Bien des dragons</span></span></td><td class="alignment">LB</td><td><span class="domain">Guerre</span><span class="domain">Vie</span></td></tr>
                             <tr><td>Blibdoolpoolp, déesse kuo-toa</td><td class="alignment">NM</td><td><span class="domain">Mort</span></td></tr>
-                            <tr><td><strong>Corellon Larethian</strong>, dieu elfe de l'art et de la magie</td><td class="alignment">CB</td><td><span class="domain">Lumière</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/corellon.webp" width="200" height="426" loading="lazy" decoding="async" alt="Symbole sacré de Corellon Larethian" /></span><span class="deity-cell__name"><strong>Corellon Larethian</strong>, dieu elfe de l'art et de la magie</span></span></td><td class="alignment">CB</td><td><span class="domain">Lumière</span></td></tr>
                             <tr><td>Eadro, dieu de la mer des hommes-poissons</td><td class="alignment">N</td><td><span class="domain">Nature</span><span class="domain">Tempête</span></td></tr>
-                            <tr><td><strong>Garl Brilledor</strong>, dieu gnome de la duperie et des ruses</td><td class="alignment">LB</td><td><span class="domain">Duperie</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/brilledor.webp" width="200" height="154" loading="lazy" decoding="async" alt="Symbole sacré de Garl Brilledor" /></span><span class="deity-cell__name"><strong>Garl Brilledor</strong>, dieu gnome de la duperie et des ruses</span></span></td><td class="alignment">LB</td><td><span class="domain">Duperie</span></td></tr>
                             <tr><td>Grolantor, dieu de la guerre des géants des collines</td><td class="alignment">CM</td><td><span class="domain">Guerre</span></td></tr>
-                            <tr><td><strong>Gruumsh</strong>, dieu orc des tempêtes et de la guerre</td><td class="alignment">CM</td><td><span class="domain">Guerre</span><span class="domain">Tempête</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Gruumsh.webp" width="180" height="155" loading="lazy" decoding="async" alt="Symbole sacré de Gruumsh" /></span><span class="deity-cell__name"><strong>Gruumsh</strong>, dieu orc des tempêtes et de la guerre</span></span></td><td class="alignment">CM</td><td><span class="domain">Guerre</span><span class="domain">Tempête</span></td></tr>
                             <tr><td>Hruggek, dieu gobelours de la violence</td><td class="alignment">CM</td><td><span class="domain">Guerre</span></td></tr>
-                            <tr><td><strong>Kurtulmak</strong>, dieu kobold de la guerre et des mines</td><td class="alignment">LM</td><td><span class="domain">Guerre</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Kurtulmak.webp" width="200" height="412" loading="lazy" decoding="async" alt="Symbole sacré de Kurtulmak" /></span><span class="deity-cell__name"><strong>Kurtulmak</strong>, dieu kobold de la guerre et des mines</span></span></td><td class="alignment">LM</td><td><span class="domain">Guerre</span></td></tr>
                             <tr><td>Laogzed, dieu troglodyte de la faim</td><td class="alignment">CM</td><td><span class="domain">Mort</span></td></tr>
-                            <tr><td><strong>Lolth</strong>, déesse drow des araignées</td><td class="alignment">CM</td><td><span class="domain">Duperie</span></td></tr>
-                            <tr><td><strong>Maglubiyet</strong>, dieu gobelin de la guerre</td><td class="alignment">LM</td><td><span class="domain">Guerre</span></td></tr>
-                            <tr><td><strong>Moradin</strong>, dieu nain de la création</td><td class="alignment">LB</td><td><span class="domain">Savoir</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Lolth.webp" width="1024" height="1024" loading="lazy" decoding="async" alt="Symbole sacré de Lolth" /></span><span class="deity-cell__name"><strong>Lolth</strong>, déesse drow des araignées</span></span></td><td class="alignment">CM</td><td><span class="domain">Duperie</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/maglubiyet.webp" width="258" height="300" loading="lazy" decoding="async" alt="Symbole sacré de Maglubiyet" /></span><span class="deity-cell__name"><strong>Maglubiyet</strong>, dieu gobelin de la guerre</span></span></td><td class="alignment">LM</td><td><span class="domain">Guerre</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Moradin.webp" width="200" height="227" loading="lazy" decoding="async" alt="Symbole sacré de Moradin" /></span><span class="deity-cell__name"><strong>Moradin</strong>, dieu nain de la création</span></span></td><td class="alignment">LB</td><td><span class="domain">Savoir</span></td></tr>
                             <tr><td>Rillifane Rallathil, dieu elfe de la nature</td><td class="alignment">CB</td><td><span class="domain">Nature</span></td></tr>
                             <tr><td>Sashalas des Profondeurs, dieu elfe de la mer</td><td class="alignment">CB</td><td><span class="domain">Nature</span><span class="domain">Tempête</span></td></tr>
                             <tr><td>Sehanine Archelune, déesse elfe de la lune</td><td class="alignment">CB</td><td><span class="domain">Savoir</span></td></tr>
@@ -137,8 +153,8 @@
                             <tr><td>Skoraeus Os-de-pierre, dieu des géants des pierres et de l'art</td><td class="alignment">N</td><td><span class="domain">Savoir</span></td></tr>
                             <tr><td>Surtur, dieu des géants du feu et de l'artisanat</td><td class="alignment">LM</td><td><span class="domain">Guerre</span><span class="domain">Savoir</span></td></tr>
                             <tr><td>Thrym, dieu des géants du givre et de la force</td><td class="alignment">CM</td><td><span class="domain">Guerre</span></td></tr>
-                            <tr><td><strong>Tiamat</strong>, déesse du Mal des dragons</td><td class="alignment">LM</td><td><span class="domain">Duperie</span></td></tr>
-                            <tr><td><strong>Yondalla</strong>, déesse halfeline de la fertilité et de la protection</td><td class="alignment">LB</td><td><span class="domain">Vie</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Tiamat.webp" width="256" height="256" loading="lazy" decoding="async" alt="Symbole sacré de Tiamat" /></span><span class="deity-cell__name"><strong>Tiamat</strong>, déesse du Mal des dragons</span></span></td><td class="alignment">LM</td><td><span class="domain">Duperie</span></td></tr>
+                            <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Yondalla.webp" width="200" height="291" loading="lazy" decoding="async" alt="Symbole sacré de Yondalla" /></span><span class="deity-cell__name"><strong>Yondalla</strong>, déesse halfeline de la fertilité et de la protection</span></span></td><td class="alignment">LB</td><td><span class="domain">Vie</span></td></tr>
                         </tbody>
                     </table>
                 </div>

@@ -25,6 +25,7 @@ const pngFiles = entries
 const webpFiles = new Set(entries
   .filter((entry) => entry.isFile() && extname(entry.name).toLowerCase() === ".webp")
   .map((entry) => entry.name));
+const sourceFiles = pngFiles.length ? pngFiles : [...webpFiles].sort((left, right) => left.localeCompare(right));
 
 const cards = [...html.matchAll(/<section\s+class="character-card"\s+id="([^"]+)"\s*>([\s\S]*?)<\/section>/g)]
   .map((match) => {
@@ -35,10 +36,10 @@ const cards = [...html.matchAll(/<section\s+class="character-card"\s+id="([^"]+)
   });
 
 const availableByKey = new Map();
-for (const pngFile of pngFiles) {
-  const key = normalize(basename(pngFile, extname(pngFile)));
+for (const sourceFile of sourceFiles) {
+  const key = normalize(basename(sourceFile, extname(sourceFile)));
   const matches = availableByKey.get(key) ?? [];
-  matches.push(pngFile);
+  matches.push(sourceFile);
   availableByKey.set(key, matches);
 }
 
@@ -58,7 +59,9 @@ for (const card of cards) {
     continue;
   }
 
-  const expectedWebp = `${matches[0].slice(0, -extname(matches[0]).length)}.webp`;
+  const expectedWebp = extname(matches[0]).toLowerCase() === ".webp"
+    ? matches[0]
+    : `${matches[0].slice(0, -extname(matches[0]).length)}.webp`;
   const actualWebp = decodeURIComponent(card.src).split(/[\\/]/).pop() ?? "";
   usedWebp.add(actualWebp);
   if (actualWebp !== expectedWebp || !webpFiles.has(expectedWebp)) {
@@ -70,7 +73,7 @@ const unusedPortraits = [...webpFiles].filter((file) => !usedWebp.has(file)).sor
 const issues = [...missingPortraits, ...ambiguousPortraits, ...mismatchedPortraits];
 
 console.log(`Personnages HTML : ${cards.length}`);
-console.log(`Portraits trouvés : ${pngFiles.length}`);
+console.log(`Portraits trouvés : ${sourceFiles.length} (${pngFiles.length ? "PNG source" : "WebP suivis"})`);
 console.log(`Portraits associés : ${cards.length - issues.length}`);
 console.log(`Portraits non associés : ${unusedPortraits.length}`);
 console.log(`Personnages sans portrait : ${missingPortraits.length}`);
@@ -84,6 +87,6 @@ for (const file of webpFiles) {
   if (fileStats.size === 0) issues.push(`${file}: fichier vide`);
 }
 
-if (issues.length || unusedPortraits.length || webpFiles.size !== pngFiles.length) {
+if (issues.length || unusedPortraits.length || webpFiles.size !== sourceFiles.length) {
   process.exitCode = 1;
 }

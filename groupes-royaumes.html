@@ -56,6 +56,21 @@
             border-radius: 6px 6px 0 0;
         }
 
+        .group-card__layout {
+            display: grid;
+            grid-template-columns: clamp(7rem, 14vw, 10rem) minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+        }
+
+        .group-card__content {
+            min-width: 0;
+        }
+
+        .group-card__content .tag-row {
+            margin-top: 0;
+        }
+
         .tag-row {
             display: flex;
             flex-wrap: wrap;
@@ -81,6 +96,17 @@
 
         .detail-list li {
             margin: 0 0 6px;
+        }
+
+        @media (max-width: 700px) {
+            .group-card__layout {
+                grid-template-columns: 1fr;
+            }
+
+            .group-card__layout .emblem-frame {
+                width: min(9rem, 100%);
+                margin-inline: auto;
+            }
         }
     </style>
     <link rel="stylesheet" href="css/theme.css" />
@@ -125,93 +151,135 @@
                 <div class="group-grid">
                     <section class="group-card" id="alliance">
                         <h2>Alliance des Seigneurs</h2>
-                        <div class="tag-row">
-                            <span class="tag">Cités libres</span>
-                            <span class="tag">Nord</span>
-                            <span class="tag">Sécurité</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/seigneurs.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/seigneurs.webp" width="360" height="622" loading="lazy" decoding="async" alt="Emblème de l'Alliance des Seigneurs" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Cités libres</span>
+                                    <span class="tag">Nord</span>
+                                    <span class="tag">Sécurité</span>
+                                </div>
+                                <p>L'Alliance des Seigneurs est une association de dirigeants de villes et de cités, principalement dans le Nord, qui considèrent que la solidarité est nécessaire pour maintenir le mal à distance. Waterdeep, Neverwinter, Lunargent, la Porte de Baldur, Gué de la Dague, Mirabar, Longueselle, Castelmithral, Amphail et Yartar en font partie.</p>
+                                <p>Les agents de l'alliance sont choisis pour leur fidélité et disposent souvent d'un équipement de qualité, y compris de parchemins de communication. L'organisation protège avant tout les intérêts de ses membres, même si elle se présente comme garante de l'ordre commun.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Buts</strong> : sécurité et prospérité des colonies, coalition forte contre le chaos, élimination proactive des menaces, gloire des patries et de leurs dirigeants.</li>
+                                    <li><strong>Rangs</strong> : Cape, Couteau sanglant, Lame perforante, Duc de guerre, Couronne du lion.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>L'Alliance des Seigneurs est une association de dirigeants de villes et de cités, principalement dans le Nord, qui considèrent que la solidarité est nécessaire pour maintenir le mal à distance. Waterdeep, Neverwinter, Lunargent, la Porte de Baldur, Gué de la Dague, Mirabar, Longueselle, Castelmithral, Amphail et Yartar en font partie.</p>
-                        <p>Les agents de l'alliance sont choisis pour leur fidélité et disposent souvent d'un équipement de qualité, y compris de parchemins de communication. L'organisation protège avant tout les intérêts de ses membres, même si elle se présente comme garante de l'ordre commun.</p>
-                        <ul class="detail-list">
-                            <li><strong>Buts</strong> : sécurité et prospérité des colonies, coalition forte contre le chaos, élimination proactive des menaces, gloire des patries et de leurs dirigeants.</li>
-                            <li><strong>Rangs</strong> : Cape, Couteau sanglant, Lame perforante, Duc de guerre, Couronne du lion.</li>
-                        </ul>
                     </section>
 
                     <section class="group-card" id="enclave">
                         <h2>Enclave d'Émeraude</h2>
-                        <div class="tag-row">
-                            <span class="tag">Nature</span>
-                            <span class="tag">Survie</span>
-                            <span class="tag">Équilibre</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/emeraude.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/emeraude.webp" width="360" height="606" loading="lazy" decoding="async" alt="Emblème de l'Enclave d'Émeraude" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Nature</span>
+                                    <span class="tag">Survie</span>
+                                    <span class="tag">Équilibre</span>
+                                </div>
+                                <p>L'Enclave d'Émeraude lutte contre les menaces visant le monde naturel et aide ceux qui doivent survivre dans les terres sauvages. Ses branches sont réparties à travers Faerûn et agissent souvent de façon isolée, ce qui forge l'autonomie de ses membres.</p>
+                                <p>Rôdeurs, druides, barbares et ermites liés à l'Enclave savent survivre eux-mêmes, mais aussi enseigner aux autres comment faire. Leur objectif n'est pas de détruire la civilisation, mais de préserver un équilibre entre les sociétés et les étendues sauvages.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Buts</strong> : restaurer et préserver l'ordre naturel, détruire ce qui est contre nature, contrôler les forces élémentaires, empêcher la destruction mutuelle de la civilisation et de la nature.</li>
+                                    <li><strong>Rangs</strong> : Gardien de printemps, Arpenteur d'été, Pillard d'automne, Traqueur d'hiver, Maître de la nature.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>L'Enclave d'Émeraude lutte contre les menaces visant le monde naturel et aide ceux qui doivent survivre dans les terres sauvages. Ses branches sont réparties à travers Faerûn et agissent souvent de façon isolée, ce qui forge l'autonomie de ses membres.</p>
-                        <p>Rôdeurs, druides, barbares et ermites liés à l'Enclave savent survivre eux-mêmes, mais aussi enseigner aux autres comment faire. Leur objectif n'est pas de détruire la civilisation, mais de préserver un équilibre entre les sociétés et les étendues sauvages.</p>
-                        <ul class="detail-list">
-                            <li><strong>Buts</strong> : restaurer et préserver l'ordre naturel, détruire ce qui est contre nature, contrôler les forces élémentaires, empêcher la destruction mutuelle de la civilisation et de la nature.</li>
-                            <li><strong>Rangs</strong> : Gardien de printemps, Arpenteur d'été, Pillard d'automne, Traqueur d'hiver, Maître de la nature.</li>
-                        </ul>
                     </section>
 
                     <section class="group-card" id="menestrels">
                         <h2>Les Ménestrels</h2>
-                        <div class="tag-row">
-                            <span class="tag">Espionnage</span>
-                            <span class="tag">Réseau clandestin</span>
-                            <span class="tag">Opprimés</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/ménestrels.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/ménestrels.webp" width="575" height="1000" loading="lazy" decoding="async" alt="Emblème des Ménestrels" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Espionnage</span>
+                                    <span class="tag">Réseau clandestin</span>
+                                    <span class="tag">Opprimés</span>
+                                </div>
+                                <p>Les Ménestrels forment un réseau clandestin de lanceurs de sorts et d'espions qui cherchent à faire pencher la balance du côté des innocents, des faibles et des pauvres. Ils agissent en coulisses et ne sont souvent remarqués que lorsque leurs ennemis échouent.</p>
+                                <p>Leur force repose sur l'information, les caches secrètes, les contacts sûrs dans les grandes villes et un solide esprit d'entraide. Ils recherchent aussi les objets puissants afin de les garder hors de portée des tyrans et des puissances malveillantes.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Buts</strong> : recueillir des informations à travers Faerûn, promouvoir l'équité par des moyens détournés, contrer les tyrans et aider les opprimés.</li>
+                                    <li><strong>Rangs</strong> : Guetteur, Ombre, Lanterne, Hibou avisé, Grand ménestrel.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>Les Ménestrels forment un réseau clandestin de lanceurs de sorts et d'espions qui cherchent à faire pencher la balance du côté des innocents, des faibles et des pauvres. Ils agissent en coulisses et ne sont souvent remarqués que lorsque leurs ennemis échouent.</p>
-                        <p>Leur force repose sur l'information, les caches secrètes, les contacts sûrs dans les grandes villes et un solide esprit d'entraide. Ils recherchent aussi les objets puissants afin de les garder hors de portée des tyrans et des puissances malveillantes.</p>
-                        <ul class="detail-list">
-                            <li><strong>Buts</strong> : recueillir des informations à travers Faerûn, promouvoir l'équité par des moyens détournés, contrer les tyrans et aider les opprimés.</li>
-                            <li><strong>Rangs</strong> : Guetteur, Ombre, Lanterne, Hibou avisé, Grand ménestrel.</li>
-                        </ul>
                     </section>
 
                     <section class="group-card" id="gantelet">
                         <h2>Ordre du Gantelet</h2>
-                        <div class="tag-row">
-                            <span class="tag">Foi</span>
-                            <span class="tag">Justice</span>
-                            <span class="tag">Discipline</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/gantelet.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/gantelet.webp" width="575" height="1000" loading="lazy" decoding="async" alt="Emblème de l'Ordre du Gantelet" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Foi</span>
+                                    <span class="tag">Justice</span>
+                                    <span class="tag">Discipline</span>
+                                </div>
+                                <p>L'Ordre du Gantelet est une organisation relativement récente, dédiée à frapper le mal là où il se cache. Ses membres, souvent paladins, moines ou clercs, considèrent que l'ombre du mal existe aussi à l'intérieur de chaque être et qu'il faut d'abord se purifier soi-même avant de prétendre purifier le monde.</p>
+                                <p>L'ordre refuse de contrôler les esprits et juge uniquement les actes. Il agit avec un code de l'honneur strict et n'admet de frapper que lorsque des mauvaises actions ont été commises.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Buts</strong> : rester armé et vigilant face au mal, identifier les menaces secrètes, faire respecter la justice et répondre aux actes mauvais plutôt que pratiquer l'attaque préventive.</li>
+                                    <li><strong>Rangs</strong> : Cavalier, Marcheon, Faucon blanc, Vindicateur, Main vertueuse.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>L'Ordre du Gantelet est une organisation relativement récente, dédiée à frapper le mal là où il se cache. Ses membres, souvent paladins, moines ou clercs, considèrent que l'ombre du mal existe aussi à l'intérieur de chaque être et qu'il faut d'abord se purifier soi-même avant de prétendre purifier le monde.</p>
-                        <p>L'ordre refuse de contrôler les esprits et juge uniquement les actes. Il agit avec un code de l'honneur strict et n'admet de frapper que lorsque des mauvaises actions ont été commises.</p>
-                        <ul class="detail-list">
-                            <li><strong>Buts</strong> : rester armé et vigilant face au mal, identifier les menaces secrètes, faire respecter la justice et répondre aux actes mauvais plutôt que pratiquer l'attaque préventive.</li>
-                            <li><strong>Rangs</strong> : Cavalier, Marcheon, Faucon blanc, Vindicateur, Main vertueuse.</li>
-                        </ul>
                     </section>
 
                     <section class="group-card" id="zhentarim">
                         <h2>Zhentarim</h2>
-                        <div class="tag-row">
-                            <span class="tag">Réseau Noir</span>
-                            <span class="tag">Mercenaires</span>
-                            <span class="tag">Influence</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/zhentarim.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/zhentarim.webp" width="360" height="458" loading="lazy" decoding="async" alt="Emblème du Zhentarim" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Réseau Noir</span>
+                                    <span class="tag">Mercenaires</span>
+                                    <span class="tag">Influence</span>
+                                </div>
+                                <p>Le Zhentarim, ou <strong>Réseau Noir</strong>, rassemble mercenaires entraînés, roublards avisés et mages ambitieux qui cherchent à étendre leur influence sur Faerûn. Pour eux, la richesse équivaut au pouvoir, et le résultat compte davantage que la morale.</p>
+                                <p>L'organisation prospère dans les escortes armées, la protection de biens, la formation de soldats et les activités plus douteuses quand elles servent ses intérêts. Elle favorise l'ambition individuelle et récompense ceux qui savent prendre l'initiative.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Buts</strong> : amasser des richesses, saisir des occasions de pouvoir, gagner de l'influence auprès des personnes et organisations importantes, dominer Faerûn.</li>
+                                    <li><strong>Rangs</strong> : Croc, Loup, Vipère, Ardragon, Seigneur d'effroi.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>Le Zhentarim, ou <strong>Réseau Noir</strong>, rassemble mercenaires entraînés, roublards avisés et mages ambitieux qui cherchent à étendre leur influence sur Faerûn. Pour eux, la richesse équivaut au pouvoir, et le résultat compte davantage que la morale.</p>
-                        <p>L'organisation prospère dans les escortes armées, la protection de biens, la formation de soldats et les activités plus douteuses quand elles servent ses intérêts. Elle favorise l'ambition individuelle et récompense ceux qui savent prendre l'initiative.</p>
-                        <ul class="detail-list">
-                            <li><strong>Buts</strong> : amasser des richesses, saisir des occasions de pouvoir, gagner de l'influence auprès des personnes et organisations importantes, dominer Faerûn.</li>
-                            <li><strong>Rangs</strong> : Croc, Loup, Vipère, Ardragon, Seigneur d'effroi.</li>
-                        </ul>
                     </section>
 
                     <section class="group-card" id="culte-dragon">
                         <h2>Culte du Dragon</h2>
-                        <div class="tag-row">
-                            <span class="tag">Dracoliches</span>
-                            <span class="tag">Sammaster</span>
-                            <span class="tag">Cellules secrètes</span>
+                        <div class="group-card__layout">
+                            <a class="emblem-frame" href="img/emblems/dragon.webp" target="_blank" rel="noopener">
+                                <img class="emblem-frame__image" src="img/emblems/dragon.webp" width="400" height="476" loading="lazy" decoding="async" alt="Emblème du Culte du Dragon" />
+                            </a>
+                            <div class="group-card__content">
+                                <div class="tag-row">
+                                    <span class="tag">Dracoliches</span>
+                                    <span class="tag">Sammaster</span>
+                                    <span class="tag">Cellules secrètes</span>
+                                </div>
+                                <p>Le Culte du Dragon affirme que seuls les dragons morts-vivants sont véritablement immortels et destinés à régner. Fondé par l'archimage dément <strong>Sammaster</strong>, il pousse donc les dragons à accepter la transformation en <strong>dracoliches</strong>, que le culte appelle les <strong>Sacrées</strong>.</p>
+                                <p>Le culte est à la fois une cabale religieuse, criminelle et marchande. Ses cellules autonomes vivent de commerce, de contrebande, de chantage, de banditisme ou d'espionnage afin de financer les rituels et d'accumuler les richesses nécessaires pour séduire ou servir les dragons.</p>
+                                <ul class="detail-list">
+                                    <li><strong>Structure</strong> : cellules indépendantes, souvent dirigées par des <strong>Porteurs du Pourpre</strong>, détenteurs du secret de création des dracoliches.</li>
+                                    <li><strong>Sites connus</strong> : Maison du Dragon au Murghôm, forteresse du <strong>Puits des Dragons</strong>, académie des Wyrms à Unthalass, place forte de Redhorn dans l'Échine du Dragon.</li>
+                                    <li><strong>Puits des Dragons</strong> : ancien cimetière de dragons transformé en forteresse, avec une Chambre d'Ascension consacrée au rituel de transformation ; la place est notamment gardée par Naergoth Bladelord et la liche Vargo l'Anonyme.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>Le Culte du Dragon affirme que seuls les dragons morts-vivants sont véritablement immortels et destinés à régner. Fondé par l'archimage dément <strong>Sammaster</strong>, il pousse donc les dragons à accepter la transformation en <strong>dracoliches</strong>, que le culte appelle les <strong>Sacrées</strong>.</p>
-                        <p>Le culte est à la fois une cabale religieuse, criminelle et marchande. Ses cellules autonomes vivent de commerce, de contrebande, de chantage, de banditisme ou d'espionnage afin de financer les rituels et d'accumuler les richesses nécessaires pour séduire ou servir les dragons.</p>
-                        <ul class="detail-list">
-                            <li><strong>Structure</strong> : cellules indépendantes, souvent dirigées par des <strong>Porteurs du Pourpre</strong>, détenteurs du secret de création des dracoliches.</li>
-                            <li><strong>Sites connus</strong> : Maison du Dragon au Murghôm, forteresse du <strong>Puits des Dragons</strong>, académie des Wyrms à Unthalass, place forte de Redhorn dans l'Échine du Dragon.</li>
-                            <li><strong>Puits des Dragons</strong> : ancien cimetière de dragons transformé en forteresse, avec une Chambre d'Ascension consacrée au rituel de transformation ; la place est notamment gardée par Naergoth Bladelord et la liche Vargo l'Anonyme.</li>
-                        </ul>
                     </section>
                 </div>
             </div>

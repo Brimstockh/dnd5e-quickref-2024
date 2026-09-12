@@ -17,14 +17,23 @@ const pngFiles = entries
   .map((entry) => entry.name)
   .sort((left, right) => left.localeCompare(right));
 const errors = [];
+const missingSources = [];
 
 for (const mapping of mappings) {
-  for (const file of [mapping.source, mapping.webp]) {
-    try {
-      const fileStats = await stat(join(imageDirectory, file));
-      if (fileStats.size === 0) errors.push(`${file}: fichier vide`);
-    } catch {
-      errors.push(`${file}: fichier absent`);
+  try {
+    const fileStats = await stat(join(imageDirectory, mapping.webp));
+    if (fileStats.size === 0) errors.push(`${mapping.webp}: fichier vide`);
+  } catch {
+    errors.push(`${mapping.webp}: fichier absent`);
+  }
+  try {
+    const fileStats = await stat(join(imageDirectory, mapping.source));
+    if (fileStats.size === 0) errors.push(`${mapping.source}: fichier vide`);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      missingSources.push(mapping.source);
+    } else {
+      throw error;
     }
   }
 
@@ -39,16 +48,14 @@ for (const mapping of mappings) {
   }
 }
 
-const unexpectedPngs = pngFiles.filter((file) => !mappings.some((mapping) => mapping.source === file));
 const pagePngReferences = [...html.matchAll(/img\/map\/[^"']+\.png/gi)].map((match) => match[0]);
-if (unexpectedPngs.length) errors.push(`PNG non associés : ${unexpectedPngs.join(", ")}`);
 if (pagePngReferences.length) errors.push(`PNG référencés dans la page : ${pagePngReferences.join(", ")}`);
 
 console.log(`PNG détectés dans img/map : ${pngFiles.length} (${pngFiles.join(", ") || "aucun"})`);
+console.log(`PNG sources Plans absents : ${missingSources.length} (${missingSources.join(", ") || "aucun"})`);
 console.log(`Illustrations prévues : ${mappings.length}`);
 console.log(`Sections associées : ${mappings.length - errors.filter((error) => error.includes("section") || error.includes("référence")).length}`);
 console.log(`WebP contrôlés : ${mappings.length}`);
-console.log(`PNG non associés : ${unexpectedPngs.length}`);
 console.log(`Références PNG dans la page : ${pagePngReferences.length}`);
 
 if (errors.length) {

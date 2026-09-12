@@ -57,6 +57,51 @@
             border-radius: 6px 6px 0 0;
         }
 
+        .region-card__media {
+            margin: 0 0 14px;
+        }
+
+        .region-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin: 0;
+            padding: 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-surface-active);
+        }
+
+        .region-gallery__item {
+            display: grid;
+            aspect-ratio: 16 / 9;
+            min-width: 0;
+            place-items: center;
+            overflow: hidden;
+            padding: 6px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            background: var(--color-bg);
+        }
+
+        .region-gallery__item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        .region-gallery__item:hover {
+            border-color: var(--color-border-light);
+        }
+
+        @media (max-width: 700px) {
+            .region-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .tag-row {
             display: flex;
             flex-wrap: wrap;
@@ -224,6 +269,16 @@
                 <div class="region-grid">
                     <section class="region-card" id="nord">
                         <h2>Le Nord</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations du Nord">
+                                <a class="region-gallery__item" href="img/map/Nord-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Nord-1.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustration du Nord de Faerûn, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Nord-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Nord-2.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustration du Nord de Faerûn, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Froid</span>
                             <span class="tag">Forteresses naines</span>
@@ -242,6 +297,16 @@
 
                     <section class="region-card" id="cote-epees">
                         <h2>La Côte des Épées</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations de la Côte des Épées">
+                                <a class="region-gallery__item" href="img/map/Épées-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Épées-1.webp" width="1920" height="1280" loading="lazy" decoding="async" alt="Illustration de la Côte des Épées, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Épées-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Épées-2.webp" width="1000" height="652" loading="lazy" decoding="async" alt="Illustration de la Côte des Épées, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Cités-États</span>
                             <span class="tag">Commerce</span>
@@ -253,6 +318,16 @@
 
                     <section class="region-card" id="anauroch">
                         <h2>Anauroch</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations d'Anauroch">
+                                <a class="region-gallery__item" href="img/map/Anauroch-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Anauroch-1.webp" width="1383" height="775" loading="lazy" decoding="async" alt="Illustration d'Anauroch, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Anauroch-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Anauroch-2.webp" width="1920" height="887" loading="lazy" decoding="async" alt="Illustration d'Anauroch, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Désert</span>
                             <span class="tag">Nomades</span>
@@ -264,6 +339,16 @@
 
                     <section class="region-card" id="mitan">
                         <h2>Les Terres du mitan</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Terres du mitan">
+                                <a class="region-gallery__item" href="img/map/Mitan-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Mitan-1.webp" width="1332" height="599" loading="lazy" decoding="async" alt="Illustration des Terres du mitan, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Mitan-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Mitan-2.webp" width="732" height="419" loading="lazy" decoding="async" alt="Illustration des Terres du mitan, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Cormyr</span>
                             <span class="tag">Sembie</span>
@@ -281,6 +366,16 @@
 
                     <section class="region-card" id="oubliees">
                         <h2>Les Terres oubliées</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Terres oubliées">
+                                <a class="region-gallery__item" href="img/map/Oubliées-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Oubliées-1.webp" width="1200" height="541" loading="lazy" decoding="async" alt="Illustration des Terres oubliées, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Oubliées-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Oubliées-2.webp" width="1920" height="1080" loading="lazy" decoding="async" alt="Illustration des Terres oubliées, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Damarie</span>
                             <span class="tag">Narfell</span>
@@ -298,6 +393,16 @@
 
                     <section class="region-card" id="intrigue">
                         <h2>Les Terres de l'intrigue</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Terres de l'intrigue">
+                                <a class="region-gallery__item" href="img/map/Intrigue-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Intrigue-1.webp" width="647" height="474" loading="lazy" decoding="async" alt="Illustration des Terres de l'intrigue, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Intrigue-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Intrigue-2.webp" width="3840" height="1346" loading="lazy" decoding="async" alt="Illustration des Terres de l'intrigue, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Amn</span>
                             <span class="tag">Calimshan</span>
@@ -314,6 +419,16 @@
 
                     <section class="region-card" id="arcaniques">
                         <h2>Les Empires arcaniques</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Empires arcaniques">
+                                <a class="region-gallery__item" href="img/map/Arcaniques-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Arcaniques-1.webp" width="2440" height="1373" loading="lazy" decoding="async" alt="Illustration des Empires arcaniques, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Arcaniques-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Arcaniques-2.webp" width="640" height="360" loading="lazy" decoding="async" alt="Illustration des Empires arcaniques, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Aglarond</span>
                             <span class="tag">Rashéménie</span>
@@ -330,6 +445,16 @@
 
                     <section class="region-card" id="anciens">
                         <h2>Les Anciens empires</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Anciens empires">
+                                <a class="region-gallery__item" href="img/map/Empires-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Empires-1.webp" width="1440" height="443" loading="lazy" decoding="async" alt="Illustration des Anciens empires, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Empires-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Empires-2.webp" width="736" height="343" loading="lazy" decoding="async" alt="Illustration des Anciens empires, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Mulhorande</span>
                             <span class="tag">Chessenta</span>
@@ -346,6 +471,16 @@
 
                     <section class="region-card" id="mer-inviolee">
                         <h2>La Mer inviolée</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations de la Mer inviolée">
+                                <a class="region-gallery__item" href="img/map/Inviolée-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Inviolée-1.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Illustration de la Mer inviolée, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Inviolée-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Inviolée-2.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Illustration de la Mer inviolée, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Pirates</span>
                             <span class="tag">Sahuagins</span>
@@ -357,6 +492,16 @@
 
                     <section class="region-card" id="chult">
                         <h2>Chult</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations de Chult">
+                                <a class="region-gallery__item" href="img/map/Chult-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Chult-1.webp" width="1920" height="988" loading="lazy" decoding="async" alt="Illustration de Chult, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Chult-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Chult-2.webp" width="512" height="344" loading="lazy" decoding="async" alt="Illustration de Chult, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Jungle</span>
                             <span class="tag">Dinosaures</span>
@@ -368,6 +513,16 @@
 
                     <section class="region-card" id="horde">
                         <h2>Les Terres de la Horde</h2>
+                        <div class="region-card__media">
+                            <figure class="region-gallery region-gallery--duo" aria-label="Illustrations des Terres de la Horde">
+                                <a class="region-gallery__item" href="img/map/Horde-1.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Horde-1.webp" width="1024" height="728" loading="lazy" decoding="async" alt="Illustration des Terres de la Horde, vue 1" />
+                                </a>
+                                <a class="region-gallery__item" href="img/map/Horde-2.webp" target="_blank" rel="noopener">
+                                    <img src="img/map/Horde-2.webp" width="1920" height="885" loading="lazy" decoding="async" alt="Illustration des Terres de la Horde, vue 2" />
+                                </a>
+                            </figure>
+                        </div>
                         <div class="tag-row">
                             <span class="tag">Steppes</span>
                             <span class="tag">Nomades</span>
