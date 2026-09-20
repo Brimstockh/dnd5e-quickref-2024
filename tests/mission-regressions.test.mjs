@@ -49,7 +49,7 @@ test("deep search reaches class features, tools, rules, and aliases directly", (
 });
 
 test("campaign data stays explicit and character references degrade safely", () => {
-  assert.equal(magicItems.items[0].sourceRef, "srd-5.2.1-fr");
+  assert.equal(magicItems.items.find((item) => item.id === "magic-item-potion-de-guerison")?.sourceRef, "dmg-2024-magic-pdf");
   assert.equal(campaignRules.entries[0].status, "house-rule");
   assert.deepEqual(
     relations.sources["campaign-rule-potion"].relations.map(({ target }) => target).sort(),

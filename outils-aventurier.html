@@ -71,6 +71,16 @@
             margin: 6px 0 0;
         }
 
+        .variant-table {
+            min-width: 220px;
+            margin-top: 8px;
+        }
+
+        .variant-table th,
+        .variant-table td {
+            padding: 5px 7px;
+        }
+
         .item-notes {
             columns: 2 280px;
             column-gap: 18px;
@@ -109,18 +119,32 @@
             <div class="content" data-glossary-richtext>
                 <p class="lead">Cette page rassemble les outils, les pièces de monnaie et le matériel courant que les aventuriers achètent, fabriquent, transportent ou utilisent pendant l'exploration.</p>
 
+                <div class="rule-box">
+                    <strong>Services, montures et véhicules</strong>
+                    <p>Consulter les coûts de voyage, montures, véhicules et services.</p>
+                    <a href="services-montures-vehicules.html">Ouvrir la référence Services, montures et véhicules</a>
+                </div>
+
                 <div class="rules-grid">
                     <div class="rule-box">
                         <strong>Maîtrise d'outils</strong>
-                        Si vous avez la maîtrise d'un outil, ajoutez votre bonus de maîtrise aux jets de caractéristique correspondants. Si une compétence maîtrisée s'applique aussi, vous avez l'avantage.
+                        Si vous avez la maîtrise d'un outil, ajoutez votre bonus de maîtrise au jet de caractéristique effectué avec cet outil. Si vous maîtrisez également une compétence utilisée pour ce jet, vous bénéficiez de l'avantage. Un monstre ne maîtrise un outil que si cette maîtrise apparaît dans son profil de jeu.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Caractéristique</strong>
+                        Chaque outil indique la caractéristique normalement utilisée lorsqu'un jet de caractéristique est effectué avec cet outil.
                     </div>
                     <div class="rule-box">
                         <strong>Utilisation</strong>
-                        Les entrées d'outil indiquent des usages possibles avec l'action Utilisation, avec un DD quand il est précisé.
+                        Le champ Utilisation donne des exemples d'actions possibles avec l'action Utilisation. Lorsqu'un DD est indiqué, il s'applique à cette action.
                     </div>
                     <div class="rule-box">
                         <strong>Artisanat</strong>
-                        Certains outils permettent de fabriquer des objets, potions, parchemins ou pièces d'équipement.
+                        Le champ Artisanat liste les objets que l'outil permet de fabriquer. Une liste précise ne doit pas être interprétée comme une catégorie ouverte d'objets similaires.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Variantes</strong>
+                        Lorsqu'un outil possède plusieurs variantes, chacune constitue une maîtrise distincte. Maîtriser une flûte ne donne donc pas automatiquement la maîtrise du luth, et maîtriser les dés ne donne pas automatiquement celle des cartes.
                     </div>
                     <div class="rule-box">
                         <strong>Pièces</strong>
@@ -149,26 +173,26 @@
                     <div class="tool-card"><h4>Matériel de brasseur (20 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 4,5 kg.</p><p><strong>Utilisation.</strong> Détecter une boisson empoisonnée DD 15, identifier un alcool DD 10.</p><p><strong>Artisanat.</strong> Antidote.</p></div>
                     <div class="tool-card"><h4>Matériel de calligraphe (10 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Écrire avec des fioritures difficiles à contrefaire DD 15.</p><p><strong>Artisanat.</strong> Encre, parchemin de sort.</p></div>
                     <div class="tool-card"><h4>Matériel de peintre (10 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Produire une image ressemblante DD 10.</p><p><strong>Artisanat.</strong> Focaliseur druidique, symbole sacré.</p></div>
-                    <div class="tool-card"><h4>Outils de bricoleur (50 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 5 kg.</p><p><strong>Utilisation.</strong> Assembler un petit objet temporaire de ferraille DD 20.</p><p><strong>Artisanat.</strong> Mousquet, pistolet, lanterne, menottes, piège, serrure, sifflet et autres objets techniques.</p></div>
+                    <div class="tool-card"><h4>Outils de bricoleur (50 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 5 kg.</p><p><strong>Utilisation.</strong> Assembler un petit objet temporaire de ferraille DD 20.</p><p><strong>Artisanat.</strong> Mousquet, pistolet, cloche, lanterne sourde, flasque, lanterne à capote, piège à mâchoires, cadenas, menottes, miroir, pelle, sifflet, boîte à amadou.</p></div>
                     <div class="tool-card"><h4>Outils de cartographe (15 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 3 kg.</p><p><strong>Utilisation.</strong> Cartographier une petite région DD 15.</p><p><strong>Artisanat.</strong> Carte.</p></div>
-                    <div class="tool-card"><h4>Outils de charpentier (8 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 3 kg.</p><p><strong>Utilisation.</strong> Sceller ou forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Bâton, bélier, coffre, échelle, gourdin, massue, torche.</p></div>
+                    <div class="tool-card"><h4>Outils de charpentier (8 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 3 kg.</p><p><strong>Utilisation.</strong> Sceller ou forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Gourdin, massue, bâton de combat, tonneau, coffre, échelle, perche, bélier portable, torche.</p></div>
                     <div class="tool-card"><h4>Outils de cordonnier (5 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Modifier des chaussures pour avantager la prochaine Acrobaties DD 10.</p><p><strong>Artisanat.</strong> Matériel d'escalade.</p></div>
-                    <div class="tool-card"><h4>Outils de forgeron (20 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Armes de corps à corps, armures intermédiaires et lourdes, munitions, chaînes, grappin, pied-de-biche.</p></div>
+                    <div class="tool-card"><h4>Outils de forgeron (20 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Forcer une porte ou un contenant DD 20.</p><p><strong>Artisanat.</strong> Armes de mêlée sauf gourdin, massue, bâton de combat et fouet ; armures intermédiaires sauf armure de peaux ; armures lourdes ; billes ; seau ; chausse-trappes ; chaîne ; pied-de-biche ; balles d'arme à feu ; grappin ; pot en fer ; pointes en fer ; billes de fronde.</p></div>
                     <div class="tool-card"><h4>Outils de joaillier (25 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Déterminer la valeur d'une gemme DD 15.</p><p><strong>Artisanat.</strong> Focaliseur arcanique, symbole sacré.</p></div>
                     <div class="tool-card"><h4>Outils de maçon (10 po)</h4><p><strong>Carac.</strong> Force. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Ciseler un symbole ou creuser la pierre DD 10.</p><p><strong>Artisanat.</strong> Palan.</p></div>
-                    <div class="tool-card"><h4>Outils de menuisier (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Sculpter un motif dans le bois DD 10.</p><p><strong>Artisanat.</strong> Armes à distance, flèches, carreaux, focaliseurs, porte-plume.</p></div>
+                    <div class="tool-card"><h4>Outils de menuisier (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Sculpter un motif dans le bois DD 10.</p><p><strong>Artisanat.</strong> Gourdin, massue, bâton de combat, armes à distance sauf pistolet, mousquet et fronde ; focaliseur arcanique, flèches, carreaux, focaliseur druidique, porte-plume, aiguilles.</p></div>
                     <div class="tool-card"><h4>Outils de potier (10 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Déterminer le contenu récent d'un objet céramique DD 15.</p><p><strong>Artisanat.</strong> Cruche, lampe.</p></div>
-                    <div class="tool-card"><h4>Outils de souffleur de verre (30 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Déterminer le contenu récent d'un objet en verre DD 15.</p><p><strong>Artisanat.</strong> Bouteille, fiole, longue-vue, loupe.</p></div>
-                    <div class="tool-card"><h4>Outils de tanneur (5 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Ajouter un motif à un objet en cuir DD 10.</p><p><strong>Artisanat.</strong> Fouet, fronde, armures de cuir, carquois, étuis, outres, sacs.</p></div>
-                    <div class="tool-card"><h4>Outils de tisserand (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Raccommoder ou coudre un motif DD 10.</p><p><strong>Artisanat.</strong> Armure matelassée, habits, corde, couverture, filet, robe, sac, tente.</p></div>
+                    <div class="tool-card"><h4>Outils de souffleur de verre (30 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Déterminer le contenu récent d'un objet en verre DD 15.</p><p><strong>Artisanat.</strong> Bouteille, verre, fiole, longue-vue, loupe.</p></div>
+                    <div class="tool-card"><h4>Outils de tanneur (5 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Ajouter un motif à un objet en cuir DD 10.</p><p><strong>Artisanat.</strong> Fronde, fouet, armure de peaux, armure de cuir, armure de cuir clouté, sac à dos, étui à carreaux d'arbalète, étui à carte ou parchemin, parchemin, sacoche, carquois, outre pleine.</p></div>
+                    <div class="tool-card"><h4>Outils de tisserand (1 po)</h4><p><strong>Carac.</strong> Dextérité. <strong>Poids.</strong> 2,5 kg.</p><p><strong>Utilisation.</strong> Raccommoder ou coudre un motif DD 10.</p><p><strong>Artisanat.</strong> Armure matelassée, panier, sac de couchage, couverture, beaux habits, filet, robe, corde, sac, ficelle, tente, tenue de voyage.</p></div>
                     <div class="tool-card"><h4>Ustensiles de cuisinier (1 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 4 kg.</p><p><strong>Utilisation.</strong> Améliorer la saveur DD 10, détecter un plat avarié ou empoisonné DD 15.</p><p><strong>Artisanat.</strong> Rations.</p></div>
                 </div>
 
                 <h3>Autres outils</h3>
                 <div class="tool-list">
                     <div class="tool-card"><h4>Accessoires de déguisement (25 po)</h4><p><strong>Carac.</strong> Charisme. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Appliquer du maquillage DD 10.</p><p><strong>Artisanat.</strong> Costume.</p></div>
-                    <div class="tool-card"><h4>Boîte de jeux (variable)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> -.</p><p><strong>Utilisation.</strong> Déterminer si quelqu'un triche DD 10, gagner la partie DD 20.</p><p><strong>Variantes.</strong> Cartes, dés, échecs draconiques, jeu des dragons.</p></div>
-                    <div class="tool-card"><h4>Instrument de musique (variable)</h4><p><strong>Carac.</strong> Charisme. <strong>Poids.</strong> variable.</p><p><strong>Utilisation.</strong> Jouer un air connu DD 10, improviser une chanson DD 15.</p><p><strong>Variantes.</strong> Chalemie, cor, cornemuse, flûte, flûte de pan, luth, lyre, tambour, tympanon, viole.</p></div>
+                    <div class="tool-card"><h4>Boîte de jeux (variable)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> -.</p><p><strong>Utilisation.</strong> Déterminer si quelqu'un triche DD 10, gagner la partie DD 20.</p><p><strong>Variantes.</strong></p><div class="table-scroll"><table class="variant-table"><thead><tr><th>Variante</th><th>Prix</th></tr></thead><tbody><tr><td>Dés</td><td>1 pa</td></tr><tr><td>Échecs draconiques</td><td>1 po</td></tr><tr><td>Cartes</td><td>5 pa</td></tr><tr><td>Jeu des trois dragons</td><td>1 po</td></tr></tbody></table></div></div>
+                    <div class="tool-card"><h4>Instrument de musique (variable)</h4><p><strong>Carac.</strong> Charisme. <strong>Poids.</strong> variable.</p><p><strong>Utilisation.</strong> Jouer un air connu DD 10, improviser une chanson DD 15.</p><p><strong>Variantes.</strong></p><div class="table-scroll"><table class="variant-table"><thead><tr><th>Instrument</th><th>Prix</th><th>Poids</th></tr></thead><tbody><tr><td>Cornemuse</td><td>30 po</td><td>3 kg</td></tr><tr><td>Tambour</td><td>6 po</td><td>1,5 kg</td></tr><tr><td>Tympanon</td><td>25 po</td><td>5 kg</td></tr><tr><td>Flûte</td><td>2 po</td><td>0,5 kg</td></tr><tr><td>Cor</td><td>3 po</td><td>1 kg</td></tr><tr><td>Luth</td><td>35 po</td><td>1 kg</td></tr><tr><td>Lyre</td><td>30 po</td><td>1 kg</td></tr><tr><td>Flûte de pan</td><td>12 po</td><td>1 kg</td></tr><tr><td>Chalemie</td><td>2 po</td><td>0,5 kg</td></tr><tr><td>Viole</td><td>30 po</td><td>0,5 kg</td></tr></tbody></table></div></div>
                     <div class="tool-card"><h4>Instruments de navigateur (25 po)</h4><p><strong>Carac.</strong> Sagesse. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Tracer un cap DD 10, déterminer sa position aux étoiles DD 15.</p></div>
                     <div class="tool-card"><h4>Matériel d'empoisonneur (50 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1 kg.</p><p><strong>Utilisation.</strong> Déterminer qu'un objet est empoisonné DD 10.</p><p><strong>Artisanat.</strong> Poison standard.</p></div>
                     <div class="tool-card"><h4>Matériel d'herboriste (5 po)</h4><p><strong>Carac.</strong> Intelligence. <strong>Poids.</strong> 1,5 kg.</p><p><strong>Utilisation.</strong> Identifier une plante DD 10.</p><p><strong>Artisanat.</strong> Antidote, bougie, trousse de soins, potion de guérison.</p></div>

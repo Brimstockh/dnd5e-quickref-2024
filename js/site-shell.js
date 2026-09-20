@@ -75,6 +75,7 @@
             label: "Univers",
             links: [
                 ["faerun", "Royaumes Oubliés", "faerun.html", "Explorer Faerûn"],
+                ["lore", "Lore / Univers", "lore.html", "Index transversal du multivers"],
                 ["history", "Histoire", "histoire-royaumes.html", "Chronologie du monde"],
                 ["gods", "Divinités", "divinites.html", "Panthéon de Faerûn"],
                 ["factions", "Factions", "groupes-royaumes.html", "Groupes influents"],
@@ -90,6 +91,7 @@
                 ["sheet-tools", "Feuille autonome", "character-sheet-standalone.html", "Créer et sauvegarder une fiche"],
                 ["characters", "Personnages sauvegardés", "html/characters.html", "Consulter les personnages"],
                 ["tools", "Matériel d’aventurier", "outils-aventurier.html", "Outils, paquetages et objets"],
+                ["services", "Services, montures et véhicules", "services-montures-vehicules.html", "Voyages, montures, véhicules et dépenses"],
                 ["dice-stats", "Statistiques de dés", "dice-stats.html", "Probabilités et distributions des jets de dés"],
             ],
         },

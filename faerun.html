@@ -129,6 +129,33 @@
             margin: 0 0 6px;
         }
 
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .city-card {
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .city-card h3,
+        .city-card h4 {
+            margin: 0 0 6px;
+            color: var(--accent);
+        }
+
+        .city-card p { margin: 0 0 8px; }
+
+        @media (max-width: 800px) {
+            .city-grid { grid-template-columns: 1fr; }
+        }
+
         .map-toolbar {
             display: flex;
             align-items: center;
@@ -290,8 +317,8 @@
                             <li><strong>Alliance des Seigneurs</strong> : coalition de cités rivales comme Padhiver, Lunargent, Castelmithral et Eauprofonde, fondée pour maintenir paix, prospérité et sécurité.</li>
                             <li><strong>Forteresses naines</strong> : Castelmithral, Adbar, Felbarr, Gauntlgrym, Gardépine ou Maîtrefer héritent de l'ancien Delzoun.</li>
                             <li><strong>Luskan</strong> : port dégradé dominé par les Hauts Capitaines et la Tour de l'Hôte, siège de la Confrérie des Arcanes.</li>
-                            <li><strong>Menzoberranzan</strong> : cité drow de l'Outreterre, centre du culte de Lolth, dominée par la Maison Baenre.</li>
-                            <li><strong>Valbise</strong> : étendue glacée des Dix-Cités, marquée par Aurile, la chardaline et les ruines liées aux géants du givre ou au Nétheril.</li>
+                            <li id="menzoberranzan"><strong>Menzoberranzan</strong> : cité drow de l'Outreterre, centre du culte de Lolth, dominée par la Maison Baenre et la compétition des maisons nobles.</li>
+                            <li id="icewind-dale"><strong>Valbise / Icewind Dale</strong> : étendue glacée des Dix-Cités, marquée par Aurile, la chardaline et les ruines liées aux géants du givre ou au Nétheril.</li>
                         </ul>
                     </section>
 

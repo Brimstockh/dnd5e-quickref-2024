@@ -289,6 +289,174 @@
       "label": "Avantage et désavantage dans le glossaire",
       "url": "glossaire.html#termes",
       "order": 10
+    },
+    {
+      "source": "lore-tasha",
+      "target": "lore-baba-yaga",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-tasha",
+      "target": "lore-iggwilv",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-tasha",
+      "target": "lore-iuz",
+      "type": "see-also",
+      "order": 30
+    },
+    {
+      "source": "lore-tasha",
+      "target": "lore-mordenkainen",
+      "type": "see-also",
+      "order": 40
+    },
+    {
+      "source": "lore-vecna",
+      "target": "lore-kas-the-betrayer",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-drizzt-do-urden",
+      "target": "lore-menzoberranzan",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-drizzt-do-urden",
+      "target": "lore-companions-of-the-hall",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-bahamut",
+      "target": "lore-tiamat",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-bahamut",
+      "target": "lore-first-world",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-strahd-von-zarovich",
+      "target": "lore-barovia",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-strahd-von-zarovich",
+      "target": "lore-castle-ravenloft",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-strahd-von-zarovich",
+      "target": "lore-rudolph-van-richten",
+      "type": "see-also",
+      "order": 30
+    },
+    {
+      "source": "lore-waterdeep",
+      "target": "lore-laeral-silverhand",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-waterdeep",
+      "target": "lore-vajra-safahr",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-waterdeep",
+      "target": "lore-xanathar",
+      "type": "see-also",
+      "order": 30
+    },
+    {
+      "source": "lore-waterdeep",
+      "target": "lore-undermountain",
+      "type": "see-also",
+      "order": 40
+    },
+    {
+      "source": "lore-waterdeep",
+      "target": "lore-yawning-portal",
+      "type": "see-also",
+      "order": 50
+    },
+    {
+      "source": "lore-summer-queen",
+      "target": "lore-prince-of-frost",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-summer-queen",
+      "target": "lore-queen-of-air-and-darkness",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-prince-of-frost",
+      "target": "lore-queen-of-air-and-darkness",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-bigby",
+      "target": "lore-mordenkainen",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-otiluke",
+      "type": "see-also",
+      "order": 10
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-otto",
+      "type": "see-also",
+      "order": 20
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-jallarzi-sallavarian",
+      "type": "see-also",
+      "order": 30
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-zagyg",
+      "type": "see-also",
+      "order": 40
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-iuz",
+      "type": "see-also",
+      "order": 50
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-keraptis",
+      "type": "see-also",
+      "order": 60
+    },
+    {
+      "source": "lore-mordenkainen",
+      "target": "lore-acererak",
+      "type": "see-also",
+      "order": 70
     }
   ]
 }

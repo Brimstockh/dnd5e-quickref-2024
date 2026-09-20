@@ -31,14 +31,14 @@
         <input id="searchInput" data-page-search type="search" autocomplete="off" placeholder="Nom, type, rareté, harmonisation…" />
         <kbd aria-hidden="true">/</kbd>
       </div>
-      <div class="catalog-toolbar__bottom"><span class="catalog-summary" id="summary" aria-live="polite"></span></div>
+      <div class="catalog-toolbar__bottom"><span class="catalog-summary" id="summary" aria-live="polite"></span><div class="catalog-toolbar__mobile-actions"><button class="catalog-mobile-button" id="openFiltersBtn" type="button" aria-controls="filterPanel" aria-expanded="false">Filtres</button></div></div>
     </section>
 
     <div class="catalog-layout">
-      <aside class="catalog-filters" aria-labelledby="filter-title">
-        <div class="catalog-filters__header"><h2 id="filter-title">Filtrer</h2></div>
+      <aside class="catalog-filters" id="filterPanel" aria-labelledby="filter-title">
+        <div class="catalog-filters__header"><h2 id="filter-title">Filtrer</h2><button class="catalog-mobile-button catalog-filters__close" id="closeFiltersBtn" type="button">Fermer</button></div>
         <div class="catalog-filters__body">
-          <div class="filter-group"><label for="raritySelect">Rareté</label><select id="raritySelect"><option value="">Toutes</option><option>Commun</option><option>Peu commun</option><option>Rare</option><option>Très rare</option><option>Légendaire</option></select></div>
+          <div class="filter-group"><label for="raritySelect">Rareté</label><select id="raritySelect"><option value="">Toutes</option><option value="common">Commun</option><option value="uncommon">Peu commun</option><option value="rare">Rare</option><option value="very-rare">Très rare</option><option value="legendary">Légendaire</option><option value="artifact">Artéfact</option><option value="varies">Variable</option></select></div>
           <div class="filter-group"><label for="typeSelect">Type</label><select id="typeSelect"><option value="">Tous</option></select></div>
           <div class="filter-group"><label for="attunementSelect">Harmonisation</label><select id="attunementSelect"><option value="">Toutes</option><option value="yes">Requise</option><option value="no">Non requise</option></select></div>
           <button class="catalog-reset" id="resetBtn" type="button">Réinitialiser</button>
@@ -49,6 +49,7 @@
         <div id="itemsGrid" class="catalog-grid"></div>
       </section>
     </div>
+    <button class="catalog-filter-backdrop" id="filterBackdrop" type="button" aria-label="Fermer les filtres"></button>
   </main>
 </body>
 </html>

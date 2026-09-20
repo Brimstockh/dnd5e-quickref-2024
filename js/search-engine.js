@@ -2,6 +2,7 @@ export const SEARCH_COMMANDS = Object.freeze([
   { command: "sort", aliases: ["sort", "spell"], category: "Sort", label: "Sorts" },
   { command: "règle", aliases: ["regle", "règle", "rule"], category: "Règle", label: "Règles" },
   { command: "glossaire", aliases: ["glossaire", "glossary"], category: "Glossaire", label: "Glossaire" },
+  { command: "lore", aliases: ["lore", "univers", "universe"], category: "Lore", label: "Lore / Univers" },
   { command: "classe", aliases: ["classe", "class"], category: "Classe", label: "Classes" },
   { command: "espèce", aliases: ["espece", "espèce", "race", "species"], category: "Espèce", label: "Espèces" },
   { command: "don", aliases: ["don", "feat"], category: "Don", label: "Dons" },

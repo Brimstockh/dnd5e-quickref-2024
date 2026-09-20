@@ -14,6 +14,14 @@
       "status": "official-summary"
     },
     {
+      "id": "dmg-2024-magic-pdf",
+      "ruleset": "2024",
+      "source": "Dungeon Master's Guide 2024 — Magic Items A–Z",
+      "sourceSection": "PDF DMG2024-magic_compressed.pdf fourni pour cette page",
+      "license": "official-reference",
+      "status": "official-reference-transcription"
+    },
+    {
       "id": "phb-2024-fr",
       "ruleset": "2024",
       "source": "Manuel des Joueurs 2024",

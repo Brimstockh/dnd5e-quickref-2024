@@ -76,6 +76,24 @@
             font-size: 0.86rem;
             font-weight: 700;
         }
+
+        .lore-deity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .lore-deity-card {
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff;
+            scroll-margin-top: 5rem;
+        }
+
+        .lore-deity-card h3 { margin: 0 0 6px; color: var(--accent); }
     </style>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
@@ -157,6 +175,30 @@
                             <tr><td><span class="deity-cell"><span class="emblem-frame deity-cell__frame"><img class="emblem-frame__image" src="img/divines/Yondalla.webp" width="200" height="291" loading="lazy" decoding="async" alt="Symbole sacré de Yondalla" /></span><span class="deity-cell__name"><strong>Yondalla</strong>, déesse halfeline de la fertilité et de la protection</span></span></td><td class="alignment">LB</td><td><span class="domain">Vie</span></td></tr>
                         </tbody>
                     </table>
+                </div>
+
+                <h3>Fiches de lore multiversel</h3>
+                <div class="lore-deity-grid" aria-label="Fiches de lore des principales divinités">
+                    <article class="lore-deity-card" id="bahamut">
+                        <h3>Bahamut</h3>
+                        <p>Bahamut est une puissance primordiale du bien draconique, liée à la justice et à la noblesse. Son histoire le relie au Premier Monde, au Mont Céleste et à son opposition à Tiamat ; dans Dragonlance, Paladine est un autre nom porté par cette figure.</p>
+                    </article>
+                    <article class="lore-deity-card" id="corellon">
+                        <h3>Corellon</h3>
+                        <p>Corellon est lié aux premiers elfes et possède une nature changeante. Son conflit mythique avec Gruumsh explique une part des récits qui opposent elfes et orcs.</p>
+                    </article>
+                    <article class="lore-deity-card" id="gruumsh">
+                        <h3>Gruumsh</h3>
+                        <p>Gruumsh est la puissance orque dont la légende raconte la perte d'un œil lors de son affrontement avec Corellon. Il demeure associé aux orcs, à la guerre et aux tempêtes.</p>
+                    </article>
+                    <article class="lore-deity-card" id="moradin">
+                        <h3>Moradin</h3>
+                        <p>Moradin, l'All-Father, est le créateur et l'artisan divin des nains. Il est lié au Mont Céleste, à la forge et à la transmission des œuvres durables.</p>
+                    </article>
+                    <article class="lore-deity-card" id="tiamat">
+                        <h3>Tiamat</h3>
+                        <p>Tiamat incarne l'avidité, la richesse et la vengeance. Elle est l'ennemie de Bahamut, est rattachée au Premier Monde et porte le nom de Takhisis dans les récits de Dragonlance.</p>
+                    </article>
                 </div>
 
                 <h3>Panthéon des Royaumes Oubliés</h3>

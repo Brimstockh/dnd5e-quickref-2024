@@ -23,6 +23,7 @@ const schemas = await Promise.all([
   loadJson("../schemas/character-creation.schema.json"),
   loadJson("../schemas/local-storage-contracts.schema.json"),
   loadJson("../schemas/content-inventory.schema.json"),
+  loadJson("../schemas/lore.schema.json"),
 ]);
 
 test("content IDs are stable, readable, and aligned with catalog slugs", () => {
@@ -52,6 +53,7 @@ test("Lot 2 data contracts use versioned JSON schemas", () => {
   }
   assert.ok(CONTENT_TYPES.includes("glossary"));
   assert.ok(CONTENT_TYPES.includes("spell"));
+  assert.ok(CONTENT_TYPES.includes("lore"));
   assert.deepEqual(
     schemas[3].properties.relations.items.properties.type.enum,
     ["available-for", "prerequisite", "related-rule", "see-also"],

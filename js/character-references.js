@@ -18,12 +18,20 @@ function asList(value) {
 
 function exactEntry(entries, value, types = []) {
   const candidate = normalizeSearch(value);
-  return entries.find((entry) => {
-    if (types.length && !types.includes(entry.type)) return false;
-    return normalizeSearch(entry.id) === candidate
-      || normalizeSearch(entry.title) === candidate
-      || (entry.aliases || []).some((alias) => normalizeSearch(alias) === candidate);
-  }) || searchEntries(entries, value, { limit: 20 }).find((result) => !types.length || types.includes(result.entry.type))?.entry;
+  const matches = (entry) => normalizeSearch(entry.id) === candidate
+    || normalizeSearch(entry.title) === candidate
+    || (entry.aliases || []).some((alias) => normalizeSearch(alias) === candidate);
+  const direct = types.length
+    ? types.flatMap((type) => entries.filter((entry) => entry.type === type && matches(entry)))
+    : entries.filter(matches);
+  if (direct[0]) return direct[0];
+
+  const searched = searchEntries(entries, value, { limit: 20 })
+    .map((result) => result.entry)
+    .filter((entry) => !types.length || types.includes(entry.type));
+  return types.length
+    ? types.map((type) => searched.find((entry) => entry.type === type)).find(Boolean)
+    : searched[0];
 }
 
 function reference(entries, raw, types = []) {

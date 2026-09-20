@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
   "aliases": {
+    "en-peril": ["Bloodied"],
     "action": ["Action"],
     "action-bonus": ["Bonus Action", "Actions Bonus"],
     "avantage": ["Advantage"],
     "classe-d-armure": ["Armor Class", "AC", "CA"],
     "concentration": ["Concentration"],
-    "attaques-d-opportunite": ["Attaque d'opportunité", "Attaques d’opportunité", "Opportunity Attack"],
+    "attaques-d-opportunite": ["Attaque d'opportunité", "Attaques d’opportunité", "Opportunity Attack", "Opportunity Attacks"],
     "coup-critique": ["Critical Hit", "Critique", "Coups critiques"],
     "desavantage": ["Disadvantage"],
     "jet-de-caracteristique": ["Ability Check", "Test de caractéristique", "Jets de caractéristique"],
@@ -25,7 +26,7 @@
     "bonus-de-maitrise": ["Proficiency Bonus"],
     "degre-de-difficulte": ["Difficulty Class"],
     "jet-d-attaque": ["Attack Roll"],
-    "de-de-vie": ["Hit Die", "Hit Dice"],
+    "de-de-vie": ["Hit Die", "Hit Dice", "Hit Point Dice"],
     "sort-mineur": ["Cantrip", "Cantrips"],
     "emplacement-de-sort": ["Spell Slot", "Spell Slots"],
     "sort-prepare": ["Prepared Spell", "Prepared Spells"],
@@ -43,11 +44,102 @@
     "attaque-a-mains-nues": ["Unarmed Strike", "Unarmed Attack"],
     "attaque-de-corps-a-corps": ["Melee Attack", "Melee Attacks"],
     "attaque-a-distance": ["Ranged Attack", "Ranged Attacks"],
-    "jet-d-attaque-de-sort": ["Spell Attack Roll"],
+    "jet-d-attaque-de-sort": ["Spell Attack", "Spell Attack Roll"],
     "zone-d-effet": ["Area of Effect"],
+    "vitesse-de-vol": ["Fly Speed"],
+    "etat": ["Condition"],
+    "vision-aveugle": ["Blindsight"],
+    "lumiere-vive": ["Bright Light"],
+    "tenebres": ["Darkness"],
+    "vision-dans-le-noir": ["Darkvision"],
+    "jet-de-d20": ["D20 Test", "D20 Tests"],
+    "jet-de-sauvegarde-contre-la-mort": ["Death Saving Throw", "Death Save"],
+    "ligne": ["Line"],
+    "lumiere-faible": ["Dim Light"],
+    "focaliseur-d-incantation": ["Spellcasting Focus"],
+    "immunite": ["Immunity"],
+    "inspiration-heroique": ["Heroic Inspiration"],
+    "vitesse": ["Speed"],
+    "vitesse-d-escalade": ["Climb Speed"],
+    "vitesse-de-nage": ["Swim Speed"],
+    "cylindre": ["Cylinder"],
+    "stabilise": ["Stable"],
+    "vulnerabilite": ["Vulnerability"],
+    "observation": ["Search"],
+    "types-de-degats": ["Damage Types"],
+    "sphere": ["Sphere"],
     "composante-verbale": ["Verbal Component"],
     "composante-somatique": ["Somatic Component"],
     "composante-materielle": ["Material Component"]
+    ,"valeur-et-modificateur-de-caracteristique": ["Ability Score and Modifier"]
+    ,"aventure": ["Adventure"]
+    ,"campagne": ["Campaign"]
+    ,"rencontre": ["Encounter"]
+    ,"fiche-de-personnage": ["Character Sheet"]
+    ,"points-d-experience": ["Experience Points", "XP"]
+    ,"expertise": ["Expertise"]
+    ,"personnage-joueur": ["Player Character", "PC"]
+    ,"personnage-non-joueur": ["Nonplayer Character", "NPC"]
+    ,"allie": ["Ally"]
+    ,"ennemi": ["Enemy"]
+    ,"attitude": ["Attitude"]
+    ,"amical": ["Friendly"]
+    ,"hostile": ["Hostile"]
+    ,"indifferent": ["Indifferent"]
+    ,"formation-aux-armures": ["Armor Training"]
+    ,"harmonisation": ["Attunement"]
+    ,"briser-les-objets": ["Breaking Objects"]
+    ,"capacite-de-charge": ["Carrying Capacity"]
+    ,"armes-improvisees": ["Improvised Weapons"]
+    ,"objet": ["Object"]
+    ,"arme": ["Weapon"]
+    ,"attaque-avec-arme": ["Weapon Attack"]
+    ,"agripper": ["Grappling"]
+    ,"degats": ["Damage"]
+    ,"jet-de-degats": ["Damage Roll"]
+    ,"seuil-de-degats": ["Damage Threshold"]
+    ,"soins": ["Healing"]
+    ,"assommer-une-creature": ["Knocking Out a Creature"]
+    ,"arrondir-a-l-inferieur": ["Round Down"]
+    ,"save": ["Save"]
+    ,"vitesse-de-fouissement": ["Burrow Speed"]
+    ,"escalade": ["Climbing"]
+    ,"reptation": ["Crawling"]
+    ,"vol": ["Flying"]
+    ,"survol": ["Hover"]
+    ,"saut": ["Jumping"]
+    ,"saut-en-hauteur": ["High Jump"]
+    ,"saut-en-longueur": ["Long Jump"]
+    ,"nage": ["Swimming"]
+    ,"creature": ["Creature"]
+    ,"type-de-creature": ["Creature Type"]
+    ,"monstre": ["Monster"]
+    ,"mort": ["Dead"]
+    ,"maledictions": ["Curses", "Curse"]
+    ,"illusions": ["Illusions", "Illusion"]
+    ,"effet-magique": ["Magical Effect"]
+    ,"possession": ["Possession"]
+    ,"metamorphose": ["Shape-Shifting", "Shapechanging"]
+    ,"sort": ["Spell"]
+    ,"telepathie": ["Telepathy"]
+    ,"teleportation": ["Teleportation"]
+    ,"perception-des-vibrations": ["Tremorsense"]
+    ,"vision-veritable": ["Truesight"]
+    ,"espace-occupe": ["Occupied Space"]
+    ,"espace-inoccupe": ["Unoccupied Space"]
+    ,"cible": ["Target"]
+    ,"profil-de-jeu": ["Stat Block"]
+    ,"par-jour": ["Per Day"]
+    ,"effets-simultanes": ["Simultaneous Effects"]
+    ,"surprise": ["Surprise"]
+    ,"danger": ["Hazard"]
+    ,"brulure": ["Burning"]
+    ,"deshydratation": ["Dehydration"]
+    ,"chute": ["Falling"]
+    ,"malnutrition": ["Malnutrition"]
+    ,"suffocation": ["Suffocation"]
+    ,"visibilite-reduite": ["Lightly Obscured"]
+    ,"visibilite-nulle": ["Heavily Obscured"]
   },
   "abbreviations": {
     "classe-d-armure": ["CA", "AC"],

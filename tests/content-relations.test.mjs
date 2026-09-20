@@ -74,6 +74,14 @@ test("glossary entries link to their canonical quick references", () => {
   assert.ok(relationsFor("action-attaquer").some((relation) => relation.target === "glossary-attaque"));
 });
 
+test("lore relations expose the multiverse cross-links", () => {
+  assert.ok(relationsFor("lore-tasha").some((relation) => relation.target === "lore-baba-yaga"));
+  assert.ok(relationsFor("lore-vecna").some((relation) => relation.target === "lore-kas-the-betrayer"));
+  assert.ok(relationsFor("lore-waterdeep").some((relation) => relation.target === "lore-undermountain"));
+  assert.ok(relationsFor("lore-strahd-von-zarovich").some((relation) => relation.target === "lore-barovia"));
+  assert.ok(relationsFor("lore-drizzt-do-urden").some((relation) => relation.target === "lore-companions-of-the-hall"));
+});
+
 test("contextual links with fragments target existing anchors", async () => {
   const pages = new Map();
   for (const source of Object.values(relationIndex.sources)) {

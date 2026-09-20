@@ -2,11 +2,19 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const index = JSON.parse(await readFile(new URL("../data/search-index.json", import.meta.url), "utf8"));
+const [primaryIndex, deepIndex] = await Promise.all([
+  readFile(new URL("../data/search-index.json", import.meta.url), "utf8").then(JSON.parse),
+  readFile(new URL("../data/search-index-deep.json", import.meta.url), "utf8").then(JSON.parse),
+]);
+const index = {
+  ...primaryIndex,
+  entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])],
+};
+index.count = index.entries.length;
 
 test("global search index covers every major content family", () => {
   const categories = new Set(index.entries.map((entry) => entry.category));
-  for (const category of ["Sort", "Monstre", "Don", "État", "Classe", "Espèce", "Objet", "Historique", "Règle", "Action", "Univers"]) {
+  for (const category of ["Sort", "Monstre", "Don", "État", "Classe", "Espèce", "Objet", "Historique", "Règle", "Action", "Univers", "Lore"]) {
     assert.equal(categories.has(category), true, category);
   }
   assert.equal(index.schemaVersion, 1);
@@ -36,6 +44,17 @@ test("global search includes glossary terms and bilingual aliases", () => {
   assert.ok(glossary.aliases.includes("Saving Throw"));
   assert.ok(wizard.aliases.includes("Wizard"));
   assert.match(glossary.url, /^glossaire\.html\?term=/);
+});
+
+test("global search includes lore entries and bilingual setting aliases", () => {
+  const waterdeep = index.entries.find((entry) => entry.id === "lore-waterdeep");
+  const acereraK = index.entries.find((entry) => entry.id === "lore-acererak");
+  assert.equal(waterdeep.type, "lore");
+  assert.equal(waterdeep.category, "Lore");
+  assert.ok(waterdeep.aliases.includes("Eauprofonde"));
+  assert.equal(waterdeep.url, "faerun.html#waterdeep");
+  assert.match(acereraK.url, /^lore\.html\?term=/);
+  assert.equal(acereraK.type, "lore");
 });
 
 test("global monster search exposes French labels and English aliases", () => {

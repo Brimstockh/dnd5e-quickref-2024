@@ -320,6 +320,7 @@ const feats = JSON.parse(await readFile(resolve(root, "data/feats_2024.json"), "
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8")).entries;
 const magicItems = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8")).items;
 const campaignRules = JSON.parse(await readFile(resolve(root, "data/campaign-rules.json"), "utf8")).entries;
+const lore = JSON.parse(await readFile(resolve(root, "data/lore.json"), "utf8")).entries;
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
 const conditions = await loadGlobalData("js/data_condition.js", "data_condition");
 const quickReferenceGroups = [
@@ -372,6 +373,7 @@ const pages = [
   ["Combat", "Règle", "combat-2024.html", "Initiative, attaques et dégâts"],
   ["Maîtrises d’armes", "Règle", "mastery-2024.html", "Maîtrises et propriétés des armes"],
   ["Glossaire", "Glossaire", "glossaire.html", "Termes et états de jeu"],
+  ["Lore du multivers D&D", "Lore", "lore.html", "Personnages, lieux, factions et concepts du multivers"],
   ["Référence rapide", "Règle", "quickref.html", "Actions, mouvements, réactions et états"],
   ["Sorts", "Sort", "spells.html", "Catalogue des sorts D&D 2024"],
   ["Dons", "Don", "dons.html", "Catalogue des dons D&D 2024"],
@@ -389,6 +391,7 @@ const pages = [
   ["Plans d’existence", "Univers", "plans-existence.html", "Les autres réalités"],
   ["Feuille de personnage", "Outil", "character-sheet-standalone.html", "Fiche autonome sauvegardée localement"],
   ["Statistiques de dés", "Outil", "dice-stats.html", "Probabilités et distributions des jets de dés"],
+  ["Services, montures et véhicules", "Équipement", "services-montures-vehicules.html", "Montures, véhicules, voyages et services D&D 2024"],
   ["Objets magiques", "Objet magique", "objets-magiques.html", "Catalogue des objets magiques de la campagne"],
   ["Règles de campagne", "Règle de campagne", "regles-campagne.html", "Décisions propres à notre table"],
 ];
@@ -480,6 +483,16 @@ const entries = [
     keywords: [entry.category, ...entry.aliases],
     excerpt: excerpt(entry.summary),
   })),
+  ...lore.map((entry) => ({
+    id: entry.id,
+    type: "lore",
+    title: entry.name,
+    category: "Lore",
+    url: entry.target || `lore.html?term=${encodeURIComponent(entry.id.replace(/^lore-/, ""))}`,
+    aliases: entry.aliases,
+    keywords: ["lore", entry.category, ...(entry.setting || []), ...(entry.related || [])],
+    excerpt: excerpt(entry.summary),
+  })),
   ...classes.map(([title, file]) => ({
     id: createContentId("class", title),
     type: "class",
@@ -525,7 +538,7 @@ const searchEntries = entries.map(({ legacyIds, ...entry }) => ({
     ...(searchAliasSource.aliases[entry.id] || []),
   ].map((value) => String(value).trim()).filter(Boolean))),
 }));
-const deepTypes = new Set(["class-feature", "subclass", "species-feature", "tool", "adventuring-gear"]);
+const deepTypes = new Set(["class-feature", "subclass", "species-feature", "tool", "adventuring-gear", "glossary", "lore", "magic-item"]);
 const deepSearchEntries = searchEntries.filter((entry) => deepTypes.has(entry.type));
 const primarySearchEntries = searchEntries.filter((entry) => !deepTypes.has(entry.type));
 const outputs = [

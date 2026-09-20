@@ -52,6 +52,13 @@
       "translationNote": "Terminologie française harmonisée pour ce site ; ce contenu ne remplace pas l’ouvrage de référence."
     },
     {
+      "path": "lore.html",
+      "document": "Dungeon Master's Guide 2024",
+      "type": "Synthèse de l'Appendix A — Lore Glossary",
+      "status": "reviewed",
+      "translationNote": "Reformulation française concise du Lore Glossary ; les renvois détaillés restent dans les pages spécialisées."
+    },
+    {
       "path": "objets-magiques.html",
       "document": "SRD 5.2.1 FR et contenu de campagne",
       "type": "Catalogue structuré",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 1984,
+  "count": 2414,
   "byType": {
     "action": 19,
     "adventuring-gear": 55,
@@ -13,11 +13,12 @@
     "environment": 12,
     "equipment": 51,
     "feat": 75,
-    "glossary": 100,
-    "magic-item": 1,
+    "glossary": 167,
+    "lore": 74,
+    "magic-item": 288,
     "monster": 503,
     "movement": 13,
-    "page": 23,
+    "page": 25,
     "reaction": 3,
     "rule": 82,
     "species": 10,
@@ -52,6 +53,7 @@
     "groupes-royaumes.html",
     "histoire-royaumes.html",
     "historique.html",
+    "lore.html",
     "mastery-2024.html",
     "monstres.html",
     "objets-magiques.html",
@@ -72,6 +74,7 @@
     "races/race-tieffelin.html",
     "regles-campagne.html",
     "rules-2024.html",
+    "services-montures-vehicules.html",
     "spells.html"
   ],
   "quality": {

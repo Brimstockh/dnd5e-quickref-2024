@@ -26,7 +26,7 @@ function plainText(value) {
     .trim();
 }
 
-function concise(value, limit = 230) {
+function concise(value, limit = 120) {
   const text = plainText(value);
   return text.length > limit ? `${text.slice(0, limit - 1).trimEnd()}…` : text;
 }

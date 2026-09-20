@@ -57,6 +57,13 @@ test("commands constrain search to the requested content family", () => {
   assert.equal(results.length, 1);
   assert.equal(results[0].entry.title, "Boule de feu");
   assert.equal(results[0].reason, "Alias : Fireball");
+  assert.deepEqual(parseSearchQuery("@lore eauprofonde"), {
+    raw: "@lore eauprofonde",
+    query: "eauprofonde",
+    command: "@lore",
+    category: "Lore",
+    label: "Lore / Univers",
+  });
 });
 
 test("recent and profile context provide bounded ranking boosts", () => {

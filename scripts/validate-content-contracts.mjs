@@ -28,6 +28,7 @@ const contentSources = JSON.parse(await readFile(resolve(root, "data/content-sou
 const proficiency = JSON.parse(await readFile(resolve(root, "data/proficiency-bonus.json"), "utf8"));
 const magicItems = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8"));
 const campaignRules = JSON.parse(await readFile(resolve(root, "data/campaign-rules.json"), "utf8"));
+const lore = JSON.parse(await readFile(resolve(root, "data/lore.json"), "utf8"));
 const errors = [];
 
 if (index.schemaVersion !== 1) errors.push("search index schemaVersion must be 1");
@@ -78,6 +79,38 @@ for (const [position, entry] of (index.entries || []).entries()) {
   if (entry.sourceRef && !sourceIds.has(entry.sourceRef)) errors.push(`${context} references an unknown source: ${entry.sourceRef}`);
 }
 
+if (lore.schemaVersion !== 1 || !Array.isArray(lore.entries)) errors.push("lore data must use schemaVersion 1 and an entries array");
+const loreIds = new Set();
+const loreCategories = new Set(["person", "deity", "group", "place", "material", "event", "concept"]);
+for (const [position, entry] of (lore.entries || []).entries()) {
+  const context = `lore entry ${position + 1}`;
+  if (!isContentId(entry.id) || !entry.id.startsWith("lore-")) errors.push(`${context} has an invalid ID`);
+  if (loreIds.has(entry.id)) errors.push(`${context} duplicates ID: ${entry.id}`);
+  loreIds.add(entry.id);
+  if (!String(entry.name || "").trim()) errors.push(`${context} has no name`);
+  if (!loreCategories.has(entry.category)) errors.push(`${context} has an invalid category: ${entry.category}`);
+  if (!Array.isArray(entry.aliases) || new Set(entry.aliases).size !== entry.aliases.length) errors.push(`${context} aliases are invalid`);
+  if (!Array.isArray(entry.setting) || !entry.setting.length) errors.push(`${context} has no setting`);
+  if (!String(entry.summary || "").trim() && !entry.target) errors.push(`${context} has no summary or target`);
+  if (!Array.isArray(entry.details) || !entry.details.length) errors.push(`${context} has no details`);
+  if (!Array.isArray(entry.related) || new Set(entry.related).size !== entry.related.length) errors.push(`${context} related is invalid`);
+  if (!String(entry.source?.book || "").trim() || !String(entry.source?.section || "").trim()) errors.push(`${context} source metadata is incomplete`);
+  for (const relatedId of entry.related || []) {
+    if (!loreIds.has(relatedId) && !(lore.entries || []).some((candidate) => candidate.id === relatedId)) {
+      errors.push(`${context} references an unknown lore ID: ${relatedId}`);
+    }
+  }
+  if (entry.target) {
+    const [targetPath, targetHash] = String(entry.target).split("#", 2);
+    if (!targetPath.endsWith(".html") || /^[a-z][a-z0-9+.-]*:/i.test(targetPath)) errors.push(`${context} has an invalid target: ${entry.target}`);
+    const targetSource = await readFile(resolve(root, targetPath), "utf8").catch(() => null);
+    if (!targetSource) errors.push(`${context} target file is missing: ${targetPath}`);
+    if (targetHash && targetSource && !new RegExp(`\\bid=["']${targetHash.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}["']`).test(targetSource)) {
+      errors.push(`${context} target anchor is missing: ${entry.target}`);
+    }
+  }
+}
+
 if (glossaryAliasSource.schemaVersion !== 1) errors.push("glossary alias source schemaVersion must be 1");
 const glossarySlugs = new Set((glossary.entries || []).map((entry) => entry.id.replace(/^glossary-/, "")));
 for (const key of new Set([
@@ -97,6 +130,8 @@ for (const term of glossaryTerms(glossary.entries || [])) {
 }
 
 const magicItemIds = new Set();
+const magicItemRarities = new Set(["common", "uncommon", "rare", "very-rare", "legendary", "artifact", "varies"]);
+const magicItemTypes = new Set(["weapon", "armor", "wondrous-item", "potion", "ring", "rod", "staff", "wand", "scroll", "ammunition"]);
 for (const item of magicItems.items || []) {
   const context = `magic item ${item.id || "(missing)"}`;
   if (!isContentId(item.id) || !item.id.startsWith("magic-item-")) errors.push(`${context} has an invalid ID`);
@@ -105,6 +140,13 @@ for (const item of magicItems.items || []) {
   for (const field of ["name", "type", "rarity", "description", "sourceRef"]) {
     if (!String(item[field] ?? "").trim()) errors.push(`${context} is missing ${field}`);
   }
+  if (!magicItemRarities.has(item.rarity)) errors.push(`${context} has an invalid rarity`);
+  if (!magicItemTypes.has(item.type)) errors.push(`${context} has an invalid type`);
+  if (typeof item.requiresAttunement !== "boolean" || item.attunement?.required !== item.requiresAttunement) errors.push(`${context} has inconsistent attunement metadata`);
+  if (item.charges !== null && (!Number.isInteger(item.charges?.max) || item.charges.max < 1)) errors.push(`${context} has invalid charges`);
+  if (!Array.isArray(item.tables) || item.tables.some((table) => !Array.isArray(table.rows) || table.rows.length === 0)) errors.push(`${context} has an empty table`);
+  if (!Array.isArray(item.variants) || item.variants.some((variant) => !String(variant?.name || "").trim())) errors.push(`${context} has an unnamed variant`);
+  if (!Number.isInteger(item.sourcePage) || item.sourcePage < 227 || item.sourcePage > 325) errors.push(`${context} has an invalid source page`);
   if (!Array.isArray(item.aliases)) errors.push(`${context} aliases must be an array`);
   if (!sourceIds.has(item.sourceRef)) errors.push(`${context} references an unknown source`);
 }

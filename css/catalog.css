@@ -112,6 +112,11 @@
 .catalog-card__body ul { margin: 0 0 0.75rem 1.1rem; padding: 0; }
 .catalog-card__body li { margin-bottom: 0.3rem; }
 .catalog-card__details { margin: 0 0 0.8rem; color: var(--color-text); font-size: 0.8rem; }
+.magic-item-section { margin-top: 0.85rem; padding-top: 0.7rem; border-top: 1px solid var(--color-border); }
+.magic-item-section h4 { margin: 0 0 0.35rem; color: var(--color-gold-bright); font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.magic-item-table { display: grid; gap: 0.35rem; margin-top: 0.4rem; padding: 0.6rem 0.7rem; background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.magic-item-table > span { color: var(--color-text-subtle); font-size: 0.78rem; }
+.magic-item-warning { padding: 0.55rem 0.7rem; color: var(--color-text); background: rgb(196 161 93 / 10%); border-left: 3px solid var(--color-gold); font-size: 0.82rem; }
 
 :root[data-session="true"] .catalog-header > div > p:last-child,
 :root[data-session="true"] .catalog-header__stat,

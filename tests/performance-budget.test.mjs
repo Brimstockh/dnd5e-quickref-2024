@@ -15,7 +15,7 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/search-index.json", 510_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
-    ["data/glossary.json", 45_000],
+    ["data/glossary.json", 65_000],
     ["data/character-creation.json", 15_000],
     ["data/content-inventory.json", 3_000],
     ["data/local-storage-contracts.json", 2_000],

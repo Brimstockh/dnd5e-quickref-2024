@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v15";
+const CACHE_VERSION = "dnd-companion-v17";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -32,12 +32,14 @@ const CORE_ASSETS = Object.freeze([
     "./dons.html",
     "./faerun.html",
     "./glossaire.html",
+    "./lore.html",
     "./groupes-royaumes.html",
     "./histoire-royaumes.html",
     "./historique.html",
     "./mastery-2024.html",
     "./monstres.html",
     "./outils-aventurier.html",
+    "./services-montures-vehicules.html",
     "./personnages-royaumes.html",
     "./plans-existence.html",
     "./quickref.html",
@@ -84,6 +86,7 @@ const CORE_ASSETS = Object.freeze([
     "./css/home.css",
     "./css/icons.css",
     "./css/legacy-catalog.css",
+    "./css/lore.css",
     "./css/quicklinks.css",
     "./css/quickref.css",
     "./css/quickref-page.css",
@@ -124,6 +127,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/glossary-page.js",
     "./js/html-utils.js",
     "./js/legacy-catalog-ui.js",
+    "./js/lore-page.js",
     "./js/monsters-page.js",
     "./js/monster-export.js",
     "./js/picture-source.js",
@@ -153,6 +157,7 @@ const CORE_ASSETS = Object.freeze([
     "./data/monster-names-fr.json",
     "./data/content-relations.json",
     "./data/glossary.json",
+    "./data/lore.json",
     "./data/search-index.json",
     "./data/search-index-deep.json",
     "./data/source-metadata.json",

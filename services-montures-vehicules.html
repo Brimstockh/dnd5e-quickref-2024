@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D&amp;D 2024 - Services, montures et véhicules</title>
+    <link rel="stylesheet" href="css/classes.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
+    <style>
+        .service-page .lead {
+            color: #3e3a34;
+            font-size: 1.05rem;
+        }
+
+        .service-page .rules-grid,
+        .service-page .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .service-page .rule-box,
+        .service-page .service-card {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: var(--color-surface);
+            padding: 10px 12px;
+        }
+
+        .service-page .rule-box > strong,
+        .service-page .service-card h4 {
+            display: block;
+            margin: 0 0 4px;
+            color: var(--accent);
+        }
+
+        .service-page .rule-box p:last-child,
+        .service-page .service-card p:last-child,
+        .service-page .service-card table:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-page .table-scroll {
+            overflow-x: auto;
+        }
+
+        .service-page table {
+            width: 100%;
+        }
+
+        .service-page .service-table {
+            min-width: 420px;
+        }
+
+        .service-page .vehicle-table {
+            min-width: 980px;
+        }
+
+        .service-page .vehicle-table th,
+        .service-page .vehicle-table td {
+            white-space: nowrap;
+        }
+
+        .service-page .service-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 1rem;
+        }
+
+        .service-page .service-nav a {
+            display: inline-block;
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--color-text);
+            background: var(--color-bg-elevated);
+            text-decoration: none;
+        }
+
+        .service-page .service-nav a:hover,
+        .service-page .service-nav a:focus-visible {
+            color: var(--color-gold-bright);
+            border-color: var(--color-gold-dark);
+        }
+
+        .service-page .service-card table {
+            margin-top: 8px;
+        }
+
+        .service-page caption {
+            margin-bottom: 6px;
+            color: var(--color-gold-bright);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .service-page .source-note {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/content-page.css" />
+    <script src="js/user-library.js" defer></script>
+    <script src="js/site-shell.js" defer></script>
+</head>
+<body class="content-page service-page" data-library-title="Services, montures et véhicules" data-library-category="Équipement" data-library-description="Montures, véhicules, voyages et services D&amp;D 2024">
+    <header data-site-header data-active="services"></header>
+    <main class="page">
+        <nav class="topnav">
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="armes-armures.html">Armes &amp; armures</a>
+            <a class="btn" href="outils-aventurier.html">Matériel d'aventurier</a>
+            <a class="btn" href="spells.html">Sorts</a>
+            <a class="btn" href="glossaire.html">Glossaire</a>
+        </nav>
+
+        <section class="card">
+            <h1>Services, montures et véhicules</h1>
+            <div class="content" data-glossary-richtext>
+                <p class="lead">Cette page rassemble les coûts courants d'un aventurier, les services disponibles, les déplacements payants, les montures et les véhicules de D&amp;D 2024.</p>
+
+                <nav class="service-nav" aria-label="Sections de la page">
+                    <a href="#montures">Montures et véhicules</a>
+                    <a href="#montures-cargaison">Cargaison</a>
+                    <a href="#bardes">Bardes</a>
+                    <a href="#selles">Selles</a>
+                    <a href="#vehicules-terrestres">Harnachement</a>
+                    <a href="#grands-vehicules">Grands véhicules</a>
+                    <a href="#services">Services</a>
+                    <a href="#train-de-vie">Trains de vie</a>
+                    <a href="#nourriture-logement">Nourriture et logement</a>
+                    <a href="#voyage">Voyage</a>
+                    <a href="#personnel">Personnel</a>
+                    <a href="#services-incantation">Incantation</a>
+                </nav>
+
+                <h2 id="montures">Montures et véhicules</h2>
+                <p>Une monture facilite les déplacements dans la nature sauvage. Son rôle principal reste toutefois de transporter l'équipement qui ralentirait autrement les personnages.</p>
+
+                <h3 id="montures-cargaison">Montures et cargaison</h3>
+                <div class="rule-box">
+                    <strong>Véhicule tracté</strong>
+                    <p>Un animal qui tire une carriole, un chariot, un char, un traîneau ou un wagon peut déplacer un poids allant jusqu'à <strong>5 fois sa capacité de charge normale</strong>, en comptant le poids du véhicule. Si plusieurs animaux tirent le même véhicule, additionnez leurs capacités de charge.</p>
+                </div>
+
+                <h3 id="bardes">Bardes</h3>
+                <p>Une barde est une armure conçue pour une monture. N'importe quelle armure de la table des <a href="armes-armures.html">armes et armures</a> peut être achetée sous forme de barde. Elle coûte <strong>quatre fois</strong> le prix normal et pèse <strong>deux fois</strong> le poids normal.</p>
+
+                <h3 id="selles">Selles</h3>
+                <p>Une selle comprend le mors, la bride, les rênes et l'équipement nécessaire à son utilisation.</p>
+                <div class="rules-grid">
+                    <div class="rule-box">
+                        <strong>Selle de selle</strong>
+                        Selle ordinaire pour une monture terrestre courante.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Selle militaire</strong>
+                        Elle donne l'Avantage aux jets de caractéristique effectués pour rester en selle.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Selle exotique</strong>
+                        Elle est requise pour chevaucher une monture aquatique ou une monture volante.
+                    </div>
+                </div>
+
+                <h3>Montures et autres animaux</h3>
+                <div class="table-scroll">
+                    <table class="service-table">
+                        <caption>Montures et autres animaux</caption>
+                        <thead>
+                            <tr><th scope="col">Monture</th><th scope="col">Capacité de charge</th><th scope="col">Prix</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Chameau</td><td>450 lb (~205 kg)</td><td>50 po</td></tr>
+                            <tr><td>Éléphant</td><td>1 320 lb (~600 kg)</td><td>200 po</td></tr>
+                            <tr><td>Cheval de trait</td><td>540 lb (~245 kg)</td><td>50 po</td></tr>
+                            <tr><td>Cheval de selle</td><td>480 lb (~218 kg)</td><td>75 po</td></tr>
+                            <tr><td>Mastiff</td><td>195 lb (~88 kg)</td><td>25 po</td></tr>
+                            <tr><td>Mule</td><td>420 lb (~191 kg)</td><td>8 po</td></tr>
+                            <tr><td>Poney</td><td>225 lb (~102 kg)</td><td>30 po</td></tr>
+                            <tr><td>Cheval de guerre</td><td>540 lb (~245 kg)</td><td>400 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="vehicules-terrestres">Harnachement et véhicules tractés</h3>
+                <div class="table-scroll">
+                    <table class="service-table">
+                        <caption>Harnachement et véhicules tractés</caption>
+                        <thead>
+                            <tr><th scope="col">Objet</th><th scope="col">Poids</th><th scope="col">Prix</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Carrosse / voiture</td><td>600 lb (~272 kg)</td><td>100 po</td></tr>
+                            <tr><td>Carriole</td><td>200 lb (~91 kg)</td><td>15 po</td></tr>
+                            <tr><td>Char</td><td>100 lb (~45 kg)</td><td>250 po</td></tr>
+                            <tr><td>Nourriture quotidienne</td><td>10 lb (~4,5 kg)</td><td>5 pc</td></tr>
+                            <tr><td>Selle exotique</td><td>40 lb (~18 kg)</td><td>60 po</td></tr>
+                            <tr><td>Selle militaire</td><td>30 lb (~14 kg)</td><td>20 po</td></tr>
+                            <tr><td>Selle de selle</td><td>25 lb (~11 kg)</td><td>10 po</td></tr>
+                            <tr><td>Traîneau</td><td>300 lb (~136 kg)</td><td>20 po</td></tr>
+                            <tr><td>Écurie quotidienne</td><td>—</td><td>5 pa</td></tr>
+                            <tr><td>Wagon</td><td>400 lb (~181 kg)</td><td>35 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="grands-vehicules">Grands véhicules</h2>
+                <p>La table des véhicules aériens et nautiques présente les caractéristiques des grands véhicules. Les règles suivantes s'appliquent avant de consulter leurs statistiques.</p>
+
+                <h3>Vitesse</h3>
+                <div class="rules-grid">
+                    <div class="rule-box">
+                        <strong>Vent fort</strong>
+                        Un navire qui navigue contre un vent fort se déplace à la moitié de sa vitesse.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Absence de vent</strong>
+                        Dans une zone sans vent, un véhicule nautique à voiles ne peut pas avancer à la voile. Il doit être propulsé à la rame lorsque c'est possible.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Courant</strong>
+                        Les bateaux à quille et les barques qui remontent un courant voient leur vitesse divisée par deux. En descendant le courant, ajoutez la vitesse du courant, typiquement 3 mph, à celle du véhicule.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Courant important</strong>
+                        Une barque ou un bateau à quille ne peut pas être ramé contre un courant important, mais des animaux de trait peuvent le tirer depuis la rive.
+                    </div>
+                    <div class="rule-box">
+                        <strong>Barque transportée</strong>
+                        Une barque transportée hors de l'eau pèse 100 lb.
+                    </div>
+                </div>
+
+                <h3>Équipage</h3>
+                <p>Un navire plus grand qu'un bateau à quille ou qu'une barque nécessite un équipage de professionnels qualifiés pour fonctionner. Le nombre minimal d'employés qualifiés figure dans la table.</p>
+
+                <h3>Passagers</h3>
+                <p>La colonne Passagers indique le nombre de créatures de taille Petite ou Moyenne que le navire peut accueillir lorsqu'elles utilisent des hamacs. Un navire aménagé avec des logements privés peut accueillir <strong>un cinquième</strong> du nombre normal de passagers. Un hamac coûte 5 pa par jour ; une petite cabine privée coûte généralement 2 po par jour.</p>
+
+                <h3>Seuil de dégâts</h3>
+                <p>Si un véhicule possède un seuil de dégâts, sa valeur apparaît dans la table. Voir la définition du <a href="glossaire.html?term=seuil-de-degats">Seuil de dégâts</a> dans le glossaire.</p>
+
+                <h3>Réparation des navires</h3>
+                <div class="rule-box">
+                    <strong>Réparer un navire endommagé</strong>
+                    <p>Un navire endommagé peut être réparé lorsqu'il est amarré et immobilisé pour les travaux. Réparer <strong>1 PV</strong> demande <strong>1 jour</strong> et coûte <strong>20 po</strong> de matériaux et de main-d'œuvre. Dans un lieu où les matériaux et les travailleurs qualifiés abondent, comme un chantier naval urbain, la durée et le coût sont divisés par deux.</p>
+                </div>
+
+                <h3>Véhicules aériens et nautiques</h3>
+                <div class="table-scroll">
+                    <table class="vehicle-table">
+                        <caption>Véhicules aériens et nautiques</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Véhicule</th>
+                                <th scope="col">Vitesse</th>
+                                <th scope="col">Équipage</th>
+                                <th scope="col">Passagers</th>
+                                <th scope="col">Cargaison</th>
+                                <th scope="col">CA</th>
+                                <th scope="col">PV</th>
+                                <th scope="col">Seuil</th>
+                                <th scope="col">Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Dirigeable (Airship)</td><td>8 mph</td><td>10</td><td>20</td><td>1 tonne</td><td>13</td><td>300</td><td>—</td><td>40 000 po</td></tr>
+                            <tr><td>Galère (Galley)</td><td>4 mph</td><td>80</td><td>—</td><td>150 tonnes</td><td>15</td><td>500</td><td>20</td><td>30 000 po</td></tr>
+                            <tr><td>Bateau à quille (Keelboat)</td><td>1 mph</td><td>1</td><td>6</td><td>1/2 tonne</td><td>15</td><td>100</td><td>10</td><td>3 000 po</td></tr>
+                            <tr><td>Navire long (Longship)</td><td>3 mph</td><td>40</td><td>150</td><td>10 tonnes</td><td>15</td><td>300</td><td>15</td><td>10 000 po</td></tr>
+                            <tr><td>Barque (Rowboat)</td><td>1,5 mph</td><td>1</td><td>3</td><td>—</td><td>11</td><td>50</td><td>—</td><td>50 po</td></tr>
+                            <tr><td>Voilier (Sailing Ship)</td><td>2 mph</td><td>20</td><td>20</td><td>100 tonnes</td><td>15</td><td>300</td><td>15</td><td>10 000 po</td></tr>
+                            <tr><td>Navire de guerre (Warship)</td><td>2,5 mph</td><td>60</td><td>60</td><td>200 tonnes</td><td>15</td><td>500</td><td>20</td><td>25 000 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 id="services">Services</h2>
+                <p>Cette section regroupe les principales dépenses d'un aventurier autres que l'achat direct d'équipement.</p>
+
+                <h3 id="train-de-vie">Trains de vie</h3>
+                <p>Au début de chaque semaine ou de chaque mois, selon la décision du MJ, choisissez un train de vie et payez le coût correspondant. Les trains de vie n'ont pas automatiquement d'effet mécanique, mais le MJ peut en tenir compte pour déterminer les risques auxquels vous êtes exposé ou la manière dont d'autres personnes vous perçoivent.</p>
+                <div class="service-grid">
+                    <article class="service-card"><h4>Misérable (Wretched)</h4><p><strong>Gratuit.</strong> Vous survivez grâce à la chance et à la charité, souvent sans logement stable.</p></article>
+                    <article class="service-card"><h4>Crasseux (Squalid)</h4><p><strong>1 pa / jour.</strong> Vous dépensez le strict minimum, dans un environnement souvent malsain et dangereux.</p></article>
+                    <article class="service-card"><h4>Pauvre (Poor)</h4><p><strong>2 pa / jour.</strong> Vous couvrez vos nécessités en faisant de grandes économies.</p></article>
+                    <article class="service-card"><h4>Modeste (Modest)</h4><p><strong>1 po / jour.</strong> Vous vivez au niveau moyen d'un aventurier ordinaire.</p></article>
+                    <article class="service-card"><h4>Confortable (Comfortable)</h4><p><strong>2 po / jour.</strong> Vos besoins sont couverts confortablement, avec quelques plaisirs supplémentaires.</p></article>
+                    <article class="service-card"><h4>Aisé (Wealthy)</h4><p><strong>4 po / jour.</strong> Vous accédez à des biens de meilleure qualité et pouvez éventuellement employer du personnel.</p></article>
+                    <article class="service-card"><h4>Aristocratique (Aristocratic)</h4><p><strong>10 po / jour.</strong> Vous bénéficiez du meilleur confort disponible, avec un personnel et une richesse visibles.</p></article>
+                </div>
+
+                <h3 id="nourriture-logement">Nourriture, boissons et logement</h3>
+                <p>Les repas et les nuits d'auberge sont déjà compris dans les dépenses quotidiennes d'un train de vie. Les tables ci-dessous servent pour les achats séparés.</p>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <h4>Nourriture et boissons</h4>
+                        <table>
+                            <thead><tr><th scope="col">Objet</th><th scope="col">Prix</th></tr></thead>
+                            <tbody><tr><td>Chope de bière</td><td>4 pc</td></tr><tr><td>Miche de pain</td><td>2 pc</td></tr><tr><td>Morceau de fromage</td><td>1 pa</td></tr></tbody>
+                        </table>
+                    </article>
+                    <article class="service-card">
+                        <h4>Repas</h4>
+                        <table>
+                            <thead><tr><th scope="col">Niveau</th><th scope="col">Prix</th></tr></thead>
+                            <tbody><tr><td>Crasseux</td><td>1 pc</td></tr><tr><td>Pauvre</td><td>2 pc</td></tr><tr><td>Modeste</td><td>1 pa</td></tr><tr><td>Confortable</td><td>2 pa</td></tr><tr><td>Aisé</td><td>3 pa</td></tr><tr><td>Aristocratique</td><td>6 pa</td></tr></tbody>
+                        </table>
+                    </article>
+                    <article class="service-card">
+                        <h4>Nuit d'auberge</h4>
+                        <table>
+                            <thead><tr><th scope="col">Niveau</th><th scope="col">Prix</th></tr></thead>
+                            <tbody><tr><td>Crasseux</td><td>7 pc</td></tr><tr><td>Pauvre</td><td>1 pa</td></tr><tr><td>Modeste</td><td>5 pa</td></tr><tr><td>Confortable</td><td>8 pa</td></tr><tr><td>Aisé</td><td>2 po</td></tr><tr><td>Aristocratique</td><td>4 po</td></tr></tbody>
+                        </table>
+                    </article>
+                    <article class="service-card">
+                        <h4>Vin</h4>
+                        <table>
+                            <thead><tr><th scope="col">Vin</th><th scope="col">Prix</th></tr></thead>
+                            <tbody><tr><td>Ordinaire</td><td>2 pa</td></tr><tr><td>Fin</td><td>10 po</td></tr></tbody>
+                        </table>
+                    </article>
+                </div>
+
+                <h3 id="voyage">Voyage</h3>
+                <p>Les conducteurs ou équipages qui transportent des voyageurs facturent généralement les tarifs suivants. Des péages et des frais supplémentaires peuvent s'y ajouter. Les tarifs restent exprimés <strong>par mile</strong> : 1 mile vaut environ 1,6 km.</p>
+                <div class="table-scroll">
+                    <table class="service-table">
+                        <caption>Tarifs de voyage</caption>
+                        <thead><tr><th scope="col">Service</th><th scope="col">Prix</th></tr></thead>
+                        <tbody>
+                            <tr><td>Diligence entre deux villes</td><td>3 pc / mile</td></tr>
+                            <tr><td>Diligence en ville</td><td>1 pc / mile</td></tr>
+                            <tr><td>Péage routier ou porte</td><td>1 pc</td></tr>
+                            <tr><td>Passage en navire</td><td>1 pa / mile</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="personnel">Personnel</h3>
+                <p>Un employé qualifié est engagé pour un service qui nécessite une maîtrise, par exemple d'une arme, d'un outil ou d'une compétence. Un mercenaire, un artisan ou un scribe en sont des exemples. Le prix indiqué est un minimum ; un spécialiste particulièrement compétent peut demander davantage. Un employé non qualifié effectue un travail ne nécessitant aucune maîtrise particulière, comme un ouvrier ou un porteur.</p>
+                <div class="table-scroll">
+                    <table class="service-table">
+                        <caption>Personnel et messagerie</caption>
+                        <thead><tr><th scope="col">Service</th><th scope="col">Prix</th></tr></thead>
+                        <tbody>
+                            <tr><td>Employé qualifié</td><td>2 po / jour</td></tr>
+                            <tr><td>Employé non qualifié</td><td>2 pa / jour</td></tr>
+                            <tr><td>Messager</td><td>2 pc / mile</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="services-incantation">Services d'incantation</h3>
+                <p>De nombreuses communautés disposent de personnes disposées à lancer des sorts contre rémunération. Si le sort nécessite une composante matérielle coûteuse, ajoutez le prix de cette composante à celui du service. Plus le niveau du sort est élevé, plus il est difficile de trouver quelqu'un capable de le lancer. Pour le catalogue des sorts, voir la page <a href="spells.html">Sorts</a>.</p>
+                <div class="table-scroll">
+                    <table class="service-table">
+                        <caption>Services d'incantation</caption>
+                        <thead><tr><th scope="col">Niveau de sort</th><th scope="col">Disponibilité</th><th scope="col">Prix</th></tr></thead>
+                        <tbody>
+                            <tr><td>Sort mineur (Cantrip)</td><td>Village, bourg ou ville</td><td>30 po</td></tr>
+                            <tr><td>1</td><td>Village, bourg ou ville</td><td>50 po</td></tr>
+                            <tr><td>2</td><td>Village, bourg ou ville</td><td>200 po</td></tr>
+                            <tr><td>3</td><td>Bourg ou ville uniquement</td><td>300 po</td></tr>
+                            <tr><td>4-5</td><td>Bourg ou ville uniquement</td><td>2 000 po</td></tr>
+                            <tr><td>6-8</td><td>Ville uniquement</td><td>20 000 po</td></tr>
+                            <tr><td>9</td><td>Ville uniquement</td><td>100 000 po</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="source-note">Cette page couvre les montures, véhicules et services des pages 229 à 232 du Player's Handbook 2024. Les règles sur les objets magiques, l'identification et l'harmonisation sont présentées séparément sur <a href="objets-magiques.html">Objets magiques</a>.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

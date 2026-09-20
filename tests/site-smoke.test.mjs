@@ -90,6 +90,10 @@ test("critical pages and modules are served over HTTP", async () => {
     "/css/character-sheet-app.css",
     "/css/quickref-page.css",
     "/faerun.html#carte",
+    "/lore.html",
+    "/css/lore.css",
+    "/js/lore-page.js",
+    "/data/lore.json",
     "/html/characters.html",
     "/html/character.html?c=cleira",
     "/html/character-profile.html?c=cleira",
@@ -252,7 +256,7 @@ test("critical pages do not reference missing local files", async () => {
 
 test("every standalone page uses the shared visual shell", async () => {
   const pages = (await standaloneHtmlPages()).filter((page) => page !== "offline.html");
-  assert.equal(pages.length, 55);
+  assert.equal(pages.length, 57);
 
   for (const page of pages) {
     const source = await readFile(resolve(root, page), "utf8");
@@ -266,7 +270,7 @@ test("every standalone page uses the shared visual shell", async () => {
       source.indexOf("js/user-library.js") < source.indexOf("js/site-shell.js"),
       `${page}: storage bootstrap must load before the shared shell`,
     );
-    assert.match(source, /data-site-header data-active="[^"]+"/, page);
+  assert.match(source, /data-site-header data-active="[^"]+"/, page);
     if (/<body[^>]*\bcontent-page\b/i.test(source)) {
       assert.match(source, /(?:\.\.\/|)css\/content-page\.css/, page);
     }
