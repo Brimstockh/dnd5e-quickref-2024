@@ -132,6 +132,7 @@ for (const term of glossaryTerms(glossary.entries || [])) {
 const magicItemIds = new Set();
 const magicItemRarities = new Set(["common", "uncommon", "rare", "very-rare", "legendary", "artifact", "varies"]);
 const magicItemTypes = new Set(["weapon", "armor", "wondrous-item", "potion", "ring", "rod", "staff", "wand", "scroll", "ammunition"]);
+const magicItemStatuses = new Set(["raw-transcription", "cleaned", "verified", "needs-verification"]);
 for (const item of magicItems.items || []) {
   const context = `magic item ${item.id || "(missing)"}`;
   if (!isContentId(item.id) || !item.id.startsWith("magic-item-")) errors.push(`${context} has an invalid ID`);
@@ -142,6 +143,8 @@ for (const item of magicItems.items || []) {
   }
   if (!magicItemRarities.has(item.rarity)) errors.push(`${context} has an invalid rarity`);
   if (!magicItemTypes.has(item.type)) errors.push(`${context} has an invalid type`);
+  if (!magicItemStatuses.has(item.verificationStatus)) errors.push(`${context} has an invalid verification status`);
+  if (item.verificationStatus === "verified" && /(?:\\\\|¥|�|\b(?:de|am)-\s+\w+)/i.test(item.description || "")) errors.push(`${context} is marked verified despite raw transcription markers`);
   if (typeof item.requiresAttunement !== "boolean" || item.attunement?.required !== item.requiresAttunement) errors.push(`${context} has inconsistent attunement metadata`);
   if (item.charges !== null && (!Number.isInteger(item.charges?.max) || item.charges.max < 1)) errors.push(`${context} has invalid charges`);
   if (!Array.isArray(item.tables) || item.tables.some((table) => !Array.isArray(table.rows) || table.rows.length === 0)) errors.push(`${context} has an empty table`);

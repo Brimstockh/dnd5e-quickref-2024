@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { resolve } from "node:path";
 
 import {
   CONTENT_TYPES,
@@ -12,6 +13,7 @@ import {
 
 const loadJson = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
 const index = await loadJson("../data/search-index.json");
+const lore = await loadJson("../data/lore.json");
 const aliasRegistry = await loadJson("../data/content-id-aliases.json");
 const schemas = await Promise.all([
   loadJson("../schemas/search-index.schema.json"),
@@ -58,4 +60,15 @@ test("Lot 2 data contracts use versioned JSON schemas", () => {
     schemas[3].properties.relations.items.properties.type.enum,
     ["available-for", "prerequisite", "related-rule", "see-also"],
   );
+});
+
+test("lore targets resolve to real local anchors", async () => {
+  const root = resolve(import.meta.dirname, "..");
+  for (const entry of lore.entries) {
+    if (!entry.target) continue;
+    const [targetPath, targetHash] = entry.target.split("#", 2);
+    assert.ok(targetPath.endsWith(".html"), `${entry.id} target must be an HTML page`);
+    const source = await readFile(resolve(root, targetPath), "utf8");
+    assert.match(source, new RegExp(`\\bid=["']${targetHash.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}["']`), `${entry.id} target anchor is missing`);
+  }
 });

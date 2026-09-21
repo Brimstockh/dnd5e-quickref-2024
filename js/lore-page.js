@@ -1,3 +1,47 @@
+import { fetchJson } from "./fetch-json.js";
+
+export const LORE_CATEGORY_LABELS = Object.freeze({
+  person: "Personnage",
+  deity: "Divinité",
+  place: "Lieu",
+  group: "Groupe / Faction",
+  concept: "Concept",
+  event: "Événement",
+  material: "Matériau",
+});
+
+export function loreCategoryLabel(category) {
+  return LORE_CATEGORY_LABELS[category] || "Autre";
+}
+
+export function validateLoreData(data) {
+  return Boolean(data && data.schemaVersion === 1 && Array.isArray(data.entries) && data.entries.every((entry) => (
+    entry && typeof entry.id === "string" && typeof entry.name === "string" && Array.isArray(entry.details)
+  )));
+}
+
+export async function loadLoreResources({
+  lorePath = new URL("../data/lore.json", import.meta.url),
+  relationsPath = new URL("../data/content-relations.json", import.meta.url),
+  fetchImpl = globalThis.fetch,
+} = {}) {
+  let data;
+  try {
+    data = await fetchJson(lorePath, { fetchImpl });
+  } catch (error) {
+    return { data: null, relationIndex: { targets: {} }, primaryError: error, relationsError: null };
+  }
+  if (!validateLoreData(data)) {
+    return { data: null, relationIndex: { targets: {} }, primaryError: new Error("Données Lore invalides."), relationsError: null };
+  }
+  try {
+    const relationIndex = await fetchJson(relationsPath, { fetchImpl });
+    return { data, relationIndex: relationIndex && typeof relationIndex === "object" ? relationIndex : { targets: {} }, primaryError: null, relationsError: null };
+  } catch (error) {
+    return { data, relationIndex: { targets: {} }, primaryError: null, relationsError: error };
+  }
+}
+
 function normalize(value) {
   return String(value ?? "")
     .normalize("NFD")
@@ -77,15 +121,17 @@ function focusEntry(state) {
 }
 
 export async function initLorePage() {
-  const [response, relationResponse] = await Promise.all([
-    fetch(new URL("../data/lore.json", import.meta.url)),
-    fetch(new URL("../data/content-relations.json", import.meta.url)),
-  ]);
-  if (!response.ok) return;
-  const data = await response.json();
-  const relationIndex = relationResponse.ok ? await relationResponse.json() : { targets: {} };
   const intro = document.querySelector("main > .card");
   if (!intro) return;
+  const resources = await loadLoreResources();
+  if (resources.primaryError) {
+    const error = element("p", "lore-browser__error", "Le catalogue Lore est momentanément indisponible. Réessayez lorsque les données seront à nouveau accessibles.");
+    error.setAttribute("role", "alert");
+    intro.querySelector(".content")?.append(error);
+    return;
+  }
+  const data = resources.data;
+  const relationIndex = resources.relationIndex;
 
   const entriesById = new Map(data.entries.map((entry) => [entry.id, entry]));
   const browser = element("section", "lore-browser");
@@ -102,6 +148,7 @@ export async function initLorePage() {
   const setting = element("select", "lore-browser__setting");
   const alphabet = element("div", "lore-browser__alphabet");
   const status = element("p", "lore-browser__status");
+  const relationStatus = element("p", "lore-browser__relation-status", "Les relations externes sont momentanément indisponibles ; les entrées principales restent consultables.");
   const results = element("div", "lore-browser__results");
   const empty = element("p", "lore-browser__empty", "Aucune entrée de lore ne correspond à cette recherche.");
   let state = readLoreState();
@@ -120,12 +167,14 @@ export async function initLorePage() {
   settingLabel.htmlFor = setting.id;
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
+  relationStatus.setAttribute("role", "status");
+  relationStatus.hidden = !resources.relationsError;
   results.setAttribute("aria-label", "Résultats du lore");
   alphabet.setAttribute("aria-label", "Filtrer le lore par initiale");
 
   const categories = ["", ...Array.from(new Set(data.entries.map((entry) => entry.category))).sort((a, b) => a.localeCompare(b, "fr"))];
   categories.forEach((value) => {
-    const option = element("option", "", value || "Tous les types");
+    const option = element("option", "", value ? loreCategoryLabel(value) : "Tous les types");
     option.value = value;
     option.selected = value === state.category;
     category.appendChild(option);
@@ -172,7 +221,7 @@ export async function initLorePage() {
       card.classList.toggle("lore-entry--linked", Boolean(entry.target));
       alias.textContent = entry.aliases.length ? `Aussi : ${entry.aliases.join(", ")}` : "";
       alias.hidden = entry.aliases.length === 0;
-      meta.append(element("span", "lore-entry__badge", entry.category));
+      meta.append(element("span", "lore-entry__badge", loreCategoryLabel(entry.category)));
       for (const currentSetting of entry.setting || []) meta.append(element("span", "lore-entry__badge", currentSetting));
       if (entry.target) {
         routeNote.hidden = false;
@@ -232,7 +281,7 @@ export async function initLorePage() {
   categoryField.append(categoryLabel, category);
   settingField.append(settingLabel, setting);
   toolbar.append(searchField, categoryField, settingField);
-  browser.append(heading, toolbar, alphabet, status, results, empty);
+  browser.append(heading, toolbar, alphabet, status, relationStatus, results, empty);
   intro.insertAdjacentElement("afterend", browser);
   render(false);
   focusEntry(state);

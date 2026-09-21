@@ -52,7 +52,7 @@ test("global search includes lore entries and bilingual setting aliases", () => 
   assert.equal(waterdeep.type, "lore");
   assert.equal(waterdeep.category, "Lore");
   assert.ok(waterdeep.aliases.includes("Eauprofonde"));
-  assert.equal(waterdeep.url, "faerun.html#waterdeep");
+  assert.equal(waterdeep.url, "lore.html?term=waterdeep");
   assert.match(acereraK.url, /^lore\.html\?term=/);
   assert.equal(acereraK.type, "lore");
 });

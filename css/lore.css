@@ -1,42 +1,8 @@
-.lore-hero {
-    display: flex;
-    min-height: clamp(14rem, 24vw, 19rem);
-    align-items: flex-end;
-    margin-bottom: 1rem;
-    padding: clamp(1.4rem, 4vw, 3rem);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+.page-feature--lore {
     background:
-        linear-gradient(110deg, rgb(143 48 41 / 80%), rgb(13 12 10 / 88%) 62%),
-        radial-gradient(circle at 82% 20%, rgb(196 161 93 / 35%), transparent 35%),
+        linear-gradient(110deg, color-mix(in srgb, var(--color-danger) 78%, transparent), color-mix(in srgb, var(--color-bg) 88%, transparent) 62%),
+        radial-gradient(circle at 82% 20%, color-mix(in srgb, var(--color-gold-bright) 35%, transparent), transparent 35%),
         var(--color-bg-elevated);
-}
-
-.lore-hero__content { max-width: 44rem; }
-.lore-hero__eyebrow {
-    margin: 0 0 0.4rem;
-    color: #d2b374;
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.content-page .lore-hero h1 {
-    margin: 0;
-    color: #eee8dc;
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.05;
-    text-wrap: balance;
-}
-
-.lore-hero p:last-child {
-    max-width: 42rem;
-    margin: 0.8rem 0 0;
-    color: #c9bba5;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 .lore-browser {
@@ -109,6 +75,17 @@
     color: var(--color-text-muted);
 }
 
+.lore-browser__relation-status,
+.lore-browser__error {
+    margin: 0.5rem 0 0.8rem;
+    padding: 0.6rem 0.75rem;
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--color-gold) 14%, transparent);
+    border-left: 3px solid var(--color-gold);
+}
+
+.lore-browser__error { border-left-color: var(--color-danger-bright); }
+
 .lore-browser__results {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -157,9 +134,9 @@
 }
 
 @media print {
-    .lore-hero { min-height: auto; color: #111; background: #fff; }
-    .lore-hero h1,
-    .lore-hero p:last-child { color: #111 !important; }
+    .page-feature--lore { min-height: auto; color: #111; background: #fff; }
+    .page-feature--lore h1,
+    .page-feature--lore p:last-child { color: #111 !important; }
     .lore-browser__toolbar,
     .lore-browser__alphabet { display: none; }
     .lore-browser__results { grid-template-columns: 1fr 1fr; }

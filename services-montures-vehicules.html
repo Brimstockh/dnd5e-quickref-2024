@@ -5,114 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>D&amp;D 2024 - Services, montures et véhicules</title>
     <link rel="stylesheet" href="css/classes.css" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
-    <style>
-        .service-page .lead {
-            color: #3e3a34;
-            font-size: 1.05rem;
-        }
 
-        .service-page .rules-grid,
-        .service-page .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
-            margin: 12px 0;
-        }
-
-        .service-page .rule-box,
-        .service-page .service-card {
-            border: 1px solid var(--line);
-            border-left: 4px solid var(--accent);
-            border-radius: 8px;
-            background: var(--color-surface);
-            padding: 10px 12px;
-        }
-
-        .service-page .rule-box > strong,
-        .service-page .service-card h4 {
-            display: block;
-            margin: 0 0 4px;
-            color: var(--accent);
-        }
-
-        .service-page .rule-box p:last-child,
-        .service-page .service-card p:last-child,
-        .service-page .service-card table:last-child {
-            margin-bottom: 0;
-        }
-
-        .service-page .table-scroll {
-            overflow-x: auto;
-        }
-
-        .service-page table {
-            width: 100%;
-        }
-
-        .service-page .service-table {
-            min-width: 420px;
-        }
-
-        .service-page .vehicle-table {
-            min-width: 980px;
-        }
-
-        .service-page .vehicle-table th,
-        .service-page .vehicle-table td {
-            white-space: nowrap;
-        }
-
-        .service-page .service-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 0 0 1rem;
-        }
-
-        .service-page .service-nav a {
-            display: inline-block;
-            padding: 6px 10px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: var(--color-text);
-            background: var(--color-bg-elevated);
-            text-decoration: none;
-        }
-
-        .service-page .service-nav a:hover,
-        .service-page .service-nav a:focus-visible {
-            color: var(--color-gold-bright);
-            border-color: var(--color-gold-dark);
-        }
-
-        .service-page .service-card table {
-            margin-top: 8px;
-        }
-
-        .service-page caption {
-            margin-bottom: 6px;
-            color: var(--color-gold-bright);
-            font-family: var(--font-display);
-            font-weight: 700;
-            text-align: left;
-        }
-
-        .service-page .source-note {
-            color: var(--color-text-muted);
-            font-size: 0.9rem;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/tools-services.css" />
     <link rel="stylesheet" href="css/content-page.css" />
     <script src="js/user-library.js" defer></script>
     <script src="js/site-shell.js" defer></script>
 </head>
 <body class="content-page service-page" data-library-title="Services, montures et véhicules" data-library-category="Équipement" data-library-description="Montures, véhicules, voyages et services D&amp;D 2024">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header data-site-header data-active="services"></header>
-    <main class="page">
+    <main class="page" id="main-content">
         <nav class="topnav">
             <a class="btn" href="index.html">Accueil</a>
             <a class="btn" href="armes-armures.html">Armes &amp; armures</a>

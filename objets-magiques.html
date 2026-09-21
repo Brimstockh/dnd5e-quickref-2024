@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>D&D 2024 — Objets magiques</title>
+  <title>D&amp;D 2024 — Objets magiques</title>
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:600,700|Source+Sans+3:400,600,700" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="css/theme.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/catalog.css" />
   <link rel="preload" href="data/magic-items.json" as="fetch" type="application/json" crossorigin="anonymous" />
   <script src="js/user-library.js" defer></script>
   <script src="js/site-shell.js" defer></script>
+  <script src="js/progressive-list.js" defer></script>
   <script src="js/magic-items-page.js" defer></script>
 </head>
 <body class="catalog-page" data-library-title="Objets magiques" data-library-category="Catalogue" data-library-description="Objets magiques disponibles dans le projet">
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header data-site-header data-active="magic-items"></header>
   <main class="catalog-main" id="main-content" data-glossary-richtext>
     <section class="catalog-header" aria-labelledby="catalog-title">
@@ -35,21 +38,24 @@
     </section>
 
     <div class="catalog-layout">
-      <aside class="catalog-filters" id="filterPanel" aria-labelledby="filter-title">
+      <aside class="catalog-filters" id="filterPanel" aria-labelledby="filter-title" role="dialog" aria-modal="true">
         <div class="catalog-filters__header"><h2 id="filter-title">Filtrer</h2><button class="catalog-mobile-button catalog-filters__close" id="closeFiltersBtn" type="button">Fermer</button></div>
         <div class="catalog-filters__body">
           <div class="filter-group"><label for="raritySelect">Rareté</label><select id="raritySelect"><option value="">Toutes</option><option value="common">Commun</option><option value="uncommon">Peu commun</option><option value="rare">Rare</option><option value="very-rare">Très rare</option><option value="legendary">Légendaire</option><option value="artifact">Artéfact</option><option value="varies">Variable</option></select></div>
           <div class="filter-group"><label for="typeSelect">Type</label><select id="typeSelect"><option value="">Tous</option></select></div>
           <div class="filter-group"><label for="attunementSelect">Harmonisation</label><select id="attunementSelect"><option value="">Toutes</option><option value="yes">Requise</option><option value="no">Non requise</option></select></div>
+          <div class="filter-group"><label for="verificationSelect">Statut de vérification</label><select id="verificationSelect"><option value="">Tous les statuts</option><option value="raw-transcription">Transcription brute</option><option value="cleaned">Nettoyé</option><option value="verified">Vérifié</option><option value="needs-verification">À vérifier</option></select></div>
           <button class="catalog-reset" id="resetBtn" type="button">Réinitialiser</button>
         </div>
       </aside>
       <section class="catalog-results" aria-labelledby="results-title">
         <h2 id="results-title" class="visually-hidden">Résultats</h2>
         <div id="itemsGrid" class="catalog-grid"></div>
+        <button class="progressive-load-more" id="loadMoreBtn" type="button" hidden>Afficher plus</button>
       </section>
     </div>
     <button class="catalog-filter-backdrop" id="filterBackdrop" type="button" aria-label="Fermer les filtres"></button>
   </main>
+  <noscript><p class="catalog-empty">Activez JavaScript pour consulter et filtrer le catalogue des objets magiques.</p></noscript>
 </body>
 </html>

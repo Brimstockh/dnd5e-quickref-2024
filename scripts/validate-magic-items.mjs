@@ -3,9 +3,11 @@ import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const catalog = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8"));
+const schema = JSON.parse(await readFile(resolve(root, "schemas/magic-items.schema.json"), "utf8"));
 const validRarities = new Set(["common", "uncommon", "rare", "very-rare", "legendary", "artifact", "varies"]);
 const validTypes = new Set(["weapon", "armor", "wondrous-item", "potion", "ring", "rod", "staff", "wand", "scroll", "ammunition"]);
 const activationTypes = new Set(["action", "bonus-action", "reaction", "passive"]);
+const validStatuses = new Set(schema.properties.items.items.properties.verificationStatus.enum);
 const errors = [];
 const ids = new Set();
 const names = new Set();
@@ -13,6 +15,7 @@ const names = new Set();
 if (catalog.schemaVersion !== 2) errors.push("magic item catalog must use schemaVersion 2");
 if (catalog.ruleset !== "2024") errors.push("magic item catalog must target the 2024 ruleset");
 if (catalog.sourceRef !== "dmg-2024-magic-pdf") errors.push("magic item catalog must use the DMG 2024 PDF source");
+if (catalog.localization?.interfaceLanguage !== "fr" || catalog.localization?.contentLanguage !== "en" || catalog.localization?.originalDescriptionField !== "description") errors.push("magic item localization contract is incomplete");
 if (!Array.isArray(catalog.items) || catalog.items.length === 0) errors.push("magic item catalog must contain items");
 
 for (const [position, item] of (catalog.items || []).entries()) {
@@ -27,6 +30,8 @@ for (const [position, item] of (catalog.items || []).entries()) {
   if (!validRarities.has(item.rarity)) errors.push(`${context} has an invalid rarity ${item.rarity}`);
   if (typeof item.requiresAttunement !== "boolean" || item.attunement?.required !== item.requiresAttunement) errors.push(`${context} has inconsistent attunement metadata`);
   if (!String(item.description || "").trim()) errors.push(`${context} has no description`);
+  if (!validStatuses.has(item.verificationStatus)) errors.push(`${context} has an invalid verification status ${item.verificationStatus || "(missing)"}`);
+  if (item.verificationStatus === "verified" && /(?:\\\\|¥|�|\b(?:de|am)-\s+\w+)/i.test(item.description || "")) errors.push(`${context} is marked verified despite raw transcription markers`);
   if (!Number.isInteger(item.sourcePage) || item.sourcePage < 227 || item.sourcePage > 325) errors.push(`${context} has an invalid DMG page`);
   if (!item.source || item.source.book !== "Dungeon Master's Guide 2024" || item.source.page !== item.sourcePage) errors.push(`${context} has an invalid source object`);
   if (!Array.isArray(item.aliases)) errors.push(`${context} aliases must be an array`);

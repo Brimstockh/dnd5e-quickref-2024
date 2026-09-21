@@ -13,6 +13,7 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/feats_2024.json", 55_000],
     ["data/spells_2024.json", 800_000],
     ["data/search-index.json", 510_000],
+    ["data/magic-items.json", 620_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
     ["data/glossary.json", 65_000],
@@ -57,6 +58,10 @@ test("large catalogs preload JSON and use progressive rendering", async () => {
     assert.match(source, /src="js\/progressive-list\.js" defer/);
     assert.match(source, /id="loadMoreBtn"/);
   }
+  const magicPage = await readFile(resolve(root, "objets-magiques.html"), "utf8");
+  assert.match(magicPage, /rel="preload" href="data\/magic-items\.json" as="fetch"/);
+  assert.match(magicPage, /src="js\/progressive-list\.js" defer/);
+  assert.match(magicPage, /id="loadMoreBtn"/);
 });
 
 test("editorial hero images stay within their transfer budget", async () => {

@@ -203,3 +203,12 @@ test("the introductory rules explain tool fields, separate variant proficiencies
     "monstre ne maîtrise un outil que si cette maîtrise apparaît dans son profil de jeu",
   ], "tool rules");
 });
+
+test("the tools page uses shared themed styles and links to services", () => {
+  assert.match(page, /class="content-page tools-page"/);
+  assert.match(page, /href="css\/tools-services\.css"/);
+  assert.match(page, /<a class="skip-link" href="#main-content">Aller au contenu<\/a>/);
+  assert.match(page, /<main class="page" id="main-content">/);
+  assert.doesNotMatch(page, /<style[\s>]/i);
+  assert.match(page, /href="services-montures-vehicules\.html"/);
+});

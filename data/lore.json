@@ -82,7 +82,7 @@
       "summary": "Une grande puissance commerciale de la Côte des Épées, prospère mais marquée par la corruption et les luttes de pouvoir.",
       "details": ["La cité domine le commerce régional et reste exposée aux intrigues politiques, criminelles et religieuses."],
       "related": ["lore-sword-coast", "lore-waterdeep", "lore-neverwinter"],
-      "target": "faerun.html#baldurs-gate",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -538,7 +538,7 @@
       "summary": "Une cité de la Côte des Épées qui s'est relevée d'une catastrophe volcanique et d'une longue période de ruines.",
       "details": ["Sa reconstruction est associée à Dagult Neverember et à la volonté de restaurer son influence parmi les cités du Nord."],
       "related": ["lore-sword-coast", "lore-waterdeep", "lore-baldurs-gate"],
-      "target": "faerun.html#neverwinter",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -574,7 +574,7 @@
       "summary": "Un village minier de la Côte des Épées, point de départ fréquent pour des aventures dans le Nord.",
       "details": ["Ses mines, ses ruines et sa position de frontière en font un lieu où se croisent commerçants, aventuriers et menaces locales."],
       "related": ["lore-sword-coast", "lore-waterdeep", "lore-neverwinter"],
-      "target": "faerun.html#phandalin",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -730,7 +730,7 @@
       "summary": "Un vaste réseau souterrain de cavernes, de tunnels et de royaumes reliés sous la surface de Faerûn.",
       "details": ["L'Outreterre ne se limite pas à Menzoberranzan : ses routes relient des peuples, des cités et des dangers très variés."],
       "related": ["lore-menzoberranzan", "lore-undermountain"],
-      "target": "faerun.html#underdark",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -742,7 +742,7 @@
       "summary": "Un immense donjon sous Waterdeep, créé et façonné par Halaster Blackcloak.",
       "details": ["Le Yawning Portal en constitue l'entrée la plus célèbre, tandis que les profondeurs communiquent avec l'Outreterre."],
       "related": ["lore-waterdeep", "lore-yawning-portal", "lore-underdark"],
-      "target": "faerun.html#undermountain",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -826,7 +826,7 @@
       "summary": "Une cité cosmopolite, riche et influente de la Côte des Épées, gouvernée par les Seigneurs de Waterdeep.",
       "details": ["La ville abrite le Yawning Portal et l'accès à Undermountain, tout en étant traversée par les intrigues de Laeral, Vajra et Xanathar."],
       "related": ["lore-undermountain", "lore-yawning-portal", "lore-laeral-silverhand", "lore-vajra-safahr", "lore-xanathar"],
-      "target": "faerun.html#waterdeep",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {
@@ -850,7 +850,7 @@
       "summary": "Une taverne d'Eauprofonde construite autour de l'entrée du donjon d'Undermountain.",
       "details": ["Son puits béant fait de l'auberge un point de départ célèbre pour les expéditions souterraines."],
       "related": ["lore-waterdeep", "lore-undermountain", "lore-underdark"],
-      "target": "faerun.html#yawning-portal",
+      "target": null,
       "source": { "book": "Dungeon Master's Guide 2024", "section": "Appendix A — Lore Glossary", "pages": "354–364" }
     },
     {

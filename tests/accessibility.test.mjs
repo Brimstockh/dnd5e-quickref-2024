@@ -110,6 +110,24 @@ test("creation tools expose keyboard focus, live status, and an accessible compa
   assert.match(comparatorScript, /cell\.scope = "col"/);
 });
 
+test("priority catalog and equipment pages expose the skip-link contract", async () => {
+  for (const page of ["objets-magiques.html", "services-montures-vehicules.html", "outils-aventurier.html"]) {
+    const source = await readFile(resolve(root, page), "utf8");
+    assert.match(source, /<a class="skip-link" href="#main-content">Aller au contenu<\/a>/, page);
+    assert.match(source, /<main[^>]*id="main-content"/, page);
+    assert.match(source, /href="css\/theme\.css"/, page);
+    assert.match(source, /href="css\/components\.css"/, page);
+  }
+});
+
+test("priority pages use the shared display and body font contract", async () => {
+  for (const page of ["index.html", "lore.html", "objets-magiques.html", "services-montures-vehicules.html", "outils-aventurier.html"]) {
+    const source = await readFile(resolve(root, page), "utf8");
+    assert.match(source, /fonts\.googleapis\.com\/css\?family=Cinzel:600,700\|Source\+Sans\+3:400,600,700/, page);
+    assert.doesNotMatch(source, /fonts\.googleapis\.com\/css\?family=(?:Noto\+Sans|Lora)/, page);
+  }
+});
+
 test("dice statistics expose labeled controls, an accessible SVG, and exact-only calculations", async () => {
   const html = await readFile(resolve(root, "dice-stats.html"), "utf8");
   const script = await readFile(resolve(root, "js/dice-stats.js"), "utf8");

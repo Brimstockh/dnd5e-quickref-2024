@@ -5,8 +5,10 @@ import test from "node:test";
 const page = await readFile(new URL("../services-montures-vehicules.html", import.meta.url), "utf8");
 const shell = await readFile(new URL("../js/site-shell.js", import.meta.url), "utf8");
 const tools = await readFile(new URL("../outils-aventurier.html", import.meta.url), "utf8");
+const sharedStyles = await readFile(new URL("../css/tools-services.css", import.meta.url), "utf8");
 const worker = await readFile(new URL("../service-worker.js", import.meta.url), "utf8");
 const search = JSON.parse(await readFile(new URL("../data/search-index.json", import.meta.url), "utf8"));
+const home = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
 function sectionBetween(startMarker, endMarker = "") {
   const start = page.indexOf(startMarker);
@@ -22,6 +24,10 @@ test("services page exposes the shared shell and stable section anchors", () => 
   assert.match(page, /data-library-category="Équipement"/);
   assert.match(page, /data-library-description="Montures, véhicules, voyages et services D&amp;D 2024"/);
   assert.match(page, /<header data-site-header data-active="services"><\/header>/);
+  assert.match(page, /href="css\/tools-services\.css"/);
+  assert.match(page, /<a class="skip-link" href="#main-content">Aller au contenu<\/a>/);
+  assert.match(page, /<main class="page" id="main-content">/);
+  assert.doesNotMatch(page, /<style[\s>]/i);
   assert.match(page, /<h1>Services, montures et véhicules<\/h1>/);
 
   for (const id of [
@@ -38,6 +44,13 @@ test("navigation, search indexing, and PWA precache include the page", () => {
   assert.match(tools, /href="services-montures-vehicules\.html"/);
   assert.match(worker, /"\.\/services-montures-vehicules\.html"/);
   assert.ok(search.entries.some((entry) => entry.url === "services-montures-vehicules.html"));
+});
+
+test("the home dashboard exposes the multiverse index and equipment services", () => {
+  assert.match(home, /<h2>Univers<\/h2>/);
+  assert.match(home, /href="lore\.html"/);
+  assert.match(home, /href="faerun\.html"/);
+  assert.match(home, /href="services-montures-vehicules\.html"/);
 });
 
 test("mounts, barding, saddles, and drawn vehicles retain PH2024 values", () => {
@@ -91,6 +104,7 @@ test("large vehicle rules and the seven vehicle records are complete", () => {
   assert.match(page, /un cinquième[\s\S]{0,180}5 pa par jour[\s\S]{0,120}2 po par jour/);
   assert.match(page, /1 PV[\s\S]{0,100}1 jour[\s\S]{0,100}20 po/);
   assert.match(page, /divisés par deux/);
+  assert.match(sharedStyles, /vehicle-table th:first-child/);
 });
 
 test("services tables retain every lifestyle, travel, hireling, and spellcasting tier", () => {
