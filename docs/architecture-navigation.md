@@ -29,7 +29,7 @@ Une page publique ne doit pas redéfinir indépendamment la liste des espaces ou
 3. Ajouter un matcher `matches` si la page possède des enfants partageant la même entrée de navigation.
 4. Ajouter un `data-library-section` explicite seulement si la page possède une représentation locale particulière ; les pages canoniques sont classées automatiquement par leur URL.
 5. Si la page contient un contenu indexable qui n’est pas déjà couvert par les familles de données, l’ajouter à `scripts/build-search-index.mjs`.
-5. Régénérer puis vérifier les index :
+6. Régénérer puis vérifier les index :
 
 ```text
 npm run build:search
@@ -40,6 +40,16 @@ npm run check:inventory
 ```
 
 7. Ajouter la page à la liste de précache de `service-worker.js` si elle doit être disponible hors connexion comme les autres pages principales, puis incrémenter `CACHE_VERSION`.
+
+## Métadonnées de recherche
+
+Les trois métadonnées ont des responsabilités distinctes :
+
+- `section` désigne l’espace fonctionnel principal : `Règles`, `Compendium`, `Création`, `Univers` ou `Ma table` ;
+- `category` désigne la famille éditoriale précise, par exemple `Sort`, `Monstre`, `Classe`, `Glossaire` ou `Règle de campagne` ;
+- `type` désigne la nature structurelle de l’entrée indexée, par exemple `page`, `spell`, `monster`, `class`, `class-feature`, `glossary` ou `campaign-rule`.
+
+Les entrées de `SITE_SECTIONS` décrivent uniquement des pages de navigation et utilisent donc toujours `type: "page"`. Le contenu profond conserve son type spécialisé : `Sorts` est `section: Compendium`, `category: Sort`, `type: page`, tandis que `Boule de feu` est `section: Compendium`, `category: Sort`, `type: spell`.
 
 ## Accueil et hubs
 
