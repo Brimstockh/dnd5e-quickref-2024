@@ -28,11 +28,11 @@
     "tool": 25
   },
   "bySection": {
+    "Règles": 321,
     "Compendium": 1379,
     "Création": 695,
-    "Ma table": 6,
-    "Règles": 321,
-    "Univers": 82
+    "Univers": 82,
+    "Ma table": 6
   },
   "pages": [
     "armes-armures.html",

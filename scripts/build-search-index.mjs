@@ -374,7 +374,7 @@ const pageDefinitions = SITE_SECTIONS.flatMap((section) => section.links.map((en
   title: entry.label,
   section: section.label,
   category: entry.category || "Page",
-  type: entry.type || "page",
+  type: "page",
   contentId: entry.contentId || "",
   url: entry.url,
   description: entry.description,

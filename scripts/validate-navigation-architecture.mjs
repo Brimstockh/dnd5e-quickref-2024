@@ -55,12 +55,17 @@ for (const section of SITE_SECTIONS) {
 for (const { section, entry } of entries) {
   if (!entry.matches.includes(entry.url)) errors.push(`${section.id}.${entry.id} does not match its canonical URL`);
   if (!entry.category || !entry.type) errors.push(`${section.id}.${entry.id} is missing search metadata`);
+  if (entry.type !== "page") errors.push(`${section.id}.${entry.id} must describe a page, not ${entry.type}`);
 }
 
 const home = await readFile(resolve(root, "index.html"), "utf8");
 if (!home.includes('data-site-explorer')) errors.push("index.html is missing the canonical site explorer mount");
 
 const inventory = JSON.parse(await readFile(resolve(root, "data/content-inventory.json"), "utf8"));
+const expectedInventorySections = SITE_SECTIONS.map(({ label }) => label);
+if (JSON.stringify(Object.keys(inventory.bySection || {})) !== JSON.stringify(expectedInventorySections)) {
+  errors.push(`inventory sections must be exactly: ${expectedInventorySections.join(", ")}`);
+}
 const inventoryUrls = new Set(inventory.pages || []);
 for (const url of new Set(urls)) {
   if (!inventoryUrls.has(url)) errors.push(`navigation URL is absent from content inventory: ${url}`);

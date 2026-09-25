@@ -11,7 +11,9 @@ const [primaryIndex, deepIndex] = await Promise.all([
 ]);
 const index = { entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])] };
 const byType = {};
-const bySection = {};
+const sectionLabels = SITE_SECTIONS.map(({ label }) => label);
+const allowedSections = new Set(sectionLabels);
+const bySection = Object.fromEntries(sectionLabels.map((label) => [label, 0]));
 const seen = new Set();
 const duplicateIds = [];
 const invalidUrls = [];
@@ -19,7 +21,10 @@ const incompleteEntries = [];
 
 for (const entry of index.entries || []) {
   byType[entry.type] = (byType[entry.type] || 0) + 1;
-  if (entry.section) bySection[entry.section] = (bySection[entry.section] || 0) + 1;
+  if (entry.section && !allowedSections.has(entry.section)) {
+    throw new Error(`Unknown search section: ${entry.section} (${entry.id})`);
+  }
+  if (entry.section) bySection[entry.section] += 1;
   if (seen.has(entry.id)) duplicateIds.push(entry.id);
   seen.add(entry.id);
   if (!entry.url || /^(?:javascript|data):/i.test(entry.url)) invalidUrls.push(entry.id);
@@ -36,7 +41,7 @@ const inventory = {
   schemaVersion: 1,
   count: index.entries?.length || 0,
   byType: Object.fromEntries(Object.entries(byType).sort(([left], [right]) => left.localeCompare(right))),
-  bySection: Object.fromEntries(Object.entries(bySection).sort(([left], [right]) => left.localeCompare(right, "fr"))),
+  bySection,
   pages,
   navigation,
   quality: { duplicateIds, invalidUrls, incompleteEntries },
