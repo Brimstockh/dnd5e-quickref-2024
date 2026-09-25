@@ -97,17 +97,17 @@
 .home-explorer-panel { grid-column: span 4; min-width: 0; overflow: hidden; }
 .home-explorer-panel--universe,
 .home-explorer-panel--table { grid-column: span 6; }
-.home-explorer-panel .dashboard-panel__heading { align-items: start; }
-.home-explorer-panel .dashboard-panel__heading h3 { margin: 0; color: var(--color-gold-bright); font-family: var(--font-display); font-size: 1.02rem; letter-spacing: 0.035em; text-transform: uppercase; }
-.home-explorer-panel > p { margin: 0; padding: 0.7rem 1rem 0.2rem; color: var(--color-text-muted); font-size: 0.84rem; }
+.home-explorer-panel__visual { min-height: 13.5rem; border-bottom: 1px solid var(--color-border); border-top: 2px solid var(--section-accent); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.home-explorer-panel__visual .section-visual__overlay { background: linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 68%) 46%, rgb(10 9 8 / 22%) 100%); }
+.home-explorer-panel__visual .section-visual__content { display: flex; min-height: 13.5rem; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 1rem; }
+.home-explorer-panel__visual .section-visual__icon { display: none; }
+.home-explorer-panel__visual .section-visual__title { font-size: 1.08rem; }
+.home-explorer-panel__visual .section-visual__description { max-width: 28rem; margin: 0.35rem 0 0; font-size: 0.84rem; }
+.home-explorer-panel__visual .section-visual__action { margin-top: 0.65rem; border: 1px solid color-mix(in srgb, var(--section-accent) 58%, transparent); }
+.home-explorer-panel__visual .section-visual__action:hover,
+.home-explorer-panel__visual .section-visual__action:focus-visible { color: var(--color-text); background: color-mix(in srgb, var(--section-accent) 24%, transparent); }
 .home-explorer-panel .resource-list { padding-top: 0.2rem; }
 .home-explorer-panel .resource-row__link { padding-left: 0.1rem; }
-
-.home-explorer-panel--rules { border-top: 2px solid #6f91aa; }
-.home-explorer-panel--compendium { border-top: 2px solid #809b65; }
-.home-explorer-panel--creation { border-top: 2px solid #b38a45; }
-.home-explorer-panel--universe { border-top: 2px solid #98778f; }
-.home-explorer-panel--table { border-top: 2px solid #a14b42; }
 
 .quick-access-grid {
     display: grid;
@@ -370,6 +370,8 @@
     .hero-search kbd { display: none; }
     .resource-list,
     .library-list { padding-inline: 0.7rem; }
+    .home-explorer-panel__visual,
+    .home-explorer-panel__visual .section-visual__content { min-height: 9.5rem; }
 }
 
 @media (max-width: 420px) {

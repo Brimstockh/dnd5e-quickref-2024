@@ -21,6 +21,55 @@
 .ornate-divider,
 .arcane-background { isolation: isolate; }
 
+.section-theme {
+    --section-accent: var(--color-gold);
+    --section-artwork-position: center;
+}
+
+.section-visual {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.section-visual__artwork,
+.section-visual__overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.section-visual__artwork {
+    z-index: -2;
+    background-image: var(--section-artwork);
+    background-position: var(--section-artwork-position);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scale(1.01);
+    transition: transform 280ms ease;
+}
+
+.section-visual__overlay {
+    z-index: -1;
+    background: linear-gradient(90deg, rgb(10 9 8 / 94%) 0%, rgb(10 9 8 / 64%) 50%, rgb(10 9 8 / 22%) 100%);
+}
+
+.section-visual__content { position: relative; z-index: 1; }
+.section-visual__icon { display: grid; width: 2.2rem; height: 2.2rem; place-items: center; color: var(--section-accent); border: 1px solid color-mix(in srgb, var(--section-accent) 70%, transparent); border-radius: 50%; }
+.section-visual__icon .icon { width: 1.15rem; height: 1.15rem; }
+.section-visual__eyebrow { margin: 0 0 0.35rem; color: color-mix(in srgb, var(--section-accent) 78%, white); font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.section-visual__title { margin: 0; color: var(--color-text); font-family: var(--font-display); letter-spacing: 0.045em; text-transform: uppercase; }
+.section-visual__description { color: var(--color-text-muted); }
+
+@media (hover: hover) and (pointer: fine) {
+    .section-visual:focus-within .section-visual__artwork,
+    .section-visual:hover .section-visual__artwork { transform: scale(1.035); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-visual__artwork { transition: none; transform: none; }
+}
+
 .site-header {
     position: sticky;
     top: 0;

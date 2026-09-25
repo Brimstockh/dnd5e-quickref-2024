@@ -963,6 +963,71 @@
         };
     }
 
+    function applySectionTheme(element, section) {
+        if (!element || !section) return;
+        element.classList.add("section-theme");
+        element.dataset.sectionId = section.id;
+        element.style.setProperty("--section-accent", section.accent || "var(--color-gold)");
+        if (section.artwork?.src) {
+            element.style.setProperty("--section-artwork", "url(" + JSON.stringify(pageUrl(section.artwork.src)) + ")");
+        }
+        element.style.setProperty("--section-artwork-position", section.artwork?.position || "center");
+    }
+
+    function createSectionVisual(section) {
+        var visual = doc.createElement("div");
+        var artwork = doc.createElement("div");
+        var overlay = doc.createElement("div");
+        var content = doc.createElement("div");
+        var icon = doc.createElement("span");
+        var eyebrow = doc.createElement("p");
+        var title = doc.createElement("h3");
+        var description = doc.createElement("p");
+        var action = doc.createElement("a");
+
+        visual.className = "section-visual home-explorer-panel__visual";
+        artwork.className = "section-visual__artwork";
+        overlay.className = "section-visual__overlay";
+        content.className = "section-visual__content";
+        icon.className = "section-visual__icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.appendChild(createIcon(section.icon || "rules"));
+        eyebrow.className = "section-visual__eyebrow";
+        eyebrow.textContent = "Espace du site";
+        title.className = "section-visual__title";
+        title.textContent = section.label;
+        description.className = "section-visual__description";
+        description.textContent = section.description;
+        action.className = "section-visual__action panel-action";
+        action.href = pageUrl(section.landing);
+        action.textContent = section.actionLabel;
+        content.append(icon, eyebrow, title, description, action);
+        visual.append(artwork, overlay, content);
+        applySectionTheme(visual, section);
+        return visual;
+    }
+
+    function enhanceCategoryHero(hero, section) {
+        if (!hero) return;
+        applySectionTheme(hero, section);
+        hero.classList.add("section-visual");
+        if (!hero.querySelector(".section-visual__artwork")) {
+            var artwork = doc.createElement("div");
+            var overlay = doc.createElement("div");
+            var content = doc.createElement("div");
+            var icon = doc.createElement("span");
+            artwork.className = "section-visual__artwork";
+            overlay.className = "section-visual__overlay";
+            content.className = "section-visual__content";
+            icon.className = "section-visual__icon";
+            icon.setAttribute("aria-hidden", "true");
+            icon.appendChild(createIcon(section.icon || "rules"));
+            content.append(icon);
+            content.append(...Array.from(hero.childNodes));
+            hero.replaceChildren(artwork, overlay, content);
+        }
+    }
+
     function navigationEntryCard(section, entry, className) {
         var article = doc.createElement("article");
         var link = doc.createElement("a");
@@ -1017,23 +1082,10 @@
 
         groups.forEach(function (section) {
             var panel = doc.createElement("article");
-            var panelHead = doc.createElement("header");
-            var panelTitle = doc.createElement("h3");
-            var panelDescription = doc.createElement("p");
-            var action = doc.createElement("a");
             var list = doc.createElement("ul");
 
             panel.className = "dashboard-panel home-explorer-panel home-explorer-panel--" + section.id;
-            panelHead.className = "dashboard-panel__heading";
-            panelTitle.textContent = section.label;
-            panelDescription.textContent = section.description;
-            action.className = "panel-action";
-            action.href = pageUrl(section.landing);
-            action.textContent = section.id === "rules" ? "Explorer les règles"
-                : section.id === "compendium" ? "Ouvrir le compendium"
-                    : section.id === "creation" ? "Explorer la création"
-                        : section.id === "universe" ? "Explorer l’univers" : "Ouvrir Ma table";
-            panelHead.append(panelTitle, action);
+            applySectionTheme(panel, section);
             list.className = "resource-list";
             section.links.filter(function (entry) { return entry.url !== section.landing; }).forEach(function (entry) {
                 var item = navigationEntryCard(section, entry, "resource-row");
@@ -1044,7 +1096,7 @@
                 item.querySelector(".hub-card__chevron").className = "resource-row__chevron";
                 list.appendChild(item);
             });
-            panel.append(panelHead, panelDescription, list);
+            panel.append(createSectionVisual(section), list);
             grid.appendChild(panel);
         });
         host.replaceChildren(heading, grid);
@@ -1055,9 +1107,11 @@
         if (!main) return;
         var section = groups.find(function (candidate) { return candidate.id === main.dataset.categoryHub; });
         if (!section) return;
+        applySectionTheme(main, section);
         var title = main.querySelector("[data-category-hub-title]");
         var description = main.querySelector("[data-category-hub-description]");
         var content = main.querySelector("[data-category-hub-content]");
+        enhanceCategoryHero(main.querySelector(".category-hub__hero"), section);
         if (title) title.textContent = section.label;
         if (description) description.textContent = section.description;
         if (!content) return;
