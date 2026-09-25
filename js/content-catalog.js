@@ -323,6 +323,7 @@
                 var control = entry[1];
                 var button = document.createElement("button");
                 button.type = "button";
+                button.className = "filter-chip";
                 button.textContent = control.label + " : " + control.select.value + " ×";
                 button.addEventListener("click", function () { control.select.value = ""; apply(); });
                 chips.appendChild(button);

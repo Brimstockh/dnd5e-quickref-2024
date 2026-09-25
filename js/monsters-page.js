@@ -159,10 +159,14 @@
         select.insertAdjacentHTML("beforeend", values.map(option).join(""));
     }
 
-    function crLabel(monster) {
-        const xp = monster.xp ? `, ${monster.xp} PX` : "";
-        const pb = monster.pb ? `, BM ${monster.pb}` : "";
-        return `FP ${monster.cr || "-"}${xp}${pb}`;
+    function crChipLabel(monster) {
+        return `FP ${monster.cr || "-"}`;
+    }
+
+    function crSupportLabel(monster) {
+        return [monster.xp ? `${monster.xp} PX` : "", monster.pb ? `BM ${monster.pb}` : ""]
+            .filter(Boolean)
+            .join(" • ");
     }
 
     function optionSearchText(monster) {
@@ -343,7 +347,11 @@
                     <summary>
                         <header class="monster-head">
                             <h2 class="monster-title">${escapeHtml(displayName(monster))}</h2>
-                            <div class="monster-meta">${escapeHtml(typeLine)} • ${escapeHtml(crLabel(monster))}</div>
+                            <div class="monster-meta">
+                                <span class="meta-chip meta-chip--accent">${escapeHtml(crChipLabel(monster))}</span>
+                                <span class="monster-meta__details">${escapeHtml(typeLine)}</span>
+                                ${crSupportLabel(monster) ? `<span class="monster-meta__secondary">${escapeHtml(crSupportLabel(monster))}</span>` : ""}
+                            </div>
                         </header>
                     </summary>
                     <div class="monster-body" data-glossary-richtext>

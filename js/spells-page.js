@@ -90,8 +90,8 @@
                     <header class="catalog-card__head">
                         <h2 class="catalog-card__title">${escapeHtml(spell.name)}</h2>
                         <div class="catalog-card__badges">
-                            <span class="badge">${escapeHtml(levelLabel(spell.level))}</span>
-                            <span class="badge badge--muted">${escapeHtml(spell.school || "École inconnue")}</span>
+                            <span class="meta-chip meta-chip--accent">${escapeHtml(levelLabel(spell.level))}</span>
+                            <span class="meta-chip meta-chip--muted">${escapeHtml(spell.school || "École inconnue")}</span>
                         </div>
                         <div class="catalog-card__classes">${escapeHtml(classes)}</div>
                         <div class="catalog-card__quick-meta">
