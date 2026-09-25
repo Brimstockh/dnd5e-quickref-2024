@@ -51,6 +51,7 @@ test("continuous integration runs the complete recipe before publication", async
   const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
   const testsWorkflow = await readFile(resolve(root, ".github/workflows/tests.yml"), "utf8");
   const pagesWorkflow = await readFile(resolve(root, ".github/workflows/pages.yml"), "utf8");
+  const nodeVersion = await readFile(resolve(root, ".node-version"), "utf8");
 
   assert.match(packageJson.scripts["check:search"], /build-search-index\.mjs --check/);
   assert.match(packageJson.scripts["check:navigation"], /validate-navigation\.mjs/);
@@ -59,6 +60,9 @@ test("continuous integration runs the complete recipe before publication", async
   assert.match(packageJson.scripts.recette, /\bnpm test$/);
   assert.match(testsWorkflow, /npm run recette/);
   assert.match(pagesWorkflow, /npm run recette/);
+  assert.match(testsWorkflow, /node-version-file:\s*\.node-version/);
+  assert.match(pagesWorkflow, /node-version-file:\s*\.node-version/);
+  assert.equal(nodeVersion.trim(), "24");
   assert.match(pagesWorkflow, /actions\/configure-pages@/);
   assert.match(pagesWorkflow, /actions\/upload-pages-artifact@/);
   assert.match(pagesWorkflow, /actions\/deploy-pages@/);
