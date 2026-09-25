@@ -81,7 +81,9 @@ function searchable(entry) {
     original: String(alias),
     normalized: normalizeSearch(alias),
   }));
+  const section = normalizeSearch(entry.section);
   const category = normalizeSearch(entry.category || entry.group);
+  const type = normalizeSearch(entry.type);
   const keywords = normalizeSearch(Array.isArray(entry.keywords) ? entry.keywords.join(" ") : entry.keywords);
   const excerpt = normalizeSearch(entry.excerpt || entry.description);
   return {
@@ -89,7 +91,9 @@ function searchable(entry) {
     titleTokens: tokens(title),
     aliases,
     aliasTokens: aliases.flatMap(({ normalized }) => tokens(normalized)),
+    section,
     category,
+    type,
     keywords,
     keywordTokens: tokens(keywords),
     excerpt,
@@ -147,6 +151,12 @@ function evaluateSearchEntry(entry, query, options = {}) {
       } else if (fields.category === token || fields.category.split(" ").includes(token)) {
         score += 55;
         reason ||= "Catégorie";
+      } else if (fields.section === token || fields.section.split(" ").includes(token)) {
+        score += 45;
+        reason ||= "Espace";
+      } else if (fields.type === token || fields.type.split(" ").includes(token)) {
+        score += 40;
+        reason ||= "Type";
       } else if (fields.keywords.includes(token)) {
         score += 35;
         reason ||= "Mot-clé";
@@ -182,12 +192,14 @@ export function scoreSearchEntry(entry, query, options = {}) {
 
 export function searchEntries(entries, query, options = {}) {
   const parsed = parseSearchQuery(query);
+  const section = options.section || "";
   const category = options.category || parsed.category || "";
   const limit = Number.isFinite(options.limit) ? options.limit : 20;
   const boostIds = new Set(options.boostIds || []);
   const recentUrls = new Set(options.recentUrls || []);
 
   return entries
+    .filter((entry) => !section || entry.section === section)
     .filter((entry) => !category || (entry.category || entry.group) === category)
     .map((entry) => {
       const match = evaluateSearchEntry(entry, parsed.query, { boostIds, recentUrls });

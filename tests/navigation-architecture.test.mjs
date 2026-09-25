@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { SITE_SECTIONS } from "../js/site-navigation.js";
+import { navigationContextForPath, SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const expectedSections = ["rules", "compendium", "creation", "universe", "table"];
@@ -17,31 +17,90 @@ test("canonical navigation exposes exactly five sections and unique links", asyn
   assert.deepEqual(SITE_SECTIONS.map(({ id }) => id), expectedSections);
   assert.equal(new Set(SITE_SECTIONS.map(({ id }) => id)).size, SITE_SECTIONS.length);
 
-  const urls = links().map(({ entry }) => entry[2]);
+  const urls = links().map(({ entry }) => entry.url);
   assert.equal(new Set(urls).size, urls.length);
   for (const { section, entry } of links()) {
-    await access(resolve(root, entry[2].split(/[?#]/, 1)[0]));
-    assert.ok(section.links.some((candidate) => candidate[2] === section.landing), `${section.id} landing is not declared`);
+    await access(resolve(root, entry.url.split(/[?#]/, 1)[0]));
+    assert.ok(section.links.some((candidate) => candidate.url === section.landing), `${section.id} landing is not declared`);
+    assert.ok(entry.matches.includes(entry.url), `${section.id}/${entry.id} does not match its URL`);
+    assert.ok(entry.category && entry.type, `${section.id}/${entry.id} is missing metadata`);
+    for (const matcher of entry.matches.slice(1)) {
+      await access(resolve(root, matcher.replace(/\/+$/, "")));
+    }
   }
 });
 
 test("creation keeps its two visual groups and Ma table has no duplicate character sheet", () => {
   const creation = SITE_SECTIONS.find(({ id }) => id === "creation");
   assert.deepEqual(creation.groups.map(({ id }) => id), ["create", "options"]);
-  assert.deepEqual(creation.links.filter((entry) => entry[4] === "create").map((entry) => entry[0]), ["creator", "creation", "compare", "sheet"]);
-  assert.deepEqual(creation.links.filter((entry) => entry[4] === "options").map((entry) => entry[0]), ["classes", "species", "backgrounds", "feats"]);
+  assert.deepEqual(creation.links.filter((entry) => entry.group === "create").map((entry) => entry.id), ["creator", "creation", "compare", "sheet"]);
+  assert.deepEqual(creation.links.filter((entry) => entry.group === "options").map((entry) => entry.id), ["classes", "species", "backgrounds", "feats"]);
 
   const table = SITE_SECTIONS.find(({ id }) => id === "table");
-  assert.equal(table.links.some((entry) => entry[2] === "character-sheet-standalone.html"), false);
+  assert.equal(table.links.some((entry) => entry.url === "character-sheet-standalone.html"), false);
+});
+
+test("canonical resolution covers exact paths, child pages, and query strings", () => {
+  const expected = [
+    ["regles.html", "rules", "rules-hub"],
+    ["rules-2024.html", "rules", "rules"],
+    ["quickref.html", "rules", "quickref"],
+    ["spells.html?q=fireball", "compendium", "spells"],
+    ["outils-aventurier.html", "compendium", "adventuring-gear"],
+    ["classes/index.html", "creation", "classes"],
+    ["classes/class-barbarian.html", "creation", "classes"],
+    ["classes/class-wizard.html", "creation", "classes"],
+    ["races/index.html", "creation", "species"],
+    ["races/race-aasimar.html", "creation", "species"],
+    ["races/race-tieffelin.html", "creation", "species"],
+    ["html/characters.html", "table", "characters"],
+    ["html/character.html?c=corvum", "table", "characters"],
+    ["html/character-profile.html", "table", "characters"],
+    ["regles-campagne.html", "table", "campaign-rules"],
+  ];
+
+  for (const [path, sectionId, entryId] of expected) {
+    const context = navigationContextForPath(path);
+    assert.equal(context?.section.id, sectionId, path);
+    assert.equal(context?.entry.id, entryId, path);
+  }
+  assert.equal(navigationContextForPath("not-declared.html"), null);
+});
+
+test("declared HTML active identifiers agree with the canonical resolver", async () => {
+  const candidates = [
+    ...(await readdir(root, { withFileTypes: true }))
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
+      .map((entry) => entry.name),
+    ...(await Promise.all(["classes", "races", "html"].map(async (directory) => (
+      (await readdir(resolve(root, directory), { withFileTypes: true }))
+        .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
+        .map((entry) => `${directory}/${entry.name}`)
+    )))).flat(),
+  ];
+
+  for (const relativePath of candidates) {
+    const source = await readFile(resolve(root, relativePath), "utf8");
+    const active = source.match(/data-site-header[^>]*\bdata-active="([^"]+)"/)?.[1];
+    const context = navigationContextForPath(relativePath);
+    if (!active || !context) continue;
+    assert.equal(active, context.entry.id, `${relativePath}: legacy data-active diverges from canonical navigation`);
+  }
 });
 
 test("home, hubs, inventory, and offline cache expose the architecture", async () => {
   const home = await readFile(resolve(root, "index.html"), "utf8");
   const inventory = JSON.parse(await readFile(resolve(root, "data/content-inventory.json"), "utf8"));
+  const search = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
   const worker = await readFile(resolve(root, "service-worker.js"), "utf8");
 
   assert.match(home, /data-site-explorer/);
+  assert.equal([...home.matchAll(/class="quick-access-card\s/g)].length, 5);
+  assert.match(home, /data-site-explorer/);
   assert.deepEqual(inventory.navigation.sections.map(({ id }) => id), expectedSections);
+  assert.deepEqual(Object.keys(inventory.bySection).sort(), ["Compendium", "Création", "Ma table", "Règles", "Univers"]);
+  const spells = search.entries.find(({ url }) => url === "spells.html");
+  assert.deepEqual({ section: spells.section, category: spells.category, type: spells.type }, { section: "Compendium", category: "Sort", type: "page" });
   for (const section of SITE_SECTIONS) {
     const source = await readFile(resolve(root, section.landing), "utf8");
     assert.match(source, new RegExp(`data-category-hub="${section.id}"`));

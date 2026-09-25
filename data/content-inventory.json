@@ -27,6 +27,13 @@
     "subclass": 49,
     "tool": 25
   },
+  "bySection": {
+    "Compendium": 1379,
+    "Création": 695,
+    "Ma table": 6,
+    "Règles": 321,
+    "Univers": 82
+  },
   "pages": [
     "armes-armures.html",
     "assistant-creation.html",

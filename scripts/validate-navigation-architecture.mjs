@@ -7,10 +7,11 @@ const expectedIds = ["rules", "compendium", "creation", "universe", "table"];
 const errors = [];
 
 function navigationEntries() {
-  return SITE_SECTIONS.flatMap((section) => section.links.map((link) => ({
+  return SITE_SECTIONS.flatMap((section) => section.links.map((entry) => ({
     section,
-    url: link[2],
-    context: `${section.id}.${link[0]}`,
+    entry,
+    url: entry.url,
+    context: `${section.id}.${entry.id}`,
   })));
 }
 
@@ -35,10 +36,25 @@ for (const { context, url } of entries) {
     errors.push(`${context} targets a missing file: ${path}`);
   }
 }
+for (const { context, entry } of entries) {
+  for (const matcher of entry.matches.slice(1)) {
+    const target = String(matcher).replace(/\/+$/, "");
+    try {
+      await access(resolve(root, target));
+    } catch {
+      errors.push(`${context} matcher targets a missing path: ${target}`);
+    }
+  }
+}
 for (const section of SITE_SECTIONS) {
-  if (!section.links.some(([, , url]) => url === section.landing)) {
+  if (!section.links.some(({ url }) => url === section.landing)) {
     errors.push(`${section.id}.landing is not declared in its links`);
   }
+}
+
+for (const { section, entry } of entries) {
+  if (!entry.matches.includes(entry.url)) errors.push(`${section.id}.${entry.id} does not match its canonical URL`);
+  if (!entry.category || !entry.type) errors.push(`${section.id}.${entry.id} is missing search metadata`);
 }
 
 const home = await readFile(resolve(root, "index.html"), "utf8");
@@ -52,6 +68,9 @@ for (const url of new Set(urls)) {
 for (const section of SITE_SECTIONS) {
   if (!inventory.navigation?.sections?.some((candidate) => candidate.id === section.id && candidate.landing === section.landing)) {
     errors.push(`section is absent from content inventory: ${section.id}`);
+  }
+  if (!Object.prototype.hasOwnProperty.call(inventory.bySection || {}, section.label)) {
+    errors.push(`section is absent from inventory counts: ${section.label}`);
   }
 }
 

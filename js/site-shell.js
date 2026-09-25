@@ -40,6 +40,7 @@
     }
 
     var groups = [];
+    var navigationModule = null;
     var navigationLoading = null;
 
     function loadNavigation() {
@@ -47,6 +48,7 @@
         if (!navigationLoading) {
             navigationLoading = import(pageUrl("js/site-navigation.js"))
                 .then(function (module) {
+                    navigationModule = module;
                     groups = module.SITE_SECTIONS;
                     window.DndSiteNavigation = groups;
                     return groups;
@@ -391,7 +393,7 @@
 
             var groupedMenus = new Map();
             group.links.forEach(function (entry) {
-                var groupId = entry[4] || "";
+                var groupId = entry.group || "";
                 var target = groupedMenus.get(groupId);
                 if (!target) {
                     target = doc.createElement("div");
@@ -407,9 +409,9 @@
                     menu.appendChild(target);
                 }
                 var link = doc.createElement("a");
-                link.href = pageUrl(entry[2]);
-                link.textContent = entry[1];
-                if (entry[0] === activePage) {
+                link.href = pageUrl(entry.url);
+                link.textContent = entry.label;
+                if (entry.id === activePage) {
                     link.setAttribute("aria-current", "page");
                     groupIsActive = true;
                 }
@@ -437,12 +439,21 @@
 
     function searchEntries() {
         var seen = new Set();
-        var entries = [{ id: "home", title: "Accueil", path: "index.html", group: "Page", description: "Tableau de bord D&D 2024", isBase: true }];
+        var entries = [{ id: "home", title: "Accueil", path: "index.html", section: "Accueil", category: "Page", type: "page", description: "Tableau de bord D&D 2024", isBase: true }];
         groups.forEach(function (group) {
             group.links.forEach(function (entry) {
-                if (seen.has(entry[2])) return;
-                seen.add(entry[2]);
-                entries.push({ id: entry[0], title: entry[1], path: entry[2], group: group.label, description: entry[3], isBase: true });
+                if (seen.has(entry.url)) return;
+                seen.add(entry.url);
+                entries.push({
+                    id: entry.id,
+                    title: entry.label,
+                    path: entry.url,
+                    section: group.label,
+                    category: entry.category || "Page",
+                    type: entry.type || "page",
+                    description: entry.description,
+                    isBase: true,
+                });
             });
         });
         return entries;
@@ -460,7 +471,7 @@
         var footer = doc.createElement("div");
         var entries = searchEntries();
         var selectedIndex = 0;
-        var activeCategory = "";
+        var activeSection = "";
         var indexLoaded = false;
         var indexLoading = null;
         var deepIndexLoaded = false;
@@ -486,7 +497,7 @@
         results.className = "search-results";
         results.setAttribute("role", "listbox");
         filters.className = "search-dialog__filters";
-        filters.setAttribute("aria-label", "Filtrer les résultats par catégorie");
+        filters.setAttribute("aria-label", "Filtrer les résultats par espace");
         resultCount.className = "search-dialog__count";
         resultCount.setAttribute("role", "status");
         resultCount.setAttribute("aria-live", "polite");
@@ -511,7 +522,9 @@
                     id: String(entry.id || entry.url),
                     title: String(entry.title),
                     path: String(entry.url),
-                    group: String(entry.category || "Contenu"),
+                    section: String(entry.section || "Contenu"),
+                    category: String(entry.category || "Page"),
+                    type: String(entry.type || "page"),
                     description: String(entry.excerpt || ""),
                     aliases: Array.isArray(entry.aliases) ? entry.aliases : [],
                     keywords: Array.isArray(entry.keywords) ? entry.keywords.join(" ") : "",
@@ -561,7 +574,9 @@
                     id: "recent-" + index,
                     title: entry.title,
                     path: entry.url,
-                    group: entry.category || "Page",
+                    section: entry.section || "Page",
+                    category: entry.category || "Page",
+                    type: entry.type || "page",
                     description: entry.description || "Consulté récemment",
                     isRecent: true,
                     matchReason: "Consulté récemment",
@@ -588,9 +603,9 @@
                 var defaults = recentEntries().concat(entries.filter(function (entry) { return entry.isBase; }));
                 var seenPaths = new Set();
                 return defaults.filter(function (entry) {
-                    if (category && entry.group !== category) return false;
+                    if (category && entry.section !== category) return false;
                     var identity = entry.isRecent
-                        ? "recent|" + normalize(entry.group) + "|" + normalize(entry.title)
+                        ? "recent|" + normalize(entry.section) + "|" + normalize(entry.title)
                         : entry.path;
                     if (seenPaths.has(identity)) return false;
                     seenPaths.add(identity);
@@ -598,8 +613,8 @@
                 }).slice(0, limit);
             }
             return entries.filter(function (entry) {
-                if (category && entry.group !== category) return false;
-                var searchable = normalize([entry.title, entry.group, entry.description, entry.keywords].join(" "));
+                if (category && entry.section !== category) return false;
+                var searchable = normalize([entry.title, entry.section, entry.category, entry.type, entry.description, entry.keywords].join(" "));
                 return queryTokens.every(function (token) { return searchable.includes(token); });
             }).sort(function (first, second) {
                 function score(entry) {
@@ -617,7 +632,7 @@
             if (!engine || !input.value.trim()) return fallbackMatches(category, limit);
             var context = searchContext();
             return engine.searchEntries(entries, input.value, {
-                category: category,
+                section: category,
                 limit: limit,
                 boostIds: context.boostIds,
                 recentUrls: context.recentUrls,
@@ -626,27 +641,29 @@
             });
         }
 
-        function categoryCounts(matches) {
+        function sectionCounts(matches) {
             return matches.reduce(function (counts, entry) {
-                counts.set(entry.group, (counts.get(entry.group) || 0) + 1);
+                counts.set(entry.section, (counts.get(entry.section) || 0) + 1);
                 return counts;
             }, new Map());
         }
 
         function renderFilters(matches) {
-            var counts = categoryCounts(matches);
-            if (activeCategory && !counts.has(activeCategory)) activeCategory = "";
+            var counts = sectionCounts(matches);
+            if (activeSection && !counts.has(activeSection)) activeSection = "";
             filters.replaceChildren();
-            [["", "Tout", matches.length]].concat(Array.from(counts.entries()).sort(function (first, second) {
-                return second[1] - first[1] || first[0].localeCompare(second[0], "fr");
-            }).map(function (entry) { return [entry[0], entry[0], entry[1]]; })).forEach(function (definition) {
+            var definitions = [["", "Tout", matches.length]];
+            groups.forEach(function (group) {
+                if (counts.has(group.label)) definitions.push([group.label, group.label, counts.get(group.label)]);
+            });
+            definitions.forEach(function (definition) {
                 var button = doc.createElement("button");
                 button.type = "button";
                 button.className = "search-dialog__filter";
                 button.textContent = definition[1] + " " + definition[2];
-                button.setAttribute("aria-pressed", String(activeCategory === definition[0]));
+                button.setAttribute("aria-pressed", String(activeSection === definition[0]));
                 button.addEventListener("click", function () {
-                    activeCategory = definition[0];
+                    activeSection = definition[0];
                     selectedIndex = 0;
                     render();
                     input.focus();
@@ -659,12 +676,12 @@
             var allMatches = matchingEntries("", input.value.trim() ? 3000 : 30);
             var parsed = engine ? engine.parseSearchQuery(input.value) : { command: "", query: input.value };
             renderFilters(allMatches);
-            var matches = activeCategory ? matchingEntries(activeCategory, 24) : allMatches.slice(0, 24);
-            var total = activeCategory ? allMatches.filter(function (entry) { return entry.group === activeCategory; }).length : allMatches.length;
+            var matches = activeSection ? matchingEntries(activeSection, 24) : allMatches.slice(0, 24);
+            var total = activeSection ? allMatches.filter(function (entry) { return entry.section === activeSection; }).length : allMatches.length;
             selectedIndex = Math.min(selectedIndex, Math.max(matches.length - 1, 0));
             results.replaceChildren();
             resultCount.textContent = total + " résultat" + (total > 1 ? "s" : "")
-                + (activeCategory ? " · " + activeCategory : "")
+                + (activeSection ? " · " + activeSection : "")
                 + (parsed.command ? " · commande " + parsed.command : "");
             if (!matches.length) {
                 var empty = doc.createElement("li");
@@ -703,7 +720,7 @@
                 }
                 appendHighlightedText(title, entry.title);
                 category.className = "search-result__category";
-                category.textContent = entry.group;
+                category.textContent = entry.section + (entry.category && entry.category !== entry.section ? " — " + entry.category : "");
                 appendHighlightedText(meta, entry.description || "Ouvrir cette entrée");
                 reason.className = "search-result__reason";
                 reason.textContent = entry.matchReason || (entry.isRecent ? "Consulté récemment" : "Contenu du site");
@@ -741,12 +758,12 @@
 
         input.addEventListener("input", function () {
             selectedIndex = 0;
-            activeCategory = "";
+            activeSection = "";
             loadDeepIndex();
             render();
         });
         input.addEventListener("keydown", function (event) {
-            var matches = matchingEntries(activeCategory, 24);
+            var matches = matchingEntries(activeSection, 24);
             if (event.key === "ArrowDown" && matches.length) {
                 event.preventDefault();
                 selectedIndex = (selectedIndex + 1) % matches.length;
@@ -794,7 +811,7 @@
             button.addEventListener("click", function () {
                 input.value = definition[0] + " ";
                 selectedIndex = 0;
-                activeCategory = "";
+                activeSection = "";
                 render();
                 input.focus();
             });
@@ -944,7 +961,7 @@
         var article = doc.createElement("article");
         var link = doc.createElement("a");
         var icon = doc.createElement("span");
-        var iconSvg = createIcon(entry[5] || section.icon || "rules");
+        var iconSvg = createIcon(entry.icon || section.icon || "rules");
         var text = doc.createElement("span");
         var title = doc.createElement("strong");
         var description = doc.createElement("small");
@@ -953,18 +970,18 @@
 
         article.className = className || "hub-card";
         article.dataset.libraryItem = "";
-        article.dataset.libraryUrl = entry[2];
-        article.dataset.libraryTitle = entry[1];
+        article.dataset.libraryUrl = entry.url;
+        article.dataset.libraryTitle = entry.label;
         article.dataset.libraryCategory = section.label;
         article.dataset.librarySection = section.label;
-        article.dataset.libraryDescription = entry[3];
+        article.dataset.libraryDescription = entry.description;
         link.className = "hub-card__link";
-        link.href = pageUrl(entry[2]);
+        link.href = pageUrl(entry.url);
         icon.className = "hub-card__icon";
         icon.setAttribute("aria-hidden", "true");
         icon.appendChild(iconSvg);
-        title.textContent = entry[1];
-        description.textContent = entry[3];
+        title.textContent = entry.label;
+        description.textContent = entry.description;
         text.className = "hub-card__text";
         text.append(title, description);
         chevron.className = "hub-card__chevron";
@@ -1012,7 +1029,7 @@
                         : section.id === "universe" ? "Explorer l’univers" : "Ouvrir Ma table";
             panelHead.append(panelTitle, action);
             list.className = "resource-list";
-            section.links.filter(function (entry) { return entry[2] !== section.landing; }).forEach(function (entry) {
+            section.links.filter(function (entry) { return entry.url !== section.landing; }).forEach(function (entry) {
                 var item = navigationEntryCard(section, entry, "resource-row");
                 var link = item.querySelector("a");
                 link.className = "resource-row__link";
@@ -1041,8 +1058,8 @@
 
         content.replaceChildren();
         var grouped = new Map();
-        section.links.filter(function (entry) { return entry[2] !== section.landing; }).forEach(function (entry) {
-            var groupId = entry[4] || "";
+        section.links.filter(function (entry) { return entry.url !== section.landing; }).forEach(function (entry) {
+            var groupId = entry.group || "";
             if (!grouped.has(groupId)) grouped.set(groupId, []);
             grouped.get(groupId).push(entry);
         });
@@ -1064,10 +1081,9 @@
 
     function applyCanonicalPageSection() {
         var currentPath = window.location.pathname.slice(siteRoot.pathname.length) || "index.html";
-        var section = groups.find(function (candidate) {
-            return candidate.links.some(function (entry) { return entry[2] === currentPath; });
-        });
-        if (section) doc.body.dataset.librarySection = section.label;
+        var context = navigationModule?.navigationContextForPath(currentPath);
+        if (context?.section) doc.body.dataset.librarySection = context.section.label;
+        return context;
     }
 
     function init() {
@@ -1083,8 +1099,8 @@
         var mount = doc.querySelector("[data-site-header]");
         if (!mount) return;
 
-        applyCanonicalPageSection();
-        var activePage = mount.getAttribute("data-active") || "";
+        var navigationContext = applyCanonicalPageSection();
+        var activePage = navigationContext?.entry?.id || mount.getAttribute("data-active") || "";
         ensureSkipLink(mount);
         enhanceFormAccessibility();
         var inner = doc.createElement("div");

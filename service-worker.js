@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v19";
+const CACHE_VERSION = "dnd-companion-v20";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,

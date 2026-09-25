@@ -335,6 +335,9 @@ test("the home dashboard exposes quick access and personal library regions", asy
   assert.doesNotMatch(source, /quick-access-card__action[\s\S]{0,160}#chevron-down/);
   assert.match(source, /data-site-explorer/);
   assert.match(styles, /home-explorer-grid/);
+  assert.match(styles, /\.quick-access-grid[\s\S]*repeat\(5, minmax\(0, 1fr\)\)/);
+  assert.match(styles, /\.home-explorer-panel \{ grid-column: span 4/);
+  assert.match(styles, /\.home-explorer-panel--universe,[\s\S]*\.home-explorer-panel--table \{ grid-column: span 6/);
   for (const card of source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)) {
     assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
   }

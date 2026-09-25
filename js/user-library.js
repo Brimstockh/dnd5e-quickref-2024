@@ -152,6 +152,10 @@
         return /^(?:https?:|mailto:)/.test(value) ? value : new URL(value, siteRoot).href;
     }
 
+    function canonicalSectionForUrl(value) {
+        return navigationModule?.navigationSectionForPath(relativeUrl(value)) || "";
+    }
+
     function createIcon(name) {
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
@@ -165,18 +169,21 @@
     }
 
     function cleanEntry(entry) {
+        var canonicalSection = canonicalSectionForUrl(entry.url);
+        var category = String(canonicalSection || entry.category || "Page").trim();
         return {
             url: relativeUrl(entry.url),
             title: String(entry.title || "Page sans titre").trim(),
-            category: String(entry.category || "Page").trim(),
+            section: String(canonicalSection || entry.section || category).trim(),
+            category: category,
             description: String(entry.description || "").trim(),
             visitedAt: Number(entry.visitedAt) || Date.now(),
         };
     }
 
     function currentEntry() {
-        var section = document.body.dataset.librarySection
-            || navigationModule?.navigationSectionForPath(relativeUrl(window.location.href))
+        var section = canonicalSectionForUrl(window.location.href)
+            || document.body.dataset.librarySection
             || document.body.dataset.libraryCategory
             || "Page";
         return cleanEntry({
@@ -348,12 +355,13 @@
     }
 
     function entryFromElement(element) {
-        var section = element.dataset.librarySection
-            || navigationModule?.navigationSectionForPath(element.dataset.libraryUrl || element.querySelector("a")?.href)
+        var url = element.dataset.libraryUrl || element.querySelector("a")?.href || window.location.href;
+        var section = canonicalSectionForUrl(url)
+            || element.dataset.librarySection
             || element.dataset.libraryCategory
             || "Page";
         return cleanEntry({
-            url: element.dataset.libraryUrl || element.querySelector("a")?.href || window.location.href,
+            url: url,
             title: element.dataset.libraryTitle || element.querySelector("strong")?.textContent || document.title,
             category: section,
             description: element.dataset.libraryDescription || element.querySelector("small")?.textContent || "",

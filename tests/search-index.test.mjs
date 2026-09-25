@@ -28,12 +28,15 @@ test("global search entries expose stable canonical IDs and compatibility aliase
   assert.equal(ids.size, index.entries.length);
   for (const entry of index.entries) {
     assert.match(entry.id, new RegExp(`^${entry.type}-[a-z0-9]`));
+    assert.ok(["Règles", "Compendium", "Création", "Univers", "Ma table"].includes(entry.section));
+    assert.equal(typeof entry.category, "string");
     assert.equal(Array.isArray(entry.aliases), true);
     assert.equal(Array.isArray(entry.keywords), true);
   }
 
   const fireball = index.entries.find((entry) => entry.title === "Boule de feu" && entry.category === "Sort");
   assert.equal(fireball.id, "spell-boule-de-feu");
+  assert.equal(fireball.section, "Compendium");
   assert.ok(fireball.aliases.includes("Fireball"));
 });
 
