@@ -214,7 +214,7 @@ test("the visual asset system is local, complete, and lightweight", async () => 
 });
 
 test("featured content pages expose shared illustrated HTML page features", async () => {
-  const styles = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  const styles = await readFile(resolve(root, "css/components.css"), "utf8");
   const cases = [
     ["classes/index.html", "classes", "Classes", "Création de personnage"],
     ["rules-2024.html", "rules", "Règles du jeu", "Référence D&amp;D 2024"],
@@ -223,7 +223,7 @@ test("featured content pages expose shared illustrated HTML page features", asyn
 
   for (const [page, modifier, title, eyebrow] of cases) {
     const source = await readFile(resolve(root, page), "utf8");
-    const feature = source.match(new RegExp(`<section class="page-feature page-feature--${modifier}"[\\s\\S]*?</section>`));
+    const feature = source.match(new RegExp(`<section class="page-feature[^\"]*page-feature--${modifier}[^\"]*"[\\s\\S]*?</section>`));
     assert.ok(feature, `${page}: missing shared page feature`);
     assert.match(feature[0], new RegExp(`<h1[^>]*>${title}</h1>`));
     assert.ok(feature[0].includes(eyebrow));
@@ -236,6 +236,30 @@ test("featured content pages expose shared illustrated HTML page features", asyn
   for (const asset of ["classes-heroes.webp", "rules-game-table.webp", "faerun-city.webp"]) {
     assert.ok((await readFile(resolve(root, "assets/images", asset))).length > 0, `missing ${asset}`);
   }
+});
+
+test("level-two catalog pages share the compact page feature contract", async () => {
+  const cases = [
+    ["classes/index.html", "classes", "Création de personnage", "classes", "classes-heroes.webp"],
+    ["spells.html", "compendium", "Compendium", "spells"],
+    ["monstres.html", "compendium", "Compendium", "monsters"],
+  ];
+  const styles = await readFile(resolve(root, "css/components.css"), "utf8");
+
+  for (const [page, theme, eyebrow, icon, artwork] of cases) {
+    const source = await readFile(resolve(root, page), "utf8");
+    const feature = source.match(/<section class="page-feature [^"]*page-feature--compact[^"]*"[\s\S]*?<\/section>/);
+    assert.ok(feature, `${page}: missing compact page feature`);
+    assert.equal((feature[0].match(/<h1\b/gi) || []).length, 1, `${page}: compact feature must own one h1`);
+    assert.ok(feature[0].includes(`page-feature--${theme}`) || page === "classes/index.html", `${page}: missing section theme`);
+    assert.ok(feature[0].includes(`site-icons.svg#${icon}`), `${page}: missing content icon`);
+    assert.ok(feature[0].includes(eyebrow), `${page}: missing section eyebrow`);
+    if (artwork) assert.ok(styles.includes(artwork), `${page}: missing declared artwork`);
+  }
+
+  assert.match(styles, /\.page-feature--compact[\s\S]*var\(--overlay-feature-compact\)/);
+  assert.match(styles, /\.page-feature--classes[\s\S]*var\(--section-creation\)/);
+  assert.match(styles, /\.page-feature--compendium[\s\S]*var\(--section-compendium\)/);
 });
 
 test("critical pages do not reference missing local files", async () => {

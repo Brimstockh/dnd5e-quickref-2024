@@ -59,7 +59,7 @@ test("illustrated surfaces share readable text, artwork, overlay, and motion tok
   const theme = await readFile(resolve(root, "css/theme.css"), "utf8");
   const components = await readFile(resolve(root, "css/components.css"), "utf8");
   const hubs = await readFile(resolve(root, "css/category-hubs.css"), "utf8");
-  const content = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  const content = await readFile(resolve(root, "css/components.css"), "utf8");
 
   for (const token of ["--visual-text", "--visual-text-muted", "--overlay-feature-hero", "--overlay-feature-card", "--overlay-feature-compact"]) {
     assert.match(theme, new RegExp(`${token}\\s*:`), token);

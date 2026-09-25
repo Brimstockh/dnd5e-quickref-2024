@@ -51,9 +51,11 @@ Les cinq espaces canoniques déclarent aussi leur identité visuelle dans `js/si
 
 Les couleurs officielles sont `#6f91aa` pour Règles, `#809b65` pour Compendium, `#b38a45` pour Création, `#98778f` pour Univers et `#a14b42` pour Ma table. L’accueil et les cinq hubs projettent ces propriétés via les variables CSS `--section-accent`, `--section-artwork` et `--section-artwork-position`.
 
-Les surfaces illustrées utilisent une palette locale claire (`--visual-text`, `--visual-text-muted`, `--visual-text-subtle`) indépendante du thème global. `section-visual` sert aux cartes de sections et aux hubs ; `page-feature` conserve son layout éditorial propre, mais partage ces tokens, les positions d’artwork et trois intentions d’overlay (`hero`, `card`, `compact`). La hiérarchie visuelle préparée pour la Passe D est : espace immersif, catalogue/famille avec hero compact, puis entrée individuelle avec illustration spécifique si disponible.
+Les surfaces illustrées utilisent une palette locale claire (`--visual-text`, `--visual-text-muted`, `--visual-text-subtle`) indépendante du thème global. `section-visual` sert aux cartes de sections et aux hubs ; `page-feature` conserve son layout éditorial propre, mais partage ces tokens, les positions d’artwork et trois intentions d’overlay (`hero`, `card`, `compact`). La hiérarchie visuelle est : espace immersif, catalogue/famille avec `page-feature--compact`, puis entrée individuelle avec illustration spécifique si disponible.
 
-Les trois pages pilotes de la Passe D sont `classes/index.html`, `spells.html` et `monstres.html`. Classes réutilisera `classes-heroes.webp` comme hero spécialisé de Création ; Sorts et Monstres conserveront leurs interfaces denses et pourront recevoir un hero compact basé sur le thème Compendium, sans étendre l’artwork du hub à chaque ligne de catalogue.
+La Passe D pilote ce contrat sur `classes/index.html`, `spells.html` et `monstres.html`. Classes réutilise `classes-heroes.webp` comme hero compact spécialisé de Création ; Sorts et Monstres partagent le hero compact Compendium, avec leurs icônes respectives et un fond atmosphérique CSS sans nouvelle illustration. Les recherches, filtres, résultats et chargements progressifs restent indépendants du hero.
+
+Pour la généralisation future, chaque page de niveau 2 combine une classe de section (`page-feature--classes` ou `page-feature--compendium`) avec `page-feature--compact`. L’accent vient de l’espace ; le titre, l’icône et l’éventuel artwork portent l’identité du contenu. Ce contrat pourra ensuite être appliqué à Espèces, Historiques, Dons, Objets magiques et Équipement après validation des trois pilotes.
 
 ## Métadonnées de recherche
 
