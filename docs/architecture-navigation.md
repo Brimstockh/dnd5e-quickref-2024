@@ -41,6 +41,16 @@ npm run check:inventory
 
 7. Ajouter la page à la liste de précache de `service-worker.js` si elle doit être disponible hors connexion comme les autres pages principales, puis incrémenter `CACHE_VERSION`.
 
+## Identité visuelle des espaces
+
+Les cinq espaces canoniques déclarent aussi leur identité visuelle dans `js/site-navigation.js` :
+
+- `artwork.src` et `artwork.position` définissent l’illustration et son cadrage ;
+- `accent` définit la couleur de section ;
+- `actionLabel` définit le CTA de l’accueil.
+
+Les couleurs officielles sont `#6f91aa` pour Règles, `#809b65` pour Compendium, `#b38a45` pour Création, `#98778f` pour Univers et `#a14b42` pour Ma table. L’accueil et les cinq hubs projettent ces propriétés via les variables CSS `--section-accent`, `--section-artwork` et `--section-artwork-position`.
+
 ## Métadonnées de recherche
 
 Les trois métadonnées ont des responsabilités distinctes :

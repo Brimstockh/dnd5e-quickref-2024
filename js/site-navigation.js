@@ -31,13 +31,16 @@ function entry({
     });
 }
 
-function section({ id, label, description, landing, icon, groups = [], links }) {
+function section({ id, label, description, landing, icon, artwork, accent, actionLabel, groups = [], links }) {
     return Object.freeze({
         id,
         label,
         description,
         landing,
         icon,
+        artwork: Object.freeze({ ...artwork }),
+        accent,
+        actionLabel,
         groups: Object.freeze(groups.map((group) => Object.freeze({ ...group }))),
         links: Object.freeze(links),
     });
@@ -50,6 +53,9 @@ export const SITE_SECTIONS = Object.freeze([
         description: "Comprendre et appliquer les règles du jeu.",
         landing: "regles.html",
         icon: "rules",
+        artwork: { src: "assets/images/rules-game-table.webp", position: "center 45%" },
+        accent: "#6f91aa",
+        actionLabel: "Explorer les règles",
         links: [
             entry({ id: "rules-hub", label: "Explorer les règles", url: "regles.html", description: "Le point d’entrée des règles du jeu.", icon: "rules", category: "Règle" }),
             entry({ id: "quickref", label: "Référence rapide", url: "quickref.html", description: "Actions, conditions et environnement", icon: "quick-reference", category: "Règle", contentId: "page-reference-rapide" }),
@@ -65,6 +71,9 @@ export const SITE_SECTIONS = Object.freeze([
         description: "Consulter les ressources et catalogues du jeu.",
         landing: "compendium.html",
         icon: "spells",
+        artwork: { src: "assets/images/compendium-library.webp", position: "center 42%" },
+        accent: "#809b65",
+        actionLabel: "Ouvrir le compendium",
         links: [
             entry({ id: "compendium-hub", label: "Ouvrir le compendium", url: "compendium.html", description: "Les ressources et catalogues de D&D 2024.", icon: "spells", category: "Compendium" }),
             entry({ id: "spells", label: "Sorts", url: "spells.html", description: "Catalogue des sorts", icon: "spells", category: "Sort", contentId: "page-sorts" }),
@@ -81,6 +90,9 @@ export const SITE_SECTIONS = Object.freeze([
         description: "Créer et préparer un personnage pour l’aventure.",
         landing: "creation.html",
         icon: "character-sheet",
+        artwork: { src: "assets/images/creation-hero.webp", position: "center 42%" },
+        accent: "#b38a45",
+        actionLabel: "Explorer la création",
         groups: [
             { id: "create", label: "Créer" },
             { id: "options", label: "Options de personnage" },
@@ -103,6 +115,9 @@ export const SITE_SECTIONS = Object.freeze([
         description: "Explorer Faerûn et les autres réalités du multivers.",
         landing: "univers.html",
         icon: "planes",
+        artwork: { src: "assets/images/faerun-city.webp", position: "center 44%" },
+        accent: "#98778f",
+        actionLabel: "Explorer l’univers",
         links: [
             entry({ id: "universe-hub", label: "Explorer l’univers", url: "univers.html", description: "L’index des ressources de l’univers.", icon: "planes", category: "Univers" }),
             entry({ id: "faerun", label: "Faerûn / Royaumes Oubliés", url: "faerun.html", description: "Explorer Faerûn", icon: "faerun", category: "Univers" }),
@@ -120,6 +135,9 @@ export const SITE_SECTIONS = Object.freeze([
         description: "Retrouver vos personnages et les outils de votre campagne.",
         landing: "ma-table.html",
         icon: "session",
+        artwork: { src: "assets/images/table-adventurers.webp", position: "center 45%" },
+        accent: "#a14b42",
+        actionLabel: "Ouvrir Ma table",
         links: [
             entry({ id: "table-hub", label: "Ouvrir Ma table", url: "ma-table.html", description: "Les ressources personnelles et de campagne.", icon: "session", category: "Ma table" }),
             entry({ id: "personal", label: "Espace personnel", url: "espace-personnel.html", description: "Bibliothèque, notes et profils", icon: "characters", category: "Espace personnel" }),
