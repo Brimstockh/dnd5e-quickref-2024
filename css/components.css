@@ -146,11 +146,17 @@
 .page-feature--compact::before { background: var(--overlay-feature-compact); }
 .page-feature--compact h1 { font-size: clamp(1.8rem, 4vw, 3rem); }
 .page-feature--compact .page-feature__description { max-width: 36rem; font-size: 1rem; }
+.page-feature--long-title h1 { max-width: 24ch; }
 
 .page-feature--classes {
     --feature-accent: var(--section-creation);
     --feature-artwork: url("../assets/images/classes-heroes.webp");
     --feature-artwork-position: center;
+}
+
+.page-feature--creation {
+    --feature-accent: var(--section-creation);
+    --feature-artwork: radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--section-creation) 28%, transparent), transparent 36%), radial-gradient(circle at 18% 82%, rgb(179 138 69 / 12%), transparent 42%), linear-gradient(145deg, #2a1d12 0%, #17130f 58%, #0f0d0b 100%);
 }
 
 .page-feature--rules {
@@ -169,7 +175,8 @@
 }
 
 :root[data-session="true"] .page-feature:not(.page-feature--compact) { min-height: 12rem; }
-:root[data-session="true"] .page-feature__content > p:last-child { display: none; }
+:root[data-session="true"] .page-feature--compact .page-feature__meta { display: none; }
+:root[data-session="true"] .page-feature:not(.page-feature--compact) .page-feature__content > p:last-child { display: none; }
 
 @media (max-width: 700px) {
     .page-feature { min-height: 17rem; padding: 1.25rem; }

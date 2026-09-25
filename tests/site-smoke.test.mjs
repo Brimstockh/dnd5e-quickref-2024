@@ -240,17 +240,26 @@ test("featured content pages expose shared illustrated HTML page features", asyn
 
 test("level-two catalog pages share the compact page feature contract", async () => {
   const cases = [
-    ["classes/index.html", "classes", "Création de personnage", "classes", "classes-heroes.webp"],
-    ["spells.html", "compendium", "Compendium", "spells"],
-    ["monstres.html", "compendium", "Compendium", "monsters"],
+    ["classes/index.html", "classes", "Création de personnage", "Classes", "classes", "classes-heroes.webp"],
+    ["races/index.html", "creation", "Création", "Espèces", "species"],
+    ["historique.html", "creation", "Création", "Historiques", "backgrounds"],
+    ["dons.html", "creation", "Création", "Dons", "feats"],
+    ["spells.html", "compendium", "Compendium", "Sorts", "spells"],
+    ["monstres.html", "compendium", "Compendium", "Monstres", "monsters"],
+    ["objets-magiques.html", "compendium", "Compendium", "Objets magiques", "equipment"],
+    ["armes-armures.html", "compendium", "Compendium", "Armes et armures", "equipment"],
+    ["outils-aventurier.html", "compendium", "Compendium", "Matériel d’aventurier", "equipment"],
+    ["services-montures-vehicules.html", "compendium", "Compendium", "Services, montures et véhicules", "equipment"],
   ];
   const styles = await readFile(resolve(root, "css/components.css"), "utf8");
 
-  for (const [page, theme, eyebrow, icon, artwork] of cases) {
+  for (const [page, theme, eyebrow, title, icon, artwork] of cases) {
     const source = await readFile(resolve(root, page), "utf8");
     const feature = source.match(/<section class="page-feature [^"]*page-feature--compact[^"]*"[\s\S]*?<\/section>/);
     assert.ok(feature, `${page}: missing compact page feature`);
+    assert.equal((source.match(/<h1\b/gi) || []).length, 1, `${page}: document must own one h1`);
     assert.equal((feature[0].match(/<h1\b/gi) || []).length, 1, `${page}: compact feature must own one h1`);
+    assert.match(feature[0], new RegExp(`<h1[^>]*>${title}</h1>`), `${page}: unexpected feature title`);
     assert.ok(feature[0].includes(`page-feature--${theme}`) || page === "classes/index.html", `${page}: missing section theme`);
     assert.ok(feature[0].includes(`site-icons.svg#${icon}`), `${page}: missing content icon`);
     assert.ok(feature[0].includes(eyebrow), `${page}: missing section eyebrow`);
@@ -259,6 +268,7 @@ test("level-two catalog pages share the compact page feature contract", async ()
 
   assert.match(styles, /\.page-feature--compact[\s\S]*var\(--overlay-feature-compact\)/);
   assert.match(styles, /\.page-feature--classes[\s\S]*var\(--section-creation\)/);
+  assert.match(styles, /\.page-feature--creation[\s\S]*var\(--section-creation\)/);
   assert.match(styles, /\.page-feature--compendium[\s\S]*var\(--section-compendium\)/);
 });
 

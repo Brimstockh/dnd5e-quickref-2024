@@ -30,6 +30,15 @@ test("obsolete Web Components v0 and orphan quick-reference data stay removed", 
   assert.equal(existsSync(resolve(root, "js/data_hazards.js")), false);
 });
 
+test("retired homepage quicklinks stay removed", async () => {
+  const home = await readFile(resolve(root, "index.html"), "utf8");
+  const serviceWorker = await readFile(resolve(root, "service-worker.js"), "utf8");
+  assert.equal(existsSync(resolve(root, "css/quicklinks.css")), false);
+  assert.equal(existsSync(resolve(root, "js/quicklinks.js")), false);
+  assert.doesNotMatch(home, /quicklinks/i);
+  assert.doesNotMatch(serviceWorker, /quicklinks/i);
+});
+
 test("the search build consumes the current JSON catalogs", async () => {
   const source = await readFile(resolve(root, "scripts/build-search-index.mjs"), "utf8");
   assert.match(source, /data\/monsters_2024\.json/);

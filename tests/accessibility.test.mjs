@@ -83,16 +83,6 @@ test("legacy content surfaces inherit the shared dark theme", async () => {
   assert.match(sheetTheme, /\.level-card/);
 });
 
-test("the quick-links editor behaves as an accessible modal", async () => {
-  const source = await readFile(resolve(root, "js/quicklinks.js"), "utf8");
-  assert.match(source, /setAttribute\("role", "dialog"\)/);
-  assert.match(source, /setAttribute\("aria-modal", "true"\)/);
-  assert.match(source, /event\.key === "Escape"/);
-  assert.match(source, /event\.key !== "Tab"/);
-  assert.match(source, /previousFocus\.focus\(\)/);
-  assert.doesNotMatch(source, /\balert\(/);
-});
-
 test("home quick-access favorites remain independently keyboard accessible", async () => {
   const source = await readFile(resolve(root, "index.html"), "utf8");
   const styles = await readFile(resolve(root, "css/home.css"), "utf8");

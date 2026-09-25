@@ -74,8 +74,9 @@
     <script src="js/content-catalog.js" defer></script>
 </head>
 <body class="content-page" data-catalog-kind="equipment" data-library-title="Armes et armures" data-library-category="Règle" data-library-description="Référence D&amp;D 2024">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header data-site-header data-active="equipment"></header>
-    <main class="page">
+    <main class="page" id="main-content">
         <nav class="topnav">
             <a class="btn" href="index.html">Accueil</a>
             <a class="btn" href="creation-personnage-2024.html">Création</a>
@@ -88,11 +89,18 @@
             <a class="btn" href="character-sheet-standalone.html">Modèle</a>
         </nav>
 
-        <section class="card">
-            <h1>Armes et armures</h1>
-            <div class="content" data-glossary-richtext>
-                <p class="lead">Cette page rassemble les principales armes et armures de D&amp;D 2024 pour aider à remplir l'équipement, les attaques, la CA et les maîtrises d'un personnage.</p>
+        <section class="page-feature page-feature--compendium page-feature--compact" aria-labelledby="equipment-title">
+            <div class="page-feature__content">
+                <span class="section-visual__icon page-feature__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 64 64" focusable="false"><use href="assets/icons/site-icons.svg#equipment"></use></svg></span>
+                <p class="page-feature__eyebrow">Compendium</p>
+                <h1 id="equipment-title">Armes et armures</h1>
+                <p class="page-feature__description">Comparez armes, armures, propriétés et options d’équipement.</p>
+            </div>
+        </section>
 
+        <section class="card">
+            <h2>Références sur les armes et armures</h2>
+            <div class="content" data-glossary-richtext>
                 <div class="rules-grid">
                     <div class="rule-box">
                         <strong>Catégorie d'arme</strong>

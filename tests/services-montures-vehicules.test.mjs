@@ -29,7 +29,7 @@ test("services page exposes the shared shell and stable section anchors", () => 
   assert.match(page, /<a class="skip-link" href="#main-content">Aller au contenu<\/a>/);
   assert.match(page, /<main class="page" id="main-content">/);
   assert.doesNotMatch(page, /<style[\s>]/i);
-  assert.match(page, /<h1>Services, montures et véhicules<\/h1>/);
+  assert.match(page, /<h1[^>]*>Services, montures et véhicules<\/h1>/);
 
   for (const id of [
     "montures", "montures-cargaison", "bardes", "selles", "vehicules-terrestres",

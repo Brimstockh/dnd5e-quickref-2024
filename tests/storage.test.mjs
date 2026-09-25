@@ -118,7 +118,7 @@ test("DndStorage leaves the source untouched when a migration fails", async () =
 });
 
 test("feature modules no longer access browser storage directly", async () => {
-  for (const path of ["js/site-shell.js", "js/quicklinks.js", "js/character-sheet.js"]) {
+  for (const path of ["js/site-shell.js", "js/character-sheet.js"]) {
     const source = await readFile(resolve(root, path), "utf8");
     assert.doesNotMatch(source, /(?:window\.)?localStorage\.(?:getItem|setItem|removeItem)/, path);
     assert.match(source, /window\.DndStorage/, path);

@@ -153,7 +153,7 @@
   }
 
   function setBackgroundInert(isInert) {
-    [document.querySelector("header[data-site-header]"), document.querySelector(".catalog-header"), document.querySelector(".catalog-toolbar"), document.querySelector(".catalog-results"), filterBackdrop].filter(Boolean).forEach(function (element) {
+    [document.querySelector("header[data-site-header]"), document.querySelector(".page-feature"), document.querySelector(".catalog-toolbar"), document.querySelector(".catalog-results"), filterBackdrop].filter(Boolean).forEach(function (element) {
       if ("inert" in element) element.inert = isInert;
     });
   }
