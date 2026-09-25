@@ -31,6 +31,25 @@ test("canonical navigation exposes exactly five sections and unique links", asyn
   }
 });
 
+test("canonical sections expose their illustrated visual identity", async () => {
+  const expected = {
+    rules: ["assets/images/rules-game-table.webp", "#6f91aa"],
+    compendium: ["assets/images/compendium-library.webp", "#809b65"],
+    creation: ["assets/images/creation-hero.webp", "#b38a45"],
+    universe: ["assets/images/faerun-city.webp", "#98778f"],
+    table: ["assets/images/table-adventurers.webp", "#a14b42"],
+  };
+
+  for (const section of SITE_SECTIONS) {
+    assert.deepEqual([section.artwork.src, section.accent], expected[section.id]);
+    assert.ok(section.artwork.position);
+    assert.ok(section.actionLabel);
+    await access(resolve(root, section.artwork.src));
+    const hub = await readFile(resolve(root, section.landing), "utf8");
+    assert.match(hub, new RegExp(`data-category-hub="${section.id}"`));
+  }
+});
+
 test("section filters stay canonical, ordered, and visible when a section is empty", () => {
   const groups = SITE_SECTIONS.map(({ label }) => ({ label }));
   const allMatches = [
@@ -110,11 +129,17 @@ test("declared HTML active identifiers agree with the canonical resolver", async
 
 test("home, hubs, inventory, and offline cache expose the architecture", async () => {
   const home = await readFile(resolve(root, "index.html"), "utf8");
+  const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
+  const componentStyles = await readFile(resolve(root, "css/components.css"), "utf8");
   const inventory = JSON.parse(await readFile(resolve(root, "data/content-inventory.json"), "utf8"));
   const search = JSON.parse(await readFile(resolve(root, "data/search-index.json"), "utf8"));
   const worker = await readFile(resolve(root, "service-worker.js"), "utf8");
 
   assert.match(home, /data-site-explorer/);
+  assert.match(shell, /section-visual/);
+  assert.doesNotMatch(shell, /section\.id === "rules"/);
+  assert.match(componentStyles, /--section-artwork-position/);
+  assert.match(componentStyles, /prefers-reduced-motion/);
   assert.equal([...home.matchAll(/class="quick-access-card\s/g)].length, 5);
   assert.match(home, /data-site-explorer/);
   assert.deepEqual(inventory.navigation.sections.map(({ id }) => id), expectedSections);
@@ -126,6 +151,7 @@ test("home, hubs, inventory, and offline cache expose the architecture", async (
     const source = await readFile(resolve(root, section.landing), "utf8");
     assert.match(source, new RegExp(`data-category-hub="${section.id}"`));
     assert.match(worker, new RegExp(`\\./${section.landing.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}`));
+    assert.match(worker, new RegExp(`\\./${section.artwork.src.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}`));
   }
 });
 
