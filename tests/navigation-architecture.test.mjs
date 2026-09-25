@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { navigationContextForPath, SITE_SECTIONS } from "../js/site-navigation.js";
+import { buildSectionFilterDefinitions, navigationContextForPath, SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const expectedSections = ["rules", "compendium", "creation", "universe", "table"];
@@ -24,10 +24,30 @@ test("canonical navigation exposes exactly five sections and unique links", asyn
     assert.ok(section.links.some((candidate) => candidate.url === section.landing), `${section.id} landing is not declared`);
     assert.ok(entry.matches.includes(entry.url), `${section.id}/${entry.id} does not match its URL`);
     assert.ok(entry.category && entry.type, `${section.id}/${entry.id} is missing metadata`);
+    assert.equal(entry.type, "page", `${section.id}/${entry.id} navigation entries must remain pages`);
     for (const matcher of entry.matches.slice(1)) {
       await access(resolve(root, matcher.replace(/\/+$/, "")));
     }
   }
+});
+
+test("section filters stay canonical, ordered, and visible when a section is empty", () => {
+  const groups = SITE_SECTIONS.map(({ label }) => ({ label }));
+  const allMatches = [
+    ...Array.from({ length: 31 }, (_, index) => ({ id: `rule-${index}`, section: "Règles" })),
+    { id: "table-1", section: "Ma table" },
+  ];
+  const displayedWindow = allMatches.slice(0, 30);
+  assert.equal(displayedWindow.some(({ section }) => section === "Ma table"), false);
+
+  assert.deepEqual(buildSectionFilterDefinitions(groups, allMatches), [
+    { value: "", label: "Tout", count: 32, disabled: false },
+    { value: "Règles", label: "Règles", count: 31, disabled: false },
+    { value: "Compendium", label: "Compendium", count: 0, disabled: true },
+    { value: "Création", label: "Création", count: 0, disabled: true },
+    { value: "Univers", label: "Univers", count: 0, disabled: true },
+    { value: "Ma table", label: "Ma table", count: 1, disabled: false },
+  ]);
 });
 
 test("creation keeps its two visual groups and Ma table has no duplicate character sheet", () => {
@@ -98,7 +118,8 @@ test("home, hubs, inventory, and offline cache expose the architecture", async (
   assert.equal([...home.matchAll(/class="quick-access-card\s/g)].length, 5);
   assert.match(home, /data-site-explorer/);
   assert.deepEqual(inventory.navigation.sections.map(({ id }) => id), expectedSections);
-  assert.deepEqual(Object.keys(inventory.bySection).sort(), ["Compendium", "Création", "Ma table", "Règles", "Univers"]);
+  assert.deepEqual(Object.keys(inventory.bySection), ["Règles", "Compendium", "Création", "Univers", "Ma table"]);
+  assert.deepEqual(inventory.quality, { duplicateIds: [], invalidUrls: [], incompleteEntries: [] });
   const spells = search.entries.find(({ url }) => url === "spells.html");
   assert.deepEqual({ section: spells.section, category: spells.category, type: spells.type }, { section: "Compendium", category: "Sort", type: "page" });
   for (const section of SITE_SECTIONS) {

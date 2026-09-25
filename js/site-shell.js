@@ -596,24 +596,24 @@
             return { recentUrls: recentUrls, boostIds: boostIds };
         }
 
-        function fallbackMatches(category, limit) {
+        function fallbackMatches(section) {
             var query = normalize(input.value.trim());
             var queryTokens = query.split(/\s+/).filter(Boolean);
             if (!query) {
                 var defaults = recentEntries().concat(entries.filter(function (entry) { return entry.isBase; }));
                 var seenPaths = new Set();
                 return defaults.filter(function (entry) {
-                    if (category && entry.section !== category) return false;
+                    if (section && entry.section !== section) return false;
                     var identity = entry.isRecent
                         ? "recent|" + normalize(entry.section) + "|" + normalize(entry.title)
                         : entry.path;
                     if (seenPaths.has(identity)) return false;
                     seenPaths.add(identity);
                     return true;
-                }).slice(0, limit);
+                });
             }
             return entries.filter(function (entry) {
-                if (category && entry.section !== category) return false;
+                if (section && entry.section !== section) return false;
                 var searchable = normalize([entry.title, entry.section, entry.category, entry.type, entry.description, entry.keywords].join(" "));
                 return queryTokens.every(function (token) { return searchable.includes(token); });
             }).sort(function (first, second) {
@@ -625,15 +625,15 @@
                     return 3;
                 }
                 return score(first) - score(second) || first.title.localeCompare(second.title, "fr");
-            }).slice(0, limit);
+            });
         }
 
-        function matchingEntries(category, limit) {
-            if (!engine || !input.value.trim()) return fallbackMatches(category, limit);
+        function matchingEntries(section) {
+            if (!engine || !input.value.trim()) return fallbackMatches(section);
             var context = searchContext();
             return engine.searchEntries(entries, input.value, {
-                section: category,
-                limit: limit,
+                section: section,
+                limit: entries.length,
                 boostIds: context.boostIds,
                 recentUrls: context.recentUrls,
             }).map(function (result) {
@@ -641,29 +641,33 @@
             });
         }
 
-        function sectionCounts(matches) {
-            return matches.reduce(function (counts, entry) {
-                counts.set(entry.section, (counts.get(entry.section) || 0) + 1);
-                return counts;
-            }, new Map());
+        function filterAndLimit(matches, limit) {
+            return matches.slice(0, limit);
         }
 
         function renderFilters(matches) {
-            var counts = sectionCounts(matches);
-            if (activeSection && !counts.has(activeSection)) activeSection = "";
             filters.replaceChildren();
-            var definitions = [["", "Tout", matches.length]];
-            groups.forEach(function (group) {
-                if (counts.has(group.label)) definitions.push([group.label, group.label, counts.get(group.label)]);
-            });
+            var definitions = navigationModule && typeof navigationModule.buildSectionFilterDefinitions === "function"
+                ? navigationModule.buildSectionFilterDefinitions(groups, matches)
+                : (function () {
+                    var counts = new Map();
+                    matches.forEach(function (entry) {
+                        counts.set(entry.section, (counts.get(entry.section) || 0) + 1);
+                    });
+                    return [{ value: "", label: "Tout", count: matches.length, disabled: false }].concat(groups.map(function (group) {
+                        var count = counts.get(group.label) || 0;
+                        return { value: group.label, label: group.label, count: count, disabled: count === 0 };
+                    }));
+                }());
             definitions.forEach(function (definition) {
                 var button = doc.createElement("button");
                 button.type = "button";
                 button.className = "search-dialog__filter";
-                button.textContent = definition[1] + " " + definition[2];
-                button.setAttribute("aria-pressed", String(activeSection === definition[0]));
+                button.textContent = definition.label + " " + definition.count;
+                button.disabled = Boolean(definition.disabled);
+                button.setAttribute("aria-pressed", String(activeSection === definition.value));
                 button.addEventListener("click", function () {
-                    activeSection = definition[0];
+                    activeSection = definition.value;
                     selectedIndex = 0;
                     render();
                     input.focus();
@@ -673,11 +677,14 @@
         }
 
         function render() {
-            var allMatches = matchingEntries("", input.value.trim() ? 3000 : 30);
+            var allMatches = matchingEntries("");
             var parsed = engine ? engine.parseSearchQuery(input.value) : { command: "", query: input.value };
             renderFilters(allMatches);
-            var matches = activeSection ? matchingEntries(activeSection, 24) : allMatches.slice(0, 24);
-            var total = activeSection ? allMatches.filter(function (entry) { return entry.section === activeSection; }).length : allMatches.length;
+            var scopedMatches = activeSection
+                ? allMatches.filter(function (entry) { return entry.section === activeSection; })
+                : allMatches;
+            var matches = filterAndLimit(scopedMatches, 24);
+            var total = scopedMatches.length;
             selectedIndex = Math.min(selectedIndex, Math.max(matches.length - 1, 0));
             results.replaceChildren();
             resultCount.textContent = total + " résultat" + (total > 1 ? "s" : "")
@@ -686,7 +693,7 @@
             if (!matches.length) {
                 var empty = doc.createElement("li");
                 empty.className = "search-empty";
-                empty.innerHTML = "<strong>Aucun résultat</strong><span>Essayez moins de mots ou une autre catégorie.</span>";
+                empty.innerHTML = "<strong>" + (activeSection ? "Aucun résultat dans " + activeSection : "Aucun résultat") + "</strong><span>Essayez moins de mots ou un autre espace.</span>";
                 results.appendChild(empty);
                 input.removeAttribute("aria-activedescendant");
                 return;
@@ -758,12 +765,11 @@
 
         input.addEventListener("input", function () {
             selectedIndex = 0;
-            activeSection = "";
             loadDeepIndex();
             render();
         });
         input.addEventListener("keydown", function (event) {
-            var matches = matchingEntries(activeSection, 24);
+            var matches = matchingEntries(activeSection).slice(0, 24);
             if (event.key === "ArrowDown" && matches.length) {
                 event.preventDefault();
                 selectedIndex = (selectedIndex + 1) % matches.length;

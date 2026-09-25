@@ -14,7 +14,6 @@ function entry({
     group = "",
     icon,
     category,
-    type = "page",
     contentId = "",
     matches = [],
 }) {
@@ -26,7 +25,7 @@ function entry({
         group,
         icon,
         category,
-        type,
+        type: "page",
         contentId,
         matches: Object.freeze([url, ...matches]),
     });
@@ -57,7 +56,7 @@ export const SITE_SECTIONS = Object.freeze([
             entry({ id: "rules", label: "Règles du jeu", url: "rules-2024.html", description: "Principes généraux 2024", icon: "rules", category: "Règle", contentId: "page-regles-du-jeu" }),
             entry({ id: "combat", label: "Combat", url: "combat-2024.html", description: "Initiative, attaques et dégâts", icon: "combat", category: "Règle", contentId: "page-combat" }),
             entry({ id: "mastery", label: "Maîtrises", url: "mastery-2024.html", description: "Maîtrises d’armes et actions", icon: "mastery", category: "Règle", contentId: "page-maitrises-d-armes" }),
-            entry({ id: "glossary", label: "Glossaire", url: "glossaire.html", description: "Termes et états de jeu", icon: "glossary", category: "Glossaire", type: "glossary", contentId: "page-glossaire" }),
+            entry({ id: "glossary", label: "Glossaire", url: "glossaire.html", description: "Termes et états de jeu", icon: "glossary", category: "Glossaire", contentId: "page-glossaire" }),
         ],
     }),
     section({
@@ -130,6 +129,22 @@ export const SITE_SECTIONS = Object.freeze([
         ],
     }),
 ]);
+
+export function buildSectionFilterDefinitions(groups, matches) {
+    const results = Array.isArray(matches) ? matches : [];
+    const counts = new Map();
+    results.forEach((entryDefinition) => {
+        if (!entryDefinition?.section) return;
+        counts.set(entryDefinition.section, (counts.get(entryDefinition.section) || 0) + 1);
+    });
+    return [
+        { value: "", label: "Tout", count: results.length, disabled: false },
+        ...groups.map((group) => {
+            const count = counts.get(group.label) || 0;
+            return { value: group.label, label: group.label, count, disabled: count === 0 };
+        }),
+    ];
+}
 
 export function normalizeNavigationPath(path) {
     const raw = String(path ?? "");

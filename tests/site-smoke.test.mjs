@@ -382,6 +382,11 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   const source = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   assert.match(source, /dnd2024_session_mode/);
   assert.match(source, /data\/search-index\.json/);
+  assert.match(source, /buildSectionFilterDefinitions/);
+  assert.match(source, /button\.disabled = Boolean\(definition\.disabled\)/);
+  assert.doesNotMatch(source, /matchingEntries\("", input\.value\.trim\(\) \? 3000 : 30\)/);
+  assert.match(source, /var scopedMatches = activeSection/);
+  assert.doesNotMatch(source, /input\.addEventListener\("input", function \(\) \{[\s\S]{0,140}activeSection = ""/);
   assert.match(source, /sessionButton\.setAttribute\("aria-pressed"/);
   assert.match(source, /function ensureSkipLink/);
   assert.match(source, /aria-autocomplete/);

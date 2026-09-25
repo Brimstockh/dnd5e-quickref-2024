@@ -6,6 +6,7 @@ import {
   highlightSearchText,
   normalizeSearch,
   parseSearchQuery,
+  SEARCH_COMMANDS,
   searchEntries,
 } from "../js/search-engine.js";
 
@@ -74,6 +75,14 @@ test("commands constrain search to the requested content family", () => {
     category: "Lore",
     label: "Lore / Univers",
   });
+});
+
+test("all documented search commands keep their category contract", () => {
+  for (const definition of SEARCH_COMMANDS) {
+    const parsed = parseSearchQuery(`@${definition.command}`);
+    assert.equal(parsed.command, `@${definition.command}`);
+    assert.equal(parsed.category, definition.category);
+  }
 });
 
 test("recent and profile context provide bounded ranking boosts", () => {
