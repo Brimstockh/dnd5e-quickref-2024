@@ -12,12 +12,12 @@
     border-radius: var(--radius-lg);
 }
 
-.category-hub__hero .section-visual__overlay { background: linear-gradient(90deg, rgb(10 9 8 / 98%) 0%, rgb(10 9 8 / 86%) 35%, rgb(10 9 8 / 48%) 70%, rgb(10 9 8 / 18%) 100%); }
+.category-hub__hero .section-visual__overlay { background: var(--overlay-feature-hero); }
 .category-hub__hero .section-visual__content { max-width: 46rem; }
 .category-hub__hero .section-visual__icon { margin-bottom: 0.7rem; }
-.category-hub__eyebrow { margin: 0 0 0.45rem; color: color-mix(in srgb, var(--section-accent) 82%, white); font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
-.category-hub h1 { position: relative; margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); }
-.category-hub__description { position: relative; max-width: 42rem; margin: 0.75rem 0 0; color: var(--color-text-muted); font-size: 1.05rem; }
+.category-hub__eyebrow { margin: 0 0 0.45rem; color: color-mix(in srgb, var(--section-accent) 82%, var(--visual-text)); font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.category-hub h1 { position: relative; margin: 0; color: var(--visual-text); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); }
+.category-hub__description { position: relative; max-width: 42rem; margin: 0.75rem 0 0; color: var(--visual-text-muted); font-size: 1.05rem; }
 .category-hub__group + .category-hub__group { margin-top: 1.5rem; }
 .category-hub__group h2 { margin: 0 0 0.65rem; color: var(--color-gold-bright); font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .category-hub__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 0.8rem; }
@@ -37,7 +37,13 @@
 @media (max-width: 560px) {
     .category-hub { padding-inline: 0.75rem; }
     .category-hub__hero { min-height: 13rem; padding: 1.35rem; }
-    .category-hub__hero .section-visual__overlay { background: linear-gradient(90deg, rgb(10 9 8 / 98%) 0%, rgb(10 9 8 / 90%) 54%, rgb(10 9 8 / 38%) 100%); }
+    .category-hub__hero .section-visual__overlay { background: var(--overlay-feature-compact); }
     .category-hub__description { font-size: 0.95rem; }
     .category-hub__cards { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hub-card { transition: background var(--transition-fast), border-color var(--transition-fast); }
+    .hub-card:hover,
+    .hub-card:focus-within { transform: none; }
 }

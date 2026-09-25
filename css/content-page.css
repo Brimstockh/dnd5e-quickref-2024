@@ -57,6 +57,11 @@ body.content-page {
 .content-page .hero h2 { margin-top: 0; color: var(--color-text); font-family: var(--font-display); }
 
 .page-feature {
+    --feature-artwork: none;
+    --feature-artwork-position: center;
+    --feature-accent: var(--color-gold-bright);
+    --feature-text: var(--visual-text);
+    --feature-text-muted: var(--visual-text-muted);
     position: relative;
     display: flex;
     min-height: clamp(15rem, 28vw, 21rem);
@@ -65,7 +70,8 @@ body.content-page {
     overflow: hidden;
     margin-bottom: 1rem;
     padding: clamp(1.4rem, 4vw, 3rem);
-    background-position: center;
+    background-image: var(--feature-artwork);
+    background-position: var(--feature-artwork-position);
     background-size: cover;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -75,9 +81,7 @@ body.content-page {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background:
-        linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 82%) 35%, rgb(10 9 8 / 30%) 72%, rgb(10 9 8 / 12%) 100%),
-        linear-gradient(to top, rgb(10 9 8 / 76%), transparent 60%);
+    background: var(--overlay-feature-hero);
     content: "";
     pointer-events: none;
     user-select: none;
@@ -88,7 +92,7 @@ body.content-page {
 .content-page .page-feature h1 {
     max-width: 14ch;
     margin: 0;
-    color: #eee8dc;
+    color: var(--feature-text);
     font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 3.6rem);
     line-height: 1.05;
@@ -98,13 +102,13 @@ body.content-page {
 .page-feature__content > p:last-child {
     max-width: 38rem;
     margin: 0.8rem 0 0;
-    color: #c9bba5;
+    color: var(--feature-text-muted);
     font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 .page-feature .page-feature__eyebrow {
     margin: 0 0 0.4rem;
-    color: #d2b374;
+    color: var(--feature-accent);
     font-family: var(--font-display);
     font-size: 0.82rem;
     font-weight: 700;
@@ -114,17 +118,17 @@ body.content-page {
 
 .page-feature--classes {
     background-color: #17130f;
-    background-image: url("../assets/images/classes-heroes.webp");
+    --feature-artwork: url("../assets/images/classes-heroes.webp");
 }
 
 .page-feature--rules {
     background-color: #15120f;
-    background-image: url("../assets/images/rules-game-table.webp");
+    --feature-artwork: url("../assets/images/rules-game-table.webp");
 }
 
 .page-feature--faerun {
     background-color: #17130f;
-    background-image: url("../assets/images/faerun-city.webp");
+    --feature-artwork: url("../assets/images/faerun-city.webp");
 }
 
 .content-page .card > h1,
@@ -787,14 +791,12 @@ body.content-page {
     }
 
     .page-feature::before {
-        background:
-            linear-gradient(to right, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 72%) 70%, rgb(10 9 8 / 42%) 100%),
-            linear-gradient(to top, rgb(10 9 8 / 88%), transparent 75%);
+        background: var(--overlay-feature-compact);
     }
 
-    .page-feature--classes { background-position: 68% center; }
-    .page-feature--rules { background-position: 64% center; }
-    .page-feature--faerun { background-position: 58% center; }
+    .page-feature--classes { --feature-artwork-position: 68% center; }
+    .page-feature--rules { --feature-artwork-position: 64% center; }
+    .page-feature--faerun { --feature-artwork-position: 58% center; }
     :root[data-session="true"] .page-feature { min-height: 12rem; }
 
     .dense-page .page-toc { padding: 0.55rem; }

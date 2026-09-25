@@ -17,6 +17,17 @@
     --color-border: #352d22;
     --color-border-light: #53442f;
     --color-focus: #f0cf87;
+    --section-rules: #6f91aa;
+    --section-compendium: #809b65;
+    --section-creation: #b38a45;
+    --section-universe: #98778f;
+    --section-table: #a14b42;
+    --visual-text: #eee8dc;
+    --visual-text-muted: #c9bba5;
+    --visual-text-subtle: #a99c88;
+    --overlay-feature-hero: linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 82%) 35%, rgb(10 9 8 / 30%) 72%, rgb(10 9 8 / 12%) 100%), linear-gradient(0deg, rgb(10 9 8 / 76%), transparent 60%);
+    --overlay-feature-card: linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 68%) 46%, rgb(10 9 8 / 22%) 100%), linear-gradient(0deg, rgb(10 9 8 / 55%), transparent 70%);
+    --overlay-feature-compact: linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 78%) 58%, rgb(10 9 8 / 38%) 100%), linear-gradient(0deg, rgb(10 9 8 / 88%), transparent 75%);
     --shadow-card: 0 3px 12px rgb(0 0 0 / 18%);
     --shadow-header: 0 4px 18px rgb(0 0 0 / 24%);
     --font-display: "Cinzel", "Cormorant Garamond", "Lora", Georgia, serif;

@@ -98,14 +98,14 @@
 .home-explorer-panel--universe,
 .home-explorer-panel--table { grid-column: span 6; }
 .home-explorer-panel__visual { min-height: 13.5rem; border-bottom: 1px solid var(--color-border); border-top: 2px solid var(--section-accent); border-radius: var(--radius-md) var(--radius-md) 0 0; }
-.home-explorer-panel__visual .section-visual__overlay { background: linear-gradient(90deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 68%) 46%, rgb(10 9 8 / 22%) 100%); }
+.home-explorer-panel__visual .section-visual__overlay { background: var(--overlay-feature-card); }
 .home-explorer-panel__visual .section-visual__content { display: flex; min-height: 13.5rem; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 1rem; }
 .home-explorer-panel__visual .section-visual__icon { display: none; }
 .home-explorer-panel__visual .section-visual__title { font-size: 1.08rem; }
 .home-explorer-panel__visual .section-visual__description { max-width: 28rem; margin: 0.35rem 0 0; font-size: 0.84rem; }
-.home-explorer-panel__visual .section-visual__action { margin-top: 0.65rem; border: 1px solid color-mix(in srgb, var(--section-accent) 58%, transparent); }
+.home-explorer-panel__visual .section-visual__action { margin-top: 0.65rem; color: var(--visual-text); background: rgb(10 9 8 / 42%); border: 1px solid color-mix(in srgb, var(--section-accent) 58%, transparent); }
 .home-explorer-panel__visual .section-visual__action:hover,
-.home-explorer-panel__visual .section-visual__action:focus-visible { color: var(--color-text); background: color-mix(in srgb, var(--section-accent) 24%, transparent); }
+.home-explorer-panel__visual .section-visual__action:focus-visible { color: var(--visual-text); background: color-mix(in srgb, var(--section-accent) 24%, rgb(10 9 8 / 72%)); }
 .home-explorer-panel .resource-list { padding-top: 0.2rem; }
 .home-explorer-panel .resource-row__link { padding-left: 0.1rem; }
 
@@ -128,10 +128,11 @@
 
 .quick-access-card:hover,
 .quick-access-card:focus-within { background: var(--color-surface-hover); border-color: color-mix(in srgb, var(--quick-accent) 60%, var(--color-border)); }
-.quick-access-card--reference { --quick-accent: #6f91aa; }
-.quick-access-card--spells { --quick-accent: #809b65; }
-.quick-access-card--monsters { --quick-accent: #a14b42; }
-.quick-access-card--sheet { --quick-accent: #b38a45; }
+.quick-access-card--reference { --quick-accent: var(--section-rules); }
+.quick-access-card--spells,
+.quick-access-card--monsters { --quick-accent: var(--section-compendium); }
+.quick-access-card--creation,
+.quick-access-card--sheet { --quick-accent: var(--section-creation); }
 
 .quick-access-card__link {
     display: flex;
@@ -254,53 +255,6 @@
 .resource-row > .favorite-button,
 .library-row > .favorite-button { position: absolute; top: 50%; right: 0.15rem; width: 2rem; height: 2rem; border-color: transparent; background: transparent; transform: translateY(-50%); }
 
-.dashboard-feature {
-    position: relative;
-    display: grid;
-    min-height: 10.5rem;
-    align-content: end;
-    margin: 1rem;
-    overflow: hidden;
-    padding: 1rem;
-    color: #eee3d0;
-    background-position: center;
-    background-size: cover;
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-}
-
-.dashboard-feature--rules {
-    background-image:
-        linear-gradient(0deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 42%) 56%, transparent 100%),
-        url("../assets/images/rules-game-table.webp");
-}
-
-.dashboard-feature--classes {
-    background-image:
-        linear-gradient(0deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 42%) 56%, transparent 100%),
-        url("../assets/images/classes-heroes.webp");
-}
-
-.dashboard-feature--universe {
-    background-image:
-        linear-gradient(0deg, rgb(10 9 8 / 96%) 0%, rgb(10 9 8 / 42%) 56%, transparent 100%),
-        url("../assets/images/faerun-city.webp");
-}
-
-.dashboard-feature::before {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgb(10 9 8 / 18%), transparent 55%);
-    content: "";
-    pointer-events: none;
-}
-
-.dashboard-feature strong,
-.dashboard-feature small { position: relative; z-index: 1; }
-.dashboard-feature strong { font-family: var(--font-display); }
-.dashboard-feature small { color: #c9bba5; }
-
 .library-empty { padding: 1.4rem 1rem; color: var(--color-text-muted); text-align: center; }
 .library-empty strong { display: block; margin-bottom: 0.2rem; color: var(--color-text); }
 
@@ -325,7 +279,6 @@
 :root[data-session="true"] .resource-row__text small { display: none; }
 :root[data-session="true"] .home-hero { min-height: 0; grid-template-columns: 1fr; }
 :root[data-session="true"] .quick-access-card { min-height: 9rem; }
-:root[data-session="true"] .dashboard-feature { min-height: 7rem; }
 :root[data-session="true"] .resource-row__link { min-height: 3.1rem; }
 .dashboard-quote cite { display: block; margin-top: 0.6rem; color: var(--color-gold); font-family: var(--font-body); font-size: 0.76rem; font-style: normal; }
 
