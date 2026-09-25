@@ -55,6 +55,23 @@ test("motion, contrast and forced-colors preferences are supported", async () =>
   assert.match(source, /@media \(forced-colors: active\)/);
 });
 
+test("illustrated surfaces share readable text, artwork, overlay, and motion tokens", async () => {
+  const theme = await readFile(resolve(root, "css/theme.css"), "utf8");
+  const components = await readFile(resolve(root, "css/components.css"), "utf8");
+  const hubs = await readFile(resolve(root, "css/category-hubs.css"), "utf8");
+  const content = await readFile(resolve(root, "css/content-page.css"), "utf8");
+
+  for (const token of ["--visual-text", "--visual-text-muted", "--overlay-feature-hero", "--overlay-feature-card", "--overlay-feature-compact"]) {
+    assert.match(theme, new RegExp(`${token}\\s*:`), token);
+  }
+  assert.match(components, /\.section-visual__title \{[^}]*color: var\(--visual-text\)/s);
+  assert.match(components, /\.section-visual__description \{[^}]*color: var\(--visual-text-muted\)/s);
+  assert.match(content, /--feature-artwork: none/);
+  assert.match(content, /background-image: var\(--feature-artwork\)/);
+  assert.match(content, /background: var\(--overlay-feature-hero\)/);
+  assert.match(hubs, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.hub-card/);
+});
+
 test("legacy content surfaces inherit the shared dark theme", async () => {
   const contentTheme = await readFile(resolve(root, "css/content-page.css"), "utf8");
   const sheetTheme = await readFile(resolve(root, "css/character-sheet-app.css"), "utf8");
@@ -93,6 +110,14 @@ test("home quick-access favorites remain independently keyboard accessible", asy
   assert.match(library, /setAttribute\("aria-label", active \?/);
   assert.match(styles, /quick-access-card:focus-within > \.favorite-button/);
   assert.match(styles, /quick-access-card > \.favorite-button:focus-visible/);
+});
+
+test("quick-access accents follow canonical section colors", async () => {
+  const styles = await readFile(resolve(root, "css/home.css"), "utf8");
+  assert.match(styles, /quick-access-card--reference[\s\S]*var\(--section-rules\)/);
+  assert.match(styles, /quick-access-card--spells,[\s\S]*quick-access-card--monsters[\s\S]*var\(--section-compendium\)/);
+  assert.match(styles, /quick-access-card--creation,[\s\S]*quick-access-card--sheet[\s\S]*var\(--section-creation\)/);
+  assert.doesNotMatch(styles, /quick-access-card--monsters[^}]*#a14b42/);
 });
 
 test("creation tools expose keyboard focus, live status, and an accessible comparison table", async () => {
