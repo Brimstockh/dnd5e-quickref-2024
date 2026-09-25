@@ -103,9 +103,7 @@
 .home-explorer-panel__visual .section-visual__icon { display: none; }
 .home-explorer-panel__visual .section-visual__title { font-size: 1.08rem; }
 .home-explorer-panel__visual .section-visual__description { max-width: 28rem; margin: 0.35rem 0 0; font-size: 0.84rem; }
-.home-explorer-panel__visual .section-visual__action { margin-top: 0.65rem; color: var(--visual-text); background: rgb(10 9 8 / 42%); border: 1px solid color-mix(in srgb, var(--section-accent) 58%, transparent); }
-.home-explorer-panel__visual .section-visual__action:hover,
-.home-explorer-panel__visual .section-visual__action:focus-visible { color: var(--visual-text); background: color-mix(in srgb, var(--section-accent) 24%, rgb(10 9 8 / 72%)); }
+.home-explorer-panel__visual .section-visual__action { margin-top: 0.65rem; }
 .home-explorer-panel .resource-list { padding-top: 0.2rem; }
 .home-explorer-panel .resource-row__link { padding-left: 0.1rem; }
 
