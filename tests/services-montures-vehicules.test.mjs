@@ -4,6 +4,7 @@ import test from "node:test";
 
 const page = await readFile(new URL("../services-montures-vehicules.html", import.meta.url), "utf8");
 const shell = await readFile(new URL("../js/site-shell.js", import.meta.url), "utf8");
+const navigation = await readFile(new URL("../js/site-navigation.js", import.meta.url), "utf8");
 const tools = await readFile(new URL("../outils-aventurier.html", import.meta.url), "utf8");
 const sharedStyles = await readFile(new URL("../css/tools-services.css", import.meta.url), "utf8");
 const worker = await readFile(new URL("../service-worker.js", import.meta.url), "utf8");
@@ -40,17 +41,18 @@ test("services page exposes the shared shell and stable section anchors", () => 
 });
 
 test("navigation, search indexing, and PWA precache include the page", () => {
-  assert.match(shell, /\["services", "Services, montures et véhicules", "services-montures-vehicules\.html"/);
+  assert.match(navigation, /\["services", "Services, montures et véhicules", "services-montures-vehicules\.html"/);
+  assert.match(shell, /js-site-navigation|site-navigation\.js/);
   assert.match(tools, /href="services-montures-vehicules\.html"/);
   assert.match(worker, /"\.\/services-montures-vehicules\.html"/);
   assert.ok(search.entries.some((entry) => entry.url === "services-montures-vehicules.html"));
 });
 
 test("the home dashboard exposes the multiverse index and equipment services", () => {
-  assert.match(home, /<h2>Univers<\/h2>/);
-  assert.match(home, /href="lore\.html"/);
-  assert.match(home, /href="faerun\.html"/);
-  assert.match(home, /href="services-montures-vehicules\.html"/);
+  assert.match(home, /data-site-explorer/);
+  assert.match(navigation, /\["lore", "Lore \/ index du multivers", "lore\.html"/);
+  assert.match(navigation, /\["faerun", "Faerûn \/ Royaumes Oubliés", "faerun\.html"/);
+  assert.match(navigation, /\["services", "Services, montures et véhicules", "services-montures-vehicules\.html"/);
 });
 
 test("mounts, barding, saddles, and drawn vehicles retain PH2024 values", () => {

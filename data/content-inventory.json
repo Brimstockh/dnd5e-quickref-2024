@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 2473,
+  "count": 2483,
   "byType": {
     "action": 19,
     "adventuring-gear": 55,
@@ -18,7 +18,7 @@
     "magic-item": 347,
     "monster": 503,
     "movement": 13,
-    "page": 25,
+    "page": 35,
     "reaction": 3,
     "rule": 82,
     "species": 10,
@@ -29,6 +29,7 @@
   },
   "pages": [
     "armes-armures.html",
+    "assistant-creation.html",
     "character-sheet-standalone.html",
     "classes/class-barbarian.html",
     "classes/class-bard.html",
@@ -44,16 +45,22 @@
     "classes/class-wizard.html",
     "classes/index.html",
     "combat-2024.html",
+    "comparateur.html",
+    "compendium.html",
     "creation-personnage-2024.html",
+    "creation.html",
     "dice-stats.html",
     "divinites.html",
     "dons.html",
+    "espace-personnel.html",
     "faerun.html",
     "glossaire.html",
     "groupes-royaumes.html",
     "histoire-royaumes.html",
     "historique.html",
+    "html/characters.html",
     "lore.html",
+    "ma-table.html",
     "mastery-2024.html",
     "monstres.html",
     "objets-magiques.html",
@@ -73,10 +80,41 @@
     "races/race-orc.html",
     "races/race-tieffelin.html",
     "regles-campagne.html",
+    "regles.html",
     "rules-2024.html",
     "services-montures-vehicules.html",
-    "spells.html"
+    "spells.html",
+    "univers.html"
   ],
+  "navigation": {
+    "sections": [
+      {
+        "id": "rules",
+        "label": "Règles",
+        "landing": "regles.html"
+      },
+      {
+        "id": "compendium",
+        "label": "Compendium",
+        "landing": "compendium.html"
+      },
+      {
+        "id": "creation",
+        "label": "Création",
+        "landing": "creation.html"
+      },
+      {
+        "id": "universe",
+        "label": "Univers",
+        "landing": "univers.html"
+      },
+      {
+        "id": "table",
+        "label": "Ma table",
+        "landing": "ma-table.html"
+      }
+    ]
+  },
   "quality": {
     "duplicateIds": [],
     "invalidUrls": [],

@@ -3,6 +3,7 @@ import { EOL } from "node:os";
 import { resolve } from "node:path";
 import vm from "node:vm";
 import { buildContentAliasMap, createContentId, slugifyContent } from "../js/content-ids.js";
+import { SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -396,6 +397,14 @@ const pages = [
   ["Règles de campagne", "Règle de campagne", "regles-campagne.html", "Décisions propres à notre table"],
 ];
 
+const navigationPages = SITE_SECTIONS.flatMap((section) => section.links.map(([, title, url, description]) => [
+  title,
+  section.label,
+  url,
+  description,
+]));
+const pageDefinitions = Array.from(new Map([...navigationPages, ...pages].map((definition) => [definition[2], definition])).values());
+
 const entries = [
   ...spells.map((spell) => ({
     id: createContentId("spell", spell.slug || spell.name),
@@ -513,7 +522,7 @@ const entries = [
     keywords: ["espèce", "peuple", "origine", "création de personnage"],
     excerpt: `Espèce de personnage : ${title}.`,
   })),
-  ...pages.map(([title, category, url, description], index) => ({
+  ...pageDefinitions.map(([title, category, url, description], index) => ({
     id: createContentId("page", title),
     type: "page",
     legacyIds: [`page-${index + 1}`],

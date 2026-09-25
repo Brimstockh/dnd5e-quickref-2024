@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(import.meta.dirname, "..");
 const outputPath = resolve(root, "data/content-inventory.json");
@@ -26,11 +27,15 @@ for (const entry of index.entries || []) {
 }
 
 const pages = Array.from(new Set((index.entries || []).map(({ url }) => String(url || "").split(/[?#]/, 1)[0]).filter(Boolean))).sort();
+const navigation = {
+  sections: SITE_SECTIONS.map(({ id, label, landing }) => ({ id, label, landing })),
+};
 const inventory = {
   schemaVersion: 1,
   count: index.entries?.length || 0,
   byType: Object.fromEntries(Object.entries(byType).sort(([left], [right]) => left.localeCompare(right))),
   pages,
+  navigation,
   quality: { duplicateIds, invalidUrls, incompleteEntries },
 };
 const serialized = `${JSON.stringify(inventory, null, 2)}\n`;

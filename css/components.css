@@ -157,6 +157,10 @@
     background: var(--color-surface-hover);
 }
 
+.nav-dropdown__group { display: grid; gap: 0.1rem; }
+.nav-dropdown__group + .nav-dropdown__group { margin-top: 0.35rem; padding-top: 0.35rem; border-top: 1px solid var(--color-border); }
+.nav-dropdown__group-label { padding: 0.25rem 0.75rem 0.15rem; color: var(--color-gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
 .site-header__actions { display: flex; gap: var(--space-2); align-items: center; }
 .active-profile-select { max-width: 10rem; min-height: 2.65rem; padding: 0.45rem 1.8rem 0.45rem 0.65rem; color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
 .personal-note-dialog { width: min(34rem, calc(100% - 1rem)); padding: 1.25rem; color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-elevated); }

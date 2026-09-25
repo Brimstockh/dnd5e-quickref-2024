@@ -39,63 +39,21 @@
         doc.head.append(glossaryClient);
     }
 
-    var groups = [
-        {
-            id: "rules",
-            label: "Règles",
-            links: [
-                ["quickref", "Référence rapide", "quickref.html", "Actions et conditions en session"],
-                ["rules", "Règles du jeu", "rules-2024.html", "Principes généraux 2024"],
-                ["combat", "Combat", "combat-2024.html", "Initiative, attaques et dégâts"],
-                ["mastery", "Maîtrise", "mastery-2024.html", "Maîtrises d’armes et actions"],
-                ["glossary", "Glossaire", "glossaire.html", "Termes et états de jeu"],
-                ["spells", "Sorts", "spells.html", "Catalogue des sorts"],
-                ["equipment", "Équipement", "armes-armures.html", "Armes et armures"],
-                ["magic-items", "Objets magiques", "objets-magiques.html", "Objets magiques de la campagne"],
-                ["campaign-rules", "Règles de campagne", "regles-campagne.html", "Décisions propres à notre table"],
-                ["monsters", "Monstres", "monstres.html", "Bestiaire"],
-            ],
-        },
-        {
-            id: "character",
-            label: "Création de personnage",
-            links: [
-                ["creation", "Créer un personnage", "creation-personnage-2024.html", "Guide de création"],
-                ["creator", "Assistant guidé", "assistant-creation.html", "Création en 11 étapes"],
-                ["compare", "Comparateur", "comparateur.html", "Comparer classes, espèces et options"],
-                ["classes", "Classes", "classes/index.html", "Les douze classes"],
-                ["species", "Espèces", "races/index.html", "Peuples et origines"],
-                ["backgrounds", "Historiques", "historique.html", "Dons et compétences"],
-                ["feats", "Dons", "dons.html", "Capacités spéciales"],
-                ["sheet", "Feuille de personnage", "character-sheet-standalone.html", "Feuille autonome"],
-            ],
-        },
-        {
-            id: "universe",
-            label: "Univers",
-            links: [
-                ["faerun", "Royaumes Oubliés", "faerun.html", "Explorer Faerûn"],
-                ["lore", "Lore / Univers", "lore.html", "Index transversal du multivers"],
-                ["history", "Histoire", "histoire-royaumes.html", "Chronologie du monde"],
-                ["gods", "Divinités", "divinites.html", "Panthéon de Faerûn"],
-                ["factions", "Factions", "groupes-royaumes.html", "Groupes influents"],
-                ["people", "Personnages", "personnages-royaumes.html", "Figures importantes"],
-                ["planes", "Plans d’existence", "plans-existence.html", "Les autres réalités"],
-            ],
-        },
-        {
-            id: "tools",
-            label: "Outils",
-            links: [
-                ["personal", "Espace personnel", "espace-personnel.html", "Bibliothèque, notes et profils"],
-                ["sheet-tools", "Feuille autonome", "character-sheet-standalone.html", "Créer et sauvegarder une fiche"],
-                ["characters", "Personnages sauvegardés", "html/characters.html", "Consulter les personnages"],
-                ["tools", "Matériel d’aventurier", "outils-aventurier.html", "Outils, paquetages et objets"],
-                ["services", "Services, montures et véhicules", "services-montures-vehicules.html", "Voyages, montures, véhicules et dépenses"],
-                ["dice-stats", "Statistiques de dés", "dice-stats.html", "Probabilités et distributions des jets de dés"],
-            ],
-        },
-    ];
+    var groups = [];
+    var navigationLoading = null;
+
+    function loadNavigation() {
+        if (groups.length) return Promise.resolve(groups);
+        if (!navigationLoading) {
+            navigationLoading = import(pageUrl("js/site-navigation.js"))
+                .then(function (module) {
+                    groups = module.SITE_SECTIONS;
+                    window.DndSiteNavigation = groups;
+                    return groups;
+                });
+        }
+        return navigationLoading;
+    }
 
     function pageUrl(path) {
         return new URL(path, siteRoot).href;
@@ -427,10 +385,27 @@
             var groupIsActive = false;
 
             details.className = "nav-dropdown";
+            details.dataset.section = group.id;
             summary.append(doc.createTextNode(group.label), createIcon("chevron-down", "nav-dropdown__chevron"));
             menu.className = "nav-dropdown__menu";
 
+            var groupedMenus = new Map();
             group.links.forEach(function (entry) {
+                var groupId = entry[4] || "";
+                var target = groupedMenus.get(groupId);
+                if (!target) {
+                    target = doc.createElement("div");
+                    target.className = groupId ? "nav-dropdown__group" : "nav-dropdown__group nav-dropdown__group--primary";
+                    if (groupId) {
+                        var groupDefinition = (group.groups || []).find(function (definition) { return definition.id === groupId; });
+                        var groupLabel = doc.createElement("span");
+                        groupLabel.className = "nav-dropdown__group-label";
+                        groupLabel.textContent = groupDefinition?.label || groupId;
+                        target.appendChild(groupLabel);
+                    }
+                    groupedMenus.set(groupId, target);
+                    menu.appendChild(target);
+                }
                 var link = doc.createElement("a");
                 link.href = pageUrl(entry[2]);
                 link.textContent = entry[1];
@@ -438,7 +413,7 @@
                     link.setAttribute("aria-current", "page");
                     groupIsActive = true;
                 }
-                menu.appendChild(link);
+                target.appendChild(link);
             });
 
             if (groupIsActive) details.classList.add("is-active");
@@ -965,7 +940,141 @@
         };
     }
 
+    function navigationEntryCard(section, entry, className) {
+        var article = doc.createElement("article");
+        var link = doc.createElement("a");
+        var icon = doc.createElement("span");
+        var iconSvg = createIcon(entry[5] || section.icon || "rules");
+        var text = doc.createElement("span");
+        var title = doc.createElement("strong");
+        var description = doc.createElement("small");
+        var chevron = doc.createElement("span");
+        var favorite = doc.createElement("button");
+
+        article.className = className || "hub-card";
+        article.dataset.libraryItem = "";
+        article.dataset.libraryUrl = entry[2];
+        article.dataset.libraryTitle = entry[1];
+        article.dataset.libraryCategory = section.label;
+        article.dataset.librarySection = section.label;
+        article.dataset.libraryDescription = entry[3];
+        link.className = "hub-card__link";
+        link.href = pageUrl(entry[2]);
+        icon.className = "hub-card__icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.appendChild(iconSvg);
+        title.textContent = entry[1];
+        description.textContent = entry[3];
+        text.className = "hub-card__text";
+        text.append(title, description);
+        chevron.className = "hub-card__chevron";
+        chevron.setAttribute("aria-hidden", "true");
+        chevron.appendChild(createIcon("chevron-right"));
+        link.append(icon, text, chevron);
+        favorite.type = "button";
+        favorite.dataset.favoriteButton = "";
+        article.append(link, favorite);
+        return article;
+    }
+
+    function renderHomeExplorer() {
+        var host = doc.querySelector("[data-site-explorer]");
+        if (!host) return;
+
+        var heading = doc.createElement("div");
+        var title = doc.createElement("h2");
+        var intro = doc.createElement("p");
+        var grid = doc.createElement("div");
+
+        heading.className = "home-section__heading";
+        title.textContent = "Explorer le site";
+        intro.textContent = "Cinq espaces pour trouver rapidement la bonne ressource.";
+        heading.append(title, intro);
+        grid.className = "home-explorer-grid";
+
+        groups.forEach(function (section) {
+            var panel = doc.createElement("article");
+            var panelHead = doc.createElement("header");
+            var panelTitle = doc.createElement("h3");
+            var panelDescription = doc.createElement("p");
+            var action = doc.createElement("a");
+            var list = doc.createElement("ul");
+
+            panel.className = "dashboard-panel home-explorer-panel home-explorer-panel--" + section.id;
+            panelHead.className = "dashboard-panel__heading";
+            panelTitle.textContent = section.label;
+            panelDescription.textContent = section.description;
+            action.className = "panel-action";
+            action.href = pageUrl(section.landing);
+            action.textContent = section.id === "rules" ? "Explorer les règles"
+                : section.id === "compendium" ? "Ouvrir le compendium"
+                    : section.id === "creation" ? "Explorer la création"
+                        : section.id === "universe" ? "Explorer l’univers" : "Ouvrir Ma table";
+            panelHead.append(panelTitle, action);
+            list.className = "resource-list";
+            section.links.filter(function (entry) { return entry[2] !== section.landing; }).forEach(function (entry) {
+                var item = navigationEntryCard(section, entry, "resource-row");
+                var link = item.querySelector("a");
+                link.className = "resource-row__link";
+                item.querySelector(".hub-card__icon").className = "resource-row__icon";
+                item.querySelector(".hub-card__text").className = "resource-row__text";
+                item.querySelector(".hub-card__chevron").className = "resource-row__chevron";
+                list.appendChild(item);
+            });
+            panel.append(panelHead, panelDescription, list);
+            grid.appendChild(panel);
+        });
+        host.replaceChildren(heading, grid);
+    }
+
+    function renderCategoryHub() {
+        var main = doc.querySelector("[data-category-hub]");
+        if (!main) return;
+        var section = groups.find(function (candidate) { return candidate.id === main.dataset.categoryHub; });
+        if (!section) return;
+        var title = main.querySelector("[data-category-hub-title]");
+        var description = main.querySelector("[data-category-hub-description]");
+        var content = main.querySelector("[data-category-hub-content]");
+        if (title) title.textContent = section.label;
+        if (description) description.textContent = section.description;
+        if (!content) return;
+
+        content.replaceChildren();
+        var grouped = new Map();
+        section.links.filter(function (entry) { return entry[2] !== section.landing; }).forEach(function (entry) {
+            var groupId = entry[4] || "";
+            if (!grouped.has(groupId)) grouped.set(groupId, []);
+            grouped.get(groupId).push(entry);
+        });
+        var groupsToRender = section.groups?.length ? section.groups : [{ id: "", label: "Ressources" }];
+        groupsToRender.forEach(function (definition) {
+            var entries = grouped.get(definition.id) || [];
+            if (!entries.length) return;
+            var group = doc.createElement("section");
+            var heading = doc.createElement("h2");
+            var cards = doc.createElement("div");
+            group.className = "category-hub__group";
+            heading.textContent = definition.label;
+            cards.className = "category-hub__cards";
+            entries.forEach(function (entry) { cards.appendChild(navigationEntryCard(section, entry)); });
+            group.append(heading, cards);
+            content.appendChild(group);
+        });
+    }
+
+    function applyCanonicalPageSection() {
+        var currentPath = window.location.pathname.slice(siteRoot.pathname.length) || "index.html";
+        var section = groups.find(function (candidate) {
+            return candidate.links.some(function (entry) { return entry[2] === currentPath; });
+        });
+        if (section) doc.body.dataset.librarySection = section.label;
+    }
+
     function init() {
+        if (!groups.length) {
+            loadNavigation().then(init).catch(function () {});
+            return;
+        }
         setTheme(initialTheme(), false);
         setSessionMode(initialSessionMode(), false);
         doc.querySelectorAll("svg.icon:not([viewBox])").forEach(function (icon) {
@@ -974,6 +1083,7 @@
         var mount = doc.querySelector("[data-site-header]");
         if (!mount) return;
 
+        applyCanonicalPageSection();
         var activePage = mount.getAttribute("data-active") || "";
         ensureSkipLink(mount);
         enhanceFormAccessibility();
@@ -1248,6 +1358,9 @@
         drawer.append(drawerHead, createNavigation(activePage, true));
         mount.replaceChildren(inner);
         doc.body.append(backdrop, drawer, sessionPanel.backdrop, sessionPanel.panel, noteDialog, shareStatus);
+        renderHomeExplorer();
+        renderCategoryHub();
+        window.dispatchEvent(new CustomEvent("dndnavigationready"));
         enhanceDeepLinks();
         if (doc.body.classList.contains("dense-page")) {
             import(pageUrl("js/dense-pages.js"))

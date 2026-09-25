@@ -122,6 +122,10 @@
     var maxRecentItems = 8;
     var script = document.currentScript;
     var siteRoot = new URL("../", script ? script.src : window.location.href);
+    var navigationModule = null;
+    var navigationLoading = import(new URL("js/site-navigation.js", siteRoot).href)
+        .then(function (module) { navigationModule = module; return module; })
+        .catch(function () { return null; });
 
     function safeRead(key) {
         var value = storage.getJson(key, []);
@@ -171,10 +175,14 @@
     }
 
     function currentEntry() {
+        var section = document.body.dataset.librarySection
+            || navigationModule?.navigationSectionForPath(relativeUrl(window.location.href))
+            || document.body.dataset.libraryCategory
+            || "Page";
         return cleanEntry({
             url: window.location.href,
             title: document.body.dataset.libraryTitle || document.title.replace(/\s*[—|-]\s*D&D.*$/i, ""),
-            category: document.body.dataset.libraryCategory || "Page",
+            category: section,
             description: document.body.dataset.libraryDescription || "",
         });
     }
@@ -340,10 +348,14 @@
     }
 
     function entryFromElement(element) {
+        var section = element.dataset.librarySection
+            || navigationModule?.navigationSectionForPath(element.dataset.libraryUrl || element.querySelector("a")?.href)
+            || element.dataset.libraryCategory
+            || "Page";
         return cleanEntry({
             url: element.dataset.libraryUrl || element.querySelector("a")?.href || window.location.href,
             title: element.dataset.libraryTitle || element.querySelector("strong")?.textContent || document.title,
-            category: element.dataset.libraryCategory || "Page",
+            category: section,
             description: element.dataset.libraryDescription || element.querySelector("small")?.textContent || "",
         });
     }
@@ -415,11 +427,18 @@
         if (recent) renderList(recent, getRecent().slice(0, 6), false, "Aucun historique", "Les pages consultées récemment apparaîtront ici.");
     }
 
-    function init() {
+    function bindLibraryItems() {
         document.querySelectorAll("[data-library-item]").forEach(function (element) {
             var button = element.querySelector("[data-favorite-button]");
-            if (button) connectFavoriteButton(button, entryFromElement(element));
+            if (button && !button.dataset.libraryBound) {
+                connectFavoriteButton(button, entryFromElement(element));
+                button.dataset.libraryBound = "true";
+            }
         });
+    }
+
+    function init() {
+        bindLibraryItems();
 
         document.querySelectorAll("[data-clear-recent]").forEach(function (button) {
             button.addEventListener("click", clearRecent);
@@ -428,8 +447,15 @@
         window.addEventListener("dndlibrarychange", renderHomeLists);
         renderHomeLists();
 
-        if (document.body.dataset.trackRecent !== "false") recordRecent(currentEntry());
+        navigationLoading.then(function () {
+            if (document.body.dataset.trackRecent !== "false") recordRecent(currentEntry());
+        });
     }
+
+    window.addEventListener("dndnavigationready", function () {
+        bindLibraryItems();
+        renderHomeLists();
+    });
 
     window.DndLibrary = {
         currentEntry: currentEntry,

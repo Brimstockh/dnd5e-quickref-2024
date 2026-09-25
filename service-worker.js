@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v18";
+const CACHE_VERSION = "dnd-companion-v19";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -14,6 +14,11 @@ const SCOPE_URL = new URL(self.registration.scope);
 
 const CORE_ASSETS = Object.freeze([
     "./index.html",
+    "./regles.html",
+    "./compendium.html",
+    "./creation.html",
+    "./univers.html",
+    "./ma-table.html",
     "./assistant-creation.html",
     "./comparateur.html",
     "./dice-stats.html",
@@ -84,6 +89,7 @@ const CORE_ASSETS = Object.freeze([
     "./css/content-catalog.css",
     "./css/content-page.css",
     "./css/home.css",
+    "./css/category-hubs.css",
     "./css/icons.css",
     "./css/legacy-catalog.css",
     "./css/lore.css",
@@ -143,6 +149,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/related-content.js",
     "./js/rich-html.js",
     "./js/search-engine.js",
+    "./js/site-navigation.js",
     "./js/site-shell.js",
     "./js/magic-items-page.js",
     "./js/campaign-rules-page.js",

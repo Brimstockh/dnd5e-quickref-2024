@@ -262,7 +262,7 @@ test("critical pages do not reference missing local files", async () => {
 
 test("every standalone page uses the shared visual shell", async () => {
   const pages = (await standaloneHtmlPages()).filter((page) => page !== "offline.html");
-  assert.equal(pages.length, 57);
+  assert.equal(pages.length, 62);
 
   for (const page of pages) {
     const source = await readFile(resolve(root, page), "utf8");
@@ -326,20 +326,15 @@ test("the home dashboard exposes quick access and personal library regions", asy
   const styles = await readFile(resolve(root, "css/home.css"), "utf8");
   const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
-  assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 4);
+  assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 5);
   assert.match(source, /class="home-intro-grid"[\s\S]*class="home-hero"[\s\S]*class="home-quick-access"/);
   for (const icon of ["quick-reference", "spells", "monsters", "character-sheet"]) {
     assert.match(source, new RegExp(`site-icons\\.svg#${icon}`));
   }
-  assert.equal([...source.matchAll(/quick-access-card__action[\s\S]{0,180}site-icons\.svg#chevron-right/g)].length, 4);
+  assert.equal([...source.matchAll(/quick-access-card__action[\s\S]{0,180}site-icons\.svg#chevron-right/g)].length, 5);
   assert.doesNotMatch(source, /quick-access-card__action[\s\S]{0,160}#chevron-down/);
-  assert.equal([...source.matchAll(/class="dashboard-feature dashboard-feature--/g)].length, 3);
-  for (const feature of ["rules", "classes", "universe"]) {
-    assert.match(source, new RegExp(`dashboard-feature--${feature}`));
-  }
-  for (const asset of ["rules-game-table.webp", "classes-heroes.webp", "faerun-city.webp"]) {
-    assert.match(styles, new RegExp(asset.replace(".", "\\.")));
-  }
+  assert.match(source, /data-site-explorer/);
+  assert.match(styles, /home-explorer-grid/);
   for (const card of source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)) {
     assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
   }
@@ -351,7 +346,7 @@ test("the home dashboard exposes quick access and personal library regions", asy
   assert.match(shell, /createIcon\("site-emblem"\)/);
   assert.doesNotMatch(shell, /markText|textContent\s*=\s*"D20"/);
   assert.doesNotMatch(source + shell + library, /[◈✦♜✎⚔☼♞◉▧✧⬡▱⚑♙⊛☆★☾☰⌕×›◆⚡]/);
-  assert.ok([...source.matchAll(/data-library-item/g)].length >= 15);
+  assert.ok([...source.matchAll(/data-library-item/g)].length >= 5);
   assert.match(source, /data-recent-list/);
   assert.match(source, /data-favorites-list/);
   assert.match(source, /data-open-site-search/);

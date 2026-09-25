@@ -1,0 +1,42 @@
+.category-hub {
+    width: min(100%, var(--content-width));
+    margin: 0 auto;
+    padding: clamp(1rem, 2.4vw, 2rem);
+}
+
+.category-hub__hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background:
+        linear-gradient(110deg, rgb(17 16 13 / 96%), rgb(17 16 13 / 78%)),
+        url("../assets/decor/arcane-circle.svg") 110% center / min(28rem, 54%) no-repeat;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.category-hub__eyebrow { margin: 0 0 0.45rem; color: var(--color-gold); font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.category-hub h1 { position: relative; margin: 0; color: var(--color-gold-bright); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); }
+.category-hub__description { position: relative; max-width: 42rem; margin: 0.75rem 0 0; color: var(--color-text-muted); font-size: 1.05rem; }
+.category-hub__group + .category-hub__group { margin-top: 1.5rem; }
+.category-hub__group h2 { margin: 0 0 0.65rem; color: var(--color-gold-bright); font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.category-hub__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 0.8rem; }
+.hub-card { position: relative; min-width: 0; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-card); transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); }
+.hub-card:hover,
+.hub-card:focus-within { background: var(--color-surface-hover); border-color: var(--color-border-light); transform: translateY(-2px); }
+.hub-card__link { display: grid; min-height: 6.2rem; grid-template-columns: 2.6rem minmax(0, 1fr) auto; gap: 0.75rem; align-items: center; padding: 1rem 2.8rem 1rem 1rem; color: var(--color-text); text-decoration: none; }
+.hub-card__icon { display: grid; width: 2.35rem; height: 2.35rem; place-items: center; color: var(--color-gold); border: 1px solid var(--color-border); border-radius: 50%; }
+.hub-card__icon .icon { width: 1.3rem; height: 1.3rem; }
+.hub-card__text { min-width: 0; }
+.hub-card__text strong { display: block; color: var(--color-text); font-family: var(--font-display); font-size: 0.95rem; }
+.hub-card__text small { display: block; margin-top: 0.2rem; color: var(--color-text-muted); font-size: 0.8rem; line-height: 1.35; }
+.hub-card__chevron { color: var(--color-gold-dark); }
+.hub-card__chevron .icon { width: 0.75rem; height: 0.75rem; }
+.hub-card > .favorite-button { position: absolute; right: 0.35rem; bottom: 0.35rem; width: 2rem; height: 2rem; border-color: transparent; background: transparent; }
+
+@media (max-width: 560px) {
+    .category-hub { padding-inline: 0.75rem; }
+    .category-hub__hero { padding: 1.35rem; }
+    .category-hub__cards { grid-template-columns: 1fr; }
+}

@@ -82,7 +82,7 @@ test("home quick-access favorites remain independently keyboard accessible", asy
   const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
 
   const cards = [...source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)];
-  assert.equal(cards.length, 4);
+  assert.equal(cards.length, 5);
   for (const card of cards) {
     assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
     assert.doesNotMatch(card[0], /<a[^>]*>[\s\S]*<button data-favorite-button>[\s\S]*<\/a>/);
