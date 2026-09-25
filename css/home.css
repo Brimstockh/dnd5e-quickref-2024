@@ -200,8 +200,7 @@
 .dashboard-panel--universe { grid-column: span 4; }
 .dashboard-panel--recent,
 .dashboard-panel--favorites { grid-column: span 6; }
-.dashboard-panel--session { grid-column: span 7; }
-.dashboard-panel--quote { grid-column: span 5; }
+.dashboard-panel--quote { grid-column: 1 / -1; }
 
 .dashboard-panel__heading {
     display: flex;
@@ -267,7 +266,7 @@
         var(--color-bg-elevated);
 }
 
-.dashboard-quote { max-width: 31rem; margin: 0; color: var(--color-text-muted); font-family: var(--font-display); font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.65; text-align: center; }
+.dashboard-quote { width: 100%; margin: 0; color: var(--color-text-muted); font-family: var(--font-display); font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.65; text-align: center; }
 .dashboard-quote::before { display: block; width: min(18rem, 90%); height: 1.4rem; margin: 0 auto 0.5rem; background: url("../assets/decor/section-divider.svg") center / contain no-repeat; content: ""; opacity: 0.6; pointer-events: none; user-select: none; }
 
 :root[data-session="true"] .home-hero::before,
@@ -280,16 +279,13 @@
 :root[data-session="true"] .resource-row__link { min-height: 3.1rem; }
 .dashboard-quote cite { display: block; margin-top: 0.6rem; color: var(--color-gold); font-family: var(--font-body); font-size: 0.76rem; font-style: normal; }
 
-.quicklinks { margin: 0; border: 0; border-radius: 0; }
-
 @media (max-width: 1120px) {
     .home-intro-grid { grid-template-columns: 1fr; }
     .home-hero { min-height: 16rem; border-right: 0; border-bottom: 1px solid var(--color-border); }
     .dashboard-panel--rules,
     .dashboard-panel--character { grid-column: span 6; }
     .dashboard-panel--universe { grid-column: span 12; }
-    .dashboard-panel--session,
-    .dashboard-panel--quote { grid-column: span 6; }
+    .dashboard-panel--quote { grid-column: 1 / -1; }
 }
 
 @media (max-width: 900px) {
@@ -305,7 +301,6 @@
     .dashboard-panel--universe,
     .dashboard-panel--recent,
     .dashboard-panel--favorites,
-    .dashboard-panel--session,
     .dashboard-panel--quote { grid-column: 1 / -1; }
     .home-explorer-panel,
     .home-explorer-panel--universe,
