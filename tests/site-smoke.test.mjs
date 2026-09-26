@@ -214,7 +214,7 @@ test("the visual asset system is local, complete, and lightweight", async () => 
 });
 
 test("featured content pages expose shared illustrated HTML page features", async () => {
-  const styles = await readFile(resolve(root, "css/content-page.css"), "utf8");
+  const styles = await readFile(resolve(root, "css/components.css"), "utf8");
   const cases = [
     ["classes/index.html", "classes", "Classes", "Création de personnage"],
     ["rules-2024.html", "rules", "Règles du jeu", "Référence D&amp;D 2024"],
@@ -223,7 +223,7 @@ test("featured content pages expose shared illustrated HTML page features", asyn
 
   for (const [page, modifier, title, eyebrow] of cases) {
     const source = await readFile(resolve(root, page), "utf8");
-    const feature = source.match(new RegExp(`<section class="page-feature page-feature--${modifier}"[\\s\\S]*?</section>`));
+    const feature = source.match(new RegExp(`<section class="page-feature[^\"]*page-feature--${modifier}[^\"]*"[\\s\\S]*?</section>`));
     assert.ok(feature, `${page}: missing shared page feature`);
     assert.match(feature[0], new RegExp(`<h1[^>]*>${title}</h1>`));
     assert.ok(feature[0].includes(eyebrow));
@@ -236,6 +236,40 @@ test("featured content pages expose shared illustrated HTML page features", asyn
   for (const asset of ["classes-heroes.webp", "rules-game-table.webp", "faerun-city.webp"]) {
     assert.ok((await readFile(resolve(root, "assets/images", asset))).length > 0, `missing ${asset}`);
   }
+});
+
+test("level-two catalog pages share the compact page feature contract", async () => {
+  const cases = [
+    ["classes/index.html", "classes", "Création de personnage", "Classes", "classes", "classes-heroes.webp"],
+    ["races/index.html", "creation", "Création", "Espèces", "species"],
+    ["historique.html", "creation", "Création", "Historiques", "backgrounds"],
+    ["dons.html", "creation", "Création", "Dons", "feats"],
+    ["spells.html", "compendium", "Compendium", "Sorts", "spells"],
+    ["monstres.html", "compendium", "Compendium", "Monstres", "monsters"],
+    ["objets-magiques.html", "compendium", "Compendium", "Objets magiques", "magic-item"],
+    ["armes-armures.html", "compendium", "Compendium", "Armes et armures", "equipment"],
+    ["outils-aventurier.html", "compendium", "Compendium", "Matériel d’aventurier", "equipment"],
+    ["services-montures-vehicules.html", "compendium", "Compendium", "Services, montures et véhicules", "equipment"],
+  ];
+  const styles = await readFile(resolve(root, "css/components.css"), "utf8");
+
+  for (const [page, theme, eyebrow, title, icon, artwork] of cases) {
+    const source = await readFile(resolve(root, page), "utf8");
+    const feature = source.match(/<section class="page-feature [^"]*page-feature--compact[^"]*"[\s\S]*?<\/section>/);
+    assert.ok(feature, `${page}: missing compact page feature`);
+    assert.equal((source.match(/<h1\b/gi) || []).length, 1, `${page}: document must own one h1`);
+    assert.equal((feature[0].match(/<h1\b/gi) || []).length, 1, `${page}: compact feature must own one h1`);
+    assert.match(feature[0], new RegExp(`<h1[^>]*>${title}</h1>`), `${page}: unexpected feature title`);
+    assert.ok(feature[0].includes(`page-feature--${theme}`) || page === "classes/index.html", `${page}: missing section theme`);
+    assert.ok(feature[0].includes(`site-icons.svg#${icon}`), `${page}: missing content icon`);
+    assert.ok(feature[0].includes(eyebrow), `${page}: missing section eyebrow`);
+    if (artwork) assert.ok(styles.includes(artwork), `${page}: missing declared artwork`);
+  }
+
+  assert.match(styles, /\.page-feature--compact[\s\S]*var\(--overlay-feature-compact\)/);
+  assert.match(styles, /\.page-feature--classes[\s\S]*var\(--section-creation\)/);
+  assert.match(styles, /\.page-feature--creation[\s\S]*var\(--section-creation\)/);
+  assert.match(styles, /\.page-feature--compendium[\s\S]*var\(--section-compendium\)/);
 });
 
 test("critical pages do not reference missing local files", async () => {
@@ -262,7 +296,7 @@ test("critical pages do not reference missing local files", async () => {
 
 test("every standalone page uses the shared visual shell", async () => {
   const pages = (await standaloneHtmlPages()).filter((page) => page !== "offline.html");
-  assert.equal(pages.length, 57);
+  assert.equal(pages.length, 62);
 
   for (const page of pages) {
     const source = await readFile(resolve(root, page), "utf8");
@@ -326,20 +360,18 @@ test("the home dashboard exposes quick access and personal library regions", asy
   const styles = await readFile(resolve(root, "css/home.css"), "utf8");
   const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   const library = await readFile(resolve(root, "js/user-library.js"), "utf8");
-  assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 4);
+  assert.equal([...source.matchAll(/class="quick-access-card\s/g)].length, 5);
   assert.match(source, /class="home-intro-grid"[\s\S]*class="home-hero"[\s\S]*class="home-quick-access"/);
   for (const icon of ["quick-reference", "spells", "monsters", "character-sheet"]) {
     assert.match(source, new RegExp(`site-icons\\.svg#${icon}`));
   }
-  assert.equal([...source.matchAll(/quick-access-card__action[\s\S]{0,180}site-icons\.svg#chevron-right/g)].length, 4);
+  assert.equal([...source.matchAll(/quick-access-card__action[\s\S]{0,180}site-icons\.svg#chevron-right/g)].length, 5);
   assert.doesNotMatch(source, /quick-access-card__action[\s\S]{0,160}#chevron-down/);
-  assert.equal([...source.matchAll(/class="dashboard-feature dashboard-feature--/g)].length, 3);
-  for (const feature of ["rules", "classes", "universe"]) {
-    assert.match(source, new RegExp(`dashboard-feature--${feature}`));
-  }
-  for (const asset of ["rules-game-table.webp", "classes-heroes.webp", "faerun-city.webp"]) {
-    assert.match(styles, new RegExp(asset.replace(".", "\\.")));
-  }
+  assert.match(source, /data-site-explorer/);
+  assert.match(styles, /home-explorer-grid/);
+  assert.match(styles, /\.quick-access-grid[\s\S]*repeat\(5, minmax\(0, 1fr\)\)/);
+  assert.match(styles, /\.home-explorer-panel \{ grid-column: span 4/);
+  assert.match(styles, /\.home-explorer-panel--universe,[\s\S]*\.home-explorer-panel--table \{ grid-column: span 6/);
   for (const card of source.matchAll(/<article class="quick-access-card[\s\S]*?<\/article>/g)) {
     assert.match(card[0], /<\/a>\s*<button data-favorite-button>/);
   }
@@ -351,7 +383,7 @@ test("the home dashboard exposes quick access and personal library regions", asy
   assert.match(shell, /createIcon\("site-emblem"\)/);
   assert.doesNotMatch(shell, /markText|textContent\s*=\s*"D20"/);
   assert.doesNotMatch(source + shell + library, /[◈✦♜✎⚔☼♞◉▧✧⬡▱⚑♙⊛☆★☾☰⌕×›◆⚡]/);
-  assert.ok([...source.matchAll(/data-library-item/g)].length >= 15);
+  assert.ok([...source.matchAll(/data-library-item/g)].length >= 5);
   assert.match(source, /data-recent-list/);
   assert.match(source, /data-favorites-list/);
   assert.match(source, /data-open-site-search/);
@@ -384,6 +416,11 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   const source = await readFile(resolve(root, "js/site-shell.js"), "utf8");
   assert.match(source, /dnd2024_session_mode/);
   assert.match(source, /data\/search-index\.json/);
+  assert.match(source, /buildSectionFilterDefinitions/);
+  assert.match(source, /button\.disabled = Boolean\(definition\.disabled\)/);
+  assert.doesNotMatch(source, /matchingEntries\("", input\.value\.trim\(\) \? 3000 : 30\)/);
+  assert.match(source, /var scopedMatches = activeSection/);
+  assert.doesNotMatch(source, /input\.addEventListener\("input", function \(\) \{[\s\S]{0,140}activeSection = ""/);
   assert.match(source, /sessionButton\.setAttribute\("aria-pressed"/);
   assert.match(source, /function ensureSkipLink/);
   assert.match(source, /aria-autocomplete/);

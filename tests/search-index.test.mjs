@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+import { SITE_SECTIONS } from "../js/site-navigation.js";
+
 const [primaryIndex, deepIndex] = await Promise.all([
   readFile(new URL("../data/search-index.json", import.meta.url), "utf8").then(JSON.parse),
   readFile(new URL("../data/search-index-deep.json", import.meta.url), "utf8").then(JSON.parse),
@@ -28,13 +30,54 @@ test("global search entries expose stable canonical IDs and compatibility aliase
   assert.equal(ids.size, index.entries.length);
   for (const entry of index.entries) {
     assert.match(entry.id, new RegExp(`^${entry.type}-[a-z0-9]`));
+    assert.ok(["Règles", "Compendium", "Création", "Univers", "Ma table"].includes(entry.section));
+    assert.equal(typeof entry.category, "string");
     assert.equal(Array.isArray(entry.aliases), true);
     assert.equal(Array.isArray(entry.keywords), true);
   }
 
   const fireball = index.entries.find((entry) => entry.title === "Boule de feu" && entry.category === "Sort");
   assert.equal(fireball.id, "spell-boule-de-feu");
+  assert.equal(fireball.section, "Compendium");
   assert.ok(fireball.aliases.includes("Fireball"));
+});
+
+test("navigation pages use page metadata while deep contents keep specialized types", () => {
+  const entryForUrl = (url) => index.entries.find((entry) => entry.url === url);
+  const pageExpectations = [
+    ["spells.html", "Compendium", "Sort"],
+    ["glossaire.html", "Règles", "Glossaire"],
+    ["classes/index.html", "Création", "Classe"],
+    ["monstres.html", "Compendium", "Monstre"],
+    ["regles-campagne.html", "Ma table", "Règle de campagne"],
+    ["html/characters.html", "Ma table", "Personnage"],
+  ];
+
+  for (const [url, section, category] of pageExpectations) {
+    assert.deepEqual(
+      (({ section: actualSection, category: actualCategory, type }) => ({ section: actualSection, category: actualCategory, type }))(entryForUrl(url)),
+      { section, category, type: "page" },
+      url,
+    );
+  }
+
+  const navigationUrls = new Set(SITE_SECTIONS.flatMap(({ links }) => links.map(({ url }) => url)));
+  for (const entry of index.entries.filter(({ url }) => navigationUrls.has(url))) {
+    assert.equal(entry.type, "page", entry.url);
+  }
+
+  const deepExpectations = [
+    ["spell-boule-de-feu", "Compendium", "Sort", "spell"],
+    ["glossary-jet-de-sauvegarde", "Règles", "Glossaire", "glossary"],
+    ["class-magicien", "Création", "Classe", "class"],
+    ["monster-mind-flayer", "Compendium", "Monstre", "monster"],
+    ["lore-waterdeep", "Univers", "Lore", "lore"],
+  ];
+  for (const [id, section, category, type] of deepExpectations) {
+    const entry = index.entries.find((candidate) => candidate.id === id);
+    assert.deepEqual({ section: entry.section, category: entry.category, type: entry.type }, { section, category, type }, id);
+  }
+  assert.ok(index.entries.some(({ type, category, section }) => type === "campaign-rule" && category === "Règle de campagne" && section === "Ma table"));
 });
 
 test("global search includes glossary terms and bilingual aliases", () => {

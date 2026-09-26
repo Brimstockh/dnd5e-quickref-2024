@@ -9,135 +9,6 @@
     <link rel="stylesheet" href="css/classes.css" />
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
-    <style>
-        body.page-background { margin: 0; display: block; font-family: 'Noto Sans', sans-serif; color: #222; background: linear-gradient(160deg, #efe7d2 0%, #f8f5eb 45%, #ece6d8 100%); }
-        .combat-wrap { max-width: 960px; margin: 0 auto; padding: 20px; }
-        .topnav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-        .topnav a { display: inline-block; padding: 7px 10px; border: 1px solid #7a120f; border-radius: 8px; text-decoration: none; color: #7a120f; background: #fff; font-weight: 700; }
-        .combat-content { background: #fffef9; border: 2px solid #7a120f; border-radius: 10px; overflow: hidden; }
-        .combat-content h1, .combat-content h2, .combat-content h3, .combat-content h4 { font-family: 'Lora', serif; }
-        .combat-content > h1 { margin: 0; padding: 10px 14px; color: #fff; background: #7a120f; font-variant: small-caps; }
-        .combat-content .content { padding: 12px 14px; line-height: 1.45; }
-        .combat-content .content h1,
-        .combat-content .content h3 {
-            margin: 18px 0 10px;
-            padding: 8px 10px;
-            color: #7a120f;
-            background: #f7f2e9;
-            border: 1px solid #d8d2c5;
-            border-left: 4px solid #7a120f;
-            border-radius: 8px;
-            font-variant: small-caps;
-        }
-        .combat-content .content h1:first-child,
-        .combat-content .content h3:first-child {
-            margin-top: 0;
-        }
-        .combat-content .content h1 a,
-        .combat-content .content h3 a,
-        .combat-content .content h4 a {
-            color: inherit;
-            text-decoration: none;
-        }
-        .combat-content h4 { margin: 14px 0 8px; color: #7a120f; }
-        .combat-content table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 0.95rem; background: #fff; }
-        .combat-content th, .combat-content td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
-        .combat-content th { background: #f7f2e9; color: #7a120f; }
-        .combat-content .text-center { text-align: center; }
-        .combat-content .encadre { padding: 10px 12px; border: 1px solid #d8d2c5; border-left: 4px solid #7a120f; background: #fff; border-radius: 8px; }
-        .combat-content a { color: #7a120f; }
-        .combat-content img { max-width: 100%; height: auto; }
-        .combat-content .content > :first-child { margin-top: 0; }
-        .combat-content .content p { margin: 0 0 10px; }
-        .combat-content .content ul,
-        .combat-content .content ol { margin: 0 0 10px; padding-left: 18px; }
-        .combat-content .content table { margin-bottom: 12px; }
-        .combat-content .combat-table-scroll {
-            max-width: 100%;
-            margin: 10px 0 14px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .combat-content .combat-table-scroll table { min-width: 760px; margin: 0; }
-        .combat-content .combat-formula {
-            display: flex;
-            width: 100%;
-            box-sizing: border-box;
-            align-items: center;
-            justify-content: center;
-            gap: 0.45em;
-            overflow-x: auto;
-            margin: 0 0 12px;
-            padding: 14px 12px;
-            color: #fffef9;
-            background: #17130f;
-            border: 1px solid #7a120f;
-            border-radius: 8px;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: clamp(1.1rem, 2.6vw, 1.5rem);
-            font-style: italic;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-        .combat-content .combat-formula__term { display: inline-block; }
-        .combat-content .combat-formula sub,
-        .combat-content .combat-formula sup { font-size: 0.58em; line-height: 0; }
-        .combat-content .combat-formula__sum {
-            position: relative;
-            display: inline-block;
-            width: 1.25em;
-            margin: 0 0.12em;
-            font-size: 1.55em;
-            font-style: normal;
-            line-height: 0.9;
-            text-align: center;
-        }
-        .combat-content .combat-formula__sum sup,
-        .combat-content .combat-formula__sum sub { position: absolute; left: 50%; transform: translateX(-50%); }
-        .combat-content .combat-formula__sum sup { top: -0.55em; }
-        .combat-content .combat-formula__sum sub { bottom: -0.48em; }
-        .combat-content .combat-calculator {
-            margin: 14px 0 18px;
-            padding: 12px;
-            color: #222;
-            background: #f7f2e9;
-            border: 1px solid #d8d2c5;
-            border-left: 4px solid #7a120f;
-            border-radius: 8px;
-        }
-        .combat-content .combat-calculator h4 { margin-top: 0; color: #7a120f; }
-        .combat-content .combat-calculator__intro { margin-bottom: 12px; }
-        .combat-content .combat-calculator__controls {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-        .combat-content .combat-calculator label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
-        .combat-content .combat-calculator input,
-        .combat-content .combat-calculator select {
-            box-sizing: border-box;
-            min-height: 38px;
-            padding: 7px 9px;
-            color: #222;
-            background: #fff;
-            border: 1px solid #b6b0a5;
-            border-radius: 6px;
-            font: inherit;
-        }
-        .combat-content .combat-level-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 8px;
-            margin: 0 0 12px;
-        }
-        .combat-content .combat-calculator__result { margin: 0; background: #fff; }
-        .combat-content .combat-calculator__result output { display: block; margin-top: 3px; color: #7a120f; font-size: 1.35rem; }
-        .combat-content .combat-calculator__breakdown { display: block; margin-top: 5px; font-size: 0.9rem; }
-        @media (max-width: 560px) {
-            .combat-content .combat-calculator__controls { grid-template-columns: 1fr; }
-        }
-    </style>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/content-page.css" />
@@ -147,7 +18,7 @@
 </head>
 <body class="page-background content-page dense-page" data-dense-variant="combat" data-library-title="Combat & Dégâts D&D 2024" data-library-category="Règle" data-library-description="Référence D&amp;D 2024">
     <header data-site-header data-active="combat"></header>
-    <div class="combat-wrap" data-glossary-richtext>
+    <main class="combat-wrap" id="main-content" data-glossary-richtext>
         <nav class="topnav">
             <a href="index.html">Accueil</a>
             <a href="glossaire.html">Glossaire</a>
@@ -204,7 +75,7 @@
 <p>Avec les règles D&amp;D 2024, le calcul est très simple : chaque personnage apporte un budget de PX dépendant de son niveau et de la difficulté choisie. On additionne ensuite ces budgets pour obtenir le budget total de la rencontre.</p>
 <h4>Formule générale</h4>
 <p>Si tous les joueurs sont au même niveau :</p>
-<div class="combat-formula" role="math" aria-label="Budget rencontre égale nombre de PJ multiplié par budget du niveau et de la difficulté">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Budget rencontre égale nombre de PJ multiplié par budget du niveau et de la difficulté">
 <span class="combat-formula__term">Budget<sub>rencontre</sub></span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">Nombre<sub>PJ</sub></span>
@@ -212,7 +83,7 @@
 <span class="combat-formula__term">Budget<sub>niveau, difficulté</sub></span>
 </div>
 <p>Si les personnages ont des niveaux différents :</p>
-<div class="combat-formula" role="math" aria-label="Budget rencontre égale la somme, de i égal 1 à N, du budget correspondant au niveau de chaque PJ et à la difficulté">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Budget rencontre égale la somme, de i égal 1 à N, du budget correspondant au niveau de chaque PJ et à la difficulté">
 <span class="combat-formula__term">Budget<sub>rencontre</sub></span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__sum" aria-hidden="true"><sup>N</sup>∑<sub>i=1</sub></span>
@@ -366,7 +237,7 @@
 <p><strong>Attaque contre CA :</strong> l’attaquant lance 1d20 + bonus d’attaque. <strong>Sauvegarde :</strong> la cible lance 1d20 + bonus contre le DD.</p>
 <h4>Attaque d’arme au corps à corps</h4>
 <p>Elle utilise généralement la Force. Ajoutez la maîtrise seulement si l’arme est maîtrisée.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque au corps à corps égale un d20 plus modificateur de Force plus bonus de maîtrise si l’arme est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque au corps à corps égale un d20 plus modificateur de Force plus bonus de maîtrise si l’arme est maîtrisée">
 <span class="combat-formula__term">Jet d’attaque</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -377,7 +248,7 @@
 </div>
 <p>À la CA : <strong>résultat ≥ CA</strong>, touche ; <strong>résultat &lt; CA</strong>, rate. Force 18 (+4), maîtrise +3, épée longue maîtrisée : <strong>1d20 + 4 + 3 = 1d20 + 7</strong>.</p>
 <h4>Dégâts d’une attaque d’arme</h4>
-<div class="combat-formula" role="math" aria-label="Dégâts égale dés de dégâts de l’arme plus modificateur de caractéristique utilisé pour l’attaque">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Dégâts égale dés de dégâts de l’arme plus modificateur de caractéristique utilisé pour l’attaque">
 <span class="combat-formula__term">Dégâts</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">dés de l’arme</span>
@@ -388,7 +259,7 @@
 <p class="encadre"><strong>Important :</strong> le bonus de maîtrise n’est <strong>pas</strong> ajouté aux dégâts d’une attaque d’arme.</p>
 <h4>Attaque d’arme à distance</h4>
 <p>Généralement Dextérité ; comparez à la CA.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque à distance égale un d20 plus modificateur de Dextérité plus bonus de maîtrise si l’arme est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque à distance égale un d20 plus modificateur de Dextérité plus bonus de maîtrise si l’arme est maîtrisée">
 <span class="combat-formula__term">Jet d’attaque</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -402,7 +273,7 @@
 <p><strong>Finesse :</strong> Force <strong>ou</strong> Dextérité, avec le même choix pour l’attaque et les dégâts (ex. rapière). <strong>Arme lancée :</strong> utilisez normalement la caractéristique de l’arme, pas automatiquement la Dextérité (ex. javeline : généralement Force).</p>
 <h4>Jet d’attaque de sort</h4>
 <p>Incantation : Intelligence, Sagesse ou Charisme selon la classe/capacité.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque de sort égale un d20 plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque de sort égale un d20 plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
 <span class="combat-formula__term">Jet d’attaque de sort</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -416,7 +287,7 @@
 <p>Le modificateur d’incantation n’est <strong>pas automatique</strong> : les dégâts suivent le sort (dés, modificateur indiqué ou capacité de classe).</p>
 <h4>Sort avec jet de sauvegarde</h4>
 <p>Le lanceur ne fait généralement pas de jet d’attaque : la cible fait le jet de sauvegarde. Calculez le DD des sorts.</p>
-<div class="combat-formula" role="math" aria-label="DD de sauvegarde des sorts égale huit plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<div class="combat-formula" role="math" tabindex="0" aria-label="DD de sauvegarde des sorts égale huit plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
 <span class="combat-formula__term">DD des sorts</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">8</span>
@@ -428,7 +299,7 @@
 <p>Exemple : Intelligence 18 (+4), maîtrise +3 : <strong>8 + 4 + 3 = 15</strong>.</p>
 <h4>Jet de sauvegarde de la cible</h4>
 <p>Le sort indique Force, Dextérité, Constitution, Intelligence, Sagesse ou Charisme. Maîtrise seulement si cette sauvegarde est maîtrisée.</p>
-<div class="combat-formula" role="math" aria-label="Jet de sauvegarde égale un d20 plus modificateur de la caractéristique demandée plus bonus de maîtrise si la sauvegarde est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet de sauvegarde égale un d20 plus modificateur de la caractéristique demandée plus bonus de maîtrise si la sauvegarde est maîtrisée">
 <span class="combat-formula__term">Jet de sauvegarde</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -596,6 +467,6 @@
 </p></div>
 	
         </article>
-    </div>
+    </main>
 </body>
 </html>

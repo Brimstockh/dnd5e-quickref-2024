@@ -6,6 +6,7 @@ import {
   highlightSearchText,
   normalizeSearch,
   parseSearchQuery,
+  SEARCH_COMMANDS,
   searchEntries,
 } from "../js/search-engine.js";
 
@@ -38,6 +39,16 @@ test("searchEntries prioritizes title matches and filters categories", () => {
   assert.deepEqual(monsters.map((result) => result.entry.title), ["Élémentaire du feu"]);
 });
 
+test("searchEntries filters the canonical site section independently from content category", () => {
+  const sectionedEntries = entries.map((entry) => ({
+    ...entry,
+    section: entry.category === "Sort" ? "Compendium" : entry.category === "Monstre" ? "Compendium" : "Règles",
+  }));
+  const compendium = searchEntries(sectionedEntries, "feu", { section: "Compendium" });
+  assert.deepEqual(compendium.map((result) => result.entry.title), ["Boule de feu", "Élémentaire du feu", "Feuille morte"]);
+  assert.deepEqual(searchEntries(sectionedEntries, "feu", { section: "Règles", category: "Sort" }), []);
+});
+
 test("countSearchCategories reports the available result facets", () => {
   const counts = countSearchCategories(searchEntries(entries, "feu"));
   assert.equal(counts.get("Sort"), 2);
@@ -64,6 +75,14 @@ test("commands constrain search to the requested content family", () => {
     category: "Lore",
     label: "Lore / Univers",
   });
+});
+
+test("all documented search commands keep their category contract", () => {
+  for (const definition of SEARCH_COMMANDS) {
+    const parsed = parseSearchQuery(`@${definition.command}`);
+    assert.equal(parsed.command, `@${definition.command}`);
+    assert.equal(parsed.category, definition.category);
+  }
 });
 
 test("recent and profile context provide bounded ranking boosts", () => {

@@ -1,0 +1,185 @@
+/* Universe recipes reuse the shared content-page surfaces and theme tokens. */
+.universe-page {
+    --section-accent: var(--section-universe);
+    --accent: var(--section-accent);
+    --line: var(--color-border);
+    --paper: var(--color-surface);
+    --ink: var(--color-text);
+    --muted: var(--color-text-muted);
+}
+
+.universe-page .page-feature { --feature-accent: var(--section-accent); }
+.universe-page .page-feature h1 { color: var(--feature-text); }
+.universe-page .page-feature .page-feature__description,
+.universe-page .page-feature .page-feature__content > p:last-child { color: var(--feature-text-muted); }
+.universe-page .page-feature .page-feature__eyebrow { color: var(--feature-accent); }
+.universe-page .card { border-top: 2px solid color-mix(in srgb, var(--section-accent) 64%, var(--color-border)); }
+.universe-page .page > .card > h1,
+.universe-page .page > .card > h2 {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--section-accent) 22%, var(--color-bg-elevated)), var(--color-bg-elevated));
+    border-bottom-color: color-mix(in srgb, var(--section-accent) 55%, var(--color-border));
+}
+
+.universe-page .lead { color: var(--color-text); font-size: var(--text-lg); }
+.universe-page .content p { margin: 0 0 var(--space-3); }
+.universe-page .toc a,
+.universe-page .map-toolbar button,
+.universe-page .map-toolbar a {
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+    border-color: color-mix(in srgb, var(--section-accent) 56%, var(--color-border));
+}
+.universe-page .toc a:hover,
+.universe-page .toc a:focus-visible,
+.universe-page .map-toolbar button:hover,
+.universe-page .map-toolbar button:focus-visible,
+.universe-page .map-toolbar a:hover,
+.universe-page .map-toolbar a:focus-visible {
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--section-accent) 12%, var(--color-surface-hover));
+    border-color: var(--section-accent);
+}
+
+.universe-page :is(.region-grid, .group-grid, .character-grid, .plan-grid, .timeline) {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.universe-page :is(.region-card, .timeline-item, .group-card, .character-card, .plan-card, .lore-deity-card) {
+    min-width: 0;
+    padding: var(--space-4);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--section-accent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.universe-page :is(.region-card, .timeline-item, .group-card, .character-card, .plan-card, .lore-deity-card) :is(h2, h3) {
+    color: var(--color-text);
+}
+
+.universe-page :is(.region-card h2, .region-card h3, .timeline-item h2, .group-card h2) {
+    margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: color-mix(in srgb, var(--section-accent) 18%, var(--color-bg-elevated));
+    border-bottom: 1px solid color-mix(in srgb, var(--section-accent) 44%, var(--color-border));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.universe-page .character-card h2 { margin: 0 0 var(--space-3); padding: var(--space-3) var(--space-4); }
+.universe-page .plan-card h3,
+.universe-page .lore-deity-card h3 { margin: 0 0 var(--space-2); color: var(--color-gold-bright); }
+.universe-page .timeline-note { margin: 0 0 var(--space-3); }
+.universe-page .event-list,
+.universe-page .detail-list { margin: var(--space-3) 0 0; padding-left: 1.2rem; }
+.universe-page .event-list li,
+.universe-page .detail-list li { margin: 0 0 var(--space-2); }
+
+.universe-page .tag-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; }
+.universe-page .tag,
+.universe-page .domain {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--section-accent) 12%, var(--color-bg-elevated));
+    border: 1px solid color-mix(in srgb, var(--section-accent) 48%, var(--color-border));
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+}
+
+.universe-page .region-card__media { margin: 0 0 var(--space-4); }
+.universe-page .region-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-active);
+}
+.universe-page .region-gallery__item {
+    display: grid;
+    aspect-ratio: 16 / 9;
+    min-width: 0;
+    place-items: center;
+    overflow: hidden;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+}
+.universe-page .region-gallery__item img { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: cover; }
+.universe-page .region-gallery__item:hover,
+.universe-page .region-gallery__item:focus-visible { border-color: var(--section-accent); }
+
+.universe-page .city-grid,
+.universe-page .deity-grid,
+.universe-page .lore-deity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-3);
+    margin: var(--space-4) 0;
+}
+.universe-page .city-card,
+.universe-page .deity-note { min-width: 0; padding: var(--space-3); background: var(--color-surface); border: 1px solid var(--color-border); border-left: 3px solid var(--section-accent); border-radius: var(--radius-md); }
+.universe-page :is(.city-card h3, .city-card h4, .deity-note strong) { margin: 0 0 var(--space-2); color: var(--color-gold-bright); }
+.universe-page .city-card p { margin: 0 0 var(--space-2); }
+.universe-page .deity-cell { display: flex; align-items: center; gap: var(--space-2); }
+.universe-page .deity-cell__name { min-width: 0; }
+.universe-page .emblem-frame.deity-cell__frame { width: 3.25rem; padding: 3px; border-radius: var(--radius-md); }
+.universe-page .table-wrap { margin: var(--space-3) 0 var(--space-4); }
+.universe-page .deity-table th:nth-child(1) { min-width: 14rem; }
+.universe-page .deity-table th:nth-child(2) { min-width: 7rem; }
+.universe-page .deity-table th:nth-child(3) { min-width: 11rem; }
+.universe-page .deity-table th:nth-child(4) { min-width: 18rem; }
+.universe-page .alignment { font-weight: 800; white-space: nowrap; }
+
+.universe-page .group-card__layout,
+.universe-page .character-card__layout {
+    display: grid;
+    gap: var(--space-4);
+    align-items: start;
+}
+.universe-page .group-card__layout { grid-template-columns: clamp(7rem, 14vw, 10rem) minmax(0, 1fr); }
+.universe-page .character-card__layout { grid-template-columns: minmax(140px, clamp(140px, 18vw, 220px)) minmax(0, 1fr); }
+.universe-page :is(.group-card__content, .character-card__content) { min-width: 0; }
+.universe-page .group-card__content .tag-row { margin-top: 0; }
+.universe-page .character-card__portrait { display: block; width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); box-shadow: var(--shadow-card); }
+
+.universe-page .plan-card h3 { scroll-margin-top: 5rem; }
+.universe-page .plan-illustration { margin: var(--space-4) 0; padding: var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
+.universe-page .plan-illustration a { display: block; cursor: zoom-in; }
+.universe-page .plan-illustration img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
+
+.universe-page .map-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; }
+.universe-page .map-toolbar button,
+.universe-page .map-toolbar a { padding: 0.45rem 0.7rem; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
+.universe-page .map-zoom-value { min-width: 3.5rem; color: var(--color-text-muted); font-weight: 700; }
+.universe-page .map-viewer { height: min(72vh, 680px); min-height: 22rem; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); cursor: grab; touch-action: none; user-select: none; }
+.universe-page .map-viewer.is-dragging { cursor: grabbing; }
+.universe-page .map-viewer img { display: block; width: 100%; max-width: none; height: auto; transform-origin: 0 0; will-change: transform; pointer-events: none; }
+.universe-page .map-viewer picture { display: contents; }
+.universe-page .map-viewer.is-missing img { display: none; }
+.universe-page .map-fallback { display: none; min-height: 100%; place-items: center; padding: var(--space-5); text-align: center; }
+.universe-page .map-viewer.is-missing .map-fallback { display: grid; }
+
+@media (max-width: 800px) {
+    .universe-page .city-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+    .universe-page .region-gallery { grid-template-columns: 1fr; }
+    .universe-page :is(.group-card__layout, .character-card__layout) { grid-template-columns: 1fr; gap: var(--space-3); }
+    .universe-page .group-card__layout .emblem-frame { width: min(9rem, 100%); margin-inline: auto; }
+    .universe-page .character-card__portrait { width: min(100%, 220px); margin-inline: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .universe-page .map-viewer,
+    .universe-page .region-gallery__item { scroll-behavior: auto; }
+}

@@ -8,7 +8,25 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("modernized pages do not reintroduce historical inline assets", async () => {
-  for (const page of ["character-sheet-standalone.html", "monstres.html", "dons.html"]) {
+  for (const page of [
+    "character-sheet-standalone.html",
+    "monstres.html",
+    "dons.html",
+    "historique.html",
+    "armes-armures.html",
+    "rules-2024.html",
+    "combat-2024.html",
+    "mastery-2024.html",
+    "glossaire.html",
+    "faerun.html",
+    "lore.html",
+    "histoire-royaumes.html",
+    "divinites.html",
+    "groupes-royaumes.html",
+    "personnages-royaumes.html",
+    "plans-existence.html",
+    "html/characters.html",
+  ]) {
     const source = await readFile(resolve(root, page), "utf8");
     assert.doesNotMatch(source, /<style[\s>]/i, page);
     assert.doesNotMatch(source, /<script(?![^>]*\bsrc=)[^>]*>(?:\s|\S)*?<\/script>/i, page);
@@ -28,6 +46,15 @@ test("retired character templates preserve their URLs without duplicate implemen
 test("obsolete Web Components v0 and orphan quick-reference data stay removed", () => {
   assert.equal(existsSync(resolve(root, "html/quickref-item.html")), false);
   assert.equal(existsSync(resolve(root, "js/data_hazards.js")), false);
+});
+
+test("retired homepage quicklinks stay removed", async () => {
+  const home = await readFile(resolve(root, "index.html"), "utf8");
+  const serviceWorker = await readFile(resolve(root, "service-worker.js"), "utf8");
+  assert.equal(existsSync(resolve(root, "css/quicklinks.css")), false);
+  assert.equal(existsSync(resolve(root, "js/quicklinks.js")), false);
+  assert.doesNotMatch(home, /quicklinks/i);
+  assert.doesNotMatch(serviceWorker, /quicklinks/i);
 });
 
 test("the search build consumes the current JSON catalogs", async () => {

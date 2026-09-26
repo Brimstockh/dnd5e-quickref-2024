@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(import.meta.dirname, "..");
 const outputPath = resolve(root, "data/content-inventory.json");
@@ -10,6 +11,9 @@ const [primaryIndex, deepIndex] = await Promise.all([
 ]);
 const index = { entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])] };
 const byType = {};
+const sectionLabels = SITE_SECTIONS.map(({ label }) => label);
+const allowedSections = new Set(sectionLabels);
+const bySection = Object.fromEntries(sectionLabels.map((label) => [label, 0]));
 const seen = new Set();
 const duplicateIds = [];
 const invalidUrls = [];
@@ -17,20 +21,29 @@ const incompleteEntries = [];
 
 for (const entry of index.entries || []) {
   byType[entry.type] = (byType[entry.type] || 0) + 1;
+  if (entry.section && !allowedSections.has(entry.section)) {
+    throw new Error(`Unknown search section: ${entry.section} (${entry.id})`);
+  }
+  if (entry.section) bySection[entry.section] += 1;
   if (seen.has(entry.id)) duplicateIds.push(entry.id);
   seen.add(entry.id);
   if (!entry.url || /^(?:javascript|data):/i.test(entry.url)) invalidUrls.push(entry.id);
-  if (!entry.title || !entry.category || !Array.isArray(entry.keywords) || !Array.isArray(entry.aliases)) {
+  if (!entry.title || !entry.section || !entry.category || !entry.type || !Array.isArray(entry.keywords) || !Array.isArray(entry.aliases)) {
     incompleteEntries.push(entry.id);
   }
 }
 
 const pages = Array.from(new Set((index.entries || []).map(({ url }) => String(url || "").split(/[?#]/, 1)[0]).filter(Boolean))).sort();
+const navigation = {
+  sections: SITE_SECTIONS.map(({ id, label, landing }) => ({ id, label, landing })),
+};
 const inventory = {
   schemaVersion: 1,
   count: index.entries?.length || 0,
   byType: Object.fromEntries(Object.entries(byType).sort(([left], [right]) => left.localeCompare(right))),
+  bySection,
   pages,
+  navigation,
   quality: { duplicateIds, invalidUrls, incompleteEntries },
 };
 const serialized = `${JSON.stringify(inventory, null, 2)}\n`;

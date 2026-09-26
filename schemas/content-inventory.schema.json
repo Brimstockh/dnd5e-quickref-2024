@@ -3,12 +3,45 @@
   "$id": "https://brimstockh.github.io/dnd5e-quickref-2024/schemas/content-inventory.schema.json",
   "title": "Inventaire consolidé des contenus",
   "type": "object",
-  "required": ["schemaVersion", "count", "byType", "pages", "quality"],
+  "required": ["schemaVersion", "count", "byType", "bySection", "pages", "navigation", "quality"],
   "properties": {
     "schemaVersion": {"const": 1},
     "count": {"type": "integer", "minimum": 0},
     "byType": {"type": "object"},
+    "bySection": {
+      "type": "object",
+      "required": ["Règles", "Compendium", "Création", "Univers", "Ma table"],
+      "properties": {
+        "Règles": {"type": "integer", "minimum": 0},
+        "Compendium": {"type": "integer", "minimum": 0},
+        "Création": {"type": "integer", "minimum": 0},
+        "Univers": {"type": "integer", "minimum": 0},
+        "Ma table": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
     "pages": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "navigation": {
+      "type": "object",
+      "required": ["sections"],
+      "properties": {
+        "sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "landing"],
+            "properties": {
+              "id": {"type": "string"},
+              "label": {"type": "string"},
+              "landing": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "quality": {
       "type": "object",
       "required": ["duplicateIds", "invalidUrls", "incompleteEntries"],

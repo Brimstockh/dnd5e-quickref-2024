@@ -17,8 +17,9 @@
     <script src="../js/content-catalog.js" defer></script>
 </head>
 <body class="race-index content-page" data-catalog-kind="species" data-library-title="Races" data-library-category="Espèce" data-library-description="Référence D&amp;D 2024">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header data-site-header data-active="species"></header>
-    <div class="wrap" data-glossary-richtext>
+    <main class="wrap" id="main-content" data-glossary-richtext>
         <nav class="topnav">
             <a href="../index.html">Accueil</a>
             <a href="../historique.html">Historiques</a>
@@ -33,8 +34,17 @@
             <a href="../quickref.html">Référence rapide</a>
         </nav>
 
+        <section class="page-feature page-feature--creation page-feature--compact" aria-labelledby="species-title">
+            <div class="page-feature__content">
+                <span class="section-visual__icon page-feature__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 64 64" focusable="false"><use href="../assets/icons/site-icons.svg#species"></use></svg></span>
+                <p class="page-feature__eyebrow">Création</p>
+                <h1 id="species-title">Espèces</h1>
+                <p class="page-feature__description">Choisissez l’héritage et les traits qui façonnent votre personnage.</p>
+            </div>
+        </section>
+
         <section class="card">
-            <h1>Races de D&D</h1>
+            <h2>Les espèces en D&amp;D</h2>
             <p>Dans les mondes de D&D, les cités rassemblent des peuples très variés : humains, nains, elfes, halfelins, mais aussi des races plus rares comme les drakéides, tieffelins, gnomes, demi-elfes et Orcs.</p>
             <p>Le choix de la race est une décision de base pour votre personnage. Il influence votre style de jeu, vos caractéristiques, votre histoire et la façon dont le monde réagit à votre présence.</p>
         </section>
@@ -130,6 +140,6 @@
                 </a>
             </div>
         </section>
-    </div>
+    </main>
 </body>
 </html>

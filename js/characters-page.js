@@ -31,13 +31,13 @@ function render(list) {
         <strong>${name}</strong>
         <div class="meta">${species} • ${characterClass} niv. ${level}</div>
 
-        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="char-card__actions">
           <a class="btn" href="character-profile.html?c=${encodedKey}">Présentation</a>
           <a class="btn" href="character.html?c=${encodedKey}">Fiche (DnD)</a>
         </div>
       </div>
 
-      <picture style="display: contents;">
+      <picture class="char-card__picture">
         <source type="image/webp" />
         <img
           class="char-card__img"

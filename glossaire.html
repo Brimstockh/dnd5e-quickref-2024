@@ -6,69 +6,6 @@
     <title>D&amp;D 2024 - Glossaire</title>
     <link rel="stylesheet" href="css/classes.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css" />
-    <style>
-        .lead {
-            font-size: 1.06rem;
-            color: #3e3a34;
-        }
-
-        .content p {
-            margin: 0 0 10px;
-        }
-
-        .toc {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 8px;
-            margin: 14px 0;
-        }
-
-        .toc a {
-            display: block;
-            text-decoration: none;
-            color: var(--accent);
-            background: #fff;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-weight: 700;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-            margin: 10px 0 14px;
-        }
-
-        .content h4 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .subnav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 12px 0 0;
-        }
-
-        .subnav a {
-            display: inline-block;
-            padding: 6px 10px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            background: #fff;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .abbr-table td:nth-child(odd) {
-            white-space: nowrap;
-            font-weight: 700;
-            color: var(--accent);
-        }
-    </style>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/content-page.css" />
@@ -160,7 +97,7 @@
                 <p>La Portée d'une attaque ou d'un sort indique la distance maximale à laquelle sa cible peut se trouver. Une portée unique ne permet pas d'attaquer au-delà de cette distance.</p>
                 <h4>Allonge</h4>
                 <p>L'Allonge indique la distance à laquelle une créature peut atteindre une cible avec une attaque de corps à corps. La plupart des créatures ont une allonge de 1,50 m.</p>
-                <h4>Abri</h4>
+                <h4 id="abri">Abri</h4>
                 <p>Un Abri protège une cible située derrière un obstacle. Un <strong>demi-abri</strong> lui confère un bonus de +2 à la CA et aux jets de sauvegarde de Dextérité. Un <strong>abri supérieur</strong> lui confère un bonus de +5 à ces valeurs. Un <strong>abri total</strong> empêche de la cibler directement. Si plusieurs degrés d'Abri s'appliquent, seule la protection la plus forte est retenue.</p>
                 <h4>Déplacement</h4>
                 <p>Le Déplacement est la distance que vous pouvez parcourir pendant votre tour, jusqu'à concurrence de votre Vitesse. Il peut comprendre de la marche, de l'escalade, de la nage, de la reptation ou du saut.</p>
@@ -178,7 +115,7 @@
                 <p>L'Alignement décrit globalement les attitudes et les idéaux éthiques d'une créature. Il combine deux axes : la moralité (Bon, Mauvais ou Neutre) et l'attitude envers l'ordre (Loyal, Chaotique ou Neutre). Ces axes permettent neuf combinaisons, comme Loyal Bon ou Neutre Mauvais ; l'Alignement n'impose pas chaque choix de la créature.</p>
                 <h4>Facteur de puissance</h4>
                 <p>Le Facteur de puissance (FP) résume la menace globale représentée par une créature et sert à estimer la difficulté d'une rencontre.</p>
-                <h4>Attaque à mains nues</h4>
+                <h4 id="attaque-a-mains-nues">Attaque à mains nues</h4>
                 <p>Une Attaque à mains nues est une attaque de corps à corps effectuée avec votre corps, par exemple un coup de poing, un coup de pied ou un coup de tête, contre une cible située dans un rayon de 1,50 m. Choisissez un effet. <strong>Dégâts</strong> : effectuez un jet d'attaque dont le bonus est égal à votre modificateur de Force + votre bonus de maîtrise ; en cas de réussite, la cible subit 1 + votre modificateur de Force dégâts contondants. <strong>Agripper</strong> : la cible effectue un jet de sauvegarde de Force ou de Dextérité (au choix) contre un DD égal à 8 + votre modificateur de Force + votre bonus de maîtrise ; en cas d'échec, elle subit l'état <a href="#agrippe">Agrippé</a>. Cette option exige une main libre et une cible au plus d'une catégorie de taille supérieure à la vôtre. <strong>Pousser</strong> : la cible effectue le même jet de sauvegarde ou vous la repoussez de 1,50 m ou lui imposez l'état <a href="#a-terre">À terre</a>. Cette option n'est possible que contre une cible au plus d'une catégorie de taille supérieure à la vôtre.</p>
                 <h4>Attaque de corps à corps</h4>
                 <p>Une Attaque de corps à corps cible une créature située à portée d'allonge. Elle fait généralement intervenir une arme tenue en main ou une attaque à mains nues.</p>
@@ -203,17 +140,17 @@
                 <p><strong>Autre effet nécessitant la Concentration</strong>. Vous perdez la Concentration sur un effet dès l'instant où vous commencez à lancer un sort nécessitant la Concentration ou activez un autre effet qui la requiert.</p>
                 <p><strong>Dégâts</strong>. Si vous subissez des dégâts, vous devez réussir un jet de sauvegarde de Constitution pour maintenir votre Concentration. Le DD est égal à 10 ou à la moitié des dégâts subis, arrondie à l'inférieur, le nombre le plus élevé étant retenu, jusqu'à un DD maximal de 30.</p>
                 <p><strong>Neutralisé ou mort</strong>. Votre Concentration prend fin si vous subissez l'état <a href="#neutralise">Neutralisé</a> ou si vous mourez.</p>
-                <h4>Cône</h4>
+                <h4 id="cone">Cône</h4>
                 <p>Un Cône est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine dans la direction choisie par son créateur. Sa largeur en un point donné est toujours égale à la distance qui sépare ce point de l'origine. Le point d'origine n'est pas situé dans la zone d'effet, sauf si son créateur en décide autrement.</p>
                 <h4>Coup critique</h4>
                 <p>Si vous obtenez un 20 sur le d20 d'un jet d'attaque, il s'agit d'un Coup critique. L'attaque touche quels que soient les modificateurs afférents et la CA de la cible. Tous les dés de dégâts de l'attaque sont lancés deux fois puis additionnés, avant d'ajouter les modificateurs applicables. Lire aussi <a href="combat-2024.html#critiques">Dégâts et soins</a>.</p>
-                <h4>Cube</h4>
+                <h4 id="cube">Cube</h4>
                 <p>Un Cube est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine situé n'importe où sur l'une des faces du Cube. L'effet qui crée un Cube spécifie sa taille, à savoir la longueur de chaque arête. Le point d'origine n'est pas inclus dans la zone, sauf décision contraire de son créateur.</p>
-                <h4>Cylindre</h4>
+                <h4 id="cylindre">Cylindre</h4>
                 <p>Un Cylindre est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine situé au centre de la partie supérieure ou inférieure du Cylindre. L'effet qui crée un Cylindre spécifie le rayon de sa base et sa hauteur. Son point d'origine est inclus dans la zone.</p>
                 <h4>Désavantage</h4>
                 <p>Si vous avez un Désavantage à un jet de d20, lancez deux d20 et ne retenez que le résultat le plus faible. Un jet ne peut pas être affecté par plus d'un Désavantage, et un Avantage et un Désavantage sur un même jet s'annulent. Lire aussi <a href="rules-2024.html#avantage">Jets de d20</a>.</p>
-                <h4>Émanation</h4>
+                <h4 id="emanation">Émanation</h4>
                 <p>Une Émanation est une zone d'effet qui s'étend en ligne droite depuis une créature ou un objet, dans toutes les directions. Elle se déplace avec la créature ou l'objet qui est son origine, sauf s'il s'agit d'un effet instantané ou stationnaire. Son origine n'est pas incluse dans la zone, sauf décision contraire de son créateur.</p>
                 <h4 id="peril">En péril</h4>
                 <p>Une créature est En péril dès qu'il lui reste la moitié ou moins de ses points de vie.</p>
@@ -231,11 +168,11 @@
                 <p>Un jet de caractéristique est un jet de d20 qui représente le recours à l'une des six caractéristiques, ou à une compétence associée, afin de surmonter une épreuve. Lire aussi <a href="rules-2024.html#carac">Jets de d20</a> et <a href="mastery-2024.html">Maîtrise</a>.</p>
                 <h4>Jet de d20</h4>
                 <p>La notion de jet de d20 englobe les trois principaux jets de d20 du jeu : jets de caractéristique, jets d'attaque et jets de sauvegarde. Si un élément du jeu affecte les jets de d20, il affecte ces trois jets. Lire aussi <a href="rules-2024.html#d20">Jets de d20</a>.</p>
-                <h4>Jet de sauvegarde</h4>
+                <h4 id="jet-de-sauvegarde">Jet de sauvegarde</h4>
                 <p>Un jet de sauvegarde représente une tentative d'échapper à une menace ou d'y résister. Vous ne l'effectuez en temps normal que lorsqu'une règle vous y contraint, mais vous pouvez décider d'échouer au jet. Si une cible contrainte d'effectuer un jet de sauvegarde ne dispose pas de la valeur de caractéristique associée, elle échoue automatiquement. Lire aussi <a href="rules-2024.html#jds">Jets de d20</a>.</p>
                 <h4>Jet de sauvegarde contre la mort</h4>
                 <p>Un personnage-joueur effectue un jet de sauvegarde contre la mort s'il débute son tour avec 0 point de vie. Lire aussi <a href="combat-2024.html#opv">Dégâts et soins</a>.</p>
-                <h4>Ligne</h4>
+                <h4 id="ligne">Ligne</h4>
                 <p>Une Ligne est une zone d'effet qui s'étend en ligne droite à partir d'un point d'origine et couvre une zone définie par sa longueur et sa largeur. Le point d'origine n'est pas situé dans la zone d'effet, sauf si son créateur en décide autrement.</p>
                 <h4 id="lumiere-faible">Lumière faible</h4>
                 <p>Une zone de Lumière faible est à Visibilité réduite. Lire aussi <a href="#visibilite-reduite">Visibilité réduite</a>.</p>
@@ -243,7 +180,7 @@
                 <p>La Lumière vive est synonyme d'éclairage normal.</p>
                 <h4>Perception passive</h4>
                 <p>La Perception passive est une valeur qui reflète le degré de vigilance d'une créature vis-à-vis de ce qui l'entoure. Elle est égale à 10 + le bonus de la créature aux jets de Sagesse (Perception). Augmentez-la de 5 si elle a un Avantage à ces jets, ou diminuez-la de 5 si elle y a un Désavantage.</p>
-                <h4>Points de vie</h4>
+                <h4 id="points-de-vie">Points de vie</h4>
                 <p>Les Points de vie mesurent la difficulté à tuer ou à détruire une créature ou un objet. Les dégâts les réduisent et les soins les restaurent. Vous ne pouvez pas avoir plus de Points de vie que votre maximum, ni moins de 0. Le maximum est la valeur de référence lorsque vous êtes indemne ; les points actuels peuvent être inférieurs.</p>
                 <h4>Points de vie temporaires</h4>
                 <p>Les Points de vie temporaires forment un matelas de sécurité contre la perte de véritables points de vie. Les dégâts les réduisent en premier, avant les vrais Points de vie. Ils ne se cumulent pas : si vous recevez des Points de vie temporaires alors que vous en avez déjà, vous choisissez de conserver les anciens ou de prendre les nouveaux, et une durée prévue par l'effet s'applique. Les Points de vie temporaires ne restaurent jamais de vrais Points de vie.</p>
@@ -261,7 +198,7 @@
                 <p>Si vous bénéficiez de la Résistance à un type de dégâts, ces dégâts sont réduits de moitié contre vous. La Résistance ne s'applique qu'une seule fois à des dégâts donnés. Lire aussi <a href="combat-2024.html#resistances">Dégâts et soins</a>.</p>
                 <h4>Rituel</h4>
                 <p>Si l'un de vos sorts préparés porte la mention « rituel », vous pouvez le lancer sous cette forme. Le temps d'incantation augmente alors de 10 minutes, mais aucun emplacement n'est dépensé. Lire aussi <a href="spells.html">Sorts</a>.</p>
-                <h4>Sphère</h4>
+                <h4 id="sphere">Sphère</h4>
                 <p>Une Sphère est une zone d'effet qui s'étend en ligne droite dans toutes les directions à partir d'un point d'origine. L'effet qui crée une Sphère stipule la distance à laquelle elle s'étend, ce qui constitue son rayon. Son point d'origine est inclus dans la zone.</p>
                 <h4>Stabilisé</h4>
                 <p>Une créature est dite « Stabilisée » si elle a 0 point de vie mais n'a pas à effectuer de jets de sauvegarde contre la mort. Lire aussi <a href="combat-2024.html#stabiliser">Dégâts et soins</a>.</p>
@@ -303,9 +240,9 @@
                 <p>Chaque créature dispose d'une Vitesse, expression de la distance en mètres qu'elle peut parcourir en se déplaçant pendant son tour. Lire aussi <a href="combat-2024.html#deplacement">Combat</a>.</p>
                 <p><strong>Vitesses spéciales</strong>. Certaines créatures ont des vitesses spéciales de type Vitesse d'escalade, Vitesse de fouissement, Vitesse de nage ou Vitesse de vol. Si vous disposez de plus d'un type de vitesse, vous choisissez celle à laquelle vous recourez lors de votre déplacement.</p>
                 <p><strong>Changer de vitesse</strong>. Si vous disposez de plusieurs vitesses, vous pouvez changer de vitesse pendant votre déplacement. Soustrayez de la nouvelle vitesse la distance déjà parcourue ; si le résultat est nul ou négatif, vous ne pouvez pas utiliser la nouvelle vitesse pendant ce déplacement. <strong>Altérations de vos vitesses</strong>. Si un effet augmente ou diminue momentanément votre Vitesse, toute vitesse spéciale dont vous disposez augmente ou diminue du même montant pour la même durée.</p>
-                <h4>Vitesse d'escalade</h4>
+                <h4 id="vitesse-d-escalade">Vitesse d'escalade</h4>
                 <p>Une Vitesse d'escalade peut remplacer la Vitesse pour traverser une surface verticale sans avoir à dépenser le déplacement supplémentaire ordinairement associé à l'escalade.</p>
-                <h4>Vitesse de nage</h4>
+                <h4 id="vitesse-de-nage">Vitesse de nage</h4>
                 <p>Une Vitesse de nage permet de nager sans la dépense de déplacement supplémentaire ordinairement associée à la nage.</p>
                 <h4>Vitesse de vol</h4>
                 <p>Une Vitesse de vol permet de se déplacer dans les airs. Tant que vous disposez d'une Vitesse de vol, vous restez en l'air jusqu'à ce que vous vous posiez, tombiez ou mouriez.</p>
@@ -328,7 +265,7 @@
                 <p>L'Expertise améliore l'utilisation d'une maîtrise de compétence. Lorsque vous effectuez un jet de caractéristique avec une compétence que vous maîtrisez et dans laquelle vous avez l'Expertise, votre bonus de maîtrise est doublé pour ce jet. Vous ne pouvez pas acquérir deux fois l'Expertise dans la même compétence.</p>
                 <h4>Personnage joueur</h4>
                 <p>Un Personnage joueur est un personnage contrôlé par un joueur.</p>
-                <h4>Personnage non-joueur</h4>
+                <h4 id="personnage-non-joueur">Personnage non-joueur</h4>
                 <p>Un Personnage non-joueur (PNJ) est un Monstre qui possède un nom propre et une personnalité distincte.</p>
 
                 <h4>Allié</h4>
@@ -337,18 +274,18 @@
                 <p>Une créature est votre Ennemi si elle combat contre vous, cherche activement à vous nuire ou est désignée comme telle par les règles ou le MD.</p>
                 <h4>Attitude</h4>
                 <p>L'Attitude initiale d'un monstre envers un personnage joueur est Amicale, Hostile ou Indifférente. Voir aussi <a href="#amical">Amical</a>, <a href="#hostile">Hostile</a> et <a href="#indifferent">Indifférent</a>.</p>
-                <h4>Amical</h4>
+                <h4 id="amical">Amical</h4>
                 <p>Une créature Amicale vous est favorable. Vous avez un Avantage au jet de caractéristique visant à l'influencer.</p>
-                <h4>Hostile</h4>
+                <h4 id="hostile">Hostile</h4>
                 <p>Une créature Hostile vous est défavorable. Vous avez un Désavantage au jet de caractéristique visant à l'influencer.</p>
-                <h4>Indifférent</h4>
+                <h4 id="indifferent">Indifférent</h4>
                 <p>Une créature Indifférente ne souhaite ni vous aider ni vous gêner. C'est l'Attitude par défaut d'un monstre.</p>
 
                 <h4>Formation aux armures</h4>
                 <p>La Formation aux armures permet d'utiliser une catégorie d'armure sans les inconvénients correspondants. Sans formation dans une armure légère, intermédiaire ou lourde, vous avez un Désavantage à tout jet de d20 faisant intervenir la Force ou la Dextérité et vous ne pouvez pas lancer de sorts. Sans formation avec un bouclier, vous ne bénéficiez pas de son bonus de CA.</p>
                 <h4>Harmonisation</h4>
                 <p>L'Harmonisation est le lien qu'une créature doit parfois former avec un objet magique avant d'utiliser ses propriétés magiques. Une créature ne peut être harmonisée avec plus de trois objets magiques à la fois.</p>
-                <h4>Briser les objets</h4>
+                <h4 id="briser-les-objets">Briser les objets</h4>
                 <p>Les objets peuvent être endommagés par des attaques et certains sorts. Si un objet est extrêmement fragile, le MD peut autoriser une créature à le briser automatiquement avec l'action <a href="#attaque">Attaque</a> ou <a href="#utilisation">Utilisation</a>. Un objet est détruit à 0 Point de vie. Pour un objet Très petit ou plus petit, ou jusqu'à Grand, utilisez les tableaux suivants ; divisez un objet Très grand ou Gargantuesque en sections plus petites si nécessaire.</p>
                 <div class="table-wrap">
                     <table>
@@ -403,7 +340,7 @@
                 <p>Les Dégâts représentent un préjudice qui fait perdre des Points de vie à une créature ou à un objet.</p>
                 <h4>Jet de dégâts</h4>
                 <p>Un Jet de dégâts est un lancer de dé, ajusté par les modificateurs applicables, qui inflige des dégâts à une cible.</p>
-                <h4>Seuil de dégâts</h4>
+                <h4 id="seuil-de-degats">Seuil de dégâts</h4>
                 <p>Une créature ou un objet doté d'un Seuil de dégâts est immunisé contre tous les dégâts, sauf s'il reçoit d'une seule attaque ou d'un seul effet une quantité de dégâts au moins égale à ce seuil. Dans ce cas, il subit la totalité de l'instance de dégâts ; les dégâts inférieurs au seuil sont superficiels et ne réduisent pas ses Points de vie.</p>
                 <h4>Soins</h4>
                 <p>Les Soins sont la manière dont une créature récupère des Points de vie. Voir aussi <a href="#points-de-vie">Points de vie</a>.</p>
@@ -426,16 +363,16 @@
                 <p>Certains monstres peuvent Survoler, comme l'indique leur profil de jeu, et certains sorts ou effets accordent cette capacité. Le Survol pendant un Vol empêche de tomber dans certaines circonstances.</p>
                 <h4>Saut</h4>
                 <p>Lorsque vous sautez, vous effectuez soit un <a href="#saut-en-longueur">Saut en longueur</a>, soit un <a href="#saut-en-hauteur">Saut en hauteur</a>.</p>
-                <h4>Saut en hauteur</h4>
+                <h4 id="saut-en-hauteur">Saut en hauteur</h4>
                 <p>Avec un Saut en hauteur, vous vous élevez d'une distance égale à (0,90 m + votre modificateur de Force × 0,30 m), avec un minimum de 0 m, si vous vous êtes déplacé d'au moins 3 m à pied juste avant. Sans élan, vous ne sautez que la moitié de cette distance. Chaque unité de saut coûte une unité de déplacement. Vous pouvez tendre les bras jusqu'à la moitié de votre taille au-dessus de vous : la distance atteinte est donc la hauteur du saut + la moitié de votre taille.</p>
-                <h4>Saut en longueur</h4>
+                <h4 id="saut-en-longueur">Saut en longueur</h4>
                 <p>Avec un Saut en longueur, vous franchissez horizontalement une distance allant jusqu'à 0,30 m par point de Force si vous vous êtes déplacé d'au moins 3 m juste avant. Sans élan, vous ne sautez que la moitié de cette distance ; chaque unité de saut coûte une unité de déplacement. Si vous atterrissez en Terrain difficile, réussissez un jet de Dextérité (Acrobaties) DD 10 ou subissez l'état <a href="#a-terre">À terre</a>. Le MD peut demander un jet de Force (Athlétisme) DD 10 pour franchir un obstacle bas, d'une hauteur au plus égale au quart de la distance du saut.</p>
                 <h4>Nage</h4>
                 <p>En nageant, chaque unité de déplacement coûte une unité supplémentaire, ou deux unités supplémentaires en Terrain difficile. Vous ignorez ce coût si vous utilisez une <a href="#vitesse-de-nage">Vitesse de nage</a>. Le MD peut demander un jet de Force (Athlétisme) DD 15 pour parcourir une distance dans une eau agitée.</p>
 
-                <h4>Créature</h4>
+                <h4 id="creature">Créature</h4>
                 <p>Une Créature est tout être du jeu, y compris le personnage d'un joueur. Voir aussi <a href="#type-de-creature">Type de créature</a>.</p>
-                <h4>Type de créature</h4>
+                <h4 id="type-de-creature">Type de créature</h4>
                 <p>Chaque créature possède un type qui identifie sa famille. Les types sont : Aberration, Bête, Céleste, Construction, Dragon, Élémentaire, Fée, Fiélon, Géant, Humanoïde, Monstruosité, Vase, Plante et Mort-vivant. Les types n'ont pas de règles propres, mais certaines règles les prennent en compte.</p>
                 <h4>Monstre</h4>
                 <p>Un Monstre est une créature contrôlée par le MD, même si elle est bienveillante. Voir aussi <a href="#creature">Créature</a> et <a href="#personnage-non-joueur">Personnage non-joueur</a>.</p>
@@ -483,9 +420,9 @@
 
                 <h4>Danger [Hazard]</h4>
                 <p>Un Danger est un péril environnemental. Voir aussi <a href="#brulure">Brûlure</a>, <a href="#deshydratation">Déshydratation</a>, <a href="#chute">Chute</a>, <a href="#malnutrition">Malnutrition</a> et <a href="#suffocation">Suffocation</a>.</p>
-                <h4>Brûlure</h4>
+                <h4 id="brulure">Brûlure</h4>
                 <p>Une créature ou un objet en feu subit 1d4 dégâts de Feu au début de chacun de ses tours. Avec une action, vous pouvez éteindre le feu sur vous-même en vous mettant <a href="#a-terre">À terre</a> et en vous roulant au sol. Le feu s'éteint aussi s'il est arrosé, immergé ou privé d'air.</p>
-                <h4>Déshydratation</h4>
+                <h4 id="deshydratation">Déshydratation</h4>
                 <p>Une créature a besoin d'une quantité d'eau quotidienne selon sa taille. Si elle boit moins de la moitié de cette quantité pendant une journée, elle gagne 1 niveau d'<a href="#epuisement">Épuisement</a> à la fin de la journée. L'Épuisement causé par la Déshydratation ne peut pas être supprimé avant qu'elle ait bu la quantité complète nécessaire pour une journée.</p>
                 <div class="table-wrap">
                     <table>
@@ -497,9 +434,9 @@
                         </tbody>
                     </table>
                 </div>
-                <h4>Chute</h4>
+                <h4 id="chute">Chute</h4>
                 <p>Une créature subit 1d6 dégâts contondants à la fin d'une chute, pour chaque tranche de 3 m parcourue, jusqu'à un maximum de 20d6. À l'atterrissage, elle subit l'état <a href="#a-terre">À terre</a>, sauf si elle évite tous les dégâts de la chute. Si elle tombe dans l'eau ou un autre liquide, elle peut utiliser sa Réaction pour réussir un jet de Force (Athlétisme) ou de Dextérité (Acrobaties) DD 15 et atteindre la surface la tête ou les pieds en premier ; en cas de réussite, les dégâts de la chute sont réduits de moitié.</p>
-                <h4>Malnutrition</h4>
+                <h4 id="malnutrition">Malnutrition</h4>
                 <p>Une créature a besoin d'une quantité de nourriture quotidienne selon sa taille. Si elle mange moins de la moitié de cette quantité, elle doit réussir un jet de sauvegarde de Constitution DD 10 ou gagner 1 niveau d'Épuisement à la fin de la journée. Si elle ne mange rien pendant 5 jours, elle gagne automatiquement 1 niveau à la fin du cinquième jour, puis 1 niveau supplémentaire à la fin de chaque jour suivant sans nourriture. L'Épuisement causé par la Malnutrition ne peut pas être supprimé avant qu'elle ait mangé la quantité complète nécessaire pour une journée.</p>
                 <div class="table-wrap">
                     <table>
@@ -511,7 +448,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h4>Suffocation</h4>
+                <h4 id="suffocation">Suffocation</h4>
                 <p>Une créature peut retenir son souffle pendant un nombre de minutes égal à 1 + son modificateur de Constitution, avec un minimum de 30 secondes, avant que la Suffocation commence. Lorsqu'elle n'a plus de souffle ou qu'elle étouffe, elle gagne 1 niveau d'Épuisement à la fin de chacun de ses tours. Lorsqu'elle peut de nouveau respirer, elle supprime tous les niveaux d'Épuisement gagnés par suffocation.</p>
             </div>
         </section>

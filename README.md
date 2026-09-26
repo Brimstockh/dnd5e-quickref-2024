@@ -29,6 +29,20 @@ Main entry points:
 - `assistant-creation.html`: guided character creator
 - `comparateur.html`: shareable character-option comparator
 
+## Architecture de navigation
+
+La navigation publique est organisée en cinq espaces, chacun avec un hub dédié :
+
+- `regles.html` — Règles : référence rapide, règles du jeu, combat, maîtrises et glossaire
+- `compendium.html` — Compendium : sorts, monstres, équipement, matériel, objets magiques et services
+- `creation.html` — Création : assistant, guide, comparateur, feuille, classes, espèces, historiques et dons
+- `univers.html` — Univers : Faerûn, lore, histoire, divinités, factions, personnages et plans
+- `ma-table.html` — Ma table : espace personnel, personnages, règles de campagne et statistiques de dés
+
+La source canonique se trouve dans `js/site-navigation.js`. Le shell global (`js/site-shell.js`), les hubs et l’explorateur de l’accueil la consomment directement. Une nouvelle page doit donc être ajoutée à cette configuration, à la liste de recherche dans `scripts/build-search-index.mjs` uniquement si elle n’est pas déjà exposée par la navigation, puis validée avec `npm run check:site-navigation`.
+
+Les pages historiques conservent leurs URLs publiques. Les hubs sont des points d’entrée supplémentaires et ne remplacent aucune page existante. L’inventaire généré (`data/content-inventory.json`) conserve la liste des pages indexées et la liste des cinq espaces.
+
 Content and assets:
 
 - `data/characters/`: character JSON files and story JSON files

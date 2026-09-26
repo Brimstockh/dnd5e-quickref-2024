@@ -3,6 +3,7 @@ import { EOL } from "node:os";
 import { resolve } from "node:path";
 import vm from "node:vm";
 import { buildContentAliasMap, createContentId, slugifyContent } from "../js/content-ids.js";
+import { navigationContextForPath, SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -368,33 +369,16 @@ const species = [
   ["Orc", "race-orc.html"], ["Tieffelin", "race-tieffelin.html"],
 ];
 
-const pages = [
-  ["Règles du jeu", "Règle", "rules-2024.html", "Principes généraux et règles D&D 2024"],
-  ["Combat", "Règle", "combat-2024.html", "Initiative, attaques et dégâts"],
-  ["Maîtrises d’armes", "Règle", "mastery-2024.html", "Maîtrises et propriétés des armes"],
-  ["Glossaire", "Glossaire", "glossaire.html", "Termes et états de jeu"],
-  ["Lore du multivers D&D", "Lore", "lore.html", "Personnages, lieux, factions et concepts du multivers"],
-  ["Référence rapide", "Règle", "quickref.html", "Actions, mouvements, réactions et états"],
-  ["Sorts", "Sort", "spells.html", "Catalogue des sorts D&D 2024"],
-  ["Dons", "Don", "dons.html", "Catalogue des dons D&D 2024"],
-  ["Classes", "Classe", "classes/index.html", "Catalogue des classes D&D 2024"],
-  ["Espèces", "Espèce", "races/index.html", "Catalogue des espèces D&D 2024"],
-  ["Monstres", "Monstre", "monstres.html", "Bestiaire D&D 2024"],
-  ["Équipement", "Objet", "armes-armures.html", "Armes, armures et équipement"],
-  ["Création de personnage", "Page", "creation-personnage-2024.html", "Guide de création D&D 2024"],
-  ["Historiques", "Historique", "historique.html", "Origines, maîtrises et dons"],
-  ["Royaumes Oubliés", "Univers", "faerun.html", "Explorer Faerûn"],
-  ["Histoire des Royaumes", "Univers", "histoire-royaumes.html", "Chronologie du monde"],
-  ["Divinités", "Univers", "divinites.html", "Panthéon de Faerûn"],
-  ["Factions", "Univers", "groupes-royaumes.html", "Groupes influents"],
-  ["Personnages importants", "Univers", "personnages-royaumes.html", "Figures importantes"],
-  ["Plans d’existence", "Univers", "plans-existence.html", "Les autres réalités"],
-  ["Feuille de personnage", "Outil", "character-sheet-standalone.html", "Fiche autonome sauvegardée localement"],
-  ["Statistiques de dés", "Outil", "dice-stats.html", "Probabilités et distributions des jets de dés"],
-  ["Services, montures et véhicules", "Équipement", "services-montures-vehicules.html", "Montures, véhicules, voyages et services D&D 2024"],
-  ["Objets magiques", "Objet magique", "objets-magiques.html", "Catalogue des objets magiques de la campagne"],
-  ["Règles de campagne", "Règle de campagne", "regles-campagne.html", "Décisions propres à notre table"],
-];
+const pageDefinitions = SITE_SECTIONS.flatMap((section) => section.links.map((entry) => ({
+  id: entry.id,
+  title: entry.label,
+  section: section.label,
+  category: entry.category || "Page",
+  type: "page",
+  contentId: entry.contentId || "",
+  url: entry.url,
+  description: entry.description,
+})));
 
 const entries = [
   ...spells.map((spell) => ({
@@ -513,25 +497,37 @@ const entries = [
     keywords: ["espèce", "peuple", "origine", "création de personnage"],
     excerpt: `Espèce de personnage : ${title}.`,
   })),
-  ...pages.map(([title, category, url, description], index) => ({
-    id: createContentId("page", title),
+  ...pageDefinitions.map((page, index) => ({
+    id: page.contentId || createContentId("page", page.title),
     type: "page",
     legacyIds: [`page-${index + 1}`],
-    title,
-    category,
-    url,
-    keywords: [category, description],
-    excerpt: description,
+    title: page.title,
+    section: page.section,
+    category: page.category,
+    url: page.url,
+    keywords: [page.category, page.section, page.description],
+    excerpt: page.description,
   })),
 ];
 
-entries.sort((first, second) => first.title.localeCompare(second.title, "fr"));
-const knownIds = new Set(entries.map(({ id }) => id));
+const canonicalEntries = entries.map((entry) => {
+  const context = navigationContextForPath(entry.url);
+  if (!context) throw new Error(`Search entry is outside canonical navigation: ${entry.url}`);
+  return {
+    ...entry,
+    section: entry.section || context.section.label,
+    category: entry.category || context.entry.category || "Page",
+    type: entry.type || context.entry.type || "page",
+  };
+});
+
+canonicalEntries.sort((first, second) => first.title.localeCompare(second.title, "fr"));
+const knownIds = new Set(canonicalEntries.map(({ id }) => id));
 for (const id of Object.keys(searchAliasSource.aliases)) {
   if (!knownIds.has(id)) throw new Error(`Unknown search alias target: ${id}`);
 }
-const aliases = buildContentAliasMap(entries);
-const searchEntries = entries.map(({ legacyIds, ...entry }) => ({
+const aliases = buildContentAliasMap(canonicalEntries);
+const searchEntries = canonicalEntries.map(({ legacyIds, ...entry }) => ({
   ...entry,
   aliases: Array.from(new Set([
     ...(entry.aliases || []),

@@ -24,9 +24,19 @@
     "audit:lore": "node scripts/audit-lore-coverage.mjs",
     "check:inventory": "node scripts/build-content-inventory.mjs --check",
     "check:navigation": "node scripts/validate-navigation.mjs",
+    "check:site-navigation": "node scripts/validate-navigation-architecture.mjs",
     "check:relations": "node scripts/build-relations-index.mjs --check",
     "check:search": "node scripts/build-search-index.mjs --check",
-    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run audit:lore && npm run check:inventory && npm run check:magic-items && npm run audit:magic-items && npm run check:vip && npm run check:plans && npm run check:faerun && npm run check:illustrations && npm run check:contracts && npm run check:navigation && npm run check:monster-images && npm run check:monster-translations && npm test",
+    "check:content": "node scripts/validate-content-links.mjs",
+    "serve:test": "node scripts/serve-static.mjs",
+    "test:browser": "playwright test",
+    "test:browser:headed": "playwright test --headed",
+    "test:qa": "npm run check:content && npm test && npm run test:browser",
+    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run audit:lore && npm run check:inventory && npm run check:magic-items && npm run audit:magic-items && npm run check:vip && npm run check:plans && npm run check:faerun && npm run check:illustrations && npm run check:contracts && npm run check:navigation && npm run check:site-navigation && npm run check:monster-images && npm run check:monster-translations && npm run check:content && npm test",
     "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0"
   }
 }

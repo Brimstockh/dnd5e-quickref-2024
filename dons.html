@@ -17,8 +17,9 @@
     <script src="js/feats-page.js" defer></script>
 </head>
 <body class="legacy-catalog-page" data-library-title="Dons" data-library-category="Catalogue" data-library-description="Catalogue des dons D&D 2024">
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
     <header data-site-header data-active="feats"></header>
-    <div class="wrap" data-glossary-richtext>
+    <main class="wrap" id="main-content" data-glossary-richtext>
         <nav class="topnav">
             <a href="index.html">Accueil</a>
             <a href="historique.html">Historiques</a>
@@ -34,9 +35,14 @@
             <a href="quickref.html">Référence rapide</a>
         </nav>
 
-        <section class="hero">
-            <h1>Dons D&amp;D 2024</h1>
-            <p id="sourceNote">Chargement des dons...</p>
+        <section class="page-feature page-feature--creation page-feature--compact" aria-labelledby="feats-title">
+            <div class="page-feature__content">
+                <span class="section-visual__icon page-feature__icon" aria-hidden="true"><svg class="icon" viewBox="0 0 64 64" focusable="false"><use href="assets/icons/site-icons.svg#feats"></use></svg></span>
+                <p class="page-feature__eyebrow">Création</p>
+                <h1 id="feats-title">Dons</h1>
+                <p class="page-feature__description">Explorez les dons qui spécialisent et développent les capacités de votre personnage.</p>
+                <p class="page-feature__meta" id="sourceNote" aria-live="polite">Chargement des dons...</p>
+            </div>
         </section>
 
         <section class="filters">
@@ -88,6 +94,6 @@
         </div>
         <div id="summary" class="summary" role="status" aria-live="polite"></div>
         <div id="featsGrid" class="grid"></div>
-    </div>
+    </main>
 </body>
 </html>

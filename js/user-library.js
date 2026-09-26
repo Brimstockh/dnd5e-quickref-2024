@@ -122,6 +122,10 @@
     var maxRecentItems = 8;
     var script = document.currentScript;
     var siteRoot = new URL("../", script ? script.src : window.location.href);
+    var navigationModule = null;
+    var navigationLoading = import(new URL("js/site-navigation.js", siteRoot).href)
+        .then(function (module) { navigationModule = module; return module; })
+        .catch(function () { return null; });
 
     function safeRead(key) {
         var value = storage.getJson(key, []);
@@ -148,6 +152,10 @@
         return /^(?:https?:|mailto:)/.test(value) ? value : new URL(value, siteRoot).href;
     }
 
+    function canonicalSectionForUrl(value) {
+        return navigationModule?.navigationSectionForPath(relativeUrl(value)) || "";
+    }
+
     function createIcon(name) {
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
@@ -161,20 +169,27 @@
     }
 
     function cleanEntry(entry) {
+        var canonicalSection = canonicalSectionForUrl(entry.url);
+        var category = String(canonicalSection || entry.category || "Page").trim();
         return {
             url: relativeUrl(entry.url),
             title: String(entry.title || "Page sans titre").trim(),
-            category: String(entry.category || "Page").trim(),
+            section: String(canonicalSection || entry.section || category).trim(),
+            category: category,
             description: String(entry.description || "").trim(),
             visitedAt: Number(entry.visitedAt) || Date.now(),
         };
     }
 
     function currentEntry() {
+        var section = canonicalSectionForUrl(window.location.href)
+            || document.body.dataset.librarySection
+            || document.body.dataset.libraryCategory
+            || "Page";
         return cleanEntry({
             url: window.location.href,
             title: document.body.dataset.libraryTitle || document.title.replace(/\s*[—|-]\s*D&D.*$/i, ""),
-            category: document.body.dataset.libraryCategory || "Page",
+            category: section,
             description: document.body.dataset.libraryDescription || "",
         });
     }
@@ -340,10 +355,15 @@
     }
 
     function entryFromElement(element) {
+        var url = element.dataset.libraryUrl || element.querySelector("a")?.href || window.location.href;
+        var section = canonicalSectionForUrl(url)
+            || element.dataset.librarySection
+            || element.dataset.libraryCategory
+            || "Page";
         return cleanEntry({
-            url: element.dataset.libraryUrl || element.querySelector("a")?.href || window.location.href,
+            url: url,
             title: element.dataset.libraryTitle || element.querySelector("strong")?.textContent || document.title,
-            category: element.dataset.libraryCategory || "Page",
+            category: section,
             description: element.dataset.libraryDescription || element.querySelector("small")?.textContent || "",
         });
     }
@@ -415,11 +435,18 @@
         if (recent) renderList(recent, getRecent().slice(0, 6), false, "Aucun historique", "Les pages consultées récemment apparaîtront ici.");
     }
 
-    function init() {
+    function bindLibraryItems() {
         document.querySelectorAll("[data-library-item]").forEach(function (element) {
             var button = element.querySelector("[data-favorite-button]");
-            if (button) connectFavoriteButton(button, entryFromElement(element));
+            if (button && !button.dataset.libraryBound) {
+                connectFavoriteButton(button, entryFromElement(element));
+                button.dataset.libraryBound = "true";
+            }
         });
+    }
+
+    function init() {
+        bindLibraryItems();
 
         document.querySelectorAll("[data-clear-recent]").forEach(function (button) {
             button.addEventListener("click", clearRecent);
@@ -428,8 +455,15 @@
         window.addEventListener("dndlibrarychange", renderHomeLists);
         renderHomeLists();
 
-        if (document.body.dataset.trackRecent !== "false") recordRecent(currentEntry());
+        navigationLoading.then(function () {
+            if (document.body.dataset.trackRecent !== "false") recordRecent(currentEntry());
+        });
     }
+
+    window.addEventListener("dndnavigationready", function () {
+        bindLibraryItems();
+        renderHomeLists();
+    });
 
     window.DndLibrary = {
         currentEntry: currentEntry,
