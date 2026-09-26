@@ -103,6 +103,7 @@
 .catalog-card__title { margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 1.05rem; line-height: 1.25; }
 .catalog-card__badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .catalog-card__badges .badge--muted { color: var(--color-text-muted); background: var(--color-bg-elevated); }
+.catalog-card__badges .badge--accent { color: var(--color-text); background: color-mix(in srgb, var(--section-accent) 22%, var(--color-bg-elevated)); border-color: var(--section-accent); }
 .catalog-card__badges .badge--quality { color: var(--color-text); background: color-mix(in srgb, var(--color-gold-dark) 22%, var(--color-bg-elevated)); border-color: var(--color-gold-dark); }
 .catalog-card__badges .badge--quality-verified { color: var(--color-text); background: color-mix(in srgb, var(--color-success) 24%, var(--color-bg-elevated)); border-color: var(--color-success); }
 .catalog-card__badges .badge--quality-needs-verification { color: var(--color-text); background: color-mix(in srgb, var(--color-danger) 35%, var(--color-bg-elevated)); border-color: var(--color-danger-bright); }

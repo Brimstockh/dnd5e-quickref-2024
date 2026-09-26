@@ -79,6 +79,22 @@ test("creation keeps its two visual groups and Ma table has no duplicate charact
   assert.equal(table.links.some((entry) => entry.url === "character-sheet-standalone.html"), false);
 });
 
+test("rules, universe, and table hubs expose intentional visual groups", () => {
+  const expected = {
+    rules: ["reference", "play", "landmarks"],
+    universe: ["faerun", "multiverse", "landmarks"],
+    table: ["campaign", "characters", "tools"],
+  };
+
+  for (const [sectionId, groupIds] of Object.entries(expected)) {
+    const sectionDefinition = SITE_SECTIONS.find(({ id }) => id === sectionId);
+    assert.deepEqual(sectionDefinition.groups.map(({ id }) => id), groupIds);
+    for (const entryDefinition of sectionDefinition.links.filter(({ url }) => url !== sectionDefinition.landing)) {
+      assert.ok(groupIds.includes(entryDefinition.group), `${sectionId}/${entryDefinition.id} is missing a visual group`);
+    }
+  }
+});
+
 test("canonical resolution covers exact paths, child pages, and query strings", () => {
   const expected = [
     ["regles.html", "rules", "rules-hub"],

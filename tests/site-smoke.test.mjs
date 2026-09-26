@@ -246,7 +246,7 @@ test("level-two catalog pages share the compact page feature contract", async ()
     ["dons.html", "creation", "Création", "Dons", "feats"],
     ["spells.html", "compendium", "Compendium", "Sorts", "spells"],
     ["monstres.html", "compendium", "Compendium", "Monstres", "monsters"],
-    ["objets-magiques.html", "compendium", "Compendium", "Objets magiques", "equipment"],
+    ["objets-magiques.html", "compendium", "Compendium", "Objets magiques", "magic-item"],
     ["armes-armures.html", "compendium", "Compendium", "Armes et armures", "equipment"],
     ["outils-aventurier.html", "compendium", "Compendium", "Matériel d’aventurier", "equipment"],
     ["services-montures-vehicules.html", "compendium", "Compendium", "Services, montures et véhicules", "equipment"],

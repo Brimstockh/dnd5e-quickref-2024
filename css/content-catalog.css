@@ -170,12 +170,22 @@
 
 .content-catalog-equipment-grid,
 .content-catalog-background-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 23rem), 1fr)); gap: 0.7rem; }
+.content-catalog-equipment-tables,
+.content-catalog-equipment-section,
+.content-catalog-equipment-section .table-scroll {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+.content-catalog-equipment-tables { display: grid; gap: var(--space-4); }
+.content-catalog-equipment-tables > section > h3 { margin-top: 0; }
 .content-catalog-equipment-grid dl { display: grid; grid-template-columns: minmax(7rem, auto) 1fr; gap: 0.35rem 0.7rem; margin: 0; }
 .content-catalog-equipment-grid dt { color: var(--color-text-muted); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
 .content-catalog-equipment-grid dd { margin: 0; color: var(--color-text); }
 
 .content-catalog .class-grid,
 .content-catalog .race-grid { margin: 0; }
+.content-catalog-layout--no-filters { display: block; }
 .content-catalog [hidden] { display: none !important; }
 
 :root[data-session="true"] .content-catalog-toolbar,
@@ -210,6 +220,7 @@
 
 /* Pilot catalogue pass: Classes uses the same compact controls and metadata language. */
 .content-catalog { --section-accent: var(--section-creation); }
+body[data-catalog-kind="equipment"] .content-catalog { --section-accent: var(--section-compendium); }
 .content-page .card { box-shadow: none; }
 .content-page .card > h2:first-child { background: var(--color-bg-elevated); border-bottom: 2px solid var(--section-creation); }
 .content-page .content-catalog + * { margin-top: 0; }
@@ -279,6 +290,8 @@
 .content-catalog .class-grid a strong { margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: var(--heading-sm); }
 .content-catalog .class-grid a span:not(.class-copy) { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.35; }
 .content-catalog-empty { box-shadow: none; }
+
+.content-page[data-catalog-kind="equipment"] .content-catalog-equipment-tables tr[hidden] { display: none; }
 
 @media (max-width: 820px) {
     .content-catalog-toolbar { grid-template-columns: minmax(0, 1fr) auto; }

@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("modernized pages do not reintroduce historical inline assets", async () => {
-  for (const page of ["character-sheet-standalone.html", "monstres.html", "dons.html"]) {
+  for (const page of ["character-sheet-standalone.html", "monstres.html", "dons.html", "historique.html", "armes-armures.html"]) {
     const source = await readFile(resolve(root, page), "utf8");
     assert.doesNotMatch(source, /<style[\s>]/i, page);
     assert.doesNotMatch(source, /<script(?![^>]*\bsrc=)[^>]*>(?:\s|\S)*?<\/script>/i, page);

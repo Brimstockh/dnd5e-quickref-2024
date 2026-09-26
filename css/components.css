@@ -654,8 +654,22 @@ body.has-open-drawer { overflow: hidden; }
 .section-heading,
 .card-title { color: var(--color-gold-bright); font-family: var(--font-display); }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-4); }
-.card { box-shadow: var(--shadow-card); transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast); }
-.card:hover { background: var(--color-surface-hover); border-color: var(--color-border-light); transform: translateY(-2px); }
+.card { box-shadow: var(--shadow-card); }
+.card--interactive {
+    transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+.card--interactive:hover,
+.card--interactive:focus-within {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-light);
+    transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card--interactive { transition: none; }
+    .card--interactive:hover,
+    .card--interactive:focus-within { transform: none; }
+}
 .card-description,
 .card-meta,
 .status-message { color: var(--color-text-muted); }

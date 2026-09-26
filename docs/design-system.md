@@ -21,10 +21,15 @@ Cette passe documente les primitives réellement utilisées par les trois pages 
 
 ## Cards
 
-- `.catalog-card` : résultat dense et extensible, utilisé par le catalogue des sorts.
+- `.card` est une surface statique ; elle ne reçoit aucun déplacement ou changement de fond global au survol.
+- `.card--interactive` est le modificateur explicite pour une surface cliquable qui accepte un retour hover/focus.
+- `.catalog-card` : résultat dense et extensible, utilisé par les catalogues Sorts et Objets magiques.
 - `.monster-card` : résultat de bestiaire avec statblock ; il reprend les mêmes surfaces, états et métadonnées.
-- `.class-grid a` : carte de navigation courte pour la landing Classes.
+- `.class-grid a` et `.race-link` : cartes de navigation courtes pour Classes et Espèces.
+- `.hub-card` : carte de navigation pour les index Règles, Univers, Création et Ma table ; les groupes de ressources sont des panneaux utilitaires compacts, pas des surfaces éditoriales décoratives.
 - Une carte ouverte ou focalisée utilise l’accent de section sur la bordure et le séparateur supérieur.
+
+Les tableaux restent la représentation privilégiée lorsque la comparaison simultanée de plusieurs colonnes est plus importante que la lecture individuelle : armes, armures, services, montures et véhicules.
 
 ## Chips
 
@@ -47,6 +52,13 @@ Les champs de recherche et les selects des catalogues partagent une hauteur mini
 ## Filters
 
 Les catalogues utilisent une toolbar compacte avec recherche, filtres actifs, résumé et tri. Sur mobile, le panneau de filtres devient un tiroir ; les contrôles restent des éléments natifs.
+
+Les filtres sont alimentés par les données existantes ou par le contenu source. Les taxonomies manuelles dans le JavaScript de présentation sont évitées ; un filtre décoratif est retiré lorsqu’aucune source canonique fiable n’est disponible.
+
+## Hubs de section
+
+- Les hubs conservent leur hero illustré, puis organisent les liens par intention : référence et jeu pour Règles, Faerûn et Multivers pour Univers, campagne/personnages/outils pour Ma table.
+- Les couleurs de section restent des accents de bordure et de séparateur ; les cartes gardent les surfaces communes du thème.
 
 ## Responsive
 

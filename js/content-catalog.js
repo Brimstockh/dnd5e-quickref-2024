@@ -39,32 +39,21 @@
     function classCatalog() {
         var container = document.querySelector(".class-grid");
         if (!container) return null;
-        var profiles = {
-            Barbare: "Martial", Barde: "Lanceur de sorts", Clerc: "Lanceur de sorts",
-            Druide: "Lanceur de sorts", Ensorceleur: "Lanceur de sorts", Guerrier: "Martial",
-            Magicien: "Lanceur de sorts", Moine: "Martial", Occultiste: "Lanceur de sorts",
-            Paladin: "Hybride", "Rôdeur": "Hybride", Roublard: "Martial",
-        };
         var items = Array.from(container.querySelectorAll(":scope > a")).map(function (element, index) {
             var title = element.querySelector("strong")?.textContent.trim() || "Classe";
-            return { element: element, title: title, text: element.textContent, index: index, values: { profile: [profiles[title] || "Autre"] } };
+            return { element: element, title: title, text: element.textContent, index: index, values: {} };
         });
-        return { host: container.closest(".card"), container: container, items: items, label: "classes", filters: [{ key: "profile", label: "Profil" }] };
+        return { host: container.closest(".card"), container: container, items: items, label: "classes", filters: [] };
     }
 
     function speciesCatalog() {
         var container = document.querySelector(".race-grid");
         if (!container) return null;
-        var sizes = {
-            Aasimar: "Petite ou Moyenne", "Drakéide": "Moyenne", Elfe: "Moyenne", Gnome: "Petite",
-            Goliath: "Moyenne", Halfelin: "Petite", Humain: "Petite ou Moyenne", Nain: "Moyenne",
-            Orc: "Moyenne", Tieffelin: "Petite ou Moyenne",
-        };
         var items = Array.from(container.querySelectorAll(":scope > a")).map(function (element, index) {
             var title = element.querySelector("strong")?.textContent.trim() || "Espèce";
-            return { element: element, title: title, text: element.textContent, index: index, values: { size: [sizes[title] || "Autre"] } };
+            return { element: element, title: title, text: element.textContent, index: index, values: {} };
         });
-        return { host: container.closest(".card"), container: container, items: items, label: "espèces", filters: [{ key: "size", label: "Taille" }] };
+        return { host: container.closest(".card"), container: container, items: items, label: "espèces", filters: [] };
     }
 
     function equipmentCatalog() {
@@ -74,37 +63,49 @@
         if (!content || !tables.length) return null;
         var container = document.createElement("div");
         var items = [];
-        container.className = "content-catalog-equipment-grid";
+        var groups = [];
+        var firstPropertyHeading = Array.from(content.querySelectorAll("h3")).find(function (heading) {
+            return normalize(heading.textContent) === "proprietes des armes";
+        });
+        container.className = "content-catalog-equipment-tables";
+        var sections = tables.map(function (table) {
+            var wrapper = table.closest(".table-scroll");
+            var heading = wrapper?.previousElementSibling;
+            var section = document.createElement("section");
+            section.className = "content-catalog-equipment-section";
+            if (heading && /^H[1-6]$/.test(heading.tagName)) {
+                heading.parentNode.insertBefore(section, heading);
+                section.append(heading, wrapper);
+            } else if (wrapper) {
+                wrapper.parentNode.insertBefore(section, wrapper);
+                section.append(wrapper);
+            }
+            return section;
+        });
+        var firstSection = sections.find(Boolean);
+        if (firstPropertyHeading) content.insertBefore(container, firstPropertyHeading);
+        else if (firstSection) content.insertBefore(container, firstSection);
+        sections.forEach(function (section) { container.appendChild(section); });
 
         tables.forEach(function (table, tableIndex) {
-            var headers = Array.from(table.querySelectorAll("thead th")).map(function (cell) { return cell.textContent.trim(); });
             var group = tableIndex === 0 ? "Armes" : "Armures";
+            var currentGroup = null;
             Array.from(table.querySelectorAll("tbody tr")).forEach(function (row) {
                 var cells = Array.from(row.cells);
                 if (row.classList.contains("group-row")) {
                     group = cells[0]?.textContent.trim() || group;
+                    currentGroup = { element: row, items: [] };
+                    groups.push(currentGroup);
                     return;
                 }
                 if (!cells.length) return;
                 var title = cells[0].textContent.trim();
-                var body = document.createElement("div");
-                var list = document.createElement("dl");
-                cells.slice(1).forEach(function (cell, index) {
-                    var term = document.createElement("dt");
-                    var definition = document.createElement("dd");
-                    term.textContent = headers[index + 1] || "Détail";
-                    definition.textContent = cell.textContent.trim();
-                    list.append(term, definition);
-                });
-                body.appendChild(list);
-                var type = tableIndex === 0 ? "Arme" : "Armure";
-                var element = createDetailsItem(title, type + " · " + group, body);
                 var slug = window.DndCatalogUI.slugify(title);
-                element.id = "equipment-" + slug;
-                element.dataset.contentId = slug;
-                container.appendChild(element);
-                items.push({
-                    element: element,
+                var type = tableIndex === 0 ? "Arme" : "Armure";
+                row.id = "equipment-" + slug;
+                row.dataset.contentId = slug;
+                var item = {
+                    element: row,
                     title: title,
                     text: row.textContent + " " + group,
                     index: items.length,
@@ -113,26 +114,21 @@
                         category: [group],
                         mastery: tableIndex === 0 && cells[3] ? [cells[3].textContent.trim()] : [],
                     },
-                });
+                    group: currentGroup,
+                };
+                items.push(item);
+                if (currentGroup) currentGroup.items.push(item);
             });
-            var wrapper = table.closest(".table-scroll");
-            if (wrapper) {
-                var heading = wrapper.previousElementSibling;
-                if (heading && /^H[1-6]$/.test(heading.tagName)) heading.hidden = true;
-                wrapper.hidden = true;
-            }
         });
-
-        var firstPropertyHeading = Array.from(content.querySelectorAll("h3")).find(function (heading) {
-            return normalize(heading.textContent) === "proprietes des armes";
-        });
-        content.insertBefore(container, firstPropertyHeading || content.firstChild);
         return {
             host: host,
             container: container,
             items: items,
+            groups: groups,
+            mode: "table",
             label: "équipements",
             defaultSort: "source",
+            sortOptions: [["source", "Ordre du tableau"]],
             filters: [
                 { key: "type", label: "Type" },
                 { key: "category", label: "Catégorie" },
@@ -222,7 +218,7 @@
         search.setAttribute("data-catalog-search", "");
         sort.className = "content-catalog-sort";
         sort.setAttribute("aria-label", "Trier les résultats");
-        [[defaultSort, defaultSort === "source" ? "Ordre d’origine" : "Nom A–Z"], ["name-desc", "Nom Z–A"]].forEach(function (entry) {
+        (config.sortOptions || [[defaultSort, defaultSort === "source" ? "Ordre d’origine" : "Nom A–Z"], ["name-desc", "Nom Z–A"]]).forEach(function (entry) {
             var option = document.createElement("option");
             option.value = entry[0];
             option.textContent = entry[1];
@@ -275,6 +271,12 @@
             filters.appendChild(group);
             filterControls.set(definition.key, { select: select, label: definition.label });
         });
+
+        if (!config.filters.length) {
+            filters.hidden = true;
+            mobileFilter.hidden = true;
+            layout.classList.add("content-catalog-layout--no-filters");
+        }
 
         reset.type = "button";
         reset.className = "content-catalog-reset";
@@ -337,14 +339,19 @@
                 if (query && !normalize(item.title + " " + item.text).includes(query)) return false;
                 return active.every(function (entry) { return (item.values[entry[0]] || []).includes(entry[1].select.value); });
             });
-            var sorted = config.items.slice();
-            if (sort.value === "name-desc") sorted.sort(function (first, second) { return second.title.localeCompare(first.title, "fr"); });
-            else if (sort.value === "name-asc") sorted.sort(function (first, second) { return first.title.localeCompare(second.title, "fr"); });
-            else sorted.sort(function (first, second) { return first.index - second.index; });
-            sorted.forEach(function (item) {
-                item.element.hidden = !visible.includes(item);
-                config.container.appendChild(item.element);
-            });
+            if (config.mode === "table") {
+                config.items.forEach(function (item) { item.element.hidden = !visible.includes(item); });
+                config.groups.forEach(function (group) { group.element.hidden = !group.items.some(function (item) { return visible.includes(item); }); });
+            } else {
+                var sorted = config.items.slice();
+                if (sort.value === "name-desc") sorted.sort(function (first, second) { return second.title.localeCompare(first.title, "fr"); });
+                else if (sort.value === "name-asc") sorted.sort(function (first, second) { return first.title.localeCompare(second.title, "fr"); });
+                else sorted.sort(function (first, second) { return first.index - second.index; });
+                sorted.forEach(function (item) {
+                    item.element.hidden = !visible.includes(item);
+                    config.container.appendChild(item.element);
+                });
+            }
             summary.textContent = visible.length + " résultat" + (visible.length > 1 ? "s" : "") + " sur " + config.items.length + " " + config.label + ".";
             empty.hidden = visible.length !== 0;
             renderChips();
