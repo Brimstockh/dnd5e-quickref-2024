@@ -1145,7 +1145,7 @@ h3:hover > .heading-anchor,
     border: 0 !important;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1280px) {
     .active-profile-select { display: none; }
     .site-header__inner { grid-template-columns: auto 1fr auto; }
     .site-header > .site-header__inner > .main-navigation { display: none; }

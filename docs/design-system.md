@@ -31,6 +31,8 @@ Cette passe documente les primitives réellement utilisées par les trois pages 
 
 Les tableaux restent la représentation privilégiée lorsque la comparaison simultanée de plusieurs colonnes est plus importante que la lecture individuelle : armes, armures, services, montures et véhicules.
 
+Les pages de référence denses (`rules-content`, `combat-content` et `mastery-content`) réutilisent les tokens de contenu, les encadrés statiques et les styles de tableaux partagés. Les tableaux larges doivent rester dans un conteneur de défilement local ; ils ne doivent pas élargir la page entière.
+
 ## Chips
 
 - `.meta-chip` : métadonnée courte non interactive.
@@ -55,10 +57,23 @@ Les catalogues utilisent une toolbar compacte avec recherche, filtres actifs, r�
 
 Les filtres sont alimentés par les données existantes ou par le contenu source. Les taxonomies manuelles dans le JavaScript de présentation sont évitées ; un filtre décoratif est retiré lorsqu’aucune source canonique fiable n’est disponible.
 
+Un contrôle de tri n’est affiché que lorsqu’au moins deux modes de tri sont disponibles ; une option unique ne doit pas occuper la toolbar.
+
 ## Hubs de section
 
 - Les hubs conservent leur hero illustré, puis organisent les liens par intention : référence et jeu pour Règles, Faerûn et Multivers pour Univers, campagne/personnages/outils pour Ma table.
+- Les groupes à carte unique utilisent une largeur plafonnée sur desktop pour éviter les zones vides disproportionnées ; ils repassent en pleine largeur sur mobile.
 - Les couleurs de section restent des accents de bordure et de séparateur ; les cartes gardent les surfaces communes du thème.
+
+## Pages Univers
+
+- Les pages Univers utilisent `universe-page` et `css/universe-pages.css` comme recettes de famille : mêmes surfaces et tokens que le reste du site, avec `--section-universe` (`#98778f`) comme accent.
+- Les recettes distinguent les cartes régionales, chronologies, catalogues et plans sans créer de taxonomie de contenu parallèle.
+
+## Pages Ma table
+
+- Les outils de session utilisent `table-page` et `css/table-pages.css` avec `--section-table` (`#a14b42`) ; les modules informatifs restent statiques et les actions principales sont accentuées.
+- Les personnages conservent une grille dense et des actions explicites ; les statistiques de dés gardent le graphique et les comparaisons sous forme compacte.
 
 ## Responsive
 

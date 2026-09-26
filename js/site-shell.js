@@ -1132,7 +1132,7 @@
             var cards = doc.createElement("div");
             group.className = "category-hub__group";
             heading.textContent = definition.label;
-            cards.className = "category-hub__cards";
+            cards.className = "category-hub__cards" + (entries.length === 1 ? " category-hub__cards--single" : "");
             entries.forEach(function (entry) { cards.appendChild(navigationEntryCard(section, entry)); });
             group.append(heading, cards);
             content.appendChild(group);

@@ -224,12 +224,14 @@
             option.textContent = entry[1];
             sort.appendChild(option);
         });
+        var hasSortOptions = sort.options.length > 1;
         mobileFilter.type = "button";
         mobileFilter.className = "content-catalog-mobile-filter";
         mobileFilter.setAttribute("aria-expanded", "false");
         mobileFilter.append("Filtres", mobileCount);
         searchWrap.append(searchLabel, search);
-        toolbar.append(searchWrap, mobileFilter, sort);
+        toolbar.append(searchWrap, mobileFilter);
+        if (hasSortOptions) toolbar.append(sort);
 
         chips.className = "content-catalog-chips";
         chips.setAttribute("aria-label", "Filtres actifs");

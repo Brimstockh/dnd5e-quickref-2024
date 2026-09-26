@@ -1,0 +1,152 @@
+/* Ma table recipes reuse shared surfaces and keep the session accent functional. */
+.table-page {
+    --section-accent: var(--section-table);
+    --accent: var(--section-accent);
+}
+
+.table-page :is(.personal-eyebrow, .creator-hero > p, .catalog-header__eyebrow) {
+    color: var(--section-accent);
+}
+
+.table-page :is(.personal-card, .creator-card, .catalog-card, .char-card) {
+    border-top: 2px solid color-mix(in srgb, var(--section-accent) 68%, var(--color-border));
+}
+
+.table-page :is(.personal-card, .creator-card) { box-shadow: var(--shadow-card); }
+.table-page :is(.personal-card h2, .creator-card h2, .catalog-header h1, .hero h1) { color: var(--color-text); }
+
+.table-page :is(.personal-card, .creator-card, .catalog-card, .char-card) :is(input, select, textarea, button, a):focus-visible {
+    outline-color: var(--section-accent);
+}
+
+.table-page .personal-card__heading > .btn,
+.table-page .personal-actions .btn:not(.btn--secondary, .btn--danger) {
+    color: #fffaf0;
+    background: var(--section-accent);
+    border-color: var(--section-accent);
+}
+
+.table-page .personal-card__heading > .btn:hover,
+.table-page .personal-actions .btn:not(.btn--secondary, .btn--danger):hover {
+    color: #fffaf0;
+    background: color-mix(in srgb, var(--section-accent) 82%, #000);
+    border-color: var(--section-accent);
+}
+
+.table-page :is(.personal-item, .personal-disclaimer) {
+    background: color-mix(in srgb, var(--section-accent) 8%, var(--color-surface));
+}
+
+.table-page .catalog-main { --section-accent: var(--section-table); }
+.table-page .campaign-badge {
+    color: #fffaf0;
+    background: var(--section-accent);
+    border-color: color-mix(in srgb, var(--section-accent) 70%, #fffaf0);
+}
+.table-page .campaign-rule-card { border-left-color: var(--section-accent); }
+.table-page .campaign-rule-card .badge--campaign {
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--section-accent) 28%, var(--color-bg-elevated));
+    border-color: var(--section-accent);
+}
+
+.table-page .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    border-top: 2px solid var(--section-accent);
+    background: linear-gradient(110deg, color-mix(in srgb, var(--section-accent) 14%, transparent), transparent 52%), var(--color-surface);
+}
+.table-page .actions,
+.table-page .char-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.table-page .actions .btn,
+.table-page .char-card__actions .btn {
+    display: inline-flex;
+    min-height: 2.65rem;
+    gap: var(--space-2);
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-light);
+    border-left: 3px solid var(--section-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+}
+.table-page .actions .btn:hover,
+.table-page .actions .btn:focus-visible,
+.table-page .char-card__actions .btn:hover,
+.table-page .char-card__actions .btn:focus-visible {
+    color: var(--color-text);
+    background: var(--color-surface-hover);
+    border-color: var(--section-accent);
+}
+.table-page .characters-search-row { margin-bottom: var(--space-4); }
+.table-page .search {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.8rem;
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+}
+.table-page .search:focus-visible { border-color: var(--section-accent); }
+.table-page .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+}
+.table-page .char-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-4);
+    border-left: 3px solid var(--section-accent);
+    background: var(--color-surface);
+}
+.table-page .char-card__left { flex: 1; min-width: 0; }
+.table-page .char-card strong { display: block; margin-bottom: var(--space-1); color: var(--color-text); }
+.table-page .char-card .meta { color: var(--color-text-muted); }
+.table-page .char-card__img {
+    display: block;
+    width: 4.75rem;
+    height: 4.75rem;
+    flex: 0 0 auto;
+    object-fit: cover;
+    border: 1px solid var(--section-accent);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+}
+.table-page .char-card__picture { display: contents; }
+.table-page .pill {
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--section-accent) 14%, var(--color-bg-elevated));
+    border-color: color-mix(in srgb, var(--section-accent) 58%, var(--color-border));
+}
+
+.table-page .dice-notation { border-left-color: var(--section-accent); }
+.table-page .dice-chart__bar { fill: var(--section-accent); }
+.table-page .dice-chart__bar-hit:hover .dice-chart__bar,
+.table-page .dice-chart__bar-hit:focus .dice-chart__bar { fill: color-mix(in srgb, var(--section-accent) 72%, #fffaf0); }
+.table-page .dice-threshold__results dd { color: var(--section-accent); }
+
+@media (max-width: 820px) {
+    .table-page .grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .table-page .hero { align-items: stretch; flex-direction: column; }
+    .table-page .actions { width: 100%; }
+    .table-page .actions .btn { flex: 1; justify-content: center; }
+    .table-page .char-card { align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .table-page .char-card:hover,
+    .table-page .char-card:focus-within { transform: none; }
+}

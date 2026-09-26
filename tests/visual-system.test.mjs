@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("pilot catalogues expose the shared visual system contracts", async () => {
-  const [theme, components, catalog, legacyCatalog, contentCatalog, contentPage, contentCatalogScript, hubs, spells, monsters, classes, icons] = await Promise.all([
+  const [theme, components, catalog, legacyCatalog, contentCatalog, contentPage, contentCatalogScript, hubs, siteShell, universePages, tablePages, spells, monsters, classes, icons] = await Promise.all([
     readFile(resolve(root, "css/theme.css"), "utf8"),
     readFile(resolve(root, "css/components.css"), "utf8"),
     readFile(resolve(root, "css/catalog.css"), "utf8"),
@@ -16,6 +16,9 @@ test("pilot catalogues expose the shared visual system contracts", async () => {
     readFile(resolve(root, "css/content-page.css"), "utf8"),
     readFile(resolve(root, "js/content-catalog.js"), "utf8"),
     readFile(resolve(root, "css/category-hubs.css"), "utf8"),
+    readFile(resolve(root, "js/site-shell.js"), "utf8"),
+    readFile(resolve(root, "css/universe-pages.css"), "utf8"),
+    readFile(resolve(root, "css/table-pages.css"), "utf8"),
     readFile(resolve(root, "spells.html"), "utf8"),
     readFile(resolve(root, "monstres.html"), "utf8"),
     readFile(resolve(root, "classes/index.html"), "utf8"),
@@ -40,14 +43,23 @@ test("pilot catalogues expose the shared visual system contracts", async () => {
   assert.match(contentCatalogScript, /mode: "table"/);
   assert.match(contentCatalogScript, /item\.element\.hidden = !visible\.includes\(item\)/);
   assert.match(contentCatalogScript, /group\.element\.hidden = !group\.items\.some/);
+  assert.match(contentCatalogScript, /var hasSortOptions = sort\.options\.length > 1/);
+  assert.match(contentCatalogScript, /if \(hasSortOptions\) toolbar\.append\(sort\)/);
   assert.match(contentCatalogScript, /content\.insertBefore\(container, firstPropertyHeading\)/);
   assert.doesNotMatch(contentCatalogScript, /wrapper\.hidden\s*=\s*true/);
   assert.match(contentPage, /\.content-page :is\(\.rules-content, \.combat-content, \.mastery-content\)/);
   assert.match(contentPage, /combat-formula/);
   assert.doesNotMatch(contentPage, /:is\(\.rule-box, \.tool-card,[^)]*\):hover/);
   assert.match(hubs, /category-hub__group/);
+  assert.match(hubs, /category-hub__cards--single/);
   assert.match(hubs, /var\(--section-accent\)/);
+  assert.match(siteShell, /entries\.length === 1 \? " category-hub__cards--single"/);
   assert.match(hubs, /data-category-hub="table"/);
+  assert.match(universePages, /--section-accent: var\(--section-universe\)/);
+  assert.match(universePages, /prefers-reduced-motion/);
+  assert.match(tablePages, /--section-accent: var\(--section-table\)/);
+  assert.match(tablePages, /dice-chart__bar/);
+  assert.match(tablePages, /prefers-reduced-motion/);
   assert.match(spells, /catalog-toolbar/);
   assert.match(monsters, /legacy-catalog\.css/);
   assert.match(classes, /content-catalog\.css/);

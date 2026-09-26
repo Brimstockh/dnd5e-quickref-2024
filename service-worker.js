@@ -88,6 +88,8 @@ const CORE_ASSETS = Object.freeze([
     "./css/components.css",
     "./css/content-catalog.css",
     "./css/content-page.css",
+    "./css/table-pages.css",
+    "./css/universe-pages.css",
     "./css/home.css",
     "./css/category-hubs.css",
     "./css/icons.css",

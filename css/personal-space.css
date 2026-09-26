@@ -5,7 +5,7 @@
 .personal-eyebrow { margin: 0; color: var(--color-gold-bright); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
 .personal-status { min-height: 1.5rem; color: var(--color-gold-bright); }
 .personal-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-.personal-card { margin-bottom: 1rem; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.personal-card { margin-bottom: 1rem; padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-card); }
 .personal-card h2, .personal-card h3 { margin-top: 0; }
 .personal-card__heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }
 .personal-card label:not(.btn) { display: grid; gap: 0.35rem; margin: 0.75rem 0; font-weight: 700; }
@@ -21,12 +21,12 @@
 .personal-list { padding: 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
 .personal-list__head, .personal-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .personal-items { display: grid; gap: 0.5rem; padding: 0; list-style: none; }
-.personal-item { padding: 0.65rem; border-radius: var(--radius-sm); background: var(--color-surface-soft); }
+.personal-item { padding: 0.65rem; border-radius: var(--radius-sm); background: var(--color-bg-elevated); }
 .personal-item__text { min-width: 0; }
 .personal-item__text small { display: block; color: var(--color-text-muted); }
 .personal-item__actions { display: flex; flex-shrink: 0; gap: 0.35rem; }
 .personal-item__actions button { min-width: 44px; min-height: 44px; }
-.personal-disclaimer { padding: 0.75rem; border-left: 3px solid var(--color-gold); background: var(--color-surface-soft); }
+.personal-disclaimer { padding: 0.75rem; border-left: 3px solid var(--color-gold); background: var(--color-bg-elevated); }
 .personal-notes { display: grid; gap: 0.5rem; margin-top: 1rem; }
 .personal-note { padding: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
 .personal-note button { width: 100%; padding: 0; color: var(--color-gold-bright); border: 0; background: none; text-align: left; font: inherit; font-weight: 700; }
