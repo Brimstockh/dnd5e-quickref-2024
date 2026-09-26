@@ -18,7 +18,7 @@
 </head>
 <body class="page-background content-page dense-page" data-dense-variant="combat" data-library-title="Combat & Dégâts D&D 2024" data-library-category="Règle" data-library-description="Référence D&amp;D 2024">
     <header data-site-header data-active="combat"></header>
-    <div class="combat-wrap" data-glossary-richtext>
+    <main class="combat-wrap" id="main-content" data-glossary-richtext>
         <nav class="topnav">
             <a href="index.html">Accueil</a>
             <a href="glossaire.html">Glossaire</a>
@@ -75,7 +75,7 @@
 <p>Avec les règles D&amp;D 2024, le calcul est très simple : chaque personnage apporte un budget de PX dépendant de son niveau et de la difficulté choisie. On additionne ensuite ces budgets pour obtenir le budget total de la rencontre.</p>
 <h4>Formule générale</h4>
 <p>Si tous les joueurs sont au même niveau :</p>
-<div class="combat-formula" role="math" aria-label="Budget rencontre égale nombre de PJ multiplié par budget du niveau et de la difficulté">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Budget rencontre égale nombre de PJ multiplié par budget du niveau et de la difficulté">
 <span class="combat-formula__term">Budget<sub>rencontre</sub></span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">Nombre<sub>PJ</sub></span>
@@ -83,7 +83,7 @@
 <span class="combat-formula__term">Budget<sub>niveau, difficulté</sub></span>
 </div>
 <p>Si les personnages ont des niveaux différents :</p>
-<div class="combat-formula" role="math" aria-label="Budget rencontre égale la somme, de i égal 1 à N, du budget correspondant au niveau de chaque PJ et à la difficulté">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Budget rencontre égale la somme, de i égal 1 à N, du budget correspondant au niveau de chaque PJ et à la difficulté">
 <span class="combat-formula__term">Budget<sub>rencontre</sub></span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__sum" aria-hidden="true"><sup>N</sup>∑<sub>i=1</sub></span>
@@ -237,7 +237,7 @@
 <p><strong>Attaque contre CA :</strong> l’attaquant lance 1d20 + bonus d’attaque. <strong>Sauvegarde :</strong> la cible lance 1d20 + bonus contre le DD.</p>
 <h4>Attaque d’arme au corps à corps</h4>
 <p>Elle utilise généralement la Force. Ajoutez la maîtrise seulement si l’arme est maîtrisée.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque au corps à corps égale un d20 plus modificateur de Force plus bonus de maîtrise si l’arme est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque au corps à corps égale un d20 plus modificateur de Force plus bonus de maîtrise si l’arme est maîtrisée">
 <span class="combat-formula__term">Jet d’attaque</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -248,7 +248,7 @@
 </div>
 <p>À la CA : <strong>résultat ≥ CA</strong>, touche ; <strong>résultat &lt; CA</strong>, rate. Force 18 (+4), maîtrise +3, épée longue maîtrisée : <strong>1d20 + 4 + 3 = 1d20 + 7</strong>.</p>
 <h4>Dégâts d’une attaque d’arme</h4>
-<div class="combat-formula" role="math" aria-label="Dégâts égale dés de dégâts de l’arme plus modificateur de caractéristique utilisé pour l’attaque">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Dégâts égale dés de dégâts de l’arme plus modificateur de caractéristique utilisé pour l’attaque">
 <span class="combat-formula__term">Dégâts</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">dés de l’arme</span>
@@ -259,7 +259,7 @@
 <p class="encadre"><strong>Important :</strong> le bonus de maîtrise n’est <strong>pas</strong> ajouté aux dégâts d’une attaque d’arme.</p>
 <h4>Attaque d’arme à distance</h4>
 <p>Généralement Dextérité ; comparez à la CA.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque à distance égale un d20 plus modificateur de Dextérité plus bonus de maîtrise si l’arme est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque à distance égale un d20 plus modificateur de Dextérité plus bonus de maîtrise si l’arme est maîtrisée">
 <span class="combat-formula__term">Jet d’attaque</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -273,7 +273,7 @@
 <p><strong>Finesse :</strong> Force <strong>ou</strong> Dextérité, avec le même choix pour l’attaque et les dégâts (ex. rapière). <strong>Arme lancée :</strong> utilisez normalement la caractéristique de l’arme, pas automatiquement la Dextérité (ex. javeline : généralement Force).</p>
 <h4>Jet d’attaque de sort</h4>
 <p>Incantation : Intelligence, Sagesse ou Charisme selon la classe/capacité.</p>
-<div class="combat-formula" role="math" aria-label="Jet d’attaque de sort égale un d20 plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet d’attaque de sort égale un d20 plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
 <span class="combat-formula__term">Jet d’attaque de sort</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -287,7 +287,7 @@
 <p>Le modificateur d’incantation n’est <strong>pas automatique</strong> : les dégâts suivent le sort (dés, modificateur indiqué ou capacité de classe).</p>
 <h4>Sort avec jet de sauvegarde</h4>
 <p>Le lanceur ne fait généralement pas de jet d’attaque : la cible fait le jet de sauvegarde. Calculez le DD des sorts.</p>
-<div class="combat-formula" role="math" aria-label="DD de sauvegarde des sorts égale huit plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
+<div class="combat-formula" role="math" tabindex="0" aria-label="DD de sauvegarde des sorts égale huit plus modificateur de caractéristique d’incantation plus bonus de maîtrise">
 <span class="combat-formula__term">DD des sorts</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">8</span>
@@ -299,7 +299,7 @@
 <p>Exemple : Intelligence 18 (+4), maîtrise +3 : <strong>8 + 4 + 3 = 15</strong>.</p>
 <h4>Jet de sauvegarde de la cible</h4>
 <p>Le sort indique Force, Dextérité, Constitution, Intelligence, Sagesse ou Charisme. Maîtrise seulement si cette sauvegarde est maîtrisée.</p>
-<div class="combat-formula" role="math" aria-label="Jet de sauvegarde égale un d20 plus modificateur de la caractéristique demandée plus bonus de maîtrise si la sauvegarde est maîtrisée">
+<div class="combat-formula" role="math" tabindex="0" aria-label="Jet de sauvegarde égale un d20 plus modificateur de la caractéristique demandée plus bonus de maîtrise si la sauvegarde est maîtrisée">
 <span class="combat-formula__term">Jet de sauvegarde</span>
 <span aria-hidden="true">=</span>
 <span class="combat-formula__term">1d20</span>
@@ -467,6 +467,6 @@
 </p></div>
 	
         </article>
-    </div>
+    </main>
 </body>
 </html>

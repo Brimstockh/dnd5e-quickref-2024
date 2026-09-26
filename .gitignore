@@ -1,3 +1,7 @@
 .tmp_pypdf
 .tmp_edge/
 .DS_Store
+node_modules/
+test-results/
+playwright-report/
+debug.log

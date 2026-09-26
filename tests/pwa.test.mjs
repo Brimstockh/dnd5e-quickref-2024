@@ -70,7 +70,7 @@ test("PWA icons have the declared PNG dimensions", async () => {
 
 test("every precached resource exists in the repository", async () => {
   const { api } = await loadServiceWorker();
-  assert.equal(api.CACHE_VERSION, "dnd-companion-v24");
+  assert.equal(api.CACHE_VERSION, "dnd-companion-v26");
   assert.ok(api.CORE_ASSETS.length > 100);
   assert.ok(api.CORE_ASSETS.includes("./js/dense-pages.js"));
   assert.ok(api.CORE_ASSETS.includes("./css/table-pages.css"));

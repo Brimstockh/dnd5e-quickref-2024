@@ -9,6 +9,7 @@
 
 body.content-page {
     min-width: 320px;
+    display: block;
     color: var(--color-text);
     background: var(--page-background);
     font-family: var(--font-body);

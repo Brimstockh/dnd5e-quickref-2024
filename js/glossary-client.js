@@ -1,6 +1,6 @@
 const ENHANCED_ATTRIBUTE = "data-glossary-enhanced";
 const RICHTEXT_SELECTOR = "[data-glossary-richtext]";
-const SKIPPED_SELECTOR = "a, button, code, pre, script, style, table, h1, h2, h3, h4, h5, h6, input, select, textarea, [data-glossary-term], [data-glossary-skip]";
+const SKIPPED_SELECTOR = "a, button, code, pre, script, style, table, summary, [role=\"math\"], h1, h2, h3, h4, h5, h6, input, select, textarea, [data-glossary-term], [data-glossary-skip]";
 const MAX_TERMS_PER_BLOCK = 16;
 
 export function normalizeGlossaryText(value) {

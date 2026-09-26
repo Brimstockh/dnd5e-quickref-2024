@@ -1082,13 +1082,15 @@
 
         groups.forEach(function (section) {
             var panel = doc.createElement("article");
-            var list = doc.createElement("ul");
+            var list = doc.createElement("div");
 
             panel.className = "dashboard-panel home-explorer-panel home-explorer-panel--" + section.id;
             applySectionTheme(panel, section);
             list.className = "resource-list";
+            list.setAttribute("role", "list");
             section.links.filter(function (entry) { return entry.url !== section.landing; }).forEach(function (entry) {
                 var item = navigationEntryCard(section, entry, "resource-row");
+                item.setAttribute("role", "listitem");
                 var link = item.querySelector("a");
                 link.className = "resource-row__link";
                 item.querySelector(".hub-card__icon").className = "resource-row__icon";
