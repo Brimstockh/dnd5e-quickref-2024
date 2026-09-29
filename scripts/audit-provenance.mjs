@@ -68,11 +68,28 @@ for (const entry of pageEntries) {
 }
 
 const indexedEntries = [...(primaryIndex.entries || []), ...(deepIndex.entries || [])];
+const sourceRefsByType = {
+  ...(primaryIndex.sourceRefsByType || {}),
+  ...(deepIndex.sourceRefsByType || {}),
+};
+for (const [type, sourceRef] of Object.entries(sourceRefsByType)) {
+  if (!sourceIds.has(sourceRef)) errors.push(`search source mapping ${type} references an unknown source: ${sourceRef}`);
+}
 let indexedWithSource = 0;
+const indexedByType = new Map();
 for (const entry of indexedEntries) {
-  if (!entry.sourceRef) continue;
-  indexedWithSource += 1;
-  if (!sourceIds.has(entry.sourceRef)) errors.push(`search entry ${entry.id} references an unknown source: ${entry.sourceRef}`);
+  const type = String(entry.type || "unknown");
+  const sourceRef = entry.sourceRef || sourceRefsByType[type];
+  const coverage = indexedByType.get(type) || { total: 0, withSourceRef: 0, withoutSourceRef: 0 };
+  coverage.total += 1;
+  if (sourceRef) {
+    coverage.withSourceRef += 1;
+    indexedWithSource += 1;
+    if (!sourceIds.has(sourceRef)) errors.push(`search entry ${entry.id} references an unknown source: ${sourceRef}`);
+  } else {
+    coverage.withoutSourceRef += 1;
+  }
+  indexedByType.set(type, coverage);
 }
 
 for (const item of magicItems.items || []) {
@@ -105,6 +122,8 @@ console.log("-----------------");
 console.log(`Sources enregistrées : ${sources.length}`);
 console.log(`Pages couvertes : ${pageEntries.length}`);
 console.log(`Entrées indexées avec sourceRef : ${indexedWithSource}/${indexedEntries.length}`);
+const indexedCoverage = Object.fromEntries([...indexedByType.entries()].sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0));
+console.log(`Couverture par type : ${JSON.stringify(indexedCoverage)}`);
 console.log(`Objets magiques contrôlés : ${(magicItems.items || []).length}`);
 console.log(`Entrées Lore contrôlées : ${loreWithSource}/${(lore.entries || []).length}`);
 console.log(`Erreurs critiques : ${errors.length}`);

@@ -8197,38 +8197,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/divines/brilledor.webp",
-      "extension": ".webp",
-      "bytes": 7904,
-      "dimensions": {
-        "width": 200,
-        "height": 154
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "divinites.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/divines/corellon.webp",
-      "extension": ".webp",
-      "bytes": 4168,
-      "dimensions": {
-        "width": 200,
-        "height": 426
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "divinites.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
       "path": "img/divines/Gruumsh.webp",
       "extension": ".webp",
       "bytes": 10036,
@@ -8277,22 +8245,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/divines/maglubiyet.webp",
-      "extension": ".webp",
-      "bytes": 15046,
-      "dimensions": {
-        "width": 258,
-        "height": 300
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "divinites.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
       "path": "img/divines/Moradin.webp",
       "extension": ".webp",
       "bytes": 13064,
@@ -8331,6 +8283,54 @@
       "dimensions": {
         "width": 200,
         "height": 291
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "divinites.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/divines/brilledor.webp",
+      "extension": ".webp",
+      "bytes": 7904,
+      "dimensions": {
+        "width": 200,
+        "height": 154
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "divinites.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/divines/corellon.webp",
+      "extension": ".webp",
+      "bytes": 4168,
+      "dimensions": {
+        "width": 200,
+        "height": 426
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "divinites.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/divines/maglubiyet.webp",
+      "extension": ".webp",
+      "bytes": 15046,
+      "dimensions": {
+        "width": 258,
+        "height": 300
       },
       "variants": [],
       "referenced": true,
@@ -20105,6 +20105,38 @@
       "recommendation": "keep"
     },
     {
+      "path": "img/history/Nétheril-1.webp",
+      "extension": ".webp",
+      "bytes": 92158,
+      "dimensions": {
+        "width": 1024,
+        "height": 576
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "histoire-royaumes.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/history/Nétheril-2.webp",
+      "extension": ".webp",
+      "bytes": 63454,
+      "dimensions": {
+        "width": 1216,
+        "height": 684
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "histoire-royaumes.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
       "path": "img/history/fracture-1.webp",
       "extension": ".webp",
       "bytes": 102042,
@@ -20159,38 +20191,6 @@
       "dimensions": {
         "width": 512,
         "height": 288
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "histoire-royaumes.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/history/Nétheril-1.webp",
-      "extension": ".webp",
-      "bytes": 92158,
-      "dimensions": {
-        "width": 1024,
-        "height": 576
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "histoire-royaumes.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/history/Nétheril-2.webp",
-      "extension": ".webp",
-      "bytes": 63454,
-      "dimensions": {
-        "width": 1216,
-        "height": 684
       },
       "variants": [],
       "referenced": true,
@@ -22681,22 +22681,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/map/astral.webp",
-      "extension": ".webp",
-      "bytes": 220582,
-      "dimensions": {
-        "width": 1672,
-        "height": 941
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "plans-existence.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
       "path": "img/map/Chult-1.webp",
       "extension": ".webp",
       "bytes": 436480,
@@ -22758,83 +22742,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/map/Épées-1.webp",
-      "extension": ".webp",
-      "bytes": 209094,
-      "dimensions": {
-        "width": 1920,
-        "height": 1280
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "faerun.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/map/Épées-2.webp",
-      "extension": ".webp",
-      "bytes": 116160,
-      "dimensions": {
-        "width": 1000,
-        "height": 652
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "faerun.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/map/faerun-map.jpg",
-      "extension": ".jpg",
-      "bytes": 9791323,
-      "dimensions": {
-        "width": 9800,
-        "height": 6798
-      },
-      "variants": [
-        {
-          "extension": ".webp",
-          "path": "img/map/faerun-map.webp"
-        }
-      ],
-      "referenced": true,
-      "references": [
-        "faerun.html",
-        "tests/assets-audit.test.mjs"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "review-large-asset"
-    },
-    {
-      "path": "img/map/faerun-map.webp",
-      "extension": ".webp",
-      "bytes": 3789954,
-      "dimensions": {
-        "width": 5000,
-        "height": 3468
-      },
-      "variants": [
-        {
-          "extension": ".jpg",
-          "path": "img/map/faerun-map.jpg"
-        }
-      ],
-      "referenced": true,
-      "references": [
-        "faerun.html",
-        "tests/assets-audit.test.mjs",
-        "tests/site-smoke.test.mjs"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "review-large-asset"
-    },
-    {
       "path": "img/map/Horde-1.webp",
       "extension": ".webp",
       "bytes": 59566,
@@ -22862,22 +22769,6 @@
       "referenced": true,
       "references": [
         "faerun.html"
-      ],
-      "referenceMode": "exact",
-      "recommendation": "keep"
-    },
-    {
-      "path": "img/map/inner.webp",
-      "extension": ".webp",
-      "bytes": 160684,
-      "dimensions": {
-        "width": 1672,
-        "height": 941
-      },
-      "variants": [],
-      "referenced": true,
-      "references": [
-        "plans-existence.html"
       ],
       "referenceMode": "exact",
       "recommendation": "keep"
@@ -23033,6 +22924,115 @@
       "dimensions": {
         "width": 1920,
         "height": 1080
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "faerun.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/map/astral.webp",
+      "extension": ".webp",
+      "bytes": 220582,
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "plans-existence.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/map/faerun-map.jpg",
+      "extension": ".jpg",
+      "bytes": 9791323,
+      "dimensions": {
+        "width": 9800,
+        "height": 6798
+      },
+      "variants": [
+        {
+          "extension": ".webp",
+          "path": "img/map/faerun-map.webp"
+        }
+      ],
+      "referenced": true,
+      "references": [
+        "faerun.html",
+        "tests/assets-audit.test.mjs"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "review-large-asset"
+    },
+    {
+      "path": "img/map/faerun-map.webp",
+      "extension": ".webp",
+      "bytes": 3789954,
+      "dimensions": {
+        "width": 5000,
+        "height": 3468
+      },
+      "variants": [
+        {
+          "extension": ".jpg",
+          "path": "img/map/faerun-map.jpg"
+        }
+      ],
+      "referenced": true,
+      "references": [
+        "faerun.html",
+        "tests/assets-audit.test.mjs",
+        "tests/site-smoke.test.mjs"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "review-large-asset"
+    },
+    {
+      "path": "img/map/inner.webp",
+      "extension": ".webp",
+      "bytes": 160684,
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "plans-existence.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/map/Épées-1.webp",
+      "extension": ".webp",
+      "bytes": 209094,
+      "dimensions": {
+        "width": 1920,
+        "height": 1280
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "faerun.html"
+      ],
+      "referenceMode": "exact",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/map/Épées-2.webp",
+      "extension": ".webp",
+      "bytes": 116160,
+      "dimensions": {
+        "width": 1000,
+        "height": 652
       },
       "variants": [],
       "referenced": true,

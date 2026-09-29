@@ -9,10 +9,14 @@ const supportedExtensions = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", "
 const modernExtensions = new Set([".avif", ".webp"]);
 const reportPath = resolve(root, "data/assets-report.json");
 
+function compareStrings(left, right) {
+    return left < right ? -1 : left > right ? 1 : 0;
+}
+
 async function walk(directory) {
     const entries = await readdir(directory, { withFileTypes: true });
     const files = [];
-    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name, "en"))) {
+    for (const entry of entries.sort((a, b) => compareStrings(a.name, b.name))) {
         if (entry.name === ".git" || entry.name === "node_modules" || entry.name === "playwright-report" || entry.name === "test-results") continue;
         const path = resolve(directory, entry.name);
         if (entry.isDirectory()) files.push(...await walk(path));
@@ -104,7 +108,7 @@ export async function buildAssetReport(projectRoot = root) {
             if (supportedExtensions.has(extension)) files.push({ path: relative(projectRoot, file).replaceAll("\\", "/"), absolute: file, extension });
         }
     }
-    files.sort((a, b) => a.path.localeCompare(b.path, "en"));
+    files.sort((a, b) => compareStrings(a.path, b.path));
 
     const sourceFiles = (await walk(projectRoot)).filter((file) => {
         if (!sourceExtensions.has(extname(file).toLowerCase())) return false;
@@ -172,7 +176,7 @@ export async function buildAssetReport(projectRoot = root) {
             largeAssets: assets.filter((asset) => asset.bytes >= 500_000).length,
             byFormat,
         },
-        largest: [...assets].sort((a, b) => b.bytes - a.bytes || a.path.localeCompare(b.path, "en")).slice(0, 25).map((asset) => ({ path: asset.path, bytes: asset.bytes, extension: asset.extension })),
+        largest: [...assets].sort((a, b) => b.bytes - a.bytes || compareStrings(a.path, b.path)).slice(0, 25).map((asset) => ({ path: asset.path, bytes: asset.bytes, extension: asset.extension })),
         assets,
     };
     return report;

@@ -10,8 +10,12 @@ test("quality report is deterministic and exposes the expected metrics", () => {
   assert.equal(report.content.indexed, 2483);
   assert.equal(report.links.broken, 0);
   assert.equal(report.assets.unreferenced, 24);
-  assert.equal(report.pwa.precache.entries, 43);
+  assert.equal(report.sources.indexedByType.spell.withoutSourceRef, 391);
+  assert.equal(report.sources.indexedByType["class-feature"].withSourceRef, 454);
+  assert.equal(report.pwa.precache.entries, 44);
   assert.equal(report.criticalErrors.length, 0);
   assert.ok(report.tests.node > 200);
   assert.ok(report.tests.browser >= 19);
+  assert.equal(report.lighthouse.tool.name, "lighthouse");
+  assert.equal(report.lighthouse.pages.length, 6);
 });

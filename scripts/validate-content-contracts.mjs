@@ -13,6 +13,10 @@ const [primaryIndex, deepIndex] = await Promise.all([
 ]);
 const index = {
   ...primaryIndex,
+  sourceRefsByType: {
+    ...(primaryIndex.sourceRefsByType || {}),
+    ...(deepIndex.sourceRefsByType || {}),
+  },
   entries: [...(primaryIndex.entries || []), ...(deepIndex.entries || [])],
 };
 index.count = index.entries.length;
@@ -38,6 +42,10 @@ if (index.count !== index.entries?.length) errors.push("search index count does 
 
 if (contentSources.schemaVersion !== 1) errors.push("content sources schemaVersion must be 1");
 const sourceIds = new Set((contentSources.sources || []).map((source) => source.id));
+for (const [type, sourceRef] of Object.entries(index.sourceRefsByType)) {
+  if (!CONTENT_TYPES.includes(type)) errors.push(`search source mapping has an unknown type: ${type}`);
+  if (!sourceIds.has(sourceRef)) errors.push(`search source mapping references an unknown source: ${sourceRef}`);
+}
 for (const field of ["rulesVersion", "verifiedAt"]) {
   if (!String(contentSources.defaults?.[field] || "").trim()) errors.push(`content source defaults are missing ${field}`);
 }
@@ -80,7 +88,8 @@ for (const [position, entry] of (index.entries || []).entries()) {
   if (!Array.isArray(entry.aliases)) errors.push(`${context} aliases must be an array`);
   if (new Set(entry.aliases || []).size !== entry.aliases?.length) errors.push(`${context} aliases contain duplicates`);
   if (typeof entry.excerpt !== "string") errors.push(`${context} excerpt must be a string`);
-  if (entry.sourceRef && !sourceIds.has(entry.sourceRef)) errors.push(`${context} references an unknown source: ${entry.sourceRef}`);
+  const sourceRef = entry.sourceRef || index.sourceRefsByType[entry.type];
+  if (sourceRef && !sourceIds.has(sourceRef)) errors.push(`${context} references an unknown source: ${sourceRef}`);
 }
 
 if (lore.schemaVersion !== 1 || !Array.isArray(lore.entries)) errors.push("lore data must use schemaVersion 1 and an entries array");

@@ -9,6 +9,7 @@ export const REPRESENTATIVE_PAGES = [
     "univers.html",
     "ma-table.html",
     "spells.html",
+    "dons.html",
     "monstres.html",
     "armes-armures.html",
     "rules-2024.html",

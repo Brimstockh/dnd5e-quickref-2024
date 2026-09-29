@@ -12,6 +12,14 @@ async function readJson(path) {
   return JSON.parse(await readFile(resolve(root, path), "utf8"));
 }
 
+async function readOptionalJson(path) {
+    try {
+        return await readJson(path);
+    } catch {
+        return null;
+    }
+}
+
 async function filesIn(directory, predicate) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
@@ -46,6 +54,19 @@ async function precacheMetrics(worker) {
   return { entries: paths.length, bytes, budget: precacheBudget, missing };
 }
 
+function sourceCoverage(entries, sourceRefsByType) {
+  const coverage = new Map();
+  for (const entry of entries) {
+    const type = String(entry.type || "unknown");
+    const sourceRef = entry.sourceRef || sourceRefsByType[type];
+    const current = coverage.get(type) || { total: 0, withSourceRef: 0, withoutSourceRef: 0 };
+    current.total += 1;
+    current[sourceRef ? "withSourceRef" : "withoutSourceRef"] += 1;
+    coverage.set(type, current);
+  }
+  return Object.fromEntries([...coverage.entries()].sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0));
+}
+
 function markdownSummary(report) {
   return [
     "## Synthèse qualité",
@@ -61,7 +82,7 @@ function markdownSummary(report) {
   ].join("\n");
 }
 
-const [inventory, primaryIndex, deepIndex, sources, assets, worker, nodeTestFiles, browserTestFiles] = await Promise.all([
+const [inventory, primaryIndex, deepIndex, sources, assets, worker, nodeTestFiles, browserTestFiles, lighthouseBaseline] = await Promise.all([
   readJson("data/content-inventory.json"),
   readJson("data/search-index.json"),
   readJson("data/search-index-deep.json"),
@@ -70,11 +91,16 @@ const [inventory, primaryIndex, deepIndex, sources, assets, worker, nodeTestFile
   readFile(resolve(root, "service-worker.js"), "utf8"),
   filesIn(resolve(root, "tests"), (path) => extname(path) === ".mjs" && path.endsWith(".test.mjs")),
   filesIn(resolve(root, "tests/browser"), (path) => extname(path) === ".mjs" && path.endsWith(".spec.mjs")),
+  readOptionalJson("reports/lighthouse/baseline.json"),
 ]);
 const linkAudit = await validateContentLinks(root);
 const precache = await precacheMetrics(worker);
 const indexedEntries = [...(primaryIndex.entries || []), ...(deepIndex.entries || [])];
-const sourceRefs = indexedEntries.filter((entry) => entry.sourceRef).length;
+const sourceRefsByType = {
+  ...(primaryIndex.sourceRefsByType || {}),
+  ...(deepIndex.sourceRefsByType || {}),
+};
+const sourceRefs = indexedEntries.filter((entry) => entry.sourceRef || sourceRefsByType[entry.type]).length;
 const report = {
   schemaVersion: 1,
   pages: { html: (await filesIn(root, (path) => extname(path) === ".html")).length },
@@ -91,6 +117,7 @@ const report = {
     registered: (sources.sources || []).length,
     indexedWithSourceRef: sourceRefs,
     indexedWithoutSourceRef: indexedEntries.length - sourceRefs,
+    indexedByType: sourceCoverage(indexedEntries, sourceRefsByType),
   },
   assets: {
     files: assets.summary.files,
@@ -109,6 +136,19 @@ const report = {
     node: await countTestDeclarations(nodeTestFiles),
     browser: await countTestDeclarations(browserTestFiles),
   },
+  lighthouse: lighthouseBaseline ? {
+    tool: lighthouseBaseline.tool,
+    commit: lighthouseBaseline.commit,
+    preset: lighthouseBaseline.environment?.preset || null,
+    pages: (lighthouseBaseline.pages || []).map(({ page, performance, accessibility, bestPractices, seo, metrics }) => ({
+      page,
+      performance,
+      accessibility,
+      bestPractices,
+      seo,
+      metrics,
+    })),
+  } : null,
   criticalErrors: [
     ...(linkAudit.errors.length ? [`${linkAudit.errors.length} lien(s) ou ancre(s) cassé(s)`] : []),
     ...(precache.missing.length ? [`${precache.missing.length} ressource(s) du précache absente(s)`] : []),

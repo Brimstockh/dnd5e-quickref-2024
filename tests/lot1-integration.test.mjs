@@ -22,6 +22,7 @@ test("Lot 1 shared clients are GitHub Pages aware and available offline", async 
     assert.match(shell, new RegExp(path.replace(".", "\\.")), path);
     assert.match(worker, new RegExp(`\\.\\/${path.replace(".", "\\.")}`), path);
   }
+  assert.match(worker, /\.\/js\/shell\/search-dialog\.js/);
 
   for (const asset of [
     "manifest.webmanifest",

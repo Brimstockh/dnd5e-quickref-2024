@@ -17,11 +17,13 @@ Ce document prépare des tests avec de vraies personnes. Aucun résultat ne doit
 | Trouver les propriétés d’une arme | La personne ouvre la ligne ou la référence correcte | Elle ouvre une mauvaise famille ou abandonne | 2 min |
 | Trouver un sort précis | Le sort et son détail sont ouverts | Aucun résultat ou mauvais filtre | 2 min |
 | Identifier la règle d’une situation de combat | La section de règle pertinente est retrouvée | La personne ne sait pas quel espace choisir | 3 min |
-| Retrouver une divinité | La fiche ou l’entrée correcte est consultée | Mauvais univers ou abandon | 2 min |
-| Retrouver un personnage des Royaumes | Le personnage demandé est trouvé | Recherche infructueuse | 2 min |
-| Accéder aux règles de campagne | La page de campagne est ouverte | Navigation hors sujet | 1 min |
-| Consulter les statistiques de dés | Le graphique et un contrôle sont utilisés | Page non trouvée ou incomprise | 2 min |
-| Revenir vers l’espace principal | Le hub canonique est retrouvé | Utilisation d’un chemin incohérent | 1 min |
+| Retrouver un monstre précis | Le monstre et son statblock sont ouverts | Mauvais résultat ou abandon | 2 min |
+| Accéder à un personnage | La fiche ou l’entrée correcte est consultée | Recherche infructueuse | 2 min |
+| Préparer une session | La personne crée ou retrouve une note, un favori ou une entrée de session | Elle ne trouve pas l’espace personnel ou le mode session | 3 min |
+| Retrouver une entrée de l’Univers | La fiche ou l’entrée correcte est consultée | Mauvais univers ou abandon | 2 min |
+| Utiliser la recherche globale | La personne ouvre la recherche, saisit un terme et ouvre le bon résultat | Elle ne trouve pas le raccourci ou le mauvais résultat | 2 min |
+
+Les statistiques de dés et les règles de campagne peuvent servir de tâches complémentaires, mais ne remplacent pas les huit tâches principales ci-dessus.
 
 ## Compte rendu individuel
 
@@ -34,3 +36,7 @@ Ce document prépare des tests avec de vraies personnes. Aucun résultat ne doit
 - Erreurs de navigation :
 - Citation ou commentaire :
 - Hypothèse à vérifier :
+
+Les résultats ne doivent être ajoutés qu’après des sessions réelles ; ce document ne constitue pas une preuve UX.
+
+La grille de collecte correspondante est disponible dans `docs/usability-test-results-template.md`.

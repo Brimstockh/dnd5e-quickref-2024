@@ -418,17 +418,19 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   const session = await readFile(resolve(root, "js/shell/session-controls.js"), "utf8");
   const personal = await readFile(resolve(root, "js/shell/personal-tools.js"), "utf8");
   const searchTrigger = await readFile(resolve(root, "js/shell/search-trigger.js"), "utf8");
+  const searchDialog = await readFile(resolve(root, "js/shell/search-dialog.js"), "utf8");
   assert.match(session, /dnd2024_session_mode/);
-  assert.match(source, /data\/search-index\.json/);
-  assert.match(source, /buildSectionFilterDefinitions/);
-  assert.match(source, /button\.disabled = Boolean\(definition\.disabled\)/);
-  assert.doesNotMatch(source, /matchingEntries\("", input\.value\.trim\(\) \? 3000 : 30\)/);
-  assert.match(source, /var scopedMatches = activeSection/);
-  assert.doesNotMatch(source, /input\.addEventListener\("input", function \(\) \{[\s\S]{0,140}activeSection = ""/);
+  assert.match(searchDialog, /data\/search-index\.json/);
+  assert.match(searchDialog, /buildSectionFilterDefinitions/);
+  assert.match(searchDialog, /button\.disabled = Boolean\(definition\.disabled\)/);
+  assert.doesNotMatch(source, /function createSearch\(\)/);
+  assert.match(source, /searchDialog\.createSearch/);
+  assert.match(searchDialog, /const scopedMatches = activeSection/);
+  assert.doesNotMatch(searchDialog, /input\.addEventListener\("input", function \(\) \{[\s\S]{0,140}activeSection = ""/);
   assert.match(source, /sessionButton\.setAttribute\("aria-pressed"/);
   assert.match(source, /function ensureSkipLink/);
-  assert.match(source, /aria-autocomplete/);
-  assert.match(source, /results\.setAttribute\("role", "listbox"\)/);
+  assert.match(searchDialog, /aria-autocomplete/);
+  assert.match(searchDialog, /results\.setAttribute\("role", "listbox"\)/);
   assert.match(source, /drawer\.setAttribute\("aria-modal", "true"\)/);
   assert.match(source, /sessionController\.createPanel/);
   assert.match(session, /createPanel/);
@@ -442,6 +444,7 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   assert.match(source, /searchTrigger\.bindSearchTriggers/);
   assert.match(searchTrigger, /data-open-site-search/);
   assert.match(searchTrigger, /setSessionPanel\(false\)/);
+  assert.match(searchDialog, /export function createSearch/);
   assert.match(source, /window\.DndShare = Object\.freeze/);
   assert.match(source, /js\/context-share\.js/);
   assert.match(sharing, /function shareCurrentPage/);
@@ -457,19 +460,21 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
 
 test("the monsters and feats catalogs use the consolidated catalog shell", async () => {
   const catalogs = [
-    ["monstres.html", "monsters"],
-    ["dons.html", "feats"],
+    ["monstres.html", "monsters", true],
+    ["dons.html", "feats", false],
   ];
 
-  for (const [page, activePage] of catalogs) {
+  for (const [page, activePage, legacy] of catalogs) {
     const source = await readFile(resolve(root, page), "utf8");
     assert.doesNotMatch(source, /<style[\s>]/i);
-    assert.match(source, /class="legacy-catalog-page"/);
     assert.match(source, /href="css\/theme\.css"/);
     assert.match(source, /href="css\/components\.css"/);
-    assert.match(source, /href="css\/legacy-catalog\.css"/);
+    assert.match(source, new RegExp(legacy ? "href=\\\"css/legacy-catalog\\.css\\\"" : "href=\\\"css/catalog\\.css\\\""));
     assert.match(source, /src="js\/catalog-ui\.js"\s+defer/);
-    assert.match(source, /src="js\/legacy-catalog-ui\.js"\s+defer/);
+    if (legacy) assert.match(source, /class="legacy-catalog-page"/);
+    else assert.doesNotMatch(source, /class="legacy-catalog-page"/);
+    if (legacy) assert.match(source, /src="js\/legacy-catalog-ui\.js"\s+defer/);
+    else assert.doesNotMatch(source, /src="js\/legacy-catalog-ui\.js"\s+defer/);
     assert.match(source, new RegExp(`data-site-header data-active="${activePage}"`));
     assert.match(source, /data-page-search/);
     assert.match(source, /aria-live="polite"/);

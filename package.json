@@ -16,6 +16,7 @@
     "check:illustrations": "node scripts/check-royal-realm-illustrations.mjs",
     "audit:assets": "node scripts/audit-assets.mjs",
     "check:assets": "node scripts/audit-assets.mjs --check",
+    "audit:lighthouse": "node scripts/audit-lighthouse.mjs",
     "check:monster-images": "node scripts/validate-monster-images.mjs",
     "check:monster-translations": "node scripts/validate-monster-translations.mjs",
     "check:contracts": "node scripts/validate-content-contracts.mjs",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "lighthouse": "^12.8.2"
   }
 }

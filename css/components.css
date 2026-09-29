@@ -707,7 +707,8 @@ body.has-open-drawer { overflow: hidden; }
 .list-row { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-3); border-bottom: 1px solid var(--color-border); }
 .empty-state { padding: var(--space-6); color: var(--color-text-muted); border: 1px dashed var(--color-border-light); border-radius: var(--radius-lg); text-align: center; }
 
-.fallback-navigation { display: flex; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--color-bg-elevated); }
+[data-site-header] { min-height: var(--header-height); }
+.fallback-navigation { display: flex; min-height: var(--header-height); gap: 0.5rem; align-items: center; padding: 0.75rem 1rem; background: var(--color-bg-elevated); }
 
 [id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
 .heading-anchor {

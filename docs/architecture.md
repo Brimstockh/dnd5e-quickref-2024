@@ -10,7 +10,7 @@ Le navigateur assemble trois niveaux :
 2. le shell partagé (`js/site-shell.js`, `js/user-library.js`, `js/pwa-client.js`) ;
 3. les modules propres à la page, chargés par script classique ou import ES module.
 
-Le shell fournit la navigation, le thème, la recherche, les outils personnels, le partage et le mode session. Les responsabilités extraites du shell vivent dans `js/shell/`.
+Le shell fournit la navigation, le thème, les déclencheurs de recherche, les outils personnels, le partage et le mode session. Le dialogue de recherche et les autres responsabilités extraites du shell vivent dans `js/shell/`.
 
 ## Navigation canonique
 

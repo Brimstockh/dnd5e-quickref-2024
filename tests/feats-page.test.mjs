@@ -44,5 +44,5 @@ test("dons.html renders the local feat dataset", async () => {
 
   assert.match(elements.sourceNote.textContent, /75 dons charg/);
   assert.match(elements.summary.textContent, /^75 don\(s\).*75/);
-  assert.match(elements.featsGrid.innerHTML, /<details class="feat"/);
+  assert.match(elements.featsGrid.innerHTML, /<details class="feat catalog-card"/);
 });

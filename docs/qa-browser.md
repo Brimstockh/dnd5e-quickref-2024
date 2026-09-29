@@ -19,5 +19,5 @@ En CI, les traces, captures et rapports HTML Playwright sont conservés comme ar
 ## Limites actuelles
 
 - Les tests de performance Lighthouse ne sont pas encore bloquants.
-- Les tests utilisateurs réels restent à exécuter avec des personnes.
+- Les tests utilisateurs réels restent à exécuter avec des personnes ; le protocole et la grille sont dans `docs/usability-test-plan.md` et `docs/usability-test-results-template.md`.
 - L’audit axe porte sur les pages représentatives et les impacts critiques/sérieux.

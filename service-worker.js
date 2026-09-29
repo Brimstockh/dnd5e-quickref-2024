@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v31";
+const CACHE_VERSION = "dnd-companion-v32";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -44,6 +44,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/shell/sharing.js",
     "./js/shell/session-controls.js",
     "./js/shell/search-trigger.js",
+    "./js/shell/search-dialog.js",
     "./js/shell/theme.js",
     "./js/source-meta.js",
     "./js/user-library.js",

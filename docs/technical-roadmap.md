@@ -136,7 +136,7 @@ Le contrat de précache devient `dnd-companion-v30`, avec 42 ressources pour 1 4
 
 ### Troisième lot de la phase 3
 
-Le branchement des déclencheurs de recherche est isolé dans `js/shell/search-trigger.js`. Le dialogue, le chargement différé des index et le ranking restent dans le shell jusqu’à une extraction ultérieure mieux découplée. Le précache passe à `dnd-companion-v31`, avec 43 ressources ; les catalogues et le deep index restent hors précache.
+Le branchement des déclencheurs de recherche est isolé dans `js/shell/search-trigger.js`, puis le dialogue, le chargement différé des index et le ranking dans `js/shell/search-dialog.js`. Le précache passe à `dnd-companion-v32`, avec 44 ressources ; les catalogues et le deep index restent hors précache.
 
 Le budget de `data/magic-items.json` est également repassé sous sa limite sans perte de données : le JSON a été compacté mécaniquement de 628 421 à 471 460 octets. Une comparaison de parsing avec la version précédente confirme l’identité du contenu.
 
@@ -150,13 +150,13 @@ Les plus grosses feuilles sont :
 | `css/components.css` | 49 ko | Composants transverses et recherche. |
 | `css/content-page.css` | 33 ko | Pages éditoriales et primitives de contenu. |
 | `css/character-sheet.css` | 28 ko | Feuille autonome. |
-| `css/legacy-catalog.css` | 19,5 ko | Surface historique catalogues. |
+| `css/legacy-catalog.css` | 18,1 ko | Surface historique du bestiaire. |
 | `css/catalog.css` | 15,9 ko | Catalogues consolidés. |
 | `css/content-catalog.css` | 12,5 ko | Contenu catalogué. |
 
 `css/theme.css` centralise déjà couleurs, espacements, rayons, ombres, typographie, largeur de contenu, z-index implicites et préférences de mouvement. La dette restante concerne surtout la répartition des responsabilités et les variantes historiques, pas l’absence totale de tokens.
 
-Les usages `legacy-*` restent actifs dans `dons.html`, `monstres.html`, `js/legacy-catalog-ui.js`, les tests associés et le précache du service worker. `legacy-catalog.css` (19,5 ko) et `legacy-catalog-ui.js` (8,2 ko) ne sont donc pas supprimables à ce stade.
+Les usages `legacy-*` restent actifs dans `monstres.html`, `js/legacy-catalog-ui.js`, les tests associés et le précache du service worker. `dons.html` utilise désormais le shell catalogue partagé ; `legacy-catalog.css` (18,1 ko) et `legacy-catalog-ui.js` (8,2 ko) restent nécessaires au bestiaire et ne sont donc pas supprimables à ce stade.
 
 ## Assets et poids
 
@@ -239,11 +239,11 @@ Le précache est réduit à l’App Shell, aux hubs, à l’offline, au manifest
 
 ### Phase 3 — Architecture frontend (lots 1 à 3 réalisés)
 
-Le thème, les raccourcis clavier, le partage, la navigation mobile, le mode session, les outils personnels et les déclencheurs de recherche sont isolés dans les sept modules de `js/shell/`. `site-shell.js` conserve le bootstrap et leur fournit les dépendances explicites. Le dialogue de recherche, son chargement d’index et les responsabilités restantes du shell doivent encore être réduits progressivement.
+Le thème, les raccourcis clavier, le partage, la navigation mobile, le mode session, les outils personnels, les déclencheurs et le dialogue de recherche sont isolés dans les huit modules de `js/shell/`. `site-shell.js` conserve le bootstrap et leur fournit les dépendances explicites. Les responsabilités restantes du shell doivent encore être réduites progressivement.
 
 ### Phase 4 — CSS (premier lot réalisé)
 
-Les niveaux de superposition récurrents sont maintenant centralisés dans `css/theme.css` et consommés par les feuilles de shell, catalogues, filtres legacy, quick reference et contenu catalogué. L’inventaire des usages legacy est documenté dans `docs/css-audit.md`. Les pages `dons.html` et `monstres.html` dépendent encore de `legacy-catalog.css` et `legacy-catalog-ui.js` ; aucune suppression risquée n’a été engagée.
+Les niveaux de superposition récurrents sont maintenant centralisés dans `css/theme.css` et consommés par les feuilles de shell, catalogues, filtres legacy, quick reference et contenu catalogué. L’inventaire des usages legacy est documenté dans `docs/css-audit.md`. `dons.html` a servi de pilote et ne dépend plus de `legacy-catalog.css` ni de `legacy-catalog-ui.js` ; `monstres.html` reste à évaluer séparément, notamment pour ses statblocks et ses images.
 
 ### Phase 5 — Assets (premier lot réalisé)
 
@@ -265,6 +265,8 @@ Le registre `data/content-sources.json` expose maintenant `rulesVersion` et `ver
 
 L’état de référence mesuré est de 8,7 ko pour l’HTML d’accueil, 69,9 ko de CSS initial, 78,5 ko pour `user-library.js` et `site-shell.js`, 509,5 ko pour l’index de recherche principal et 1,46 Mo pour le précache PWA. Ces valeurs sont maintenant protégées par des budgets dans `tests/performance-budget.test.mjs`. Les clients secondaires GitHub et glossaire sont chargés pendant le temps disponible du navigateur ; le shell, le service worker, les métadonnées de provenance et la recherche restent disponibles immédiatement.
 
+Un baseline Lighthouse reproductible complète désormais ces budgets statiques. `npm run audit:lighthouse` mesure six pages en preset desktop (`1440 × 900`) avec Lighthouse `12.8.2` et écrit une synthèse dans `reports/lighthouse/baseline.json`. Les scores restent informatifs tant qu’aucune série de mesures comparable n’a permis de fixer des seuils CI.
+
 ### Phase 10 — Observabilité et qualité continue (premier lot réalisé)
 
 `npm run audit` génère le rapport déterministe `reports/quality.json` avec le nombre de pages, les contenus indexés, les liens contrôlés, la provenance, les assets, le poids des données, le précache PWA et les tests déclarés. Les erreurs critiques — liens cassés, ressources précachées absentes, dépassement du budget PWA, incohérence des index ou gros PNG sans variante moderne — provoquent un code de sortie non nul. Le workflow Pages affiche cette synthèse dans le job de qualité et conserve le rapport comme artifact avant les tests navigateur.
@@ -272,6 +274,8 @@ L’état de référence mesuré est de 8,7 ko pour l’HTML d’accueil, 69,9 k
 ### Phase 11 — Documentation développeur (premier lot réalisé)
 
 La documentation est maintenant regroupée dans `docs/architecture.md`, `docs/content-model.md`, `docs/testing.md`, `docs/pwa.md`, `docs/storage.md` et `docs/contributing.md`. Elle décrit les contrats de navigation, les index générés, les identifiants de contenu, le stockage local versionné, la recette, la PWA, la publication et la checklist d’une nouvelle fonctionnalité. `tests/developer-docs.test.mjs` vérifie que les documents essentiels restent présents et alignés sur les contrats actuels.
+
+Le protocole de test utilisateur est défini dans `docs/usability-test-plan.md` et sa grille de collecte dans `docs/usability-test-results-template.md`. Aucun résultat UX n’est présenté avant des sessions avec de vraies personnes.
 
 ### Phase 12 — Suppression de la dette finale (audit de sécurité réalisé)
 

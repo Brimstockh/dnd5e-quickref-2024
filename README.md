@@ -85,7 +85,7 @@ The report is written to `reports/quality.json` and exits with an error for crit
 
 Generated indexes must stay synchronized. Use `npm run build:inventory` after changing indexed content.
 
-Developer documentation is organized in [`docs/`](docs/): see `architecture.md`, `content-model.md`, `testing.md`, `pwa.md`, `storage.md`, and `contributing.md` for the contracts and contribution workflow.
+Developer documentation is organized in [`docs/`](docs/): see `architecture.md`, `content-model.md`, `testing.md`, `performance.md`, `pwa.md`, `storage.md`, and `contributing.md` for the contracts and contribution workflow.
 
 ## Publication
 

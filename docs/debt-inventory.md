@@ -8,14 +8,14 @@ Ce lot ne supprime pas de fichier dont l’absence de référence locale ne suff
 
 | Élément | Preuve | Décision |
 | --- | --- | --- |
-| `css/legacy-catalog.css` | chargé par `dons.html` et `monstres.html`, couvert par les tests visuels et navigateur | Conserver |
-| `js/legacy-catalog-ui.js` | chargé par `dons.html` et `monstres.html`, nécessaire aux filtres mobiles | Conserver |
+| `css/legacy-catalog.css` | chargé par `monstres.html`, couvert par les tests visuels et navigateur | Conserver |
+| `js/legacy-catalog-ui.js` | chargé par `monstres.html`, nécessaire à ses filtres mobiles | Conserver |
 | `character-template.html` | redirection/canonicalisation vers la feuille autonome | Conserver pour l’URL historique |
 | `character-template-v2.html` | redirection/canonicalisation vers la feuille autonome | Conserver pour l’URL historique |
 | `sw.js` | enregistré par `js/pwa-client.js`, importe `service-worker.js` | Conserver comme point d’entrée de compatibilité |
 | `js/data_*.js` | consommés par `scripts/build-search-index.mjs` | Conserver comme sources de référence rapide |
 
-La migration des catalogues legacy est une tâche distincte : elle doit remplacer les structures `.legacy-*`, conserver les filtres, les deep links, l’export, le responsive et l’accessibilité avant toute suppression.
+Le pilote `dons.html` utilise désormais le shell catalogue partagé. La migration restante de `monstres.html` est une tâche distincte : elle doit remplacer les structures `.legacy-*`, conserver les filtres, les deep links, l’export, le responsive et l’accessibilité avant toute suppression.
 
 ## Assets non référencés à revoir
 

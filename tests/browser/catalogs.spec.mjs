@@ -17,6 +17,24 @@ test("monsters catalogue supports search, filters and an opened statblock", asyn
     await expectNoHorizontalOverflow(page);
 });
 
+test("feats catalogue uses the shared filter shell and preserves selection state", async ({ page }) => {
+    const pageErrors = await loadPage(page, "dons.html");
+    expectNoPageErrors(pageErrors);
+    await expect(page.locator("#featsGrid .catalog-card").first()).toBeVisible();
+    const initialCount = await page.locator("#featsGrid .catalog-card").count();
+    const filterToggle = page.locator("#openFiltersBtn");
+    if (await filterToggle.isVisible()) await filterToggle.click();
+    await page.locator("#categorySelect").selectOption("Don général");
+    expect(await page.locator("#featsGrid .catalog-card").count()).toBeLessThan(initialCount);
+    await expect(page.locator("#activeFilters .filter-chip").first()).toBeVisible();
+    await page.locator("#resetFiltersBtn").click();
+    await expect(page.locator("#featsGrid .catalog-card")).toHaveCount(initialCount);
+    if (await page.locator("#closeFiltersBtn").isVisible()) await page.locator("#closeFiltersBtn").click();
+    await page.locator("#featsGrid details.feat summary").first().click();
+    await expect(page.locator("#featsGrid details.feat[open]").first()).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+});
+
 test("equipment remains a desktop table with localised horizontal overflow", async ({ page }) => {
     const pageErrors = await loadPage(page, "armes-armures.html");
     expectNoPageErrors(pageErrors);

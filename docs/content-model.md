@@ -14,6 +14,12 @@ Les sorties transversales sont :
 
 Les scripts de génération sont la source de la forme de ces sorties. Ne pas modifier manuellement un index généré pour corriger une entrée.
 
+`data/magic-items.json` reste un catalogue éditorial canonique consommé directement
+par le runtime. Sa forme compacte est volontaire pour respecter le budget de
+transfert ; il n’existe pas de source lisible distincte à régénérer. À l’inverse,
+`data/assets-report.json` est une sortie générée par `npm run audit:assets` et
+doit rester synchronisée avec le dépôt.
+
 ## Identifiants
 
 Les identifiants canoniques sont créés par `js/content-ids.js` :
@@ -44,7 +50,9 @@ Une entrée recherchable expose au minimum :
 }
 ```
 
-Les champs de provenance (`sourceRef`, `sourcePage`) sont ajoutés lorsque la famille de contenu les supporte. Le registre `data/content-sources.json` définit les sources connues ; `rulesVersion` et `verifiedAt` doivent rester cohérents avec le contenu.
+Les champs de provenance (`sourceRef`, `sourcePage`) sont ajoutés lorsque la famille de contenu les supporte. Le registre `data/content-sources.json` définit les sources connues ; `rulesVersion` et `verifiedAt` doivent rester cohérents avec le contenu. `npm run audit:provenance` et `reports/quality.json` exposent la couverture `sourceRef` par type pour guider l’enrichissement des familles historiques encore non attribuées.
+
+Les mappings actuellement établis dans l’index sont regroupés dans `sourceRefsByType` pour éviter de répéter une même référence sur chaque entrée : `phb-2024-fr` pour les classes, espèces, dons et équipements ; `srd-5.2.1-fr` pour les règles et le glossaire ; `dmg-2024-lore-pdf` pour le Lore. Les sorts, monstres, historiques et actions rapides restent sans attribution automatique tant qu’une source structurée explicite n’est pas disponible.
 
 ## Générer et vérifier
 

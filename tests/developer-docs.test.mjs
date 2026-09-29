@@ -12,9 +12,12 @@ const documents = [
   "storage.md",
   "contributing.md",
 ].map((name) => resolve(root, "docs", name));
+const usabilityDocuments = ["usability-test-plan.md", "usability-test-results-template.md"]
+  .map((name) => resolve(root, "docs", name));
+const consolidationReport = resolve(root, "docs", "refacto-consolidation-report.md");
 
 test("developer documentation covers the current contracts", async () => {
-  await Promise.all(documents.map((path) => access(path)));
+  await Promise.all([...documents, ...usabilityDocuments, consolidationReport].map((path) => access(path)));
   const [architecture, content, testing, pwa, storage, contributing] = await Promise.all(
     documents.map((path) => readFile(path, "utf8")),
   );

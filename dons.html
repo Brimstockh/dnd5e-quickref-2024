@@ -8,32 +8,19 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/legacy-catalog.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
     <link rel="preload" href="data/feats_2024.json" as="fetch" type="application/json" crossorigin="anonymous" />
     <script src="js/user-library.js" defer></script>
     <script src="js/site-shell.js" defer></script>
     <script src="js/catalog-ui.js" defer></script>
-    <script src="js/legacy-catalog-ui.js" defer></script>
     <script src="js/feats-page.js" defer></script>
 </head>
-<body class="legacy-catalog-page" data-library-title="Dons" data-library-category="Catalogue" data-library-description="Catalogue des dons D&D 2024">
+<body class="catalog-page" data-library-title="Dons" data-library-category="Catalogue" data-library-description="Catalogue des dons D&D 2024">
     <a class="skip-link" href="#main-content">Aller au contenu</a>
-    <header data-site-header data-active="feats"></header>
-    <main class="wrap" id="main-content" data-glossary-richtext>
-        <nav class="topnav">
-            <a href="index.html">Accueil</a>
-            <a href="historique.html">Historiques</a>
-            <a href="races/index.html">Races</a>
-            <a href="classes/index.html">Classes</a>
-            <a href="dons.html">Dons</a>
-            <a href="rules-2024.html">Règles</a>
-            <a href="combat-2024.html">Combats</a>
-            <a href="mastery-2024.html">Maîtrise</a>
-            <a href="spells.html">Sorts</a>
-            <a href="monstres.html">Monstres</a>
-            <a href="character-sheet-standalone.html">Modèle</a>
-            <a href="quickref.html">Référence rapide</a>
-        </nav>
+    <header data-site-header data-active="feats">
+        <nav class="fallback-navigation" aria-label="Navigation de secours"><a href="index.html">Accueil</a></nav>
+    </header>
+    <main class="catalog-main" id="main-content" data-glossary-richtext>
 
         <section class="page-feature page-feature--creation page-feature--compact" aria-labelledby="feats-title">
             <div class="page-feature__content">
@@ -45,55 +32,80 @@
             </div>
         </section>
 
-        <section class="filters">
-            <div>
-                <label for="searchInput">Recherche</label>
-                <input id="searchInput" type="search" data-page-search placeholder="Ex: magie, bouclier, télépathie..." />
+        <section class="catalog-toolbar" aria-label="Recherche dans les dons">
+            <div class="catalog-search">
+                <label class="visually-hidden" for="searchInput">Rechercher par nom, catégorie ou description</label>
+                <span class="catalog-search__icon" aria-hidden="true">⌕</span>
+                <input id="searchInput" data-page-search type="search" autocomplete="off" placeholder="Nom, catégorie, prérequis…" />
+                <kbd aria-hidden="true">/</kbd>
             </div>
-            <div>
-                <label for="categorySelect">Catégorie</label>
-                <select id="categorySelect">
-                    <option value="">Toutes</option>
-                    <option value="Don d’origines">Don d’origines</option>
-                    <option value="Don général">Don général</option>
-                    <option value="Don de Style de combat">Don de Style de combat</option>
-                    <option value="Don de faveur épique">Don de faveur épique</option>
-                </select>
-            </div>
-            <div>
-                <label for="prereqSelect">Prérequis</label>
-                <select id="prereqSelect">
-                    <option value="">Tous</option>
-                    <option value="yes">Avec prérequis</option>
-                    <option value="no">Sans prérequis</option>
-                </select>
-            </div>
-            <div>
-                <label for="repeatableSelect">Répétable</label>
-                <select id="repeatableSelect">
-                    <option value="">Tous</option>
-                    <option value="yes">Répétables</option>
-                    <option value="no">Non répétables</option>
-                </select>
-            </div>
-            <div>
-                <label for="sortSelect">Tri</label>
-                <select id="sortSelect">
-                    <option value="name_asc">Nom A-Z</option>
-                    <option value="name_desc">Nom Z-A</option>
-                    <option value="category_asc">Catégorie</option>
-                    <option value="repeatable_desc">Répétables d'abord</option>
-                    <option value="prereq_desc">Prérequis d'abord</option>
-                </select>
+            <div class="catalog-toolbar__bottom">
+                <div class="catalog-toolbar__mobile-actions">
+                    <button class="catalog-mobile-button" id="openFiltersBtn" type="button">Filtres <span id="activeFilterCount">0</span></button>
+                </div>
+                <span class="catalog-summary" id="summary" role="status" aria-live="polite"></span>
             </div>
         </section>
 
-        <div class="list-tools">
-            <button id="expandAllBtn" type="button">Tout ouvrir</button>
-            <button id="collapseAllBtn" type="button">Tout fermer</button>
+        <div class="active-filters" id="activeFilters" aria-label="Filtres actifs" hidden></div>
+
+        <div class="catalog-layout">
+            <aside class="catalog-filters" id="filterPanel" aria-labelledby="filter-title">
+                <div class="catalog-filters__header">
+                    <h2 id="filter-title">Affiner les résultats</h2>
+                    <button class="catalog-mobile-button catalog-filters__close" id="closeFiltersBtn" type="button">Fermer</button>
+                </div>
+                <div class="catalog-filters__body">
+                    <div class="filter-group">
+                        <label for="categorySelect">Catégorie</label>
+                        <select id="categorySelect">
+                            <option value="">Toutes</option>
+                            <option value="Don d’origines">Don d’origines</option>
+                            <option value="Don général">Don général</option>
+                            <option value="Don de Style de combat">Don de Style de combat</option>
+                            <option value="Don de faveur épique">Don de faveur épique</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="prereqSelect">Prérequis</label>
+                        <select id="prereqSelect">
+                            <option value="">Tous</option>
+                            <option value="yes">Avec prérequis</option>
+                            <option value="no">Sans prérequis</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="repeatableSelect">Répétable</label>
+                        <select id="repeatableSelect">
+                            <option value="">Tous</option>
+                            <option value="yes">Répétables</option>
+                            <option value="no">Non répétables</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortSelect">Trier par</label>
+                        <select id="sortSelect">
+                            <option value="name_asc">Nom A–Z</option>
+                            <option value="name_desc">Nom Z–A</option>
+                            <option value="category_asc">Catégorie</option>
+                            <option value="repeatable_desc">Répétables d’abord</option>
+                            <option value="prereq_desc">Prérequis d’abord</option>
+                        </select>
+                    </div>
+                    <button class="catalog-reset" id="resetFiltersBtn" type="button">Réinitialiser les filtres</button>
+                </div>
+            </aside>
+
+            <button class="catalog-filter-backdrop" id="filterBackdrop" type="button" aria-label="Fermer les filtres"></button>
+
+            <section class="catalog-results" aria-label="Résultats">
+                <div class="catalog-results__tools">
+                    <button class="button" id="expandAllBtn" type="button">Tout ouvrir</button>
+                    <button class="button" id="collapseAllBtn" type="button">Tout fermer</button>
+                </div>
+                <div id="featsGrid" class="catalog-grid"></div>
+            </section>
         </div>
-        <div id="summary" class="summary" role="status" aria-live="polite"></div>
-        <div id="featsGrid" class="grid"></div>
     </main>
 </body>
 </html>

@@ -13,7 +13,7 @@ L’audit porte sur les feuilles partagées et les surfaces catalogues. Les feui
 | `content-page.css` | 33,0 ko | Pages éditoriales |
 | `catalog.css` | 15,9 ko | Catalogues consolidés |
 | `content-catalog.css` | 12,5 ko | Catalogues de contenu |
-| `legacy-catalog.css` | 19,5 ko | Monstres et dons historiques |
+| `legacy-catalog.css` | 18,1 ko | Bestiaire historique |
 
 Les trois plus grosses feuilles restent `icons.css`, `components.css` et `content-page.css`. Leur poids ne justifie pas encore une réécriture : elles portent des contrats publics nombreux et sont chargées par plusieurs familles de pages.
 
@@ -25,18 +25,18 @@ Les valeurs numériques locales restantes sont intentionnelles : couches décora
 
 ## Legacy encore utilisé
 
-Les usages actifs sont limités à :
+Les usages legacy actifs sont désormais limités à :
 
-- `dons.html` et `monstres.html` ;
+- `monstres.html` ;
 - `css/legacy-catalog.css` ;
 - `js/legacy-catalog-ui.js` ;
 - les tests navigateur et les tests de système visuel associés ;
 - l’audit de couverture du glossaire.
 
-Ces deux pages utilisent encore les classes `.legacy-catalog-page`, `.legacy-filter-*` et les structures `.monster-*`/`.feat-*`. Les fichiers historiques ne sont donc pas supprimables dans ce lot.
+`dons.html` est le pilote migré vers `css/catalog.css`, `catalog-ui.js` et les primitives `.catalog-*`. Il conserve ses filtres, ses paramètres d’URL, ses deep links, son rendu des tables de description et ses parcours desktop/mobile. `monstres.html` utilise encore les classes `.legacy-catalog-page`, `.legacy-filter-*` et les structures `.monster-*` ; les fichiers historiques ne sont donc pas supprimables dans ce lot.
 
 ## Prochain lot
 
-Comparer les contrats de formulaire, filtres, cartes et backdrops de `catalog.css`, `content-catalog.css` et `legacy-catalog.css`. Toute migration devra conserver les URLs, le responsive, le dark mode et les tests mobiles avant de réduire la surface legacy.
+Comparer les contrats de formulaire, filtres, cartes, statblocks et backdrops de `catalog.css`, `content-catalog.css` et `legacy-catalog.css` pour décider si une migration de `monstres.html` apporte un gain suffisant. Elle devra conserver les URLs, le responsive, le dark mode et les tests mobiles avant toute réduction supplémentaire.
 
 La phase 12 confirme que cette migration n’est pas encore sûre : le détail des références et des assets historiques conservés est documenté dans `docs/debt-inventory.md`.

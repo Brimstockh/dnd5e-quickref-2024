@@ -45,8 +45,130 @@
   },
   "sources": {
     "registered": 6,
-    "indexedWithSourceRef": 1001,
-    "indexedWithoutSourceRef": 1482
+    "indexedWithSourceRef": 1472,
+    "indexedWithoutSourceRef": 1011,
+    "indexedByType": {
+      "action": {
+        "total": 19,
+        "withSourceRef": 0,
+        "withoutSourceRef": 19
+      },
+      "adventuring-gear": {
+        "total": 55,
+        "withSourceRef": 55,
+        "withoutSourceRef": 0
+      },
+      "background": {
+        "total": 16,
+        "withSourceRef": 0,
+        "withoutSourceRef": 16
+      },
+      "bonus-action": {
+        "total": 3,
+        "withSourceRef": 0,
+        "withoutSourceRef": 3
+      },
+      "campaign-rule": {
+        "total": 1,
+        "withSourceRef": 1,
+        "withoutSourceRef": 0
+      },
+      "class": {
+        "total": 12,
+        "withSourceRef": 12,
+        "withoutSourceRef": 0
+      },
+      "class-feature": {
+        "total": 454,
+        "withSourceRef": 454,
+        "withoutSourceRef": 0
+      },
+      "condition": {
+        "total": 16,
+        "withSourceRef": 0,
+        "withoutSourceRef": 16
+      },
+      "environment": {
+        "total": 12,
+        "withSourceRef": 0,
+        "withoutSourceRef": 12
+      },
+      "equipment": {
+        "total": 51,
+        "withSourceRef": 51,
+        "withoutSourceRef": 0
+      },
+      "feat": {
+        "total": 75,
+        "withSourceRef": 75,
+        "withoutSourceRef": 0
+      },
+      "glossary": {
+        "total": 167,
+        "withSourceRef": 167,
+        "withoutSourceRef": 0
+      },
+      "lore": {
+        "total": 74,
+        "withSourceRef": 74,
+        "withoutSourceRef": 0
+      },
+      "magic-item": {
+        "total": 347,
+        "withSourceRef": 347,
+        "withoutSourceRef": 0
+      },
+      "monster": {
+        "total": 503,
+        "withSourceRef": 0,
+        "withoutSourceRef": 503
+      },
+      "movement": {
+        "total": 13,
+        "withSourceRef": 0,
+        "withoutSourceRef": 13
+      },
+      "page": {
+        "total": 35,
+        "withSourceRef": 0,
+        "withoutSourceRef": 35
+      },
+      "reaction": {
+        "total": 3,
+        "withSourceRef": 0,
+        "withoutSourceRef": 3
+      },
+      "rule": {
+        "total": 82,
+        "withSourceRef": 82,
+        "withoutSourceRef": 0
+      },
+      "species": {
+        "total": 10,
+        "withSourceRef": 10,
+        "withoutSourceRef": 0
+      },
+      "species-feature": {
+        "total": 70,
+        "withSourceRef": 70,
+        "withoutSourceRef": 0
+      },
+      "spell": {
+        "total": 391,
+        "withSourceRef": 0,
+        "withoutSourceRef": 391
+      },
+      "subclass": {
+        "total": 49,
+        "withSourceRef": 49,
+        "withoutSourceRef": 0
+      },
+      "tool": {
+        "total": 25,
+        "withSourceRef": 25,
+        "withoutSourceRef": 0
+      }
+    }
   },
   "assets": {
     "files": 2038,
@@ -56,21 +178,121 @@
     "largeAssets": 8
   },
   "data": {
-    "primarySearchIndexBytes": 509512,
-    "deepSearchIndexBytes": 598273,
+    "primarySearchIndexBytes": 509701,
+    "deepSearchIndexBytes": 598462,
     "relationsBytes": 136279
   },
   "pwa": {
     "precache": {
-      "entries": 43,
-      "bytes": 1460410,
+      "entries": 44,
+      "bytes": 1459987,
       "budget": 1600000,
       "missing": []
     }
   },
   "tests": {
     "node": 238,
-    "browser": 19
+    "browser": 20
+  },
+  "lighthouse": {
+    "tool": {
+      "name": "lighthouse",
+      "version": "12.8.2"
+    },
+    "commit": "4e7873d5ff05da1900d37421ce4ad04594bf1176",
+    "preset": "desktop",
+    "pages": [
+      {
+        "page": "index.html",
+        "performance": 91,
+        "accessibility": 99,
+        "bestPractices": 96,
+        "seo": 100,
+        "metrics": {
+          "fcpMs": 436,
+          "lcpMs": 547,
+          "cls": 0.005026223776223776,
+          "speedIndexMs": 3897,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 859025
+        }
+      },
+      {
+        "page": "regles.html",
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 100,
+        "metrics": {
+          "fcpMs": 476,
+          "lcpMs": 847,
+          "cls": 0.005026223776223776,
+          "speedIndexMs": 476,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 516208
+        }
+      },
+      {
+        "page": "spells.html",
+        "performance": 84,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 90,
+        "metrics": {
+          "fcpMs": 401,
+          "lcpMs": 1733,
+          "cls": 0.1996416083916084,
+          "speedIndexMs": 472,
+          "tbtMs": 29,
+          "totalByteWeightBytes": 1793027
+        }
+      },
+      {
+        "page": "combat-2024.html",
+        "performance": 99,
+        "accessibility": 99,
+        "bestPractices": 96,
+        "seo": 90,
+        "metrics": {
+          "fcpMs": 664,
+          "lcpMs": 833,
+          "cls": 0.004564206888682413,
+          "speedIndexMs": 664,
+          "tbtMs": 7,
+          "totalByteWeightBytes": 426584
+        }
+      },
+      {
+        "page": "faerun.html",
+        "performance": 97,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 91,
+        "metrics": {
+          "fcpMs": 488,
+          "lcpMs": 1267,
+          "cls": 0.004238899212675436,
+          "speedIndexMs": 488,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 2304686
+        }
+      },
+      {
+        "page": "html/characters.html",
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 91,
+        "metrics": {
+          "fcpMs": 447,
+          "lcpMs": 574,
+          "cls": 0.014586065078569445,
+          "speedIndexMs": 447,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 590302
+        }
+      }
+    ]
   },
   "criticalErrors": []
 }
