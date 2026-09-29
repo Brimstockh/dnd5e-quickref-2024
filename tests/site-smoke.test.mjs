@@ -414,7 +414,11 @@ test("the quick reference exposes search, category shortcuts, and a detail drawe
 
 test("the shared shell exposes indexed search and persistent session mode", async () => {
   const source = await readFile(resolve(root, "js/site-shell.js"), "utf8");
-  assert.match(source, /dnd2024_session_mode/);
+  const sharing = await readFile(resolve(root, "js/shell/sharing.js"), "utf8");
+  const session = await readFile(resolve(root, "js/shell/session-controls.js"), "utf8");
+  const personal = await readFile(resolve(root, "js/shell/personal-tools.js"), "utf8");
+  const searchTrigger = await readFile(resolve(root, "js/shell/search-trigger.js"), "utf8");
+  assert.match(session, /dnd2024_session_mode/);
   assert.match(source, /data\/search-index\.json/);
   assert.match(source, /buildSectionFilterDefinitions/);
   assert.match(source, /button\.disabled = Boolean\(definition\.disabled\)/);
@@ -426,22 +430,28 @@ test("the shared shell exposes indexed search and persistent session mode", asyn
   assert.match(source, /aria-autocomplete/);
   assert.match(source, /results\.setAttribute\("role", "listbox"\)/);
   assert.match(source, /drawer\.setAttribute\("aria-modal", "true"\)/);
-  assert.match(source, /function createSessionPanel/);
+  assert.match(source, /sessionController\.createPanel/);
+  assert.match(session, /createPanel/);
   assert.match(source, /sessionPanel\.panel\.setAttribute\("aria-hidden"/);
   assert.match(source, /sessionPanel\.panel\.setAttribute\("inert"/);
-  assert.match(source, /session-panel__quick-actions/);
-  assert.match(source, /window\.DndLibrary\.clearRecent/);
-  assert.match(source, /function copyCurrentLink/);
+  assert.match(session, /session-panel__quick-actions/);
+  assert.match(session, /DndLibrary\.clearRecent/);
+  assert.match(personal, /DndProfiles/);
+  assert.match(personal, /DndPersonal/);
+  assert.match(source, /createPersonalTools/);
+  assert.match(source, /searchTrigger\.bindSearchTriggers/);
+  assert.match(searchTrigger, /data-open-site-search/);
+  assert.match(searchTrigger, /setSessionPanel\(false\)/);
   assert.match(source, /window\.DndShare = Object\.freeze/);
   assert.match(source, /js\/context-share\.js/);
-  assert.match(source, /function shareCurrentPage/);
-  assert.match(source, /navigator\.share/);
+  assert.match(sharing, /function shareCurrentPage/);
+  assert.match(sharing, /navigator\?\.share/);
   assert.match(source, /js\/github-report\.js/);
   assert.match(source, /function enhanceDeepLinks/);
   assert.match(source, /window\.addEventListener\("hashchange", revealHashTarget\)/);
   assert.match(source, /details\.contains\(target\)/);
   for (const path of ["quickref.html", "spells.html", "monstres.html", "combat-2024.html"]) {
-    assert.match(source, new RegExp(path.replace(".", "\\.")), path);
+    assert.match(session, new RegExp(path.replace(".", "\\.")), path);
   }
 });
 

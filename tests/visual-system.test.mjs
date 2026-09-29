@@ -26,6 +26,9 @@ test("pilot catalogues expose the shared visual system contracts", async () => {
   ]);
 
   assert.match(theme, /--text-xs:/);
+  for (const token of ["--z-toolbar", "--z-header", "--z-drawer", "--z-overlay", "--z-panel", "--z-popover"]) {
+    assert.match(theme, new RegExp(`${token}:`));
+  }
   assert.match(theme, /:focus-visible\s*\{[\s\S]*outline: 3px solid var\(--color-focus\)/);
   assert.match(theme, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(components, /\.meta-chip,/);

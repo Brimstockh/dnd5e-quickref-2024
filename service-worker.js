@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v26";
+const CACHE_VERSION = "dnd-companion-v31";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -10,6 +10,9 @@ const CACHE_NAMES = Object.freeze({
     images: `${CACHE_VERSION}-images`,
 });
 const MAX_RUNTIME_IMAGES = 60;
+const MAX_RUNTIME_PAGES = 40;
+const MAX_RUNTIME_DATA = 30;
+const MAX_RUNTIME_ASSETS = 80;
 const SCOPE_URL = new URL(self.registration.scope);
 
 const CORE_ASSETS = Object.freeze([
@@ -19,168 +22,33 @@ const CORE_ASSETS = Object.freeze([
     "./creation.html",
     "./univers.html",
     "./ma-table.html",
-    "./assistant-creation.html",
-    "./comparateur.html",
-    "./dice-stats.html",
-    "./espace-personnel.html",
     "./offline.html",
     "./manifest.webmanifest",
     "./sw.js",
     "./service-worker.js",
-    "./armes-armures.html",
-    "./character-sheet-standalone.html",
-    "./character-template.html",
-    "./character-template-v2.html",
-    "./combat-2024.html",
-    "./creation-personnage-2024.html",
-    "./divinites.html",
-    "./dons.html",
-    "./faerun.html",
-    "./glossaire.html",
-    "./lore.html",
-    "./groupes-royaumes.html",
-    "./histoire-royaumes.html",
-    "./historique.html",
-    "./mastery-2024.html",
-    "./monstres.html",
-    "./outils-aventurier.html",
-    "./services-montures-vehicules.html",
-    "./personnages-royaumes.html",
-    "./plans-existence.html",
-    "./quickref.html",
-    "./objets-magiques.html",
-    "./regles-campagne.html",
-    "./rules-2024.html",
-    "./spells.html",
-    "./classes/index.html",
-    "./classes/class-barbarian.html",
-    "./classes/class-bard.html",
-    "./classes/class-cleric.html",
-    "./classes/class-druid.html",
-    "./classes/class-fighter.html",
-    "./classes/class-monk.html",
-    "./classes/class-paladin.html",
-    "./classes/class-rodeur.html",
-    "./classes/class-rogue.html",
-    "./classes/class-sorcerer.html",
-    "./classes/class-warlock.html",
-    "./classes/class-wizard.html",
-    "./races/index.html",
-    "./races/race-aasimar.html",
-    "./races/race-drakeide.html",
-    "./races/race-dwarf.html",
-    "./races/race-elfe.html",
-    "./races/race-gnome.html",
-    "./races/race-goliath.html",
-    "./races/race-halfelin.html",
-    "./races/race-human.html",
-    "./races/race-orc.html",
-    "./races/race-tieffelin.html",
-    "./html/character.html",
-    "./html/character-profile.html",
-    "./html/characters.html",
-    "./css/catalog.css",
-    "./css/character.css",
-    "./css/campaign-rules.css",
-    "./css/character-sheet.css",
-    "./css/character-sheet-app.css",
-    "./css/classes.css",
     "./css/components.css",
-    "./css/content-catalog.css",
-    "./css/content-page.css",
-    "./css/table-pages.css",
-    "./css/universe-pages.css",
     "./css/home.css",
     "./css/category-hubs.css",
     "./css/icons.css",
-    "./css/legacy-catalog.css",
-    "./css/lore.css",
-    "./css/tools-services.css",
-    "./css/quickref.css",
-    "./css/quickref-page.css",
-    "./css/personal-space.css",
-    "./css/session-tools.css",
-    "./css/creator-tools.css",
-    "./css/dice-stats.css",
-    "./css/races.css",
     "./css/theme.css",
-    "./js/catalog-ui.js",
-    "./js/character.js",
-    "./js/character-references.js",
-    "./js/character-key.js",
-    "./js/character-profile.js",
-    "./js/character-sheet.js",
-    "./js/character-sheet-ui.js",
-    "./js/characters-page.js",
-    "./js/content-catalog.js",
     "./js/dense-pages.js",
-    "./js/content-ids.js",
-    "./js/context-share.js",
-    "./js/comparator.js",
-    "./js/dice-stats.js",
-    "./js/creation-state.js",
-    "./js/creation-wizard.js",
-    "./js/encounter-budget.js",
-    "./js/data_action.js",
-    "./js/data_bonusaction.js",
-    "./js/data_condition.js",
-    "./js/data_environment.js",
-    "./js/data_movement.js",
-    "./js/data_reaction.js",
-    "./js/faerun-map.js",
-    "./js/feats-page.js",
-    "./js/fetch-json.js",
     "./js/github-report.js",
     "./js/glossary-client.js",
-    "./js/glossary-page.js",
-    "./js/html-utils.js",
-    "./js/legacy-catalog-ui.js",
-    "./js/lore-page.js",
-    "./js/monsters-page.js",
-    "./js/monster-export.js",
-    "./js/picture-source.js",
-    "./js/personal-space.js",
-    "./js/session-state.js",
-    "./js/session-tools.js",
-    "./js/progressive-list.js",
     "./js/pwa-client.js",
-    "./js/source-meta.js",
-    "./js/quickref.js",
-    "./js/related-content.js",
-    "./js/rich-html.js",
     "./js/search-engine.js",
     "./js/site-navigation.js",
     "./js/site-shell.js",
-    "./js/magic-items-page.js",
-    "./js/campaign-rules-page.js",
-    "./js/spell-export.js",
-    "./js/spell-filters.js",
-    "./js/spells-page.js",
+    "./js/shell/keyboard-shortcuts.js",
+    "./js/shell/mobile-navigation.js",
+    "./js/shell/personal-tools.js",
+    "./js/shell/sharing.js",
+    "./js/shell/session-controls.js",
+    "./js/shell/search-trigger.js",
+    "./js/shell/theme.js",
+    "./js/source-meta.js",
     "./js/user-library.js",
-    "./data/feats_2024.json",
-    "./data/character-creation.json",
-    "./data/content-inventory.json",
-    "./data/local-storage-contracts.json",
-    "./data/monsters_2024.json",
-    "./data/monster-names-fr.json",
-    "./data/content-relations.json",
-    "./data/glossary.json",
-    "./data/lore.json",
     "./data/search-index.json",
-    "./data/search-index-deep.json",
     "./data/source-metadata.json",
-    "./data/content-sources.json",
-    "./data/proficiency-bonus.json",
-    "./data/magic-items.json",
-    "./data/campaign-rules.json",
-    "./data/spells_2024.json",
-    "./data/characters/index.json",
-    "./data/characters/character-template.json",
-    "./data/characters/character-template.story.json",
-    "./assets/decor/arcane-circle.svg",
-    "./assets/decor/header-lines.svg",
-    "./assets/decor/panel-corners.svg",
-    "./assets/decor/section-divider.svg",
     "./assets/icons/pwa-192.png",
     "./assets/icons/pwa-512.png",
     "./assets/icons/site-emblem.svg",
@@ -191,28 +59,6 @@ const CORE_ASSETS = Object.freeze([
     "./assets/images/faerun-city.webp",
     "./assets/images/rules-game-table.webp",
     "./assets/images/table-adventurers.webp",
-    "./img/class-icons/barbarian.svg",
-    "./img/class-icons/bard.svg",
-    "./img/class-icons/cleric.svg",
-    "./img/class-icons/druid.svg",
-    "./img/class-icons/fighter.svg",
-    "./img/class-icons/monk.svg",
-    "./img/class-icons/paladin.svg",
-    "./img/class-icons/ranger.svg",
-    "./img/class-icons/rogue.svg",
-    "./img/class-icons/sorcerer.svg",
-    "./img/class-icons/warlock.svg",
-    "./img/class-icons/wizard.svg",
-    "./img/race/aasimar.webp",
-    "./img/race/drakeide.webp",
-    "./img/race/dwarf.webp",
-    "./img/race/elf.webp",
-    "./img/race/gnome.webp",
-    "./img/race/goliath.webp",
-    "./img/race/halfling.webp",
-    "./img/race/human.webp",
-    "./img/race/orc.webp",
-    "./img/race/tiefling.webp",
 ]);
 
 function scopedUrl(path) {
@@ -252,6 +98,7 @@ async function networkFirstNavigation(request) {
     try {
         const response = await fetch(request);
         await putInCache(CACHE_NAMES.pages, key, response.clone());
+        await trimCache(CACHE_NAMES.pages, MAX_RUNTIME_PAGES);
         return response;
     } catch {
         const cachedPage = await caches.match(key);
@@ -264,11 +111,12 @@ async function networkFirstNavigation(request) {
     }
 }
 
-async function staleWhileRevalidate(request, cacheName, event) {
+async function staleWhileRevalidate(request, cacheName, event, maximumEntries) {
     const cached = await caches.match(request);
     const update = fetch(request)
         .then(async (response) => {
             await putInCache(cacheName, request, response.clone());
+            if (maximumEntries) await trimCache(cacheName, maximumEntries);
             return response;
         })
         .catch(() => null);
@@ -302,12 +150,21 @@ async function cacheFirstImage(request, event) {
     }
 }
 
+async function precacheAssets() {
+    const cache = await caches.open(CACHE_NAMES.core);
+    await Promise.all(CORE_ASSETS.map(async (path) => {
+        try {
+            const request = new Request(scopedUrl(path), { cache: "reload" });
+            const response = await fetch(request);
+            if (response?.ok) await cache.put(request, response.clone());
+        } catch {
+            // A secondary resource must not make the whole PWA installation fail.
+        }
+    }));
+}
+
 self.addEventListener("install", (event) => {
-    event.waitUntil((async () => {
-        const cache = await caches.open(CACHE_NAMES.core);
-        const requests = CORE_ASSETS.map((path) => new Request(scopedUrl(path), { cache: "reload" }));
-        await cache.addAll(requests);
-    })());
+    event.waitUntil(precacheAssets());
 });
 
 self.addEventListener("activate", (event) => {
@@ -334,11 +191,11 @@ self.addEventListener("fetch", (event) => {
     if (requestType === "navigation") {
         event.respondWith(networkFirstNavigation(request));
     } else if (requestType === "data") {
-        event.respondWith(staleWhileRevalidate(request, CACHE_NAMES.data, event));
+        event.respondWith(staleWhileRevalidate(request, CACHE_NAMES.data, event, MAX_RUNTIME_DATA));
     } else if (requestType === "image") {
         event.respondWith(cacheFirstImage(request, event));
     } else {
-        event.respondWith(staleWhileRevalidate(request, CACHE_NAMES.assets, event));
+        event.respondWith(staleWhileRevalidate(request, CACHE_NAMES.assets, event, MAX_RUNTIME_ASSETS));
     }
 });
 
@@ -346,7 +203,12 @@ self.DndPwaServiceWorker = Object.freeze({
     CACHE_VERSION,
     CACHE_NAMES,
     CORE_ASSETS,
+    MAX_RUNTIME_ASSETS,
+    MAX_RUNTIME_DATA,
+    MAX_RUNTIME_IMAGES,
+    MAX_RUNTIME_PAGES,
     classifyRequest,
     networkFirstNavigation,
+    precacheAssets,
     scopedUrl,
 });

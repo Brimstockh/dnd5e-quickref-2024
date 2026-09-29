@@ -44,9 +44,10 @@ débordement horizontal n’a été détecté aux dimensions testées.
 
 ## Publication continue
 
-Les workflows de tests et de publication exécutent tous deux
-`npm run recette`. La publication GitHub Pages reste réservée à `main` et
-n’est pas déclenchée pour une pull request.
+Le workflow unique `Recette et publication` exécute `npm run recette`, puis les
+tests navigateur et d’accessibilité avant la construction de l’artefact. La
+publication GitHub Pages reste réservée à `main` et n’est pas déclenchée pour
+une pull request.
 
 ## Vérifications restant à faire après publication
 

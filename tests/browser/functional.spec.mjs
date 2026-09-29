@@ -16,6 +16,34 @@ test("global search finds an accented deep result and handles empty state", asyn
     await expect(dialog).toBeHidden();
 });
 
+test("global search expands D&D abbreviations and supports keyboard selection", async ({ page }) => {
+    const pageErrors = await loadPage(page, "index.html");
+    expectNoPageErrors(pageErrors);
+    await page.locator("[data-open-site-search]").first().click();
+    const dialog = page.locator(".search-dialog");
+    const input = dialog.locator('input[type="search"]');
+    await input.fill("CA");
+    const firstResult = dialog.locator(".search-results a").first();
+    await expect(firstResult).toContainText(/classe d.?armure/i);
+    await expect(firstResult.locator(".search-result__category")).toContainText("Règles");
+    await expect(input).toHaveAttribute("aria-activedescendant", "site-search-result-0");
+    await input.press("ArrowDown");
+    await expect(input).toHaveAttribute("aria-activedescendant", "site-search-result-1");
+    await input.press("Home");
+    await expect(input).toHaveAttribute("aria-activedescendant", "site-search-result-0");
+    await input.press("Escape");
+    await expect(dialog).toBeHidden();
+});
+
+test("content pages expose provenance details", async ({ page }) => {
+    const pageErrors = await loadPage(page, "lore.html");
+    expectNoPageErrors(pageErrors);
+    const sourceMeta = page.locator(".source-meta");
+    await expect(sourceMeta).toContainText("Version des règles");
+    await expect(sourceMeta).toContainText("Dernière vérification");
+    await expect(page.locator(".lore-entry__source").first()).toContainText("Dungeon Master's Guide 2024");
+});
+
 test("spells catalogue supports search, details, reset and mobile-safe layout", async ({ page }) => {
     const pageErrors = await loadPage(page, "spells.html");
     expectNoPageErrors(pageErrors);

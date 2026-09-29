@@ -38,10 +38,14 @@ if (index.count !== index.entries?.length) errors.push("search index count does 
 
 if (contentSources.schemaVersion !== 1) errors.push("content sources schemaVersion must be 1");
 const sourceIds = new Set((contentSources.sources || []).map((source) => source.id));
+for (const field of ["rulesVersion", "verifiedAt"]) {
+  if (!String(contentSources.defaults?.[field] || "").trim()) errors.push(`content source defaults are missing ${field}`);
+}
 for (const source of contentSources.sources || []) {
-  for (const field of ["id", "ruleset", "source", "sourceSection", "license"]) {
+  for (const field of ["id", "ruleset", "rulesVersion", "verifiedAt", "source", "sourceSection", "license"]) {
     if (!String(source[field] || "").trim()) errors.push(`content source is missing ${field}: ${source.id || "(missing)"}`);
   }
+  if (source.rulesVersion !== contentSources.defaults?.rulesVersion) errors.push(`content source rulesVersion differs from defaults: ${source.id || "(missing)"}`);
 }
 
 const expectedProficiency = [

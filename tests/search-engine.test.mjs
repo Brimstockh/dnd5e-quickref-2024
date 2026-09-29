@@ -6,6 +6,7 @@ import {
   highlightSearchText,
   normalizeSearch,
   parseSearchQuery,
+  SEARCH_QUERY_ALIASES,
   SEARCH_COMMANDS,
   searchEntries,
 } from "../js/search-engine.js";
@@ -37,6 +38,30 @@ test("searchEntries prioritizes title matches and filters categories", () => {
   const monsters = searchEntries(entries, "feu", { category: "Monstre" });
   assert.equal(all[0].entry.title, "Boule de feu");
   assert.deepEqual(monsters.map((result) => result.entry.title), ["Élémentaire du feu"]);
+});
+
+test("searchEntries expands common D&D abbreviations", () => {
+  for (const [query, expectedTitle] of [
+    ["CA", "Classe d'armure"],
+    ["PV", "Points de vie"],
+    ["AO", "Attaque d'opportunité"],
+    ["DD", "Degré de difficulté"],
+    ["JS", "Jet de sauvegarde"],
+  ]) {
+    const result = searchEntries([
+      { title: expectedTitle, category: "Règle", keywords: [], excerpt: "" },
+    ], query)[0];
+    assert.equal(result.entry.title, expectedTitle);
+    assert.match(result.reason, /Recherche associée/);
+  }
+  assert.deepEqual(SEARCH_QUERY_ALIASES.ca, ["classe d armure", "armor class"]);
+});
+
+test("searchEntries accepts plural category tokens", () => {
+  const results = searchEntries([
+    { title: "Dragon", category: "Monstre", keywords: [], excerpt: "" },
+  ], "monstres");
+  assert.equal(results[0].entry.title, "Dragon");
 });
 
 test("searchEntries filters the canonical site section independently from content category", () => {

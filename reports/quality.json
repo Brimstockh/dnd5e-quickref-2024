@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "html": 63
+  },
+  "content": {
+    "indexed": 2483,
+    "byType": {
+      "action": 19,
+      "adventuring-gear": 55,
+      "background": 16,
+      "bonus-action": 3,
+      "campaign-rule": 1,
+      "class": 12,
+      "class-feature": 454,
+      "condition": 16,
+      "environment": 12,
+      "equipment": 51,
+      "feat": 75,
+      "glossary": 167,
+      "lore": 74,
+      "magic-item": 347,
+      "monster": 503,
+      "movement": 13,
+      "page": 35,
+      "reaction": 3,
+      "rule": 82,
+      "species": 10,
+      "species-feature": 70,
+      "spell": 391,
+      "subclass": 49,
+      "tool": 25
+    },
+    "bySection": {
+      "Règles": 321,
+      "Compendium": 1379,
+      "Création": 695,
+      "Univers": 82,
+      "Ma table": 6
+    }
+  },
+  "links": {
+    "checkedPages": 63,
+    "broken": 0
+  },
+  "sources": {
+    "registered": 6,
+    "indexedWithSourceRef": 1001,
+    "indexedWithoutSourceRef": 1482
+  },
+  "assets": {
+    "files": 2038,
+    "bytes": 171668005,
+    "referenced": 2014,
+    "unreferenced": 24,
+    "largeAssets": 8
+  },
+  "data": {
+    "primarySearchIndexBytes": 509512,
+    "deepSearchIndexBytes": 598273,
+    "relationsBytes": 136279
+  },
+  "pwa": {
+    "precache": {
+      "entries": 43,
+      "bytes": 1460410,
+      "budget": 1600000,
+      "missing": []
+    }
+  },
+  "tests": {
+    "node": 238,
+    "browser": 19
+  },
+  "criticalErrors": []
+}

@@ -75,11 +75,21 @@ Run the complete validation recipe with:
 npm run recette
 ```
 
+Generate the deterministic quality summary with:
+
+```bash
+npm run audit
+```
+
+The report is written to `reports/quality.json` and exits with an error for critical integrity or budget violations.
+
 Generated indexes must stay synchronized. Use `npm run build:inventory` after changing indexed content.
+
+Developer documentation is organized in [`docs/`](docs/): see `architecture.md`, `content-model.md`, `testing.md`, `pwa.md`, `storage.md`, and `contributing.md` for the contracts and contribution workflow.
 
 ## Publication
 
-Le workflow `Recette et publication` reconstruit l’index de recherche et exécute tous les tests avant chaque déploiement. Les pull requests lancent uniquement la recette ; une mise à jour de `main` publie ensuite le site avec GitHub Pages.
+Le workflow `Recette et publication` installe les dépendances, exécute la recette complète puis les tests navigateur et d’accessibilité avant de construire l’artefact Pages. Les pull requests exécutent toute cette validation sans publier ; une mise à jour de `main` ne peut publier qu’après sa réussite. Les rapports Playwright sont conservés comme artefacts CI.
 
 Dans les paramètres GitHub Pages du dépôt, la source doit être configurée sur **GitHub Actions**.
 

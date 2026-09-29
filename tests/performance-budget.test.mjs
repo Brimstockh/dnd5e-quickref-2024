@@ -13,6 +13,7 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/feats_2024.json", 55_000],
     ["data/spells_2024.json", 800_000],
     ["data/search-index.json", 510_000],
+    ["data/search-index-deep.json", 620_000],
     ["data/magic-items.json", 620_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
@@ -26,6 +27,38 @@ test("catalog data stays within its transfer budget", async () => {
     const { size } = await stat(resolve(root, path));
     assert.ok(size <= maximum, `${path}: ${size} octets dépasse le budget de ${maximum}`);
   }
+});
+
+test("initial document, shell and app shell stay within measured budgets", async () => {
+  const budgets = [
+    ["index.html", 12_000],
+    ["css/theme.css", 6_500],
+    ["css/components.css", 52_000],
+    ["css/home.css", 16_000],
+    ["js/user-library.js", 22_000],
+    ["js/site-shell.js", 60_000],
+  ];
+  for (const [path, maximum] of budgets) {
+    const { size } = await stat(resolve(root, path));
+    assert.ok(size <= maximum, `${path}: ${size} octets dépasse le budget de ${maximum}`);
+  }
+
+  const coreStyles = await Promise.all(["css/theme.css", "css/components.css", "css/home.css"]
+    .map((path) => stat(resolve(root, path)).then(({ size }) => size)));
+  assert.ok(coreStyles.reduce((total, size) => total + size, 0) <= 75_000, "CSS initial dépasse le budget de 75000 octets");
+
+  const worker = await readFile(resolve(root, "service-worker.js"), "utf8");
+  const coreBlock = worker.slice(worker.indexOf("const CORE_ASSETS"), worker.indexOf("]);", worker.indexOf("const CORE_ASSETS")));
+  const coreAssets = [...coreBlock.matchAll(/\"([^\"]+)\"/g)].map((match) => match[1]);
+  const coreSizes = await Promise.all(coreAssets.map((path) => stat(resolve(root, path)).then(({ size }) => size)));
+  assert.ok(coreSizes.reduce((total, size) => total + size, 0) <= 1_600_000, "précache PWA dépasse le budget de 1600000 octets");
+});
+
+test("secondary shell clients are loaded during idle time", async () => {
+  const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
+  assert.match(shell, /requestIdleCallback/);
+  assert.match(shell, /js\/github-report\.js/);
+  assert.match(shell, /js\/glossary-client\.js/);
 });
 
 test("personal and creation tools stay lightweight and preload shared data", async () => {

@@ -18,6 +18,8 @@ test("global search UI exposes commands, match reasons and recent content", asyn
   assert.match(shell, /matchReason/);
   assert.match(shell, /highlightSearchText/);
   assert.match(shell, /doc\.createElement\("mark"\)/);
+  assert.match(shell, /loadDeepIndex/);
+  assert.match(shell, /input\.addEventListener\("input"/);
   assert.match(styles, /\.search-dialog__commands/);
   assert.match(styles, /\.search-result__reason/);
   assert.match(styles, /\.search-results mark/);

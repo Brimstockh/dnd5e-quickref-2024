@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -70,16 +70,72 @@ test("PWA icons have the declared PNG dimensions", async () => {
 
 test("every precached resource exists in the repository", async () => {
   const { api } = await loadServiceWorker();
-  assert.equal(api.CACHE_VERSION, "dnd-companion-v26");
-  assert.ok(api.CORE_ASSETS.length > 100);
+  assert.equal(api.CACHE_VERSION, "dnd-companion-v31");
+  assert.ok(api.CORE_ASSETS.length <= 43);
   assert.ok(api.CORE_ASSETS.includes("./js/dense-pages.js"));
-  assert.ok(api.CORE_ASSETS.includes("./css/table-pages.css"));
-  assert.ok(api.CORE_ASSETS.includes("./css/universe-pages.css"));
+  assert.ok(api.CORE_ASSETS.includes("./css/category-hubs.css"));
+  assert.ok(api.CORE_ASSETS.includes("./data/search-index.json"));
+  assert.ok(api.CORE_ASSETS.includes("./js/shell/mobile-navigation.js"));
+  assert.ok(api.CORE_ASSETS.includes("./js/shell/personal-tools.js"));
+  assert.ok(api.CORE_ASSETS.includes("./js/shell/sharing.js"));
+  assert.ok(api.CORE_ASSETS.includes("./js/shell/session-controls.js"));
+  assert.ok(api.CORE_ASSETS.includes("./js/shell/search-trigger.js"));
+  assert.ok(!api.CORE_ASSETS.includes("./data/monsters_2024.json"));
+  assert.ok(!api.CORE_ASSETS.includes("./data/magic-items.json"));
+  assert.ok(!api.CORE_ASSETS.includes("./data/search-index-deep.json"));
 
+  let totalBytes = 0;
   for (const asset of api.CORE_ASSETS) {
     assert.match(asset, /^\.\//);
-    assert.equal(existsSync(resolve(root, asset.slice(2))), true, asset);
+    const assetPath = resolve(root, asset.slice(2));
+    assert.equal(existsSync(assetPath), true, asset);
+    totalBytes += (await stat(assetPath)).size;
   }
+  assert.ok(totalBytes <= 1_500_000, `Précache trop lourd: ${totalBytes} octets`);
+});
+
+test("installation tolère l'absence d'une ressource secondaire", async () => {
+  const entries = new Map();
+  const cache = {
+    put: async (request, response) => entries.set(request.url, response),
+    keys: async () => [...entries.keys()].map((url) => new Request(url)),
+    delete: async (request) => entries.delete(typeof request === "string" ? request : request.url),
+  };
+  const { listeners } = await loadServiceWorker({
+    fetch: async (request) => {
+      if (request.url.endsWith("/css/theme.css")) throw new TypeError("ressource indisponible");
+      return new Response("ok", { status: 200 });
+    },
+    caches: {
+      open: async () => cache,
+      match: async () => undefined,
+      keys: async () => [],
+      delete: async () => true,
+    },
+  });
+
+  let installation;
+  listeners.get("install")({ waitUntil(promise) { installation = promise; } });
+  await assert.doesNotReject(installation);
+  assert.ok(entries.size > 0);
+  assert.equal([...entries.keys()].some((url) => url.endsWith("/css/theme.css")), false);
+});
+
+test("activation purges caches from previous service worker versions", async () => {
+  const deleted = [];
+  const { listeners } = await loadServiceWorker({
+    caches: {
+      open: async () => ({ put: async () => {}, keys: async () => [], delete: async () => true }),
+      match: async () => undefined,
+      keys: async () => ["dnd-companion-v30-core", "dnd-companion-v31-core", "other-cache"],
+      delete: async (name) => { deleted.push(name); return true; },
+    },
+  });
+
+  let activation;
+  listeners.get("activate")({ waitUntil(promise) { activation = promise; } });
+  await activation;
+  assert.deepEqual(deleted, ["dnd-companion-v30-core"]);
 });
 
 test("service worker classifies scoped requests and supports GitHub Pages paths", async () => {

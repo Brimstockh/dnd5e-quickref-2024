@@ -2,8 +2,10 @@
   "schemaVersion": 1,
   "defaults": {
     "edition": "D&D 2024",
+    "rulesVersion": "2024",
     "language": "fr",
     "updated": "2026-07-23",
+    "verifiedAt": "2026-07-23",
     "status": "editorial"
   },
   "entries": [

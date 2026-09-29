@@ -14,7 +14,7 @@ Les matchers déclaratifs couvrent aussi les pages enfants :
 
 Cette configuration est consommée par :
 
-- la navigation desktop et mobile de `js/site-shell.js` ;
+- la navigation desktop et mobile de `js/site-shell.js` et `js/shell/mobile-navigation.js` ;
 - l’explorateur de `index.html` ;
 - les cinq pages hub ;
 - la génération de `data/search-index.json` et `data/search-index-deep.json`, où `section` décrit l’espace principal et `category`/`type` le contenu précis ;
@@ -39,7 +39,7 @@ npm run check:search
 npm run check:inventory
 ```
 
-7. Ajouter la page à la liste de précache de `service-worker.js` si elle doit être disponible hors connexion comme les autres pages principales, puis incrémenter `CACHE_VERSION`.
+7. Ajouter la page à l’App Shell de `service-worker.js` uniquement si elle est critique pour l’ouverture ou la navigation initiale hors connexion. Les contenus consultés ensuite sont mis en cache à la demande ; incrémenter `CACHE_VERSION` après toute modification du contrat de cache.
 
 ## Identité visuelle des espaces
 

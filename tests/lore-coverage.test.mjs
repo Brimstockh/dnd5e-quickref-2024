@@ -23,3 +23,9 @@ test("lore entries use stable IDs and explicit source metadata", () => {
     assert.ok(entry.source?.section);
   }
 });
+
+test("lore renderer exposes source metadata without changing entry URLs", async () => {
+  const source = await readFile(new URL("../js/lore-page.js", import.meta.url), "utf8");
+  assert.match(source, /lore-entry__source/);
+  assert.match(source, /Source :/);
+});

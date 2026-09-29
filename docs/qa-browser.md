@@ -14,7 +14,7 @@ npm run test:browser:headed
 
 Les projets couvrent un viewport desktop `1440 × 900` et un viewport mobile `390 × 844`. Les tests sont dans `tests/browser/` et vérifient les familles représentatives, la navigation canonique, la recherche, les catalogues principaux, le calculateur de combat, les statistiques de dés et les violations axe critiques/sérieuses.
 
-En CI, les traces, captures et rapports HTML Playwright sont conservés comme artefacts lorsque le job navigateur échoue.
+En CI, les traces, captures et rapports HTML Playwright sont conservés comme artefacts lorsque l’étape des tests navigateur échoue.
 
 ## Limites actuelles
 

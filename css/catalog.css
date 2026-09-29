@@ -26,7 +26,7 @@
 
 .catalog-toolbar {
     position: relative;
-    z-index: 30;
+    z-index: var(--z-toolbar);
     display: grid;
     grid-template-columns: minmax(16rem, 1fr) auto;
     gap: 0.75rem;
@@ -82,7 +82,7 @@
 .catalog-reset { width: 100%; padding: 0.6rem 0.75rem; color: var(--color-gold-bright); background: transparent; border: 1px solid var(--color-gold-dark); border-radius: var(--radius-md); cursor: pointer; font-weight: 700; }
 .catalog-reset:hover { background: var(--color-surface-hover); }
 
-.catalog-filter-backdrop { position: fixed; inset: 0; z-index: 1040; visibility: hidden; background: rgb(0 0 0 / 68%); border: 0; opacity: 0; pointer-events: none; transition: opacity 180ms ease, visibility 0s linear 180ms; }
+.catalog-filter-backdrop { position: fixed; inset: 0; z-index: var(--z-modal-backdrop); visibility: hidden; background: rgb(0 0 0 / 68%); border: 0; opacity: 0; pointer-events: none; transition: opacity 180ms ease, visibility 0s linear 180ms; }
 .catalog-filter-backdrop.is-open { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
 
 .catalog-results { min-width: 0; }
@@ -156,7 +156,7 @@
     .catalog-mobile-button span { display: inline-grid; min-width: 1.25rem; height: 1.25rem; margin-left: 0.25rem; place-items: center; color: #17120b; background: var(--color-gold-bright); border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
     .catalog-summary { overflow: hidden; text-overflow: ellipsis; }
     .catalog-layout { display: block; }
-    .catalog-filters { position: fixed; top: 0; right: 0; z-index: 1100; width: min(90vw, 23rem); height: 100dvh; overflow-y: auto; visibility: hidden; pointer-events: none; border-radius: 0; transform: translateX(105%); transition: transform 180ms ease, visibility 0s linear 180ms; }
+    .catalog-filters { position: fixed; top: 0; right: 0; z-index: var(--z-drawer); width: min(90vw, 23rem); height: 100dvh; overflow-y: auto; visibility: hidden; pointer-events: none; border-radius: 0; transform: translateX(105%); transition: transform 180ms ease, visibility 0s linear 180ms; }
     .catalog-filters.is-open { visibility: visible; pointer-events: auto; transform: translateX(0); transition-delay: 0s; }
     .catalog-filters__close { display: grid; }
     .class-list { max-height: none; }
