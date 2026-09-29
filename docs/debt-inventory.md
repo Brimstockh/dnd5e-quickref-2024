@@ -17,6 +17,8 @@ Ce lot ne supprime pas de fichier dont l’absence de référence locale ne suff
 
 Le pilote `dons.html` utilise désormais le shell catalogue partagé. La migration restante de `monstres.html` est une tâche distincte : elle doit remplacer les structures `.legacy-*`, conserver les filtres, les deep links, l’export, le responsive et l’accessibilité avant toute suppression.
 
+La frontière legacy du bestiaire est intentionnelle et couvre encore les contrats suivants : statblocks détaillés, portraits et modal d’image, filtres, recherche, export JSON, responsive mobile, deep links et restauration de l’état ouvert. Ces comportements sont couverts par les tests Node et Playwright ; aucune migration globale n’est engagée sans gain mesuré.
+
 ## Assets non référencés à revoir
 
 `data/assets-report.json` identifie 24 assets non référencés, pour 3 789 501 octets. Leur absence de référence dans le dépôt ne constitue pas encore une preuve suffisante d’absence d’URL publique.

@@ -8,7 +8,7 @@
 - manifest, icônes et service worker ;
 - CSS et modules JavaScript du shell ;
 - index de recherche principal et métadonnées nécessaires ;
-- illustrations des hubs.
+- illustrations des hubs prioritaires ; les visuels secondaires restent en cache runtime.
 
 Les catalogues, pages spécialisées et index profonds sont chargés à la demande. Une nouvelle page ne doit rejoindre l’App Shell que si elle est réellement critique pour le démarrage ou la navigation hors connexion.
 
@@ -42,4 +42,4 @@ npm test -- tests/pwa.test.mjs
 npm run test:browser -- --project=chromium-desktop
 ```
 
-Le budget actuel du précache est de 1,6 Mo. Une évolution qui change la liste ou les noms de caches doit faire évoluer `CACHE_VERSION`; la purge des versions précédentes est vérifiée par les tests.
+Le budget partagé du précache est de 1 500 000 octets (`scripts/pwa-budget.mjs`), soit 1,5 Mo décimal. Une évolution qui change la liste ou les noms de caches doit faire évoluer `CACHE_VERSION`; la purge des versions précédentes est vérifiée par les tests. Les visuels secondaires des pages spécialisées restent chargés à la demande et rejoignent ensuite le cache runtime borné.

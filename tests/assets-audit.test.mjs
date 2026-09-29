@@ -3,11 +3,16 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { buildAssetReport, firstDifference } from "../scripts/audit-assets.mjs";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("asset audit is deterministic and covers the published image families", async () => {
   const report = JSON.parse(await readFile(resolve(root, "data/assets-report.json"), "utf8"));
+  const first = await buildAssetReport(root);
+  const second = await buildAssetReport(root);
+  assert.deepEqual(second, first);
+  assert.equal(firstDifference(first, second), null);
   assert.equal(report.schemaVersion, 1);
   assert.ok(report.summary.files >= 2_000);
   assert.equal(report.summary.files, report.assets.length);

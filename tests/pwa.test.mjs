@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
+import { PRECACHE_BUDGET_BYTES } from "../scripts/pwa-budget.mjs";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
@@ -70,7 +71,7 @@ test("PWA icons have the declared PNG dimensions", async () => {
 
 test("every precached resource exists in the repository", async () => {
   const { api } = await loadServiceWorker();
-  assert.equal(api.CACHE_VERSION, "dnd-companion-v32");
+  assert.equal(api.CACHE_VERSION, "dnd-companion-v33");
   assert.ok(api.CORE_ASSETS.length <= 44);
   assert.ok(api.CORE_ASSETS.includes("./js/dense-pages.js"));
   assert.ok(api.CORE_ASSETS.includes("./css/category-hubs.css"));
@@ -92,7 +93,7 @@ test("every precached resource exists in the repository", async () => {
     assert.equal(existsSync(assetPath), true, asset);
     totalBytes += (await stat(assetPath)).size;
   }
-  assert.ok(totalBytes <= 1_500_000, `Précache trop lourd: ${totalBytes} octets`);
+  assert.ok(totalBytes <= PRECACHE_BUDGET_BYTES, `Précache trop lourd: ${totalBytes} octets`);
 });
 
 test("installation tolère l'absence d'une ressource secondaire", async () => {
@@ -107,7 +108,7 @@ test("installation tolère l'absence d'une ressource secondaire", async () => {
       if (request.url.endsWith("/css/theme.css")) throw new TypeError("ressource indisponible");
       return new Response("ok", { status: 200 });
     },
-    caches: {
+      caches: {
       open: async () => cache,
       match: async () => undefined,
       keys: async () => [],
@@ -136,7 +137,7 @@ test("activation purges caches from previous service worker versions", async () 
   let activation;
   listeners.get("activate")({ waitUntil(promise) { activation = promise; } });
   await activation;
-  assert.deepEqual(deleted, ["dnd-companion-v30-core", "dnd-companion-v31-core"]);
+  assert.deepEqual(deleted, ["dnd-companion-v30-core", "dnd-companion-v31-core", "dnd-companion-v32-core"]);
 });
 
 test("service worker classifies scoped requests and supports GitHub Pages paths", async () => {

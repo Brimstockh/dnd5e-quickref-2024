@@ -52,7 +52,7 @@ Une entrée recherchable expose au minimum :
 
 Les champs de provenance (`sourceRef`, `sourcePage`) sont ajoutés lorsque la famille de contenu les supporte. Le registre `data/content-sources.json` définit les sources connues ; `rulesVersion` et `verifiedAt` doivent rester cohérents avec le contenu. `npm run audit:provenance` et `reports/quality.json` exposent la couverture `sourceRef` par type pour guider l’enrichissement des familles historiques encore non attribuées.
 
-Les mappings actuellement établis dans l’index sont regroupés dans `sourceRefsByType` pour éviter de répéter une même référence sur chaque entrée : `phb-2024-fr` pour les classes, espèces, dons et équipements ; `srd-5.2.1-fr` pour les règles et le glossaire ; `dmg-2024-lore-pdf` pour le Lore. Les sorts, monstres, historiques et actions rapides restent sans attribution automatique tant qu’une source structurée explicite n’est pas disponible.
+Les mappings actuellement établis dans l’index sont regroupés dans `sourceRefsByType` pour éviter de répéter une même référence sur chaque entrée : `phb-2024-fr` pour les classes, espèces, dons, équipements et sorts ; `srd-5.2.1-fr` pour les règles et le glossaire ; `dmg-2024-lore-pdf` pour le Lore. Les 503 monstres, historiques et actions rapides restent sans attribution automatique tant qu’une source structurée explicite et complète n’est pas disponible.
 
 ## Générer et vérifier
 

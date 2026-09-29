@@ -14,6 +14,7 @@ const SOURCE_REFS_BY_TYPE = Object.freeze({
   lore: "dmg-2024-lore-pdf",
   rule: "srd-5.2.1-fr",
   species: "phb-2024-fr",
+  spell: "phb-2024-fr",
 });
 
 function plainText(value) {

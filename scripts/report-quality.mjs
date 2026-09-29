@@ -2,22 +2,23 @@ import { readFile, readdir, stat, writeFile, mkdir } from "node:fs/promises";
 import { extname, resolve } from "node:path";
 
 import { buildAssetReport } from "./audit-assets.mjs";
+import { PRECACHE_BUDGET_BYTES } from "./pwa-budget.mjs";
 import { validateContentLinks } from "./validate-content-links.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const reportPath = resolve(root, "reports/quality.json");
-const precacheBudget = 1_600_000;
+const precacheBudget = PRECACHE_BUDGET_BYTES;
 
 async function readJson(path) {
   return JSON.parse(await readFile(resolve(root, path), "utf8"));
 }
 
 async function readOptionalJson(path) {
-    try {
-        return await readJson(path);
-    } catch {
-        return null;
-    }
+  try {
+    return await readJson(path);
+  } catch {
+    return null;
+  }
 }
 
 async function filesIn(directory, predicate) {
@@ -54,6 +55,22 @@ async function precacheMetrics(worker) {
   return { entries: paths.length, bytes, budget: precacheBudget, missing };
 }
 
+function performanceSummary(baseline) {
+  const pages = (baseline?.pages || []).filter((page) => Number.isFinite(page.performance));
+  if (!pages.length) return null;
+  const lowestPerformance = pages.reduce((lowest, page) => page.performance < lowest.performance ? page : lowest);
+  const pagesWithCls = pages.filter((page) => Number.isFinite(page.metrics?.cls));
+  const highestCls = pagesWithCls.length
+    ? pagesWithCls.reduce((highest, page) => page.metrics.cls > highest.metrics.cls ? page : highest)
+    : null;
+  return {
+    lowestPerformancePage: lowestPerformance.page,
+    lowestPerformanceScore: lowestPerformance.performance,
+    highestClsPage: highestCls?.page || null,
+    highestCls: highestCls?.metrics.cls ?? null,
+  };
+}
+
 function sourceCoverage(entries, sourceRefsByType) {
   const coverage = new Map();
   for (const entry of entries) {
@@ -64,7 +81,12 @@ function sourceCoverage(entries, sourceRefsByType) {
     current[sourceRef ? "withSourceRef" : "withoutSourceRef"] += 1;
     coverage.set(type, current);
   }
-  return Object.fromEntries([...coverage.entries()].sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0));
+  return Object.fromEntries([...coverage.entries()]
+    .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0)
+    .map(([type, current]) => [type, {
+      ...current,
+      coveragePercent: Number((current.withSourceRef / current.total * 100).toFixed(2)),
+    }]));
 }
 
 function markdownSummary(report) {
@@ -113,10 +135,12 @@ const report = {
     checkedPages: linkAudit.files.length,
     broken: linkAudit.errors.length,
   },
+  performance: performanceSummary(lighthouseBaseline),
   sources: {
     registered: (sources.sources || []).length,
     indexedWithSourceRef: sourceRefs,
     indexedWithoutSourceRef: indexedEntries.length - sourceRefs,
+    coveragePercent: Number((sourceRefs / indexedEntries.length * 100).toFixed(2)),
     indexedByType: sourceCoverage(indexedEntries, sourceRefsByType),
   },
   assets: {
@@ -131,7 +155,7 @@ const report = {
     deepSearchIndexBytes: (await stat(resolve(root, "data/search-index-deep.json"))).size,
     relationsBytes: (await stat(resolve(root, "data/content-relations.json"))).size,
   },
-  pwa: { precache },
+  pwa: { precache, budgetUsage: Number((precache.bytes / precache.budget).toFixed(4)) },
   tests: {
     node: await countTestDeclarations(nodeTestFiles),
     browser: await countTestDeclarations(browserTestFiles),

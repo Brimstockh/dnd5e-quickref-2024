@@ -29,3 +29,5 @@ elle doit donc être examinée comme un changement de données générées.
 `npm run audit` recopie ensuite dans `reports/quality.json` une synthèse stable
 du baseline, sans son horodatage, afin de permettre la comparaison machine-à-
 machine des pages auditées.
+
+Les mesures Lighthouse sont un baseline informatif, dépendant de la version du navigateur, de Lighthouse, du réseau, du serveur local et de la configuration d’émulation. Toute comparaison doit réutiliser la même configuration (`npm run audit:lighthouse`, preset desktop, viewport `1440 × 900`) et porter sur plusieurs exécutions. Ce baseline n’est pas encore un seuil CI strict.

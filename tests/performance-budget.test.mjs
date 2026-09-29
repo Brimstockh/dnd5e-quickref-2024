@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { PRECACHE_BUDGET_BYTES } from "../scripts/pwa-budget.mjs";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
@@ -51,7 +52,7 @@ test("initial document, shell and app shell stay within measured budgets", async
   const coreBlock = worker.slice(worker.indexOf("const CORE_ASSETS"), worker.indexOf("]);", worker.indexOf("const CORE_ASSETS")));
   const coreAssets = [...coreBlock.matchAll(/\"([^\"]+)\"/g)].map((match) => match[1]);
   const coreSizes = await Promise.all(coreAssets.map((path) => stat(resolve(root, path)).then(({ size }) => size)));
-  assert.ok(coreSizes.reduce((total, size) => total + size, 0) <= 1_600_000, "précache PWA dépasse le budget de 1600000 octets");
+  assert.ok(coreSizes.reduce((total, size) => total + size, 0) <= PRECACHE_BUDGET_BYTES, `précache PWA dépasse le budget de ${PRECACHE_BUDGET_BYTES} octets`);
 });
 
 test("secondary shell clients are loaded during idle time", async () => {

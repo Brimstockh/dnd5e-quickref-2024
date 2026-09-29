@@ -13,6 +13,51 @@ function compareStrings(left, right) {
     return left < right ? -1 : left > right ? 1 : 0;
 }
 
+function firstDifference(left, right, path = "") {
+    if (Object.is(left, right)) return null;
+    if (typeof left !== typeof right || left === null || right === null) return { path: path || "(root)", left, right };
+
+    if (Array.isArray(left) || Array.isArray(right)) {
+        if (!Array.isArray(left) || !Array.isArray(right)) return { path: path || "(root)", left, right };
+        const length = Math.min(left.length, right.length);
+        for (let index = 0; index < length; index += 1) {
+            const difference = firstDifference(left[index], right[index], `${path}[${index}]`);
+            if (difference) return difference;
+        }
+        return left.length === right.length
+            ? null
+            : { path: `${path || "(root)"}.length`, left: left.length, right: right.length };
+    }
+
+    if (typeof left === "object") {
+        const keys = [...new Set([...Object.keys(left), ...Object.keys(right)])].sort(compareStrings);
+        for (const key of keys) {
+            const difference = firstDifference(left[key], right[key], path ? `${path}.${key}` : key);
+            if (difference) return difference;
+        }
+        return null;
+    }
+    return { path: path || "(root)", left, right };
+}
+
+function formatDifferenceValue(value) {
+    const serialized = JSON.stringify(value);
+    return serialized === undefined ? String(value) : serialized;
+}
+
+function formatReportMismatch(committed, generated) {
+    const difference = firstDifference(committed, generated);
+    if (!difference) return "Asset report mismatch";
+    return [
+        "Asset report mismatch",
+        "---------------------",
+        "First difference:",
+        difference.path,
+        `Committed: ${formatDifferenceValue(difference.left)}`,
+        `Generated: ${formatDifferenceValue(difference.right)}`,
+    ].join("\n");
+}
+
 async function walk(directory) {
     const entries = await readdir(directory, { withFileTypes: true });
     const files = [];
@@ -113,7 +158,7 @@ export async function buildAssetReport(projectRoot = root) {
     const sourceFiles = (await walk(projectRoot)).filter((file) => {
         if (!sourceExtensions.has(extname(file).toLowerCase())) return false;
         return relative(projectRoot, file).replaceAll("\\", "/") !== "data/assets-report.json";
-    });
+    }).sort((left, right) => compareStrings(relativePath(left), relativePath(right)));
     const sourceTexts = await Promise.all(sourceFiles.map(async (file) => [relativePath(file), await readFile(file, "utf8")]));
     const byStem = new Map();
     for (const file of files) {
@@ -133,14 +178,15 @@ export async function buildAssetReport(projectRoot = root) {
             if (index && index[1].includes(`"${key}"`)) inferredReferences.push(index[0]);
         }
         if (file.path.startsWith("img/enemies/")) {
-            const name = file.path.split("/").pop().replace(/\.webp$/i, "").toLocaleLowerCase("fr");
+            const name = file.path.split("/").pop().replace(/\.webp$/i, "").toLowerCase();
             const monsterData = sourceTexts.find(([path]) => path === "data/monsters_2024.json");
-            if (monsterData && monsterData[1].toLocaleLowerCase("fr").includes(name)) inferredReferences.push(monsterData[0]);
+            if (monsterData && monsterData[1].toLowerCase().includes(name)) inferredReferences.push(monsterData[0]);
         }
-        const allReferences = [...new Set([...references, ...inferredReferences])];
+        const allReferences = [...new Set([...references, ...inferredReferences])].sort(compareStrings);
         const variants = (byStem.get(file.path.slice(0, -file.extension.length)) || [])
             .filter((variant) => variant.path !== file.path)
-            .map((variant) => ({ extension: variant.extension, path: variant.path }));
+            .map((variant) => ({ extension: variant.extension, path: variant.path }))
+            .sort((left, right) => compareStrings(left.path, right.path));
         const asset = {
             path: file.path,
             extension: file.extension,
@@ -187,7 +233,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     if (process.argv.includes("--check")) {
         const current = JSON.parse(await readFile(reportPath, "utf8"));
         if (JSON.stringify(current) !== JSON.stringify(report)) {
-            console.error("Asset report is stale. Run npm run audit:assets to regenerate it.");
+            console.error(formatReportMismatch(current, report));
             process.exitCode = 1;
         } else if (report.summary.largePngWithoutModernVariant > 0) {
             console.error("Asset policy failed: a large PNG has no WebP or AVIF variant.");
@@ -199,3 +245,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         console.log(`Asset audit: ${report.summary.files} fichiers, ${report.summary.bytes} octets, ${report.summary.unreferenced} non référencés.`);
     }
 }
+
+export { firstDifference, formatReportMismatch };

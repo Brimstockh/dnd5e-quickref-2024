@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_VERSION = "dnd-companion-v32";
+const CACHE_VERSION = "dnd-companion-v33";
 const CACHE_PREFIX = "dnd-companion-";
 const CACHE_NAMES = Object.freeze({
     core: `${CACHE_VERSION}-core`,
@@ -54,12 +54,10 @@ const CORE_ASSETS = Object.freeze([
     "./assets/icons/pwa-512.png",
     "./assets/icons/site-emblem.svg",
     "./assets/icons/site-icons.svg",
-    "./assets/images/classes-heroes.webp",
     "./assets/images/compendium-library.webp",
     "./assets/images/creation-hero.webp",
     "./assets/images/faerun-city.webp",
     "./assets/images/rules-game-table.webp",
-    "./assets/images/table-adventurers.webp",
 ]);
 
 function scopedUrl(path) {

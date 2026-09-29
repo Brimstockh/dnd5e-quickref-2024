@@ -327,7 +327,6 @@
       "referenced": true,
       "references": [
         "css/components.css",
-        "service-worker.js",
         "tests/performance-budget.test.mjs"
       ],
       "referenceMode": "exact",
@@ -421,7 +420,6 @@
       "referenced": true,
       "references": [
         "js/site-navigation.js",
-        "service-worker.js",
         "tests/navigation-architecture.test.mjs"
       ],
       "referenceMode": "exact",
@@ -4360,8 +4358,8 @@
       ],
       "referenced": true,
       "references": [
-        "tests/site-smoke.test.mjs",
-        "data/characters/index.json"
+        "data/characters/index.json",
+        "tests/site-smoke.test.mjs"
       ],
       "referenceMode": "exact+inferred",
       "recommendation": "keep"
@@ -9836,8 +9834,8 @@
       "variants": [],
       "referenced": true,
       "references": [
-        "tests/site-smoke.test.mjs",
-        "data/monsters_2024.json"
+        "data/monsters_2024.json",
+        "tests/site-smoke.test.mjs"
       ],
       "referenceMode": "exact+inferred",
       "recommendation": "keep"
