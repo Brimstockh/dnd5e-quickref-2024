@@ -14,9 +14,14 @@
     "check:plans": "node scripts/check-plan-illustrations.mjs",
     "check:faerun": "node scripts/check-faerun-illustrations.mjs",
     "check:illustrations": "node scripts/check-royal-realm-illustrations.mjs",
+    "audit:assets": "node scripts/audit-assets.mjs",
+    "check:assets": "node scripts/audit-assets.mjs --check",
+    "audit:lighthouse": "node scripts/audit-lighthouse.mjs",
     "check:monster-images": "node scripts/validate-monster-images.mjs",
     "check:monster-translations": "node scripts/validate-monster-translations.mjs",
     "check:contracts": "node scripts/validate-content-contracts.mjs",
+    "audit:provenance": "node scripts/audit-provenance.mjs",
+    "audit": "node scripts/report-quality.mjs",
     "check:magic-items": "node scripts/validate-magic-items.mjs",
     "audit:magic-items": "node scripts/audit-magic-items-quality.mjs",
     "check:glossary": "node scripts/build-glossary.mjs --check",
@@ -32,11 +37,12 @@
     "test:browser": "playwright test",
     "test:browser:headed": "playwright test --headed",
     "test:qa": "npm run check:content && npm test && npm run test:browser",
-    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run audit:lore && npm run check:inventory && npm run check:magic-items && npm run audit:magic-items && npm run check:vip && npm run check:plans && npm run check:faerun && npm run check:illustrations && npm run check:contracts && npm run check:navigation && npm run check:site-navigation && npm run check:monster-images && npm run check:monster-translations && npm run check:content && npm test",
+    "recette": "npm run check:search && npm run check:relations && npm run check:glossary && npm run audit:lore && npm run check:inventory && npm run check:magic-items && npm run audit:magic-items && npm run check:vip && npm run check:plans && npm run check:faerun && npm run check:illustrations && npm run check:assets && npm run check:contracts && npm run audit:provenance && npm run check:navigation && npm run check:site-navigation && npm run check:monster-images && npm run check:monster-translations && npm run check:content && npm test",
     "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "lighthouse": "^12.8.2"
   }
 }

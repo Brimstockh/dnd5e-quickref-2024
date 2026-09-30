@@ -3,13 +3,12 @@ import { extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const errors = [];
 
 async function htmlFiles(directory) {
     const entries = await readdir(directory, { withFileTypes: true });
     const files = [];
     for (const entry of entries) {
-        if (entry.name === ".git" || entry.name === "node_modules") continue;
+        if ([".git", "node_modules", "playwright-report", "test-results"].includes(entry.name)) continue;
         const path = resolve(directory, entry.name);
         if (entry.isDirectory()) files.push(...await htmlFiles(path));
         else if (entry.isFile() && extname(entry.name).toLowerCase() === ".html") files.push(path);
@@ -42,10 +41,6 @@ function lineNumber(source, index) {
     return source.slice(0, index).split("\n").length;
 }
 
-function report(file, line, message) {
-    errors.push(`${relative(root, file)}:${line}: ${message}`);
-}
-
 async function exists(file) {
     try {
         return (await stat(file)).isFile();
@@ -54,7 +49,14 @@ async function exists(file) {
     }
 }
 
-async function validatePage(file) {
+export async function validateContentLinks(projectRoot = root) {
+    const errors = [];
+
+    function report(file, line, message) {
+        errors.push(`${relative(projectRoot, file)}:${line}: ${message}`);
+    }
+
+    async function validatePage(file) {
     const source = await readFile(file, "utf8");
     const ids = new Map();
     const idPattern = /\bid\s*=\s*(["'])(.*?)\1/gi;
@@ -90,14 +92,20 @@ async function validatePage(file) {
             report(file, lineNumber(source, tagMatch.index), `ancre locale absente : ${attribute[2]}`);
         }
     }
+    }
+
+    const files = await htmlFiles(projectRoot);
+    for (const file of files) await validatePage(file);
+    return { files, errors };
 }
 
-for (const file of await htmlFiles(root)) await validatePage(file);
-
-if (errors.length) {
-    console.error(`Validation du contenu échouée (${errors.length} problème${errors.length > 1 ? "s" : ""}) :`);
-    errors.forEach((error) => console.error(`- ${error}`));
-    process.exitCode = 1;
-} else {
-    console.log(`Validation du contenu réussie (${(await htmlFiles(root)).length} pages HTML).`);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+    const result = await validateContentLinks();
+    if (result.errors.length) {
+        console.error(`Validation du contenu échouée (${result.errors.length} problème${result.errors.length > 1 ? "s" : ""}) :`);
+        result.errors.forEach((error) => console.error(`- ${error}`));
+        process.exitCode = 1;
+    } else {
+        console.log(`Validation du contenu réussie (${result.files.length} pages HTML).`);
+    }
 }

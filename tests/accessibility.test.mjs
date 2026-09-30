@@ -136,7 +136,7 @@ test("priority catalog and equipment pages expose the skip-link contract", async
 });
 
 test("priority pages use the shared display and body font contract", async () => {
-  for (const page of ["index.html", "lore.html", "objets-magiques.html", "services-montures-vehicules.html", "outils-aventurier.html"]) {
+  for (const page of ["index.html", "lore.html", "dons.html", "objets-magiques.html", "services-montures-vehicules.html", "outils-aventurier.html"]) {
     const source = await readFile(resolve(root, page), "utf8");
     assert.match(source, /fonts\.googleapis\.com\/css\?family=Cinzel:600,700\|Source\+Sans\+3:400,600,700/, page);
     assert.doesNotMatch(source, /fonts\.googleapis\.com\/css\?family=(?:Noto\+Sans|Lora)/, page);

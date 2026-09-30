@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("pilot catalogues expose the shared visual system contracts", async () => {
-  const [theme, components, catalog, legacyCatalog, contentCatalog, contentPage, contentCatalogScript, hubs, siteShell, universePages, tablePages, spells, monsters, classes, icons] = await Promise.all([
+  const [theme, components, catalog, legacyCatalog, contentCatalog, contentPage, contentCatalogScript, hubs, siteShell, universePages, tablePages, spells, dons, monsters, classes, icons] = await Promise.all([
     readFile(resolve(root, "css/theme.css"), "utf8"),
     readFile(resolve(root, "css/components.css"), "utf8"),
     readFile(resolve(root, "css/catalog.css"), "utf8"),
@@ -20,13 +20,18 @@ test("pilot catalogues expose the shared visual system contracts", async () => {
     readFile(resolve(root, "css/universe-pages.css"), "utf8"),
     readFile(resolve(root, "css/table-pages.css"), "utf8"),
     readFile(resolve(root, "spells.html"), "utf8"),
+    readFile(resolve(root, "dons.html"), "utf8"),
     readFile(resolve(root, "monstres.html"), "utf8"),
     readFile(resolve(root, "classes/index.html"), "utf8"),
     readFile(resolve(root, "assets/icons/site-icons.svg"), "utf8"),
   ]);
 
   assert.match(theme, /--text-xs:/);
+  for (const token of ["--z-toolbar", "--z-header", "--z-drawer", "--z-overlay", "--z-panel", "--z-popover"]) {
+    assert.match(theme, new RegExp(`${token}:`));
+  }
   assert.match(theme, /:focus-visible\s*\{[\s\S]*outline: 3px solid var\(--color-focus\)/);
+  assert.match(theme, /scrollbar-gutter:\s*stable/);
   assert.match(theme, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(components, /\.meta-chip,/);
   assert.match(components, /\.button-primary,/);
@@ -61,6 +66,8 @@ test("pilot catalogues expose the shared visual system contracts", async () => {
   assert.match(tablePages, /dice-chart__bar/);
   assert.match(tablePages, /prefers-reduced-motion/);
   assert.match(spells, /catalog-toolbar/);
+  assert.match(dons, /data-section="creation"/);
+  assert.match(dons, /family=Cinzel:600,700\|Source\+Sans\+3:400,600,700/);
   assert.match(monsters, /legacy-catalog\.css/);
   assert.match(classes, /content-catalog\.css/);
 

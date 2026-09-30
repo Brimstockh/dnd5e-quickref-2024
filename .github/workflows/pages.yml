@@ -2,7 +2,6 @@ name: Recette et publication
 
 on:
   push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -10,30 +9,76 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  build:
+  quality:
+    name: Validation et tests navigateur
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Récupérer les sources
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Configurer Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
 
       - name: Exécuter la recette automatisée
         run: npm run recette
 
+      - name: Générer la synthèse qualité
+        run: npm run audit
+
+      - name: Conserver la synthèse qualité
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-report-${{ github.run_id }}
+          path: reports/quality.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Installer Chromium Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Exécuter les tests navigateur et accessibilité
+        run: npm run test:browser
+
+      - name: Conserver les rapports Playwright
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  build:
+    name: Construire l’artefact Pages
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Récupérer les sources
+        uses: actions/checkout@v4
+
       - name: Configurer GitHub Pages
-        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
       - name: Préparer le site statique
-        if: github.event_name != 'pull_request'
         run: |
           mkdir -p _site
           git archive --format=tar HEAD | tar -xf - -C _site
@@ -41,15 +86,16 @@ jobs:
           test -z "$(find _site/img/enemies -type f -name '*.png' -print -quit)"
 
       - name: Téléverser l’artefact GitHub Pages
-        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
 
   deploy:
-    if: github.event_name != 'pull_request'
+    name: Publier GitHub Pages
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write

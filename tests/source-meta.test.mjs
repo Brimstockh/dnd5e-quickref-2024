@@ -35,8 +35,10 @@ test("source metadata registry is valid and covers priority pages", async () => 
 
   assert.equal(data.schemaVersion, 1);
   assert.equal(data.defaults.edition, "D&D 2024");
+  assert.equal(data.defaults.rulesVersion, "2024");
   assert.equal(data.defaults.language, "fr");
   assert.match(data.defaults.updated, /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(data.defaults.verifiedAt, /^\d{4}-\d{2}-\d{2}$/);
 
   for (const path of priorityPaths) {
     const entry = matchEntry(data.entries, path);
@@ -60,6 +62,8 @@ test("source metadata component stays shared, discreet, and GitHub Pages aware",
   assert.match(source, /className = "source-meta"/);
   assert.match(source, /doc\.createElement\("details"\)/);
   assert.match(source, /doc\.createElement\("time"\)/);
+  assert.match(source, /Version des règles/);
+  assert.match(source, /Dernière vérification/);
   assert.match(shell, /data-source-meta-client/);
   assert.match(shell, /js\/source-meta\.js/);
   assert.match(styles, /\.source-meta summary\s*\{[^}]*min-height:\s*2\.75rem/s);

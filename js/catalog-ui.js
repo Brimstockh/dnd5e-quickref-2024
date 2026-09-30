@@ -7,6 +7,9 @@
             query: params.get("q") || "",
             level: params.get("level") || "",
             school: params.get("school") || "",
+            category: params.get("category") || "",
+            prereq: params.get("prereq") || "",
+            repeatable: params.get("repeatable") || "",
             classes: params.getAll("class").filter(Boolean),
             sort: params.get("sort") || "level_asc",
             spell: params.get("spell") || "",
@@ -18,16 +21,23 @@
         var query = String(state.query || "").trim();
         var level = String(state.level || "");
         var school = String(state.school || "");
+        var category = String(state.category || "");
+        var prereq = String(state.prereq || "");
+        var repeatable = String(state.repeatable || "");
         var sort = String(state.sort || "level_asc");
+        var sortDefault = String(state.sortDefault || "level_asc");
         var classes = Array.isArray(state.classes) ? state.classes : Array.from(state.classes || []);
 
         if (query) params.set("q", query);
         if (level) params.set("level", level);
         if (school) params.set("school", school);
+        if (category) params.set("category", category);
+        if (prereq) params.set("prereq", prereq);
+        if (repeatable) params.set("repeatable", repeatable);
         classes.filter(Boolean).sort(function (a, b) {
             return String(a).localeCompare(String(b), "fr");
         }).forEach(function (className) { params.append("class", className); });
-        if (sort !== "level_asc") params.set("sort", sort);
+        if (sort !== sortDefault) params.set("sort", sort);
         if (state.spell) params.set("spell", state.spell);
         return params.toString();
     }
@@ -40,7 +50,7 @@
             locationValue.href || locationValue.pathname + (locationValue.search || "") + (locationValue.hash || ""),
             "https://dnd.local",
         );
-        ["q", "level", "school", "class", "sort"].forEach(function (parameter) {
+        ["q", "level", "school", "category", "prereq", "repeatable", "class", "sort"].forEach(function (parameter) {
             current.searchParams.delete(parameter);
         });
         var search = new URLSearchParams(buildSearch(state));

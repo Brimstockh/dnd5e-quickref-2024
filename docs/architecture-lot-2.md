@@ -98,4 +98,4 @@ Le module observe uniquement les nouveaux nœuds ajoutés afin de couvrir les ca
 
 Le contrôle rejette les destinations externes, chemins absolus ou traversées de répertoire, paramètres inconnus, sélections incompatibles ou multiples, identifiants absents, fichiers manquants et fragments sans ancre correspondante. Les règles de sélection sont importées directement depuis `js/context-share.js` afin que le client et la CI utilisent le même contrat.
 
-La commande fait partie de `npm run recette`. Les workflows de test et de publication l’exécutent donc automatiquement avant toute mise en ligne.
+La commande fait partie de `npm run recette`. Le workflow unique de qualité et de publication l’exécute automatiquement avant les tests navigateur et toute mise en ligne.

@@ -215,12 +215,18 @@ export async function initLorePage() {
       const summary = element("p", "lore-entry__summary", entry.summary);
       const details = element("ul", "lore-entry__details");
       const routeNote = element("p", "lore-entry__route-note", "Cette entrée est développée sur une page spécialisée.");
+      const sourceNote = element("p", "lore-entry__source");
       const footer = element("footer", "lore-entry__footer");
       card.id = slugFor(entry);
       card.tabIndex = -1;
       card.classList.toggle("lore-entry--linked", Boolean(entry.target));
       alias.textContent = entry.aliases.length ? `Aussi : ${entry.aliases.join(", ")}` : "";
       alias.hidden = entry.aliases.length === 0;
+      const source = entry.source || {};
+      sourceNote.textContent = source.book
+        ? `Source : ${source.book}${source.section ? ` · ${source.section}` : ""}${source.pages ? ` · p. ${source.pages}` : ""}`
+        : "";
+      sourceNote.hidden = !sourceNote.textContent;
       meta.append(element("span", "lore-entry__badge", loreCategoryLabel(entry.category)));
       for (const currentSetting of entry.setting || []) meta.append(element("span", "lore-entry__badge", currentSetting));
       if (entry.target) {
@@ -242,7 +248,7 @@ export async function initLorePage() {
         target.href = loreEntryUrl(entry);
         footer.append(target);
       }
-      card.append(title, alias, meta, summary);
+      card.append(title, alias, meta, summary, sourceNote);
       if (!details.hidden && details.childElementCount) card.append(details);
       if (!routeNote.hidden) card.append(routeNote);
       if (footer.childElementCount) card.append(footer);

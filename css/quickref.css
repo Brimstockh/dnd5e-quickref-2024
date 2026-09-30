@@ -222,7 +222,7 @@ p:first-child {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1040;
+    z-index: var(--z-modal-backdrop);
     overflow: hidden;
     outline: 0;
     display: none;

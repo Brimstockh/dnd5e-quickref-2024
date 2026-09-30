@@ -8,16 +8,19 @@ const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 
 test("global search UI exposes commands, match reasons and recent content", async () => {
   const shell = await readFile(resolve(root, "js/site-shell.js"), "utf8");
+  const searchDialog = await readFile(resolve(root, "js/shell/search-dialog.js"), "utf8");
   const styles = await readFile(resolve(root, "css/components.css"), "utf8");
 
   for (const command of ["@sort", "@règle", "@classe", "@don", "@équipement"]) {
-    assert.match(shell, new RegExp(command));
+    assert.match(searchDialog, new RegExp(command));
   }
-  assert.match(shell, /window\.DndLibrary/);
-  assert.match(shell, /getRecent/);
-  assert.match(shell, /matchReason/);
-  assert.match(shell, /highlightSearchText/);
-  assert.match(shell, /doc\.createElement\("mark"\)/);
+  assert.match(searchDialog, /view\.DndLibrary/);
+  assert.match(searchDialog, /getRecent/);
+  assert.match(searchDialog, /matchReason/);
+  assert.match(searchDialog, /highlightSearchText/);
+  assert.match(searchDialog, /document\.createElement\("mark"\)/);
+  assert.match(searchDialog, /loadDeepIndex/);
+  assert.match(searchDialog, /input\.addEventListener\("input"/);
   assert.match(styles, /\.search-dialog__commands/);
   assert.match(styles, /\.search-result__reason/);
   assert.match(styles, /\.search-results mark/);

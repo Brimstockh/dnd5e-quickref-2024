@@ -6,6 +6,16 @@ import { buildContentAliasMap, createContentId, slugifyContent } from "../js/con
 import { navigationContextForPath, SITE_SECTIONS } from "../js/site-navigation.js";
 
 const root = resolve(import.meta.dirname, "..");
+const SOURCE_REFS_BY_TYPE = Object.freeze({
+  class: "phb-2024-fr",
+  equipment: "phb-2024-fr",
+  feat: "phb-2024-fr",
+  glossary: "srd-5.2.1-fr",
+  lore: "dmg-2024-lore-pdf",
+  rule: "srd-5.2.1-fr",
+  species: "phb-2024-fr",
+  spell: "phb-2024-fr",
+});
 
 function plainText(value) {
   return String(value ?? "")
@@ -94,6 +104,7 @@ async function equipmentSearchEntries() {
         legacyIds: [`equipment-${tableIndex + 1}-${title}`],
         title,
         category: "Objet",
+        sourceRef: "phb-2024-fr",
         url: queryUrl("armes-armures.html", title),
         keywords: [tableIndex === 0 ? "arme" : "armure", group, ...cells.slice(1)],
         excerpt: excerpt([group, ...cells.slice(1)].join(" · ")),
@@ -142,6 +153,7 @@ async function anchoredRuleEntries(path) {
       ...(anchor ? { legacyIds: [`rule-${path}-${anchor}`] } : {}),
       title,
       category: "Règle",
+      sourceRef: "srd-5.2.1-fr",
       url: `${path}#${fragment}`,
       keywords: ["règle", body],
       excerpt: excerpt(body),
@@ -411,6 +423,7 @@ const entries = [
     legacyIds: [`feat-${index + 1}`],
     title: feat.name,
     category: "Don",
+    sourceRef: "phb-2024-fr",
     url: queryUrl("dons.html", feat.name),
     keywords: [feat.category, feat.prerequis, ...(feat.aliases || []), feat.repeatable ? "répétable" : ""],
     aliases: feat.aliases || [],
@@ -462,6 +475,7 @@ const entries = [
     type: "glossary",
     title: entry.label,
     category: "Glossaire",
+    sourceRef: "srd-5.2.1-fr",
     url: entry.url,
     aliases: entry.aliases,
     keywords: [entry.category, ...entry.aliases],
@@ -472,6 +486,7 @@ const entries = [
     type: "lore",
     title: entry.name,
     category: "Lore",
+    sourceRef: "dmg-2024-lore-pdf",
     url: entry.target || `lore.html?term=${encodeURIComponent(entry.id.replace(/^lore-/, ""))}`,
     aliases: entry.aliases,
     keywords: ["lore", entry.category, ...(entry.setting || []), ...(entry.related || [])],
@@ -483,6 +498,7 @@ const entries = [
     legacyIds: [`class-${file}`],
     title,
     category: "Classe",
+    sourceRef: "phb-2024-fr",
     url: `classes/${file}`,
     keywords: ["classe", "création de personnage"],
     excerpt: `Classe de personnage : ${title}.`,
@@ -493,6 +509,7 @@ const entries = [
     legacyIds: [`species-${file}`],
     title,
     category: "Espèce",
+    sourceRef: "phb-2024-fr",
     url: `races/${file}`,
     keywords: ["espèce", "peuple", "origine", "création de personnage"],
     excerpt: `Espèce de personnage : ${title}.`,
@@ -533,18 +550,22 @@ const searchEntries = canonicalEntries.map(({ legacyIds, ...entry }) => ({
     ...(entry.aliases || []),
     ...(searchAliasSource.aliases[entry.id] || []),
   ].map((value) => String(value).trim()).filter(Boolean))),
-}));
+})).map((entry) => {
+  if (SOURCE_REFS_BY_TYPE[entry.type] !== entry.sourceRef) return entry;
+  const { sourceRef, ...entryWithoutSourceRef } = entry;
+  return entryWithoutSourceRef;
+});
 const deepTypes = new Set(["class-feature", "subclass", "species-feature", "tool", "adventuring-gear", "glossary", "lore", "magic-item"]);
 const deepSearchEntries = searchEntries.filter((entry) => deepTypes.has(entry.type));
 const primarySearchEntries = searchEntries.filter((entry) => !deepTypes.has(entry.type));
 const outputs = [
   [
     resolve(root, "data/search-index.json"),
-    `${JSON.stringify({ schemaVersion: 1, version: 4, count: primarySearchEntries.length, entries: primarySearchEntries })}${EOL}`,
+    `${JSON.stringify({ schemaVersion: 1, version: 4, count: primarySearchEntries.length, sourceRefsByType: SOURCE_REFS_BY_TYPE, entries: primarySearchEntries })}${EOL}`,
   ],
   [
     resolve(root, "data/search-index-deep.json"),
-    `${JSON.stringify({ schemaVersion: 1, version: 4, count: deepSearchEntries.length, entries: deepSearchEntries })}${EOL}`,
+    `${JSON.stringify({ schemaVersion: 1, version: 4, count: deepSearchEntries.length, sourceRefsByType: SOURCE_REFS_BY_TYPE, entries: deepSearchEntries })}${EOL}`,
   ],
   [
     resolve(root, "data/content-id-aliases.json"),

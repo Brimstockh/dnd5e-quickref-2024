@@ -18,6 +18,14 @@ export const SEARCH_COMMANDS = Object.freeze([
   { command: "campagne", aliases: ["campagne", "table", "house-rule"], category: "Règle de campagne", label: "Règles de campagne" },
 ]);
 
+export const SEARCH_QUERY_ALIASES = Object.freeze({
+  ca: ["classe d armure", "armor class"],
+  pv: ["points de vie", "hit points"],
+  ao: ["attaque d opportunite", "opportunity attack"],
+  dd: ["degre de difficulte", "difficulty class"],
+  js: ["jet de sauvegarde", "saving throw"],
+});
+
 export function normalizeSearch(value) {
   return String(value ?? "")
     .normalize("NFD")
@@ -31,6 +39,22 @@ export function normalizeSearch(value) {
 
 function tokens(value) {
   return normalizeSearch(value).split(" ").filter(Boolean);
+}
+
+function tokenVariants(value) {
+  const normalized = normalizeSearch(value);
+  const variants = new Set([normalized]);
+  if (normalized.length > 4 && normalized.endsWith("s")) variants.add(normalized.slice(0, -1));
+  if (normalized.length > 5 && normalized.endsWith("ies")) variants.add(`${normalized.slice(0, -3)}y`);
+  return [...variants].filter(Boolean);
+}
+
+function matchesToken(list, token) {
+  return tokenVariants(token).some((variant) => list.includes(variant));
+}
+
+function includesToken(text, token) {
+  return tokenVariants(token).some((variant) => text.includes(variant));
 }
 
 export function parseSearchQuery(value) {
@@ -100,8 +124,7 @@ function searchable(entry) {
   };
 }
 
-function evaluateSearchEntry(entry, query, options = {}) {
-  const normalizedQuery = normalizeSearch(query);
+function evaluateNormalizedSearchEntry(entry, normalizedQuery, options = {}) {
   if (!normalizedQuery) return { score: 0, reason: "" };
 
   const queryTokens = tokens(normalizedQuery);
@@ -134,36 +157,37 @@ function evaluateSearchEntry(entry, query, options = {}) {
   }
 
   for (const token of queryTokens) {
-    if (fields.titleTokens.includes(token)) {
+    if (matchesToken(fields.titleTokens, token)) {
       score += 150;
       reason ||= "Titre";
-    } else if (fields.titleTokens.some((word) => word.startsWith(token))) {
+    } else if (tokenVariants(token).some((variant) => fields.titleTokens.some((word) => word.startsWith(variant)))) {
       score += 110;
       reason ||= "Titre";
-    } else if (fields.title.includes(token)) {
+    } else if (includesToken(fields.title, token)) {
       score += 80;
       reason ||= "Titre";
     } else {
-      const alias = fields.aliases.find(({ normalized }) => normalized.includes(token));
+      const alias = fields.aliases.find(({ normalized }) => includesToken(normalized, token));
       if (alias) {
         score += 70;
         reason ||= `Alias : ${alias.original}`;
-      } else if (fields.category === token || fields.category.split(" ").includes(token)) {
+      } else if (matchesToken(fields.category.split(" "), token)) {
         score += 55;
         reason ||= "Catégorie";
-      } else if (fields.section === token || fields.section.split(" ").includes(token)) {
+      } else if (matchesToken(fields.section.split(" "), token)) {
         score += 45;
         reason ||= "Espace";
-      } else if (fields.type === token || fields.type.split(" ").includes(token)) {
+      } else if (matchesToken(fields.type.split(" "), token)) {
         score += 40;
         reason ||= "Type";
-      } else if (fields.keywords.includes(token)) {
+      } else if (includesToken(fields.keywords, token)) {
         score += 35;
         reason ||= "Mot-clé";
-      } else if (fields.excerpt.includes(token)) {
+      } else if (includesToken(fields.excerpt, token)) {
         score += 18;
         reason ||= "Extrait";
-      } else if ([...fields.titleTokens, ...fields.aliasTokens, ...fields.keywordTokens].some((word) => isNear(token, word))) {
+      } else if ([...fields.titleTokens, ...fields.aliasTokens, ...fields.keywordTokens]
+        .some((word) => tokenVariants(token).some((variant) => isNear(variant, word)))) {
         score += 12;
         reason ||= "Correspondance approchée";
       } else {
@@ -183,6 +207,25 @@ function evaluateSearchEntry(entry, query, options = {}) {
   return {
     score: score - Math.min(fields.title.length / 100, 1),
     reason: reason || "Correspondance",
+  };
+}
+
+function evaluateSearchEntry(entry, query, options = {}) {
+  const normalizedQuery = normalizeSearch(query);
+  const variants = [normalizedQuery, ...(SEARCH_QUERY_ALIASES[normalizedQuery] || [])]
+    .map(normalizeSearch)
+    .filter((variant, index, all) => variant && all.indexOf(variant) === index);
+  const matches = variants.map((variant) => ({
+    variant,
+    result: evaluateNormalizedSearchEntry(entry, variant, options),
+  })).filter(({ result }) => result);
+  if (!matches.length) return null;
+  const best = matches.sort((first, second) => second.result.score - first.result.score)[0];
+  if (best.variant === normalizedQuery || !best.result) return best.result;
+  return {
+    ...best.result,
+    score: best.result.score - 8,
+    reason: `Recherche associée : ${best.variant}`,
   };
 }
 

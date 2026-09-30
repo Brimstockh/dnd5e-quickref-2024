@@ -40,11 +40,12 @@ test("services page exposes the shared shell and stable section anchors", () => 
   }
 });
 
-test("navigation, search indexing, and PWA precache include the page", () => {
+test("navigation, search indexing, and PWA runtime caching include the page", () => {
   assert.match(navigation, /entry\(\{ id: "services", label: "Services, montures et véhicules", url: "services-montures-vehicules\.html"/);
   assert.match(shell, /js-site-navigation|site-navigation\.js/);
   assert.match(tools, /href="services-montures-vehicules\.html"/);
-  assert.match(worker, /"\.\/services-montures-vehicules\.html"/);
+  assert.match(worker, /networkFirstNavigation/);
+  assert.match(worker, /MAX_RUNTIME_PAGES = 40/);
   assert.ok(search.entries.some((entry) => entry.url === "services-montures-vehicules.html"));
 });
 

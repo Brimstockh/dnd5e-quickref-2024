@@ -78,10 +78,11 @@
 
         list.className = "source-meta__details";
         addRow(list, "Édition", metadata.edition);
+        addRow(list, "Version des règles", metadata.rulesVersion);
         addRow(list, "Source", metadata.document);
         addRow(list, "Type", metadata.type);
         addRow(list, "Statut", statusLabels[metadata.status] || metadata.status);
-        addRow(list, "Dernière révision", metadata.updated, { dateTime: metadata.updated });
+        addRow(list, "Dernière vérification", metadata.verifiedAt || metadata.updated, { dateTime: metadata.verifiedAt || metadata.updated });
         addRow(list, "Langue", metadata.language === "fr" ? "Français" : metadata.language);
         addRow(list, "Note de traduction", metadata.translationNote);
 

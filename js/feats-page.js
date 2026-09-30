@@ -8,6 +8,13 @@
     const sortSelect = document.getElementById("sortSelect");
     const expandAllBtn = document.getElementById("expandAllBtn");
     const collapseAllBtn = document.getElementById("collapseAllBtn");
+    const activeFilters = document.getElementById("activeFilters");
+    const activeFilterCount = document.getElementById("activeFilterCount");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+    const openFiltersBtn = document.getElementById("openFiltersBtn");
+    const closeFiltersBtn = document.getElementById("closeFiltersBtn");
+    const filterPanel = document.getElementById("filterPanel");
+    const filterBackdrop = document.getElementById("filterBackdrop");
     const summary = document.getElementById("summary");
     const featsGrid = document.getElementById("featsGrid");
     const sourceNote = document.getElementById("sourceNote");
@@ -36,6 +43,17 @@
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function getState() {
+        return {
+            query: searchInput.value,
+            category: categorySelect.value,
+            prereq: prereqSelect.value,
+            repeatable: repeatableSelect.value,
+            sort: sortSelect.value,
+            sortDefault: "name_asc",
+        };
     }
 
     function renderDescription(text) {
@@ -136,15 +154,19 @@
             : "";
 
         return `
-            <details class="feat" id="feat-${escapeHtml(window.DndCatalogUI.slugify(feat.name))}" data-content-id="${escapeHtml(window.DndCatalogUI.slugify(feat.name))}">
+            <details class="feat catalog-card" id="feat-${escapeHtml(window.DndCatalogUI.slugify(feat.name))}" data-content-id="${escapeHtml(window.DndCatalogUI.slugify(feat.name))}">
                 <summary>
-                    <header class="feat-head">
-                        <h2 class="feat-title">${escapeHtml(feat.name)}</h2>
-                        <div class="feat-meta">${escapeHtml(meta.join(" • "))}</div>
+                    <header class="catalog-card__head">
+                        <h2 class="catalog-card__title">${escapeHtml(feat.name)}</h2>
+                        <div class="catalog-card__badges">
+                            <span class="meta-chip meta-chip--accent">${escapeHtml(meta[0])}</span>
+                            <span class="meta-chip meta-chip--muted">${escapeHtml(meta[1])}</span>
+                            <span class="meta-chip meta-chip--muted">${escapeHtml(meta[2])}</span>
+                        </div>
                     </header>
                 </summary>
-                <div class="feat-body">
-                    ${aliases}
+                <div class="catalog-card__body feat-body">
+                    ${aliases.replace('class="aliases"', 'class="aliases catalog-card__details"')}
                     <div data-glossary-richtext>${renderDescription(feat.description)}</div>
                 </div>
             </details>
@@ -163,9 +185,13 @@
         } else if (selectedIndex > 0) {
             filtered = [filtered[selectedIndex]].concat(filtered.slice(0, selectedIndex), filtered.slice(selectedIndex + 1));
         }
+        const chips = buildChips();
         summary.textContent = `${filtered.length} don(s) affiché(s) sur ${feats.length}.`;
+        if (activeFilterCount) activeFilterCount.textContent = String(chips.length);
+        if (activeFilters) window.DndCatalogUI.renderChips(activeFilters, chips, removeChip);
+        window.DndCatalogUI.replaceUrlState(getState());
         if (!filtered.length) {
-            featsGrid.innerHTML = `<div class="empty">Aucun don ne correspond aux filtres actuels.</div>`;
+            featsGrid.innerHTML = `<div class="catalog-empty"><strong>Aucun don trouvé</strong><span>Modifiez ou réinitialisez vos filtres.</span></div>`;
             return;
         }
         featsGrid.innerHTML = filtered.map(card).join("");
@@ -204,19 +230,53 @@
         });
     }
 
-    function applyUrlState() {
-        const params = new URLSearchParams(window.location.search);
-        searchInput.value = params.get("q") || "";
-        [
-            [categorySelect, "category"],
-            [prereqSelect, "prereq"],
-            [repeatableSelect, "repeatable"],
-            [sortSelect, "sort"],
-        ].forEach(function ([select, parameter]) {
-            const value = params.get(parameter) || "";
-            if (!select.options || !Array.from(select.options).some(function (option) { return option.value === value; })) return;
-            select.value = value;
+    function buildChips() {
+        const chips = [];
+        const query = searchInput.value.trim();
+        if (query) chips.push({ type: "query", label: `Recherche : ${query}` });
+        if (categorySelect.value) chips.push({ type: "category", label: categorySelect.value });
+        if (prereqSelect.value) chips.push({
+            type: "prereq",
+            label: prereqSelect.value === "yes" ? "Avec prérequis" : "Sans prérequis",
         });
+        if (repeatableSelect.value) chips.push({
+            type: "repeatable",
+            label: repeatableSelect.value === "yes" ? "Répétable" : "Non répétable",
+        });
+        if (sortSelect.value !== "name_asc") {
+            const option = sortSelect.options?.[sortSelect.selectedIndex];
+            chips.push({ type: "sort", label: `Tri : ${option?.textContent || sortSelect.value}` });
+        }
+        return chips;
+    }
+
+    function removeChip(chip) {
+        if (chip.type === "query") searchInput.value = "";
+        if (chip.type === "category") categorySelect.value = "";
+        if (chip.type === "prereq") prereqSelect.value = "";
+        if (chip.type === "repeatable") repeatableSelect.value = "";
+        if (chip.type === "sort") sortSelect.value = "name_asc";
+        render();
+    }
+
+    function resetFilters() {
+        searchInput.value = "";
+        categorySelect.value = "";
+        prereqSelect.value = "";
+        repeatableSelect.value = "";
+        sortSelect.value = "name_asc";
+        render();
+        searchInput.focus();
+    }
+
+    function applyUrlState() {
+        const state = window.DndCatalogUI.readState(window.location.search);
+        searchInput.value = state.query;
+        [[categorySelect, state.category], [prereqSelect, state.prereq], [repeatableSelect, state.repeatable], [sortSelect, state.sort]]
+            .forEach(function ([select, value]) {
+                if (!select.options || !Array.from(select.options).some(function (option) { return option.value === value; })) return;
+                select.value = value;
+            });
     }
 
     function init(data) {
@@ -233,6 +293,15 @@
         sortSelect.addEventListener("change", render);
         expandAllBtn.addEventListener("click", function () { setAllCards(true); });
         collapseAllBtn.addEventListener("click", function () { setAllCards(false); });
+        if (resetFiltersBtn) resetFiltersBtn.addEventListener("click", resetFilters);
+        if (openFiltersBtn && closeFiltersBtn && filterPanel && filterBackdrop) {
+            window.DndCatalogUI.connectDrawer({
+                panel: filterPanel,
+                backdrop: filterBackdrop,
+                closeButton: closeFiltersBtn,
+                triggers: [{ button: openFiltersBtn }],
+            });
+        }
         if (typeof window.addEventListener === "function") {
             window.addEventListener("popstate", function () {
                 applyUrlState();

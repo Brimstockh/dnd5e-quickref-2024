@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-29T13:15:54.060Z",
+  "commit": "b05f09f86d2b09fd8b814efbaa9ebff20ccc0956",
+  "tool": {
+    "name": "lighthouse",
+    "version": "12.8.2"
+  },
+  "environment": {
+    "preset": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "baseUrl": "http://127.0.0.1:4174"
+  },
+  "pages": [
+    {
+      "page": "index.html",
+      "performance": 91,
+      "accessibility": 99,
+      "bestPractices": 96,
+      "seo": 100,
+      "metrics": {
+        "fcpMs": 457,
+        "lcpMs": 549,
+        "cls": 0.0059848727661227655,
+        "speedIndexMs": 3932,
+        "tbtMs": 0,
+        "totalByteWeightBytes": 722543
+      }
+    },
+    {
+      "page": "regles.html",
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100,
+      "metrics": {
+        "fcpMs": 439,
+        "lcpMs": 845,
+        "cls": 0.005026223776223776,
+        "speedIndexMs": 439,
+        "tbtMs": 0,
+        "totalByteWeightBytes": 516239
+      }
+    },
+    {
+      "page": "spells.html",
+      "performance": 93,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 90,
+      "metrics": {
+        "fcpMs": 399,
+        "lcpMs": 1727,
+        "cls": 0.009673371354752472,
+        "speedIndexMs": 399,
+        "tbtMs": 10,
+        "totalByteWeightBytes": 1791735
+      }
+    },
+    {
+      "page": "combat-2024.html",
+      "performance": 98,
+      "accessibility": 99,
+      "bestPractices": 96,
+      "seo": 90,
+      "metrics": {
+        "fcpMs": 622,
+        "lcpMs": 1007,
+        "cls": 0.004564206888682413,
+        "speedIndexMs": 622,
+        "tbtMs": 2,
+        "totalByteWeightBytes": 563128
+      }
+    },
+    {
+      "page": "faerun.html",
+      "performance": 97,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 91,
+      "metrics": {
+        "fcpMs": 486,
+        "lcpMs": 1304,
+        "cls": 0.004238899212675436,
+        "speedIndexMs": 486,
+        "tbtMs": 0,
+        "totalByteWeightBytes": 2226896
+      }
+    },
+    {
+      "page": "html/characters.html",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 91,
+      "metrics": {
+        "fcpMs": 446,
+        "lcpMs": 530,
+        "cls": 0.013047331776615,
+        "speedIndexMs": 446,
+        "tbtMs": 0,
+        "totalByteWeightBytes": 378702
+      }
+    }
+  ]
+}

@@ -14,10 +14,10 @@ npm run test:browser:headed
 
 Les projets couvrent un viewport desktop `1440 × 900` et un viewport mobile `390 × 844`. Les tests sont dans `tests/browser/` et vérifient les familles représentatives, la navigation canonique, la recherche, les catalogues principaux, le calculateur de combat, les statistiques de dés et les violations axe critiques/sérieuses.
 
-En CI, les traces, captures et rapports HTML Playwright sont conservés comme artefacts lorsque le job navigateur échoue.
+En CI, les traces, captures et rapports HTML Playwright sont conservés comme artefacts lorsque l’étape des tests navigateur échoue.
 
 ## Limites actuelles
 
 - Les tests de performance Lighthouse ne sont pas encore bloquants.
-- Les tests utilisateurs réels restent à exécuter avec des personnes.
+- Les tests utilisateurs réels restent à exécuter avec des personnes ; le protocole et la grille sont dans `docs/usability-test-plan.md` et `docs/usability-test-results-template.md`.
 - L’audit axe porte sur les pages représentatives et les impacts critiques/sérieux.

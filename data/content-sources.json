@@ -2,12 +2,16 @@
   "schemaVersion": 1,
   "defaults": {
     "ruleset": "2024",
+    "rulesVersion": "2024",
+    "verifiedAt": "2026-07-23",
     "language": "fr"
   },
   "sources": [
     {
       "id": "srd-5.2.1-fr",
       "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
       "source": "SRD 5.2.1 FR",
       "sourceSection": "Règles D&D 2024 et contenu SRD",
       "license": "CC-BY-4.0",
@@ -16,6 +20,8 @@
     {
       "id": "dmg-2024-magic-pdf",
       "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
       "source": "Dungeon Master's Guide 2024 — Magic Items A–Z",
       "sourceSection": "PDF DMG2024-magic_compressed.pdf fourni pour cette page",
       "license": "official-reference",
@@ -24,6 +30,8 @@
     {
       "id": "phb-2024-fr",
       "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
       "source": "Manuel des Joueurs 2024",
       "sourceSection": "Contenu structuré du projet",
       "license": "CC-BY-4.0",
@@ -32,6 +40,8 @@
     {
       "id": "local-editorial",
       "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
       "source": "Synthèse éditoriale locale",
       "sourceSection": "Rédaction et harmonisation du site",
       "license": "MIT",
@@ -40,10 +50,22 @@
     {
       "id": "campaign-local",
       "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
       "source": "Règles de campagne locales",
       "sourceSection": "Décisions de la table",
       "license": "local",
       "status": "house-rule"
+    },
+    {
+      "id": "dmg-2024-lore-pdf",
+      "ruleset": "2024",
+      "rulesVersion": "2024",
+      "verifiedAt": "2026-07-23",
+      "source": "Dungeon Master's Guide 2024 — Appendix A",
+      "sourceSection": "Appendix A — Lore Glossary, pages 354–364",
+      "license": "official-reference",
+      "status": "official-reference-transcription"
     }
   ]
 }

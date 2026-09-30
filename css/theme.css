@@ -51,6 +51,17 @@
     --radius-lg: 0.5rem;
     --content-width: 1440px;
     --header-height: 72px;
+    --z-toolbar: 30;
+    --z-sticky-control: 35;
+    --z-header: 1000;
+    --z-modal-backdrop: 1040;
+    --z-drawer-backdrop: 1050;
+    --z-filter-backdrop: 1090;
+    --z-drawer: 1100;
+    --z-overlay: 1200;
+    --z-panel: 1210;
+    --z-status: 1240;
+    --z-popover: 1250;
     --transition-fast: 160ms ease;
     --page-background:
         radial-gradient(circle at 18% -10%, rgb(196 161 93 / 7%), transparent 30rem),
@@ -110,6 +121,7 @@
 html {
     min-width: 320px;
     background: var(--color-bg);
+    scrollbar-gutter: stable;
     scroll-behavior: smooth;
 }
 

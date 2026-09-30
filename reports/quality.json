@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "html": 63
+  },
+  "content": {
+    "indexed": 2483,
+    "byType": {
+      "action": 19,
+      "adventuring-gear": 55,
+      "background": 16,
+      "bonus-action": 3,
+      "campaign-rule": 1,
+      "class": 12,
+      "class-feature": 454,
+      "condition": 16,
+      "environment": 12,
+      "equipment": 51,
+      "feat": 75,
+      "glossary": 167,
+      "lore": 74,
+      "magic-item": 347,
+      "monster": 503,
+      "movement": 13,
+      "page": 35,
+      "reaction": 3,
+      "rule": 82,
+      "species": 10,
+      "species-feature": 70,
+      "spell": 391,
+      "subclass": 49,
+      "tool": 25
+    },
+    "bySection": {
+      "Règles": 321,
+      "Compendium": 1379,
+      "Création": 695,
+      "Univers": 82,
+      "Ma table": 6
+    }
+  },
+  "links": {
+    "checkedPages": 63,
+    "broken": 0
+  },
+  "performance": {
+    "lowestPerformancePage": "index.html",
+    "lowestPerformanceScore": 91,
+    "highestClsPage": "html/characters.html",
+    "highestCls": 0.013047331776615
+  },
+  "sources": {
+    "registered": 6,
+    "indexedWithSourceRef": 1863,
+    "indexedWithoutSourceRef": 620,
+    "coveragePercent": 75.03,
+    "indexedByType": {
+      "action": {
+        "total": 19,
+        "withSourceRef": 0,
+        "withoutSourceRef": 19,
+        "coveragePercent": 0
+      },
+      "adventuring-gear": {
+        "total": 55,
+        "withSourceRef": 55,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "background": {
+        "total": 16,
+        "withSourceRef": 0,
+        "withoutSourceRef": 16,
+        "coveragePercent": 0
+      },
+      "bonus-action": {
+        "total": 3,
+        "withSourceRef": 0,
+        "withoutSourceRef": 3,
+        "coveragePercent": 0
+      },
+      "campaign-rule": {
+        "total": 1,
+        "withSourceRef": 1,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "class": {
+        "total": 12,
+        "withSourceRef": 12,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "class-feature": {
+        "total": 454,
+        "withSourceRef": 454,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "condition": {
+        "total": 16,
+        "withSourceRef": 0,
+        "withoutSourceRef": 16,
+        "coveragePercent": 0
+      },
+      "environment": {
+        "total": 12,
+        "withSourceRef": 0,
+        "withoutSourceRef": 12,
+        "coveragePercent": 0
+      },
+      "equipment": {
+        "total": 51,
+        "withSourceRef": 51,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "feat": {
+        "total": 75,
+        "withSourceRef": 75,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "glossary": {
+        "total": 167,
+        "withSourceRef": 167,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "lore": {
+        "total": 74,
+        "withSourceRef": 74,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "magic-item": {
+        "total": 347,
+        "withSourceRef": 347,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "monster": {
+        "total": 503,
+        "withSourceRef": 0,
+        "withoutSourceRef": 503,
+        "coveragePercent": 0
+      },
+      "movement": {
+        "total": 13,
+        "withSourceRef": 0,
+        "withoutSourceRef": 13,
+        "coveragePercent": 0
+      },
+      "page": {
+        "total": 35,
+        "withSourceRef": 0,
+        "withoutSourceRef": 35,
+        "coveragePercent": 0
+      },
+      "reaction": {
+        "total": 3,
+        "withSourceRef": 0,
+        "withoutSourceRef": 3,
+        "coveragePercent": 0
+      },
+      "rule": {
+        "total": 82,
+        "withSourceRef": 82,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "species": {
+        "total": 10,
+        "withSourceRef": 10,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "species-feature": {
+        "total": 70,
+        "withSourceRef": 70,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "spell": {
+        "total": 391,
+        "withSourceRef": 391,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "subclass": {
+        "total": 49,
+        "withSourceRef": 49,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      },
+      "tool": {
+        "total": 25,
+        "withSourceRef": 25,
+        "withoutSourceRef": 0,
+        "coveragePercent": 100
+      }
+    }
+  },
+  "assets": {
+    "files": 2038,
+    "bytes": 171668005,
+    "referenced": 2014,
+    "unreferenced": 24,
+    "largeAssets": 8
+  },
+  "data": {
+    "primarySearchIndexBytes": 509723,
+    "deepSearchIndexBytes": 598484,
+    "relationsBytes": 136279
+  },
+  "pwa": {
+    "precache": {
+      "entries": 42,
+      "bytes": 1300905,
+      "budget": 1500000,
+      "missing": []
+    },
+    "budgetUsage": 0.8673
+  },
+  "tests": {
+    "node": 238,
+    "browser": 20
+  },
+  "lighthouse": {
+    "tool": {
+      "name": "lighthouse",
+      "version": "12.8.2"
+    },
+    "commit": "b05f09f86d2b09fd8b814efbaa9ebff20ccc0956",
+    "preset": "desktop",
+    "pages": [
+      {
+        "page": "index.html",
+        "performance": 91,
+        "accessibility": 99,
+        "bestPractices": 96,
+        "seo": 100,
+        "metrics": {
+          "fcpMs": 457,
+          "lcpMs": 549,
+          "cls": 0.0059848727661227655,
+          "speedIndexMs": 3932,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 722543
+        }
+      },
+      {
+        "page": "regles.html",
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 100,
+        "metrics": {
+          "fcpMs": 439,
+          "lcpMs": 845,
+          "cls": 0.005026223776223776,
+          "speedIndexMs": 439,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 516239
+        }
+      },
+      {
+        "page": "spells.html",
+        "performance": 93,
+        "accessibility": 100,
+        "bestPractices": 96,
+        "seo": 90,
+        "metrics": {
+          "fcpMs": 399,
+          "lcpMs": 1727,
+          "cls": 0.009673371354752472,
+          "speedIndexMs": 399,
+          "tbtMs": 10,
+          "totalByteWeightBytes": 1791735
+        }
+      },
+      {
+        "page": "combat-2024.html",
+        "performance": 98,
+        "accessibility": 99,
+        "bestPractices": 96,
+        "seo": 90,
+        "metrics": {
+          "fcpMs": 622,
+          "lcpMs": 1007,
+          "cls": 0.004564206888682413,
+          "speedIndexMs": 622,
+          "tbtMs": 2,
+          "totalByteWeightBytes": 563128
+        }
+      },
+      {
+        "page": "faerun.html",
+        "performance": 97,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 91,
+        "metrics": {
+          "fcpMs": 486,
+          "lcpMs": 1304,
+          "cls": 0.004238899212675436,
+          "speedIndexMs": 486,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 2226896
+        }
+      },
+      {
+        "page": "html/characters.html",
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 91,
+        "metrics": {
+          "fcpMs": 446,
+          "lcpMs": 530,
+          "cls": 0.013047331776615,
+          "speedIndexMs": 446,
+          "tbtMs": 0,
+          "totalByteWeightBytes": 378702
+        }
+      }
+    ]
+  },
+  "criticalErrors": []
+}

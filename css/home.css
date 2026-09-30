@@ -89,6 +89,7 @@
 .home-quick-access .home-section__heading { padding-bottom: 0.55rem; border-bottom: 1px solid var(--color-border); }
 
 .home-section { margin-top: clamp(1.3rem, 2.5vw, 2rem); }
+.home-explorer { min-height: 85rem; }
 .home-section__heading { display: flex; gap: 1rem; align-items: end; justify-content: space-between; margin-bottom: 0.8rem; }
 .home-section__heading h2 { margin: 0; color: var(--color-gold-bright); font-family: var(--font-display); font-size: clamp(1.05rem, 1.8vw, 1.35rem); letter-spacing: 0.04em; text-transform: uppercase; }
 .home-section__heading p { margin: 0; color: var(--color-text-subtle); font-size: 0.88rem; }
@@ -293,6 +294,7 @@
 }
 
 @media (max-width: 760px) {
+    .home-explorer { min-height: 166rem; }
     .home-hero { min-height: 0; background-position: center, 122% center; }
     .quick-access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .quick-access-card__link { min-height: 11.5rem; }

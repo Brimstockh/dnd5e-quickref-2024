@@ -1,0 +1,1 @@
+export const PRECACHE_BUDGET_BYTES = 1_500_000;

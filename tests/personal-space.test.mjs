@@ -78,7 +78,7 @@ test("personal state supports optional profiles, notes and profile-scoped data",
   assert.equal(window.DndProfiles.getActive(), null);
 });
 
-test("the personal space exposes complete Lot 3 controls and offline assets", async () => {
+test("the personal space exposes complete Lot 3 controls and runtime offline support", async () => {
   const html = await readFile(resolve(root, "espace-personnel.html"), "utf8");
   const script = await readFile(resolve(root, "js/personal-space.js"), "utf8");
   const styles = await readFile(resolve(root, "css/personal-space.css"), "utf8");
@@ -93,8 +93,9 @@ test("the personal space exposes complete Lot 3 controls and offline assets", as
   assert.match(script, /profileId: activeScopeId\(\)/);
   assert.match(script, /window\.confirm/);
   assert.match(styles, /@media \(max-width: 760px\)/);
-  assert.match(worker, /\.\/espace-personnel\.html/);
-  assert.match(worker, /\.\/js\/personal-space\.js/);
+  assert.match(worker, /networkFirstNavigation/);
+  assert.match(worker, /MAX_RUNTIME_PAGES = 40/);
+  assert.match(worker, /\.\/offline\.html/);
   assert.match(shell, /Ajouter une note personnelle/);
   assert.match(shell, /Espace personnel/);
 });
