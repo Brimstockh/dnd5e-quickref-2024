@@ -6,7 +6,7 @@
   ],
   "summary": {
     "files": 2014,
-    "bytes": 167878471,
+    "bytes": 167878396,
     "referenced": 2014,
     "unreferenced": 0,
     "pngWithModernVariant": 46,
@@ -15,7 +15,7 @@
     "byFormat": {
       "svg": {
         "files": 18,
-        "bytes": 49222
+        "bytes": 49147
       },
       "png": {
         "files": 1368,
@@ -270,7 +270,7 @@
     {
       "path": "assets/icons/site-emblem.svg",
       "extension": ".svg",
-      "bytes": 1018,
+      "bytes": 1006,
       "dimensions": {
         "width": 64,
         "height": 64
@@ -287,7 +287,7 @@
     {
       "path": "assets/icons/site-icons.svg",
       "extension": ".svg",
-      "bytes": 9433,
+      "bytes": 9370,
       "dimensions": {
         "width": 64,
         "height": 64

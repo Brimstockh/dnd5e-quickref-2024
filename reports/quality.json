@@ -203,7 +203,7 @@
   },
   "assets": {
     "files": 2014,
-    "bytes": 167878471,
+    "bytes": 167878396,
     "referenced": 2014,
     "unreferenced": 0,
     "largeAssets": 8
@@ -216,7 +216,7 @@
   "pwa": {
     "precache": {
       "entries": 42,
-      "bytes": 1301415,
+      "bytes": 1301340,
       "budget": 1500000,
       "missing": []
     },
