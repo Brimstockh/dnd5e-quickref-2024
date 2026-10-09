@@ -76,4 +76,19 @@ test("continuous integration runs the complete recipe before publication", async
   assert.match(pagesWorkflow, /actions\/configure-pages@/);
   assert.match(pagesWorkflow, /actions\/upload-pages-artifact@/);
   assert.match(pagesWorkflow, /actions\/deploy-pages@/);
+  for (const path of [
+    ".github/**",
+    ".gitignore",
+    ".gitattributes",
+    ".node-version",
+    "package.json",
+    "package-lock.json",
+    "playwright.config.mjs",
+    "scripts/**",
+    "tests/**",
+    "reports/**",
+    "schemas/**",
+  ]) {
+    assert.ok(pagesWorkflow.includes(`':(exclude)${path}'`), path);
+  }
 });

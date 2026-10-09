@@ -202,10 +202,10 @@
     }
   },
   "assets": {
-    "files": 2038,
-    "bytes": 171668005,
+    "files": 2014,
+    "bytes": 167878471,
     "referenced": 2014,
-    "unreferenced": 24,
+    "unreferenced": 0,
     "largeAssets": 8
   },
   "data": {
@@ -216,11 +216,11 @@
   "pwa": {
     "precache": {
       "entries": 42,
-      "bytes": 1301737,
+      "bytes": 1301415,
       "budget": 1500000,
       "missing": []
     },
-    "budgetUsage": 0.8678
+    "budgetUsage": 0.8676
   },
   "tests": {
     "node": 238,

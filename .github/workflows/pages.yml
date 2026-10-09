@@ -81,7 +81,20 @@ jobs:
       - name: Préparer le site statique
         run: |
           mkdir -p _site
-          git archive --format=tar HEAD | tar -xf - -C _site
+          git archive --format=tar HEAD -- \
+            . \
+            ':(exclude).github/**' \
+            ':(exclude).gitignore' \
+            ':(exclude).gitattributes' \
+            ':(exclude).node-version' \
+            ':(exclude)package.json' \
+            ':(exclude)package-lock.json' \
+            ':(exclude)playwright.config.mjs' \
+            ':(exclude)scripts/**' \
+            ':(exclude)tests/**' \
+            ':(exclude)reports/**' \
+            ':(exclude)schemas/**' \
+            | tar -xf - -C _site
           find _site/img/enemies -type f -name '*.png' -delete
           test -z "$(find _site/img/enemies -type f -name '*.png' -print -quit)"
 

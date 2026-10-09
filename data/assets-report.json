@@ -5,29 +5,29 @@
     "img"
   ],
   "summary": {
-    "files": 2038,
-    "bytes": 171668005,
+    "files": 2014,
+    "bytes": 167878471,
     "referenced": 2014,
-    "unreferenced": 24,
+    "unreferenced": 0,
     "pngWithModernVariant": 46,
     "largePngWithoutModernVariant": 0,
     "largeAssets": 8,
     "byFormat": {
       "svg": {
         "files": 18,
-        "bytes": 49255
+        "bytes": 49222
       },
       "png": {
-        "files": 1369,
-        "bytes": 27737766
+        "files": 1368,
+        "bytes": 27318111
       },
       "webp": {
-        "files": 612,
-        "bytes": 130388255
+        "files": 599,
+        "bytes": 127539639
       },
       "jpg": {
-        "files": 39,
-        "bytes": 13492729
+        "files": 29,
+        "bytes": 12971499
       }
     }
   },
@@ -108,11 +108,6 @@
       "extension": ".webp"
     },
     {
-      "path": "img/race/half-elf.png",
-      "bytes": 419655,
-      "extension": ".png"
-    },
-    {
       "path": "img/enemies/Dragon/Half-dragon.webp",
       "bytes": 411076,
       "extension": ".webp"
@@ -156,13 +151,18 @@
       "path": "img/enemies/Beast/Rhinoceros.webp",
       "bytes": 377814,
       "extension": ".webp"
+    },
+    {
+      "path": "img/enemies/Monstrosity/Merrow.webp",
+      "bytes": 375992,
+      "extension": ".webp"
     }
   ],
   "assets": [
     {
       "path": "assets/decor/arcane-circle.svg",
       "extension": ".svg",
-      "bytes": 859,
+      "bytes": 845,
       "dimensions": {
         "width": 400,
         "height": 400
@@ -180,7 +180,7 @@
     {
       "path": "assets/decor/header-lines.svg",
       "extension": ".svg",
-      "bytes": 352,
+      "bytes": 347,
       "dimensions": {
         "width": 1400,
         "height": 14
@@ -197,7 +197,7 @@
     {
       "path": "assets/decor/panel-corners.svg",
       "extension": ".svg",
-      "bytes": 714,
+      "bytes": 705,
       "dimensions": {
         "width": 800,
         "height": 500
@@ -215,7 +215,7 @@
     {
       "path": "assets/decor/section-divider.svg",
       "extension": ".svg",
-      "bytes": 387,
+      "bytes": 382,
       "dimensions": {
         "width": 600,
         "height": 32
@@ -6067,48 +6067,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/classes/barbarian-berserker.jpg",
-      "extension": ".jpg",
-      "bytes": 64675,
-      "dimensions": {
-        "width": 400,
-        "height": 497
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/classes/barbarian-wildheart.jpg",
-      "extension": ".jpg",
-      "bytes": 44011,
-      "dimensions": {
-        "width": 400,
-        "height": 248
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/classes/barbarian-world-tree.jpg",
-      "extension": ".jpg",
-      "bytes": 78573,
-      "dimensions": {
-        "width": 400,
-        "height": 460
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/classes/barbarian.jpg",
       "extension": ".jpg",
       "bytes": 77279,
@@ -6125,48 +6083,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/classes/bard-dance.jpg",
-      "extension": ".jpg",
-      "bytes": 42968,
-      "dimensions": {
-        "width": 400,
-        "height": 291
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/classes/bard-lore.jpg",
-      "extension": ".jpg",
-      "bytes": 43492,
-      "dimensions": {
-        "width": 400,
-        "height": 254
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/classes/bard-valor.jpg",
-      "extension": ".jpg",
-      "bytes": 39607,
-      "dimensions": {
-        "width": 400,
-        "height": 265
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/classes/bard.jpg",
       "extension": ".jpg",
       "bytes": 81923,
@@ -6181,34 +6097,6 @@
       ],
       "referenceMode": "exact",
       "recommendation": "keep"
-    },
-    {
-      "path": "img/classes/cleric-life.jpg",
-      "extension": ".jpg",
-      "bytes": 30043,
-      "dimensions": {
-        "width": 400,
-        "height": 294
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/classes/cleric-war.jpg",
-      "extension": ".jpg",
-      "bytes": 36486,
-      "dimensions": {
-        "width": 400,
-        "height": 301
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
     },
     {
       "path": "img/classes/cleric.jpg",
@@ -11233,34 +11121,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/enemies/Celestial/Empyrean Celestial.webp",
-      "extension": ".webp",
-      "bytes": 292938,
-      "dimensions": {
-        "width": 1122,
-        "height": 1402
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Celestial/Empyrean Fiend.webp",
-      "extension": ".webp",
-      "bytes": 298830,
-      "dimensions": {
-        "width": 1123,
-        "height": 1401
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/enemies/Celestial/Empyrean.webp",
       "extension": ".webp",
       "bytes": 298830,
@@ -13693,20 +13553,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/enemies/Fiend/Gnoll Fang Ooff Yeenoghu.webp",
-      "extension": ".webp",
-      "bytes": 194802,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/enemies/Fiend/Gnoll Pack Lord.webp",
       "extension": ".webp",
       "bytes": 171972,
@@ -14649,90 +14495,6 @@
       ],
       "referenceMode": "inferred",
       "recommendation": "keep"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Artist.webp",
-      "extension": ".webp",
-      "bytes": 207794,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Baker.webp",
-      "extension": ".webp",
-      "bytes": 180348,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Blacksmith.webp",
-      "extension": ".webp",
-      "bytes": 181204,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Female.webp",
-      "extension": ".webp",
-      "bytes": 153598,
-      "dimensions": {
-        "width": 1086,
-        "height": 1449
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Fisher.webp",
-      "extension": ".webp",
-      "bytes": 233228,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Humanoid/Commoner Male.webp",
-      "extension": ".webp",
-      "bytes": 155302,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
     },
     {
       "path": "img/enemies/Humanoid/Commoner.webp",
@@ -15775,20 +15537,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/enemies/Monstrosity/Minotaur Ooff Baphomet.webp",
-      "extension": ".webp",
-      "bytes": 339628,
-      "dimensions": {
-        "width": 1122,
-        "height": 1402
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/enemies/Monstrosity/Owlbear.webp",
       "extension": ".webp",
       "bytes": 242298,
@@ -16219,20 +15967,6 @@
       ],
       "referenceMode": "inferred",
       "recommendation": "keep"
-    },
-    {
-      "path": "img/enemies/Ooze/Blob Ooff Annihilation.webp",
-      "extension": ".webp",
-      "bytes": 235952,
-      "dimensions": {
-        "width": 1086,
-        "height": 1448
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
     },
     {
       "path": "img/enemies/Ooze/Gelatinous Cube.webp",
@@ -16985,34 +16719,6 @@
       ],
       "referenceMode": "inferred",
       "recommendation": "keep"
-    },
-    {
-      "path": "img/enemies/Undead/Skeleton Archer.webp",
-      "extension": ".webp",
-      "bytes": 173550,
-      "dimensions": {
-        "width": 1023,
-        "height": 1537
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
-      "path": "img/enemies/Undead/Skeleton Mage.webp",
-      "extension": ".webp",
-      "bytes": 201442,
-      "dimensions": {
-        "width": 1023,
-        "height": 1537
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
     },
     {
       "path": "img/enemies/Undead/Skeleton.webp",
@@ -25649,20 +25355,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/race/aarakocra.jpg",
-      "extension": ".jpg",
-      "bytes": 82114,
-      "dimensions": {
-        "width": 341,
-        "height": 602
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/race/aasimar.png",
       "extension": ".png",
       "bytes": 699930,
@@ -25833,20 +25525,6 @@
       "recommendation": "keep"
     },
     {
-      "path": "img/race/genasi.jpg",
-      "extension": ".jpg",
-      "bytes": 59261,
-      "dimensions": {
-        "width": 441,
-        "height": 506
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
-    },
-    {
       "path": "img/race/gnome.png",
       "extension": ".png",
       "bytes": 237897,
@@ -25929,20 +25607,6 @@
       ],
       "referenceMode": "exact",
       "recommendation": "keep"
-    },
-    {
-      "path": "img/race/half-elf.png",
-      "extension": ".png",
-      "bytes": 419655,
-      "dimensions": {
-        "width": 420,
-        "height": 617
-      },
-      "variants": [],
-      "referenced": false,
-      "references": [],
-      "referenceMode": "none",
-      "recommendation": "review-unreferenced"
     },
     {
       "path": "img/race/halfling.png",

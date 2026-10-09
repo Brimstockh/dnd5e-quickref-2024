@@ -9,7 +9,7 @@ test("quality report is deterministic and exposes the expected metrics", () => {
   assert.equal(report.pages.html, 63);
   assert.equal(report.content.indexed, 2483);
   assert.equal(report.links.broken, 0);
-  assert.equal(report.assets.unreferenced, 24);
+  assert.equal(report.assets.unreferenced, 0);
   assert.equal(report.sources.coveragePercent, 75.03);
   assert.equal(report.sources.indexedByType.spell.withSourceRef, 391);
   assert.equal(report.sources.indexedByType.spell.withoutSourceRef, 0);
