@@ -54,9 +54,12 @@ test("continuous integration runs the complete recipe before publication", async
   const nodeVersion = await readFile(resolve(root, ".node-version"), "utf8");
 
   assert.match(packageJson.scripts["check:search"], /build-search-index\.mjs --check/);
+  assert.match(packageJson.scripts["build:pages"], /build-pages-artifact\.mjs/);
+  assert.match(packageJson.scripts["check:pages"], /verify-pages-artifact\.mjs/);
   assert.match(packageJson.scripts["check:navigation"], /validate-navigation\.mjs/);
   assert.match(packageJson.scripts.recette, /^npm run check:search\b/);
   assert.match(packageJson.scripts.recette, /\bcheck:navigation\b/);
+  assert.match(packageJson.scripts.recette, /\bcheck:pages\b/);
   assert.match(packageJson.scripts.recette, /\bnpm test$/);
   assert.equal(await readFile(resolve(root, ".github/workflows/tests.yml"), "utf8").catch(() => null), null);
   assert.match(pagesWorkflow, /npm run recette/);
@@ -75,20 +78,9 @@ test("continuous integration runs the complete recipe before publication", async
   assert.equal(nodeVersion.trim(), "24");
   assert.match(pagesWorkflow, /actions\/configure-pages@/);
   assert.match(pagesWorkflow, /actions\/upload-pages-artifact@/);
+  assert.match(pagesWorkflow, /npm run build:pages/);
+  assert.match(pagesWorkflow, /npm run check:pages/);
+  assert.match(pagesWorkflow, /pages-site-\$\{\{ github\.event\.pull_request\.number/);
+  assert.match(pagesWorkflow, /github\.event_name == 'pull_request'/);
   assert.match(pagesWorkflow, /actions\/deploy-pages@/);
-  for (const path of [
-    ".github/**",
-    ".gitignore",
-    ".gitattributes",
-    ".node-version",
-    "package.json",
-    "package-lock.json",
-    "playwright.config.mjs",
-    "scripts/**",
-    "tests/**",
-    "reports/**",
-    "schemas/**",
-  ]) {
-    assert.ok(pagesWorkflow.includes(`':(exclude)${path}'`), path);
-  }
 });

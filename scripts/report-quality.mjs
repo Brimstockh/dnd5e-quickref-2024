@@ -25,7 +25,7 @@ async function filesIn(directory, predicate) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
   for (const entry of entries) {
-    if ([".git", "node_modules", "playwright-report", "test-results"].includes(entry.name)) continue;
+    if ([".git", "node_modules", "_site", "playwright-report", "test-results"].includes(entry.name)) continue;
     const path = resolve(directory, entry.name);
     if (entry.isDirectory()) files.push(...await filesIn(path, predicate));
     else if (entry.isFile() && predicate(path)) files.push(path);

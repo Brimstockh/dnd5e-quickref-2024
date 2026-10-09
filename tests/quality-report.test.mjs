@@ -15,7 +15,7 @@ test("quality report is deterministic and exposes the expected metrics", () => {
   assert.equal(report.sources.indexedByType.spell.withoutSourceRef, 0);
   assert.equal(report.sources.indexedByType.spell.coveragePercent, 100);
   assert.equal(report.sources.indexedByType["class-feature"].withSourceRef, 454);
-  assert.equal(report.pwa.precache.entries, 42);
+  assert.equal(report.pwa.precache.entries, 41);
   assert.equal(report.pwa.precache.budget, 1_500_000);
   assert.ok(report.pwa.budgetUsage <= 0.9);
   assert.equal(report.performance.lowestPerformancePage, "index.html");

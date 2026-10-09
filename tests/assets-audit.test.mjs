@@ -14,12 +14,13 @@ test("asset audit is deterministic and covers the published image families", asy
   assert.deepEqual(second, first);
   assert.equal(firstDifference(first, second), null);
   assert.equal(report.schemaVersion, 1);
-  assert.ok(report.summary.files >= 2_000);
+  assert.ok(report.summary.files >= 700);
   assert.equal(report.summary.files, report.assets.length);
   assert.equal(report.summary.bytes, report.assets.reduce((total, asset) => total + asset.bytes, 0));
   assert.ok(report.assets.some((asset) => asset.path === "img/map/faerun-map.jpg"));
   assert.ok(report.assets.some((asset) => asset.path === "img/map/faerun-map.webp"));
   assert.ok(report.summary.pngWithModernVariant >= 40);
+  assert.equal(report.summary.files, 740);
   assert.equal(report.summary.largePngWithoutModernVariant, 0);
   assert.equal(report.summary.unreferenced, 0);
   assert.ok(report.assets.every((asset) => asset.recommendation !== "review-unreferenced"));

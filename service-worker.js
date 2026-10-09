@@ -29,7 +29,6 @@ const CORE_ASSETS = Object.freeze([
     "./css/components.css",
     "./css/home.css",
     "./css/category-hubs.css",
-    "./css/icons.css",
     "./css/theme.css",
     "./js/dense-pages.js",
     "./js/github-report.js",
