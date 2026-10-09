@@ -216,11 +216,11 @@
   "pwa": {
     "precache": {
       "entries": 42,
-      "bytes": 1300905,
+      "bytes": 1301737,
       "budget": 1500000,
       "missing": []
     },
-    "budgetUsage": 0.8673
+    "budgetUsage": 0.8678
   },
   "tests": {
     "node": 238,
