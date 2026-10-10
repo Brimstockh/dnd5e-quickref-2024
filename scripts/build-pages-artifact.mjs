@@ -19,6 +19,7 @@ const excludedPatterns = [
     /^tests(?:\/|$)/,
     /^reports(?:\/|$)/,
     /^schemas(?:\/|$)/,
+    /^data\/(?:assets-report\.json|monster-translations-summary\.json|content-id-aliases\.json|content-relations\.source\.json|glossary-aliases\.source\.json|search-aliases\.source\.json)$/,
 ];
 
 function isPublishedPath(relativePath) {

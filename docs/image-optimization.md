@@ -15,3 +15,16 @@ Les 19 portraits absents signalés par `npm run check:monster-images` correspond
 `assets/images/classes-heroes.webp` et `assets/images/table-adventurers.webp` sont identiques bit à bit, mais servent deux emplacements publics différents. Le faible gain théorique ne justifie pas de modifier ces URL.
 
 Les scripts `convert-images.mjs` et `convert-vip-images.mjs` restent conservés pour les conversions administratives manuelles et les contrôles de provenance.
+
+## Vérification comparative finale
+
+La stabilisation n’a pas relancé l’optimiseur. Les 485 WebP actuels ont été
+comparés aux versions de référence de `f7512eb` : 0 erreur de décodage, 0
+variation de dimensions ou de ratio, et 18 429 646 octets économisés
+(16,42 %). Un échantillon de 12 images couvre aberrations, humanoïdes,
+créatures célestes, bêtes, dragons, élémentaires, monstres et morts-vivants.
+Les mesures SSIM `All` de cet échantillon vont de 0,970409 à 0,987186 ; la
+comparaison visuelle côte à côte n’a révélé ni bande, halo, recadrage ou
+artefact bloquant. Le contrôle visuel reste manuel et ne remplace pas une
+validation métier de chaque illustration ; aucune image n’a donc été restaurée
+sur cette base.

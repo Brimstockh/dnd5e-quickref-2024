@@ -21,6 +21,10 @@ ne sont pas conservés par défaut.
 Le poids indiqué est le poids total des ressources observées par Lighthouse,
 et non la taille de l’ensemble du dépôt ou des assets non chargés.
 
+La validation de publication mesure aussi l’artefact réel : `npm run build:pages`
+génère `_site`, puis `npm run check:pages` vérifie ses pages, son manifest, son
+précache PWA et ses chemins HTML/CSS/JavaScript avant tout déploiement.
+
 La mesure est informative : elle ne fixe pas encore de seuil CI et ne doit pas
 être comparée à une autre machine ou configuration sans conserver le même
 environnement. Toute nouvelle mesure remplace volontairement le baseline ;

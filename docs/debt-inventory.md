@@ -21,7 +21,7 @@ La frontière legacy du bestiaire est intentionnelle et couvre encore les contra
 
 ## Assets non référencés supprimés
 
-L’audit des références directes, des chemins dynamiques du bestiaire, des catalogues JSON, des scripts, des tests et de la PWA a confirmé l’absence d’usage local des 24 fichiers ci-dessous. Ils ont été supprimés : `data/assets-report.json` ne contient désormais aucun asset non référencé.
+L’audit des références directes, des chemins dynamiques du bestiaire, des catalogues JSON, des scripts, des tests et de la PWA a confirmé l’absence d’usage local des 24 fichiers ci-dessous. Ils ont été supprimés. `data/assets-report.json` reste versionné pour l’audit, mais il est classé build-only et exclu de l’artefact Pages.
 
 Cette décision ne garantit pas l’absence d’anciennes URL publiques partagées avant la refonte. Les chemins supprimés peuvent donc encore produire une 404 sur des signets historiques ; aucune redirection n’a été ajoutée, car aucun alias équivalent n’existe dans l’architecture statique actuelle.
 

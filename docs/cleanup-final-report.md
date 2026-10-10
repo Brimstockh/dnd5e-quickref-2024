@@ -2,7 +2,7 @@
 
 ## Périmètre
 
-Audit réalisé sur la branche `chore/cleanup-unused-assets-phase1`, sans commit ni fusion automatique. Les modifications des phases 1 à 4 restent dans l’arbre de travail jusqu’à validation explicite.
+Audit historique des phases 1 à 4, désormais intégré dans `dbbb6de` sur `chore/cleanup-optimization-phase2`. La stabilisation finale est suivie séparément dans `docs/cleanup-stabilization-report.md`.
 
 ## Résultats quantifiés
 
@@ -25,6 +25,8 @@ Le workflow conserve les fichiers nécessaires à l’exécution du site : pages
 
 Sur l’archive Git mesurée avant les changements locaux non commités : 2 436 fichiers et 180 930 560 octets de tar brut avant filtrage, contre 2 318 fichiers et 180 275 200 octets après filtrage, soit 118 fichiers et 655 360 octets évités. `docs/`, `README.md`, `LICENSE.md` et `SOURCES.md` sont conservés pour préserver leurs URL directes.
 
+La passe de stabilisation ajoute une exclusion ciblée des six JSON build/audit uniquement ; les données runtime restent publiées et sont contrôlées par `npm run check:pages`.
+
 ## Éléments conservés volontairement
 
 - `css/legacy-catalog.css` et `js/legacy-catalog-ui.js` restent nécessaires à `monstres.html` ;
@@ -35,9 +37,9 @@ Sur l’archive Git mesurée avant les changements locaux non commités : 2 436 
 ## Validations
 
 - `npm run audit` : réussi ;
-- `npm run recette` : 232/232 tests Node réussis ;
+- `npm run recette` : 235/235 tests Node réussis ;
 - `npm run test:browser` : 97 tests réussis, 3 ignorés, 0 échec ;
 - comparaisons CSS desktop et mobile : styles calculés et dimensions identiques sur `dons.html`, `classes/index.html` et `monstres.html` ;
 - `git diff --check` : réussi, avec seulement les avertissements de conversion CRLF/LF de Git sous Windows.
 
-Le commit final reste à créer après autorisation explicite.
+Le commit de stabilisation finale reste à créer après autorisation explicite.

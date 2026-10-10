@@ -49,6 +49,8 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Exécuter les tests navigateur et accessibilité
+        env:
+          STATIC_ROOT: _site
         run: npm run test:browser
 
       - name: Conserver les rapports Playwright

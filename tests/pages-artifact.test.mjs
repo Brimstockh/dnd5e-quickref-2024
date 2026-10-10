@@ -15,6 +15,12 @@ test("Pages artifact excludes repository internals but keeps published support f
         "tests/pages-artifact.test.mjs",
         "reports/quality.json",
         "schemas/content.schema.json",
+        "data/assets-report.json",
+        "data/monster-translations-summary.json",
+        "data/content-id-aliases.json",
+        "data/content-relations.source.json",
+        "data/glossary-aliases.source.json",
+        "data/search-aliases.source.json",
     ]) assert.equal(isPublishedPath(path), false, path);
 
     for (const path of [

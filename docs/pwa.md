@@ -24,7 +24,7 @@ L’installation précache les ressources indépendamment. Une ressource seconda
 
 ## Mise à jour
 
-Le contrat de cache est versionné par `CACHE_VERSION` dans `service-worker.js`. Incrémenter cette version lorsque la liste App Shell ou la structure des caches change. L’activation purge les caches `dnd-companion-*` des versions précédentes. Le client affiche la mise à jour disponible et envoie `SKIP_WAITING` après confirmation de l’utilisateur.
+Le contrat de cache courant est `dnd-companion-v34`, versionné par `CACHE_VERSION` dans `service-worker.js`. Incrémenter cette version lorsque la liste App Shell ou la structure des caches change. L’activation purge les caches `dnd-companion-*` des versions précédentes, y compris v33 lors de cette stabilisation. Le client affiche la mise à jour disponible et envoie `SKIP_WAITING` après confirmation de l’utilisateur.
 
 ## Validation
 

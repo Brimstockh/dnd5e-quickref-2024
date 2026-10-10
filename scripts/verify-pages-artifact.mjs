@@ -17,6 +17,12 @@ const forbiddenPaths = [
     "tests",
     "reports",
     "schemas",
+    "data/assets-report.json",
+    "data/monster-translations-summary.json",
+    "data/content-id-aliases.json",
+    "data/content-relations.source.json",
+    "data/glossary-aliases.source.json",
+    "data/search-aliases.source.json",
 ];
 
 async function filesIn(directory, relativeDirectory = "") {
@@ -45,6 +51,23 @@ function targetForReference(page, reference, artifactDirectory) {
     return target;
 }
 
+function referencesFromJavaScript(source) {
+    const references = [];
+    const pattern = /(["'`])((?:\.\.\/|\.\/)?(?:assets|data|img|css|js)\/[^"'`]+?)\1/g;
+    for (const match of source.matchAll(pattern)) references.push(match[2]);
+    return references;
+}
+
+function targetReferences(page, references, artifactDirectory, brokenReferences, alternatePages = []) {
+    for (const reference of references) {
+        if (ignoredReference(reference)) continue;
+        const dynamicMarker = reference.indexOf("${");
+        const staticPrefix = dynamicMarker >= 0 ? reference.slice(0, dynamicMarker) : reference;
+        const targets = [page, ...alternatePages].map((basePage) => targetForReference(basePage, staticPrefix, artifactDirectory));
+        if (targets.every((target) => target && !existsSync(target))) brokenReferences.push(`${page} -> ${reference}`);
+    }
+}
+
 async function verifyPagesArtifact(artifactDirectory = resolve(root, "_site"), projectRoot = root) {
     const artifactFiles = await filesIn(artifactDirectory);
     const artifactPaths = new Set(artifactFiles.map(({ relativePath }) => relativePath.replaceAll("\\", "/")));
@@ -55,9 +78,20 @@ async function verifyPagesArtifact(artifactDirectory = resolve(root, "_site"), p
     const missingPages = (inventory.pages || []).filter((page) => !artifactPaths.has(page));
     if (missingPages.length) throw new Error(`Pages attendues absentes : ${missingPages.join(", ")}`);
 
-    for (const required of ["index.html", "manifest.webmanifest", "service-worker.js", "sw.js"]) {
+    for (const required of ["index.html", "offline.html", "manifest.webmanifest", "service-worker.js", "sw.js", "data/search-index.json", "data/source-metadata.json"]) {
         if (!artifactPaths.has(required)) throw new Error(`Fichier runtime absent : ${required}`);
     }
+
+    const manifest = JSON.parse(await readFile(resolve(artifactDirectory, "manifest.webmanifest"), "utf8"));
+    if (manifest.scope !== "./" || manifest.start_url !== "./index.html" || manifest.display !== "standalone") {
+        throw new Error("Manifest PWA incohérent avec le site publié");
+    }
+    const manifestReferences = [manifest.start_url, ...(manifest.icons || []).map(({ src }) => src)];
+    const manifestErrors = manifestReferences.filter((reference) => {
+        const target = targetForReference("manifest.webmanifest", reference, artifactDirectory);
+        return target && !existsSync(target);
+    });
+    if (manifestErrors.length) throw new Error(`Ressources manifest absentes : ${manifestErrors.join(", ")}`);
 
     const brokenReferences = [];
     for (const file of artifactFiles.filter(({ relativePath }) => relativePath.endsWith(".html"))) {
@@ -82,6 +116,14 @@ async function verifyPagesArtifact(artifactDirectory = resolve(root, "_site"), p
             if (target && !existsSync(target)) brokenReferences.push(`${file.relativePath} -> ${reference}`);
         }
     }
+    for (const file of artifactFiles.filter(({ relativePath }) => relativePath.endsWith(".js"))) {
+        const source = await readFile(file.absolutePath, "utf8");
+        targetReferences(file.relativePath, referencesFromJavaScript(source), artifactDirectory, brokenReferences, [""]);
+    }
+    const serviceWorker = await readFile(resolve(artifactDirectory, "service-worker.js"), "utf8");
+    const coreReferences = [...serviceWorker.matchAll(/(["'])(\.\/[^"']+)\1/g)].map((match) => match[2]);
+    if (!coreReferences.includes("./index.html")) throw new Error("Précache PWA introuvable dans service-worker.js");
+    targetReferences("service-worker.js", coreReferences, artifactDirectory, brokenReferences);
     if (brokenReferences.length) throw new Error(`Références locales brisées : ${brokenReferences.join(", ")}`);
 
     const bytes = (await Promise.all(artifactFiles.map(async ({ absolutePath }) => (await stat(absolutePath)).size))).reduce((total, size) => total + size, 0);
