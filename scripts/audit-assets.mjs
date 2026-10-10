@@ -62,7 +62,7 @@ async function walk(directory) {
     const entries = await readdir(directory, { withFileTypes: true });
     const files = [];
     for (const entry of entries.sort((a, b) => compareStrings(a.name, b.name))) {
-        if (entry.name === ".git" || entry.name === "node_modules" || entry.name === "playwright-report" || entry.name === "test-results") continue;
+        if (entry.name === ".git" || entry.name === "node_modules" || entry.name === "_site" || entry.name === "playwright-report" || entry.name === "test-results") continue;
         const path = resolve(directory, entry.name);
         if (entry.isDirectory()) files.push(...await walk(path));
         else if (entry.isFile()) files.push(path);

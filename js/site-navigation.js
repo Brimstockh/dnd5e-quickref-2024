@@ -232,10 +232,6 @@ export function navigationContextForPath(path) {
     };
 }
 
-export function navigationEntryForPath(path) {
-    return navigationContextForPath(path)?.entry || null;
-}
-
 export function navigationSectionForPath(path) {
     return navigationContextForPath(path)?.section?.label || "";
 }

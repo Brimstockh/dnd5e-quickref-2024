@@ -7,7 +7,7 @@
 - Axe : intégré aux tests d’accessibilité Playwright sur les pages représentatives.
 - Audits : commandes `check:*`, `audit:*` et `npm run audit` pour les invariants du dépôt et les budgets.
 
-Les tests Node ne nécessitent pas de serveur. Playwright démarre automatiquement `scripts/serve-static.mjs` sur `http://127.0.0.1:4173`.
+Les tests Node ne nécessitent pas de serveur. Playwright démarre automatiquement `scripts/serve-static.mjs` sur `http://127.0.0.1:4173`. La CI lui transmet `STATIC_ROOT=_site` afin que les tests navigateur exercent l’artefact Pages, et non seulement la racine du dépôt.
 
 ## Commandes
 
@@ -18,6 +18,7 @@ npm run audit
 npm run test:browser
 npm run test:browser -- --project=chromium-desktop
 npm run test:browser -- --project=chromium-mobile
+$env:STATIC_ROOT="_site"; npm run test:browser
 ```
 
 `npm run recette` est le contrôle structurel avant publication. `npm run audit` génère `reports/quality.json` et échoue sur les erreurs critiques définies. Le workflow Pages exécute ces contrôles avant le build et le déploiement.

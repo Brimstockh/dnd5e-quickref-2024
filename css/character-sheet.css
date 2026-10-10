@@ -1,15 +1,12 @@
 :root {
-    --bg: #d9d4cb;
     --paper: #fbfaf6;
     --paper-deep: #f2efe8;
-    --paper-edge: #ded7ca;
     --ink: #1f1b18;
     --muted: #66615b;
     --line: #252525;
     --soft-line: #b8b0a4;
     --accent: #7a120f;
     --accent-2: #5b0f0d;
-    --accent-soft: #f4e5e3;
     --field: #fffdfa;
     --shadow: rgba(0, 0, 0, 0.08);
     --page-padding: 5mm;

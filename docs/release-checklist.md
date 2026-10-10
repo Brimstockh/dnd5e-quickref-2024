@@ -7,6 +7,8 @@
 - [ ] `npm run test:browser`
 - [ ] audit axe sur les pages représentatives
 - [ ] installation, navigation offline et mise à jour PWA
+- [ ] `npm run build:pages` puis `npm run check:pages`
+- [ ] tests navigateur sur `_site` (`STATIC_ROOT=_site`)
 
 ## Desktop
 
@@ -42,3 +44,4 @@
 - [ ] chemins sous `/dnd5e-quickref-2024/`
 - [ ] manifest
 - [ ] service worker et version de cache
+- [ ] aucun JSON build/audit uniquement dans `_site`

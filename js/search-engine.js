@@ -229,10 +229,6 @@ function evaluateSearchEntry(entry, query, options = {}) {
   };
 }
 
-export function scoreSearchEntry(entry, query, options = {}) {
-  return evaluateSearchEntry(entry, query, options)?.score ?? null;
-}
-
 export function searchEntries(entries, query, options = {}) {
   const parsed = parseSearchQuery(query);
   const section = options.section || "";

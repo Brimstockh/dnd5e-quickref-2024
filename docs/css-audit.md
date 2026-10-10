@@ -1,4 +1,4 @@
-# Audit CSS — phase 4, premier lot
+# Audit CSS — phase 3
 
 ## Périmètre
 
@@ -23,6 +23,18 @@ Les trois plus grosses feuilles restent `icons.css`, `components.css` et `conten
 
 Les valeurs numériques locales restantes sont intentionnelles : couches décoratives, contenus internes de composants et surfaces autonomes. Toute nouvelle couche globale doit utiliser un token `--z-*` existant ou en documenter le besoin.
 
+## Résultat de la phase 3
+
+Les 25 feuilles CSS restent utilisées par au moins une page HTML ; aucune feuille n’a donc été supprimée. L’audit ciblé a retiré cinq variables personnalisées déclarées sans consommation (`--bg`, `--paper-edge`, `--accent-soft`, `--text-base` et `--heading-lg`, avec `--bg` défini dans plusieurs feuilles). Les classes injectées par JavaScript, les états interactifs, les pseudo-classes et les media queries ont été conservés ; aucun sélecteur n’a été supprimé sur le seul fondement d’une absence dans le HTML statique.
+
+La consolidation porte sur les réécritures finales des trois familles de catalogue :
+
+- `css/catalog.css` : valeurs finales remontées dans les règles de base pour les contrôles, les cartes, les métadonnées et les surfaces compactes ;
+- `css/content-catalog.css` : même traitement pour la grille d’outils, les filtres et les entrées ; suppression de deux règles media identiques et de deux déclarations redondantes ;
+- `css/legacy-catalog.css` : valeurs finales remontées pour préserver le bestiaire historique sans supprimer son contrat visuel ou mobile.
+
+Cette consolidation réduit le CSS de 9 036 à 8 954 lignes et de 352 344 à 349 710 octets après normalisation LF, sans modifier les valeurs calculées finales sur les surfaces comparées. Le contraste des contrôles de `dons.html` est validé par Axe sur les profils desktop et mobile.
+
 ## Legacy encore utilisé
 
 Les usages legacy actifs sont désormais limités à :
@@ -39,4 +51,4 @@ Les usages legacy actifs sont désormais limités à :
 
 Comparer les contrats de formulaire, filtres, cartes, statblocks et backdrops de `catalog.css`, `content-catalog.css` et `legacy-catalog.css` pour décider si une migration de `monstres.html` apporte un gain suffisant. Elle devra conserver les URLs, le responsive, le dark mode et les tests mobiles avant toute réduction supplémentaire.
 
-La phase 12 confirme que cette migration n’est pas encore sûre : le détail des références et des assets historiques conservés est documenté dans `docs/debt-inventory.md`.
+La phase 3 confirme que cette migration n’est pas encore sûre : le détail des références et des assets historiques conservés est documenté dans `docs/debt-inventory.md`.

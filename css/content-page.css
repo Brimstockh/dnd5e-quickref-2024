@@ -1,5 +1,4 @@
 :root {
-    --bg: var(--color-bg);
     --paper: var(--color-surface);
     --ink: var(--color-text);
     --accent: var(--color-danger);
@@ -1061,7 +1060,6 @@ body.content-page {
 
 @media print {
     :root {
-        --bg: #fff;
         --paper: #fff;
         --ink: #1f1b18;
         --accent: var(--section-rules);

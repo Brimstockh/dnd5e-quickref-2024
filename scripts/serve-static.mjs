@@ -4,7 +4,8 @@ import { createServer } from "node:http";
 import { extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
+const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
+const root = resolve(projectRoot, process.env.STATIC_ROOT || ".");
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || "127.0.0.1";
 const contentTypes = new Map([

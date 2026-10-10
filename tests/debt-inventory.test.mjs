@@ -14,6 +14,6 @@ test("final debt inventory accounts for current legacy contracts and unreference
   assert.match(inventory, /js\/legacy-catalog-ui\.js/);
   assert.match(inventory, /character-template-v2\.html/);
   assert.match(inventory, /sw\.js/);
-  assert.equal(unreferenced.length, 24);
-  for (const asset of unreferenced) assert.match(inventory, new RegExp(asset.path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), asset.path);
+  assert.equal(unreferenced.length, 0);
+  assert.match(inventory, /24 fichiers ci-dessous\. Ils ont été supprimés/i);
 });

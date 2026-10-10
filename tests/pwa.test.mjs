@@ -71,8 +71,8 @@ test("PWA icons have the declared PNG dimensions", async () => {
 
 test("every precached resource exists in the repository", async () => {
   const { api } = await loadServiceWorker();
-  assert.equal(api.CACHE_VERSION, "dnd-companion-v33");
-  assert.ok(api.CORE_ASSETS.length <= 44);
+  assert.equal(api.CACHE_VERSION, "dnd-companion-v34");
+  assert.ok(api.CORE_ASSETS.length <= 43);
   assert.ok(api.CORE_ASSETS.includes("./js/dense-pages.js"));
   assert.ok(api.CORE_ASSETS.includes("./css/category-hubs.css"));
   assert.ok(api.CORE_ASSETS.includes("./data/search-index.json"));
@@ -129,7 +129,7 @@ test("activation purges caches from previous service worker versions", async () 
     caches: {
       open: async () => ({ put: async () => {}, keys: async () => [], delete: async () => true }),
       match: async () => undefined,
-      keys: async () => ["dnd-companion-v30-core", "dnd-companion-v31-core", "dnd-companion-v32-core", "other-cache"],
+      keys: async () => ["dnd-companion-v30-core", "dnd-companion-v31-core", "dnd-companion-v32-core", "dnd-companion-v33-core", "other-cache"],
       delete: async (name) => { deleted.push(name); return true; },
     },
   });
@@ -137,7 +137,7 @@ test("activation purges caches from previous service worker versions", async () 
   let activation;
   listeners.get("activate")({ waitUntil(promise) { activation = promise; } });
   await activation;
-  assert.deepEqual(deleted, ["dnd-companion-v30-core", "dnd-companion-v31-core", "dnd-companion-v32-core"]);
+  assert.deepEqual(deleted, ["dnd-companion-v30-core", "dnd-companion-v31-core", "dnd-companion-v32-core", "dnd-companion-v33-core"]);
 });
 
 test("service worker classifies scoped requests and supports GitHub Pages paths", async () => {

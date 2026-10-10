@@ -40,7 +40,7 @@
     }
   },
   "links": {
-    "checkedPages": 63,
+    "checkedPages": 126,
     "broken": 0
   },
   "performance": {
@@ -202,11 +202,11 @@
     }
   },
   "assets": {
-    "files": 2038,
-    "bytes": 171668005,
-    "referenced": 2014,
-    "unreferenced": 24,
-    "largeAssets": 8
+    "files": 740,
+    "bytes": 131171611,
+    "referenced": 740,
+    "unreferenced": 0,
+    "largeAssets": 7
   },
   "data": {
     "primarySearchIndexBytes": 509723,
@@ -215,15 +215,15 @@
   },
   "pwa": {
     "precache": {
-      "entries": 42,
-      "bytes": 1300905,
+      "entries": 41,
+      "bytes": 1212248,
       "budget": 1500000,
       "missing": []
     },
-    "budgetUsage": 0.8673
+    "budgetUsage": 0.8082
   },
   "tests": {
-    "node": 238,
+    "node": 241,
     "browser": 20
   },
   "lighthouse": {
