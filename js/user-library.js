@@ -260,12 +260,18 @@
         var fallback = createPersonalState();
         var migrated = migratePersonalValue(value);
         if (!migrated || typeof migrated !== "object" || Number(migrated.schemaVersion) !== 2) return fallback;
+        var seenProfiles = Object.create(null);
+        var profiles = Array.isArray(migrated.profiles) ? migrated.profiles.filter(function (profile) {
+            if (!profile || typeof profile.id !== "string" || typeof profile.name !== "string" || seenProfiles[profile.id]) return false;
+            seenProfiles[profile.id] = true;
+            return true;
+        }) : [];
         return Object.assign({}, migrated, {
             schemaVersion: 2,
-            activeProfileId: typeof migrated.activeProfileId === "string" ? migrated.activeProfileId : null,
-            profiles: Array.isArray(migrated.profiles) ? migrated.profiles.filter(function (profile) {
-                return profile && typeof profile.id === "string" && typeof profile.name === "string";
-            }) : [],
+            activeProfileId: typeof migrated.activeProfileId === "string" && seenProfiles[migrated.activeProfileId]
+                ? migrated.activeProfileId
+                : null,
+            profiles: profiles,
             lists: Array.isArray(migrated.lists) ? migrated.lists.filter(function (list) {
                 return list && typeof list.id === "string" && typeof list.name === "string" && Array.isArray(list.items);
             }) : [],
@@ -304,20 +310,30 @@
         return state.profiles.find(function (profile) { return profile.id === state.activeProfileId; }) || null;
     }
 
+    function profileById(id) {
+        return getPersonalState().profiles.find(function (profile) { return profile.id === id; }) || null;
+    }
+
     function saveProfile(profile) {
+        profile = profile && typeof profile === "object" && !Array.isArray(profile) ? profile : {};
         var state = getPersonalState();
-        var normalized = {
-            id: typeof profile.id === "string" && profile.id ? profile.id : createId("profile"),
+        var profileId = typeof profile.id === "string" && profile.id ? profile.id : createId("profile");
+        var sheetUrl = String(profile.sheetUrl || "").trim();
+        if (!sheetUrl || (sheetUrl === "character-sheet-standalone.html" && profileId)) {
+            sheetUrl = "character-sheet-standalone.html?profile=" + encodeURIComponent(profileId);
+        }
+        var normalized = Object.assign({}, profile, {
+            id: profileId,
             name: String(profile.name || "Nouveau personnage").trim(),
             class: String(profile.class || "").trim(),
             level: Math.max(1, Math.min(20, Number(profile.level) || 1)),
             species: String(profile.species || "").trim(),
             portrait: String(profile.portrait || "").trim(),
-            sheetUrl: String(profile.sheetUrl || "").trim(),
-            preparedSpells: Array.isArray(profile.preparedSpells) ? profile.preparedSpells : [],
-            pinnedRules: Array.isArray(profile.pinnedRules) ? profile.pinnedRules : [],
-            shortcuts: Array.isArray(profile.shortcuts) ? profile.shortcuts : [],
-        };
+            sheetUrl: sheetUrl,
+            preparedSpells: Array.isArray(profile.preparedSpells) ? profile.preparedSpells.slice() : [],
+            pinnedRules: Array.isArray(profile.pinnedRules) ? profile.pinnedRules.slice() : [],
+            shortcuts: Array.isArray(profile.shortcuts) ? profile.shortcuts.slice() : [],
+        });
         var index = state.profiles.findIndex(function (item) { return item.id === normalized.id; });
         if (index === -1) state.profiles.push(normalized);
         else state.profiles[index] = normalized;
@@ -334,11 +350,15 @@
 
     function deleteProfile(id) {
         var state = getPersonalState();
+        if (!state.profiles.some(function (profile) { return profile.id === id; })) return false;
         state.profiles = state.profiles.filter(function (profile) { return profile.id !== id; });
         state.lists = state.lists.filter(function (list) { return list.profileId !== id; });
         if (state.activeProfileId === id) state.activeProfileId = state.profiles[0]?.id || null;
+        if (window.DndSheets) window.DndSheets.removeForProfile(id);
         setPersonalState(state);
+        return true;
     }
+
 
     function getNote(contentId) {
         return String(getPersonalState().notes[String(contentId || "")] || "");
@@ -488,9 +508,25 @@
 
     window.DndProfiles = Object.freeze({
         getAll: getProfiles,
+        getById: function (id) { return profileById(id); },
         getActive: getActiveProfile,
         save: saveProfile,
         setActive: setActiveProfile,
+        duplicate: function (id) {
+            var source = profileById(id);
+            if (!source) return null;
+            var duplicate = saveProfile(Object.assign({}, source, {
+                id: "",
+                name: source.name + " — copie",
+                sheetUrl: "",
+                preparedSpells: source.preparedSpells?.slice() || [],
+                pinnedRules: source.pinnedRules?.slice() || [],
+                shortcuts: source.shortcuts?.slice() || [],
+            }));
+            var sheet = window.DndSheets?.getForProfile(source.id);
+            if (sheet) window.DndSheets.setForProfile(duplicate.id, sheet);
+            return duplicate;
+        },
         remove: deleteProfile,
     });
 

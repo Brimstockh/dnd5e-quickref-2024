@@ -66,7 +66,7 @@ Les index générés contiennent 2 483 entrées : 1 242 dans l’index principal
 
 ### Stockage local
 
-`js/user-library.js` centralise `DndStorage`, puis expose `DndLibrary`, `DndPersonal` et `DndProfiles`. Les contrats sont documentés dans `data/local-storage-contracts.json` et couvrent six clés versionnées : bibliothèque personnelle, session, brouillon de création, feuille autonome, favoris et récents.
+`js/user-library.js` centralise `DndStorage`, puis expose `DndLibrary`, `DndPersonal`, `DndProfiles`, `DndSheets` et `DndBackup`. Les contrats sont documentés dans `data/local-storage-contracts.json` et couvrent désormais la séparation des fiches par profil, la fiche autonome historique, la session, le brouillon de création, la bibliothèque personnelle, les favoris et les récents.
 
 Les migrations sont sauvegardées avant mutation et testées. L’état personnel possède déjà une migration v1 → v2 qui conserve les champs inconnus. Une migration destructive ou un remplacement global de `localStorage` serait donc une régression de contrat.
 

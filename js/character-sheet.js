@@ -2,7 +2,9 @@
     var SHEET_VERSION = "standalone_v2";
     var STORAGE_KEY = "dnd_character_sheet_standalone_v2";
     var LEGACY_STORAGE_KEY = "dnd_character_sheet_standalone_v1";
+    var SHEETS_KEY = "dnd_character_sheets_v1";
     var storage = window.DndStorage;
+    var sheets = window.DndSheets;
     var MAX_IMPORT_BYTES = 1024 * 1024;
     var statusEl = document.getElementById("status");
     var saveBtn = document.getElementById("saveBtn");
@@ -20,6 +22,14 @@
     var classLevelField = document.querySelector("[data-class-level]");
     var levelInput = document.querySelector("[data-level-input]");
     var saveTimer = null;
+    var saveContextId = null;
+    var pendingSave = false;
+    var profileParameter = new URLSearchParams(window.location.search || "");
+    var explicitProfileId = profileParameter.has("profile") ? profileParameter.get("profile") : profileParameter.get("profileId");
+    var currentProfileId = null;
+    var loadedUpdatedAt = null;
+    var preservedData = {};
+    var contextError = "";
     var storageFailed = false;
     var currentClassDetails = null;
     var classOptions = [];
@@ -1141,7 +1151,7 @@
     function collect() {
         syncClassLevel();
         updateDerivedStats();
-        var data = {};
+        var data = Object.assign({}, preservedData);
         fields.forEach(function (el) {
             var key = el.getAttribute("data-field");
             data[key] = el.type === "checkbox" ? el.checked : el.value;
@@ -1158,6 +1168,14 @@
         if (!payload.data || typeof payload.data !== "object" || Array.isArray(payload.data)) return null;
 
         var data = {};
+        var knownFields = {};
+        fields.forEach(function (el) {
+            var key = el.getAttribute("data-field");
+            knownFields[key] = true;
+        });
+        Object.keys(payload.data).forEach(function (key) {
+            if (!knownFields[key]) data[key] = payload.data[key];
+        });
         fields.forEach(function (el) {
             var key = el.getAttribute("data-field");
             if (!Object.prototype.hasOwnProperty.call(payload.data, key)) return;
@@ -1176,6 +1194,14 @@
     }
 
     function apply(data) {
+        preservedData = {};
+        var knownFields = {};
+        fields.forEach(function (el) {
+            knownFields[el.getAttribute("data-field")] = true;
+        });
+        Object.keys(data).forEach(function (key) {
+            if (!knownFields[key]) preservedData[key] = data[key];
+        });
         fields.forEach(function (el) {
             var key = el.getAttribute("data-field");
             if (!(key in data)) return;
@@ -1210,15 +1236,32 @@
     }
 
     function save() {
+        clearTimeout(saveTimer);
+        saveTimer = null;
         var payload = {
             updated_at: new Date().toISOString(),
             version: SHEET_VERSION,
             data: collect()
         };
-        if (storage.setJson(STORAGE_KEY, payload)) {
+        var result = currentProfileId
+            ? sheets.setForProfile(currentProfileId, payload, { expectedUpdatedAt: loadedUpdatedAt })
+            : sheets.setStandalone(payload, { expectedUpdatedAt: loadedUpdatedAt });
+        pendingSave = false;
+        if (result.ok && result.persistent) {
+            loadedUpdatedAt = payload.updated_at;
             storageFailed = false;
             setStatus("Sauvegardé à " + nowText());
             return true;
+        }
+        if (result.ok && !result.persistent) {
+            loadedUpdatedAt = payload.updated_at;
+            storageFailed = true;
+            setStatus("Conservé en mémoire pour cette session. Exporte la fiche pour ne pas perdre vos changements.");
+            return true;
+        }
+        if (result.reason === "conflict") {
+            setStatus("Une version plus récente existe dans un autre onglet. Rechargez la fiche avant d’enregistrer.");
+            return false;
         }
         storageFailed = true;
         setStatus("Sauvegarde locale impossible. Exporte la fiche en JSON.");
@@ -1235,6 +1278,7 @@
             var data = normalizePayload(parsed);
             if (data) {
                 apply(data);
+                loadedUpdatedAt = parsed.updated_at || parsed.updatedAt || null;
                 return true;
             }
         } catch (err) {
@@ -1244,24 +1288,64 @@
     }
 
     function load() {
-        if (loadFromKey(STORAGE_KEY)) {
+        if (explicitProfileId !== null) {
+            currentProfileId = String(explicitProfileId || "");
+            if (!currentProfileId || !window.DndProfiles?.getById(currentProfileId)) {
+                contextError = "Le personnage demandé n’existe pas. Aucune autre fiche n’a été chargée.";
+                setStatus(contextError);
+                return;
+            }
+        }
+        var payload = currentProfileId ? sheets.getForProfile(currentProfileId) : sheets.getStandalone();
+        if (payload) {
+            var data = normalizePayload(payload);
+            if (data) {
+                apply(data);
+                loadedUpdatedAt = payload.updated_at || payload.updatedAt || null;
+                setStatus(currentProfileId ? "Fiche du profil chargée." : "Dernière sauvegarde chargée.");
+                return;
+            }
+        }
+        if (!currentProfileId && loadFromKey(STORAGE_KEY)) {
             setStatus("Dernière sauvegarde chargée.");
             return;
         }
-        if (loadFromKey(LEGACY_STORAGE_KEY)) {
-            save();
+        if (!currentProfileId && loadFromKey(LEGACY_STORAGE_KEY)) {
+            var legacyResult = save();
+            if (!legacyResult) return;
             setStatus("Ancienne sauvegarde reprise et convertie.");
             return;
         }
+        if (contextError) return;
         setStatus(storageFailed
             ? "Stockage local indisponible. Utilise l'export JSON."
-            : "Aucune sauvegarde trouvée.");
+            : currentProfileId ? "Aucune fiche enregistrée pour ce profil." : "Aucune sauvegarde trouvée.");
     }
 
     function scheduleAutoSave() {
         clearTimeout(saveTimer);
+        pendingSave = true;
+        saveContextId = currentProfileId;
         setStatus("Modifications en attente...");
-        saveTimer = setTimeout(save, 450);
+        saveTimer = setTimeout(function () {
+            if (saveContextId !== currentProfileId) return;
+            save();
+        }, 450);
+    }
+
+    function flushAutoSave() {
+        clearTimeout(saveTimer);
+        saveTimer = null;
+        if (pendingSave) save();
+    }
+
+    function clearFieldsForContext() {
+        fields.forEach(function (el) {
+            if (el.type === "checkbox") el.checked = false;
+            else el.value = "";
+        });
+        preservedData = {};
+        loadedUpdatedAt = null;
     }
 
     function resetAll() {
@@ -1273,8 +1357,13 @@
                 el.value = "";
             }
         });
-        if (storage.remove(STORAGE_KEY)) {
+        var result = currentProfileId ? sheets.removeForProfile(currentProfileId) : sheets.removeStandalone();
+        if (result.ok && result.persistent) {
+            loadedUpdatedAt = null;
             setStatus("Feuille réinitialisée.");
+        } else if (result.ok) {
+            storageFailed = true;
+            setStatus("Champs vidés pour cette session, mais la suppression durable est indisponible.");
         } else {
             storageFailed = true;
             setStatus("Champs vidés, mais la sauvegarde locale n'a pas pu être supprimée.");
@@ -1375,6 +1464,7 @@
             updateClassDetails();
             syncClassLevel();
             updateDerivedStats();
+            scheduleAutoSave();
         });
     }
 
@@ -1382,12 +1472,14 @@
         backgroundSelect.addEventListener("change", function () {
             updateBackgroundDetails();
             updateDerivedStats();
+            scheduleAutoSave();
         });
     }
 
     if (speciesSelect) {
         speciesSelect.addEventListener("change", function () {
             updateSpeciesDetails();
+            scheduleAutoSave();
         });
     }
 
@@ -1408,6 +1500,25 @@
         if (importFile.files && importFile.files[0]) {
             importJson(importFile.files[0]);
             importFile.value = "";
+        }
+    });
+
+    window.addEventListener("dndpersonalchange", function (event) {
+        if (explicitProfileId !== null || !event.detail) return;
+        var nextProfileId = event.detail.activeProfileId || null;
+        if (nextProfileId === currentProfileId) return;
+        flushAutoSave();
+        currentProfileId = nextProfileId;
+        clearFieldsForContext();
+        load();
+    });
+
+    window.addEventListener("storage", function (event) {
+        if (event.key !== SHEETS_KEY || pendingSave) return;
+        var latest = currentProfileId ? sheets.getForProfile(currentProfileId) : sheets.getStandalone();
+        var latestUpdatedAt = latest && (latest.updated_at || latest.updatedAt);
+        if (latestUpdatedAt && latestUpdatedAt !== loadedUpdatedAt) {
+            setStatus("Une fiche plus récente a été enregistrée dans un autre onglet. Rechargez avant de modifier.");
         }
     });
 

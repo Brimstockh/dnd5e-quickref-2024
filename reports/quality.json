@@ -215,15 +215,15 @@
   },
   "pwa": {
     "precache": {
-      "entries": 41,
-      "bytes": 1212248,
+      "entries": 42,
+      "bytes": 1228671,
       "budget": 1500000,
       "missing": []
     },
-    "budgetUsage": 0.8082
+    "budgetUsage": 0.8191
   },
   "tests": {
-    "node": 241,
+    "node": 244,
     "browser": 20
   },
   "lighthouse": {

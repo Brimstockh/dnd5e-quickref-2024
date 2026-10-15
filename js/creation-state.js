@@ -5,7 +5,7 @@
 
     function createDraft() {
         return {
-            schemaVersion: 1, step: 0, expert: false, concept: "", name: "", level: 1,
+            schemaVersion: 1, step: 0, expert: false, profileId: null, concept: "", name: "", level: 1,
             classId: "", speciesId: "", backgroundId: "", alignment: "", languages: ["Commun"],
             abilities: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
             skills: [], equipment: "", spells: [], notes: "",
@@ -14,14 +14,22 @@
 
     function normalizeDraft(value) {
         var draft = Object.assign(createDraft(), value && value.schemaVersion === 1 ? value : {});
-        draft.level = Math.max(1, Math.min(20, Number(draft.level) || 1));
-        draft.step = Math.max(0, Math.min(10, Number(draft.step) || 0));
+        var level = Number(draft.level);
+        draft.level = Number.isFinite(level) ? Math.max(1, Math.min(20, level)) : draft.level;
+        var step = Number(draft.step);
+        draft.step = Number.isFinite(step) ? Math.max(0, Math.min(10, step)) : 0;
+        draft.profileId = typeof draft.profileId === "string" && draft.profileId ? draft.profileId : null;
+        draft.abilities = Object.assign({}, createDraft().abilities, draft.abilities && typeof draft.abilities === "object" ? draft.abilities : {});
         abilityKeys.forEach(function (key) {
-            draft.abilities[key] = Math.max(3, Math.min(20, Number(draft.abilities?.[key]) || 10));
+            var valueForKey = draft.abilities?.[key];
+            var numericValue = Number(valueForKey);
+            draft.abilities[key] = valueForKey === "" || !Number.isFinite(numericValue)
+                ? valueForKey
+                : Math.max(3, Math.min(20, numericValue));
         });
-        draft.skills = Array.isArray(draft.skills) ? draft.skills.map(String) : [];
-        draft.spells = Array.isArray(draft.spells) ? draft.spells.map(String) : [];
-        draft.languages = Array.isArray(draft.languages) ? draft.languages.map(String) : ["Commun"];
+        draft.skills = Array.isArray(draft.skills) ? draft.skills.slice() : [];
+        draft.spells = Array.isArray(draft.spells) ? draft.spells.slice() : [];
+        draft.languages = Array.isArray(draft.languages) ? draft.languages.slice() : ["Commun"];
         return draft;
     }
 
@@ -49,17 +57,43 @@
         };
     }
 
-    function validateStep(draft, step) {
+    function validateStep(draft, step, model, spells) {
         var errors = [];
         if (step === 0 && !String(draft.name || draft.concept).trim()) errors.push("Indiquez un nom ou un concept.");
-        if (step === 2 && !draft.classId) errors.push("Choisissez une classe.");
-        if (step === 3 && !draft.speciesId) errors.push("Choisissez une espèce.");
-        if (step === 4 && !draft.backgroundId) errors.push("Choisissez un historique.");
+        if (step === 1 && (!Number.isInteger(Number(draft.level)) || Number(draft.level) < 1 || Number(draft.level) > 20)) {
+            errors.push("Le niveau doit être un entier compris entre 1 et 20.");
+        }
+        if (step === 2 && (!draft.classId || (model && !model.classes.some(function (entry) { return entry.id === draft.classId; })))) {
+            errors.push("Choisissez une classe valide.");
+        }
+        if (step === 3 && (!draft.speciesId || (model && !model.species.some(function (entry) { return entry.id === draft.speciesId; })))) {
+            errors.push("Choisissez une espèce valide.");
+        }
+        if (step === 4 && (!draft.backgroundId || (model && !model.backgrounds.some(function (entry) { return entry.id === draft.backgroundId; })))) {
+            errors.push("Choisissez un historique valide.");
+        }
         if (step === 5) {
             var values = abilityKeys.map(function (key) { return Number(draft.abilities[key]); });
-            if (values.some(function (value) { return value < 3 || value > 20; })) errors.push("Les caractéristiques doivent être comprises entre 3 et 20.");
+            if (values.some(function (value) { return !Number.isInteger(value) || value < 3 || value > 20; })) {
+                errors.push("Les caractéristiques doivent être des entiers compris entre 3 et 20.");
+            }
+        }
+        if (step === 6 && (!Array.isArray(draft.skills) || draft.skills.some(function (skill) { return typeof skill !== "string"; }))) {
+            errors.push("La liste des compétences est invalide.");
+        }
+        if (step === 8 && (!Array.isArray(draft.spells) || draft.spells.some(function (spell) {
+            return typeof spell !== "string" || (spells && !spells.some(function (entry) { return entry.slug === spell; }));
+        }))) {
+            errors.push("La liste des sorts est invalide.");
         }
         return errors;
+    }
+
+    function validateCharacter(draft, model, spells) {
+        var normalized = normalizeDraft(draft);
+        return [0, 1, 2, 3, 4, 5, 6, 8].flatMap(function (step) {
+            return validateStep(normalized, step, model, spells);
+        }).filter(function (message, index, messages) { return messages.indexOf(message) === index; });
     }
 
     function sheetPayload(draft, model, spells) {
@@ -116,5 +150,6 @@
         abilityKeys: abilityKeys, abilityNames: abilityNames, createDraft: createDraft,
         normalizeDraft: normalizeDraft, modifier: modifier, proficiency: proficiency,
         derived: derived, validateStep: validateStep, sheetPayload: sheetPayload,
+        validateCharacter: validateCharacter,
     });
 })();

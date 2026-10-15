@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/personal-space.css" />
     <link rel="stylesheet" href="css/table-pages.css" />
     <script src="js/user-library.js" defer></script>
+    <script src="js/character-storage.js" defer></script>
     <script src="js/site-shell.js" defer></script>
 </head>
 <body class="personal-page table-page" data-library-title="Espace personnel" data-library-category="Outil" data-track-recent="false">
@@ -43,6 +44,7 @@
                     </div>
                     <label for="profileSheetUrl">Lien vers une feuille locale</label><input id="profileSheetUrl" type="url" />
                     <div class="personal-actions">
+                        <a class="btn btn--secondary" id="profileSheetLink" href="character-sheet-standalone.html" hidden>Ouvrir la fiche</a>
                         <button class="btn" type="submit">Enregistrer</button>
                         <button class="btn btn--secondary" type="button" id="duplicateProfileBtn">Dupliquer</button>
                         <button class="btn btn--danger" type="button" id="deleteProfileBtn">Supprimer</button>
@@ -53,13 +55,14 @@
             <article class="personal-card">
                 <h2>Sauvegarde</h2>
                 <p>Exportez favoris, listes, notes, profils et paramètres dans un fichier JSON unique.</p>
-                <label class="personal-check"><input type="checkbox" id="includeSheet" checked /> Inclure la feuille autonome</label>
+                <label class="personal-check"><input type="checkbox" id="includeSheet" checked /> Inclure les fiches, la fiche autonome, le brouillon et l’état de session</label>
                 <div class="personal-actions">
                     <button class="btn" type="button" id="exportBackupBtn">Exporter</button>
                     <label class="btn btn--secondary" for="importBackupInput">Importer</label>
                     <input class="visually-hidden" id="importBackupInput" type="file" accept="application/json,.json" />
                 </div>
             </article>
+            <p id="legacySheetRecovery" role="status" hidden></p>
         </section>
 
         <section class="personal-card" aria-labelledby="libraryTitle">

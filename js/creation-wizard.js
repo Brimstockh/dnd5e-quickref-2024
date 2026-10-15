@@ -62,8 +62,10 @@
     }
 
     function save(message) {
-        storage.setJson(STORAGE_KEY, draft);
-        if (message) status.textContent = message;
+        var persisted = storage.setJson(STORAGE_KEY, draft);
+        if (message) status.textContent = persisted
+            ? message
+            : message + " Conservation limitée à la session : exportez votre brouillon.";
     }
 
     function update(name, value) {
@@ -302,7 +304,13 @@
     }
 
     function allIssues() {
-        return [0, 2, 3, 4, 5].flatMap(function (step) { return stateApi.validateStep(draft, step); });
+        return stateApi.validateCharacter(draft, model, spells);
+    }
+
+    function issuesBefore(targetStep) {
+        return Array.from({ length: targetStep }, function (_, step) {
+            return stateApi.validateStep(draft, step, model, spells);
+        }).flat().filter(function (message, index, messages) { return messages.indexOf(message) === index; });
     }
 
     function signed(value) {
@@ -311,30 +319,54 @@
 
     function generateSheet() {
         var issues = allIssues();
-        if (issues.length && !draft.expert) {
+        if (issues.length) {
             status.textContent = "Fiche non générée : " + issues.join(" ");
             return;
         }
-        storage.setJson(SHEET_KEY, stateApi.sheetPayload(draft, model, spells));
-        status.replaceChildren(document.createTextNode("Fiche générée. "));
+        var profile = draft.profileId ? window.DndProfiles.getById(draft.profileId) : null;
+        if (draft.profileId && !profile) {
+            status.textContent = "Le profil associé n’existe plus. Créez un nouveau profil avant de générer sa fiche.";
+            return;
+        }
+        var result = profile
+            ? window.DndSheets.setForProfile(profile.id, stateApi.sheetPayload(draft, model, spells))
+            : window.DndSheets.setStandalone(stateApi.sheetPayload(draft, model, spells));
+        if (!result.ok) {
+            status.textContent = "Fiche non enregistrée : le stockage local a refusé cette écriture.";
+            return;
+        }
+        status.replaceChildren(document.createTextNode(result.persistent ? "Fiche générée. " : "Fiche générée en mémoire pour cette session. "));
         var link = element("a", "", "Ouvrir la fiche de personnage");
-        link.href = "character-sheet-standalone.html";
+        link.href = profile ? "character-sheet-standalone.html?profile=" + encodeURIComponent(profile.id) : "character-sheet-standalone.html";
         status.append(link);
     }
 
     function createProfile() {
+        var issues = allIssues();
+        if (issues.length) {
+            status.textContent = "Profil non créé : " + issues.join(" ");
+            return;
+        }
         var characterClass = find(model.classes, draft.classId);
         var species = find(model.species, draft.speciesId);
         var profile = window.DndProfiles.save({
+            id: draft.profileId || "",
             name: draft.name || draft.concept || "Nouveau personnage",
             class: characterClass?.name || "",
             level: draft.level,
             species: species?.name || "",
-            sheetUrl: "character-sheet-standalone.html",
+            sheetUrl: "character-sheet-standalone.html?profile=" + encodeURIComponent(draft.profileId || "pending"),
             preparedSpells: draft.spells.map(function (slug) { return "spell-" + slug; }),
         });
+        draft.profileId = profile.id;
+        profile.sheetUrl = "character-sheet-standalone.html?profile=" + encodeURIComponent(profile.id);
+        profile = window.DndProfiles.save(profile);
+        var sheetResult = window.DndSheets.setForProfile(profile.id, stateApi.sheetPayload(draft, model, spells));
         window.DndProfiles.setActive(profile.id);
-        status.textContent = "Profil créé et activé dans votre espace personnel.";
+        save();
+        status.textContent = sheetResult.ok
+            ? (sheetResult.persistent ? "Profil créé, activé et associé à sa fiche." : "Profil créé et associé en mémoire pour cette session.")
+            : "Profil créé, mais sa fiche n’a pas pu être enregistrée.";
     }
 
     function exportDraft() {
@@ -361,7 +393,7 @@
             if (index === draft.step) button.setAttribute("aria-current", "step");
             button.addEventListener("click", function () {
                 if (index > draft.step && !draft.expert) {
-                    var errors = stateApi.validateStep(draft, draft.step);
+                    var errors = issuesBefore(index);
                     if (errors.length) {
                         status.textContent = errors.join(" ");
                         return;
@@ -387,7 +419,7 @@
             var next = element("button", "", draft.step === steps.length - 2 ? "Passer à la création" : "Suivant");
             next.type = "button";
             next.addEventListener("click", function () {
-                var errors = stateApi.validateStep(draft, draft.step);
+                var errors = stateApi.validateStep(draft, draft.step, model, spells);
                 if (errors.length && !draft.expert) {
                     status.textContent = errors.join(" ");
                     return;

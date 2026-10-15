@@ -47,6 +47,7 @@ const CORE_ASSETS = Object.freeze([
     "./js/shell/theme.js",
     "./js/source-meta.js",
     "./js/user-library.js",
+    "./js/character-storage.js",
     "./data/search-index.json",
     "./data/source-metadata.json",
     "./assets/icons/pwa-192.png",

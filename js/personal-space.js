@@ -11,6 +11,8 @@
     var listsHost = document.getElementById("personalLists");
     var notesHost = document.getElementById("notesList");
     var searchInput = document.getElementById("librarySearch");
+    var profileSheetLink = document.getElementById("profileSheetLink");
+    var legacySheetRecovery = document.getElementById("legacySheetRecovery");
 
     function announce(message, isError) {
         status.textContent = message;
@@ -48,6 +50,15 @@
         document.getElementById("profileLevel").value = profile?.level || 1;
         document.getElementById("profileSpecies").value = profile?.species || "";
         document.getElementById("profileSheetUrl").value = profile?.sheetUrl || "";
+        if (profile) {
+            var href = profile.sheetUrl && profile.sheetUrl !== "character-sheet-standalone.html"
+                ? profile.sheetUrl
+                : "character-sheet-standalone.html?profile=" + encodeURIComponent(profile.id);
+            profileSheetLink.href = href;
+            profileSheetLink.hidden = false;
+        } else {
+            profileSheetLink.hidden = true;
+        }
     }
 
     function renderProfiles() {
@@ -61,6 +72,28 @@
         });
         profileSelect.value = active?.id || "";
         fillProfileForm(active);
+    }
+
+    function renderLegacyRecovery() {
+        legacySheetRecovery.replaceChildren();
+        var legacy = window.DndSheets.getUnassigned();
+        var active = profiles.getActive();
+        if (!legacy || !active) {
+            legacySheetRecovery.hidden = true;
+            return;
+        }
+        legacySheetRecovery.hidden = false;
+        legacySheetRecovery.appendChild(document.createTextNode("Une ancienne fiche n’est associée à aucun profil. Vous pouvez l’associer explicitement à « " + active.name + " ». "));
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "btn btn--secondary";
+        button.textContent = "Associer cette fiche";
+        button.addEventListener("click", function () {
+            var result = window.DndSheets.claimUnassigned(active.id);
+            announce(result.ok ? "Ancienne fiche associée au profil actif." : "Association impossible.", !result.ok);
+            render();
+        });
+        legacySheetRecovery.appendChild(button);
     }
 
     function itemIdentity(entry) {
@@ -275,29 +308,13 @@
 
     function render() {
         renderProfiles();
+        renderLegacyRecovery();
         renderLists();
         renderNotes();
     }
 
     function backupPayload() {
-        return {
-            format: "dnd-companion-backup",
-            version: 2,
-            exportedAt: new Date().toISOString(),
-            favorites: library.getFavorites(),
-            recent: library.getRecent(),
-            personal: personal.getState(),
-            settings: {
-                theme: storage.get("dnd2024_theme", null),
-                sessionMode: storage.get("dnd2024_session_mode", null),
-            },
-            characterSheet: document.getElementById("includeSheet").checked
-                ? storage.getJson("dnd_character_sheet_standalone_v2", null)
-                : undefined,
-            characterSession: document.getElementById("includeSheet").checked
-                ? storage.getJson("dnd_character_session_v1", null)
-                : undefined,
-        };
+        return window.DndBackup.create(document.getElementById("includeSheet").checked);
     }
 
     function downloadBackup() {
@@ -311,24 +328,19 @@
     }
 
     function validBackup(data) {
-        return data && data.format === "dnd-companion-backup" && [1, 2].includes(data.version)
-            && data.personal && [1, 2].includes(data.personal.schemaVersion)
-            && Array.isArray(data.favorites);
+        return window.DndBackup.validate(data);
     }
 
     async function importBackup(file) {
         try {
             var data = JSON.parse(await file.text());
-            if (!validBackup(data)) throw new Error("Format de sauvegarde non reconnu.");
-            if (!window.confirm("Remplacer les données personnelles locales par cette sauvegarde ?")) return;
-            storage.setJson("dnd2024_favorites_v1", data.favorites);
-            storage.setJson("dnd2024_recent_v1", Array.isArray(data.recent) ? data.recent : []);
-            personal.setState(data.personal);
-            if (data.settings?.theme !== null) storage.set("dnd2024_theme", data.settings.theme);
-            if (data.settings?.sessionMode !== null) storage.set("dnd2024_session_mode", data.settings.sessionMode);
-            if (data.characterSheet) storage.setJson("dnd_character_sheet_standalone_v2", data.characterSheet);
-            if (data.characterSession) storage.setJson("dnd_character_session_v1", data.characterSession);
-            announce("Sauvegarde importée et validée.");
+            var validation = validBackup(data);
+            if (!validation.ok) throw new Error(validation.error);
+            var scope = data.included?.characterData === false ? "sans fiches ni brouillon" : "avec les fiches, le brouillon et l’état de session";
+            if (!window.confirm("Cette sauvegarde v" + data.version + " remplacera les données personnelles locales " + scope + ". Continuer ?")) return;
+            var result = window.DndBackup.apply(data);
+            if (!result.ok) throw new Error("La sauvegarde locale n’a pas pu être remplacée.");
+            announce(result.persistent ? "Sauvegarde importée et validée." : "Sauvegarde importée pour cette session, mais non persistante.", !result.persistent);
             render();
         } catch (error) {
             announce(error.message || "Import impossible.", true);
@@ -353,22 +365,22 @@
             sheetUrl: document.getElementById("profileSheetUrl").value,
         });
         profiles.setActive(saved.id);
-        announce("Profil enregistré.");
+        announce(storage.isPersistent() ? "Profil enregistré." : "Profil conservé en mémoire pour cette session.", !storage.isPersistent());
     });
     document.getElementById("duplicateProfileBtn").addEventListener("click", function () {
         var source = profileById(document.getElementById("profileId").value);
         if (!source) return;
-        var duplicate = Object.assign({}, source, { id: "", name: source.name + " — copie" });
-        var saved = profiles.save(duplicate);
+        var saved = profiles.duplicate(source.id);
+        if (!saved) return;
         profiles.setActive(saved.id);
-        announce("Profil dupliqué.");
+        announce(storage.isPersistent() ? "Profil et fiche dupliqués indépendamment." : "Profil dupliqué en mémoire pour cette session.", !storage.isPersistent());
     });
     document.getElementById("deleteProfileBtn").addEventListener("click", function () {
         var id = document.getElementById("profileId").value;
         var profile = profileById(id);
-        if (!profile || !window.confirm("Supprimer le profil « " + profile.name + " » et ses listes ?")) return;
+        if (!profile || !window.confirm("Supprimer le profil « " + profile.name + " », sa fiche et ses listes ? Cette action est irréversible sur cet appareil.")) return;
         profiles.remove(id);
-        announce("Profil supprimé.");
+        announce(storage.isPersistent() ? "Profil, fiche et listes supprimés." : "Profil, fiche et listes supprimés pour cette session.", !storage.isPersistent());
     });
     document.getElementById("newListBtn").addEventListener("click", async function () {
         var name = await textPrompt("Nom de la nouvelle liste", "Sorts préparés");
