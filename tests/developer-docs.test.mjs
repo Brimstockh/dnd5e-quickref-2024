@@ -12,7 +12,15 @@ const documents = [
   "storage.md",
   "contributing.md",
 ].map((name) => resolve(root, "docs", name));
-const usabilityDocuments = ["usability-test-plan.md", "usability-test-results-template.md"]
+const usabilityDocuments = [
+  "usability-test-plan.md",
+  "usability-test-results-template.md",
+  "usability-test-facilitator.md",
+  "usability-test-task-cards.md",
+  "usability-test-setup.md",
+  "usability-test-technical-audit.md",
+  "usability-test-analysis-template.md",
+]
   .map((name) => resolve(root, "docs", name));
 const consolidationReport = resolve(root, "docs", "refacto-consolidation-report.md");
 
@@ -28,6 +36,7 @@ test("developer documentation covers the current contracts", async () => {
   assert.match(content, /data\/content-sources\.json/);
   assert.match(testing, /npm run recette/);
   assert.match(testing, /tests\/browser\/journeys\.spec\.mjs/);
+  assert.match(testing, /usability-audit\.spec\.mjs/);
   assert.match(pwa, /CORE_ASSETS/);
   assert.match(storage, /data\/local-storage-contracts\.json/);
   assert.match(storage, /migrateJson/);

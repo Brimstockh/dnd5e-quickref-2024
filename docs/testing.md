@@ -33,6 +33,8 @@ Les parcours prioritaires sont couverts dans `tests/browser/journeys.spec.mjs` :
 - assistant de création, feuille et profil ;
 - préparation MJ avec favoris, notes et liste personnelle.
 
+La matrice technique des onze scénarios UX est exécutée par `tests/browser/usability-audit.spec.mjs` sur Chromium desktop et mobile. Elle prouve uniquement que les parcours sont techniquement exécutables ; le protocole humain, les cartes, la préparation et l'analyse sont regroupés dans `docs/usability-test-plan.md`, `docs/usability-test-facilitator.md`, `docs/usability-test-task-cards.md`, `docs/usability-test-setup.md` et `docs/usability-test-analysis-template.md`.
+
 Pour une nouvelle interaction, vérifier au minimum le clavier, le focus visible, l’état vide, l’erreur de chargement et le viewport mobile de 390 px. Ne pas supprimer un test rouge ni réduire son assertion sans corriger la cause ou documenter explicitement le nouveau contrat.
 
 ## Débogage

@@ -224,7 +224,7 @@
   },
   "tests": {
     "node": 244,
-    "browser": 20
+    "browser": 31
   },
   "lighthouse": {
     "tool": {

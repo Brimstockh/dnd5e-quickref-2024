@@ -275,7 +275,7 @@ Un baseline Lighthouse reproductible complète désormais ces budgets statiques.
 
 La documentation est maintenant regroupée dans `docs/architecture.md`, `docs/content-model.md`, `docs/testing.md`, `docs/pwa.md`, `docs/storage.md` et `docs/contributing.md`. Elle décrit les contrats de navigation, les index générés, les identifiants de contenu, le stockage local versionné, la recette, la PWA, la publication et la checklist d’une nouvelle fonctionnalité. `tests/developer-docs.test.mjs` vérifie que les documents essentiels restent présents et alignés sur les contrats actuels.
 
-Le protocole de test utilisateur est défini dans `docs/usability-test-plan.md` et sa grille de collecte dans `docs/usability-test-results-template.md`. Aucun résultat UX n’est présenté avant des sessions avec de vraies personnes.
+Le protocole de test utilisateur est défini dans `docs/usability-test-plan.md`, avec guide de modération, cartes de tâches, préparation d'environnement, audit technique et modèle d'analyse. La matrice Playwright est dans `tests/browser/usability-audit.spec.mjs`. Aucun résultat UX humain n’est présenté avant des sessions avec de vraies personnes.
 
 ### Phase 12 — Suppression de la dette finale (audit de sécurité réalisé)
 
