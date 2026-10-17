@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "count": 2483,
+  "count": 2468,
   "byType": {
     "action": 19,
     "adventuring-gear": 55,
@@ -16,7 +16,7 @@
     "glossary": 167,
     "lore": 74,
     "magic-item": 347,
-    "monster": 503,
+    "monster": 488,
     "movement": 13,
     "page": 35,
     "reaction": 3,
@@ -29,7 +29,7 @@
   },
   "bySection": {
     "Règles": 321,
-    "Compendium": 1379,
+    "Compendium": 1364,
     "Création": 695,
     "Univers": 82,
     "Ma table": 6

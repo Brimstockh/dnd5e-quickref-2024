@@ -178,7 +178,7 @@ Le working tree hors `.git` et `node_modules` représente environ 170 MiB. Le d�
 Les contrôles actuels couvrent bien les index, contrats, liens, navigation, images spécialisées, métadonnées prioritaires, accessibilité et plusieurs parcours Playwright. La recette affiche cependant plusieurs audits informatifs non bloquants :
 
 - audit qualité des objets magiques : 347 entrées, 92 anomalies éditoriales ;
-- monstres : 19 images manquantes et 15 traductions non résolues, signalées sans faire échouer le script ;
+- monstres : 488 entrées traduites, portraits WebP validés et anomalies restantes signalées par `audit:monsters` ;
 - Lighthouse et mesures de chargement réel : non bloquants et non intégrés au budget CI.
 
 Les budgets automatisés portent surtout sur des JSON, quelques modules/outils et deux images hero. Ils ne couvrent pas encore le JavaScript initial, le CSS initial, le nombre de requêtes, le poids du précache ou le coût mobile. Le budget `data/magic-items.json` est maintenant respecté après sa compaction mécanique ; les budgets frontend dédiés restent à construire en phase 9.

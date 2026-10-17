@@ -13,8 +13,10 @@ test("monster translations cover every dataset entry without touching technical 
   const unresolvedNames = unresolved.map((entry) => entry.en);
 
   assert.equal(translationData.count, monsters.length);
+  assert.equal(monsters.length, 488);
   assert.equal(translationData.resolvedCount, resolvedNames.length);
   assert.equal(translationData.unresolvedCount, unresolved.length);
+  assert.equal(unresolved.length, 0);
   assert.equal(new Set([...resolvedNames, ...unresolvedNames]).size, monsters.length);
   assert.deepEqual(resolvedNames.filter((name) => !monsterNames.has(name)), []);
   assert.deepEqual(unresolvedNames.filter((name) => !monsterNames.has(name)), []);
