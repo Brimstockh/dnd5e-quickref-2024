@@ -36,7 +36,7 @@ Les détails Lighthouse sont conservés dans [`reports/lighthouse/baseline.json`
 - `dons.html` utilise le catalogue partagé, son accent Création, les polices du design system et ses contrôles responsive. `monstres.html` conserve le catalogue legacy spécialisé.
 - L’audit d’assets est déterministe, affiche le premier chemin divergent en mode `--check` et ne supprime aucun fichier sans preuve de rupture d’URL inexistante.
 - Le CLS historique de Sorts (`0,19964`) venait de l’apparition de la scrollbar après rendu des données ; `scrollbar-gutter: stable` le ramène à `0,00967` dans le même preset Lighthouse.
-- La provenance des 391 sorts est désormais rattachée au Manuel des Joueurs 2024 via `sourceRefsByType`; les 503 monstres restent sans mapping global faute de source complète vérifiable pour tout le dataset.
+- La provenance des 391 sorts est désormais rattachée au Manuel des Joueurs 2024 via `sourceRefsByType`; les 488 monstres restent sans mapping global faute de source complète vérifiable pour tout le dataset.
 - Les budgets de données, PWA et qualité sont intégrés aux audits et au rapport déterministe.
 - Le protocole et la grille de test utilisateur sont prêts dans [`usability-test-plan.md`](usability-test-plan.md) et [`usability-test-results-template.md`](usability-test-results-template.md), avec mesures de recherche, navigation, viewport et thème. Aucun résultat UX n’est inventé avant les sessions réelles.
 

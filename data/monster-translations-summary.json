@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "title": "Synthèse de la traduction française des monstres 2024",
   "scope": {
-    "totalMonsters": 503,
+    "totalMonsters": 488,
     "confirmedFrenchTranslations": 488,
-    "unresolvedFrenchTranslations": 15,
+    "unresolvedFrenchTranslations": 0,
     "unaccountedMonsters": 0,
     "coverageComplete": true
   },
@@ -26,8 +26,8 @@
     "displayUsesFrenchNames": true,
     "searchSupportsFrenchAndEnglish": true,
     "sortingUsesFrenchNames": true,
-    "unresolvedNamesKeepEnglishFallback": true,
-    "unresolvedNamesAreExplicitlyMarked": true,
+    "unresolvedNamesKeepEnglishFallback": false,
+    "unresolvedNamesAreExplicitlyMarked": false,
     "globalSearchIndexRegenerated": true
   },
   "validation": {
@@ -45,98 +45,8 @@
       "Contrôle des débordements visuels"
     ]
   },
-  "unresolvedMonsters": [
-    {
-      "nameEn": "Aberrant Spirit",
-      "candidateFrenchLabels": [
-        "Esprit aberrant"
-      ]
-    },
-    {
-      "nameEn": "Animated Object",
-      "candidateFrenchLabels": [
-        "Objet animé"
-      ]
-    },
-    {
-      "nameEn": "Beast Of the Land",
-      "candidateFrenchLabels": [
-        "Bête de la terre"
-      ]
-    },
-    {
-      "nameEn": "Beast Of the Sea",
-      "candidateFrenchLabels": [
-        "Bête de la mer"
-      ]
-    },
-    {
-      "nameEn": "Beast Of the Sky",
-      "candidateFrenchLabels": [
-        "Bête du ciel"
-      ]
-    },
-    {
-      "nameEn": "Bestial Spirit",
-      "candidateFrenchLabels": [
-        "Esprit bestial"
-      ]
-    },
-    {
-      "nameEn": "Celestial Spirit",
-      "candidateFrenchLabels": [
-        "Esprit céleste"
-      ]
-    },
-    {
-      "nameEn": "Construct Spirit",
-      "candidateFrenchLabels": [
-        "Esprit artificiel"
-      ]
-    },
-    {
-      "nameEn": "Draconic Spirit",
-      "candidateFrenchLabels": [
-        "Esprit draconique"
-      ]
-    },
-    {
-      "nameEn": "Elemental Spirit",
-      "candidateFrenchLabels": [
-        "Esprit élémentaire"
-      ]
-    },
-    {
-      "nameEn": "Fey Spirit",
-      "candidateFrenchLabels": [
-        "Esprit féerique"
-      ]
-    },
-    {
-      "nameEn": "Fiendish Spirit",
-      "candidateFrenchLabels": [
-        "Esprit fiélon"
-      ]
-    },
-    {
-      "nameEn": "Giant Insect",
-      "candidateFrenchLabels": [
-        "Insecte géant"
-      ]
-    },
-    {
-      "nameEn": "Otherworldly Steed",
-      "candidateFrenchLabels": [
-        "Monture d'outre-monde"
-      ]
-    },
-    {
-      "nameEn": "Undead Spirit",
-      "candidateFrenchLabels": [
-        "Esprit mort-vivant"
-      ]
-    }
-  ],
+  "unresolvedPolicy": "Aucune traduction française non résolue ne subsiste dans le périmètre du bestiaire.",
+  "unresolvedMonsters": [],
   "monsterNameCorrespondence": [
     {
       "id": 1,
@@ -158,16 +68,6 @@
       "nameEn": "Aberrant Cultist",
       "nameFr": "Sectateur de l'Aberration",
       "status": "confirmed"
-    },
-    {
-      "id": 4,
-      "slug": "aberrant-spirit",
-      "nameEn": "Aberrant Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit aberrant"
-      ]
     },
     {
       "id": 5,
@@ -366,16 +266,6 @@
       "status": "confirmed"
     },
     {
-      "id": 33,
-      "slug": "animated-object",
-      "nameEn": "Animated Object",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Objet animé"
-      ]
-    },
-    {
       "id": 34,
       "slug": "animated-rug-of-smothering",
       "nameEn": "Animated Rug Of Smothering",
@@ -572,36 +462,6 @@
       "status": "confirmed"
     },
     {
-      "id": 62,
-      "slug": "beast-of-the-land",
-      "nameEn": "Beast Of the Land",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Bête de la terre"
-      ]
-    },
-    {
-      "id": 63,
-      "slug": "beast-of-the-sea",
-      "nameEn": "Beast Of the Sea",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Bête de la mer"
-      ]
-    },
-    {
-      "id": 64,
-      "slug": "beast-of-the-sky",
-      "nameEn": "Beast Of the Sky",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Bête du ciel"
-      ]
-    },
-    {
       "id": 65,
       "slug": "behir",
       "nameEn": "Behir",
@@ -635,16 +495,6 @@
       "nameEn": "Berserker Commander",
       "nameFr": "Chef berserker",
       "status": "confirmed"
-    },
-    {
-      "id": 70,
-      "slug": "bestial-spirit",
-      "nameEn": "Bestial Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit bestial"
-      ]
     },
     {
       "id": 71,
@@ -822,16 +672,6 @@
       "status": "confirmed"
     },
     {
-      "id": 96,
-      "slug": "celestial-spirit",
-      "nameEn": "Celestial Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit céleste"
-      ]
-    },
-    {
       "id": 97,
       "slug": "centaur-trooper",
       "nameEn": "Centaur Trooper",
@@ -928,16 +768,6 @@
       "nameEn": "Constrictor Snake",
       "nameFr": "Serpent constricteur",
       "status": "confirmed"
-    },
-    {
-      "id": 111,
-      "slug": "construct-spirit",
-      "nameEn": "Construct Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit artificiel"
-      ]
     },
     {
       "id": 112,
@@ -1129,16 +959,6 @@
       "status": "confirmed"
     },
     {
-      "id": 139,
-      "slug": "draconic-spirit",
-      "nameEn": "Draconic Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit draconique"
-      ]
-    },
-    {
       "id": 140,
       "slug": "draft-horse",
       "nameEn": "Draft Horse",
@@ -1223,16 +1043,6 @@
       "status": "confirmed"
     },
     {
-      "id": 152,
-      "slug": "elemental-spirit",
-      "nameEn": "Elemental Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit élémentaire"
-      ]
-    },
-    {
       "id": 153,
       "slug": "elephant",
       "nameEn": "Elephant",
@@ -1296,31 +1106,11 @@
       "status": "confirmed"
     },
     {
-      "id": 162,
-      "slug": "fey-spirit",
-      "nameEn": "Fey Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit féerique"
-      ]
-    },
-    {
       "id": 163,
       "slug": "fiend-cultist",
       "nameEn": "Fiend Cultist",
       "nameFr": "Sectateur du Fiélon",
       "status": "confirmed"
-    },
-    {
-      "id": 164,
-      "slug": "fiendish-spirit",
-      "nameEn": "Fiendish Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit fiélon"
-      ]
     },
     {
       "id": 165,
@@ -1552,16 +1342,6 @@
       "nameEn": "Giant Hyena",
       "nameFr": "Hyène géante",
       "status": "confirmed"
-    },
-    {
-      "id": 198,
-      "slug": "giant-insect",
-      "nameEn": "Giant Insect",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Insecte géant"
-      ]
     },
     {
       "id": 199,
@@ -2551,16 +2331,6 @@
       "status": "confirmed"
     },
     {
-      "id": 340,
-      "slug": "otherworldly-steed",
-      "nameEn": "Otherworldly Steed",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Monture d'outre-monde"
-      ]
-    },
-    {
       "id": 341,
       "slug": "otyugh",
       "nameEn": "Otyugh",
@@ -3310,16 +3080,6 @@
       "status": "confirmed"
     },
     {
-      "id": 448,
-      "slug": "undead-spirit",
-      "nameEn": "Undead Spirit",
-      "nameFr": null,
-      "status": "unresolved",
-      "candidateFrenchLabels": [
-        "Esprit mort-vivant"
-      ]
-    },
-    {
       "id": 449,
       "slug": "unicorn",
       "nameEn": "Unicorn",
@@ -3704,6 +3464,5 @@
       "nameFr": "Dragon fée vénérable",
       "status": "confirmed"
     }
-  ],
-  "unresolvedPolicy": "Aucune traduction française non attestée dans les photographies n'est affichée comme confirmée. Les 15 noms restent en anglais et portent la mention de traduction non résolue."
+  ]
 }

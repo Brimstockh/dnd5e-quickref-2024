@@ -5,9 +5,9 @@
     "img"
   ],
   "summary": {
-    "files": 740,
-    "bytes": 131171611,
-    "referenced": 740,
+    "files": 744,
+    "bytes": 130484675,
+    "referenced": 744,
     "unreferenced": 0,
     "pngWithModernVariant": 46,
     "largePngWithoutModernVariant": 0,
@@ -15,15 +15,15 @@
     "byFormat": {
       "svg": {
         "files": 18,
-        "bytes": 49147
+        "bytes": 49255
       },
       "png": {
         "files": 94,
         "bytes": 9040972
       },
       "webp": {
-        "files": 599,
-        "bytes": 109109993
+        "files": 603,
+        "bytes": 108422949
       },
       "jpg": {
         "files": 29,
@@ -78,11 +78,6 @@
       "extension": ".png"
     },
     {
-      "path": "img/enemies/Dragon/Ancient Fey Dragon.webp",
-      "bytes": 438990,
-      "extension": ".webp"
-    },
-    {
       "path": "img/vip/Volo.webp",
       "bytes": 438688,
       "extension": ".webp"
@@ -90,6 +85,11 @@
     {
       "path": "img/map/Chult-1.webp",
       "bytes": 436480,
+      "extension": ".webp"
+    },
+    {
+      "path": "img/enemies/Dragon/Ancient Fey Dragon.webp",
+      "bytes": 427612,
       "extension": ".webp"
     },
     {
@@ -109,22 +109,22 @@
     },
     {
       "path": "img/enemies/Dragon/Half-dragon.webp",
-      "bytes": 366152,
+      "bytes": 364658,
       "extension": ".webp"
     },
     {
       "path": "img/enemies/Elemental/Marid.webp",
-      "bytes": 364756,
-      "extension": ".webp"
-    },
-    {
-      "path": "img/enemies/Beast/Octopus.webp",
-      "bytes": 357530,
+      "bytes": 362728,
       "extension": ".webp"
     },
     {
       "path": "img/enemies/Aberration/Gibbering Mouther.webp",
-      "bytes": 356988,
+      "bytes": 355994,
+      "extension": ".webp"
+    },
+    {
+      "path": "img/enemies/Beast/Octopus.webp",
+      "bytes": 353674,
       "extension": ".webp"
     },
     {
@@ -134,27 +134,27 @@
     },
     {
       "path": "img/enemies/Fiend/Erinyes.webp",
-      "bytes": 345194,
+      "bytes": 343030,
       "extension": ".webp"
     },
     {
       "path": "img/enemies/Elemental/Efreeti.webp",
-      "bytes": 338262,
+      "bytes": 336950,
       "extension": ".webp"
     },
     {
       "path": "img/enemies/Beast/Crocodile.webp",
-      "bytes": 329852,
+      "bytes": 327610,
       "extension": ".webp"
     },
     {
       "path": "img/enemies/Beast/Triceratops.webp",
-      "bytes": 326676,
+      "bytes": 324982,
       "extension": ".webp"
     },
     {
-      "path": "img/enemies/Monstrosity/Merrow.webp",
-      "bytes": 325834,
+      "path": "img/enemies/Beast/Rhinoceros.webp",
+      "bytes": 324272,
       "extension": ".webp"
     }
   ],
@@ -162,7 +162,7 @@
     {
       "path": "assets/decor/arcane-circle.svg",
       "extension": ".svg",
-      "bytes": 845,
+      "bytes": 859,
       "dimensions": {
         "width": 400,
         "height": 400
@@ -180,7 +180,7 @@
     {
       "path": "assets/decor/header-lines.svg",
       "extension": ".svg",
-      "bytes": 347,
+      "bytes": 352,
       "dimensions": {
         "width": 1400,
         "height": 14
@@ -197,7 +197,7 @@
     {
       "path": "assets/decor/panel-corners.svg",
       "extension": ".svg",
-      "bytes": 705,
+      "bytes": 714,
       "dimensions": {
         "width": 800,
         "height": 500
@@ -215,7 +215,7 @@
     {
       "path": "assets/decor/section-divider.svg",
       "extension": ".svg",
-      "bytes": 382,
+      "bytes": 387,
       "dimensions": {
         "width": 600,
         "height": 32
@@ -270,7 +270,7 @@
     {
       "path": "assets/icons/site-emblem.svg",
       "extension": ".svg",
-      "bytes": 1006,
+      "bytes": 1018,
       "dimensions": {
         "width": 64,
         "height": 64
@@ -287,7 +287,7 @@
     {
       "path": "assets/icons/site-icons.svg",
       "extension": ".svg",
-      "bytes": 9370,
+      "bytes": 9433,
       "dimensions": {
         "width": 64,
         "height": 64
@@ -3059,7 +3059,7 @@
     {
       "path": "img/enemies/Aberration/Aboleth.webp",
       "extension": ".webp",
-      "bytes": 242740,
+      "bytes": 239878,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3075,7 +3075,7 @@
     {
       "path": "img/enemies/Aberration/Beholder.webp",
       "extension": ".webp",
-      "bytes": 128268,
+      "bytes": 126222,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3091,7 +3091,7 @@
     {
       "path": "img/enemies/Aberration/Blue Slaad.webp",
       "extension": ".webp",
-      "bytes": 235366,
+      "bytes": 233510,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3107,7 +3107,7 @@
     {
       "path": "img/enemies/Aberration/Chuul.webp",
       "extension": ".webp",
-      "bytes": 245610,
+      "bytes": 241762,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3123,7 +3123,7 @@
     {
       "path": "img/enemies/Aberration/Cloaker.webp",
       "extension": ".webp",
-      "bytes": 121388,
+      "bytes": 116022,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3139,7 +3139,7 @@
     {
       "path": "img/enemies/Aberration/Darkmantle.webp",
       "extension": ".webp",
-      "bytes": 93162,
+      "bytes": 89118,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3155,7 +3155,7 @@
     {
       "path": "img/enemies/Aberration/Death Slaad.webp",
       "extension": ".webp",
-      "bytes": 187628,
+      "bytes": 185722,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3187,7 +3187,7 @@
     {
       "path": "img/enemies/Aberration/Gibbering Mouther.webp",
       "extension": ".webp",
-      "bytes": 356988,
+      "bytes": 355994,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3203,7 +3203,7 @@
     {
       "path": "img/enemies/Aberration/Githyanki Dracomancer.webp",
       "extension": ".webp",
-      "bytes": 279662,
+      "bytes": 278106,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3219,7 +3219,7 @@
     {
       "path": "img/enemies/Aberration/Githyanki Knight.webp",
       "extension": ".webp",
-      "bytes": 138168,
+      "bytes": 132894,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3235,7 +3235,7 @@
     {
       "path": "img/enemies/Aberration/Githyanki Warrior.webp",
       "extension": ".webp",
-      "bytes": 221258,
+      "bytes": 219688,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3251,7 +3251,7 @@
     {
       "path": "img/enemies/Aberration/Githzerai Monk.webp",
       "extension": ".webp",
-      "bytes": 160816,
+      "bytes": 156514,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3267,7 +3267,7 @@
     {
       "path": "img/enemies/Aberration/Githzerai Psion.webp",
       "extension": ".webp",
-      "bytes": 187584,
+      "bytes": 185322,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3283,7 +3283,7 @@
     {
       "path": "img/enemies/Aberration/Githzerai Zerth.webp",
       "extension": ".webp",
-      "bytes": 156698,
+      "bytes": 152576,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3299,7 +3299,7 @@
     {
       "path": "img/enemies/Aberration/Gray Slaad.webp",
       "extension": ".webp",
-      "bytes": 133294,
+      "bytes": 129534,
       "dimensions": {
         "width": 1170,
         "height": 1344
@@ -3315,7 +3315,7 @@
     {
       "path": "img/enemies/Aberration/Green Slaad.webp",
       "extension": ".webp",
-      "bytes": 186738,
+      "bytes": 183316,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3331,7 +3331,7 @@
     {
       "path": "img/enemies/Aberration/Grell.webp",
       "extension": ".webp",
-      "bytes": 218768,
+      "bytes": 216032,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3347,7 +3347,7 @@
     {
       "path": "img/enemies/Aberration/Grick Ancient.webp",
       "extension": ".webp",
-      "bytes": 148334,
+      "bytes": 143008,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3363,7 +3363,7 @@
     {
       "path": "img/enemies/Aberration/Grick.webp",
       "extension": ".webp",
-      "bytes": 163738,
+      "bytes": 159346,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3379,7 +3379,7 @@
     {
       "path": "img/enemies/Aberration/Grimlock.webp",
       "extension": ".webp",
-      "bytes": 162642,
+      "bytes": 160484,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3395,7 +3395,7 @@
     {
       "path": "img/enemies/Aberration/Intellect Devourer.webp",
       "extension": ".webp",
-      "bytes": 165268,
+      "bytes": 163540,
       "dimensions": {
         "width": 1121,
         "height": 1403
@@ -3411,7 +3411,7 @@
     {
       "path": "img/enemies/Aberration/Kuo-toa Archpriest.webp",
       "extension": ".webp",
-      "bytes": 167426,
+      "bytes": 163298,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3427,7 +3427,7 @@
     {
       "path": "img/enemies/Aberration/Kuo-toa Monitor.webp",
       "extension": ".webp",
-      "bytes": 166312,
+      "bytes": 162770,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3443,7 +3443,7 @@
     {
       "path": "img/enemies/Aberration/Kuo-toa Whip.webp",
       "extension": ".webp",
-      "bytes": 162426,
+      "bytes": 157652,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3459,7 +3459,7 @@
     {
       "path": "img/enemies/Aberration/Kuo-toa.webp",
       "extension": ".webp",
-      "bytes": 156132,
+      "bytes": 150876,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3475,7 +3475,7 @@
     {
       "path": "img/enemies/Aberration/Mind Flayer Arcanist.webp",
       "extension": ".webp",
-      "bytes": 209102,
+      "bytes": 205076,
       "dimensions": {
         "width": 1085,
         "height": 1449
@@ -3491,7 +3491,7 @@
     {
       "path": "img/enemies/Aberration/Mind Flayer.webp",
       "extension": ".webp",
-      "bytes": 107744,
+      "bytes": 102356,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3507,7 +3507,7 @@
     {
       "path": "img/enemies/Aberration/Nothic.webp",
       "extension": ".webp",
-      "bytes": 199308,
+      "bytes": 196710,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3523,7 +3523,7 @@
     {
       "path": "img/enemies/Aberration/Otyugh.webp",
       "extension": ".webp",
-      "bytes": 262766,
+      "bytes": 259362,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3539,7 +3539,7 @@
     {
       "path": "img/enemies/Aberration/Piercer.webp",
       "extension": ".webp",
-      "bytes": 215058,
+      "bytes": 213306,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -3555,7 +3555,7 @@
     {
       "path": "img/enemies/Aberration/Red Slaad.webp",
       "extension": ".webp",
-      "bytes": 157846,
+      "bytes": 152754,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3571,7 +3571,7 @@
     {
       "path": "img/enemies/Aberration/Roper.webp",
       "extension": ".webp",
-      "bytes": 213350,
+      "bytes": 208548,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3587,7 +3587,7 @@
     {
       "path": "img/enemies/Aberration/Slaad Tadpole.webp",
       "extension": ".webp",
-      "bytes": 121684,
+      "bytes": 117702,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3603,7 +3603,7 @@
     {
       "path": "img/enemies/Aberration/Spectator.webp",
       "extension": ".webp",
-      "bytes": 180522,
+      "bytes": 176676,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3619,7 +3619,7 @@
     {
       "path": "img/enemies/Beast/Allosaurus.webp",
       "extension": ".webp",
-      "bytes": 255854,
+      "bytes": 252740,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -3636,7 +3636,7 @@
     {
       "path": "img/enemies/Beast/Ankylosaurus.webp",
       "extension": ".webp",
-      "bytes": 242386,
+      "bytes": 236540,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3652,7 +3652,7 @@
     {
       "path": "img/enemies/Beast/Ape.webp",
       "extension": ".webp",
-      "bytes": 248582,
+      "bytes": 246774,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -3668,7 +3668,7 @@
     {
       "path": "img/enemies/Beast/Archelon.webp",
       "extension": ".webp",
-      "bytes": 256446,
+      "bytes": 252910,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -3684,7 +3684,7 @@
     {
       "path": "img/enemies/Beast/Baboon.webp",
       "extension": ".webp",
-      "bytes": 310646,
+      "bytes": 308686,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -3700,7 +3700,7 @@
     {
       "path": "img/enemies/Beast/Badger.webp",
       "extension": ".webp",
-      "bytes": 247902,
+      "bytes": 246468,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3716,7 +3716,7 @@
     {
       "path": "img/enemies/Beast/Bat.webp",
       "extension": ".webp",
-      "bytes": 125312,
+      "bytes": 120806,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3732,7 +3732,7 @@
     {
       "path": "img/enemies/Beast/Black Bear.webp",
       "extension": ".webp",
-      "bytes": 169478,
+      "bytes": 165648,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3748,7 +3748,7 @@
     {
       "path": "img/enemies/Beast/Blood Hawk.webp",
       "extension": ".webp",
-      "bytes": 114942,
+      "bytes": 109808,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3764,7 +3764,7 @@
     {
       "path": "img/enemies/Beast/Boar.webp",
       "extension": ".webp",
-      "bytes": 268478,
+      "bytes": 266784,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3780,7 +3780,7 @@
     {
       "path": "img/enemies/Beast/Brown Bear.webp",
       "extension": ".webp",
-      "bytes": 273546,
+      "bytes": 271178,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3796,7 +3796,7 @@
     {
       "path": "img/enemies/Beast/Camel.webp",
       "extension": ".webp",
-      "bytes": 203314,
+      "bytes": 200904,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3812,7 +3812,7 @@
     {
       "path": "img/enemies/Beast/Cat.webp",
       "extension": ".webp",
-      "bytes": 151818,
+      "bytes": 148272,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3828,7 +3828,7 @@
     {
       "path": "img/enemies/Beast/Constrictor Snake.webp",
       "extension": ".webp",
-      "bytes": 221392,
+      "bytes": 217888,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3844,7 +3844,7 @@
     {
       "path": "img/enemies/Beast/Crab.webp",
       "extension": ".webp",
-      "bytes": 193184,
+      "bytes": 191114,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3860,7 +3860,7 @@
     {
       "path": "img/enemies/Beast/Crocodile.webp",
       "extension": ".webp",
-      "bytes": 329852,
+      "bytes": 327610,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3876,7 +3876,7 @@
     {
       "path": "img/enemies/Beast/Deer.webp",
       "extension": ".webp",
-      "bytes": 210100,
+      "bytes": 207898,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3892,7 +3892,7 @@
     {
       "path": "img/enemies/Beast/Dire Wolf.webp",
       "extension": ".webp",
-      "bytes": 130902,
+      "bytes": 126148,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3908,7 +3908,7 @@
     {
       "path": "img/enemies/Beast/Draft Horse.webp",
       "extension": ".webp",
-      "bytes": 190104,
+      "bytes": 188106,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3924,7 +3924,7 @@
     {
       "path": "img/enemies/Beast/Eagle.webp",
       "extension": ".webp",
-      "bytes": 188416,
+      "bytes": 182042,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3940,7 +3940,7 @@
     {
       "path": "img/enemies/Beast/Elephant.webp",
       "extension": ".webp",
-      "bytes": 270700,
+      "bytes": 267588,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3956,7 +3956,7 @@
     {
       "path": "img/enemies/Beast/Elk.webp",
       "extension": ".webp",
-      "bytes": 241308,
+      "bytes": 239700,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -3972,7 +3972,7 @@
     {
       "path": "img/enemies/Beast/Frog.webp",
       "extension": ".webp",
-      "bytes": 176712,
+      "bytes": 174002,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -3988,7 +3988,7 @@
     {
       "path": "img/enemies/Beast/Giant Ape.webp",
       "extension": ".webp",
-      "bytes": 143730,
+      "bytes": 139886,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4004,7 +4004,7 @@
     {
       "path": "img/enemies/Beast/Giant Badger.webp",
       "extension": ".webp",
-      "bytes": 239770,
+      "bytes": 237116,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4020,7 +4020,7 @@
     {
       "path": "img/enemies/Beast/Giant Bat.webp",
       "extension": ".webp",
-      "bytes": 123568,
+      "bytes": 118954,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4036,7 +4036,7 @@
     {
       "path": "img/enemies/Beast/Giant Boar.webp",
       "extension": ".webp",
-      "bytes": 210806,
+      "bytes": 208834,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4052,7 +4052,7 @@
     {
       "path": "img/enemies/Beast/Giant Centipede.webp",
       "extension": ".webp",
-      "bytes": 225402,
+      "bytes": 223790,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4068,7 +4068,7 @@
     {
       "path": "img/enemies/Beast/Giant Constrictor Snake.webp",
       "extension": ".webp",
-      "bytes": 252576,
+      "bytes": 251048,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4084,7 +4084,7 @@
     {
       "path": "img/enemies/Beast/Giant Crab.webp",
       "extension": ".webp",
-      "bytes": 207732,
+      "bytes": 204128,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4100,7 +4100,7 @@
     {
       "path": "img/enemies/Beast/Giant Crocodile.webp",
       "extension": ".webp",
-      "bytes": 203694,
+      "bytes": 202604,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4116,7 +4116,7 @@
     {
       "path": "img/enemies/Beast/Giant Fire Beetle.webp",
       "extension": ".webp",
-      "bytes": 280132,
+      "bytes": 278282,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4132,7 +4132,7 @@
     {
       "path": "img/enemies/Beast/Giant Frog.webp",
       "extension": ".webp",
-      "bytes": 130726,
+      "bytes": 127034,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4148,7 +4148,7 @@
     {
       "path": "img/enemies/Beast/Giant Goat.webp",
       "extension": ".webp",
-      "bytes": 162886,
+      "bytes": 160128,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4164,7 +4164,7 @@
     {
       "path": "img/enemies/Beast/Giant Hyena.webp",
       "extension": ".webp",
-      "bytes": 155996,
+      "bytes": 153816,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4180,7 +4180,7 @@
     {
       "path": "img/enemies/Beast/Giant Lizard.webp",
       "extension": ".webp",
-      "bytes": 224666,
+      "bytes": 220152,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4196,7 +4196,7 @@
     {
       "path": "img/enemies/Beast/Giant Octopus.webp",
       "extension": ".webp",
-      "bytes": 248858,
+      "bytes": 244558,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4212,7 +4212,7 @@
     {
       "path": "img/enemies/Beast/Giant Rat.webp",
       "extension": ".webp",
-      "bytes": 126542,
+      "bytes": 122686,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4228,7 +4228,7 @@
     {
       "path": "img/enemies/Beast/Giant Scorpion.webp",
       "extension": ".webp",
-      "bytes": 238738,
+      "bytes": 234492,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4244,7 +4244,7 @@
     {
       "path": "img/enemies/Beast/Giant Seahorse.webp",
       "extension": ".webp",
-      "bytes": 144672,
+      "bytes": 141518,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4260,7 +4260,7 @@
     {
       "path": "img/enemies/Beast/Giant Shark.webp",
       "extension": ".webp",
-      "bytes": 215708,
+      "bytes": 210950,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4276,7 +4276,7 @@
     {
       "path": "img/enemies/Beast/Giant Spider.webp",
       "extension": ".webp",
-      "bytes": 222876,
+      "bytes": 220604,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4292,7 +4292,7 @@
     {
       "path": "img/enemies/Beast/Giant Squid.webp",
       "extension": ".webp",
-      "bytes": 172554,
+      "bytes": 168722,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4308,7 +4308,7 @@
     {
       "path": "img/enemies/Beast/Giant Toad.webp",
       "extension": ".webp",
-      "bytes": 298080,
+      "bytes": 295332,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4324,7 +4324,7 @@
     {
       "path": "img/enemies/Beast/Giant Venomous Snake.webp",
       "extension": ".webp",
-      "bytes": 195404,
+      "bytes": 190702,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4340,7 +4340,7 @@
     {
       "path": "img/enemies/Beast/Giant Wasp.webp",
       "extension": ".webp",
-      "bytes": 118520,
+      "bytes": 114224,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4356,7 +4356,7 @@
     {
       "path": "img/enemies/Beast/Giant Weasel.webp",
       "extension": ".webp",
-      "bytes": 202286,
+      "bytes": 199018,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4372,7 +4372,7 @@
     {
       "path": "img/enemies/Beast/Giant Wolf Spider.webp",
       "extension": ".webp",
-      "bytes": 210584,
+      "bytes": 208188,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4388,7 +4388,7 @@
     {
       "path": "img/enemies/Beast/Goat.webp",
       "extension": ".webp",
-      "bytes": 162118,
+      "bytes": 158762,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4404,7 +4404,7 @@
     {
       "path": "img/enemies/Beast/Hawk.webp",
       "extension": ".webp",
-      "bytes": 199576,
+      "bytes": 196482,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4420,7 +4420,7 @@
     {
       "path": "img/enemies/Beast/Hippopotamus.webp",
       "extension": ".webp",
-      "bytes": 189296,
+      "bytes": 186770,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4436,7 +4436,7 @@
     {
       "path": "img/enemies/Beast/Hunter Shark.webp",
       "extension": ".webp",
-      "bytes": 127170,
+      "bytes": 123558,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4452,7 +4452,7 @@
     {
       "path": "img/enemies/Beast/Hyena.webp",
       "extension": ".webp",
-      "bytes": 237352,
+      "bytes": 234222,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4468,7 +4468,7 @@
     {
       "path": "img/enemies/Beast/Jackal.webp",
       "extension": ".webp",
-      "bytes": 257800,
+      "bytes": 254962,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4484,7 +4484,7 @@
     {
       "path": "img/enemies/Beast/Killer Whale.webp",
       "extension": ".webp",
-      "bytes": 140068,
+      "bytes": 135878,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4500,7 +4500,7 @@
     {
       "path": "img/enemies/Beast/Lion.webp",
       "extension": ".webp",
-      "bytes": 254154,
+      "bytes": 249126,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4516,7 +4516,7 @@
     {
       "path": "img/enemies/Beast/Lizard.webp",
       "extension": ".webp",
-      "bytes": 157768,
+      "bytes": 156028,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -4532,7 +4532,7 @@
     {
       "path": "img/enemies/Beast/Mammoth.webp",
       "extension": ".webp",
-      "bytes": 188496,
+      "bytes": 186454,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4548,7 +4548,7 @@
     {
       "path": "img/enemies/Beast/Mastiff.webp",
       "extension": ".webp",
-      "bytes": 92012,
+      "bytes": 86388,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4564,7 +4564,7 @@
     {
       "path": "img/enemies/Beast/Mule.webp",
       "extension": ".webp",
-      "bytes": 264834,
+      "bytes": 263346,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4580,7 +4580,7 @@
     {
       "path": "img/enemies/Beast/Octopus.webp",
       "extension": ".webp",
-      "bytes": 357530,
+      "bytes": 353674,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4596,7 +4596,7 @@
     {
       "path": "img/enemies/Beast/Owl.webp",
       "extension": ".webp",
-      "bytes": 165110,
+      "bytes": 160410,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -4612,7 +4612,7 @@
     {
       "path": "img/enemies/Beast/Panther.webp",
       "extension": ".webp",
-      "bytes": 269490,
+      "bytes": 267672,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4628,7 +4628,7 @@
     {
       "path": "img/enemies/Beast/Piranha.webp",
       "extension": ".webp",
-      "bytes": 183276,
+      "bytes": 182398,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4644,7 +4644,7 @@
     {
       "path": "img/enemies/Beast/Plesiosaurus.webp",
       "extension": ".webp",
-      "bytes": 252286,
+      "bytes": 251334,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4660,7 +4660,7 @@
     {
       "path": "img/enemies/Beast/Polar Bear.webp",
       "extension": ".webp",
-      "bytes": 226236,
+      "bytes": 223172,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4676,7 +4676,7 @@
     {
       "path": "img/enemies/Beast/Pony.webp",
       "extension": ".webp",
-      "bytes": 112198,
+      "bytes": 108842,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4692,7 +4692,7 @@
     {
       "path": "img/enemies/Beast/Pteranodon.webp",
       "extension": ".webp",
-      "bytes": 262016,
+      "bytes": 260084,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4708,7 +4708,7 @@
     {
       "path": "img/enemies/Beast/Rat.webp",
       "extension": ".webp",
-      "bytes": 95372,
+      "bytes": 89286,
       "dimensions": {
         "width": 1103,
         "height": 1426
@@ -4724,7 +4724,7 @@
     {
       "path": "img/enemies/Beast/Raven.webp",
       "extension": ".webp",
-      "bytes": 154356,
+      "bytes": 150860,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4740,7 +4740,7 @@
     {
       "path": "img/enemies/Beast/Reef Shark.webp",
       "extension": ".webp",
-      "bytes": 99150,
+      "bytes": 95214,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4756,7 +4756,7 @@
     {
       "path": "img/enemies/Beast/Rhinoceros.webp",
       "extension": ".webp",
-      "bytes": 325672,
+      "bytes": 324272,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4772,7 +4772,7 @@
     {
       "path": "img/enemies/Beast/Riding Horse.webp",
       "extension": ".webp",
-      "bytes": 255528,
+      "bytes": 254528,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4788,7 +4788,7 @@
     {
       "path": "img/enemies/Beast/Saber-toothed Tiger.webp",
       "extension": ".webp",
-      "bytes": 194650,
+      "bytes": 189456,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -4804,7 +4804,7 @@
     {
       "path": "img/enemies/Beast/Scorpion.webp",
       "extension": ".webp",
-      "bytes": 219894,
+      "bytes": 215536,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4820,7 +4820,7 @@
     {
       "path": "img/enemies/Beast/Seahorse.webp",
       "extension": ".webp",
-      "bytes": 190194,
+      "bytes": 187208,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4836,7 +4836,7 @@
     {
       "path": "img/enemies/Beast/Spider.webp",
       "extension": ".webp",
-      "bytes": 167494,
+      "bytes": 164378,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4852,7 +4852,7 @@
     {
       "path": "img/enemies/Beast/Tiger.webp",
       "extension": ".webp",
-      "bytes": 249308,
+      "bytes": 247454,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4868,7 +4868,7 @@
     {
       "path": "img/enemies/Beast/Triceratops.webp",
       "extension": ".webp",
-      "bytes": 326676,
+      "bytes": 324982,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4884,7 +4884,7 @@
     {
       "path": "img/enemies/Beast/Tyrannosaurus Rex.webp",
       "extension": ".webp",
-      "bytes": 246194,
+      "bytes": 244212,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4900,7 +4900,7 @@
     {
       "path": "img/enemies/Beast/Venomous Snake.webp",
       "extension": ".webp",
-      "bytes": 164940,
+      "bytes": 162028,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4916,7 +4916,7 @@
     {
       "path": "img/enemies/Beast/Vulture.webp",
       "extension": ".webp",
-      "bytes": 135722,
+      "bytes": 132526,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4932,7 +4932,7 @@
     {
       "path": "img/enemies/Beast/Warhorse.webp",
       "extension": ".webp",
-      "bytes": 125334,
+      "bytes": 119724,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4948,7 +4948,7 @@
     {
       "path": "img/enemies/Beast/Weasel.webp",
       "extension": ".webp",
-      "bytes": 137670,
+      "bytes": 134284,
       "dimensions": {
         "width": 941,
         "height": 1672
@@ -4964,7 +4964,7 @@
     {
       "path": "img/enemies/Beast/Wolf.webp",
       "extension": ".webp",
-      "bytes": 270936,
+      "bytes": 267938,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -4980,7 +4980,7 @@
     {
       "path": "img/enemies/Celestial/Animal Lord.webp",
       "extension": ".webp",
-      "bytes": 228460,
+      "bytes": 226026,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -4996,7 +4996,7 @@
     {
       "path": "img/enemies/Celestial/Couatl.webp",
       "extension": ".webp",
-      "bytes": 185514,
+      "bytes": 182188,
       "dimensions": {
         "width": 1119,
         "height": 1405
@@ -5012,7 +5012,7 @@
     {
       "path": "img/enemies/Celestial/Deva.webp",
       "extension": ".webp",
-      "bytes": 189824,
+      "bytes": 186998,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -5026,9 +5026,25 @@
       "recommendation": "keep"
     },
     {
+      "path": "img/enemies/Celestial/Empyrean Iota.webp",
+      "extension": ".webp",
+      "bytes": 254312,
+      "dimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "data/monsters_2024.json"
+      ],
+      "referenceMode": "inferred",
+      "recommendation": "keep"
+    },
+    {
       "path": "img/enemies/Celestial/Empyrean.webp",
       "extension": ".webp",
-      "bytes": 257548,
+      "bytes": 255166,
       "dimensions": {
         "width": 1123,
         "height": 1401
@@ -5044,7 +5060,7 @@
     {
       "path": "img/enemies/Celestial/Giant Eagle.webp",
       "extension": ".webp",
-      "bytes": 192126,
+      "bytes": 188134,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5060,7 +5076,7 @@
     {
       "path": "img/enemies/Celestial/Giant Elk.webp",
       "extension": ".webp",
-      "bytes": 239728,
+      "bytes": 237752,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5076,7 +5092,7 @@
     {
       "path": "img/enemies/Celestial/Giant Owl.webp",
       "extension": ".webp",
-      "bytes": 218738,
+      "bytes": 215986,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5092,7 +5108,7 @@
     {
       "path": "img/enemies/Celestial/Guardian Naga.webp",
       "extension": ".webp",
-      "bytes": 236230,
+      "bytes": 235122,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5108,7 +5124,7 @@
     {
       "path": "img/enemies/Celestial/Pegasus.webp",
       "extension": ".webp",
-      "bytes": 167808,
+      "bytes": 162634,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5124,7 +5140,7 @@
     {
       "path": "img/enemies/Celestial/Planetar.webp",
       "extension": ".webp",
-      "bytes": 207592,
+      "bytes": 203600,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5140,7 +5156,7 @@
     {
       "path": "img/enemies/Celestial/Solar.webp",
       "extension": ".webp",
-      "bytes": 229656,
+      "bytes": 227942,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5156,7 +5172,7 @@
     {
       "path": "img/enemies/Celestial/Sphinx Of Lore.webp",
       "extension": ".webp",
-      "bytes": 315274,
+      "bytes": 313128,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5172,7 +5188,7 @@
     {
       "path": "img/enemies/Celestial/Sphinx Of Secrets.webp",
       "extension": ".webp",
-      "bytes": 237708,
+      "bytes": 236428,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -5188,7 +5204,7 @@
     {
       "path": "img/enemies/Celestial/Sphinx Of Valor.webp",
       "extension": ".webp",
-      "bytes": 279984,
+      "bytes": 279208,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5204,7 +5220,7 @@
     {
       "path": "img/enemies/Celestial/Sphinx Of Wonder.webp",
       "extension": ".webp",
-      "bytes": 251422,
+      "bytes": 248784,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5220,7 +5236,7 @@
     {
       "path": "img/enemies/Celestial/Unicorn.webp",
       "extension": ".webp",
-      "bytes": 247308,
+      "bytes": 244596,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5236,7 +5252,7 @@
     {
       "path": "img/enemies/Construct/Animated Armor.webp",
       "extension": ".webp",
-      "bytes": 144552,
+      "bytes": 142478,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5252,7 +5268,7 @@
     {
       "path": "img/enemies/Construct/Animated Broom.webp",
       "extension": ".webp",
-      "bytes": 119170,
+      "bytes": 115154,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5268,7 +5284,7 @@
     {
       "path": "img/enemies/Construct/Animated Flying Sword.webp",
       "extension": ".webp",
-      "bytes": 146328,
+      "bytes": 140782,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -5284,7 +5300,7 @@
     {
       "path": "img/enemies/Construct/Animated Rug Of Smothering.webp",
       "extension": ".webp",
-      "bytes": 241908,
+      "bytes": 239210,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5300,7 +5316,7 @@
     {
       "path": "img/enemies/Construct/Brazen Gorgon.webp",
       "extension": ".webp",
-      "bytes": 225438,
+      "bytes": 222534,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5316,7 +5332,7 @@
     {
       "path": "img/enemies/Construct/Clay Golem.webp",
       "extension": ".webp",
-      "bytes": 257006,
+      "bytes": 256158,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5332,7 +5348,7 @@
     {
       "path": "img/enemies/Construct/Colossus.webp",
       "extension": ".webp",
-      "bytes": 198910,
+      "bytes": 196370,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5348,7 +5364,7 @@
     {
       "path": "img/enemies/Construct/Flesh Golem.webp",
       "extension": ".webp",
-      "bytes": 216572,
+      "bytes": 214272,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5364,7 +5380,7 @@
     {
       "path": "img/enemies/Construct/Gorgon.webp",
       "extension": ".webp",
-      "bytes": 158296,
+      "bytes": 153714,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5380,7 +5396,7 @@
     {
       "path": "img/enemies/Construct/Helmed Horror.webp",
       "extension": ".webp",
-      "bytes": 169112,
+      "bytes": 164618,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5396,7 +5412,7 @@
     {
       "path": "img/enemies/Construct/Homunculus.webp",
       "extension": ".webp",
-      "bytes": 193124,
+      "bytes": 192040,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5412,7 +5428,7 @@
     {
       "path": "img/enemies/Construct/Iron Golem.webp",
       "extension": ".webp",
-      "bytes": 150448,
+      "bytes": 144288,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5428,7 +5444,7 @@
     {
       "path": "img/enemies/Construct/Scarecrow.webp",
       "extension": ".webp",
-      "bytes": 215384,
+      "bytes": 212256,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5444,7 +5460,7 @@
     {
       "path": "img/enemies/Construct/Shield Guardian.webp",
       "extension": ".webp",
-      "bytes": 160286,
+      "bytes": 155712,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5460,7 +5476,7 @@
     {
       "path": "img/enemies/Construct/Stone Golem.webp",
       "extension": ".webp",
-      "bytes": 174414,
+      "bytes": 171408,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5476,7 +5492,7 @@
     {
       "path": "img/enemies/Dragon/Adult Black Dragon.webp",
       "extension": ".webp",
-      "bytes": 199492,
+      "bytes": 195372,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5492,7 +5508,7 @@
     {
       "path": "img/enemies/Dragon/Adult Blue Dragon.webp",
       "extension": ".webp",
-      "bytes": 233976,
+      "bytes": 229962,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5508,7 +5524,7 @@
     {
       "path": "img/enemies/Dragon/Adult Brass Dragon.webp",
       "extension": ".webp",
-      "bytes": 242716,
+      "bytes": 241608,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5524,7 +5540,7 @@
     {
       "path": "img/enemies/Dragon/Adult Bronze Dragon.webp",
       "extension": ".webp",
-      "bytes": 225976,
+      "bytes": 221808,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5540,7 +5556,7 @@
     {
       "path": "img/enemies/Dragon/Adult Copper Dragon.webp",
       "extension": ".webp",
-      "bytes": 267932,
+      "bytes": 266180,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5556,7 +5572,7 @@
     {
       "path": "img/enemies/Dragon/Adult Fey Dragon.webp",
       "extension": ".webp",
-      "bytes": 321644,
+      "bytes": 317686,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5572,7 +5588,7 @@
     {
       "path": "img/enemies/Dragon/Adult Gold Dragon.webp",
       "extension": ".webp",
-      "bytes": 241636,
+      "bytes": 239528,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5588,7 +5604,7 @@
     {
       "path": "img/enemies/Dragon/Adult Green Dragon.webp",
       "extension": ".webp",
-      "bytes": 249812,
+      "bytes": 247694,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -5604,7 +5620,7 @@
     {
       "path": "img/enemies/Dragon/Adult Red Dragon.webp",
       "extension": ".webp",
-      "bytes": 165588,
+      "bytes": 161226,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5620,7 +5636,7 @@
     {
       "path": "img/enemies/Dragon/Adult Silver Dragon.webp",
       "extension": ".webp",
-      "bytes": 219230,
+      "bytes": 217954,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5636,7 +5652,7 @@
     {
       "path": "img/enemies/Dragon/Adult White Dragon.webp",
       "extension": ".webp",
-      "bytes": 258650,
+      "bytes": 257888,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5652,7 +5668,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Black Dragon.webp",
       "extension": ".webp",
-      "bytes": 176590,
+      "bytes": 173738,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5668,7 +5684,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Blue Dragon.webp",
       "extension": ".webp",
-      "bytes": 209856,
+      "bytes": 205280,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5684,7 +5700,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Brass Dragon.webp",
       "extension": ".webp",
-      "bytes": 277704,
+      "bytes": 273700,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5700,7 +5716,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Bronze Dragon.webp",
       "extension": ".webp",
-      "bytes": 310364,
+      "bytes": 308712,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5716,7 +5732,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Copper Dragon.webp",
       "extension": ".webp",
-      "bytes": 229548,
+      "bytes": 224698,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5732,7 +5748,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Fey Dragon.webp",
       "extension": ".webp",
-      "bytes": 438990,
+      "bytes": 427612,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5748,7 +5764,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Gold Dragon.webp",
       "extension": ".webp",
-      "bytes": 217032,
+      "bytes": 215020,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5764,7 +5780,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Green Dragon.webp",
       "extension": ".webp",
-      "bytes": 239816,
+      "bytes": 238104,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5780,7 +5796,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Red Dragon.webp",
       "extension": ".webp",
-      "bytes": 188056,
+      "bytes": 183456,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5796,7 +5812,7 @@
     {
       "path": "img/enemies/Dragon/Ancient Silver Dragon.webp",
       "extension": ".webp",
-      "bytes": 151116,
+      "bytes": 145422,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5812,7 +5828,7 @@
     {
       "path": "img/enemies/Dragon/Ancient White Dragon.webp",
       "extension": ".webp",
-      "bytes": 239840,
+      "bytes": 236498,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5828,7 +5844,7 @@
     {
       "path": "img/enemies/Dragon/Black Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 180368,
+      "bytes": 174936,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5844,7 +5860,7 @@
     {
       "path": "img/enemies/Dragon/Blue Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 238012,
+      "bytes": 236878,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5860,7 +5876,7 @@
     {
       "path": "img/enemies/Dragon/Brass Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 262250,
+      "bytes": 255794,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5876,7 +5892,7 @@
     {
       "path": "img/enemies/Dragon/Bronze Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 235948,
+      "bytes": 233646,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5892,7 +5908,7 @@
     {
       "path": "img/enemies/Dragon/Copper Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 259276,
+      "bytes": 258154,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5908,7 +5924,7 @@
     {
       "path": "img/enemies/Dragon/Dragon Turtle.webp",
       "extension": ".webp",
-      "bytes": 225754,
+      "bytes": 223112,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5924,7 +5940,7 @@
     {
       "path": "img/enemies/Dragon/Faerie Dragon Adult.webp",
       "extension": ".webp",
-      "bytes": 170940,
+      "bytes": 166998,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5940,7 +5956,7 @@
     {
       "path": "img/enemies/Dragon/Faerie Dragon Youth.webp",
       "extension": ".webp",
-      "bytes": 149434,
+      "bytes": 148004,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5956,7 +5972,7 @@
     {
       "path": "img/enemies/Dragon/Fey Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 289160,
+      "bytes": 281728,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5972,7 +5988,7 @@
     {
       "path": "img/enemies/Dragon/Gold Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 199538,
+      "bytes": 197794,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -5988,7 +6004,7 @@
     {
       "path": "img/enemies/Dragon/Green Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 216702,
+      "bytes": 214772,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6004,7 +6020,7 @@
     {
       "path": "img/enemies/Dragon/Half-dragon.webp",
       "extension": ".webp",
-      "bytes": 366152,
+      "bytes": 364658,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6020,7 +6036,7 @@
     {
       "path": "img/enemies/Dragon/Juvenile Shadow Dragon.webp",
       "extension": ".webp",
-      "bytes": 139348,
+      "bytes": 134318,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6036,7 +6052,7 @@
     {
       "path": "img/enemies/Dragon/Kobold Warrior.webp",
       "extension": ".webp",
-      "bytes": 112992,
+      "bytes": 109924,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6052,7 +6068,7 @@
     {
       "path": "img/enemies/Dragon/Pseudodragon.webp",
       "extension": ".webp",
-      "bytes": 148632,
+      "bytes": 144058,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6068,7 +6084,7 @@
     {
       "path": "img/enemies/Dragon/Red Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 125012,
+      "bytes": 119394,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6084,7 +6100,7 @@
     {
       "path": "img/enemies/Dragon/Shadow Dragon.webp",
       "extension": ".webp",
-      "bytes": 188276,
+      "bytes": 184822,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6100,7 +6116,7 @@
     {
       "path": "img/enemies/Dragon/Silver Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 300578,
+      "bytes": 297554,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6116,7 +6132,7 @@
     {
       "path": "img/enemies/Dragon/White Dragon Wyrmling.webp",
       "extension": ".webp",
-      "bytes": 271402,
+      "bytes": 269998,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6132,7 +6148,7 @@
     {
       "path": "img/enemies/Dragon/Winged Kobold.webp",
       "extension": ".webp",
-      "bytes": 116464,
+      "bytes": 112406,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6148,7 +6164,7 @@
     {
       "path": "img/enemies/Dragon/Wyvern.webp",
       "extension": ".webp",
-      "bytes": 136872,
+      "bytes": 133498,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6164,7 +6180,7 @@
     {
       "path": "img/enemies/Dragon/Young Black Dragon.webp",
       "extension": ".webp",
-      "bytes": 191220,
+      "bytes": 186432,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6180,7 +6196,7 @@
     {
       "path": "img/enemies/Dragon/Young Blue Dragon.webp",
       "extension": ".webp",
-      "bytes": 221368,
+      "bytes": 219536,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6196,7 +6212,7 @@
     {
       "path": "img/enemies/Dragon/Young Brass Dragon.webp",
       "extension": ".webp",
-      "bytes": 130550,
+      "bytes": 125750,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6212,7 +6228,7 @@
     {
       "path": "img/enemies/Dragon/Young Bronze Dragon.webp",
       "extension": ".webp",
-      "bytes": 161624,
+      "bytes": 157144,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6228,7 +6244,7 @@
     {
       "path": "img/enemies/Dragon/Young Copper Dragon.webp",
       "extension": ".webp",
-      "bytes": 200034,
+      "bytes": 193878,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6244,7 +6260,7 @@
     {
       "path": "img/enemies/Dragon/Young Fey Dragon.webp",
       "extension": ".webp",
-      "bytes": 307888,
+      "bytes": 301160,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6260,7 +6276,7 @@
     {
       "path": "img/enemies/Dragon/Young Gold Dragon.webp",
       "extension": ".webp",
-      "bytes": 212160,
+      "bytes": 208898,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6276,7 +6292,7 @@
     {
       "path": "img/enemies/Dragon/Young Green Dragon.webp",
       "extension": ".webp",
-      "bytes": 228262,
+      "bytes": 226972,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -6292,7 +6308,7 @@
     {
       "path": "img/enemies/Dragon/Young Red Dragon.webp",
       "extension": ".webp",
-      "bytes": 168846,
+      "bytes": 166442,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6308,7 +6324,7 @@
     {
       "path": "img/enemies/Dragon/Young Silver Dragon.webp",
       "extension": ".webp",
-      "bytes": 239680,
+      "bytes": 236000,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6324,7 +6340,7 @@
     {
       "path": "img/enemies/Dragon/Young White Dragon.webp",
       "extension": ".webp",
-      "bytes": 272070,
+      "bytes": 268678,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6340,7 +6356,7 @@
     {
       "path": "img/enemies/Elemental/Aarakocra Aeromancer.webp",
       "extension": ".webp",
-      "bytes": 255528,
+      "bytes": 253012,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6356,7 +6372,7 @@
     {
       "path": "img/enemies/Elemental/Aarakocra Skirmisher.webp",
       "extension": ".webp",
-      "bytes": 215878,
+      "bytes": 214492,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6372,7 +6388,7 @@
     {
       "path": "img/enemies/Elemental/Air Elemental.webp",
       "extension": ".webp",
-      "bytes": 188092,
+      "bytes": 185304,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6388,7 +6404,7 @@
     {
       "path": "img/enemies/Elemental/Azer Pyromancer.webp",
       "extension": ".webp",
-      "bytes": 228796,
+      "bytes": 226588,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6404,7 +6420,7 @@
     {
       "path": "img/enemies/Elemental/Azer Sentinel.webp",
       "extension": ".webp",
-      "bytes": 244592,
+      "bytes": 241432,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6420,7 +6436,7 @@
     {
       "path": "img/enemies/Elemental/Dao.webp",
       "extension": ".webp",
-      "bytes": 280154,
+      "bytes": 276424,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6436,7 +6452,7 @@
     {
       "path": "img/enemies/Elemental/Djinni.webp",
       "extension": ".webp",
-      "bytes": 213800,
+      "bytes": 211776,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6452,7 +6468,7 @@
     {
       "path": "img/enemies/Elemental/Dust Mephit.webp",
       "extension": ".webp",
-      "bytes": 195740,
+      "bytes": 193720,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6468,7 +6484,7 @@
     {
       "path": "img/enemies/Elemental/Earth Elemental.webp",
       "extension": ".webp",
-      "bytes": 198080,
+      "bytes": 196066,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6484,7 +6500,7 @@
     {
       "path": "img/enemies/Elemental/Efreeti.webp",
       "extension": ".webp",
-      "bytes": 338262,
+      "bytes": 336950,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6500,7 +6516,7 @@
     {
       "path": "img/enemies/Elemental/Elemental Cataclysm.webp",
       "extension": ".webp",
-      "bytes": 218928,
+      "bytes": 214614,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6516,7 +6532,7 @@
     {
       "path": "img/enemies/Elemental/Fire Elemental.webp",
       "extension": ".webp",
-      "bytes": 215292,
+      "bytes": 212086,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6532,7 +6548,7 @@
     {
       "path": "img/enemies/Elemental/Galeb Duhr.webp",
       "extension": ".webp",
-      "bytes": 252710,
+      "bytes": 250752,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6548,7 +6564,7 @@
     {
       "path": "img/enemies/Elemental/Gargoyle.webp",
       "extension": ".webp",
-      "bytes": 185650,
+      "bytes": 181408,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6564,7 +6580,7 @@
     {
       "path": "img/enemies/Elemental/Ice Mephit.webp",
       "extension": ".webp",
-      "bytes": 156112,
+      "bytes": 153708,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6580,7 +6596,7 @@
     {
       "path": "img/enemies/Elemental/Invisible Stalker.webp",
       "extension": ".webp",
-      "bytes": 230076,
+      "bytes": 227582,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6596,7 +6612,7 @@
     {
       "path": "img/enemies/Elemental/Lizardfolk Geomancer.webp",
       "extension": ".webp",
-      "bytes": 242592,
+      "bytes": 240930,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -6612,7 +6628,7 @@
     {
       "path": "img/enemies/Elemental/Lizardfolk Sovereign.webp",
       "extension": ".webp",
-      "bytes": 198384,
+      "bytes": 196262,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6628,7 +6644,7 @@
     {
       "path": "img/enemies/Elemental/Magma Mephit.webp",
       "extension": ".webp",
-      "bytes": 236604,
+      "bytes": 234152,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6644,7 +6660,7 @@
     {
       "path": "img/enemies/Elemental/Magmin.webp",
       "extension": ".webp",
-      "bytes": 223168,
+      "bytes": 221874,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6660,7 +6676,7 @@
     {
       "path": "img/enemies/Elemental/Marid.webp",
       "extension": ".webp",
-      "bytes": 364756,
+      "bytes": 362728,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6676,7 +6692,7 @@
     {
       "path": "img/enemies/Elemental/Merfolk Skirmisher.webp",
       "extension": ".webp",
-      "bytes": 245628,
+      "bytes": 242542,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6692,7 +6708,7 @@
     {
       "path": "img/enemies/Elemental/Merfolk Wavebender.webp",
       "extension": ".webp",
-      "bytes": 286328,
+      "bytes": 286318,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6708,7 +6724,7 @@
     {
       "path": "img/enemies/Elemental/Mud Mephit.webp",
       "extension": ".webp",
-      "bytes": 189968,
+      "bytes": 188502,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6724,7 +6740,7 @@
     {
       "path": "img/enemies/Elemental/Salamander Fire Snake.webp",
       "extension": ".webp",
-      "bytes": 246744,
+      "bytes": 245310,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6740,7 +6756,7 @@
     {
       "path": "img/enemies/Elemental/Salamander Inferno Master.webp",
       "extension": ".webp",
-      "bytes": 246358,
+      "bytes": 245426,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6756,7 +6772,7 @@
     {
       "path": "img/enemies/Elemental/Salamander.webp",
       "extension": ".webp",
-      "bytes": 192590,
+      "bytes": 191246,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6772,7 +6788,7 @@
     {
       "path": "img/enemies/Elemental/Smoke Mephit.webp",
       "extension": ".webp",
-      "bytes": 110036,
+      "bytes": 106332,
       "dimensions": {
         "width": 1088,
         "height": 1445
@@ -6788,7 +6804,7 @@
     {
       "path": "img/enemies/Elemental/Steam Mephit.webp",
       "extension": ".webp",
-      "bytes": 120654,
+      "bytes": 116326,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6804,7 +6820,7 @@
     {
       "path": "img/enemies/Elemental/Water Elemental.webp",
       "extension": ".webp",
-      "bytes": 224008,
+      "bytes": 223734,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6820,7 +6836,7 @@
     {
       "path": "img/enemies/Elemental/Water Weird.webp",
       "extension": ".webp",
-      "bytes": 259422,
+      "bytes": 258362,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6836,7 +6852,7 @@
     {
       "path": "img/enemies/Elemental/Xorn.webp",
       "extension": ".webp",
-      "bytes": 188022,
+      "bytes": 183518,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6852,7 +6868,7 @@
     {
       "path": "img/enemies/Fey/Arch-hag.webp",
       "extension": ".webp",
-      "bytes": 188602,
+      "bytes": 183954,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6868,7 +6884,7 @@
     {
       "path": "img/enemies/Fey/Blink Dog.webp",
       "extension": ".webp",
-      "bytes": 214608,
+      "bytes": 212414,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6884,7 +6900,7 @@
     {
       "path": "img/enemies/Fey/Bugbear Stalker.webp",
       "extension": ".webp",
-      "bytes": 160812,
+      "bytes": 156618,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6900,7 +6916,7 @@
     {
       "path": "img/enemies/Fey/Bugbear Warrior.webp",
       "extension": ".webp",
-      "bytes": 212500,
+      "bytes": 210256,
       "dimensions": {
         "width": 1085,
         "height": 1450
@@ -6916,7 +6932,7 @@
     {
       "path": "img/enemies/Fey/Bullywug Bog Sage.webp",
       "extension": ".webp",
-      "bytes": 214034,
+      "bytes": 211576,
       "dimensions": {
         "width": 1089,
         "height": 1444
@@ -6932,7 +6948,7 @@
     {
       "path": "img/enemies/Fey/Bullywug Warrior.webp",
       "extension": ".webp",
-      "bytes": 202120,
+      "bytes": 200796,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -6948,7 +6964,7 @@
     {
       "path": "img/enemies/Fey/Centaur Trooper.webp",
       "extension": ".webp",
-      "bytes": 186002,
+      "bytes": 181472,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6964,7 +6980,7 @@
     {
       "path": "img/enemies/Fey/Centaur Warden.webp",
       "extension": ".webp",
-      "bytes": 223688,
+      "bytes": 220570,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -6980,7 +6996,7 @@
     {
       "path": "img/enemies/Fey/Dire Worg.webp",
       "extension": ".webp",
-      "bytes": 128610,
+      "bytes": 124300,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -6996,7 +7012,7 @@
     {
       "path": "img/enemies/Fey/Dryad.webp",
       "extension": ".webp",
-      "bytes": 293516,
+      "bytes": 290680,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7012,7 +7028,7 @@
     {
       "path": "img/enemies/Fey/Goblin Boss.webp",
       "extension": ".webp",
-      "bytes": 116962,
+      "bytes": 115126,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7028,7 +7044,7 @@
     {
       "path": "img/enemies/Fey/Goblin Hexer.webp",
       "extension": ".webp",
-      "bytes": 157176,
+      "bytes": 155792,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7044,7 +7060,7 @@
     {
       "path": "img/enemies/Fey/Goblin Minion.webp",
       "extension": ".webp",
-      "bytes": 123614,
+      "bytes": 117780,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7060,7 +7076,7 @@
     {
       "path": "img/enemies/Fey/Goblin Warrior.webp",
       "extension": ".webp",
-      "bytes": 211230,
+      "bytes": 208998,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7076,7 +7092,7 @@
     {
       "path": "img/enemies/Fey/Green Hag.webp",
       "extension": ".webp",
-      "bytes": 97990,
+      "bytes": 94104,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7092,7 +7108,7 @@
     {
       "path": "img/enemies/Fey/Hobgoblin Captain.webp",
       "extension": ".webp",
-      "bytes": 97434,
+      "bytes": 92736,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7108,7 +7124,7 @@
     {
       "path": "img/enemies/Fey/Hobgoblin Warlord.webp",
       "extension": ".webp",
-      "bytes": 119208,
+      "bytes": 115340,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7124,7 +7140,7 @@
     {
       "path": "img/enemies/Fey/Hobgoblin Warrior.webp",
       "extension": ".webp",
-      "bytes": 116626,
+      "bytes": 110936,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7140,7 +7156,7 @@
     {
       "path": "img/enemies/Fey/Pixie Wonderbringer.webp",
       "extension": ".webp",
-      "bytes": 177786,
+      "bytes": 172414,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7156,7 +7172,7 @@
     {
       "path": "img/enemies/Fey/Pixie.webp",
       "extension": ".webp",
-      "bytes": 159108,
+      "bytes": 155144,
       "dimensions": {
         "width": 1123,
         "height": 1401
@@ -7172,7 +7188,7 @@
     {
       "path": "img/enemies/Fey/Satyr Revelmaster.webp",
       "extension": ".webp",
-      "bytes": 264694,
+      "bytes": 263426,
       "dimensions": {
         "width": 1085,
         "height": 1449
@@ -7188,7 +7204,7 @@
     {
       "path": "img/enemies/Fey/Satyr.webp",
       "extension": ".webp",
-      "bytes": 172530,
+      "bytes": 170798,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7204,7 +7220,7 @@
     {
       "path": "img/enemies/Fey/Sea Hag.webp",
       "extension": ".webp",
-      "bytes": 166422,
+      "bytes": 161872,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7220,7 +7236,7 @@
     {
       "path": "img/enemies/Fey/Sprite.webp",
       "extension": ".webp",
-      "bytes": 222274,
+      "bytes": 219736,
       "dimensions": {
         "width": 1086,
         "height": 1449
@@ -7236,7 +7252,7 @@
     {
       "path": "img/enemies/Fey/Worg.webp",
       "extension": ".webp",
-      "bytes": 214218,
+      "bytes": 209780,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7252,7 +7268,7 @@
     {
       "path": "img/enemies/Fiend/Arcanaloth.webp",
       "extension": ".webp",
-      "bytes": 143684,
+      "bytes": 139640,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7268,7 +7284,7 @@
     {
       "path": "img/enemies/Fiend/Balor.webp",
       "extension": ".webp",
-      "bytes": 240882,
+      "bytes": 239268,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7284,7 +7300,7 @@
     {
       "path": "img/enemies/Fiend/Barbed Devil.webp",
       "extension": ".webp",
-      "bytes": 163944,
+      "bytes": 158764,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7300,7 +7316,7 @@
     {
       "path": "img/enemies/Fiend/Barlgura.webp",
       "extension": ".webp",
-      "bytes": 95676,
+      "bytes": 91052,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7316,7 +7332,7 @@
     {
       "path": "img/enemies/Fiend/Bearded Devil.webp",
       "extension": ".webp",
-      "bytes": 124884,
+      "bytes": 120306,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7332,7 +7348,7 @@
     {
       "path": "img/enemies/Fiend/Bone Devil.webp",
       "extension": ".webp",
-      "bytes": 158208,
+      "bytes": 154728,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7348,7 +7364,7 @@
     {
       "path": "img/enemies/Fiend/Cambion.webp",
       "extension": ".webp",
-      "bytes": 202344,
+      "bytes": 198602,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7364,7 +7380,7 @@
     {
       "path": "img/enemies/Fiend/Chain Devil.webp",
       "extension": ".webp",
-      "bytes": 319290,
+      "bytes": 317666,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -7380,7 +7396,7 @@
     {
       "path": "img/enemies/Fiend/Chasme.webp",
       "extension": ".webp",
-      "bytes": 150610,
+      "bytes": 146726,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7396,7 +7412,7 @@
     {
       "path": "img/enemies/Fiend/Dretch.webp",
       "extension": ".webp",
-      "bytes": 180408,
+      "bytes": 176030,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7412,7 +7428,7 @@
     {
       "path": "img/enemies/Fiend/Erinyes.webp",
       "extension": ".webp",
-      "bytes": 345194,
+      "bytes": 343030,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -7428,7 +7444,7 @@
     {
       "path": "img/enemies/Fiend/Glabrezu.webp",
       "extension": ".webp",
-      "bytes": 212296,
+      "bytes": 209296,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7444,7 +7460,23 @@
     {
       "path": "img/enemies/Fiend/Gnoll Demoniac.webp",
       "extension": ".webp",
-      "bytes": 217840,
+      "bytes": 214450,
+      "dimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "data/monsters_2024.json"
+      ],
+      "referenceMode": "inferred",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/enemies/Fiend/Gnoll Fang Of Yeenoghu.webp",
+      "extension": ".webp",
+      "bytes": 159078,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7460,7 +7492,7 @@
     {
       "path": "img/enemies/Fiend/Gnoll Pack Lord.webp",
       "extension": ".webp",
-      "bytes": 140306,
+      "bytes": 135774,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7476,7 +7508,7 @@
     {
       "path": "img/enemies/Fiend/Gnoll Warrior.webp",
       "extension": ".webp",
-      "bytes": 162114,
+      "bytes": 159430,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7492,7 +7524,7 @@
     {
       "path": "img/enemies/Fiend/Goristro.webp",
       "extension": ".webp",
-      "bytes": 243218,
+      "bytes": 241148,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7508,7 +7540,7 @@
     {
       "path": "img/enemies/Fiend/Hell Hound.webp",
       "extension": ".webp",
-      "bytes": 197950,
+      "bytes": 195202,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7524,7 +7556,7 @@
     {
       "path": "img/enemies/Fiend/Hezrou.webp",
       "extension": ".webp",
-      "bytes": 261560,
+      "bytes": 260440,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7540,7 +7572,7 @@
     {
       "path": "img/enemies/Fiend/Horned Devil.webp",
       "extension": ".webp",
-      "bytes": 190168,
+      "bytes": 187608,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7556,7 +7588,7 @@
     {
       "path": "img/enemies/Fiend/Ice Devil.webp",
       "extension": ".webp",
-      "bytes": 139926,
+      "bytes": 135982,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7572,7 +7604,7 @@
     {
       "path": "img/enemies/Fiend/Imp.webp",
       "extension": ".webp",
-      "bytes": 174030,
+      "bytes": 171586,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7588,7 +7620,7 @@
     {
       "path": "img/enemies/Fiend/Incubus.webp",
       "extension": ".webp",
-      "bytes": 141752,
+      "bytes": 139398,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7604,7 +7636,7 @@
     {
       "path": "img/enemies/Fiend/Jackalwere.webp",
       "extension": ".webp",
-      "bytes": 123206,
+      "bytes": 120444,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7620,7 +7652,7 @@
     {
       "path": "img/enemies/Fiend/Lamia.webp",
       "extension": ".webp",
-      "bytes": 121650,
+      "bytes": 115748,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7636,7 +7668,7 @@
     {
       "path": "img/enemies/Fiend/Larva.webp",
       "extension": ".webp",
-      "bytes": 264512,
+      "bytes": 262812,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7652,7 +7684,7 @@
     {
       "path": "img/enemies/Fiend/Lemure.webp",
       "extension": ".webp",
-      "bytes": 188732,
+      "bytes": 185596,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7668,7 +7700,7 @@
     {
       "path": "img/enemies/Fiend/Manes Vaporspawn.webp",
       "extension": ".webp",
-      "bytes": 103278,
+      "bytes": 98700,
       "dimensions": {
         "width": 1086,
         "height": 1449
@@ -7684,7 +7716,7 @@
     {
       "path": "img/enemies/Fiend/Manes.webp",
       "extension": ".webp",
-      "bytes": 145336,
+      "bytes": 141346,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7700,7 +7732,7 @@
     {
       "path": "img/enemies/Fiend/Marilith.webp",
       "extension": ".webp",
-      "bytes": 228820,
+      "bytes": 227256,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7716,7 +7748,7 @@
     {
       "path": "img/enemies/Fiend/Mezzoloth.webp",
       "extension": ".webp",
-      "bytes": 174382,
+      "bytes": 173110,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -7732,7 +7764,7 @@
     {
       "path": "img/enemies/Fiend/Nalfeshnee.webp",
       "extension": ".webp",
-      "bytes": 266150,
+      "bytes": 263974,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7748,7 +7780,7 @@
     {
       "path": "img/enemies/Fiend/Night Hag.webp",
       "extension": ".webp",
-      "bytes": 177466,
+      "bytes": 174676,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -7764,7 +7796,7 @@
     {
       "path": "img/enemies/Fiend/Nightmare.webp",
       "extension": ".webp",
-      "bytes": 221966,
+      "bytes": 220054,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7780,7 +7812,7 @@
     {
       "path": "img/enemies/Fiend/Nycaloth.webp",
       "extension": ".webp",
-      "bytes": 244442,
+      "bytes": 242834,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7796,7 +7828,7 @@
     {
       "path": "img/enemies/Fiend/Oni.webp",
       "extension": ".webp",
-      "bytes": 115198,
+      "bytes": 110004,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7812,7 +7844,7 @@
     {
       "path": "img/enemies/Fiend/Pit Fiend.webp",
       "extension": ".webp",
-      "bytes": 164510,
+      "bytes": 159904,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7828,7 +7860,7 @@
     {
       "path": "img/enemies/Fiend/Quasit.webp",
       "extension": ".webp",
-      "bytes": 172190,
+      "bytes": 168620,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7844,7 +7876,7 @@
     {
       "path": "img/enemies/Fiend/Rakshasa.webp",
       "extension": ".webp",
-      "bytes": 236862,
+      "bytes": 233834,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7860,7 +7892,7 @@
     {
       "path": "img/enemies/Fiend/Sahuagin Baron.webp",
       "extension": ".webp",
-      "bytes": 221938,
+      "bytes": 217926,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7876,7 +7908,7 @@
     {
       "path": "img/enemies/Fiend/Sahuagin Priest.webp",
       "extension": ".webp",
-      "bytes": 218566,
+      "bytes": 215906,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7892,7 +7924,7 @@
     {
       "path": "img/enemies/Fiend/Sahuagin Warrior.webp",
       "extension": ".webp",
-      "bytes": 159602,
+      "bytes": 156088,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7908,7 +7940,7 @@
     {
       "path": "img/enemies/Fiend/Shadow Demon.webp",
       "extension": ".webp",
-      "bytes": 126826,
+      "bytes": 121072,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7924,7 +7956,7 @@
     {
       "path": "img/enemies/Fiend/Spined Devil.webp",
       "extension": ".webp",
-      "bytes": 166750,
+      "bytes": 162686,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7940,7 +7972,7 @@
     {
       "path": "img/enemies/Fiend/Spirit Naga.webp",
       "extension": ".webp",
-      "bytes": 185350,
+      "bytes": 181664,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -7956,7 +7988,7 @@
     {
       "path": "img/enemies/Fiend/Succubus.webp",
       "extension": ".webp",
-      "bytes": 90442,
+      "bytes": 84576,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7972,7 +8004,7 @@
     {
       "path": "img/enemies/Fiend/Ultroloth.webp",
       "extension": ".webp",
-      "bytes": 193744,
+      "bytes": 190208,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -7988,7 +8020,7 @@
     {
       "path": "img/enemies/Fiend/Vrock.webp",
       "extension": ".webp",
-      "bytes": 176104,
+      "bytes": 172526,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8004,7 +8036,7 @@
     {
       "path": "img/enemies/Fiend/Yochlol.webp",
       "extension": ".webp",
-      "bytes": 217470,
+      "bytes": 215758,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8020,7 +8052,7 @@
     {
       "path": "img/enemies/Giant/Cloud Giant.webp",
       "extension": ".webp",
-      "bytes": 159916,
+      "bytes": 155826,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8036,7 +8068,7 @@
     {
       "path": "img/enemies/Giant/Cyclops Oracle.webp",
       "extension": ".webp",
-      "bytes": 168912,
+      "bytes": 164216,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8052,7 +8084,7 @@
     {
       "path": "img/enemies/Giant/Cyclops Sentry.webp",
       "extension": ".webp",
-      "bytes": 201026,
+      "bytes": 198934,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8068,7 +8100,7 @@
     {
       "path": "img/enemies/Giant/Ettin.webp",
       "extension": ".webp",
-      "bytes": 169874,
+      "bytes": 165232,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8084,7 +8116,7 @@
     {
       "path": "img/enemies/Giant/Fire Giant.webp",
       "extension": ".webp",
-      "bytes": 164652,
+      "bytes": 160052,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -8100,7 +8132,7 @@
     {
       "path": "img/enemies/Giant/Fomorian.webp",
       "extension": ".webp",
-      "bytes": 148272,
+      "bytes": 145076,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8116,7 +8148,7 @@
     {
       "path": "img/enemies/Giant/Frost Giant.webp",
       "extension": ".webp",
-      "bytes": 181682,
+      "bytes": 180088,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8132,7 +8164,7 @@
     {
       "path": "img/enemies/Giant/Hill Giant.webp",
       "extension": ".webp",
-      "bytes": 204572,
+      "bytes": 202718,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8148,7 +8180,7 @@
     {
       "path": "img/enemies/Giant/Ogre.webp",
       "extension": ".webp",
-      "bytes": 123342,
+      "bytes": 118476,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8164,7 +8196,7 @@
     {
       "path": "img/enemies/Giant/Ogrillon Ogre.webp",
       "extension": ".webp",
-      "bytes": 184650,
+      "bytes": 180702,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8180,7 +8212,7 @@
     {
       "path": "img/enemies/Giant/Stone Giant.webp",
       "extension": ".webp",
-      "bytes": 150972,
+      "bytes": 149182,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8196,7 +8228,7 @@
     {
       "path": "img/enemies/Giant/Storm Giant.webp",
       "extension": ".webp",
-      "bytes": 192112,
+      "bytes": 188870,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8212,7 +8244,7 @@
     {
       "path": "img/enemies/Giant/Troll Limb.webp",
       "extension": ".webp",
-      "bytes": 170470,
+      "bytes": 165494,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8228,7 +8260,7 @@
     {
       "path": "img/enemies/Giant/Troll.webp",
       "extension": ".webp",
-      "bytes": 151046,
+      "bytes": 149006,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8244,7 +8276,7 @@
     {
       "path": "img/enemies/Humanoid/Aberrant Cultist.webp",
       "extension": ".webp",
-      "bytes": 249074,
+      "bytes": 245906,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8260,7 +8292,7 @@
     {
       "path": "img/enemies/Humanoid/Archmage.webp",
       "extension": ".webp",
-      "bytes": 166540,
+      "bytes": 161954,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8276,7 +8308,7 @@
     {
       "path": "img/enemies/Humanoid/Archpriest.webp",
       "extension": ".webp",
-      "bytes": 195960,
+      "bytes": 193834,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8292,7 +8324,7 @@
     {
       "path": "img/enemies/Humanoid/Assassin.webp",
       "extension": ".webp",
-      "bytes": 113226,
+      "bytes": 108390,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8308,7 +8340,7 @@
     {
       "path": "img/enemies/Humanoid/Bandit Captain.webp",
       "extension": ".webp",
-      "bytes": 112160,
+      "bytes": 107832,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8324,7 +8356,7 @@
     {
       "path": "img/enemies/Humanoid/Bandit Crime Lord.webp",
       "extension": ".webp",
-      "bytes": 110750,
+      "bytes": 107032,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8340,7 +8372,7 @@
     {
       "path": "img/enemies/Humanoid/Bandit Deceiver.webp",
       "extension": ".webp",
-      "bytes": 81404,
+      "bytes": 77244,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8356,7 +8388,7 @@
     {
       "path": "img/enemies/Humanoid/Bandit.webp",
       "extension": ".webp",
-      "bytes": 153972,
+      "bytes": 148942,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8372,7 +8404,7 @@
     {
       "path": "img/enemies/Humanoid/Berserker Commander.webp",
       "extension": ".webp",
-      "bytes": 108150,
+      "bytes": 103656,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8388,7 +8420,7 @@
     {
       "path": "img/enemies/Humanoid/Berserker.webp",
       "extension": ".webp",
-      "bytes": 132722,
+      "bytes": 128598,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8404,7 +8436,7 @@
     {
       "path": "img/enemies/Humanoid/Commoner.webp",
       "extension": ".webp",
-      "bytes": 126480,
+      "bytes": 121612,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8420,7 +8452,7 @@
     {
       "path": "img/enemies/Humanoid/Cultist Fanatic.webp",
       "extension": ".webp",
-      "bytes": 118460,
+      "bytes": 112014,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8436,7 +8468,7 @@
     {
       "path": "img/enemies/Humanoid/Cultist Hierophant.webp",
       "extension": ".webp",
-      "bytes": 93434,
+      "bytes": 90138,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8452,7 +8484,7 @@
     {
       "path": "img/enemies/Humanoid/Cultist.webp",
       "extension": ".webp",
-      "bytes": 112302,
+      "bytes": 107110,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8468,7 +8500,7 @@
     {
       "path": "img/enemies/Humanoid/Death Cultist.webp",
       "extension": ".webp",
-      "bytes": 227060,
+      "bytes": 225546,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8484,7 +8516,7 @@
     {
       "path": "img/enemies/Humanoid/Druid.webp",
       "extension": ".webp",
-      "bytes": 198508,
+      "bytes": 196452,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8500,7 +8532,7 @@
     {
       "path": "img/enemies/Humanoid/Elemental Cultist.webp",
       "extension": ".webp",
-      "bytes": 191014,
+      "bytes": 187816,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8516,7 +8548,7 @@
     {
       "path": "img/enemies/Humanoid/Fiend Cultist.webp",
       "extension": ".webp",
-      "bytes": 149744,
+      "bytes": 146092,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8532,7 +8564,7 @@
     {
       "path": "img/enemies/Humanoid/Gladiator.webp",
       "extension": ".webp",
-      "bytes": 188978,
+      "bytes": 186998,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8548,7 +8580,7 @@
     {
       "path": "img/enemies/Humanoid/Guard Captain.webp",
       "extension": ".webp",
-      "bytes": 117682,
+      "bytes": 112974,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8564,7 +8596,7 @@
     {
       "path": "img/enemies/Humanoid/Guard.webp",
       "extension": ".webp",
-      "bytes": 121488,
+      "bytes": 117430,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8580,7 +8612,7 @@
     {
       "path": "img/enemies/Humanoid/Knight.webp",
       "extension": ".webp",
-      "bytes": 168528,
+      "bytes": 165870,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8596,7 +8628,7 @@
     {
       "path": "img/enemies/Humanoid/Mage Apprentice.webp",
       "extension": ".webp",
-      "bytes": 147056,
+      "bytes": 143632,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8612,7 +8644,7 @@
     {
       "path": "img/enemies/Humanoid/Mage.webp",
       "extension": ".webp",
-      "bytes": 123140,
+      "bytes": 117618,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8628,7 +8660,7 @@
     {
       "path": "img/enemies/Humanoid/Noble Prodigy.webp",
       "extension": ".webp",
-      "bytes": 230768,
+      "bytes": 225398,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8644,7 +8676,7 @@
     {
       "path": "img/enemies/Humanoid/Noble.webp",
       "extension": ".webp",
-      "bytes": 101144,
+      "bytes": 94644,
       "dimensions": {
         "width": 1087,
         "height": 1447
@@ -8660,7 +8692,7 @@
     {
       "path": "img/enemies/Humanoid/Performer Legend.webp",
       "extension": ".webp",
-      "bytes": 209562,
+      "bytes": 208150,
       "dimensions": {
         "width": 1086,
         "height": 1449
@@ -8676,7 +8708,7 @@
     {
       "path": "img/enemies/Humanoid/Performer Maestro.webp",
       "extension": ".webp",
-      "bytes": 152876,
+      "bytes": 148860,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8692,7 +8724,7 @@
     {
       "path": "img/enemies/Humanoid/Performer.webp",
       "extension": ".webp",
-      "bytes": 257096,
+      "bytes": 255266,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8708,7 +8740,7 @@
     {
       "path": "img/enemies/Humanoid/Pirate Admiral.webp",
       "extension": ".webp",
-      "bytes": 174224,
+      "bytes": 170574,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8724,7 +8756,7 @@
     {
       "path": "img/enemies/Humanoid/Pirate Captain.webp",
       "extension": ".webp",
-      "bytes": 193114,
+      "bytes": 190820,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8740,7 +8772,7 @@
     {
       "path": "img/enemies/Humanoid/Pirate.webp",
       "extension": ".webp",
-      "bytes": 235866,
+      "bytes": 233150,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8756,7 +8788,7 @@
     {
       "path": "img/enemies/Humanoid/Priest Acolyte.webp",
       "extension": ".webp",
-      "bytes": 93828,
+      "bytes": 87872,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8772,7 +8804,7 @@
     {
       "path": "img/enemies/Humanoid/Priest.webp",
       "extension": ".webp",
-      "bytes": 142624,
+      "bytes": 139704,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8788,7 +8820,7 @@
     {
       "path": "img/enemies/Humanoid/Questing Knight.webp",
       "extension": ".webp",
-      "bytes": 213850,
+      "bytes": 210260,
       "dimensions": {
         "width": 1080,
         "height": 1456
@@ -8804,7 +8836,7 @@
     {
       "path": "img/enemies/Humanoid/Scout Captain.webp",
       "extension": ".webp",
-      "bytes": 224412,
+      "bytes": 222066,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8820,7 +8852,7 @@
     {
       "path": "img/enemies/Humanoid/Scout.webp",
       "extension": ".webp",
-      "bytes": 162030,
+      "bytes": 156342,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8836,7 +8868,7 @@
     {
       "path": "img/enemies/Humanoid/Spy Master.webp",
       "extension": ".webp",
-      "bytes": 134926,
+      "bytes": 132072,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8852,7 +8884,7 @@
     {
       "path": "img/enemies/Humanoid/Spy.webp",
       "extension": ".webp",
-      "bytes": 76994,
+      "bytes": 73616,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8868,7 +8900,7 @@
     {
       "path": "img/enemies/Humanoid/Tough Boss.webp",
       "extension": ".webp",
-      "bytes": 103748,
+      "bytes": 99826,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8884,7 +8916,7 @@
     {
       "path": "img/enemies/Humanoid/Tough.webp",
       "extension": ".webp",
-      "bytes": 138314,
+      "bytes": 134044,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8900,7 +8932,7 @@
     {
       "path": "img/enemies/Humanoid/Vampire Familiar.webp",
       "extension": ".webp",
-      "bytes": 104356,
+      "bytes": 100800,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8916,7 +8948,7 @@
     {
       "path": "img/enemies/Humanoid/Warrior Commander.webp",
       "extension": ".webp",
-      "bytes": 181956,
+      "bytes": 179166,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8932,7 +8964,7 @@
     {
       "path": "img/enemies/Humanoid/Warrior Infantry.webp",
       "extension": ".webp",
-      "bytes": 227408,
+      "bytes": 223758,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -8948,7 +8980,7 @@
     {
       "path": "img/enemies/Humanoid/Warrior Veteran.webp",
       "extension": ".webp",
-      "bytes": 205348,
+      "bytes": 200242,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -8964,7 +8996,7 @@
     {
       "path": "img/enemies/Monstrosity/Abominable Yeti.webp",
       "extension": ".webp",
-      "bytes": 132520,
+      "bytes": 128692,
       "dimensions": {
         "width": 1085,
         "height": 1449
@@ -8980,7 +9012,7 @@
     {
       "path": "img/enemies/Monstrosity/Ankheg.webp",
       "extension": ".webp",
-      "bytes": 175224,
+      "bytes": 170132,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -8996,7 +9028,7 @@
     {
       "path": "img/enemies/Monstrosity/Axe Beak.webp",
       "extension": ".webp",
-      "bytes": 234332,
+      "bytes": 232152,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9012,7 +9044,7 @@
     {
       "path": "img/enemies/Monstrosity/Basilisk.webp",
       "extension": ".webp",
-      "bytes": 221404,
+      "bytes": 219988,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9028,7 +9060,7 @@
     {
       "path": "img/enemies/Monstrosity/Behir.webp",
       "extension": ".webp",
-      "bytes": 188232,
+      "bytes": 184002,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9044,7 +9076,7 @@
     {
       "path": "img/enemies/Monstrosity/Bulette Pup.webp",
       "extension": ".webp",
-      "bytes": 233556,
+      "bytes": 229748,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9060,7 +9092,7 @@
     {
       "path": "img/enemies/Monstrosity/Bulette.webp",
       "extension": ".webp",
-      "bytes": 218122,
+      "bytes": 214642,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9076,7 +9108,7 @@
     {
       "path": "img/enemies/Monstrosity/Carrion Crawler.webp",
       "extension": ".webp",
-      "bytes": 203080,
+      "bytes": 201350,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9092,7 +9124,7 @@
     {
       "path": "img/enemies/Monstrosity/Chimera.webp",
       "extension": ".webp",
-      "bytes": 178844,
+      "bytes": 174148,
       "dimensions": {
         "width": 1085,
         "height": 1450
@@ -9108,7 +9140,7 @@
     {
       "path": "img/enemies/Monstrosity/Cockatrice Regent.webp",
       "extension": ".webp",
-      "bytes": 260380,
+      "bytes": 258236,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9124,7 +9156,7 @@
     {
       "path": "img/enemies/Monstrosity/Cockatrice.webp",
       "extension": ".webp",
-      "bytes": 259600,
+      "bytes": 257744,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9140,7 +9172,7 @@
     {
       "path": "img/enemies/Monstrosity/Death Dog.webp",
       "extension": ".webp",
-      "bytes": 289176,
+      "bytes": 288584,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -9156,7 +9188,7 @@
     {
       "path": "img/enemies/Monstrosity/Displacer Beast.webp",
       "extension": ".webp",
-      "bytes": 93276,
+      "bytes": 88878,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -9172,7 +9204,7 @@
     {
       "path": "img/enemies/Monstrosity/Doppelganger.webp",
       "extension": ".webp",
-      "bytes": 144236,
+      "bytes": 138782,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9188,7 +9220,7 @@
     {
       "path": "img/enemies/Monstrosity/Drider.webp",
       "extension": ".webp",
-      "bytes": 171454,
+      "bytes": 166242,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9204,7 +9236,7 @@
     {
       "path": "img/enemies/Monstrosity/Ettercap.webp",
       "extension": ".webp",
-      "bytes": 190442,
+      "bytes": 187424,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9220,7 +9252,7 @@
     {
       "path": "img/enemies/Monstrosity/Flying Snake.webp",
       "extension": ".webp",
-      "bytes": 142808,
+      "bytes": 138318,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9236,7 +9268,7 @@
     {
       "path": "img/enemies/Monstrosity/Giant Axe Beak.webp",
       "extension": ".webp",
-      "bytes": 253794,
+      "bytes": 252318,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9252,7 +9284,7 @@
     {
       "path": "img/enemies/Monstrosity/Giant Vulture.webp",
       "extension": ".webp",
-      "bytes": 171752,
+      "bytes": 167582,
       "dimensions": {
         "width": 1110,
         "height": 1417
@@ -9268,7 +9300,7 @@
     {
       "path": "img/enemies/Monstrosity/Griffon.webp",
       "extension": ".webp",
-      "bytes": 202088,
+      "bytes": 195276,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9284,7 +9316,7 @@
     {
       "path": "img/enemies/Monstrosity/Harpy.webp",
       "extension": ".webp",
-      "bytes": 134350,
+      "bytes": 128386,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9300,7 +9332,7 @@
     {
       "path": "img/enemies/Monstrosity/Hippogriff.webp",
       "extension": ".webp",
-      "bytes": 245066,
+      "bytes": 241572,
       "dimensions": {
         "width": 1121,
         "height": 1403
@@ -9316,7 +9348,7 @@
     {
       "path": "img/enemies/Monstrosity/Hook Horror.webp",
       "extension": ".webp",
-      "bytes": 232436,
+      "bytes": 227108,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9332,7 +9364,7 @@
     {
       "path": "img/enemies/Monstrosity/Hydra.webp",
       "extension": ".webp",
-      "bytes": 265100,
+      "bytes": 262424,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9348,7 +9380,7 @@
     {
       "path": "img/enemies/Monstrosity/Kenku.webp",
       "extension": ".webp",
-      "bytes": 171632,
+      "bytes": 167390,
       "dimensions": {
         "width": 1085,
         "height": 1449
@@ -9364,7 +9396,7 @@
     {
       "path": "img/enemies/Monstrosity/Kraken.webp",
       "extension": ".webp",
-      "bytes": 233014,
+      "bytes": 231486,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9380,7 +9412,7 @@
     {
       "path": "img/enemies/Monstrosity/Manticore.webp",
       "extension": ".webp",
-      "bytes": 260822,
+      "bytes": 258646,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9396,7 +9428,7 @@
     {
       "path": "img/enemies/Monstrosity/Medusa.webp",
       "extension": ".webp",
-      "bytes": 145860,
+      "bytes": 141706,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9412,7 +9444,7 @@
     {
       "path": "img/enemies/Monstrosity/Merrow.webp",
       "extension": ".webp",
-      "bytes": 325834,
+      "bytes": 323662,
       "dimensions": {
         "width": 1121,
         "height": 1403
@@ -9428,7 +9460,23 @@
     {
       "path": "img/enemies/Monstrosity/Mimic.webp",
       "extension": ".webp",
-      "bytes": 183588,
+      "bytes": 179626,
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "data/monsters_2024.json"
+      ],
+      "referenceMode": "inferred",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/enemies/Monstrosity/Minotaur Of Baphomet.webp",
+      "extension": ".webp",
+      "bytes": 290276,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9444,7 +9492,7 @@
     {
       "path": "img/enemies/Monstrosity/Owlbear.webp",
       "extension": ".webp",
-      "bytes": 203190,
+      "bytes": 201080,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9460,7 +9508,7 @@
     {
       "path": "img/enemies/Monstrosity/Peryton.webp",
       "extension": ".webp",
-      "bytes": 161310,
+      "bytes": 158638,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9476,7 +9524,7 @@
     {
       "path": "img/enemies/Monstrosity/Phase Spider.webp",
       "extension": ".webp",
-      "bytes": 232806,
+      "bytes": 231362,
       "dimensions": {
         "width": 1123,
         "height": 1401
@@ -9492,7 +9540,7 @@
     {
       "path": "img/enemies/Monstrosity/Primeval Owlbear.webp",
       "extension": ".webp",
-      "bytes": 131894,
+      "bytes": 128318,
       "dimensions": {
         "width": 1065,
         "height": 1477
@@ -9508,7 +9556,7 @@
     {
       "path": "img/enemies/Monstrosity/Purple Worm.webp",
       "extension": ".webp",
-      "bytes": 190742,
+      "bytes": 187594,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9524,7 +9572,7 @@
     {
       "path": "img/enemies/Monstrosity/Quaggoth Thonot.webp",
       "extension": ".webp",
-      "bytes": 126056,
+      "bytes": 121232,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9540,7 +9588,7 @@
     {
       "path": "img/enemies/Monstrosity/Quaggoth.webp",
       "extension": ".webp",
-      "bytes": 143258,
+      "bytes": 138968,
       "dimensions": {
         "width": 1065,
         "height": 1477
@@ -9556,7 +9604,7 @@
     {
       "path": "img/enemies/Monstrosity/Remorhaz.webp",
       "extension": ".webp",
-      "bytes": 284416,
+      "bytes": 281808,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9572,7 +9620,7 @@
     {
       "path": "img/enemies/Monstrosity/Roc.webp",
       "extension": ".webp",
-      "bytes": 186378,
+      "bytes": 185310,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9588,7 +9636,7 @@
     {
       "path": "img/enemies/Monstrosity/Rust Monster.webp",
       "extension": ".webp",
-      "bytes": 243274,
+      "bytes": 241336,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9604,7 +9652,7 @@
     {
       "path": "img/enemies/Monstrosity/Stirge.webp",
       "extension": ".webp",
-      "bytes": 105266,
+      "bytes": 100386,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9620,7 +9668,7 @@
     {
       "path": "img/enemies/Monstrosity/Tarrasque.webp",
       "extension": ".webp",
-      "bytes": 178880,
+      "bytes": 171646,
       "dimensions": {
         "width": 1085,
         "height": 1450
@@ -9636,7 +9684,7 @@
     {
       "path": "img/enemies/Monstrosity/Thri-kreen Marauder.webp",
       "extension": ".webp",
-      "bytes": 204384,
+      "bytes": 201362,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9652,7 +9700,7 @@
     {
       "path": "img/enemies/Monstrosity/Thri-kreen Psion.webp",
       "extension": ".webp",
-      "bytes": 190560,
+      "bytes": 185398,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9668,7 +9716,7 @@
     {
       "path": "img/enemies/Monstrosity/Troglodyte.webp",
       "extension": ".webp",
-      "bytes": 137268,
+      "bytes": 133070,
       "dimensions": {
         "width": 1118,
         "height": 1407
@@ -9684,7 +9732,7 @@
     {
       "path": "img/enemies/Monstrosity/Umber Hulk.webp",
       "extension": ".webp",
-      "bytes": 211688,
+      "bytes": 207874,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9700,7 +9748,7 @@
     {
       "path": "img/enemies/Monstrosity/Werebear.webp",
       "extension": ".webp",
-      "bytes": 226968,
+      "bytes": 223512,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9716,7 +9764,7 @@
     {
       "path": "img/enemies/Monstrosity/Wereboar.webp",
       "extension": ".webp",
-      "bytes": 156618,
+      "bytes": 152750,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9732,7 +9780,7 @@
     {
       "path": "img/enemies/Monstrosity/Wererat.webp",
       "extension": ".webp",
-      "bytes": 134152,
+      "bytes": 130092,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9748,7 +9796,7 @@
     {
       "path": "img/enemies/Monstrosity/Weretiger.webp",
       "extension": ".webp",
-      "bytes": 166270,
+      "bytes": 163530,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9764,7 +9812,7 @@
     {
       "path": "img/enemies/Monstrosity/Werewolf.webp",
       "extension": ".webp",
-      "bytes": 162888,
+      "bytes": 159206,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9780,7 +9828,7 @@
     {
       "path": "img/enemies/Monstrosity/Winter Wolf.webp",
       "extension": ".webp",
-      "bytes": 143726,
+      "bytes": 138992,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9796,7 +9844,7 @@
     {
       "path": "img/enemies/Monstrosity/Yeti.webp",
       "extension": ".webp",
-      "bytes": 165990,
+      "bytes": 161832,
       "dimensions": {
         "width": 1064,
         "height": 1478
@@ -9812,7 +9860,7 @@
     {
       "path": "img/enemies/Monstrosity/Young Remorhaz.webp",
       "extension": ".webp",
-      "bytes": 214012,
+      "bytes": 211248,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9828,7 +9876,7 @@
     {
       "path": "img/enemies/Monstrosity/Yuan-ti Abomination.webp",
       "extension": ".webp",
-      "bytes": 240690,
+      "bytes": 237972,
       "dimensions": {
         "width": 1123,
         "height": 1401
@@ -9844,7 +9892,7 @@
     {
       "path": "img/enemies/Monstrosity/Yuan-ti Infiltrator.webp",
       "extension": ".webp",
-      "bytes": 168296,
+      "bytes": 165032,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -9860,7 +9908,23 @@
     {
       "path": "img/enemies/Ooze/Black Pudding.webp",
       "extension": ".webp",
-      "bytes": 138716,
+      "bytes": 135326,
+      "dimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "variants": [],
+      "referenced": true,
+      "references": [
+        "data/monsters_2024.json"
+      ],
+      "referenceMode": "inferred",
+      "recommendation": "keep"
+    },
+    {
+      "path": "img/enemies/Ooze/Blob Of Annihilation.webp",
+      "extension": ".webp",
+      "bytes": 198390,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9876,7 +9940,7 @@
     {
       "path": "img/enemies/Ooze/Gelatinous Cube.webp",
       "extension": ".webp",
-      "bytes": 224090,
+      "bytes": 222328,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9892,7 +9956,7 @@
     {
       "path": "img/enemies/Ooze/Gray Ooze.webp",
       "extension": ".webp",
-      "bytes": 121728,
+      "bytes": 118212,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9908,7 +9972,7 @@
     {
       "path": "img/enemies/Ooze/Ochre Jelly.webp",
       "extension": ".webp",
-      "bytes": 173574,
+      "bytes": 169040,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -9924,7 +9988,7 @@
     {
       "path": "img/enemies/Ooze/Psychic Gray Ooze.webp",
       "extension": ".webp",
-      "bytes": 240840,
+      "bytes": 239098,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9940,7 +10004,7 @@
     {
       "path": "img/enemies/Plant/Awakened Shrub.webp",
       "extension": ".webp",
-      "bytes": 205690,
+      "bytes": 203956,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9956,7 +10020,7 @@
     {
       "path": "img/enemies/Plant/Awakened Tree.webp",
       "extension": ".webp",
-      "bytes": 282024,
+      "bytes": 279432,
       "dimensions": {
         "width": 1085,
         "height": 1450
@@ -9972,7 +10036,7 @@
     {
       "path": "img/enemies/Plant/Gas Spore Fungus.webp",
       "extension": ".webp",
-      "bytes": 175312,
+      "bytes": 173270,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -9988,7 +10052,7 @@
     {
       "path": "img/enemies/Plant/Gulthias Blight.webp",
       "extension": ".webp",
-      "bytes": 241860,
+      "bytes": 239022,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10004,7 +10068,7 @@
     {
       "path": "img/enemies/Plant/Myconid Adult.webp",
       "extension": ".webp",
-      "bytes": 207072,
+      "bytes": 204710,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10020,7 +10084,7 @@
     {
       "path": "img/enemies/Plant/Myconid Sovereign.webp",
       "extension": ".webp",
-      "bytes": 214786,
+      "bytes": 212482,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10036,7 +10100,7 @@
     {
       "path": "img/enemies/Plant/Myconid Spore Servant.webp",
       "extension": ".webp",
-      "bytes": 176190,
+      "bytes": 173894,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10052,7 +10116,7 @@
     {
       "path": "img/enemies/Plant/Myconid Sprout.webp",
       "extension": ".webp",
-      "bytes": 167244,
+      "bytes": 165788,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10068,7 +10132,7 @@
     {
       "path": "img/enemies/Plant/Needle Blight.webp",
       "extension": ".webp",
-      "bytes": 159638,
+      "bytes": 158744,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10084,7 +10148,7 @@
     {
       "path": "img/enemies/Plant/Shambling Mound.webp",
       "extension": ".webp",
-      "bytes": 199350,
+      "bytes": 196764,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10100,7 +10164,7 @@
     {
       "path": "img/enemies/Plant/Shrieker Fungus.webp",
       "extension": ".webp",
-      "bytes": 165520,
+      "bytes": 161868,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10116,7 +10180,7 @@
     {
       "path": "img/enemies/Plant/Treant.webp",
       "extension": ".webp",
-      "bytes": 270858,
+      "bytes": 269554,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10132,7 +10196,7 @@
     {
       "path": "img/enemies/Plant/Tree Blight.webp",
       "extension": ".webp",
-      "bytes": 183772,
+      "bytes": 182344,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10148,7 +10212,7 @@
     {
       "path": "img/enemies/Plant/Twig Blight.webp",
       "extension": ".webp",
-      "bytes": 174622,
+      "bytes": 170928,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10164,7 +10228,7 @@
     {
       "path": "img/enemies/Plant/Vine Blight.webp",
       "extension": ".webp",
-      "bytes": 183688,
+      "bytes": 179998,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10180,7 +10244,7 @@
     {
       "path": "img/enemies/Plant/Violet Fungus Necrohulk.webp",
       "extension": ".webp",
-      "bytes": 197906,
+      "bytes": 193626,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10196,7 +10260,7 @@
     {
       "path": "img/enemies/Plant/Violet Fungus.webp",
       "extension": ".webp",
-      "bytes": 195820,
+      "bytes": 193072,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10212,7 +10276,7 @@
     {
       "path": "img/enemies/Undead/Banshee.webp",
       "extension": ".webp",
-      "bytes": 132320,
+      "bytes": 128336,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10228,7 +10292,7 @@
     {
       "path": "img/enemies/Undead/Beholder Zombie.webp",
       "extension": ".webp",
-      "bytes": 215198,
+      "bytes": 212900,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10244,7 +10308,7 @@
     {
       "path": "img/enemies/Undead/Bone Naga.webp",
       "extension": ".webp",
-      "bytes": 131596,
+      "bytes": 127442,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10260,7 +10324,7 @@
     {
       "path": "img/enemies/Undead/Crawling Claw.webp",
       "extension": ".webp",
-      "bytes": 141076,
+      "bytes": 135244,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10276,7 +10340,7 @@
     {
       "path": "img/enemies/Undead/Death Knight Aspirant.webp",
       "extension": ".webp",
-      "bytes": 85458,
+      "bytes": 80858,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10292,7 +10356,7 @@
     {
       "path": "img/enemies/Undead/Death Knight.webp",
       "extension": ".webp",
-      "bytes": 175424,
+      "bytes": 172160,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10308,7 +10372,7 @@
     {
       "path": "img/enemies/Undead/Death Tyrant.webp",
       "extension": ".webp",
-      "bytes": 172254,
+      "bytes": 169774,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10324,7 +10388,7 @@
     {
       "path": "img/enemies/Undead/Demilich.webp",
       "extension": ".webp",
-      "bytes": 144542,
+      "bytes": 141924,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10340,7 +10404,7 @@
     {
       "path": "img/enemies/Undead/Dracolich.webp",
       "extension": ".webp",
-      "bytes": 227530,
+      "bytes": 225116,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10356,7 +10420,7 @@
     {
       "path": "img/enemies/Undead/Flameskull.webp",
       "extension": ".webp",
-      "bytes": 277624,
+      "bytes": 276380,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10372,7 +10436,7 @@
     {
       "path": "img/enemies/Undead/Flaming Skeleton.webp",
       "extension": ".webp",
-      "bytes": 169824,
+      "bytes": 167538,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10388,7 +10452,7 @@
     {
       "path": "img/enemies/Undead/Ghast Gravecaller.webp",
       "extension": ".webp",
-      "bytes": 128782,
+      "bytes": 123564,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10404,7 +10468,7 @@
     {
       "path": "img/enemies/Undead/Ghast.webp",
       "extension": ".webp",
-      "bytes": 121554,
+      "bytes": 118062,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10420,7 +10484,7 @@
     {
       "path": "img/enemies/Undead/Ghost.webp",
       "extension": ".webp",
-      "bytes": 201528,
+      "bytes": 199194,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10436,7 +10500,7 @@
     {
       "path": "img/enemies/Undead/Ghoul.webp",
       "extension": ".webp",
-      "bytes": 232760,
+      "bytes": 230932,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10452,7 +10516,7 @@
     {
       "path": "img/enemies/Undead/Graveyard Revenant.webp",
       "extension": ".webp",
-      "bytes": 170212,
+      "bytes": 166890,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10468,7 +10532,7 @@
     {
       "path": "img/enemies/Undead/Haunting Revenant.webp",
       "extension": ".webp",
-      "bytes": 175306,
+      "bytes": 171402,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10484,7 +10548,7 @@
     {
       "path": "img/enemies/Undead/Lacedon Ghoul.webp",
       "extension": ".webp",
-      "bytes": 222548,
+      "bytes": 220416,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10500,7 +10564,7 @@
     {
       "path": "img/enemies/Undead/Lich.webp",
       "extension": ".webp",
-      "bytes": 193304,
+      "bytes": 189372,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10516,7 +10580,7 @@
     {
       "path": "img/enemies/Undead/Minotaur Skeleton.webp",
       "extension": ".webp",
-      "bytes": 198962,
+      "bytes": 194196,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10532,7 +10596,7 @@
     {
       "path": "img/enemies/Undead/Mummy Lord.webp",
       "extension": ".webp",
-      "bytes": 272704,
+      "bytes": 269172,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10548,7 +10612,7 @@
     {
       "path": "img/enemies/Undead/Mummy.webp",
       "extension": ".webp",
-      "bytes": 209408,
+      "bytes": 205878,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10564,7 +10628,7 @@
     {
       "path": "img/enemies/Undead/Ogre Zombie.webp",
       "extension": ".webp",
-      "bytes": 158968,
+      "bytes": 155068,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10580,7 +10644,7 @@
     {
       "path": "img/enemies/Undead/Poltergeist.webp",
       "extension": ".webp",
-      "bytes": 217876,
+      "bytes": 214012,
       "dimensions": {
         "width": 1123,
         "height": 1400
@@ -10596,7 +10660,7 @@
     {
       "path": "img/enemies/Undead/Revenant.webp",
       "extension": ".webp",
-      "bytes": 159290,
+      "bytes": 154158,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10612,7 +10676,7 @@
     {
       "path": "img/enemies/Undead/Shadow.webp",
       "extension": ".webp",
-      "bytes": 93036,
+      "bytes": 88208,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10628,7 +10692,7 @@
     {
       "path": "img/enemies/Undead/Skeleton.webp",
       "extension": ".webp",
-      "bytes": 170974,
+      "bytes": 166728,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10644,7 +10708,7 @@
     {
       "path": "img/enemies/Undead/Specter.webp",
       "extension": ".webp",
-      "bytes": 134890,
+      "bytes": 130764,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10660,7 +10724,7 @@
     {
       "path": "img/enemies/Undead/Vampire Familiar.webp",
       "extension": ".webp",
-      "bytes": 62006,
+      "bytes": 58922,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10676,7 +10740,7 @@
     {
       "path": "img/enemies/Undead/Vampire Nightbringer.webp",
       "extension": ".webp",
-      "bytes": 146758,
+      "bytes": 142802,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10692,7 +10756,7 @@
     {
       "path": "img/enemies/Undead/Vampire Spawn.webp",
       "extension": ".webp",
-      "bytes": 178126,
+      "bytes": 175342,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10708,7 +10772,7 @@
     {
       "path": "img/enemies/Undead/Vampire Umbral Lord.webp",
       "extension": ".webp",
-      "bytes": 87132,
+      "bytes": 83668,
       "dimensions": {
         "width": 1024,
         "height": 1536
@@ -10724,7 +10788,7 @@
     {
       "path": "img/enemies/Undead/Vampire.webp",
       "extension": ".webp",
-      "bytes": 112322,
+      "bytes": 108578,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10740,7 +10804,7 @@
     {
       "path": "img/enemies/Undead/Warhorse Skeleton.webp",
       "extension": ".webp",
-      "bytes": 165130,
+      "bytes": 160748,
       "dimensions": {
         "width": 1023,
         "height": 1537
@@ -10756,7 +10820,7 @@
     {
       "path": "img/enemies/Undead/Wight.webp",
       "extension": ".webp",
-      "bytes": 155652,
+      "bytes": 151954,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10772,7 +10836,7 @@
     {
       "path": "img/enemies/Undead/Will-o'-wisp.webp",
       "extension": ".webp",
-      "bytes": 137148,
+      "bytes": 136258,
       "dimensions": {
         "width": 1122,
         "height": 1402
@@ -10788,7 +10852,7 @@
     {
       "path": "img/enemies/Undead/Wraith.webp",
       "extension": ".webp",
-      "bytes": 131694,
+      "bytes": 127510,
       "dimensions": {
         "width": 1086,
         "height": 1448
@@ -10804,7 +10868,7 @@
     {
       "path": "img/enemies/Undead/Zombie.webp",
       "extension": ".webp",
-      "bytes": 134080,
+      "bytes": 129136,
       "dimensions": {
         "width": 1023,
         "height": 1537

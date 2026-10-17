@@ -19,7 +19,6 @@
 
     let monsters = [];
     let monsterNamesFr = {};
-    let unresolvedMonsterTranslations = [];
     let detailsLoaded = false;
     let revealSelection = true;
     const progressive = window.DndProgressiveList.create({
@@ -45,7 +44,7 @@
     }
 
     function displayName(monster) {
-        return monster.nameFr || `${monster.name} (traduction française non résolue)`;
+        return monster.nameFr;
     }
 
     function sortName(monster) {
@@ -476,14 +475,15 @@
 
     function init(data, translationsData) {
         monsterNamesFr = translationsData.monsterNamesFr || {};
-        unresolvedMonsterTranslations = translationsData.unresolvedMonsterTranslations || [];
-        monsters = (data.monsters || []).map(function (monster) {
-            return Object.assign({}, monster, { nameFr: monsterNamesFr[monster.name] || "" });
-        });
-        const resolvedCount = monsters.filter(monster => monster.nameFr).length;
+        monsters = (data.monsters || [])
+            .map(function (monster) {
+                return Object.assign({}, monster, { nameFr: monsterNamesFr[monster.name] || "" });
+            })
+            .filter(function (monster) { return monster.nameFr; });
+        const resolvedCount = monsters.length;
         sourceNote.textContent = data.note
-            ? `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés, ${unresolvedMonsterTranslations.length} non résolus. ${data.note}`
-            : `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés, ${unresolvedMonsterTranslations.length} non résolus.`;
+            ? `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés. ${data.note}`
+            : `${data.count || monsters.length} monstres chargés. ${resolvedCount} noms français confirmés.`;
 
         fillSelect(crSelect, uniqueValues("cr").sort((a, b) => {
             const am = monsters.find(m => m.cr === a);

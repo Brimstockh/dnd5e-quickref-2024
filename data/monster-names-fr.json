@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "Index français du bestiaire fourni en six photographies",
-  "count": 503,
+  "count": 488,
   "resolvedCount": 488,
-  "unresolvedCount": 15,
+  "unresolvedCount": 0,
   "monsterNamesFr": {
     "Aarakocra Aeromancer": "Aéromancien aarakocre",
     "Aarakocra Skirmisher": "Tirailleur aarakocre",
@@ -494,111 +494,5 @@
     "Yuan-ti Infiltrator": "Infiltrateur yuan-ti",
     "Zombie": "Zombi"
   },
-  "unresolvedMonsterTranslations": [
-    {
-      "en": "Aberrant Spirit",
-      "candidates": [
-        "Esprit aberrant"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Animated Object",
-      "candidates": [
-        "Objet animé"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Beast Of the Land",
-      "candidates": [
-        "Bête de la terre"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Beast Of the Sea",
-      "candidates": [
-        "Bête de la mer"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Beast Of the Sky",
-      "candidates": [
-        "Bête du ciel"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Bestial Spirit",
-      "candidates": [
-        "Esprit bestial"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Celestial Spirit",
-      "candidates": [
-        "Esprit céleste"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Construct Spirit",
-      "candidates": [
-        "Esprit artificiel"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Draconic Spirit",
-      "candidates": [
-        "Esprit draconique"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Elemental Spirit",
-      "candidates": [
-        "Esprit élémentaire"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Fey Spirit",
-      "candidates": [
-        "Esprit féerique"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Fiendish Spirit",
-      "candidates": [
-        "Esprit fiélon"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Giant Insect",
-      "candidates": [
-        "Insecte géant"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Otherworldly Steed",
-      "candidates": [
-        "Monture d'outre-monde"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    },
-    {
-      "en": "Undead Spirit",
-      "candidates": [
-        "Esprit mort-vivant"
-      ],
-      "reason": "Aucune entrée correspondante clairement lisible dans les six photographies fournies ; aucune traduction n’est inventée."
-    }
-  ]
+  "unresolvedMonsterTranslations": []
 }

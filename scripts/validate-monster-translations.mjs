@@ -39,6 +39,7 @@ for (const entry of unresolved) {
 if (translationData.count !== monsters.length) errors.push(`Count mismatch: mapping=${translationData.count}, monsters=${monsters.length}`);
 if (translationData.resolvedCount !== Object.keys(names).length) errors.push("Resolved count metadata is stale");
 if (translationData.unresolvedCount !== unresolved.length) errors.push("Unresolved count metadata is stale");
+if (unresolved.length) errors.push(`Unresolved translations are not allowed in the catalogue: ${unresolved.map((entry) => entry.en).join(", ")}`);
 
 if (errors.length) throw new Error(errors.join("\n"));
 
