@@ -10,6 +10,7 @@ export const SELECTION_PARAMETERS = Object.freeze([
   "reaction",
   "condition",
   "environment",
+  "general",
   "term",
 ]);
 
@@ -24,6 +25,7 @@ export const ROUTE_SELECTION_TYPES = Object.freeze({
     bonus: "bonus-action",
     condition: "condition",
     environment: "environment",
+    general: "general",
     movement: "movement",
     reaction: "reaction",
   }),

@@ -18,7 +18,6 @@ data_bonusaction = [
         description: "Lancer un sort dont le temps d'incantation est de 1 action bonus",
         reference: "PHB, pgs. 235-238, 363.",
         bullets: [
-            "Lors d'un tour, vous ne pouvez dépenser qu'un seul emplacement de sort pour lancer un sort. Vous ne pouvez pas, par exemple, lancer un sort avec un emplacement comme action et un autre en utilisant votre action bonus au même tour.",
             "Pour plus de détails, voir l'action <i>Lancer un sort</i>."
         ]
     },

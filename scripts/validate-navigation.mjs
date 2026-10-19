@@ -16,7 +16,7 @@ const queryParameters = Object.freeze({
   "lore.html": new Set(["q", "category", "setting", "letter", "term"]),
   "historique.html": new Set(["q", "sort", "ability", "feat", "background"]),
   "monstres.html": new Set(["q", "cr", "type", "alignment", "size", "sort", "monster"]),
-  "quickref.html": new Set(["q", "movement", "action", "bonus", "reaction", "condition", "environment"]),
+  "quickref.html": new Set(["q", "intent", "movement", "action", "bonus", "reaction", "condition", "environment", "general"]),
   "objets-magiques.html": new Set(["q", "rarity", "type", "attunement"]),
   "regles-campagne.html": new Set(["q"]),
   "spells.html": new Set(["q", "level", "school", "class", "sort", "spell"]),

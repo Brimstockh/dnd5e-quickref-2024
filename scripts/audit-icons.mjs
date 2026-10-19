@@ -11,6 +11,7 @@ const dataFiles = [
     "js/data_bonusaction.js",
     "js/data_condition.js",
     "js/data_environment.js",
+    "js/data_general.js",
     "js/data_movement.js",
     "js/data_reaction.js",
 ];

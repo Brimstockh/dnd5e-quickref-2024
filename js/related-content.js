@@ -12,6 +12,7 @@ const QUICKREF_TYPES = Object.freeze({
   bonus: "bonus-action",
   condition: "condition",
   environment: "environment",
+  general: "general",
   movement: "movement",
   reaction: "reaction",
 });

@@ -13,6 +13,7 @@ const SOURCE_REFS_BY_TYPE = Object.freeze({
   glossary: "srd-5.2.1-fr",
   lore: "dmg-2024-lore-pdf",
   rule: "srd-5.2.1-fr",
+  general: "srd-5.2.1-fr",
   species: "phb-2024-fr",
   spell: "phb-2024-fr",
 });
@@ -342,6 +343,7 @@ const quickReferenceGroups = [
   ["js/data_bonusaction.js", ["data_bonusaction"], "Action bonus", "bonus-action"],
   ["js/data_reaction.js", ["data_reaction"], "Réaction", "reaction"],
   ["js/data_environment.js", ["data_environment_obscurance", "data_environment_light", "data_environment_vision", "data_environment_cover"], "Environnement", "environment"],
+  ["js/data_general.js", ["data_general"], "Règle générale", "general"],
 ];
 const quickReferenceEntries = (await Promise.all(quickReferenceGroups.map(async ([path, keys, category, type]) => ({
   category,
@@ -353,7 +355,9 @@ const quickReferenceEntries = (await Promise.all(quickReferenceGroups.map(async 
   legacyIds: [`quickref-${category}-${index + 1}`],
   title: item.title,
   category,
-  url: queryUrl("quickref.html", item.title),
+  url: type === "general"
+    ? `quickref.html?general=${encodeURIComponent(slugifyContent(item.title))}`
+    : queryUrl("quickref.html", item.title),
   keywords: [item.subtitle, item.reference, ...(item.bullets || [])],
   excerpt: excerpt(item.description || item.bullets?.[0]),
 })));

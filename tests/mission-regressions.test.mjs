@@ -38,7 +38,7 @@ test("deep search reaches class features, tools, rules, and aliases directly", (
     ["Action impétueuse", "Fougue", "class-feature"],
     ["Forme sauvage", "Forme sauvage", "class-feature"],
     ["Outils de forgeron", "Outils de forgeron", "tool"],
-    ["Concentration", "Concentration", "glossary"],
+    ["Concentration", "Concentration", "general"],
     ["Agripper", "Agripper", "action"],
   ]) {
     const result = searchEntries(entries, query, { limit: 1 })[0]?.entry;

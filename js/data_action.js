@@ -45,7 +45,6 @@ data_action = [
         description: "Lancer un sort dont le temps d'incantation est de 1 action",
         reference: "PHB, pg. 235-238, 363.",
         bullets: [
-            "Lors d'un tour, vous ne pouvez dépenser qu'un seul emplacement de sort pour lancer un sort. Vous ne pouvez pas, par exemple, lancer un sort avec un emplacement comme action et un autre en utilisant votre action bonus au même tour.",
             "La cible d'un sort doit être à portée du sort. Pour cibler quelque chose, vous devez avoir un chemin dégagé, donc la cible ne peut pas être derrière un couvert total.",
             "Les sorts avec des composantes matérielles ne consomment pas le matériel sauf indication explicite. Sauf si le coût est précisé, vous pouvez considérer que le coût est négligeable et que le matériel est simplement disponible dans une bourse à composantes.",
             "Certains sorts exigent que vous mainteniez votre concentration pour conserver leur magie. Si vous perdez la concentration, le sort se termine. Vous perdez la concentration si vous lancez un autre sort qui l'exige ou si vous êtes neutralisé. Chaque fois que vous subissez des dégâts, vous devez faire un jet de sauvegarde de Constitution pour maintenir votre concentration. Le DD est égal à 10 ou à la moitié des dégâts subis (le plus élevé des deux), jusqu'à un maximum de 30."

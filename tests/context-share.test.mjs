@@ -44,6 +44,7 @@ test("all contextual content families expose a canonical route contract", () => 
     bonus: "bonus-action",
     condition: "condition",
     environment: "environment",
+    general: "general",
     movement: "movement",
     reaction: "reaction",
   });

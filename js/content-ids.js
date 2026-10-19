@@ -8,6 +8,7 @@ const CONTENT_TYPES = Object.freeze([
   "environment",
   "equipment",
   "feat",
+  "general",
   "glossary",
   "lore",
   "monster",
