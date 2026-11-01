@@ -11,15 +11,23 @@ class FakeElement {
     this.hidden = false;
     this.id = "";
     this.innerHTML = "";
+    this.listeners = new Map();
     this.open = false;
     this.textContent = "";
     this.value = "";
   }
 
-  addEventListener() {}
+  addEventListener(type, listener) {
+    const listeners = this.listeners.get(type) ?? [];
+    listeners.push(listener);
+    this.listeners.set(type, listeners);
+  }
   append() {}
   appendChild() {}
   click() {}
+  dispatch(type) {
+    for (const listener of this.listeners.get(type) ?? []) listener({ target: this });
+  }
   focus() {}
   getAttribute(name) { return this.attributes.get(name) ?? null; }
   querySelectorAll() { return []; }
@@ -98,4 +106,28 @@ test("spells.html initializes and renders the local spell dataset", async () => 
   assert.equal((elements.spellsGrid.innerHTML.match(/<details class="spell catalog-card"/g) || []).length, 60);
   assert.equal(elements.loadMoreBtn.hidden, false);
   assert.match(elements.loadMoreBtn.textContent, /60\/391/);
+
+  for (const slug of [
+    "chatiment-de-cecite",
+    "chatiment-de-courroux",
+    "chatiment-de-fournaise",
+    "chatiment-de-tonnerre",
+    "chatiment-de-revelation",
+    "chatiment-de-stupeur",
+    "chatiment-du-ban",
+    "chatiment-divin",
+    "frappe-piegeuse",
+    "grele-d-epines",
+    "fleche-de-foudre",
+    "croissance-vegetale",
+    "represailles-infernales",
+  ]) {
+    const spell = data.spells.find((entry) => entry.slug === slug);
+    assert.ok(spell, `missing spell ${slug}`);
+    elements.searchInput.value = spell.name;
+    elements.searchInput.dispatch("input");
+    assert.match(elements.spellsGrid.innerHTML, new RegExp(`id="spell-${slug}"`));
+    assert.ok(elements.spellsGrid.innerHTML.includes(spell.casting_time));
+    assert.ok(elements.spellsGrid.innerHTML.includes(context.DndHtml.sanitizeRichHtml(spell.description_html)));
+  }
 });
