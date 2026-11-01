@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-import { filterLoreEntries, loadLoreResources, loreCategoryLabel, loreEntryUrl, readLoreState } from "../js/lore-page.js";
+import { filterLoreEntries, loadLoreResources, loreCategoryLabel, loreDisplayName, loreEntryUrl, loreSettingLabel, readLoreState } from "../js/lore-page.js";
 
 const lore = JSON.parse(await readFile(new URL("../data/lore.json", import.meta.url), "utf8"));
 
@@ -21,6 +21,25 @@ test("lore filtering searches English and French aliases", () => {
   assert.ok(waterdeep.some((entry) => entry.id === "lore-waterdeep"));
   const greyhawk = filterLoreEntries(lore.entries, { query: "", category: "person", setting: "Greyhawk", letter: "", term: "" });
   assert.ok(greyhawk.some((entry) => entry.id === "lore-bigby"));
+  const frenchName = filterLoreEntries(lore.entries, { query: "Kas le Traître", category: "", setting: "", letter: "", term: "" });
+  const originalName = filterLoreEntries(lore.entries, { query: "Kas the Betrayer", category: "", setting: "", letter: "", term: "" });
+  assert.ok(frenchName.some((entry) => entry.id === "lore-kas-the-betrayer"));
+  assert.ok(originalName.some((entry) => entry.id === "lore-kas-the-betrayer"));
+  const frenchSetting = filterLoreEntries(lore.entries, { query: "Faucongris", category: "", setting: "", letter: "", term: "" });
+  assert.ok(frenchSetting.some((entry) => entry.id === "lore-bigby"));
+});
+
+test("lore display uses French names and setting labels while retaining original keys", () => {
+  const companions = lore.entries.find((entry) => entry.id === "lore-companions-of-the-hall");
+  const adamantine = lore.entries.find((entry) => entry.id === "lore-adamantine");
+  assert.equal(loreDisplayName(companions), "Compagnons du Hall");
+  assert.ok(companions.aliases.includes("Companions of the Hall"));
+  assert.equal(loreDisplayName(adamantine), "Adamantium");
+  assert.ok(adamantine.aliases.includes("Adamantine"));
+  assert.equal(loreSettingLabel("Forgotten Realms"), "Royaumes Oubliés");
+  assert.equal(loreSettingLabel("Greyhawk"), "Faucongris");
+  assert.equal(loreSettingLabel("Feywild"), "Féerie");
+  assert.deepEqual(companions.setting, ["Forgotten Realms"]);
 });
 
 test("lore entries prefer their specialized page and keep a local fallback", () => {

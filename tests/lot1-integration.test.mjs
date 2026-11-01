@@ -57,7 +57,7 @@ test("continuous integration runs the complete recipe before publication", async
   assert.match(packageJson.scripts["build:pages"], /build-pages-artifact\.mjs/);
   assert.match(packageJson.scripts["check:pages"], /verify-pages-artifact\.mjs/);
   assert.match(packageJson.scripts["check:navigation"], /validate-navigation\.mjs/);
-  assert.match(packageJson.scripts.recette, /^npm run check:search\b/);
+  assert.match(packageJson.scripts.recette, /\bnpm run check:search\b/);
   assert.match(packageJson.scripts.recette, /\bcheck:navigation\b/);
   assert.match(packageJson.scripts.recette, /\bcheck:pages\b/);
   assert.match(packageJson.scripts.recette, /\bnpm test$/);

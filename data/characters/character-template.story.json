@@ -5,7 +5,7 @@
                        "name":  "Historique",
                        "feature":  {
                                        "name":  "Nom du trait",
-                                       "text":  "Texte de la feature (ce que ça apporte en RP / en jeu)."
+                                       "text":  "Texte de la capacité (ce que cela apporte en RP ou en jeu)."
                                    }
                    },
     "characteristics":  {

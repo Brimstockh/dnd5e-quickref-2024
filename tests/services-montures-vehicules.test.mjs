@@ -51,7 +51,7 @@ test("navigation, search indexing, and PWA runtime caching include the page", ()
 
 test("the home dashboard exposes the multiverse index and equipment services", () => {
   assert.match(home, /data-site-explorer/);
-  assert.match(navigation, /entry\(\{ id: "lore", label: "Lore \/ index du multivers", url: "lore\.html"/);
+  assert.match(navigation, /entry\(\{ id: "lore", label: "Index du multivers", url: "lore\.html"/);
   assert.match(navigation, /entry\(\{ id: "faerun", label: "Faerûn \/ Royaumes Oubliés", url: "faerun\.html"/);
   assert.match(navigation, /entry\(\{ id: "services", label: "Services, montures et véhicules", url: "services-montures-vehicules\.html"/);
 });
@@ -83,6 +83,7 @@ test("mounts, barding, saddles, and drawn vehicles retain PH2024 values", () => 
   assert.match(page, /Selle militaire[\s\S]{0,180}Avantage/);
   assert.match(page, /Selle exotique[\s\S]{0,180}monture aquatique[\s\S]{0,80}monture volante/);
   assert.match(page, /5 fois sa capacité de charge normale/);
+  assert.match(page, /≈205 kg \(450 lb\)/);
 });
 
 test("large vehicle rules and the seven vehicle records are complete", () => {
@@ -99,11 +100,16 @@ test("large vehicle rules and the seven vehicle records are complete", () => {
   ]) {
     assert.match(largeVehicles, new RegExp(`${name}[\\s\\S]{0,100}${speed}[\\s\\S]{0,160}${hp}[\\s\\S]{0,100}${cost}`));
   }
+  for (const metricSpeed of [
+    "13 km/h (8 mph)", "6,4 km/h (4 mph)", "1,6 km/h (1 mph)", "4,8 km/h (3 mph)",
+    "2,4 km/h (1,5 mph)", "3,2 km/h (2 mph)", "4 km/h (2,5 mph)",
+  ]) assert.ok(largeVehicles.includes(metricSpeed), `missing metric speed ${metricSpeed}`);
   assert.match(page, /vent fort[\s\S]{0,160}moitié/);
   assert.match(page, /sans vent[\s\S]{0,180}voiles/);
   assert.match(page, /remontent un courant[\s\S]{0,100}divisée par deux/);
-  assert.match(page, /descendant le courant[\s\S]{0,180}3 mph/);
+  assert.match(page, /descendant le courant[\s\S]{0,180}4,8 km\/h \(3 mph\)/);
   assert.match(page, /Barque transportée[\s\S]{0,100}100 lb/);
+  assert.match(page, /Barque transportée[\s\S]{0,100}environ 45 kg \(100 lb\)/);
   assert.match(page, /un cinquième[\s\S]{0,180}5 pa par jour[\s\S]{0,120}2 po par jour/);
   assert.match(page, /1 PV[\s\S]{0,100}1 jour[\s\S]{0,100}20 po/);
   assert.match(page, /divisés par deux/);

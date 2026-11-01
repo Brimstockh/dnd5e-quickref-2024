@@ -131,7 +131,7 @@ export const SITE_SECTIONS = Object.freeze([
         links: [
             entry({ id: "universe-hub", label: "Explorer l’univers", url: "univers.html", description: "L’index des ressources de l’univers.", icon: "planes", category: "Univers" }),
             entry({ id: "faerun", label: "Faerûn / Royaumes Oubliés", url: "faerun.html", description: "Explorer Faerûn", group: "faerun", icon: "faerun", category: "Univers" }),
-            entry({ id: "lore", label: "Lore / index du multivers", url: "lore.html", description: "Index transversal du multivers", group: "multiverse", icon: "planes", category: "Lore" }),
+            entry({ id: "lore", label: "Index du multivers", url: "lore.html", description: "Index des personnages, lieux, factions et événements des univers de D&D", group: "multiverse", icon: "planes", category: "Univers", contentId: "page-lore-index-du-multivers" }),
             entry({ id: "history", label: "Histoire", url: "histoire-royaumes.html", description: "Chronologie du monde", group: "landmarks", icon: "history", category: "Univers" }),
             entry({ id: "gods", label: "Divinités", url: "divinites.html", description: "Panthéon de Faerûn", group: "faerun", icon: "gods", category: "Univers" }),
             entry({ id: "factions", label: "Factions", url: "groupes-royaumes.html", description: "Groupes influents", group: "faerun", icon: "factions", category: "Univers" }),

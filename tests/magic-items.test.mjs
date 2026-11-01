@@ -5,6 +5,34 @@ import test from "node:test";
 const load = async (path) => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), "utf8"));
 const catalog = await load("data/magic-items.json");
 const magicItemSchema = await load("schemas/magic-items.schema.json");
+const magicItemTranslations = await load("data/magic-items-fr.json");
+
+function numericTokens(text) {
+  return [...text.matchAll(/\d+d\d+|\d+(?:[ ,]\d{3})*(?:\.\d+)?/g)].map(([value]) => value.replace(/[ ,]/g, ""));
+}
+
+test("French magic-item localization keeps the English source and mechanics intact", () => {
+  assert.equal(magicItemTranslations.schemaVersion, 1);
+  assert.equal(magicItemTranslations.language, "fr");
+  assert.equal(magicItemTranslations.originalCatalog, "data/magic-items.json");
+  assert.equal(new Set(magicItemTranslations.items.map((item) => item.id)).size, magicItemTranslations.items.length);
+  for (const translated of magicItemTranslations.items) {
+    const original = catalog.items.find((item) => item.id === translated.id);
+    assert.ok(original, translated.id);
+    assert.ok(translated.nameFr.trim(), translated.id);
+    assert.ok(translated.descriptionFr.trim(), translated.id);
+    assert.deepEqual(numericTokens(translated.descriptionFr), numericTokens(original.description), translated.id);
+    assert.equal((translated.tablesFr || []).length, original.tables.length, translated.id);
+    for (const [tableIndex, tableFr] of (translated.tablesFr || []).entries()) {
+      const table = original.tables[tableIndex];
+      assert.equal(tableFr.rowsFr.length, table.rows.length, `${translated.id} table ${tableIndex + 1}`);
+      assert.equal(Object.keys(tableFr.columnsFr).every((key) => (table.columns || []).some((column) => typeof column === "string" ? column === key : column.key === key)), true, translated.id);
+    }
+  }
+  assert.equal(catalog.items.length, 347);
+  assert.equal(catalog.items.find((item) => item.id === "magic-item-adamantine-armor")?.name, "Adamantine Armor");
+  assert.equal(catalog.items.find((item) => item.id === "magic-item-adamantine-armor")?.description.startsWith("This suit of armor"), true);
+});
 
 test("magic item catalog is sourced from the DMG 2024 PDF and keeps stable IDs", () => {
   assert.equal(catalog.schemaVersion, 2);
@@ -585,6 +613,7 @@ test("DMG pages 317 to 325 populate the verified magic item entries", () => {
 test("magic item page exposes the official filters and structured renderer", async () => {
   const html = await readFile(new URL("../objets-magiques.html", import.meta.url), "utf8");
   const script = await readFile(new URL("../js/magic-items-page.js", import.meta.url), "utf8");
+  const searchBuilder = await readFile(new URL("../scripts/build-search-index.mjs", import.meta.url), "utf8");
   assert.match(html, /id="raritySelect"/);
   assert.match(html, /id="typeSelect"/);
   assert.match(html, /id="attunementSelect"/);
@@ -599,4 +628,11 @@ test("magic item page exposes the official filters and structured renderer", asy
   assert.match(script, /DndProgressiveList/);
   assert.match(script, /<table/);
   assert.match(script, /setFiltersOpen/);
+  assert.match(html, /rel="preload" href="data\/magic-items-fr\.json" as="fetch"/);
+  assert.match(script, /Promise\.all\(\["data\/magic-items\.json", "data\/magic-items-fr\.json"\]/);
+  assert.match(script, /translated\.nameFr/);
+  assert.match(script, /magic-item-original/);
+  assert.match(script, /Nom anglais d'origine/);
+  assert.match(searchBuilder, /magicItemTranslationsById/);
+  assert.match(searchBuilder, /translated\?\.descriptionFr \|\| item\.description/);
 });

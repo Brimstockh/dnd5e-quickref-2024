@@ -27,6 +27,8 @@ test("Pages artifact excludes repository internals but keeps published support f
         "README.md",
         "docs/cleanup-final-report.md",
         "data/content-inventory.json",
+        "data/magic-items-fr.json",
+        "data/monster-capabilities-fr.json",
         "index.html",
         "service-worker.js",
         "assets/images/faerun-city.webp",

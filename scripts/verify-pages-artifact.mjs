@@ -78,7 +78,7 @@ async function verifyPagesArtifact(artifactDirectory = resolve(root, "_site"), p
     const missingPages = (inventory.pages || []).filter((page) => !artifactPaths.has(page));
     if (missingPages.length) throw new Error(`Pages attendues absentes : ${missingPages.join(", ")}`);
 
-    for (const required of ["index.html", "offline.html", "manifest.webmanifest", "service-worker.js", "sw.js", "data/search-index.json", "data/source-metadata.json"]) {
+    for (const required of ["index.html", "offline.html", "manifest.webmanifest", "service-worker.js", "sw.js", "data/search-index.json", "data/source-metadata.json", "data/magic-items-fr.json", "data/monster-capabilities-fr.json"]) {
         if (!artifactPaths.has(required)) throw new Error(`Fichier runtime absent : ${required}`);
     }
 

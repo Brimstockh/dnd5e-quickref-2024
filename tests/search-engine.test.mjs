@@ -97,9 +97,10 @@ test("commands constrain search to the requested content family", () => {
     raw: "@lore eauprofonde",
     query: "eauprofonde",
     command: "@lore",
-    category: "Lore",
-    label: "Lore / Univers",
+    category: "Univers",
+    label: "Univers / Multivers",
   });
+  assert.equal(parseSearchQuery("@multivers Faucongris").category, "Univers");
 });
 
 test("all documented search commands keep their category contract", () => {

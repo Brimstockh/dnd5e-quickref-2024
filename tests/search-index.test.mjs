@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { SITE_SECTIONS } from "../js/site-navigation.js";
+import { searchEntries } from "../js/search-engine.js";
 
 const [primaryIndex, deepIndex] = await Promise.all([
   readFile(new URL("../data/search-index.json", import.meta.url), "utf8").then(JSON.parse),
@@ -16,7 +17,7 @@ index.count = index.entries.length;
 
 test("global search index covers every major content family", () => {
   const categories = new Set(index.entries.map((entry) => entry.category));
-  for (const category of ["Sort", "Monstre", "Don", "État", "Classe", "Espèce", "Objet", "Historique", "Règle", "Action", "Univers", "Lore"]) {
+  for (const category of ["Sort", "Monstre", "Don", "État", "Classe", "Espèce", "Objet", "Historique", "Règle", "Action", "Univers"]) {
     assert.equal(categories.has(category), true, category);
   }
   assert.equal(index.schemaVersion, 1);
@@ -44,6 +45,7 @@ test("global search entries expose stable canonical IDs and compatibility aliase
 
 test("navigation pages use page metadata while deep contents keep specialized types", () => {
   const entryForUrl = (url) => index.entries.find((entry) => entry.url === url);
+  assert.equal(entryForUrl("lore.html").id, "page-lore-index-du-multivers");
   const pageExpectations = [
     ["spells.html", "Compendium", "Sort"],
     ["glossaire.html", "Règles", "Glossaire"],
@@ -71,7 +73,7 @@ test("navigation pages use page metadata while deep contents keep specialized ty
     ["glossary-jet-de-sauvegarde", "Règles", "Glossaire", "glossary"],
     ["class-magicien", "Création", "Classe", "class"],
     ["monster-mind-flayer", "Compendium", "Monstre", "monster"],
-    ["lore-waterdeep", "Univers", "Lore", "lore"],
+    ["lore-waterdeep", "Univers", "Univers", "lore"],
   ];
   for (const [id, section, category, type] of deepExpectations) {
     const entry = index.entries.find((candidate) => candidate.id === id);
@@ -93,11 +95,42 @@ test("global search includes lore entries and bilingual setting aliases", () => 
   const waterdeep = index.entries.find((entry) => entry.id === "lore-waterdeep");
   const acereraK = index.entries.find((entry) => entry.id === "lore-acererak");
   assert.equal(waterdeep.type, "lore");
-  assert.equal(waterdeep.category, "Lore");
+  assert.equal(waterdeep.category, "Univers");
+  assert.equal(waterdeep.title, "Eauprofonde");
+  assert.ok(waterdeep.aliases.includes("Waterdeep"));
   assert.ok(waterdeep.aliases.includes("Eauprofonde"));
+  assert.ok(waterdeep.keywords.includes("Royaumes Oubliés"));
   assert.equal(waterdeep.url, "lore.html?term=waterdeep");
   assert.match(acereraK.url, /^lore\.html\?term=/);
   assert.equal(acereraK.type, "lore");
+});
+
+test("global lore search accepts French and original English names and settings", () => {
+  for (const query of ["Côte des Épées", "Sword Coast", "Royaumes Oubliés", "Forgotten Realms"]) {
+    const results = searchEntries(index.entries, query);
+    assert.ok(results.some((result) => result.entry.id === "lore-sword-coast"), query);
+  }
+  for (const query of ["Adamantium", "Adamantine"]) {
+    const results = searchEntries(index.entries, query);
+    assert.ok(results.some((result) => result.entry.id === "lore-adamantine"), query);
+  }
+});
+
+test("magic item global search prefers French while retaining English names", () => {
+  const item = index.entries.find((entry) => entry.id === "magic-item-amulet-of-health");
+  assert.equal(item.title, "Amulette de bonne santé");
+  assert.ok(item.aliases.includes("Amulet of Health"));
+  assert.match(item.excerpt, /Votre Constitution est de 19/);
+  for (const query of ["Amulette de bonne santé", "Amulet of Health"]) {
+    assert.ok(searchEntries(index.entries, query).some((result) => result.entry.id === item.id), query);
+  }
+  const bag = index.entries.find((entry) => entry.id === "magic-item-bag-of-holding");
+  assert.equal(bag.title, "Sac sans fond");
+  assert.ok(bag.aliases.includes("Bag of Holding"));
+  assert.match(bag.excerpt, /L'espace intérieur/);
+  for (const query of ["Sac sans fond", "Bag of Holding"]) {
+    assert.ok(searchEntries(index.entries, query).some((result) => result.entry.id === bag.id), query);
+  }
 });
 
 test("global monster search exposes French labels and English aliases", () => {
@@ -105,6 +138,17 @@ test("global monster search exposes French labels and English aliases", () => {
   assert.equal(monster.title, "Flagelleur mental");
   assert.ok(monster.aliases.includes("Mind Flayer"));
   assert.match(monster.url, /^monstres\.html\?q=/);
+});
+
+test("monster abilities are searchable in French and English and focus their monster", () => {
+  const breath = index.entries.find((entry) => entry.id === "monster-feature-adult-black-dragon-actions-3");
+  assert.equal(breath.type, "monster-feature");
+  assert.match(breath.title, /^Souffle acide/);
+  assert.ok(breath.aliases.includes("Acid Breath (Recharge 5–6)"));
+  assert.match(breath.url, /^monstres\.html\?monster=adult-black-dragon&q=/);
+  for (const query of ["Souffle acide", "Acid Breath"]) {
+    assert.ok(searchEntries(index.entries, query).some((result) => result.entry.id === breath.id), query);
+  }
 });
 
 test("global search results link to focused catalog queries", () => {

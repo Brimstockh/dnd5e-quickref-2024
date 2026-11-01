@@ -19,6 +19,7 @@
 
     let monsters = [];
     let monsterNamesFr = {};
+    let monsterLocalizationFr = { fieldsFr: {}, monsters: {} };
     let detailsLoaded = false;
     let revealSelection = true;
     const progressive = window.DndProgressiveList.create({
@@ -51,73 +52,6 @@
         return monster.nameFr || monster.name;
     }
 
-    const translations = [
-        ["Medium or Small", "Moyenne ou Petite"],
-        ["Lawful Good", "Loyal bon"],
-        ["Lawful Neutral", "Loyal neutre"],
-        ["Lawful Evil", "Loyal mauvais"],
-        ["Neutral Good", "Neutre bon"],
-        ["Neutral Evil", "Neutre mauvais"],
-        ["Chaotic Good", "Chaotique bon"],
-        ["Chaotic Neutral", "Chaotique neutre"],
-        ["Chaotic Evil", "Chaotique mauvais"],
-        ["Any Alignment", "Tout alignement"],
-        ["Unaligned", "Non aligné"],
-        ["Aberration", "Aberration"],
-        ["Beast", "Bête"],
-        ["Celestial", "Céleste"],
-        ["Construct", "Artificiel"],
-        ["Elemental", "Élémentaire"],
-        ["Fey", "Fée"],
-        ["Fiend", "Fiélon"],
-        ["Giant", "Géant"],
-        ["Humanoid", "Humanoïde"],
-        ["Monstrosity", "Monstruosité"],
-        ["Ooze", "Vase"],
-        ["Undead", "Mort-vivant"],
-        ["Tiny", "Minuscule"],
-        ["Small", "Petite"],
-        ["Medium", "Moyenne"],
-        ["Large", "Grande"],
-        ["Huge", "Très grande"],
-        ["Gargantuan", "Gigantesque"],
-        ["Neutral", "Neutre"],
-        ["Arcana", "Arcanes"],
-        ["Athletics", "Athlétisme"],
-        ["Animal Handling", "Dressage"],
-        ["Deception", "Tromperie"],
-        ["History", "Histoire"],
-        ["Insight", "Intuition"],
-        ["Medicine", "Médecine"],
-        ["Performance", "Représentation"],
-        ["Sleight of Hand", "Escamotage"],
-        ["Stealth", "Discrétion"],
-        ["Survival", "Survie"],
-        ["Passive Perception", "Perception passive"],
-        ["Darkvision", "Vision dans le noir"],
-        ["Truesight", "Vision lucide"],
-        ["Blindsight", "Vision aveugle"],
-        ["Tremorsense", "Perception des vibrations"],
-        ["Bludgeoning", "Contondants"],
-        ["Piercing", "Perforants"],
-        ["Slashing", "Tranchants"],
-        ["Lightning", "Foudre"],
-        ["Thunder", "Tonnerre"],
-        ["Necrotic", "Nécrotiques"],
-        ["Radiant", "Radiants"],
-        ["Psychic", "Psychiques"],
-        ["Poison", "Poison"],
-        ["Fire", "Feu"],
-        ["Cold", "Froid"],
-        ["Acid", "Acide"],
-        ["Common", "Commun"],
-        ["Fly", "Vol"],
-        ["Swim", "Nage"],
-        ["Climb", "Escalade"],
-        ["Burrow", "Fouissement"],
-        ["Hover", "Surplace"]
-    ];
-
     const abilityOrder = [
         ["STR", "Force"],
         ["DEX", "Dextérité"],
@@ -135,18 +69,155 @@
         ["Actions légendaires", "legendary_actions"]
     ];
 
-    function localize(value) {
-        let text = String(value || "");
-        translations.forEach(([source, target]) => {
-            text = text.replace(new RegExp(`\\b${source}\\b`, "g"), target);
-        });
-        return text.replace(/\b(\d+) ft\./g, function (_, feet) {
-            return `${(Number(feet) * 0.3).toLocaleString("fr-FR")} m`;
-        });
+    function distanceInMeters(feet) {
+        const meters = Number(feet) * 0.3;
+        return `${meters.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} m`;
     }
 
-    function option(value) {
-        return `<option value="${escapeHtml(value)}">${escapeHtml(localize(value))}</option>`;
+    function splitTopLevel(value, separator) {
+        const parts = [];
+        let depth = 0;
+        let start = 0;
+        for (let index = 0; index < value.length; index += 1) {
+            if (value[index] === "(") depth += 1;
+            else if (value[index] === ")") depth = Math.max(0, depth - 1);
+            else if (depth === 0 && value.startsWith(separator, index)) {
+                parts.push(value.slice(start, index).trim());
+                start = index + separator.length;
+                index += separator.length - 1;
+            }
+        }
+        parts.push(value.slice(start).trim());
+        return parts.filter(Boolean);
+    }
+
+    function translateLanguageTerm(value) {
+        const translations = monsterLocalizationFr.fieldsFr?.languages || {};
+        const primordial = String(value).match(/^Primordial \((.+)\)$/);
+        if (!primordial) return translations[value] || value;
+        const dialects = splitTopLevel(primordial[1], ",").map(function (dialect) {
+            return translations[dialect] || dialect.toLowerCase();
+        });
+        return `primordial (${dialects.join(", ")})`;
+    }
+
+    function translateLanguagePhrase(value) {
+        const text = String(value).trim();
+        if (text === "None") return "Aucune";
+        if (text === "All") return "Toutes les langues";
+        if (text === "—" || text === "———") return "—";
+        const commonPlus = text.match(/^Common plus (one|two|three|four|five|six) other languages?$/);
+        if (commonPlus) {
+            const quantities = { one: "une", two: "deux", three: "trois", four: "quatre", five: "cinq", six: "six" };
+            const quantity = quantities[commonPlus[1]];
+            return `commun et ${quantity} autre${commonPlus[1] === "one" ? "" : "s"} langue${commonPlus[1] === "one" ? "" : "s"}`;
+        }
+        const understandsPlus = text.match(/^Understands Common plus (one|two) other languages? but can't speak$/);
+        if (understandsPlus) {
+            const quantity = understandsPlus[1] === "one" ? "une" : "deux";
+            return `comprend le commun et ${quantity} autre${understandsPlus[1] === "one" ? "" : "s"} langue${understandsPlus[1] === "one" ? "" : "s"}, mais ne peut pas parler`;
+        }
+        const understands = text.match(/^Understands (.+) but can't speak( them)?$/);
+        if (understands) {
+            const languages = splitTopLevel(understands[1].replace(/, and /g, ", ").replace(/ and /g, ", "), ",").map(translateLanguageTerm);
+            const joined = languages.length > 1 ? `${languages.slice(0, -1).join(", ")} et ${languages.at(-1)}` : languages[0];
+            return `comprend ${joined}, mais ne peut pas parler${understands[2] ? " ces langues" : ""}`;
+        }
+        const form = text.match(/^Common \(can't speak in (bear|boar|rat|tiger|wolf) form\)$/);
+        if (form) {
+            const animals = { bear: "ours", boar: "sanglier", rat: "rat", tiger: "tigre", wolf: "loup" };
+            return `commun (ne peut pas parler sous forme de ${animals[form[1]]})`;
+        }
+        if (text === "Blink Dog; understands Elvish and Sylvan but can't speak them") return "chien téléporteur ; comprend l'elfique et le sylvestre, mais ne peut pas parler ces langues";
+        if (text === "Understands commands given in any language but can't speak") return "comprend les ordres donnés dans n'importe quelle langue, mais ne peut pas parler";
+
+        const telepathy = text.match(/^(.*?)(?:;\s*)?telepathy (\d+) ft\.(?: \((.+)\))?$/);
+        if (telepathy) {
+            const base = telepathy[1].trim();
+            const baseFr = base ? translateLanguagePhrase(base) : "";
+            const aside = telepathy[3] === "works only with creatures that understand Abyssal"
+                ? " (fonctionne uniquement avec les créatures qui comprennent l'abyssal)"
+                : telepathy[3] === "doesn't allow the receiving creature to respond telepathically"
+                    ? " (ne permet pas à la créature qui la reçoit de répondre par télépathie)"
+                    : "";
+            return `${baseFr ? `${baseFr} ; ` : ""}télépathie à ${distanceInMeters(telepathy[2])}${aside}`;
+        }
+        const split = splitTopLevel(text, ",");
+        const andList = split.flatMap((part) => part.split(/\s+and\s+/i));
+        return andList.map((part) => translateLanguageTerm(part.trim())).join(", ");
+    }
+
+    function translateDamageTerms(value, dictionary) {
+        const terms = splitTopLevel(String(value).replace(/, and /g, ", ").replace(/\s+and\s+/g, ", "), ",");
+        return terms.map(function (part) {
+            const match = part.match(/^(Acid|Bludgeoning|Cold|Fire|Force|Lightning|Necrotic|Piercing|Poison|Psychic|Radiant|Slashing|Thunder)(.*)$/);
+            if (!match) return dictionary[part] || dictionary[part.trim()] || part.trim();
+            const suffix = match[2].replace(/\bfrom Nonmagical Attacks\b/i, "provenant d'attaques non magiques")
+                .replace(/\bdamage from weapons\b/i, "dégâts provenant d'armes")
+                .replace(/\bdamage\b/i, "dégâts");
+            return `${dictionary[match[1]] || match[1]}${suffix}`.trim();
+        }).join(", ");
+    }
+
+    function translateField(field, value) {
+        const text = String(value || "").trim();
+        if (!text) return "";
+        const dictionary = monsterLocalizationFr.fieldsFr || {};
+        if (field === "type") return dictionary.types?.[text] || text;
+        if (field === "kind") return dictionary.kinds?.[text] || dictionary.types?.[text] || text;
+        if (field === "subtype") return dictionary.subtypes?.[text] || text;
+        if (field === "size") return dictionary.sizes?.[text] || text;
+        if (field === "alignment") return dictionary.alignments?.[text] || text;
+        if (field === "speed") {
+            return splitTopLevel(text, ",").map(function (part) {
+                const movement = part.match(/^(?:(Fly|Swim|Climb|Burrow) )?(\d+(?:\.\d+)?) ft\.(?: \((hover)\))?$/);
+                if (!movement) return part;
+                const mode = movement[1] ? `${dictionary.movementModes?.[movement[1]] || movement[1]} ` : "";
+                const hover = movement[3] ? " (surplace)" : "";
+                return `${mode}${distanceInMeters(movement[2])}${hover}`;
+            }).join(", ");
+        }
+        if (field === "skills") {
+            return splitTopLevel(text, ",").map(function (part) {
+                const match = part.match(/^(.+?)(?:\s+([+-]\d+|Advantage))?$/);
+                if (!match) return part;
+                const skill = dictionary.skills?.[match[1]] || match[1];
+                const bonus = match[2] === "Advantage" ? " (Avantage)" : match[2] ? ` ${match[2]}` : "";
+                return `${skill}${bonus}`;
+            }).join(", ");
+        }
+        if (field === "senses") {
+            return splitTopLevel(text, ",").map(function (part) {
+                const passive = part.match(/^Passive Perception (\d+)$/);
+                if (passive) return `${dictionary.senses?.["Passive Perception"] || "Perception passive"} ${passive[1]}`;
+                const sense = part.match(/^(Blindsight|Darkvision|Tremorsense|Truesight) (\d+) ft\.$/);
+                if (sense) return `${dictionary.senses?.[sense[1]] || sense[1]} ${distanceInMeters(sense[2])}`;
+                return part;
+            }).join(", ");
+        }
+        if (field === "languages") return translateLanguagePhrase(text);
+        if (["immunities", "resistances", "vulnerabilities"].includes(field)) {
+            const parts = text.split(";").map((part) => part.trim());
+            const damage = translateDamageTerms(parts[0], dictionary.damageTypes || {});
+            const conditions = parts[1]
+                ? splitTopLevel(parts[1].replace(/, and /g, ", "), ",").map((part) => dictionary.conditions?.[part.trim()] || part.trim()).filter(Boolean).join(", ")
+                : "";
+            return [damage, conditions].filter(Boolean).join(" ; ");
+        }
+        return text;
+    }
+
+    function translatedFields(monster) {
+        const fields = {};
+        for (const field of ["type", "subtype", "kind", "size", "alignment", "initiative", "ac", "hp", "speed", "skills", "senses", "languages", "immunities", "resistances", "vulnerabilities"]) {
+            fields[field] = translateField(field, monster[field]);
+        }
+        if (monster.kind && fields.kind === monster.kind) fields.kind = translateField("type", monster.type);
+        return fields;
+    }
+
+    function option(value, field) {
+        return `<option value="${escapeHtml(value)}">${escapeHtml(translateField(field, value))}</option>`;
     }
 
     function uniqueValues(field) {
@@ -154,8 +225,8 @@
             .sort((a, b) => String(a).localeCompare(String(b), "fr", { numeric: true }));
     }
 
-    function fillSelect(select, values) {
-        select.insertAdjacentHTML("beforeend", values.map(option).join(""));
+    function fillSelect(select, values, field) {
+        select.insertAdjacentHTML("beforeend", values.map(value => option(value, field)).join(""));
     }
 
     function crChipLabel(monster) {
@@ -170,7 +241,7 @@
 
     function optionSearchText(monster) {
         return optionSections
-            .flatMap(([, field]) => (monster[field] || []).flatMap(entry => [entry.name, entry.description]))
+            .flatMap(([, field]) => (monster[field] || []).flatMap(entry => [entry.name, entry.description, entry.nameFr, entry.descriptionFr]))
             .join(" ");
     }
 
@@ -206,12 +277,13 @@
                 monster.resistances,
                 monster.vulnerabilities,
                 optionSearchText(monster),
+                ...Object.values(translatedFields(monster)),
                 ...abilityOrder.flatMap(([code]) => {
                     const ability = monster.abilities?.[code] || {};
                     return [code, ability.score, ability.modifier, ability.save];
                 })
             ].join(" "));
-            return haystack.includes(query) || norm(localize(haystack)).includes(query);
+            return haystack.includes(query);
         });
 
         filtered.sort((a, b) => {
@@ -226,9 +298,9 @@
         return filtered;
     }
 
-    function line(label, value) {
+    function line(label, field, value) {
         if (!value) return "";
-        return `<p class="monster-lines"><strong>${escapeHtml(label)}.</strong> ${escapeHtml(localize(value))}</p>`;
+        return `<p class="monster-lines"><strong>${escapeHtml(label)}.</strong> ${escapeHtml(translateField(field, value))}</p>`;
     }
 
     function abilityMarkup(monster) {
@@ -250,8 +322,10 @@
     function optionMarkup(label, entries) {
         if (!Array.isArray(entries) || !entries.length) return "";
         const content = entries.map(entry => {
-            const title = entry.name ? `<strong>${escapeHtml(localize(entry.name))}.</strong> ` : "";
-            return `<div class="monster-option"><p>${title}${escapeHtml(localize(entry.description || ""))}</p></div>`;
+            const title = entry.nameFr || entry.name;
+            const description = entry.descriptionFr || entry.description || "";
+            const titleMarkup = title ? `<strong>${escapeHtml(title)}.</strong> ` : "";
+            return `<div class="monster-option"><p>${titleMarkup}${escapeHtml(description)}</p></div>`;
         }).join("");
         return `<section class="monster-options"><h3>${escapeHtml(label)}</h3>${content}</section>`;
     }
@@ -325,18 +399,19 @@
     }
 
     function card(monster) {
-        const typeLine = [monster.kind || monster.type, monster.size, monster.alignment]
-            .filter(Boolean)
-            .map(localize)
-            .join(" • ");
+        const typeLine = [
+            translateField("kind", monster.kind || monster.type),
+            translateField("size", monster.size),
+            translateField("alignment", monster.alignment),
+        ].filter(Boolean).join(" • ");
         const misc = [
-            line("Vitesse", monster.speed),
-            line("Compétences", monster.skills),
-            line("Sens", monster.senses),
-            line("Langues", monster.languages),
-            line("Immunités", monster.immunities),
-            line("Résistances", monster.resistances),
-            line("Vulnérabilités", monster.vulnerabilities)
+            line("Vitesse", "speed", monster.speed),
+            line("Compétences", "skills", monster.skills),
+            line("Sens", "senses", monster.senses),
+            line("Langues", "languages", monster.languages),
+            line("Immunités", "immunities", monster.immunities),
+            line("Résistances", "resistances", monster.resistances),
+            line("Vulnérabilités", "vulnerabilities", monster.vulnerabilities)
         ].join("");
 
         return `
@@ -462,7 +537,24 @@
             .then(function (detailsData) {
                 const details = detailsData.monsters || {};
                 monsters = monsters.map(function (monster) {
-                    return Object.assign({}, monster, details[monster.slug] || {});
+                    const sourceDetails = details[monster.slug] || {};
+                    const localized = monsterLocalizationFr.monsters?.[monster.slug] || {};
+                    const mergedDetails = Object.assign({}, sourceDetails);
+                    for (const [, category] of optionSections) {
+                        mergedDetails[category] = (sourceDetails[category] || []).map(function (entry, index) {
+                            return Object.assign({}, entry, localized[category]?.[index] || {});
+                        });
+                    }
+                    const merged = Object.assign({}, monster, mergedDetails);
+                    merged.fieldsFr = translatedFields(merged);
+                    merged.localizationFr = {
+                        abilities: Object.fromEntries(optionSections.map(([, category]) => [
+                            category,
+                            (merged[category] || []).map(({ nameFr, descriptionFr }) => ({ name: nameFr || "", description: descriptionFr || "" })),
+                        ])),
+                        fields: merged.fieldsFr,
+                    };
+                    return merged;
                 });
                 detailsLoaded = true;
                 progressive.reset();
@@ -490,9 +582,9 @@
             const bm = monsters.find(m => m.cr === b);
             return (am ? am.cr_sort : 0) - (bm ? bm.cr_sort : 0);
         }));
-        fillSelect(typeSelect, uniqueValues("type"));
-        fillSelect(alignmentSelect, uniqueValues("alignment"));
-        fillSelect(sizeSelect, uniqueValues("size"));
+        fillSelect(typeSelect, uniqueValues("type"), "type");
+        fillSelect(alignmentSelect, uniqueValues("alignment"), "alignment");
+        fillSelect(sizeSelect, uniqueValues("size"), "size");
         applyUrlState();
         bindMonsterImageInteractions();
 
@@ -515,13 +607,16 @@
         loadMonsterDetails();
     }
 
-    Promise.all(["data/monsters_2024.json", "data/monster-names-fr.json"].map(function (path) {
+    Promise.all(["data/monsters_2024.json", "data/monster-names-fr.json", "data/monster-capabilities-fr.json"].map(function (path) {
         return fetch(path, { credentials: "omit" }).then(function (response) {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.json();
         });
     }))
-        .then(function ([data, translationsData]) { init(data, translationsData); })
+        .then(function ([data, translationsData, localizationData]) {
+            monsterLocalizationFr = localizationData || monsterLocalizationFr;
+            init(data, translationsData);
+        })
         .catch(function () {
             sourceNote.textContent = "Impossible de charger les données de monstres.";
             monstersGrid.innerHTML = `<div class="empty">Le fichier de données des monstres est introuvable ou invalide.</div>`;

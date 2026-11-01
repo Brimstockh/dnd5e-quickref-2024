@@ -328,11 +328,46 @@ async function adventuringGearSearchEntries() {
 
 const spells = JSON.parse(await readFile(resolve(root, "data/spells_2024.json"), "utf8")).spells;
 const monsters = JSON.parse(await readFile(resolve(root, "data/monsters_2024.json"), "utf8")).monsters;
+const monsterDetails = JSON.parse(await readFile(resolve(root, "data/monsters_2024_details.json"), "utf8")).monsters;
 const monsterTranslations = JSON.parse(await readFile(resolve(root, "data/monster-names-fr.json"), "utf8"));
 const monsterNamesFr = monsterTranslations.monsterNamesFr || {};
+const monsterLocalizationFr = JSON.parse(await readFile(resolve(root, "data/monster-capabilities-fr.json"), "utf8"));
+const monsterFieldTranslations = monsterLocalizationFr.fieldsFr || {};
+const monsterCapabilityTranslations = monsterLocalizationFr.monsters || {};
+const monsterAbilityCategories = [
+  ["traits", "Trait"],
+  ["actions", "Action"],
+  ["bonus_actions", "Action bonus"],
+  ["reactions", "Réaction"],
+  ["legendary_actions", "Action légendaire"],
+];
+const monsterAbilityEntries = monsters.flatMap((monster) => monsterAbilityCategories.flatMap(([field, category]) => (
+  (monsterDetails[monster.slug]?.[field] || []).map((ability, index) => {
+    const translated = monsterCapabilityTranslations[monster.slug]?.[field]?.[index] || {};
+    const monsterNameFr = monsterNamesFr[monster.name] || monster.name;
+    const titleFr = translated.nameFr || ability.name;
+    const descriptionFr = translated.descriptionFr || ability.description;
+    return {
+      id: createContentId("monster-feature", `${monster.slug}-${field}-${index + 1}`),
+      type: "monster-feature",
+      title: `${titleFr} — ${monsterNameFr}`,
+      category: "Capacité de monstre",
+      url: `monstres.html?monster=${encodeURIComponent(monster.slug)}&q=${encodeURIComponent(monsterNameFr)}`,
+      aliases: [ability.name, `${ability.name} — ${monster.name}`],
+      keywords: [monster.name, monsterNameFr, ability.name, ability.description, descriptionFr, category, "bestiaire", monster.type, monsterFieldTranslations.types?.[monster.type], monster.kind, monsterFieldTranslations.kinds?.[monster.kind]].filter(Boolean),
+      excerpt: excerpt(descriptionFr, 120),
+    };
+  })
+)));
 const feats = JSON.parse(await readFile(resolve(root, "data/feats_2024.json"), "utf8")).feats;
 const glossary = JSON.parse(await readFile(resolve(root, "data/glossary.json"), "utf8")).entries;
 const magicItems = JSON.parse(await readFile(resolve(root, "data/magic-items.json"), "utf8")).items;
+const magicItemTranslations = JSON.parse(await readFile(resolve(root, "data/magic-items-fr.json"), "utf8")).items;
+const magicItemTranslationsById = new Map(magicItemTranslations.map((item) => [item.id, item]));
+const magicItemTypeLabelsFr = {
+  weapon: "Arme", armor: "Armure", "wondrous-item": "Objet merveilleux", potion: "Potion", ring: "Anneau",
+  rod: "Sceptre", staff: "Bâton", wand: "Baguette", scroll: "Parchemin", ammunition: "Munitions",
+};
 const campaignRules = JSON.parse(await readFile(resolve(root, "data/campaign-rules.json"), "utf8")).entries;
 const lore = JSON.parse(await readFile(resolve(root, "data/lore.json"), "utf8")).entries;
 const searchAliasSource = JSON.parse(await readFile(resolve(root, "data/search-aliases.source.json"), "utf8"));
@@ -397,6 +432,7 @@ const pageDefinitions = SITE_SECTIONS.flatMap((section) => section.links.map((en
 })));
 
 const entries = [
+  ...monsterAbilityEntries,
   ...spells.map((spell) => ({
     id: createContentId("spell", spell.slug || spell.name),
     type: "spell",
@@ -409,6 +445,9 @@ const entries = [
   })),
   ...monsters.map((monster) => {
     const nameFr = monsterNamesFr[monster.name] || "";
+    const kindFr = monsterFieldTranslations.kinds?.[monster.kind] || monsterFieldTranslations.types?.[monster.type] || monster.kind || monster.type;
+    const sizeFr = monsterFieldTranslations.sizes?.[monster.size] || monster.size;
+    const alignmentFr = monsterFieldTranslations.alignments?.[monster.alignment] || monster.alignment;
     return {
       id: createContentId("monster", monster.slug || monster.name),
       type: "monster",
@@ -417,8 +456,8 @@ const entries = [
       category: "Monstre",
       url: queryUrl("monstres.html", nameFr || monster.name),
       aliases: nameFr ? [monster.name] : [],
-      keywords: [monster.name, nameFr, monster.type, monster.kind, monster.size, monster.alignment, `FP ${monster.cr}`].filter(Boolean),
-      excerpt: excerpt([nameFr || monster.name, monster.kind || monster.type, monster.size, monster.alignment, monster.cr ? `FP ${monster.cr}` : ""].filter(Boolean).join(" · ")),
+      keywords: [monster.name, nameFr, monster.type, monsterFieldTranslations.types?.[monster.type], monster.kind, kindFr, monster.size, sizeFr, monster.alignment, alignmentFr, `FP ${monster.cr}`].filter(Boolean),
+      excerpt: excerpt([nameFr || monster.name, kindFr, sizeFr, alignmentFr, monster.cr ? `FP ${monster.cr}` : ""].filter(Boolean).join(" · ")),
     };
   }),
   ...feats.map((feat, index) => ({
@@ -451,17 +490,20 @@ const entries = [
   ...rules,
   ...await classSearchEntries(),
   ...await speciesFeatureSearchEntries(),
-  ...magicItems.map((item) => ({
-    id: item.id || createContentId("magic-item", item.name),
-    type: "magic-item",
-    title: item.name,
-    category: "Objet magique",
-    sourceRef: item.sourceRef || "srd-5.2.1-fr",
-    url: queryUrl("objets-magiques.html", item.name),
-    aliases: item.aliases || [],
-    keywords: [item.type, item.rarity, item.requiresAttunement ? "harmonisation" : "sans harmonisation", item.sourceSection],
-    excerpt: excerpt(item.description),
-  })),
+  ...magicItems.map((item) => {
+    const translated = magicItemTranslationsById.get(item.id);
+    return {
+      id: item.id || createContentId("magic-item", item.name),
+      type: "magic-item",
+      title: translated?.nameFr || item.name,
+      category: "Objet magique",
+      sourceRef: item.sourceRef || "dmg-2024-magic-pdf",
+      url: queryUrl("objets-magiques.html", translated?.nameFr || item.name),
+      aliases: [...new Set([...(item.aliases || []), ...(translated?.nameFr ? [item.name] : [])])],
+      keywords: [item.type, translated?.typeLabelFr || magicItemTypeLabelsFr[item.type] || item.typeLabel, item.rarity, item.requiresAttunement ? "harmonisation" : "sans harmonisation", item.sourceSection],
+      excerpt: excerpt(translated?.descriptionFr || item.description),
+    };
+  }),
   ...campaignRules.map((rule) => ({
     id: rule.id || createContentId("campaign-rule", rule.title),
     type: "campaign-rule",
@@ -488,12 +530,17 @@ const entries = [
   ...lore.map((entry) => ({
     id: entry.id,
     type: "lore",
-    title: entry.name,
-    category: "Lore",
+    title: entry.nameFr || entry.name,
+    category: "Univers",
     sourceRef: "dmg-2024-lore-pdf",
     url: entry.target || `lore.html?term=${encodeURIComponent(entry.id.replace(/^lore-/, ""))}`,
-    aliases: entry.aliases,
-    keywords: ["lore", entry.category, ...(entry.setting || []), ...(entry.related || [])],
+    aliases: [...new Set([entry.name, ...(entry.aliases || [])])],
+    keywords: ["univers", "multivers", "lore", entry.category, ...(entry.setting || []), ...(entry.setting || []).map((setting) => ({
+      "Forgotten Realms": "Royaumes Oubliés",
+      Greyhawk: "Faucongris",
+      Feywild: "Féerie",
+      "Planar / Multiverse": "Plans / Multivers",
+    }[setting] || setting)), ...(entry.related || [])],
     excerpt: excerpt(entry.summary),
   })),
   ...classes.map(([title, file]) => ({
@@ -559,7 +606,7 @@ const searchEntries = canonicalEntries.map(({ legacyIds, ...entry }) => ({
   const { sourceRef, ...entryWithoutSourceRef } = entry;
   return entryWithoutSourceRef;
 });
-const deepTypes = new Set(["class-feature", "subclass", "species-feature", "tool", "adventuring-gear", "glossary", "lore", "magic-item"]);
+const deepTypes = new Set(["class-feature", "subclass", "species-feature", "monster-feature", "tool", "adventuring-gear", "glossary", "lore", "magic-item"]);
 const deepSearchEntries = searchEntries.filter((entry) => deepTypes.has(entry.type));
 const primarySearchEntries = searchEntries.filter((entry) => !deepTypes.has(entry.type));
 const outputs = [

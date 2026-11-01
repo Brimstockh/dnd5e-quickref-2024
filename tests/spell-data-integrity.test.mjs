@@ -141,7 +141,11 @@ const corrections = [
 
 function htmlToText(html) {
   return html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<li\b[^>]*>/gi, "")
+    .replace(/<\/(?:p|div|li|ul|ol|h[1-6])\s*>/gi, "\n")
     .replace(/<[^>]*>/g, "")
+    .replace(/\n{2,}/g, "\n")
     .replaceAll("&amp;", "&")
     .replaceAll("&lt;", "<")
     .replaceAll("&gt;", ">")
@@ -172,7 +176,7 @@ function repeatsCastingConditionAtStart(spell) {
 function assertDescriptionStartsWithEffect(spell, expectedStart) {
   assert.ok(spell.description.startsWith(expectedStart), `${spell.name} should start with its effect`);
   assert.match(spell.description_html, /^<p>[\s\S]*<\/p>$/, `${spell.name} should keep valid paragraph HTML`);
-  assert.equal(htmlToText(spell.description_html), spell.description, `${spell.name} HTML and plain text should match`);
+  assert.equal(htmlToText(spell.description_html).trim(), spell.description.trim(), `${spell.name} HTML and plain text should match`);
 }
 
 test("spell fixes preserve the 391 ordered IDs and slugs and the 13 spell identities", () => {
@@ -209,4 +213,15 @@ test("spell descriptions do not open by repeating an immediately-after-hit casti
   for (const spell of data.spells) {
     assert.equal(repeatsCastingConditionAtStart(spell), false, `${spell.name} repeats its casting condition at the start`);
   }
+});
+
+test("all spell description fields stay synchronized and free of extraction quotes", () => {
+  for (const spell of data.spells) {
+    assert.equal(htmlToText(spell.description_html).trim(), spell.description.trim(), `${spell.name} plain and HTML descriptions`);
+    assert.doesNotMatch(spell.description, /['’]\s*$/, `${spell.name} has a stray final quote`);
+  }
+
+  const locateCreature = data.spells.find(({ id }) => id === 232);
+  assert.equal(locateCreature.name, "Localisation de créature");
+  assert.match(locateCreature.description, /vous avez conscience/);
 });

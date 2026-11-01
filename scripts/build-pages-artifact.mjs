@@ -21,6 +21,7 @@ const excludedPatterns = [
     /^schemas(?:\/|$)/,
     /^data\/(?:assets-report\.json|monster-translations-summary\.json|content-id-aliases\.json|content-relations\.source\.json|glossary-aliases\.source\.json|search-aliases\.source\.json)$/,
 ];
+const requiredRuntimeFiles = ["data/magic-items-fr.json", "data/monster-capabilities-fr.json"];
 
 function isPublishedPath(relativePath) {
     return !excludedPatterns.some((pattern) => pattern.test(relativePath));
@@ -47,7 +48,11 @@ async function copyTrackedFile(projectRoot, targetDirectory, relativePath) {
 async function buildPagesArtifact(targetDirectory = resolve(root, "_site"), projectRoot = root) {
     await rm(targetDirectory, { recursive: true, force: true });
     await mkdir(targetDirectory, { recursive: true });
-    const allFiles = await trackedFiles(projectRoot);
+    const tracked = await trackedFiles(projectRoot);
+    const allFiles = [...new Set([
+        ...tracked,
+        ...requiredRuntimeFiles.filter((relativePath) => existsSync(resolve(projectRoot, relativePath))),
+    ])];
     const missing = allFiles.filter((relativePath) => !existsSync(resolve(projectRoot, relativePath)));
     const files = allFiles.filter((relativePath) => isPublishedPath(relativePath) && !missing.includes(relativePath));
     let bytes = 0;

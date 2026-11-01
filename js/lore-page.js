@@ -10,8 +10,39 @@ export const LORE_CATEGORY_LABELS = Object.freeze({
   material: "Matériau",
 });
 
+export const LORE_SETTING_LABELS = Object.freeze({
+  "Forgotten Realms": "Royaumes Oubliés",
+  Greyhawk: "Faucongris",
+  Feywild: "Féerie",
+  "Planar / Multiverse": "Plans / Multivers",
+});
+
+const LORE_SOURCE_LABELS = Object.freeze({
+  "Dungeon Master's Guide 2024": "Guide du Maître 2024",
+  "Appendix A — Lore Glossary": "Annexe A — Glossaire de l’univers",
+});
+
 export function loreCategoryLabel(category) {
   return LORE_CATEGORY_LABELS[category] || "Autre";
+}
+
+export function loreDisplayName(entry) {
+  return entry.nameFr || entry.name || entry.title || "";
+}
+
+export function loreSettingLabel(setting) {
+  return LORE_SETTING_LABELS[setting] || setting;
+}
+
+function loreSourceLabel(value) {
+  return LORE_SOURCE_LABELS[value] || value;
+}
+
+function loreAliasLabel(value) {
+  return String(value ?? "")
+    .replaceAll("Forgotten Realms", "Royaumes Oubliés")
+    .replaceAll("Greyhawk", "Faucongris")
+    .replaceAll("Feywild", "Féerie");
 }
 
 export function validateLoreData(data) {
@@ -32,7 +63,7 @@ export async function loadLoreResources({
     return { data: null, relationIndex: { targets: {} }, primaryError: error, relationsError: null };
   }
   if (!validateLoreData(data)) {
-    return { data: null, relationIndex: { targets: {} }, primaryError: new Error("Données Lore invalides."), relationsError: null };
+    return { data: null, relationIndex: { targets: {} }, primaryError: new Error("Données de l’index du multivers invalides."), relationsError: null };
   }
   try {
     const relationIndex = await fetchJson(relationsPath, { fetchImpl });
@@ -77,14 +108,16 @@ export function filterLoreEntries(entries, state) {
   return entries.filter((entry) => {
     if (state.category && entry.category !== state.category) return false;
     if (state.setting && !(entry.setting || []).includes(state.setting)) return false;
-    if (state.letter && normalize(entry.name).charAt(0).toLocaleUpperCase("fr") !== normalize(state.letter).charAt(0).toLocaleUpperCase("fr")) return false;
+    if (state.letter && normalize(loreDisplayName(entry)).charAt(0).toLocaleUpperCase("fr") !== normalize(state.letter).charAt(0).toLocaleUpperCase("fr")) return false;
     if (term && slugFor(entry) !== term) return false;
     if (!query) return true;
     return normalize([
       entry.name,
+      entry.nameFr,
       ...(entry.aliases || []),
       entry.category,
       ...(entry.setting || []),
+      ...(entry.setting || []).map(loreSettingLabel),
       entry.summary,
       ...(entry.details || []),
     ].join(" ")).includes(query);
@@ -125,7 +158,7 @@ export async function initLorePage() {
   if (!intro) return;
   const resources = await loadLoreResources();
   if (resources.primaryError) {
-    const error = element("p", "lore-browser__error", "Le catalogue Lore est momentanément indisponible. Réessayez lorsque les données seront à nouveau accessibles.");
+    const error = element("p", "lore-browser__error", "L’index du multivers est momentanément indisponible. Réessayez lorsque les données seront à nouveau accessibles.");
     error.setAttribute("role", "alert");
     intro.querySelector(".content")?.append(error);
     return;
@@ -135,10 +168,10 @@ export async function initLorePage() {
 
   const entriesById = new Map(data.entries.map((entry) => [entry.id, entry]));
   const browser = element("section", "lore-browser");
-  const heading = element("h2", "", "Explorer le lore");
+  const heading = element("h2", "", "Explorer l’index du multivers");
   const toolbar = element("div", "lore-browser__toolbar");
   const searchField = element("div", "lore-browser__field");
-  const searchLabel = element("label", "", "Rechercher dans le lore");
+  const searchLabel = element("label", "", "Rechercher dans l’index");
   const search = element("input", "lore-browser__search");
   const categoryField = element("div", "lore-browser__field");
   const categoryLabel = element("label", "", "Type");
@@ -150,7 +183,7 @@ export async function initLorePage() {
   const status = element("p", "lore-browser__status");
   const relationStatus = element("p", "lore-browser__relation-status", "Les relations externes sont momentanément indisponibles ; les entrées principales restent consultables.");
   const results = element("div", "lore-browser__results");
-  const empty = element("p", "lore-browser__empty", "Aucune entrée de lore ne correspond à cette recherche.");
+  const empty = element("p", "lore-browser__empty", "Aucune entrée de l’index ne correspond à cette recherche.");
   let state = readLoreState();
 
   heading.id = "lore-browser-title";
@@ -169,8 +202,8 @@ export async function initLorePage() {
   status.setAttribute("aria-live", "polite");
   relationStatus.setAttribute("role", "status");
   relationStatus.hidden = !resources.relationsError;
-  results.setAttribute("aria-label", "Résultats du lore");
-  alphabet.setAttribute("aria-label", "Filtrer le lore par initiale");
+  results.setAttribute("aria-label", "Résultats de l’index du multivers");
+  alphabet.setAttribute("aria-label", "Filtrer l’index par initiale");
 
   const categories = ["", ...Array.from(new Set(data.entries.map((entry) => entry.category))).sort((a, b) => a.localeCompare(b, "fr"))];
   categories.forEach((value) => {
@@ -181,13 +214,13 @@ export async function initLorePage() {
   });
   const settings = ["", ...Array.from(new Set(data.entries.flatMap((entry) => entry.setting || []))).sort((a, b) => a.localeCompare(b, "fr"))];
   settings.forEach((value) => {
-    const option = element("option", "", value || "Tous les univers");
+    const option = element("option", "", value ? loreSettingLabel(value) : "Tous les univers");
     option.value = value;
     option.selected = value === state.setting;
     setting.appendChild(option);
   });
 
-  const letters = Array.from(new Set(data.entries.map((entry) => normalize(entry.name).charAt(0).toLocaleUpperCase("fr")))).sort((a, b) => a.localeCompare(b, "fr"));
+  const letters = Array.from(new Set(data.entries.map((entry) => normalize(loreDisplayName(entry)).charAt(0).toLocaleUpperCase("fr")))).sort((a, b) => a.localeCompare(b, "fr"));
   [["", "Tout"], ...letters.map((letter) => [letter, letter])].forEach(([value, label]) => {
     const button = element("button", "lore-browser__letter", label);
     button.type = "button";
@@ -209,7 +242,7 @@ export async function initLorePage() {
 
     for (const entry of filtered) {
       const card = element("article", "lore-entry");
-      const title = element("h3", "", entry.name);
+      const title = element("h3", "", loreDisplayName(entry));
       const alias = element("p", "lore-entry__aliases");
       const meta = element("div", "lore-entry__meta");
       const summary = element("p", "lore-entry__summary", entry.summary);
@@ -220,15 +253,19 @@ export async function initLorePage() {
       card.id = slugFor(entry);
       card.tabIndex = -1;
       card.classList.toggle("lore-entry--linked", Boolean(entry.target));
-      alias.textContent = entry.aliases.length ? `Aussi : ${entry.aliases.join(", ")}` : "";
-      alias.hidden = entry.aliases.length === 0;
+      const displayName = loreDisplayName(entry);
+      const aliases = (entry.aliases || [])
+        .map(loreAliasLabel)
+        .filter((currentAlias) => normalize(currentAlias) !== normalize(displayName));
+      alias.textContent = aliases.length ? `Aussi : ${aliases.join(", ")}` : "";
+      alias.hidden = aliases.length === 0;
       const source = entry.source || {};
       sourceNote.textContent = source.book
-        ? `Source : ${source.book}${source.section ? ` · ${source.section}` : ""}${source.pages ? ` · p. ${source.pages}` : ""}`
+        ? `Source : ${loreSourceLabel(source.book)}${source.section ? ` · ${loreSourceLabel(source.section)}` : ""}${source.pages ? ` · p. ${source.pages}` : ""}`
         : "";
       sourceNote.hidden = !sourceNote.textContent;
       meta.append(element("span", "lore-entry__badge", loreCategoryLabel(entry.category)));
-      for (const currentSetting of entry.setting || []) meta.append(element("span", "lore-entry__badge", currentSetting));
+      for (const currentSetting of entry.setting || []) meta.append(element("span", "lore-entry__badge", loreSettingLabel(currentSetting)));
       if (entry.target) {
         routeNote.hidden = false;
       } else {
@@ -238,9 +275,10 @@ export async function initLorePage() {
       for (const relatedId of entry.related || []) {
         const related = entriesById.get(relatedId) || relationIndex.targets?.[relatedId];
         if (!related) continue;
-        const relatedLink = element("a", "", related.name || related.title);
+        const relatedName = loreAliasLabel(loreDisplayName(related));
+        const relatedLink = element("a", "", relatedName);
         relatedLink.href = related.target || related.url || loreEntryUrl(related);
-        relatedLink.setAttribute("aria-label", `Lore associé : ${related.name || related.title}`);
+        relatedLink.setAttribute("aria-label", `Entrée associée : ${relatedName}`);
         footer.append(relatedLink);
       }
       if (entry.target) {

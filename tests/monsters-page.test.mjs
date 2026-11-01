@@ -23,6 +23,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
   const data = JSON.parse(readFileSync(new URL("../data/monsters_2024.json", import.meta.url), "utf8"));
   const translations = JSON.parse(readFileSync(new URL("../data/monster-names-fr.json", import.meta.url), "utf8"));
   const details = JSON.parse(readFileSync(new URL("../data/monsters_2024_details.json", import.meta.url), "utf8"));
+  const localization = JSON.parse(readFileSync(new URL("../data/monster-capabilities-fr.json", import.meta.url), "utf8"));
   const elements = Object.fromEntries([
     "searchInput", "crSelect", "typeSelect", "alignmentSelect", "sizeSelect", "sortSelect",
     "expandAllBtn", "collapseAllBtn", "exportJsonBtn", "exportStatus", "summary", "monstersGrid", "sourceNote", "loadMoreBtn",
@@ -39,6 +40,7 @@ test("monstres.html progressively renders the local monster dataset", async () =
       assert.equal(options.credentials, "omit");
       if (path === "data/monsters_2024.json") return { ok: true, status: 200, json: async () => data };
       if (path === "data/monster-names-fr.json") return { ok: true, status: 200, json: async () => translations };
+      if (path === "data/monster-capabilities-fr.json") return { ok: true, status: 200, json: async () => localization };
       assert.equal(path, "data/monsters_2024_details.json");
       return { ok: true, status: 200, json: async () => details };
     },

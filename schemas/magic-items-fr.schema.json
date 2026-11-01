@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dnd5e-quickref.local/schemas/magic-items-fr.schema.json",
+  "type": "object",
+  "required": ["schemaVersion", "language", "sourceRef", "originalCatalog", "items"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "language": { "const": "fr" },
+    "sourceRef": { "type": "string", "minLength": 1 },
+    "originalCatalog": { "const": "data/magic-items.json" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nameFr", "descriptionFr"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^magic-item-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "nameFr": { "type": "string", "minLength": 1 },
+          "descriptionFr": { "type": "string", "minLength": 1 },
+          "typeLabelFr": { "type": "string", "minLength": 1 },
+          "subtypeFr": { "type": "string", "minLength": 1 },
+          "attunementRequirementFr": { "type": "string", "minLength": 1 },
+          "chargeRecoveryFr": { "type": "string", "minLength": 1 },
+          "propertiesFr": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+          "spellsFr": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "variantsFr": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "tablesFr": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "titleFr": { "type": "string", "minLength": 1 },
+                "diceFr": { "type": "string", "minLength": 1 },
+                "columnsFr": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+                "rowsFr": { "type": "array", "items": { "type": "object", "additionalProperties": { "type": ["string", "number"] } } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

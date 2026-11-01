@@ -13,14 +13,15 @@ test("catalog data stays within its transfer budget", async () => {
     ["data/monster-names-fr.json", 25_000],
     ["data/feats_2024.json", 55_000],
     ["data/spells_2024.json", 800_000],
-    ["data/search-index.json", 510_000],
-    ["data/search-index-deep.json", 620_000],
+    ["data/search-index.json", 550_000],
+    ["data/search-index-deep.json", 2_600_000],
     ["data/magic-items.json", 620_000],
+    ["data/magic-items-fr.json", 380_000],
     ["data/content-relations.json", 150_000],
     ["data/content-id-aliases.json", 60_000],
     ["data/glossary.json", 65_000],
     ["data/character-creation.json", 15_000],
-    ["data/content-inventory.json", 3_000],
+    ["data/content-inventory.json", 3_200],
     ["data/local-storage-contracts.json", 2_000],
   ];
 
@@ -94,6 +95,7 @@ test("large catalogs preload JSON and use progressive rendering", async () => {
   }
   const magicPage = await readFile(resolve(root, "objets-magiques.html"), "utf8");
   assert.match(magicPage, /rel="preload" href="data\/magic-items\.json" as="fetch"/);
+  assert.match(magicPage, /rel="preload" href="data\/magic-items-fr\.json" as="fetch"/);
   assert.match(magicPage, /src="js\/progressive-list\.js" defer/);
   assert.match(magicPage, /id="loadMoreBtn"/);
 });
